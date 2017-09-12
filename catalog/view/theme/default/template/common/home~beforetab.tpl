@@ -1,0 +1,871 @@
+<?php echo $header; ?>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script type="text/javascript" src="catalog/view/javascript/jquery.slimscroll.js"></script>
+<script>
+	$( function() {
+	  var availableTags = <?php //echo $auto_search_home; ?>
+	  $( "#search_val" ).autocomplete({
+	    source: availableTags
+	  });
+	} );
+</script>
+<style>
+	.dropbtn {
+	/*background-color: #4CAF50;
+	color: white;*/
+	padding: 16px;
+	font-size: 10px;
+	border: none;
+	cursor: pointer;
+	}
+	.dropbtn:hover, .dropbtn:focus {
+	background-color: #3e8e41;
+	}
+	#myInput {
+	border-box: box-sizing;
+	background-image: url('searchicon.png');
+	background-position: 14px 12px;
+	background-repeat: no-repeat;
+	font-size: 16px;
+	padding: 14px 20px 12px 45px;
+	border: none;
+	}
+	.dropdown {
+	position: relative;
+	display: inline-block;
+	}
+	.dropdown-content {
+	display: none;
+	position: absolute;
+	background-color: #f6f6f6;
+	min-width: 230px;
+	overflow: auto;
+	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+	z-index: 1;
+	}
+	.dropdown-content a {
+	color: black;
+	padding: 12px 16px;
+	text-decoration: none;
+	display: block;
+	}
+	.dropdown a:hover {background-color: #ddd}
+	.show {display:block;}
+</style>
+<style>
+.dropdowns-ss {
+    background: url(image/all-categories.jpg) no-repeat scroll 0px 0px transparent;
+    color: transparent !important;
+    border: 1px solid #fff;
+    height: 43px;
+}
+#search_val{border-top-left-radius: 0; border-bottom-left-radius: 0;}
+</style>
+<!--<div class="dropdown">
+	<button onclick="myFunction()" class="dropbtn"><img src="image/books.png"></button>
+	<div id="myDropdown" class="dropdown-content">
+		<input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
+		<?php foreach ($categories as $category) { ?>
+			<a data-id="<?php echo $category['category_id']; ?>" onclick="pathChange(this);"><?php echo $category['name']; ?></a>
+		<?php } ?>	    
+	</div>
+	</div>-->
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-sm-9 header-ad">
+			<?php if(count($advertisement_top_banner) > 0) { ?>
+			<!--<img src="image/header-img.png" class="img-responsive" title="header-ad" alt="header-ad">-->
+			<div id="myCarousel" class="carousel slide" data-ride="carousel">
+				<!-- Indicators -->
+				<ol class="carousel-indicators">
+					<?php
+						$i = 0;
+						foreach($advertisement_top_banner as $advertisement_top) {
+						?>
+					<li data-target="#myCarousel" data-slide-to="<?php echo $i; ?>" class="<?php echo ($i == 0) ? 'active' : '';?>"></li>
+					<?php
+						$i++;
+						} ?>
+					<!--  <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+						<li data-target="#myCarousel" data-slide-to="1"></li>
+						<li data-target="#myCarousel" data-slide-to="2"></li> -->
+				</ol>
+				<!-- Wrapper for slides -->
+				<div class="carousel-inner" role="listbox">
+					<?php
+						$i = 0;
+						foreach($advertisement_top_banner as $advertisement_top) {
+						?>
+					<div class="item <?php echo ($i == 0) ? 'active' : ''; ?>">
+						<div class="hovereffect">
+							<img src="<?php echo $image_resize->resize($advertisement_top['offer_image'], 993, 182); ?>" class="img-responsive" title="<?php echo $advertisement_top['offer_title']; ?>" alt="<?php echo $advertisement_top['offer_title']; ?>" >
+							<div class="overlay">
+								<div class="carousel-caption">
+									<a class="info view-det-adv" href="index.php?route=seller/seller/info&seller_id=<?php echo $advertisement_top['seller_id']; ?>&path=&counter=1">Store</a>
+									<a class="info view-det-adv cursor" data-id="<?php echo $advertisement_top['advertise_id']; ?>" onclick="viewDetAdv(this);">Open</a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<?php
+						$i++;
+						 } ?>
+				</div>
+				<!-- Left and right controls -->
+				<a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+				<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+				<span class="sr-only">Next</span>
+				</a>
+				<a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+				<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+				<span class="sr-only">Next</span>
+				</a>
+			</div>
+			<?php } else {?>
+			<div id="myCarousel" class="carousel slide" data-ride="carousel">
+				<!-- Indicators -->
+				<ol class="carousel-indicators">
+					<li data-target="#myCarousel" data-slide-to="<?php $key ?>" class="active"></li>
+				</ol>
+				<!-- Wrapper for slides -->
+				<div class="carousel-inner" role="listbox">
+					<div class="item active">
+						<img src="image/header-img.png" class="img-responsive" title="header-ad" alt="header-ad">
+						<div class="carousel-caption">
+							<h3>Tamil</h3>
+							<!--<a class="info" href="<?php echo $advertisement_na['offer_url']; ?>">link here</a>-->
+						</div>
+					</div>
+				</div>
+			</div>
+			<?php }?>
+		</div>
+		<div class="col-sm-3">
+		</div>
+	</div>
+</div>
+<div class="container-fluid" id="fix_height">
+	<div class="row">
+		<div class="col-sm-9 category-center">
+			<div class="fixme"  style="z-index:123">
+				<div class="sel-cat-home">
+					<div id="search" class="input-group input-groupnew12">
+						<form action="<?php echo $search_pst; ?>">
+							<?php
+								$path = (isset($_GET['path']) && $_GET['path']) ? $_GET['path']: '';
+								?>
+							<div class="col-md-2 col-xs-2 allcategory_col">
+								<select name="path" id="path" onchange="pathChange(this);">
+									<option value="">All Category</option>
+									<?php foreach ($categories as $category) { 
+										$selected = ($category['category_id'] == $path) ? "selected = selected" : ""; ?>
+									<option value="<?php echo $category['category_id']; ?>" <?php echo $selected; ?>><?php echo $category['name']; ?></option>
+									<?php } ?>
+								</select>
+							</div>
+							<div class="col-md-2 col-xs-3 allcategory_col">
+								<select name="by_search" id="by_search" >
+									<option value="1">By All</option>
+									<option value="2">By Category</option>
+									<option value="3">By Store/Entity</option>
+									<option value="4">By Product</option>
+								</select>
+							</div>
+							<div class="col-md-8 col-xs-7 search_col">
+								<div class="form-group">
+									<div class="cols-sm-10">
+										<div class="input-group">
+											<input type="text" class="form-control" name="search" id="search_val"  placeholder="Search"/>
+											<span class="input-group-addon home-search cursor"><i class="fa fa-search fa" aria-hidden="true"></i></span>
+										</div>
+									</div>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>				
+				<!-- Nav tabs -->
+				<?php 
+					if(isset($_COOKIE['myCookie'])){
+						$cookie = $_COOKIE['myCookie'];
+						$cookie_res = explode(',',$cookie);
+						$latitude = $cookie_res[0];
+						$longitude = $cookie_res[1];
+					} else {
+						$latitude = '13.067439';
+						$longitude = '80.237617';
+					}	
+					function getAddress1($latitude,$longitude){
+					if(!empty($latitude) && !empty($longitude)){
+					$add_loc = array();
+					//Send request and receive json data by address
+					$geocodeFromLatLong = file_get_contents('https://maps.googleapis.com/maps/api/geocode/json?latlng='.trim($latitude).','.trim($longitude).'&sensor=false'); 
+					$data = json_decode($geocodeFromLatLong);
+					$add_array  = $data->results;
+					if(isset($add_array) && !empty($add_array)) {
+					 $add_array = $add_array[0];
+					 $add_array = $add_array->address_components;		
+					 //echo "<pre>";print_r($add_array);
+					 foreach ($add_array as $key) {
+					 if($key->types[0] == 'political') {
+					 if($key->types[2] == 'sublocality_level_1') { $add_loc['local_address'] = $key->long_name; }
+					 }
+					 if($key->types[0] == 'administrative_area_level_2')
+					 {
+					 $add_loc['city_address'] = $key->long_name;
+					 }
+					 if($key->types[0] == 'administrative_area_level_1')
+					 {
+					 $add_loc['state_address'] = $key->long_name;
+					 }
+					 if($key->types[0] == 'country')
+					 {
+					 $add_loc['country_address'] = $key->long_name;
+					 }
+					 }
+					 }
+					if(!empty($add_loc)){
+					return $add_loc;		   
+					}else{
+					return false;
+					}
+					}else{
+					return false;   
+					}
+					}
+					
+					
+					$add_loc = getAddress1($latitude,$longitude);
+					//print_r($add_loc);	
+					$local_address = (isset($add_loc['local_address']) && $add_loc['local_address']) ? $add_loc['local_address']:'';
+					$city_address = (isset($add_loc['city_address']) && $add_loc['city_address']) ? $add_loc['city_address']:'';
+					$state_address = (isset($add_loc['state_address']) && $add_loc['state_address']) ? $add_loc['state_address']:'';
+					$country_address = (isset($add_loc['country_address']) && $add_loc['country_address']) ? $add_loc['country_address']:'';
+					$country_det = $local_address.", ".$city_address.", ".$state_address.", ".$country_address;
+					setcookie('myCookieaddress', $country_det);
+					//print_r(isset$_COOKIE['myCookieend']);   
+					
+					if (isset($country_det)) { $address_det = explode(',', $country_det); } ?>
+				<!--<div class="card hom--pg fixmee-st">-->
+				<div class="_home_tab--sel--main">
+					<ul class="_bon_ts1 fis-des">
+						<?php if ($logged && $login_type != 'buyer') { ?>
+						<a href="index.php?route=selleradvertise/advertise/add" ><li class="tas_bon" role="presentation">Post AD</li></a>
+						<?php } else { ?>
+						<a class="cursor" data-toggle="modal" data-target="#login_frc_seller"><li class="tas_bon" role="presentation">Post AD</li></a>
+						<?php } ?>
+					</ul>
+					<ul class="nav nav-tabs _bon_ts" role="tablist">
+						<?php if($address_det[3] !='') {?>
+						<li id="adv_home" class="tas_bon active" role="presentation"><a href="#home" aria-controls="home" role="tab" data-toggle="tab"><?php echo $address_det[3]; ?></a></li>
+						<?php } if($address_det[2] !='') {?>
+						<li id="adv_profile" class="tas_bon" role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab"><?php echo $address_det[2]; ?></a></li>
+						<?php } if($address_det[1] !='') {?>
+						<li id="adv_messages" class="tas_bon" role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab"><?php echo $address_det[1]; ?></a></li>
+						<?php } ?>
+						<li id="adv_settings" class="tas_bon" role="presentation"><a href="#settings" aria-controls="settings" id="setting_tab" role="tab" data-toggle="tab"><?php echo 'Nearby ';if(isset($_COOKIE['myCookiestart']) || isset($_COOKIE['myCookieend'])){echo '<span>('.$_COOKIE['myCookiestart']. '-' .$_COOKIE['myCookieend'].' km)</span>';} else {echo '<span>(0-3 km)</span>';}//$address_det[0]; ?></a></li>
+					</ul>
+				</div>
+			</div>
+			<!-- Tab panes -->
+			<div class="tab-content home-tt-r">
+				<div role="tabpanel" class="tab-pane active" id="home">
+					<?php if(count($advertisement_national) > 0) {
+						foreach($advertisement_national as $advertisement_na) { ?>
+					<div class="col-sm-12 advertise_count" id="<?php echo $advertisement_na['advertise_id']; ?>" >
+						<div class="row">
+							<div class="hovereffect fis-des">
+								<img src="<?php echo $image_resize->resize($advertisement_na['offer_image'], 993, 182); ?>" class="img-responsive" title="<?php echo $advertisement_na['offer_title']; ?>" alt="<?php echo $advertisement_na['offer_title']; ?>">
+								<div class="overlay">
+									<div class="col-sm-12">
+										<div class="col-sm-9">
+											<h2 class="store_name">
+												<?php echo $advertisement_na['nickname']; ?>				
+											</h2>
+										</div>
+										<div class="col-sm-3">
+											<h2 class="store_rating">
+												<div>
+													<?php for ($i = 1; $i <= 5; $i++) { ?>
+													<?php if ($advertisement_na['rating'] < $i) { ?>
+													<div class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i></div>
+													<?php } else { ?>
+													<div class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></div>
+													<?php } ?>
+													<?php } ?>
+												</div>
+											</h2>
+										</div>
+									</div>
+									<div class="col-sm-12">
+										<h2 class="advertise_title"><?php echo $advertisement_na['offer_title']; ?></h2>
+									</div>
+									<a class="info hmg--sel ne--str view-det-adv" href="index.php?route=seller/seller/info&seller_id=<?php echo $advertisement_na['seller_id']; ?>&path=&counter=1"><img src="image/store_front.png" class="img-responsive"></a>
+									<a class="info hmg--sel ne--opn view-det-adv cursor" data-id="<?php echo $advertisement_na['advertise_id']; ?>" onclick="viewDetAdv(this);"><i class="fa fa-arrows-alt"></i></a>
+								</div>
+								<?php if((isset($advertisement_na['filtered']) && $advertisement_na['filtered'] =='1') ? $advertisement_na['filtered'] : '') { ?>
+								<div class="col-sm-1 filtered_ads">
+									<?php echo "Filtered"; ?>
+								</div>
+								<?php } ?>
+							</div>
+							<div class="sec-mob">
+								<a class="info view-det-adv" data-id="<?php echo $advertisement_na['advertise_id']; ?>" onclick="viewDetAdv(this);">
+									<img src="<?php echo $image_resize->resize($advertisement_na['offer_image'], 993, 182); ?>" class="img-responsive" title="<?php echo $advertisement_na['offer_title']; ?>" alt="<?php echo $advertisement_na['offer_title']; ?>">
+									<div class="temp--mb">
+										<span style="float: left;">
+											<?php echo substr($advertisement_na['nickname'], 0, 20); ?>
+										</span>
+										<span class="sub-mb--st" style="float: right;">
+											<?php for ($i = 1; $i <= 5; $i++) { ?>
+											<?php if ($advertisement_na['rating'] < $i) { ?>
+											<div class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i></div>
+											<?php } else { ?>
+											<div class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></div>
+											<?php } ?>
+											<?php } ?>
+										</span>
+									</div>
+									<?php if((isset($advertisement_na['filtered']) && $advertisement_na['filtered'] =='1') ? $advertisement_na['filtered'] : '') { ?>
+									<div class="col-sm-1 filtered_ads">
+										<?php echo "Filtered"; ?>
+									</div>
+									<?php } ?>
+								</a>
+							</div>
+						</div>
+					</div>
+					<?php $count_na = count($advertisement_national); ?>
+					<script>var national_adv_id = "<?php echo $advertisement_na['advertise_id']; ?>"; var count_na = "<?php echo $count_na; ?>";</script>
+					<?php } } else { ?>
+					<div class="col-sm-12">
+						<div class="row">
+							<p>No Advertisement Yet...</p>
+						</div>
+					</div>
+					<?php } ?>	   
+				</div>
+				<div role="tabpanel" class="tab-pane" id="profile">
+					<?php if(count($advertisement_state) > 0) {
+						foreach($advertisement_state as $advertisement_st) { ?>
+					<div class="col-sm-12 advertise_count" id="<?php echo $advertisement_st['advertise_id']; ?>" >
+						<div class="row">
+							<div class="hovereffect fis-des">
+								<img src="<?php echo $image_resize->resize($advertisement_st['offer_image'], 993, 182); ?>" class="img-responsive" title="<?php echo $advertisement_st['offer_title']; ?>" alt="<?php echo $advertisement_st['offer_title']; ?>">
+								<div class="overlay">
+									<div class="col-sm-12">
+										<div class="col-sm-9">
+											<h2 class="store_name">
+												<?php echo $advertisement_st['nickname']; ?>				
+											</h2>
+										</div>
+										<div class="col-sm-3">
+											<h2 class="store_rating">
+												<div>
+													<?php for ($i = 1; $i <= 5; $i++) { ?>
+													<?php if ($advertisement_st['rating'] < $i) { ?>
+													<div class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i></div>
+													<?php } else { ?>
+													<div class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></div>
+													<?php } ?>
+													<?php } ?>
+												</div>
+											</h2>
+										</div>
+									</div>
+									<div class="col-sm-12">
+										<h2 class="advertise_title"><?php echo $advertisement_st['offer_title']; ?></h2>
+									</div>
+									<a class="info hmg--sel ne--str view-det-adv" href="index.php?route=seller/seller/info&seller_id=<?php echo $advertisement_st['seller_id']; ?>&path=&counter=1"><img src="image/store_front.png" class="img-responsive"></a>
+									<a class="info hmg--sel ne--opn view-det-adv cursor" data-id="<?php echo $advertisement_st['advertise_id']; ?>" onclick="viewDetAdv(this);"><i class="fa fa-arrows-alt"></i></a>
+								</div>
+								<?php if((isset($advertisement_st['filtered']) && $advertisement_st['filtered'] =='1') ? $advertisement_st['filtered'] : '') { ?>
+								<div class="col-sm-1 filtered_ads">
+									<?php echo "Filtered"; ?>
+								</div>
+								<?php } ?>
+							</div>
+							<div class="sec-mob">
+								<a class="info view-det-adv" data-id="<?php echo $advertisement_st['advertise_id']; ?>" onclick="viewDetAdv(this);">
+									<img src="<?php echo $image_resize->resize($advertisement_st['offer_image'], 993, 182); ?>" class="img-responsive" title="<?php echo $advertisement_st['offer_title']; ?>" alt="<?php echo $advertisement_st['offer_title']; ?>">
+									<div class="temp--mb">
+										<span style="float: left;">
+											<?php echo substr($advertisement_st['nickname'], 0, 20); ?>
+										</span>
+										<span class="sub-mb--st" style="float: right;">
+											<?php for ($i = 1; $i <= 5; $i++) { ?>
+											<?php if ($advertisement_st['rating'] < $i) { ?>
+											<div class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i></div>
+											<?php } else { ?>
+											<div class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></div>
+											<?php } ?>
+											<?php } ?>
+										</span>
+									</div>
+									<?php if((isset($advertisement_st['filtered']) && $advertisement_st['filtered'] =='1') ? $advertisement_st['filtered'] : '') { ?>
+									<div class="col-sm-1 filtered_ads">
+										<?php echo "Filtered"; ?>
+									</div>
+									<?php } ?>
+								</a>
+							</div>
+						</div>
+					</div>
+					<?php $count_st = count($advertisement_state); ?>	    
+					<script>var state_adv_id = "<?php echo $advertisement_st['advertise_id']; ?>"; var count_st = "<?php echo $count_st; ?>";</script>
+					<?php } } else { ?>
+					<div class="col-sm-12">
+						<div class="row">
+							<p>No Advertisement Yet...</p>
+						</div>
+					</div>
+					<?php } ?>	    
+				</div>
+				<div role="tabpanel" class="tab-pane" id="messages">
+					<?php if(count($advertisement_city) > 0) {
+						foreach($advertisement_city as $advertisement_ci) { ?>
+					<div class="col-sm-12 advertise_count" id="<?php echo $advertisement_ci['advertise_id']; ?>">
+						<div class="row">
+							<div class="hovereffect fis-des">
+								<img src="<?php echo $image_resize->resize($advertisement_ci['offer_image'], 993, 182); ?>" class="img-responsive" title="<?php echo $advertisement_ci['offer_title']; ?>" alt="<?php echo $advertisement_ci['offer_title']; ?>">
+								<div class="overlay">
+									<div class="col-sm-12">
+										<div class="col-sm-9">
+											<h2 class="store_name">
+												<?php echo $advertisement_ci['nickname']; ?>				
+											</h2>
+										</div>
+										<div class="col-sm-3">
+											<h2 class="store_rating">
+												<div>
+													<?php for ($i = 1; $i <= 5; $i++) { ?>
+													<?php if ($advertisement_ci['rating'] < $i) { ?>
+													<div class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i></div>
+													<?php } else { ?>
+													<div class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></div>
+													<?php } ?>
+													<?php } ?>
+												</div>
+											</h2>
+										</div>
+									</div>
+									<div class="col-sm-12">
+										<h2 class="advertise_title"><?php echo $advertisement_ci['offer_title']; ?></h2>
+									</div>
+									<a class="info hmg--sel ne--str view-det-adv" href="index.php?route=seller/seller/info&seller_id=<?php echo $advertisement_ci['seller_id']; ?>&path=&counter=1"><img src="image/store_front.png" class="img-responsive"></a>
+									<a class="info hmg--sel ne--opn view-det-adv cursor" data-id="<?php echo $advertisement_ci['advertise_id']; ?>" onclick="viewDetAdv(this);"><i class="fa fa-arrows-alt"></i></a>
+								</div>
+								<?php if((isset($advertisement_ci['filtered']) && $advertisement_ci['filtered'] =='1') ? $advertisement_ci['filtered'] : '') { ?>
+								<div class="col-sm-1 filtered_ads">
+									<?php echo "Filtered"; ?>
+								</div>
+								<?php } ?>
+							</div>
+							<div class="sec-mob">
+								<a class="info view-det-adv" data-id="<?php echo $advertisement_ci['advertise_id']; ?>" onclick="viewDetAdv(this);">
+									<img src="<?php echo $image_resize->resize($advertisement_ci['offer_image'], 993, 182); ?>" class="img-responsive" title="<?php echo $advertisement_ci['offer_title']; ?>" alt="<?php echo $advertisement_ci['offer_title']; ?>">
+									<div class="temp--mb">
+										<span style="float: left;">
+											<?php echo substr($advertisement_ci['nickname'], 0, 20); ?>
+										</span>
+										<span class="sub-mb--st" style="float: right;">
+											<?php for ($i = 1; $i <= 5; $i++) { ?>
+											<?php if ($advertisement_ci['rating'] < $i) { ?>
+											<div class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i></div>
+											<?php } else { ?>
+											<div class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></div>
+											<?php } ?>
+											<?php } ?>
+										</span>
+									</div>
+									<?php if((isset($advertisement_ci['filtered']) && $advertisement_ci['filtered'] =='1') ? $advertisement_ci['filtered'] : '') { ?>
+									<div class="col-sm-1 filtered_ads">
+										<?php echo "Filtered"; ?>
+									</div>
+									<?php } ?>
+								</a>
+							</div>
+						</div>
+					</div>
+					<?php $count_ct = count($advertisement_city); ?>
+					<script>var city_adv_id = "<?php echo $advertisement_ci['advertise_id']; ?>"; var count_ct = "<?php echo $count_ct; ?>";</script>
+					<?php } } else { ?>
+					<div class="col-sm-12">
+						<div class="row">
+							<p>No Advertisement Yet...</p>
+						</div>
+					</div>
+					<?php } ?>	   
+				</div>
+				<div role="tabpanel" class="tab-pane" id="settings">
+					<?php if(count($advertisement_local) > 0 && !empty($advertisement_local)) {
+						foreach($advertisement_local as $advertisement_lo) { ?>
+					<div class="col-sm-12 advertise_count" id="<?php echo $advertisement_lo['advertise_id']; ?>" >
+						<div class="row">
+							<div class="hovereffect fis-des">
+								<img src="<?php echo $image_resize->resize($advertisement_lo['offer_image'], 993, 182); ?>" class="img-responsive" title="<?php echo $advertisement_lo['offer_title']; ?>" alt="<?php echo $advertisement_lo['offer_title']; ?>">
+								<div class="overlay">
+									<div class="col-sm-12">
+										<div class="col-sm-9">
+											<h2 class="store_name">
+												<?php echo $advertisement_lo['nickname']; ?>				
+											</h2>
+										</div>
+										<div class="col-sm-3">
+											<h2 class="store_rating">
+												<div>
+													<?php for ($i = 1; $i <= 5; $i++) { ?>
+													<?php if ($advertisement_lo['rating'] < $i) { ?>
+													<div class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i></div>
+													<?php } else { ?>
+													<div class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></div>
+													<?php } ?>
+													<?php } ?>
+												</div>
+											</h2>
+										</div>
+									</div>
+									<div class="col-sm-12">
+										<h2 class="advertise_title"><?php echo $advertisement_lo['offer_title']; ?></h2>
+									</div>
+									<a class="info hmg--sel ne--str view-det-adv" href="index.php?route=seller/seller/info&seller_id=<?php echo $advertisement_lo['seller_id']; ?>&path=&counter=1"><img src="image/store_front.png" class="img-responsive"></a>
+									<a class="info hmg--sel ne--opn view-det-adv cursor" data-id="<?php echo $advertisement_lo['advertise_id']; ?>" onclick="viewDetAdv(this);"><i class="fa fa-arrows-alt"></i></a>
+								</div>
+								<?php if((isset($advertisement_lo['filtered']) && $advertisement_lo['filtered'] =='1') ? $advertisement_lo['filtered'] : '') { ?>
+								<div class="col-sm-1 filtered_ads">
+									<?php echo "Filtered"; ?>
+								</div>
+								<?php } ?>
+							</div>
+							<div class="sec-mob">
+								<a class="info view-det-adv" data-id="<?php echo $advertisement_lo['advertise_id']; ?>" onclick="viewDetAdv(this);">
+									<img src="<?php echo $image_resize->resize($advertisement_lo['offer_image'], 993, 182); ?>" class="img-responsive" title="<?php echo $advertisement_lo['offer_title']; ?>" alt="<?php echo $advertisement_lo['offer_title']; ?>">
+									<div class="temp--mb">
+										<span style="float: left;">
+											<?php echo substr($advertisement_lo['nickname'], 0, 20); ?>
+										</span>
+										<span class="sub-mb--st" style="float: right;">
+											<?php for ($i = 1; $i <= 5; $i++) { ?>
+											<?php if ($advertisement_lo['rating'] < $i) { ?>
+											<div class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i></div>
+											<?php } else { ?>
+											<div class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></div>
+											<?php } ?>
+											<?php } ?>
+										</span>
+									</div>
+									<?php if((isset($advertisement_lo['filtered']) && $advertisement_lo['filtered'] =='1') ? $advertisement_lo['filtered'] : '') { ?>
+									<div class="col-sm-1 filtered_ads">
+										<?php echo "Filtered"; ?>
+									</div>
+									<?php } ?>
+								</a>
+							</div>
+						</div>
+					</div>
+					<?php $count_lo = count($advertisement_local); ?>	    
+					<script>var local_adv_id = "<?php echo $advertisement_lo['advertise_id']; ?>"; var count_lo = "<?php echo $count_lo; ?>";</script>
+					<?php } } else { ?>
+					<div class="col-sm-12">
+						<div class="row">
+							<p>No Advertisement Yet...</p>
+						</div>
+					</div>
+					<?php } ?>	     
+				</div>
+				<?php if( (isset($advertisement_national) && !empty($advertisement_national)) || (isset($advertisement_state) && !empty($advertisement_state)) || (isset($advertisement_city) && !empty($advertisement_city)) || (isset($advertisement_local) && !empty($advertisement_local))) { ?>
+				<p id="loader_page"><img src="catalog/view/theme/default/image/ajax_loader.gif"></p>
+				<?php } ?>
+			</div>
+			<!--</div>-->
+		</div>
+		<div class="col-sm-3"></div>
+	</div>
+</div>
+<div class="modal fade" id="ad_details" role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content loc-pop">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<!--h4 class="modal-title loc-share-title">Advertise Details</h4>-->
+			</div>
+			<div class="modal-body loc-share-topps" id="ad_det_id">   
+			</div>
+		</div>
+	</div>
+</div>
+<script>
+	//$(".chosen-select").chosen();
+</script>
+<script>
+	function viewDetAdv(val) {
+	 //$('a.view-det-adv').on('click', function() {
+	 var data_id = $(val).data('id');
+	 $.ajax({
+		url: 'index.php?route=selleradvertise/advertise/get_single_advertise',
+		type: 'post',
+		dataType: 'json',
+		data: {data_id: data_id},
+		success: function(json) {
+			var img = json['offer_image_original'];
+			var str_lnk = 'index.php?route=seller/seller/info&seller_id='+json['seller_id']+'&path=&counter=1';
+			if (json['success']) {
+				if(json['advertise_id']) {
+					$('#ad_det_id').html('<a href=\"'+str_lnk+'\"><h4><strong>'+json['nickname']+'</strong></h4></a><h5><strong>Title: </strong>'+json['offer_title']+'</h5><img src=\"image/'+img+'\" alt=\"'+json['offer_title']+'\" class=\"img-thumbnail img-responsive\" /><p><strong>Description: </strong>'+json['offer_desc']+'<p><strong>URL: </strong><a href='+json['offer_url']+'>'+json['offer_url']+'</a></p>');
+	         		}
+				$('#ad_details').modal('toggle');
+				
+			}
+		}
+	 }); }
+	 //});   
+</script>
+<script>
+	var tabs = new Array();
+	var path = '';
+	var seconds_time = 50000;
+	var tab_id = '';
+	var id = '';
+	var count = ''; 
+	var timeout;	
+	var tabpane_position = $("#home");//.position();
+	$(".tab-pane").on("mousemove", function (e) {
+	  var offset = $(".tab-pane").offset();
+	  clearTimeout(timeout);  
+	  timeout = setTimeout(function(){
+		var tabs = $('.nav-tabs > li'),
+		active = tabs.filter('.active'),
+		next = active.next('li'),
+		toClick = next.length ? next.find('a') : tabs.eq(0).find('a');		
+			toClick.trigger('click');
+	var r = (-0.5)+(Math.random()*(1000.99));
+	//alert('before'+r);
+			$(".tab-pane").trigger('mousemove');
+		}, seconds_time);
+	//alert('after'+timeout);
+	});
+	
+	
+	$(document).ready(function(){
+		$(".tab-pane").trigger('mousemove');
+	});
+	
+	/*var mousemove = true;	
+	$(".tab-pane").mousemove(function(event){
+		mousemove = false;		
+	});	
+	
+	var tabCarousel = setInterval(function() {
+	       var tabs = $('.nav-tabs > li'),
+		active = tabs.filter('.active'),
+		next = active.next('li'),
+		toClick = next.length ? next.find('a') : tabs.eq(0).find('a');	
+		//alert(mousemove);
+		if(mousemove == true) { //alert(mousemove);
+			toClick.trigger('click');
+		}
+	 }, 6000);*/
+	
+	
+	 function pathChange(val) { //$('#path').on('change', function() {
+		path = $(val).val(); //alert(path); //$(val).data('id'); alert(path);
+		$('.nav-tabs li.active').removeClass('active');
+		$('.tab-content div.tab-pane').removeClass('active');	     
+		$('.nav-tabs li#adv_settings').addClass('active');
+		$('.tab-content div#settings').addClass('active');
+	   //window.location.href = "index.php?route=common/home&path="+path;
+		MakeUrl(path, tab_id);
+	      }//);
+	      $(".home-search").click(function(){
+		path = $( "#path" ).val();
+		var search = $( "#search_val" ).val();
+		var by_search = $( "#by_search" ).val();
+		window.location.href = "index.php?route=seller/seller&path="+path+"&searcha="+search+"&by_search="+by_search;
+	      });     
+	
+	  
+	var is_loading = false; 
+	var limit = 6; // limit items per page	
+	 
+	tab_id = 'home';
+	if(typeof(national_adv_id) != "undefined" && national_adv_id !== null) {	
+		var id = national_adv_id;		
+	}
+	if(typeof(count_na) != "undefined" && count_na !== null) {	
+		var count = count_na;		
+	}
+	
+	
+	$('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+		var target = $(e.target).attr("href") // activated tab		
+		target = target.replace('#','');
+		tab_id = target;
+		id = $("#"+tab_id+" div:first-child").attr("id");
+		count = $("#"+tab_id+" div.advertise_count").length;
+	               is_loading = false;
+		//alert(tab_id+','+id+','+count); 
+	MakeUrl(path, tab_id);
+	});
+	
+	$('#adv_home,#adv_home,#adv_home,#adv_home').click(function (e) {
+		var target = $(e.target).attr("href") // activated tab		
+		target = target.replace('#','');
+		tab_id = target;
+		id = $("#"+tab_id+" div:first-child").attr("id");
+		count = $("#"+tab_id+" div.advertise_count").length;
+	               is_loading = false;
+		//alert(tab_id+','+id+','+count);
+	MakeUrl(path, tab_id);
+	});
+	
+	function MakeUrl(path, tab_id) { 
+	var limit = 4;
+	if(tab_id =='') {
+		tab_id = 'settings';
+	}
+	if((typeof($.cookie('myCookiestart')) != "undefined" && $.cookie('myCookiestart') !='')  && (typeof($.cookie('myCookiestart')) != "undefined" && $.cookie('myCookieend') !='')){    
+		$( "#setting_tab" ).html( 'Nearby <span>('+$.cookie('myCookiestart')+'-'+$.cookie('myCookieend')+' km)</span>');
+	}
+	//alert($( "#setting_tab" ).html());
+	is_loading = true;
+	count = 0;
+	$.ajax({
+		url: "index.php?route=common/home/getLoadMore&path="+path+"&tab_id="+tab_id+"&id="+id+"&count="+count,
+		type: 'GET',
+		success:function(data){
+		$('#'+tab_id).empty();
+		var str = $.trim(data);
+		if(str == 'no_record_found') { 
+			$('#loader_page').hide();
+			$('#'+tab_id).append('<p>No Advertisement Yet...</p>');	
+			is_loading = true;
+			count = '';
+			tab_id = '';
+			id = '';
+		} else {
+			$('#loader_page').hide();
+			$('#'+tab_id).append(data);						
+			is_loading = false;						
+		}
+		 }
+	});
+	 }
+	
+	
+	$(function() {
+	$("html, body").animate({ scrollTop: 0 }, "fast");
+		$(window).scroll(function() {
+		if(tab_id) {
+			if (is_loading == false) { 					
+				if($(window).scrollTop() + $(window).height() >= $(document).height() - 300) {
+					is_loading = true;
+					$('#loader_page').show(); 
+					$.ajax({
+					    url: "index.php?route=common/home/getLoadMore&path="+path+"&tab_id="+tab_id+"&id="+id+"&count="+count,
+					    type: 'GET',
+					    success:function(data){	
+						var str = $.trim(data);
+						if(str == 'no_record_found') {
+							$('#loader_page').hide();
+							is_loading = true;
+							count = '';
+							tab_id = '';
+							id = '';
+						} else {
+							$('#loader_page').hide();							
+							$('#'+tab_id).append(data);										
+													
+							is_loading = false;						
+						}
+					    }
+					});
+				}
+			}			
+			//is_loading = true;
+		} else {			
+			return false;			
+		}
+		});		
+		
+	});	
+	function myFunction() {
+	  var dropbtn_class = $('.dropdown-content').attr('class');
+	  if(dropbtn_class == 'dropdown-content') {
+	  $('.dropbtn').empty();
+	   $('.dropbtn').append('<img src="image/open-book.png" />');	     
+	  } else { 
+	   $('.dropbtn').empty();
+	   $('.dropbtn').append('<img src="image/books.png" />');	
+	  }
+	  document.getElementById("myDropdown").classList.toggle("show");
+	}
+	
+	function filterFunction() {
+	  
+	  var input, filter, ul, li, a, i;
+	  input = document.getElementById("myInput");
+	  filter = input.value.toUpperCase();
+	  div = document.getElementById("myDropdown");
+	  a = div.getElementsByTagName("a");
+	  for (i = 0; i < a.length; i++) {
+	if (a[i].innerHTML.toUpperCase().indexOf(filter) > -1) {
+	   a[i].style.display = "";
+	} else {
+	   a[i].style.display = "none";
+	}
+	  }  
+	}
+	
+</script>
+<script>
+if($(window).width() < 767) {
+	$("#path").addClass("dropdowns-ss");
+}
+	var fixmeTop = $('.fixme').offset().top;
+	$(window).scroll(function() {
+	    var currentScroll = $(window).scrollTop();
+	    if (currentScroll >= fixmeTop) {
+	        $('.fixme').css({
+	            position: 'sticky',
+	            top: '0',
+	            
+	        });
+	    } else {
+	        $('.fixme').css({
+	            position: 'static'
+	        });
+	    }
+	});
+	
+	var $tab = $('.fixme');
+	var body_height = $tab.height();
+	//alert(body_height);
+	
+	var window_height = $(window).height();
+	//alert(window_height);
+	
+	var tab_height = parseInt(window_height) - parseInt(body_height);
+	$('.home-tt-r').slimscroll({height: tab_height});
+	$('.home-tt-r .tab-pane').css({ 
+		height: tab_height	 
+	});
+	//$('.home-tt-r .tab-pane').slimscroll();
+
+	//$('.home-tt-r .tab-pane').css('overflow-y', 'scroll');
+
+	$('#testDiv').slimscroll({
+	  height: 'auto'
+	});
+	
+</script>
+<script>
+   $('select.dropdowns-ss').on('change', function() {
+     if(this.value != '') {
+   	$('.dropdowns-ss').css('background', 'url(image/all-categories-open.jpg) no-repeat scroll 0px 0px transparent')
+     } else {
+   	$('.dropdowns-ss').css('background', 'url(image/all-categories.jpg) no-repeat scroll 0px 0px transparent')
+     }
+   });   
+</script>
+<?php echo $footer; ?>

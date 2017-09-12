@@ -1,0 +1,2124 @@
+2017-01-18 8:25:53 - MOD: Modification Default
+
+FILE: system/engine/action.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 41
+
+FILE: system/engine/loader.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 49
+LINE: 108
+LINE: 120
+LINE: 165
+
+FILE: system/library/config.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 23
+
+FILE: system/library/language.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 38
+LINE: 40
+LINE: 49
+LINE: 51
+LINE: 60
+LINE: 62
+
+FILE: system/library/template/php.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 18
+
+FILE: system/library/template/tiwg.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 24
+----------------------------------------------------------------
+MOD: Alkod Multi Seller Extension pro
+
+FILE: admin/language/en-gb/report/customer_activity.php
+CODE: // Text
+LINE: 16
+
+FILE: admin/language/en-gb/extension/dashboard/activity.php
+CODE: // Text
+LINE: 15
+
+FILE: admin/view/template/common/dashboard.tpl
+CODE: <div class="col-lg-3 col-md-3 col-sm-6"><?php echo $online; ?></div>
+NOT FOUND - OPERATIONS ABORTED!
+
+FILE: admin/controller/common/dashboard.php
+CODE: $data['online'] = $this->load->controller('dashboard/online');
+NOT FOUND - OPERATIONS ABORTED!
+
+FILE: admin/controller/common/column_left.php
+CODE: // Catalog
+LINE: 122
+
+FILE: admin/language/en-gb/common/column_left.php
+CODE: // Text
+LINE: 10
+
+FILE: catalog/view/theme/default/template/common/header.tpl
+CODE: <li class="dropdown"><a href="<?php echo $account; ?>" title="<?php echo $text_account; ?>" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <span class="hidden-xs hidden-sm hidden-md"><?php echo $text_account; ?></span> <span class="caret"></span></a>
+LINE: 63
+
+FILE: catalog/controller/common/header.php
+CODE: $data['logged'] = $this->customer->isLogged();
+LINE: 94
+CODE: $data['account'] = $this->url->link('account/account',
+LINE: 109
+
+FILE: catalog/language/en-gb/common/header.php
+CODE: // Text
+LINE: 7
+
+FILE: catalog/view/theme/default/template/product/product.tpl
+CODE: <?php if ($reward) { ?>
+LINE: 214
+
+FILE: catalog/controller/product/product.php
+CODE: $data['reward'] = $product_info['reward'];
+LINE: 396
+
+FILE: catalog/language/en-gb/product/product.php
+CODE: // Text
+LINE: 4
+
+FILE: catalog/view/theme/default/template/account/account.tpl
+CODE: <?php echo $content_bottom; ?></div>
+LINE: 62
+
+FILE: catalog/controller/account/account.php
+CODE: $data['edit'] = $this->url->link('account/edit', '', true);
+LINE: 72
+
+FILE: catalog/language/en-gb/account/account.php
+CODE: // Text
+LINE: 11
+
+FILE: system/library/cart/customer.php
+CODE: private $customer_id;
+LINE: 7
+CODE: $this->customer_id = $customer_query->row['customer_id'];
+LINE: 31
+LINE: 68
+CODE: $this->customer_id = '';
+LINE: 93
+CODE: public function isLogged() {
+LINE: 122
+
+FILE: admin/controller/common/header.php
+CODE: // Customers
+LINE: 92
+CODE: $data['alerts'] = $customer_total + $product_total + $review_total + $return_total + $affiliate_total;
+LINE: 133
+
+FILE: admin/language/en-gb/common/header.php
+CODE: // Text
+LINE: 6
+
+FILE: admin/view/template/common/header.tpl
+CODE: <ul class="nav pull-right">
+LINE: 50
+
+FILE: admin/language/en-gb/setting/setting.php
+CODE: // Text
+LINE: 36
+
+FILE: admin/controller/setting/setting.php
+CODE: $data['tab_server'] = $this->language->get('tab_server');
+LINE: 597
+
+FILE: admin/view/template/setting/setting.tpl
+CODE: <li><a href="#tab-server" data-toggle="tab"><?php echo $tab_server; ?></a></li>
+LINE: 41
+CODE: <div class="tab-pane" id="tab-server">
+LINE: 1867
+----------------------------------------------------------------
+2017-01-18 8:25:54 - MOD: Modification Default
+
+FILE: system/engine/action.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 41
+
+FILE: system/engine/loader.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 49
+LINE: 108
+LINE: 120
+LINE: 165
+
+FILE: system/library/config.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 23
+
+FILE: system/library/language.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 38
+LINE: 40
+LINE: 49
+LINE: 51
+LINE: 60
+LINE: 62
+
+FILE: system/library/template/php.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 18
+
+FILE: system/library/template/tiwg.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 24
+----------------------------------------------------------------
+MOD: Alkod Multi Seller Extension pro
+
+FILE: admin/language/en-gb/report/customer_activity.php
+CODE: // Text
+LINE: 16
+
+FILE: admin/language/en-gb/extension/dashboard/activity.php
+CODE: // Text
+LINE: 15
+
+FILE: admin/view/template/common/dashboard.tpl
+CODE: <div class="col-lg-3 col-md-3 col-sm-6"><?php echo $online; ?></div>
+NOT FOUND - OPERATIONS ABORTED!
+
+FILE: admin/controller/common/dashboard.php
+CODE: $data['online'] = $this->load->controller('dashboard/online');
+NOT FOUND - OPERATIONS ABORTED!
+
+FILE: admin/controller/common/column_left.php
+CODE: // Catalog
+LINE: 122
+
+FILE: admin/language/en-gb/common/column_left.php
+CODE: // Text
+LINE: 10
+
+FILE: catalog/view/theme/default/template/common/header.tpl
+CODE: <li class="dropdown"><a href="<?php echo $account; ?>" title="<?php echo $text_account; ?>" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <span class="hidden-xs hidden-sm hidden-md"><?php echo $text_account; ?></span> <span class="caret"></span></a>
+LINE: 63
+
+FILE: catalog/controller/common/header.php
+CODE: $data['logged'] = $this->customer->isLogged();
+LINE: 94
+CODE: $data['account'] = $this->url->link('account/account',
+LINE: 109
+
+FILE: catalog/language/en-gb/common/header.php
+CODE: // Text
+LINE: 7
+
+FILE: catalog/view/theme/default/template/product/product.tpl
+CODE: <?php if ($reward) { ?>
+LINE: 214
+
+FILE: catalog/controller/product/product.php
+CODE: $data['reward'] = $product_info['reward'];
+LINE: 396
+
+FILE: catalog/language/en-gb/product/product.php
+CODE: // Text
+LINE: 4
+
+FILE: catalog/view/theme/default/template/account/account.tpl
+CODE: <?php echo $content_bottom; ?></div>
+LINE: 62
+
+FILE: catalog/controller/account/account.php
+CODE: $data['edit'] = $this->url->link('account/edit', '', true);
+LINE: 72
+
+FILE: catalog/language/en-gb/account/account.php
+CODE: // Text
+LINE: 11
+
+FILE: system/library/cart/customer.php
+CODE: private $customer_id;
+LINE: 7
+CODE: $this->customer_id = $customer_query->row['customer_id'];
+LINE: 31
+LINE: 68
+CODE: $this->customer_id = '';
+LINE: 93
+CODE: public function isLogged() {
+LINE: 122
+
+FILE: admin/controller/common/header.php
+CODE: // Customers
+LINE: 92
+CODE: $data['alerts'] = $customer_total + $product_total + $review_total + $return_total + $affiliate_total;
+LINE: 133
+
+FILE: admin/language/en-gb/common/header.php
+CODE: // Text
+LINE: 6
+
+FILE: admin/view/template/common/header.tpl
+CODE: <ul class="nav pull-right">
+LINE: 50
+
+FILE: admin/language/en-gb/setting/setting.php
+CODE: // Text
+LINE: 36
+
+FILE: admin/controller/setting/setting.php
+CODE: $data['tab_server'] = $this->language->get('tab_server');
+LINE: 597
+
+FILE: admin/view/template/setting/setting.tpl
+CODE: <li><a href="#tab-server" data-toggle="tab"><?php echo $tab_server; ?></a></li>
+LINE: 41
+CODE: <div class="tab-pane" id="tab-server">
+LINE: 1867
+----------------------------------------------------------------
+2017-01-18 8:25:56 - MOD: Modification Default
+
+FILE: system/engine/action.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 41
+
+FILE: system/engine/loader.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 49
+LINE: 108
+LINE: 120
+LINE: 165
+
+FILE: system/library/config.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 23
+
+FILE: system/library/language.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 38
+LINE: 40
+LINE: 49
+LINE: 51
+LINE: 60
+LINE: 62
+
+FILE: system/library/template/php.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 18
+
+FILE: system/library/template/tiwg.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 24
+----------------------------------------------------------------
+MOD: Alkod Multi Seller Extension pro
+
+FILE: admin/language/en-gb/report/customer_activity.php
+CODE: // Text
+LINE: 16
+
+FILE: admin/language/en-gb/extension/dashboard/activity.php
+CODE: // Text
+LINE: 15
+
+FILE: admin/view/template/common/dashboard.tpl
+CODE: <div class="col-lg-3 col-md-3 col-sm-6"><?php echo $online; ?></div>
+NOT FOUND - OPERATIONS ABORTED!
+
+FILE: admin/controller/common/dashboard.php
+CODE: $data['online'] = $this->load->controller('dashboard/online');
+NOT FOUND - OPERATIONS ABORTED!
+
+FILE: admin/controller/common/column_left.php
+CODE: // Catalog
+LINE: 122
+
+FILE: admin/language/en-gb/common/column_left.php
+CODE: // Text
+LINE: 10
+
+FILE: catalog/view/theme/default/template/common/header.tpl
+CODE: <li class="dropdown"><a href="<?php echo $account; ?>" title="<?php echo $text_account; ?>" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <span class="hidden-xs hidden-sm hidden-md"><?php echo $text_account; ?></span> <span class="caret"></span></a>
+LINE: 63
+
+FILE: catalog/controller/common/header.php
+CODE: $data['logged'] = $this->customer->isLogged();
+LINE: 94
+CODE: $data['account'] = $this->url->link('account/account',
+LINE: 109
+
+FILE: catalog/language/en-gb/common/header.php
+CODE: // Text
+LINE: 7
+
+FILE: catalog/view/theme/default/template/product/product.tpl
+CODE: <?php if ($reward) { ?>
+LINE: 214
+
+FILE: catalog/controller/product/product.php
+CODE: $data['reward'] = $product_info['reward'];
+LINE: 396
+
+FILE: catalog/language/en-gb/product/product.php
+CODE: // Text
+LINE: 4
+
+FILE: catalog/view/theme/default/template/account/account.tpl
+CODE: <?php echo $content_bottom; ?></div>
+LINE: 62
+
+FILE: catalog/controller/account/account.php
+CODE: $data['edit'] = $this->url->link('account/edit', '', true);
+LINE: 72
+
+FILE: catalog/language/en-gb/account/account.php
+CODE: // Text
+LINE: 11
+
+FILE: system/library/cart/customer.php
+CODE: private $customer_id;
+LINE: 7
+CODE: $this->customer_id = $customer_query->row['customer_id'];
+LINE: 31
+LINE: 68
+CODE: $this->customer_id = '';
+LINE: 93
+CODE: public function isLogged() {
+LINE: 122
+
+FILE: admin/controller/common/header.php
+CODE: // Customers
+LINE: 92
+CODE: $data['alerts'] = $customer_total + $product_total + $review_total + $return_total + $affiliate_total;
+LINE: 133
+
+FILE: admin/language/en-gb/common/header.php
+CODE: // Text
+LINE: 6
+
+FILE: admin/view/template/common/header.tpl
+CODE: <ul class="nav pull-right">
+LINE: 50
+
+FILE: admin/language/en-gb/setting/setting.php
+CODE: // Text
+LINE: 36
+
+FILE: admin/controller/setting/setting.php
+CODE: $data['tab_server'] = $this->language->get('tab_server');
+LINE: 597
+
+FILE: admin/view/template/setting/setting.tpl
+CODE: <li><a href="#tab-server" data-toggle="tab"><?php echo $tab_server; ?></a></li>
+LINE: 41
+CODE: <div class="tab-pane" id="tab-server">
+LINE: 1867
+----------------------------------------------------------------
+2017-01-18 10:32:48 - MOD: Modification Default
+
+FILE: system/engine/action.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 41
+
+FILE: system/engine/loader.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 49
+LINE: 108
+LINE: 120
+LINE: 165
+
+FILE: system/library/config.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 23
+
+FILE: system/library/language.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 38
+LINE: 40
+LINE: 49
+LINE: 51
+LINE: 60
+LINE: 62
+
+FILE: system/library/template/php.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 18
+
+FILE: system/library/template/tiwg.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 24
+----------------------------------------------------------------
+MOD: Alkod Multi Seller Extension pro
+
+FILE: admin/language/en-gb/report/customer_activity.php
+CODE: // Text
+LINE: 16
+
+FILE: admin/language/en-gb/extension/dashboard/activity.php
+CODE: // Text
+LINE: 15
+
+FILE: admin/view/template/common/dashboard.tpl
+CODE: <div class="col-lg-3 col-md-3 col-sm-6"><?php echo $online; ?></div>
+NOT FOUND - OPERATIONS ABORTED!
+
+FILE: admin/controller/common/dashboard.php
+CODE: $data['online'] = $this->load->controller('dashboard/online');
+NOT FOUND - OPERATIONS ABORTED!
+
+FILE: admin/controller/common/column_left.php
+CODE: // Catalog
+LINE: 122
+
+FILE: admin/language/en-gb/common/column_left.php
+CODE: // Text
+LINE: 10
+
+FILE: catalog/view/theme/default/template/common/header.tpl
+CODE: <li class="dropdown"><a href="<?php echo $account; ?>" title="<?php echo $text_account; ?>" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <span class="hidden-xs hidden-sm hidden-md"><?php echo $text_account; ?></span> <span class="caret"></span></a>
+LINE: 63
+
+FILE: catalog/controller/common/header.php
+CODE: $data['logged'] = $this->customer->isLogged();
+LINE: 94
+CODE: $data['account'] = $this->url->link('account/account',
+LINE: 109
+
+FILE: catalog/language/en-gb/common/header.php
+CODE: // Text
+LINE: 7
+
+FILE: catalog/view/theme/default/template/product/product.tpl
+CODE: <?php if ($reward) { ?>
+LINE: 214
+
+FILE: catalog/controller/product/product.php
+CODE: $data['reward'] = $product_info['reward'];
+LINE: 396
+
+FILE: catalog/language/en-gb/product/product.php
+CODE: // Text
+LINE: 4
+
+FILE: catalog/view/theme/default/template/account/account.tpl
+CODE: <?php echo $content_bottom; ?></div>
+LINE: 62
+
+FILE: catalog/controller/account/account.php
+CODE: $data['edit'] = $this->url->link('account/edit', '', true);
+LINE: 72
+
+FILE: catalog/language/en-gb/account/account.php
+CODE: // Text
+LINE: 11
+
+FILE: system/library/cart/customer.php
+CODE: private $customer_id;
+LINE: 7
+CODE: $this->customer_id = $customer_query->row['customer_id'];
+LINE: 31
+LINE: 68
+CODE: $this->customer_id = '';
+LINE: 93
+CODE: public function isLogged() {
+LINE: 122
+
+FILE: admin/controller/common/header.php
+CODE: // Customers
+LINE: 92
+CODE: $data['alerts'] = $customer_total + $product_total + $review_total + $return_total + $affiliate_total;
+LINE: 133
+
+FILE: admin/language/en-gb/common/header.php
+CODE: // Text
+LINE: 6
+
+FILE: admin/view/template/common/header.tpl
+CODE: <ul class="nav pull-right">
+LINE: 50
+
+FILE: admin/language/en-gb/setting/setting.php
+CODE: // Text
+LINE: 36
+
+FILE: admin/controller/setting/setting.php
+CODE: $data['tab_server'] = $this->language->get('tab_server');
+LINE: 597
+
+FILE: admin/view/template/setting/setting.tpl
+CODE: <li><a href="#tab-server" data-toggle="tab"><?php echo $tab_server; ?></a></li>
+LINE: 41
+CODE: <div class="tab-pane" id="tab-server">
+LINE: 1867
+----------------------------------------------------------------
+2017-01-18 10:32:49 - MOD: Modification Default
+
+FILE: system/engine/action.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 41
+
+FILE: system/engine/loader.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 49
+LINE: 108
+LINE: 120
+LINE: 165
+
+FILE: system/library/config.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 23
+
+FILE: system/library/language.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 38
+LINE: 40
+LINE: 49
+LINE: 51
+LINE: 60
+LINE: 62
+
+FILE: system/library/template/php.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 18
+
+FILE: system/library/template/tiwg.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 24
+----------------------------------------------------------------
+MOD: Alkod Multi Seller Extension pro
+
+FILE: admin/language/en-gb/report/customer_activity.php
+CODE: // Text
+LINE: 16
+
+FILE: admin/language/en-gb/extension/dashboard/activity.php
+CODE: // Text
+LINE: 15
+
+FILE: admin/view/template/common/dashboard.tpl
+CODE: <div class="col-lg-3 col-md-3 col-sm-6"><?php echo $online; ?></div>
+NOT FOUND - OPERATIONS ABORTED!
+
+FILE: admin/controller/common/dashboard.php
+CODE: $data['online'] = $this->load->controller('dashboard/online');
+NOT FOUND - OPERATIONS ABORTED!
+
+FILE: admin/controller/common/column_left.php
+CODE: // Catalog
+LINE: 122
+
+FILE: admin/language/en-gb/common/column_left.php
+CODE: // Text
+LINE: 10
+
+FILE: catalog/view/theme/default/template/common/header.tpl
+CODE: <li class="dropdown"><a href="<?php echo $account; ?>" title="<?php echo $text_account; ?>" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <span class="hidden-xs hidden-sm hidden-md"><?php echo $text_account; ?></span> <span class="caret"></span></a>
+LINE: 63
+
+FILE: catalog/controller/common/header.php
+CODE: $data['logged'] = $this->customer->isLogged();
+LINE: 94
+CODE: $data['account'] = $this->url->link('account/account',
+LINE: 109
+
+FILE: catalog/language/en-gb/common/header.php
+CODE: // Text
+LINE: 7
+
+FILE: catalog/view/theme/default/template/product/product.tpl
+CODE: <?php if ($reward) { ?>
+LINE: 214
+
+FILE: catalog/controller/product/product.php
+CODE: $data['reward'] = $product_info['reward'];
+LINE: 396
+
+FILE: catalog/language/en-gb/product/product.php
+CODE: // Text
+LINE: 4
+
+FILE: catalog/view/theme/default/template/account/account.tpl
+CODE: <?php echo $content_bottom; ?></div>
+LINE: 62
+
+FILE: catalog/controller/account/account.php
+CODE: $data['edit'] = $this->url->link('account/edit', '', true);
+LINE: 72
+
+FILE: catalog/language/en-gb/account/account.php
+CODE: // Text
+LINE: 11
+
+FILE: system/library/cart/customer.php
+CODE: private $customer_id;
+LINE: 7
+CODE: $this->customer_id = $customer_query->row['customer_id'];
+LINE: 31
+LINE: 68
+CODE: $this->customer_id = '';
+LINE: 93
+CODE: public function isLogged() {
+LINE: 122
+
+FILE: admin/controller/common/header.php
+CODE: // Customers
+LINE: 92
+CODE: $data['alerts'] = $customer_total + $product_total + $review_total + $return_total + $affiliate_total;
+LINE: 133
+
+FILE: admin/language/en-gb/common/header.php
+CODE: // Text
+LINE: 6
+
+FILE: admin/view/template/common/header.tpl
+CODE: <ul class="nav pull-right">
+LINE: 50
+
+FILE: admin/language/en-gb/setting/setting.php
+CODE: // Text
+LINE: 36
+
+FILE: admin/controller/setting/setting.php
+CODE: $data['tab_server'] = $this->language->get('tab_server');
+LINE: 597
+
+FILE: admin/view/template/setting/setting.tpl
+CODE: <li><a href="#tab-server" data-toggle="tab"><?php echo $tab_server; ?></a></li>
+LINE: 41
+CODE: <div class="tab-pane" id="tab-server">
+LINE: 1867
+----------------------------------------------------------------
+2017-02-03 11:29:05 - MOD: Modification Default
+
+FILE: system/engine/action.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 41
+
+FILE: system/engine/loader.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 49
+LINE: 108
+LINE: 120
+LINE: 165
+
+FILE: system/library/config.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 23
+
+FILE: system/library/language.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 38
+LINE: 40
+LINE: 49
+LINE: 51
+LINE: 60
+LINE: 62
+
+FILE: system/library/template/php.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 18
+
+FILE: system/library/template/tiwg.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 24
+----------------------------------------------------------------
+MOD: Alkod Multi Seller Extension pro
+
+FILE: admin/language/en-gb/report/customer_activity.php
+CODE: // Text
+LINE: 16
+
+FILE: admin/language/en-gb/extension/dashboard/activity.php
+CODE: // Text
+LINE: 15
+
+FILE: admin/view/template/common/dashboard.tpl
+CODE: <div class="col-lg-3 col-md-3 col-sm-6"><?php echo $online; ?></div>
+NOT FOUND - OPERATIONS ABORTED!
+
+FILE: admin/controller/common/dashboard.php
+CODE: $data['online'] = $this->load->controller('dashboard/online');
+NOT FOUND - OPERATIONS ABORTED!
+
+FILE: admin/controller/common/column_left.php
+CODE: // Catalog
+LINE: 122
+
+FILE: admin/language/en-gb/common/column_left.php
+CODE: // Text
+LINE: 10
+
+FILE: catalog/view/theme/default/template/common/header.tpl
+CODE: <li class="dropdown"><a href="<?php echo $account; ?>" title="<?php echo $text_account; ?>" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <span class="hidden-xs hidden-sm hidden-md"><?php echo $text_account; ?></span> <span class="caret"></span></a>
+LINE: 82
+
+FILE: catalog/controller/common/header.php
+CODE: $data['logged'] = $this->customer->isLogged();
+LINE: 94
+CODE: $data['account'] = $this->url->link('account/account',
+LINE: 109
+
+FILE: catalog/language/en-gb/common/header.php
+CODE: // Text
+LINE: 7
+
+FILE: catalog/view/theme/default/template/product/product.tpl
+CODE: <?php if ($reward) { ?>
+LINE: 214
+
+FILE: catalog/controller/product/product.php
+CODE: $data['reward'] = $product_info['reward'];
+LINE: 396
+
+FILE: catalog/language/en-gb/product/product.php
+CODE: // Text
+LINE: 4
+
+FILE: catalog/view/theme/default/template/account/account.tpl
+CODE: <?php echo $content_bottom; ?></div>
+LINE: 62
+
+FILE: catalog/controller/account/account.php
+CODE: $data['edit'] = $this->url->link('account/edit', '', true);
+LINE: 72
+
+FILE: catalog/language/en-gb/account/account.php
+CODE: // Text
+LINE: 11
+
+FILE: system/library/cart/customer.php
+CODE: private $customer_id;
+LINE: 7
+CODE: $this->customer_id = $customer_query->row['customer_id'];
+LINE: 31
+LINE: 68
+CODE: $this->customer_id = '';
+LINE: 93
+CODE: public function isLogged() {
+LINE: 122
+
+FILE: admin/controller/common/header.php
+CODE: // Customers
+LINE: 92
+CODE: $data['alerts'] = $customer_total + $product_total + $review_total + $return_total + $affiliate_total;
+LINE: 133
+
+FILE: admin/language/en-gb/common/header.php
+CODE: // Text
+LINE: 6
+
+FILE: admin/view/template/common/header.tpl
+CODE: <ul class="nav pull-right">
+LINE: 50
+
+FILE: admin/language/en-gb/setting/setting.php
+CODE: // Text
+LINE: 36
+
+FILE: admin/controller/setting/setting.php
+CODE: $data['tab_server'] = $this->language->get('tab_server');
+LINE: 597
+
+FILE: admin/view/template/setting/setting.tpl
+CODE: <li><a href="#tab-server" data-toggle="tab"><?php echo $tab_server; ?></a></li>
+LINE: 41
+CODE: <div class="tab-pane" id="tab-server">
+LINE: 1867
+----------------------------------------------------------------
+2017-02-03 11:29:25 - MOD: Alkod Multi Seller Extension pro
+
+FILE: admin/language/en-gb/report/customer_activity.php
+CODE: // Text
+LINE: 16
+
+FILE: admin/language/en-gb/extension/dashboard/activity.php
+CODE: // Text
+LINE: 15
+
+FILE: admin/view/template/common/dashboard.tpl
+CODE: <div class="col-lg-3 col-md-3 col-sm-6"><?php echo $online; ?></div>
+NOT FOUND - OPERATIONS ABORTED!
+
+FILE: admin/controller/common/dashboard.php
+CODE: $data['online'] = $this->load->controller('dashboard/online');
+NOT FOUND - OPERATIONS ABORTED!
+
+FILE: admin/controller/common/column_left.php
+CODE: // Catalog
+LINE: 122
+
+FILE: admin/language/en-gb/common/column_left.php
+CODE: // Text
+LINE: 10
+
+FILE: catalog/view/theme/default/template/common/header.tpl
+CODE: <li class="dropdown"><a href="<?php echo $account; ?>" title="<?php echo $text_account; ?>" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <span class="hidden-xs hidden-sm hidden-md"><?php echo $text_account; ?></span> <span class="caret"></span></a>
+LINE: 82
+
+FILE: catalog/controller/common/header.php
+CODE: $data['logged'] = $this->customer->isLogged();
+LINE: 94
+CODE: $data['account'] = $this->url->link('account/account',
+LINE: 109
+
+FILE: catalog/language/en-gb/common/header.php
+CODE: // Text
+LINE: 7
+
+FILE: catalog/view/theme/default/template/product/product.tpl
+CODE: <?php if ($reward) { ?>
+LINE: 214
+
+FILE: catalog/controller/product/product.php
+CODE: $data['reward'] = $product_info['reward'];
+LINE: 396
+
+FILE: catalog/language/en-gb/product/product.php
+CODE: // Text
+LINE: 4
+
+FILE: catalog/view/theme/default/template/account/account.tpl
+CODE: <?php echo $content_bottom; ?></div>
+LINE: 62
+
+FILE: catalog/controller/account/account.php
+CODE: $data['edit'] = $this->url->link('account/edit', '', true);
+LINE: 72
+
+FILE: catalog/language/en-gb/account/account.php
+CODE: // Text
+LINE: 11
+
+FILE: system/library/cart/customer.php
+CODE: private $customer_id;
+LINE: 7
+CODE: $this->customer_id = $customer_query->row['customer_id'];
+LINE: 31
+LINE: 68
+CODE: $this->customer_id = '';
+LINE: 93
+CODE: public function isLogged() {
+LINE: 122
+
+FILE: admin/controller/common/header.php
+CODE: // Customers
+LINE: 92
+CODE: $data['alerts'] = $customer_total + $product_total + $review_total + $return_total + $affiliate_total;
+LINE: 133
+
+FILE: admin/language/en-gb/common/header.php
+CODE: // Text
+LINE: 6
+
+FILE: admin/view/template/common/header.tpl
+CODE: <ul class="nav pull-right">
+LINE: 50
+
+FILE: admin/language/en-gb/setting/setting.php
+CODE: // Text
+LINE: 36
+
+FILE: admin/controller/setting/setting.php
+CODE: $data['tab_server'] = $this->language->get('tab_server');
+LINE: 597
+
+FILE: admin/view/template/setting/setting.tpl
+CODE: <li><a href="#tab-server" data-toggle="tab"><?php echo $tab_server; ?></a></li>
+LINE: 41
+CODE: <div class="tab-pane" id="tab-server">
+LINE: 1867
+----------------------------------------------------------------
+2017-02-03 11:29:26 - MOD: Alkod Multi Seller Extension pro
+
+FILE: admin/language/en-gb/report/customer_activity.php
+CODE: // Text
+LINE: 16
+
+FILE: admin/language/en-gb/extension/dashboard/activity.php
+CODE: // Text
+LINE: 15
+
+FILE: admin/view/template/common/dashboard.tpl
+CODE: <div class="col-lg-3 col-md-3 col-sm-6"><?php echo $online; ?></div>
+NOT FOUND - OPERATIONS ABORTED!
+
+FILE: admin/controller/common/dashboard.php
+CODE: $data['online'] = $this->load->controller('dashboard/online');
+NOT FOUND - OPERATIONS ABORTED!
+
+FILE: admin/controller/common/column_left.php
+CODE: // Catalog
+LINE: 122
+
+FILE: admin/language/en-gb/common/column_left.php
+CODE: // Text
+LINE: 10
+
+FILE: catalog/view/theme/default/template/common/header.tpl
+CODE: <li class="dropdown"><a href="<?php echo $account; ?>" title="<?php echo $text_account; ?>" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <span class="hidden-xs hidden-sm hidden-md"><?php echo $text_account; ?></span> <span class="caret"></span></a>
+LINE: 82
+
+FILE: catalog/controller/common/header.php
+CODE: $data['logged'] = $this->customer->isLogged();
+LINE: 94
+CODE: $data['account'] = $this->url->link('account/account',
+LINE: 109
+
+FILE: catalog/language/en-gb/common/header.php
+CODE: // Text
+LINE: 7
+
+FILE: catalog/view/theme/default/template/product/product.tpl
+CODE: <?php if ($reward) { ?>
+LINE: 214
+
+FILE: catalog/controller/product/product.php
+CODE: $data['reward'] = $product_info['reward'];
+LINE: 396
+
+FILE: catalog/language/en-gb/product/product.php
+CODE: // Text
+LINE: 4
+
+FILE: catalog/view/theme/default/template/account/account.tpl
+CODE: <?php echo $content_bottom; ?></div>
+LINE: 62
+
+FILE: catalog/controller/account/account.php
+CODE: $data['edit'] = $this->url->link('account/edit', '', true);
+LINE: 72
+
+FILE: catalog/language/en-gb/account/account.php
+CODE: // Text
+LINE: 11
+
+FILE: system/library/cart/customer.php
+CODE: private $customer_id;
+LINE: 7
+CODE: $this->customer_id = $customer_query->row['customer_id'];
+LINE: 31
+LINE: 68
+CODE: $this->customer_id = '';
+LINE: 93
+CODE: public function isLogged() {
+LINE: 122
+
+FILE: admin/controller/common/header.php
+CODE: // Customers
+LINE: 92
+CODE: $data['alerts'] = $customer_total + $product_total + $review_total + $return_total + $affiliate_total;
+LINE: 133
+
+FILE: admin/language/en-gb/common/header.php
+CODE: // Text
+LINE: 6
+
+FILE: admin/view/template/common/header.tpl
+CODE: <ul class="nav pull-right">
+LINE: 50
+
+FILE: admin/language/en-gb/setting/setting.php
+CODE: // Text
+LINE: 36
+
+FILE: admin/controller/setting/setting.php
+CODE: $data['tab_server'] = $this->language->get('tab_server');
+LINE: 597
+
+FILE: admin/view/template/setting/setting.tpl
+CODE: <li><a href="#tab-server" data-toggle="tab"><?php echo $tab_server; ?></a></li>
+LINE: 41
+CODE: <div class="tab-pane" id="tab-server">
+LINE: 1867
+----------------------------------------------------------------
+2017-02-03 11:29:36 - MOD: Modification Default
+
+FILE: system/engine/action.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 41
+
+FILE: system/engine/loader.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 49
+LINE: 108
+LINE: 120
+LINE: 165
+
+FILE: system/library/config.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 23
+
+FILE: system/library/language.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 38
+LINE: 40
+LINE: 49
+LINE: 51
+LINE: 60
+LINE: 62
+
+FILE: system/library/template/php.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 18
+
+FILE: system/library/template/tiwg.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 24
+----------------------------------------------------------------
+MOD: Alkod Multi Seller Extension pro
+
+FILE: admin/language/en-gb/report/customer_activity.php
+CODE: // Text
+LINE: 16
+
+FILE: admin/language/en-gb/extension/dashboard/activity.php
+CODE: // Text
+LINE: 15
+
+FILE: admin/view/template/common/dashboard.tpl
+CODE: <div class="col-lg-3 col-md-3 col-sm-6"><?php echo $online; ?></div>
+NOT FOUND - OPERATIONS ABORTED!
+
+FILE: admin/controller/common/dashboard.php
+CODE: $data['online'] = $this->load->controller('dashboard/online');
+NOT FOUND - OPERATIONS ABORTED!
+
+FILE: admin/controller/common/column_left.php
+CODE: // Catalog
+LINE: 122
+
+FILE: admin/language/en-gb/common/column_left.php
+CODE: // Text
+LINE: 10
+
+FILE: catalog/view/theme/default/template/common/header.tpl
+CODE: <li class="dropdown"><a href="<?php echo $account; ?>" title="<?php echo $text_account; ?>" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <span class="hidden-xs hidden-sm hidden-md"><?php echo $text_account; ?></span> <span class="caret"></span></a>
+LINE: 82
+
+FILE: catalog/controller/common/header.php
+CODE: $data['logged'] = $this->customer->isLogged();
+LINE: 94
+CODE: $data['account'] = $this->url->link('account/account',
+LINE: 109
+
+FILE: catalog/language/en-gb/common/header.php
+CODE: // Text
+LINE: 7
+
+FILE: catalog/view/theme/default/template/product/product.tpl
+CODE: <?php if ($reward) { ?>
+LINE: 214
+
+FILE: catalog/controller/product/product.php
+CODE: $data['reward'] = $product_info['reward'];
+LINE: 396
+
+FILE: catalog/language/en-gb/product/product.php
+CODE: // Text
+LINE: 4
+
+FILE: catalog/view/theme/default/template/account/account.tpl
+CODE: <?php echo $content_bottom; ?></div>
+LINE: 62
+
+FILE: catalog/controller/account/account.php
+CODE: $data['edit'] = $this->url->link('account/edit', '', true);
+LINE: 72
+
+FILE: catalog/language/en-gb/account/account.php
+CODE: // Text
+LINE: 11
+
+FILE: system/library/cart/customer.php
+CODE: private $customer_id;
+LINE: 7
+CODE: $this->customer_id = $customer_query->row['customer_id'];
+LINE: 31
+LINE: 68
+CODE: $this->customer_id = '';
+LINE: 93
+CODE: public function isLogged() {
+LINE: 122
+
+FILE: admin/controller/common/header.php
+CODE: // Customers
+LINE: 92
+CODE: $data['alerts'] = $customer_total + $product_total + $review_total + $return_total + $affiliate_total;
+LINE: 133
+
+FILE: admin/language/en-gb/common/header.php
+CODE: // Text
+LINE: 6
+
+FILE: admin/view/template/common/header.tpl
+CODE: <ul class="nav pull-right">
+LINE: 50
+
+FILE: admin/language/en-gb/setting/setting.php
+CODE: // Text
+LINE: 36
+
+FILE: admin/controller/setting/setting.php
+CODE: $data['tab_server'] = $this->language->get('tab_server');
+LINE: 597
+
+FILE: admin/view/template/setting/setting.tpl
+CODE: <li><a href="#tab-server" data-toggle="tab"><?php echo $tab_server; ?></a></li>
+LINE: 41
+CODE: <div class="tab-pane" id="tab-server">
+LINE: 1867
+----------------------------------------------------------------
+2017-02-25 12:49:51 - MOD: Modification Default
+
+FILE: system/engine/action.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 41
+
+FILE: system/engine/loader.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 49
+LINE: 108
+LINE: 120
+LINE: 165
+
+FILE: system/library/config.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 23
+
+FILE: system/library/language.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 38
+LINE: 40
+LINE: 49
+LINE: 51
+LINE: 60
+LINE: 62
+
+FILE: system/library/template/php.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 18
+
+FILE: system/library/template/tiwg.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 24
+----------------------------------------------------------------
+MOD: Alkod Multi Seller Extension pro
+
+FILE: admin/language/en-gb/report/customer_activity.php
+CODE: // Text
+LINE: 16
+
+FILE: admin/language/en-gb/extension/dashboard/activity.php
+CODE: // Text
+LINE: 15
+
+FILE: admin/view/template/common/dashboard.tpl
+CODE: <div class="col-lg-3 col-md-3 col-sm-6"><?php echo $online; ?></div>
+NOT FOUND - OPERATIONS ABORTED!
+
+FILE: admin/controller/common/dashboard.php
+CODE: $data['online'] = $this->load->controller('dashboard/online');
+NOT FOUND - OPERATIONS ABORTED!
+
+FILE: admin/controller/common/column_left.php
+CODE: // Catalog
+LINE: 122
+
+FILE: admin/language/en-gb/common/column_left.php
+CODE: // Text
+LINE: 10
+
+FILE: catalog/view/theme/default/template/common/header.tpl
+CODE: <li class="dropdown"><a href="<?php echo $account; ?>" title="<?php echo $text_account; ?>" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <span class="hidden-xs hidden-sm hidden-md"><?php echo $text_account; ?></span> <span class="caret"></span></a>
+LINE: 80
+
+FILE: catalog/controller/common/header.php
+CODE: $data['logged'] = $this->customer->isLogged();
+LINE: 94
+CODE: $data['account'] = $this->url->link('account/account',
+LINE: 109
+
+FILE: catalog/language/en-gb/common/header.php
+CODE: // Text
+LINE: 7
+
+FILE: catalog/view/theme/default/template/product/product.tpl
+CODE: <?php if ($reward) { ?>
+LINE: 214
+
+FILE: catalog/controller/product/product.php
+CODE: $data['reward'] = $product_info['reward'];
+LINE: 396
+
+FILE: catalog/language/en-gb/product/product.php
+CODE: // Text
+LINE: 4
+
+FILE: catalog/view/theme/default/template/account/account.tpl
+CODE: <?php echo $content_bottom; ?></div>
+LINE: 62
+
+FILE: catalog/controller/account/account.php
+CODE: $data['edit'] = $this->url->link('account/edit', '', true);
+LINE: 72
+
+FILE: catalog/language/en-gb/account/account.php
+CODE: // Text
+LINE: 11
+
+FILE: system/library/cart/customer.php
+CODE: private $customer_id;
+LINE: 7
+CODE: $this->customer_id = $customer_query->row['customer_id'];
+LINE: 31
+LINE: 68
+CODE: $this->customer_id = '';
+LINE: 93
+CODE: public function isLogged() {
+LINE: 122
+
+FILE: admin/controller/common/header.php
+CODE: // Customers
+LINE: 92
+CODE: $data['alerts'] = $customer_total + $product_total + $review_total + $return_total + $affiliate_total;
+LINE: 133
+
+FILE: admin/language/en-gb/common/header.php
+CODE: // Text
+LINE: 6
+
+FILE: admin/view/template/common/header.tpl
+CODE: <ul class="nav pull-right">
+LINE: 50
+
+FILE: admin/language/en-gb/setting/setting.php
+CODE: // Text
+LINE: 36
+
+FILE: admin/controller/setting/setting.php
+CODE: $data['tab_server'] = $this->language->get('tab_server');
+LINE: 597
+
+FILE: admin/view/template/setting/setting.tpl
+CODE: <li><a href="#tab-server" data-toggle="tab"><?php echo $tab_server; ?></a></li>
+LINE: 41
+CODE: <div class="tab-pane" id="tab-server">
+LINE: 1867
+----------------------------------------------------------------
+2017-02-25 12:49:51 - MOD: Modification Default
+
+FILE: system/engine/action.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 41
+
+FILE: system/engine/loader.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 49
+LINE: 108
+LINE: 120
+LINE: 165
+
+FILE: system/library/config.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 23
+
+FILE: system/library/language.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 38
+LINE: 40
+LINE: 49
+LINE: 51
+LINE: 60
+LINE: 62
+
+FILE: system/library/template/php.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 18
+
+FILE: system/library/template/tiwg.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 24
+----------------------------------------------------------------
+MOD: Alkod Multi Seller Extension pro
+
+FILE: admin/language/en-gb/report/customer_activity.php
+CODE: // Text
+LINE: 16
+
+FILE: admin/language/en-gb/extension/dashboard/activity.php
+CODE: // Text
+LINE: 15
+
+FILE: admin/view/template/common/dashboard.tpl
+CODE: <div class="col-lg-3 col-md-3 col-sm-6"><?php echo $online; ?></div>
+NOT FOUND - OPERATIONS ABORTED!
+
+FILE: admin/controller/common/dashboard.php
+CODE: $data['online'] = $this->load->controller('dashboard/online');
+NOT FOUND - OPERATIONS ABORTED!
+
+FILE: admin/controller/common/column_left.php
+CODE: // Catalog
+LINE: 122
+
+FILE: admin/language/en-gb/common/column_left.php
+CODE: // Text
+LINE: 10
+
+FILE: catalog/view/theme/default/template/common/header.tpl
+CODE: <li class="dropdown"><a href="<?php echo $account; ?>" title="<?php echo $text_account; ?>" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <span class="hidden-xs hidden-sm hidden-md"><?php echo $text_account; ?></span> <span class="caret"></span></a>
+LINE: 80
+
+FILE: catalog/controller/common/header.php
+CODE: $data['logged'] = $this->customer->isLogged();
+LINE: 94
+CODE: $data['account'] = $this->url->link('account/account',
+LINE: 109
+
+FILE: catalog/language/en-gb/common/header.php
+CODE: // Text
+LINE: 7
+
+FILE: catalog/view/theme/default/template/product/product.tpl
+CODE: <?php if ($reward) { ?>
+LINE: 214
+
+FILE: catalog/controller/product/product.php
+CODE: $data['reward'] = $product_info['reward'];
+LINE: 396
+
+FILE: catalog/language/en-gb/product/product.php
+CODE: // Text
+LINE: 4
+
+FILE: catalog/view/theme/default/template/account/account.tpl
+CODE: <?php echo $content_bottom; ?></div>
+LINE: 62
+
+FILE: catalog/controller/account/account.php
+CODE: $data['edit'] = $this->url->link('account/edit', '', true);
+LINE: 72
+
+FILE: catalog/language/en-gb/account/account.php
+CODE: // Text
+LINE: 11
+
+FILE: system/library/cart/customer.php
+CODE: private $customer_id;
+LINE: 7
+CODE: $this->customer_id = $customer_query->row['customer_id'];
+LINE: 31
+LINE: 68
+CODE: $this->customer_id = '';
+LINE: 93
+CODE: public function isLogged() {
+LINE: 122
+
+FILE: admin/controller/common/header.php
+CODE: // Customers
+LINE: 92
+CODE: $data['alerts'] = $customer_total + $product_total + $review_total + $return_total + $affiliate_total;
+LINE: 133
+
+FILE: admin/language/en-gb/common/header.php
+CODE: // Text
+LINE: 6
+
+FILE: admin/view/template/common/header.tpl
+CODE: <ul class="nav pull-right">
+LINE: 50
+
+FILE: admin/language/en-gb/setting/setting.php
+CODE: // Text
+LINE: 36
+
+FILE: admin/controller/setting/setting.php
+CODE: $data['tab_server'] = $this->language->get('tab_server');
+LINE: 597
+
+FILE: admin/view/template/setting/setting.tpl
+CODE: <li><a href="#tab-server" data-toggle="tab"><?php echo $tab_server; ?></a></li>
+LINE: 41
+CODE: <div class="tab-pane" id="tab-server">
+LINE: 1867
+----------------------------------------------------------------
+2017-02-25 12:49:51 - MOD: Modification Default
+
+FILE: system/engine/action.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 41
+
+FILE: system/engine/loader.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 49
+LINE: 108
+LINE: 120
+LINE: 165
+
+FILE: system/library/config.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 23
+
+FILE: system/library/language.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 38
+LINE: 40
+LINE: 49
+LINE: 51
+LINE: 60
+LINE: 62
+
+FILE: system/library/template/php.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 18
+
+FILE: system/library/template/tiwg.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 24
+----------------------------------------------------------------
+MOD: Alkod Multi Seller Extension pro
+
+FILE: admin/language/en-gb/report/customer_activity.php
+CODE: // Text
+LINE: 16
+
+FILE: admin/language/en-gb/extension/dashboard/activity.php
+CODE: // Text
+LINE: 15
+
+FILE: admin/view/template/common/dashboard.tpl
+CODE: <div class="col-lg-3 col-md-3 col-sm-6"><?php echo $online; ?></div>
+NOT FOUND - OPERATIONS ABORTED!
+
+FILE: admin/controller/common/dashboard.php
+CODE: $data['online'] = $this->load->controller('dashboard/online');
+NOT FOUND - OPERATIONS ABORTED!
+
+FILE: admin/controller/common/column_left.php
+CODE: // Catalog
+LINE: 122
+
+FILE: admin/language/en-gb/common/column_left.php
+CODE: // Text
+LINE: 10
+
+FILE: catalog/view/theme/default/template/common/header.tpl
+CODE: <li class="dropdown"><a href="<?php echo $account; ?>" title="<?php echo $text_account; ?>" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <span class="hidden-xs hidden-sm hidden-md"><?php echo $text_account; ?></span> <span class="caret"></span></a>
+LINE: 80
+
+FILE: catalog/controller/common/header.php
+CODE: $data['logged'] = $this->customer->isLogged();
+LINE: 94
+CODE: $data['account'] = $this->url->link('account/account',
+LINE: 109
+
+FILE: catalog/language/en-gb/common/header.php
+CODE: // Text
+LINE: 7
+
+FILE: catalog/view/theme/default/template/product/product.tpl
+CODE: <?php if ($reward) { ?>
+LINE: 214
+
+FILE: catalog/controller/product/product.php
+CODE: $data['reward'] = $product_info['reward'];
+LINE: 396
+
+FILE: catalog/language/en-gb/product/product.php
+CODE: // Text
+LINE: 4
+
+FILE: catalog/view/theme/default/template/account/account.tpl
+CODE: <?php echo $content_bottom; ?></div>
+LINE: 62
+
+FILE: catalog/controller/account/account.php
+CODE: $data['edit'] = $this->url->link('account/edit', '', true);
+LINE: 72
+
+FILE: catalog/language/en-gb/account/account.php
+CODE: // Text
+LINE: 11
+
+FILE: system/library/cart/customer.php
+CODE: private $customer_id;
+LINE: 7
+CODE: $this->customer_id = $customer_query->row['customer_id'];
+LINE: 31
+LINE: 68
+CODE: $this->customer_id = '';
+LINE: 93
+CODE: public function isLogged() {
+LINE: 122
+
+FILE: admin/controller/common/header.php
+CODE: // Customers
+LINE: 92
+CODE: $data['alerts'] = $customer_total + $product_total + $review_total + $return_total + $affiliate_total;
+LINE: 133
+
+FILE: admin/language/en-gb/common/header.php
+CODE: // Text
+LINE: 6
+
+FILE: admin/view/template/common/header.tpl
+CODE: <ul class="nav pull-right">
+LINE: 50
+
+FILE: admin/language/en-gb/setting/setting.php
+CODE: // Text
+LINE: 36
+
+FILE: admin/controller/setting/setting.php
+CODE: $data['tab_server'] = $this->language->get('tab_server');
+LINE: 597
+
+FILE: admin/view/template/setting/setting.tpl
+CODE: <li><a href="#tab-server" data-toggle="tab"><?php echo $tab_server; ?></a></li>
+LINE: 41
+CODE: <div class="tab-pane" id="tab-server">
+LINE: 1867
+----------------------------------------------------------------
+2017-02-25 12:49:51 - MOD: Modification Default
+
+FILE: system/engine/action.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 41
+
+FILE: system/engine/loader.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 49
+LINE: 108
+LINE: 120
+LINE: 165
+
+FILE: system/library/config.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 23
+
+FILE: system/library/language.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 38
+LINE: 40
+LINE: 49
+LINE: 51
+LINE: 60
+LINE: 62
+
+FILE: system/library/template/php.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 18
+
+FILE: system/library/template/tiwg.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 24
+----------------------------------------------------------------
+MOD: Alkod Multi Seller Extension pro
+
+FILE: admin/language/en-gb/report/customer_activity.php
+CODE: // Text
+LINE: 16
+
+FILE: admin/language/en-gb/extension/dashboard/activity.php
+CODE: // Text
+LINE: 15
+
+FILE: admin/view/template/common/dashboard.tpl
+CODE: <div class="col-lg-3 col-md-3 col-sm-6"><?php echo $online; ?></div>
+NOT FOUND - OPERATIONS ABORTED!
+
+FILE: admin/controller/common/dashboard.php
+CODE: $data['online'] = $this->load->controller('dashboard/online');
+NOT FOUND - OPERATIONS ABORTED!
+
+FILE: admin/controller/common/column_left.php
+CODE: // Catalog
+LINE: 122
+
+FILE: admin/language/en-gb/common/column_left.php
+CODE: // Text
+LINE: 10
+
+FILE: catalog/view/theme/default/template/common/header.tpl
+CODE: <li class="dropdown"><a href="<?php echo $account; ?>" title="<?php echo $text_account; ?>" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <span class="hidden-xs hidden-sm hidden-md"><?php echo $text_account; ?></span> <span class="caret"></span></a>
+LINE: 80
+
+FILE: catalog/controller/common/header.php
+CODE: $data['logged'] = $this->customer->isLogged();
+LINE: 94
+CODE: $data['account'] = $this->url->link('account/account',
+LINE: 109
+
+FILE: catalog/language/en-gb/common/header.php
+CODE: // Text
+LINE: 7
+
+FILE: catalog/view/theme/default/template/product/product.tpl
+CODE: <?php if ($reward) { ?>
+LINE: 214
+
+FILE: catalog/controller/product/product.php
+CODE: $data['reward'] = $product_info['reward'];
+LINE: 396
+
+FILE: catalog/language/en-gb/product/product.php
+CODE: // Text
+LINE: 4
+
+FILE: catalog/view/theme/default/template/account/account.tpl
+CODE: <?php echo $content_bottom; ?></div>
+LINE: 62
+
+FILE: catalog/controller/account/account.php
+CODE: $data['edit'] = $this->url->link('account/edit', '', true);
+LINE: 72
+
+FILE: catalog/language/en-gb/account/account.php
+CODE: // Text
+LINE: 11
+
+FILE: system/library/cart/customer.php
+CODE: private $customer_id;
+LINE: 7
+CODE: $this->customer_id = $customer_query->row['customer_id'];
+LINE: 31
+LINE: 68
+CODE: $this->customer_id = '';
+LINE: 93
+CODE: public function isLogged() {
+LINE: 122
+
+FILE: admin/controller/common/header.php
+CODE: // Customers
+LINE: 92
+CODE: $data['alerts'] = $customer_total + $product_total + $review_total + $return_total + $affiliate_total;
+LINE: 133
+
+FILE: admin/language/en-gb/common/header.php
+CODE: // Text
+LINE: 6
+
+FILE: admin/view/template/common/header.tpl
+CODE: <ul class="nav pull-right">
+LINE: 50
+
+FILE: admin/language/en-gb/setting/setting.php
+CODE: // Text
+LINE: 36
+
+FILE: admin/controller/setting/setting.php
+CODE: $data['tab_server'] = $this->language->get('tab_server');
+LINE: 597
+
+FILE: admin/view/template/setting/setting.tpl
+CODE: <li><a href="#tab-server" data-toggle="tab"><?php echo $tab_server; ?></a></li>
+LINE: 41
+CODE: <div class="tab-pane" id="tab-server">
+LINE: 1867
+----------------------------------------------------------------
+2017-02-25 12:49:51 - MOD: Modification Default
+
+FILE: system/engine/action.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 41
+
+FILE: system/engine/loader.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 49
+LINE: 108
+LINE: 120
+LINE: 165
+
+FILE: system/library/config.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 23
+
+FILE: system/library/language.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 38
+LINE: 40
+LINE: 49
+LINE: 51
+LINE: 60
+LINE: 62
+
+FILE: system/library/template/php.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 18
+
+FILE: system/library/template/tiwg.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 24
+----------------------------------------------------------------
+MOD: Alkod Multi Seller Extension pro
+
+FILE: admin/language/en-gb/report/customer_activity.php
+CODE: // Text
+LINE: 16
+
+FILE: admin/language/en-gb/extension/dashboard/activity.php
+CODE: // Text
+LINE: 15
+
+FILE: admin/view/template/common/dashboard.tpl
+CODE: <div class="col-lg-3 col-md-3 col-sm-6"><?php echo $online; ?></div>
+NOT FOUND - OPERATIONS ABORTED!
+
+FILE: admin/controller/common/dashboard.php
+CODE: $data['online'] = $this->load->controller('dashboard/online');
+NOT FOUND - OPERATIONS ABORTED!
+
+FILE: admin/controller/common/column_left.php
+CODE: // Catalog
+LINE: 122
+
+FILE: admin/language/en-gb/common/column_left.php
+CODE: // Text
+LINE: 10
+
+FILE: catalog/view/theme/default/template/common/header.tpl
+CODE: <li class="dropdown"><a href="<?php echo $account; ?>" title="<?php echo $text_account; ?>" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <span class="hidden-xs hidden-sm hidden-md"><?php echo $text_account; ?></span> <span class="caret"></span></a>
+LINE: 80
+
+FILE: catalog/controller/common/header.php
+CODE: $data['logged'] = $this->customer->isLogged();
+LINE: 94
+CODE: $data['account'] = $this->url->link('account/account',
+LINE: 109
+
+FILE: catalog/language/en-gb/common/header.php
+CODE: // Text
+LINE: 7
+
+FILE: catalog/view/theme/default/template/product/product.tpl
+CODE: <?php if ($reward) { ?>
+LINE: 214
+
+FILE: catalog/controller/product/product.php
+CODE: $data['reward'] = $product_info['reward'];
+LINE: 396
+
+FILE: catalog/language/en-gb/product/product.php
+CODE: // Text
+LINE: 4
+
+FILE: catalog/view/theme/default/template/account/account.tpl
+CODE: <?php echo $content_bottom; ?></div>
+LINE: 62
+
+FILE: catalog/controller/account/account.php
+CODE: $data['edit'] = $this->url->link('account/edit', '', true);
+LINE: 72
+
+FILE: catalog/language/en-gb/account/account.php
+CODE: // Text
+LINE: 11
+
+FILE: system/library/cart/customer.php
+CODE: private $customer_id;
+LINE: 7
+CODE: $this->customer_id = $customer_query->row['customer_id'];
+LINE: 31
+LINE: 68
+CODE: $this->customer_id = '';
+LINE: 93
+CODE: public function isLogged() {
+LINE: 122
+
+FILE: admin/controller/common/header.php
+CODE: // Customers
+LINE: 92
+CODE: $data['alerts'] = $customer_total + $product_total + $review_total + $return_total + $affiliate_total;
+LINE: 133
+
+FILE: admin/language/en-gb/common/header.php
+CODE: // Text
+LINE: 6
+
+FILE: admin/view/template/common/header.tpl
+CODE: <ul class="nav pull-right">
+LINE: 50
+
+FILE: admin/language/en-gb/setting/setting.php
+CODE: // Text
+LINE: 36
+
+FILE: admin/controller/setting/setting.php
+CODE: $data['tab_server'] = $this->language->get('tab_server');
+LINE: 597
+
+FILE: admin/view/template/setting/setting.tpl
+CODE: <li><a href="#tab-server" data-toggle="tab"><?php echo $tab_server; ?></a></li>
+LINE: 41
+CODE: <div class="tab-pane" id="tab-server">
+LINE: 1867
+----------------------------------------------------------------
+2017-02-25 12:49:52 - MOD: Modification Default
+
+FILE: system/engine/action.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 41
+
+FILE: system/engine/loader.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 49
+LINE: 108
+LINE: 120
+LINE: 165
+
+FILE: system/library/config.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 23
+
+FILE: system/library/language.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 38
+LINE: 40
+LINE: 49
+LINE: 51
+LINE: 60
+LINE: 62
+
+FILE: system/library/template/php.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 18
+
+FILE: system/library/template/tiwg.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 24
+----------------------------------------------------------------
+MOD: Alkod Multi Seller Extension pro
+
+FILE: admin/language/en-gb/report/customer_activity.php
+CODE: // Text
+LINE: 16
+
+FILE: admin/language/en-gb/extension/dashboard/activity.php
+CODE: // Text
+LINE: 15
+
+FILE: admin/view/template/common/dashboard.tpl
+CODE: <div class="col-lg-3 col-md-3 col-sm-6"><?php echo $online; ?></div>
+NOT FOUND - OPERATIONS ABORTED!
+
+FILE: admin/controller/common/dashboard.php
+CODE: $data['online'] = $this->load->controller('dashboard/online');
+NOT FOUND - OPERATIONS ABORTED!
+
+FILE: admin/controller/common/column_left.php
+CODE: // Catalog
+LINE: 122
+
+FILE: admin/language/en-gb/common/column_left.php
+CODE: // Text
+LINE: 10
+
+FILE: catalog/view/theme/default/template/common/header.tpl
+CODE: <li class="dropdown"><a href="<?php echo $account; ?>" title="<?php echo $text_account; ?>" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <span class="hidden-xs hidden-sm hidden-md"><?php echo $text_account; ?></span> <span class="caret"></span></a>
+LINE: 80
+
+FILE: catalog/controller/common/header.php
+CODE: $data['logged'] = $this->customer->isLogged();
+LINE: 94
+CODE: $data['account'] = $this->url->link('account/account',
+LINE: 109
+
+FILE: catalog/language/en-gb/common/header.php
+CODE: // Text
+LINE: 7
+
+FILE: catalog/view/theme/default/template/product/product.tpl
+CODE: <?php if ($reward) { ?>
+LINE: 214
+
+FILE: catalog/controller/product/product.php
+CODE: $data['reward'] = $product_info['reward'];
+LINE: 396
+
+FILE: catalog/language/en-gb/product/product.php
+CODE: // Text
+LINE: 4
+
+FILE: catalog/view/theme/default/template/account/account.tpl
+CODE: <?php echo $content_bottom; ?></div>
+LINE: 62
+
+FILE: catalog/controller/account/account.php
+CODE: $data['edit'] = $this->url->link('account/edit', '', true);
+LINE: 72
+
+FILE: catalog/language/en-gb/account/account.php
+CODE: // Text
+LINE: 11
+
+FILE: system/library/cart/customer.php
+CODE: private $customer_id;
+LINE: 7
+CODE: $this->customer_id = $customer_query->row['customer_id'];
+LINE: 31
+LINE: 68
+CODE: $this->customer_id = '';
+LINE: 93
+CODE: public function isLogged() {
+LINE: 122
+
+FILE: admin/controller/common/header.php
+CODE: // Customers
+LINE: 92
+CODE: $data['alerts'] = $customer_total + $product_total + $review_total + $return_total + $affiliate_total;
+LINE: 133
+
+FILE: admin/language/en-gb/common/header.php
+CODE: // Text
+LINE: 6
+
+FILE: admin/view/template/common/header.tpl
+CODE: <ul class="nav pull-right">
+LINE: 50
+
+FILE: admin/language/en-gb/setting/setting.php
+CODE: // Text
+LINE: 36
+
+FILE: admin/controller/setting/setting.php
+CODE: $data['tab_server'] = $this->language->get('tab_server');
+LINE: 597
+
+FILE: admin/view/template/setting/setting.tpl
+CODE: <li><a href="#tab-server" data-toggle="tab"><?php echo $tab_server; ?></a></li>
+LINE: 41
+CODE: <div class="tab-pane" id="tab-server">
+LINE: 1867
+----------------------------------------------------------------
+2017-02-25 12:49:53 - MOD: Modification Default
+
+FILE: system/engine/action.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 41
+
+FILE: system/engine/loader.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 49
+LINE: 108
+LINE: 120
+LINE: 165
+
+FILE: system/library/config.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 23
+
+FILE: system/library/language.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 38
+LINE: 40
+LINE: 49
+LINE: 51
+LINE: 60
+LINE: 62
+
+FILE: system/library/template/php.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 18
+
+FILE: system/library/template/tiwg.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 24
+----------------------------------------------------------------
+MOD: Alkod Multi Seller Extension pro
+
+FILE: admin/language/en-gb/report/customer_activity.php
+CODE: // Text
+LINE: 16
+
+FILE: admin/language/en-gb/extension/dashboard/activity.php
+CODE: // Text
+LINE: 15
+
+FILE: admin/view/template/common/dashboard.tpl
+CODE: <div class="col-lg-3 col-md-3 col-sm-6"><?php echo $online; ?></div>
+NOT FOUND - OPERATIONS ABORTED!
+
+FILE: admin/controller/common/dashboard.php
+CODE: $data['online'] = $this->load->controller('dashboard/online');
+NOT FOUND - OPERATIONS ABORTED!
+
+FILE: admin/controller/common/column_left.php
+CODE: // Catalog
+LINE: 122
+
+FILE: admin/language/en-gb/common/column_left.php
+CODE: // Text
+LINE: 10
+
+FILE: catalog/view/theme/default/template/common/header.tpl
+CODE: <li class="dropdown"><a href="<?php echo $account; ?>" title="<?php echo $text_account; ?>" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <span class="hidden-xs hidden-sm hidden-md"><?php echo $text_account; ?></span> <span class="caret"></span></a>
+LINE: 80
+
+FILE: catalog/controller/common/header.php
+CODE: $data['logged'] = $this->customer->isLogged();
+LINE: 94
+CODE: $data['account'] = $this->url->link('account/account',
+LINE: 109
+
+FILE: catalog/language/en-gb/common/header.php
+CODE: // Text
+LINE: 7
+
+FILE: catalog/view/theme/default/template/product/product.tpl
+CODE: <?php if ($reward) { ?>
+LINE: 214
+
+FILE: catalog/controller/product/product.php
+CODE: $data['reward'] = $product_info['reward'];
+LINE: 396
+
+FILE: catalog/language/en-gb/product/product.php
+CODE: // Text
+LINE: 4
+
+FILE: catalog/view/theme/default/template/account/account.tpl
+CODE: <?php echo $content_bottom; ?></div>
+LINE: 62
+
+FILE: catalog/controller/account/account.php
+CODE: $data['edit'] = $this->url->link('account/edit', '', true);
+LINE: 72
+
+FILE: catalog/language/en-gb/account/account.php
+CODE: // Text
+LINE: 11
+
+FILE: system/library/cart/customer.php
+CODE: private $customer_id;
+LINE: 7
+CODE: $this->customer_id = $customer_query->row['customer_id'];
+LINE: 31
+LINE: 68
+CODE: $this->customer_id = '';
+LINE: 93
+CODE: public function isLogged() {
+LINE: 122
+
+FILE: admin/controller/common/header.php
+CODE: // Customers
+LINE: 92
+CODE: $data['alerts'] = $customer_total + $product_total + $review_total + $return_total + $affiliate_total;
+LINE: 133
+
+FILE: admin/language/en-gb/common/header.php
+CODE: // Text
+LINE: 6
+
+FILE: admin/view/template/common/header.tpl
+CODE: <ul class="nav pull-right">
+LINE: 50
+
+FILE: admin/language/en-gb/setting/setting.php
+CODE: // Text
+LINE: 36
+
+FILE: admin/controller/setting/setting.php
+CODE: $data['tab_server'] = $this->language->get('tab_server');
+LINE: 597
+
+FILE: admin/view/template/setting/setting.tpl
+CODE: <li><a href="#tab-server" data-toggle="tab"><?php echo $tab_server; ?></a></li>
+LINE: 41
+CODE: <div class="tab-pane" id="tab-server">
+LINE: 1867
+----------------------------------------------------------------
