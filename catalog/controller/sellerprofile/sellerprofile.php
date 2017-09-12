@@ -1374,18 +1374,17 @@ class Controllersellerprofilesellerprofile extends Controller
         $this->response->setOutput(json_encode($json));
     }
 
-    public function profile()
-    {
+    public function profile() {
+        $json = array();
         $this->load->language('sellerprofile/sellerprofile');
 
         $this->load->model('sellerprofile/sellerprofile');
         $data['text_request_message'] = $this->language->get('text_request_message');
 
-        $json = array();
-		//print_r($this->request->get); die;
-		//echo strlen(trim($this->request->get['referred_by']));
-		//print_r(strlen(trim(isset($this->request->get['referred_by']))));
-		//die;
+        $this->load->model('catalog/category'); 
+
+        $seller_info = $this->model_sellerprofile_sellerprofile->getseller($this->customer->getId());
+        $seller_category_info = unserialize($seller_info['seller_category']);
 
 		if($this->request->post['tin'] != '' && $this->request->post['pan'] == ''){
 			$json['error'] = $this->language->get('error_pan');
@@ -1399,21 +1398,12 @@ class Controllersellerprofilesellerprofile extends Controller
 			$json['error'] = $this->language->get('error_owner_name');
 		} elseif($this->request->post['store_email'] != '' && (strlen($this->request->post['store_email']) > 100)) {
 			$json['error'] = $this->language->get('error_store_email');
-		} /*elseif($this->request->get['facebook'] != '' && (strlen($this->request->get['facebook']) > 500)){
-			$json['error'] = $this->language->get('error_facebook');
-		} elseif($this->request->get['twitter'] != '' && (strlen($this->request->get['twitter']) > 500)) {
-			$json['error'] = $this->language->get('error_twitter');
-		} elseif($this->request->get['googleplus'] != '' && (strlen($this->request->get['googleplus']) > 500)) {
-			$json['error'] = $this->language->get('error_googleplus');
-		} elseif($this->request->get['website'] != '' && (strlen($this->request->get['website']) > 500)) {
-			$json['error'] = $this->language->get('error_website');
-		} elseif($this->request->get['instagram'] != '' && (strlen($this->request->get['instagram']) > 500)) {
-			$json['error'] = $this->language->get('error_instagram');
-		}*/ elseif($this->request->post['referred_by'] != '' && (strlen($this->request->post['referred_by']) != 10)) {
+		} elseif($this->request->post['referred_by'] != '' && (strlen($this->request->post['referred_by']) != 10)) {
 			$json['error'] = $this->language->get('error_referred_by');
 		} elseif(!empty($this->request->post['store_mobile_num'])) {
 			$str_mob_filter = array_filter($this->request->post['store_mobile_num']);//print_r($str_mob_filter); die;
-			foreach($str_mob_filter as $str_mb_num) {
+			
+            foreach($str_mob_filter as $str_mb_num) {
 				if(strlen(trim($str_mb_num)) != 10) {
 					$json['error'] = $this->language->get('error_store_mobile_num');
 				}
@@ -1421,62 +1411,46 @@ class Controllersellerprofilesellerprofile extends Controller
 					$json['error'] = $this->language->get('error_store_mobile_num_valid');
 				}
 			}
-			//print_r($this->request->get['store_ll_code']);
-			//print_r($this->request->get['store_ll_num']); die;
-			//$this->model_sellerprofile_sellerprofile->SellerProfileSave($this->request->get);
-			//$json['success'] = $this->language->get('text_update_profile_success');
-		//} else {
-			//print_r("jyfiyt"); die;
-			//$this->model_sellerprofile_sellerprofile->SellerProfileSave($this->request->get);
-			//$json['success'] = $this->language->get('text_update_profile_success');
 		}
+
 		if((!empty($this->request->post['store_ll_num'])) || (!empty($this->request->post['store_ll_code']))) {
 			foreach($this->request->post['store_ll_num'] as $store_ll_num) {
-				/*if($store_ll_num == '') {
-					$json['error'] = $this->language->get('error_store_ll_num');
-				}*/
 				if((trim($store_ll_num) != '') && (!is_numeric(trim($store_ll_num)))) {
 					$json['error'] = $this->language->get('error_store_ll_num_valid');
 				}
 			}
-			foreach($this->request->post['store_ll_code'] as $store_ll_code) {//print_r($this->request->get['store_ll_code']); die;
-				/*if($store_ll_code == '') {
-					$json['error'] = $this->language->get('error_store_ll_num');
-				}*/
+
+			foreach($this->request->post['store_ll_code'] as $store_ll_code) {
 				if((trim($store_ll_code) != '') && (!is_numeric(trim($store_ll_code)))) {
 					$json['error'] = $this->language->get('error_store_ll_num_valid');
 				}
 			}
 		}
+
 		if($this->request->post['nickname']=='') {
 			$json['error'] = $this->language->get('error_nickname_req');
 		}
+
 		if($this->request->post['lat']=='') {
 			$json['error'] = $this->language->get('error_lat_req');
 		}
+
 		if($this->request->post['lng']=='') {
 			$json['error'] = $this->language->get('error_lng_req');
 		}
+
 		if($this->request->post['store_email'] == '') {
 			$json['error'] = "Please enter Store/Entity email";
 		}
-		//if($this->request->get['banner'] == '') {
-			//$json['error'] = "Please choose Store/Entity banner";
-		//}
-		if(empty($json['error'])) {//echo "fdh"; die;
+
+        if(empty($seller_category_info['product_category'])) {
+            $json['error'] = $this->language->get('error_store_category_empty');
+        }
+
+		if(empty($json['error'])) {
 			$this->model_sellerprofile_sellerprofile->SellerProfileSave($this->request->post);
 			$json['success'] = $this->language->get('text_update_profile_success');
 		}
-
-                // Add to activity log
-      //$this->load->model('account/activity');
-
-        //$activity_data = array(
-                //'customer_id' => $this->customer->getId(),
-                //'name' => $this->customer->getFirstName().' '.$this->customer->getLastName(),
-            //);
-
-        //$this->model_account_activity->addActivity('profile_update', $activity_data);        
 
         $this->response->addHeader('Content-Type: application/json');
         $this->response->setOutput(json_encode($json));

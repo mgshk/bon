@@ -203,6 +203,7 @@ $_['error_store_ll_num'] = 'Store/Entity land line code or land line number shou
 $_['error_referred_by'] = 'Referred by field should not be more or less than 10 digits!';
 $_['error_store_mobile_num_valid'] = 'Store/Entity mobile number is not valid!';
 $_['error_store_ll_num_valid'] = 'Store/Entity land line code or land line number is not valid!';
+$_['error_store_category_empty'] = 'Please add atleast one category of your business. Press Edit in Store/Entity categories';
 
 $_['entry_store_email'] = 'Store/Entity email ID';
 $_['entry_store_ll_code'] = 'Store/Entity STD code';
