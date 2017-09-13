@@ -686,6 +686,11 @@ h2.price {
 	margin-left: 20px;
 }
 
+/* my css starts */
+.sell-ret h3{word-wrap: break-word;}
+
+/* my css ends */
+
 @media (min-width: 1200px) {
 	#content .col-lg-2:nth-child(6n+1),
 	#content .col-lg-2:nth-child(6n+1),
