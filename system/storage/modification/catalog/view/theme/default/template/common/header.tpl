@@ -40,6 +40,10 @@
 	<!-- -->
 	<link href="catalog/view/javascript/chosen/chosen.css" rel="stylesheet" media="screen" />
 	<script src="catalog/view/javascript/chosen/chosen.jquery.js" type="text/javascript"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB7yf4Wg0LtSvk3qlVRYP_OUIz0SAuf9XM&libraries=places"></script>
+	<script src="http://rawgit.com/Logicify/jquery-locationpicker-plugin/master/dist/locationpicker.jquery.js"></script>
+
 	<link href="catalog/view/theme/default/stylesheet/stylesheet.css" rel="stylesheet">
 	<link rel="stylesheet" href="catalog/view/javascript/custom.css">
 	<?php foreach ($styles as $style) { ?>
@@ -108,16 +112,6 @@
 
 			}
 
-			/*var valMap = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
-			  $("#slider-range").slider({
-				  min: 1,
-				  max: valMap.length - 1,
-				  value: 0,
-				  slide: function(event, ui) {                        
-					  $("#amount").val(valMap[ui.value]);
-				  }       
-			  });
-			$( "#amount" ).val( $( "#slider-range" ).slider( "values", 0 ));*/
 		});
 
 
@@ -137,18 +131,14 @@
 
 			$("#kms_set").click(function () { //alert("test");
 				var ttt = qs["route"];
-				//alert(ttt);
 
 				if ((ttt == 'common/home') || (typeof (ttt) == "undefined") || (ttt == '')) {
-					//alert(ttt);
-					//location.reload();
 					$('.nav-tabs li.active').removeClass('active');
 					$('.tab-content div.tab-pane').removeClass('active');
 					$('.nav-tabs li#adv_settings').addClass('active');
 					$('.tab-content div#settings').addClass('active');
 					MakeUrl(path, tab_id = 'settings');
 				} else if (ttt == 'seller/seller') {
-					//alert("seller");
 					location.reload();
 				}
 
@@ -164,7 +154,6 @@
 		.dropdown-submenu:hover>.dropdown-menu {
 			display: block;
 		}
-		/*.rrt-bon-sub{left:100%; top: 45%; position: unset;}*/
 
 		.rrt-bon-sub {
 			left: 100%;
@@ -534,8 +523,6 @@
 		});
 
 		function getLocation() {
-			//alert("test");
-			debugger;
 			if (navigator.geolocation) {
 				navigator.geolocation.getCurrentPosition(showPosition);
 			} else {
@@ -544,21 +531,17 @@
 		}
 
 		function showPosition(position) {
-			debugger;
 			if ((position.coords.latitude && position.coords.longitude) != '') {
 				var latitude = position.coords.latitude;
 				var longitude = position.coords.longitude;
 				var latlong = (latitude + ", " + longitude);
 				$('#myModal').hide();
-				//$.cookie('myCookie', latlong);
 				getAddress(latlong, $('#location-search-val'));
-				//alert('The value of myCookie is now "' + $.cookie('myCookie') + '". Now, reload the page, PHP should read it correctly.');
 				location.reload();
 			}
 		}
 
 		function getAddress(latLong, element) {
-			debugger;
 			var url = "https://maps.googleapis.com/maps/api/geocode/json?latlng=" + latLong + "&sensor=false";
 			$.getJSON(url, function (data) {
 				if (data.results) {
@@ -566,22 +549,11 @@
 					element.val(address);
 					$.cookie('myCookie', latLong);
 					$.cookie('myCookieAddress', address);
-					//alert(adress);
 				}
 			})
 		}
 	</script>
-	<?php 
-					// $city = 'London';
-					 
-					// #Find latitude and longitude
-					 
-					// $url = "http://maps.googleapis.com/maps/api/geocode/json?address=$city";
-					// $json_data = file_get_contents($url);
-					// $result = json_decode($json_data, TRUE);
-					//echo $latitude = $result['results'][0]['geometry']['location']['lat'];
-					//echo $longitude = $result['results'][0]['geometry']['location']['lng'];
-					?>
+
 	<div class="modal fade" id="myModal" role="dialog">
 		<div class="modal-dialog main--ts-rt">
 			<!-- Modal content-->
@@ -629,7 +601,6 @@
 	</div>
 	<script>
 		$('input.favts2, input.favts1').on('change', function () {
-			//alert($(this).data('name'));
 			var fav_store_id = $(this).data('text');
 			var fav_name = $(this).data('name');
 			if ($(this).is(":checked")) {
@@ -637,16 +608,12 @@
 			} else {
 				var vat = 0;
 			}
-			//alert(fav_name);
 			$.ajax({
 				url: "index.php?route=common/header/updatestore_favourites_front",
 				type: 'post',
 				dataType: 'json',
 				data: { store_id: fav_store_id, value: vat, fav_name: fav_name },
 				success: function (json) {
-					if (json['success']) {
-						//$('#cus_prof').val(json['success']);
-					}
 				}
 			});
 		});
@@ -665,101 +632,7 @@
 		})
 	</script>
 	<?php } ?>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
-	<?php 
-					
-					// if(isset($_COOKIE['myCookie'])){
-					// 	$cookie = $_COOKIE['myCookie'];
-					// 	$cookie_res = explode(',',$cookie);
-					// 	$latitude = $cookie_res[0];
-					// 	$longitude = $cookie_res[1];
-					// } else {
-					// 	$latitude = '13.067439';
-					// 	$longitude = '80.237617';
-					// }
-					// //$address = getAddress($latitude,$longitude);
-					// //$address = $address?$address:'Not found'; 
-					// function getAddress($latitude,$longitude){
-					// 	if(!empty($latitude) && !empty($longitude)){
-					// 		$add_loc = array();
-					// 		//Send request and receive json data by address
-					// 		$geocodeFromLatLong = file_get_contents('https://maps.googleapis.com/maps/api/geocode/json?latlng='.trim($latitude).','.trim($longitude).'&sensor=false'); 
-					// 		$output = json_decode($geocodeFromLatLong);
-					// 		//echo "<pre>"; print_r($output);
-					// 		$status = $output->status;
-					// 		//Get address from json data
-					// 		$add_loc['address'] = ($status=="OK")?$output->results[0]->formatted_address:'';
-					// 		//echo "<pre>"; print_r($output->results[0]);die;
-					// 		//Return address of the given latitude and longitude
-					// 		if(isset($output->results[0])) {
-					// 			$response = array();
-					// 			foreach($output->results[0]->address_components as $addressComponet) {
-					// 				if(in_array('political', $addressComponet->types)) {
-					// 					$response[] = $addressComponet->long_name;
-					// 					//print_r($response); die;
-					// }
-					// }
-					
-					// if(isset($response[0])){ $first  =  $response[0];  } else { $first  = 'null'; }
-					// if(isset($response[1])){ $second =  $response[1];  } else { $second = 'null'; } 
-					// if(isset($response[2])){ $third  =  $response[2];  } else { $third  = 'null'; }
-					// if(isset($response[3])){ $fourth =  $response[3];  } else { $fourth = 'null'; }
-					// if(isset($response[4])){ $fifth  =  $response[4];  } else { $fifth  = 'null'; }
-					
-					// if( $first != 'null' && $second != 'null' && $third != 'null' && $fourth != 'null' && $fifth != 'null' ) {
-					// $add_loc['local_address'] = $first;
-					// $add_loc['city_address'] = $second;
-					// $add_loc['state_address'] = $fourth;
-					// $add_loc['country_address'] = $fifth;
-					// }
-					// else if ( $first != 'null' && $second != 'null' && $third != 'null' && $fourth != 'null' && $fifth == 'null'  ) {
-					// $add_loc['local_address'] = $first;
-					// $add_loc['city_address'] = $second;
-					// $add_loc['state_address'] = $third;
-					// $add_loc['country_address'] = $fourth;
-					// }
-					// else if ( $first != 'null' && $second != 'null' && $third != 'null' && $fourth == 'null' && $fifth == 'null' ) {
-					// $add_loc['city_address'] = $first;
-					// $add_loc['state_address'] = $second;
-					// $add_loc['country_address'] = $third;
-					// }
-					// else if ( $first != 'null' && $second != 'null' && $third == 'null' && $fourth == 'null' && $fifth == 'null'  ) {
-					// $add_loc['state_address'] = $first;
-					// $add_loc['country_address'] = $second;
-					// }
-					// else if ( $first != 'null' && $second == 'null' && $third == 'null' && $fourth == 'null' && $fifth == 'null'  ) {
-					// $add_loc['country_address'] = $first;
-					// }
-					// }
-					// if(!empty($add_loc)){
-					// return $add_loc;
-					// //print_r($add_loc);
-					// }else{
-					// return false;
-					// }
-					// }else{
-					// return false;   
-					// }
-					// }
-					
-					
-					// $add_loc = getAddress($latitude,$longitude);
-					// //print_r($add_loc);
-					// $js1 = json_encode($add_loc['address']);
-					// $local_address = (isset($add_loc['local_address']) && $add_loc['local_address']) ? $add_loc['local_address']:'';
-					// $city_address = (isset($add_loc['city_address']) && $add_loc['city_address']) ? $add_loc['city_address']:'';
-					// $state_address = (isset($add_loc['state_address']) && $add_loc['state_address']) ? $add_loc['state_address']:'';
-					// $country_address = (isset($add_loc['country_address']) && $add_loc['country_address']) ? $add_loc['country_address']:'';
-					// $country_det = $local_address.", ".$city_address.", ".$state_address.", ".$country_address;
-					// setcookie('myCookieaddress', $country_det);
-					// //print_r($country_det);
-					
-					// //echo $js1;//location.reload();
-					// echo "<script>\n";
-					// 	echo 'var names = ' .$js1. ";\n";
-					// 	echo "$('#location-search-val').val($('#location-search-val').val() + names)";
-					// 	echo "</script>\n";
-					// ?>
+
 	<div class="modal fade" id="ad-model" role="dialog">
 		<div class="modal-dialog">
 			<!-- Modal content-->
@@ -1130,339 +1003,339 @@
 		</div>
 	</div>
 	<script>
-					  $(document).ready(function () {
+		$(document).ready(function () {
 
-						  $(".free_listBtn_logged").click(function () {
-							  $('#_log-bon').modal('show');
-							  $("._top-log-in").hide();
-							  $("._alreary_logged").show();
-							  $('._sig_log').show().css('height', '100px');
-						  });
-						  $(".free_listBtn").click(function () {
-							  $('#_log-bon').modal('show');
-							  $("._top-log-in").hide();
-							  $("._top-sign-in").show();
-						  });
-						  $("._bon--login").click(function () {
+			$(".free_listBtn_logged").click(function () {
+				$('#_log-bon').modal('show');
+				$("._top-log-in").hide();
+				$("._alreary_logged").show();
+				$('._sig_log').show().css('height', '100px');
+			});
+			$(".free_listBtn").click(function () {
+				$('#_log-bon').modal('show');
+				$("._top-log-in").hide();
+				$("._top-sign-in").show();
+			});
+			$("._bon--login").click(function () {
 
-							  $('#_log-bon').modal({
-								  backdrop: 'static',
-								  keyboard: false
-							  })
-							  $('#_log-bon').modal('show');
-							  //$("._top-sign-in").hide();
-							  //$("._top-log-in").show();
-						  });
-					  });
-					  $(document).ready(function () {
-						  $("._sgn-sec").click(function () {
-							  $("._top-log-in").hide();
-							  $("._top-sign-in").show();
-						  });
-						  $("._sgn-out").click(function () {
-							  $("._top-sign-in").hide();
-							  $("._top-log-in").show();
-						  });
-						  $("._sgn-outt").click(function () {
-							  $('.text-dangers').html('');
-							  $('#_top-sign-otp').trigger("reset");
-							  $("._top-sign-otp").hide();
-							  $("._top-log-in").show();
-						  });
-						  $("#sign-up-bon-top-otp").click(function () {
-							  var cus_d = $('#cus_d').val();
-							  $('#cus_prof').val(cus_d);
-							  $("._top-sign-otp").hide();
-							  $("._top-sign-prof").show();
-						  });
-						  $("._skip-prof").click(function () {
-							  $('.text-dangers').html('');
-							  $('#_top-sign-otp').trigger("reset");
-							  $('#top-sign-last').trigger("reset");
-							  $("._top-sign-upd").hide();
-							  $("._top-log-in").show();
-						  });
-						  $("input#otp").keyup(function () {
-							  var lgt = $('#otp').val().length;
-							  if (lgt == 6) {
-								  $('#top-line-star-otp').html('');
-								  $.ajax({
-									  url: 'index.php?route=common/header/code_check',
-									  type: 'post',
-									  dataType: 'json',
-									  data: $("#_top-sign-otp").serialize(),
-									  success: function (json) {
-										  if (json['success']) {//alert("fgggs");
-											  $("#input-email-otp").removeAttr('disabled');
-											  $("#input-password-otp").removeAttr('disabled');
-											  $("#input-confirm-otp").removeAttr('disabled');
-											  $("#security_select").removeAttr('disabled');
-											  $("#sign-up-bon-top-prof").removeAttr('disabled');
-										  }
-										  if (json['error_warning']) {
-											  $('#top-line-star-otp').html('<i class="fa fa-times" aria-hidden="true"></i> ' + json['error_warning']);
-										  }
-									  }
-								  });
+				$('#_log-bon').modal({
+					backdrop: 'static',
+					keyboard: false
+				})
+				$('#_log-bon').modal('show');
+				//$("._top-sign-in").hide();
+				//$("._top-log-in").show();
+			});
+		});
+		$(document).ready(function () {
+			$("._sgn-sec").click(function () {
+				$("._top-log-in").hide();
+				$("._top-sign-in").show();
+			});
+			$("._sgn-out").click(function () {
+				$("._top-sign-in").hide();
+				$("._top-log-in").show();
+			});
+			$("._sgn-outt").click(function () {
+				$('.text-dangers').html('');
+				$('#_top-sign-otp').trigger("reset");
+				$("._top-sign-otp").hide();
+				$("._top-log-in").show();
+			});
+			$("#sign-up-bon-top-otp").click(function () {
+				var cus_d = $('#cus_d').val();
+				$('#cus_prof').val(cus_d);
+				$("._top-sign-otp").hide();
+				$("._top-sign-prof").show();
+			});
+			$("._skip-prof").click(function () {
+				$('.text-dangers').html('');
+				$('#_top-sign-otp').trigger("reset");
+				$('#top-sign-last').trigger("reset");
+				$("._top-sign-upd").hide();
+				$("._top-log-in").show();
+			});
+			$("input#otp").keyup(function () {
+				var lgt = $('#otp').val().length;
+				if (lgt == 6) {
+					$('#top-line-star-otp').html('');
+					$.ajax({
+						url: 'index.php?route=common/header/code_check',
+						type: 'post',
+						dataType: 'json',
+						data: $("#_top-sign-otp").serialize(),
+						success: function (json) {
+							if (json['success']) {//alert("fgggs");
+								$("#input-email-otp").removeAttr('disabled');
+								$("#input-password-otp").removeAttr('disabled');
+								$("#input-confirm-otp").removeAttr('disabled');
+								$("#security_select").removeAttr('disabled');
+								$("#sign-up-bon-top-prof").removeAttr('disabled');
+							}
+							if (json['error_warning']) {
+								$('#top-line-star-otp').html('<i class="fa fa-times" aria-hidden="true"></i> ' + json['error_warning']);
+							}
+						}
+					});
 
-								  //$("#input-email-otp").removeAttr('disabled');
-								  //$("#input-password-otp").removeAttr('disabled');
-								  //$("#input-confirm-otp").removeAttr('disabled');
-								  //$("#sign-up-bon-top-prof").removeAttr('disabled');
-							  };
-						  });
-						  $("#frgt-pass").click(function () {
-							  $("._top-log-in").hide();
-							  $("._forget-bon").show();
-						  });
-						  $("._resr-log-bon").click(function () {
-							  $("._forget-bon").hide();
-							  $("._top-log-in").show();
-						  });
-					  });
+					//$("#input-email-otp").removeAttr('disabled');
+					//$("#input-password-otp").removeAttr('disabled');
+					//$("#input-confirm-otp").removeAttr('disabled');
+					//$("#sign-up-bon-top-prof").removeAttr('disabled');
+				};
+			});
+			$("#frgt-pass").click(function () {
+				$("._top-log-in").hide();
+				$("._forget-bon").show();
+			});
+			$("._resr-log-bon").click(function () {
+				$("._forget-bon").hide();
+				$("._top-log-in").show();
+			});
+		});
 
-					  //Login pop with mobile num
-					  $('#main-log-bon input').on('keydown', function (e) {
-						  if (e.keyCode == 13) {
-							  $('#log-btn-main-bon').trigger('click');
-						  }
-					  });
-					  $('#log-btn-main-bon').click(function () {
-						  $('#zone-bon-error-login').html('');
-						  $.ajax({
-							  url: 'index.php?route=account/login/login',
-							  type: 'post',
-							  dataType: 'json',
-							  data: $("#main-log-bon").serialize(),
-							  success: function (json) {
-								  //$('#modal-quicksignup .form-group').removeClass('has-error');								
+		//Login pop with mobile num
+		$('#main-log-bon input').on('keydown', function (e) {
+			if (e.keyCode == 13) {
+				$('#log-btn-main-bon').trigger('click');
+			}
+		});
+		$('#log-btn-main-bon').click(function () {
+			$('#zone-bon-error-login').html('');
+			$.ajax({
+				url: 'index.php?route=account/login/login',
+				type: 'post',
+				dataType: 'json',
+				data: $("#main-log-bon").serialize(),
+				success: function (json) {
+					//$('#modal-quicksignup .form-group').removeClass('has-error');								
 
-								  if (json['error']) {
-									  $('#zone-bon-error-login').html('<i class="fa fa-times" aria-hidden="true"></i> ' + json['error']);
-									  $('#main-log-bon #input-email').focus();
-								  }
-								  if (json['success']) {
-									  loacation();
-									  $('#_log-bon').modal('hide');
-								  }
+					if (json['error']) {
+						$('#zone-bon-error-login').html('<i class="fa fa-times" aria-hidden="true"></i> ' + json['error']);
+						$('#main-log-bon #input-email').focus();
+					}
+					if (json['success']) {
+						loacation();
+						$('#_log-bon').modal('hide');
+					}
 
-							  }
-						  });
-					  });
+				}
+			});
+		});
 
-					  function loacation() {
-						  location.reload();
-					  }
+		function loacation() {
+			location.reload();
+		}
 
-					  $('#sign-up-bon-top').on('click', function () {
-						  $('#top-line-star').html('');
-						  $("#LoadingImage").show();
-						  $.ajax({
-							  url: 'index.php?route=common/header/new_login',
-							  type: 'post',
-							  dataType: 'json',
-							  data: $("#sig_top_hd").serialize(),
-							  success: function (json) {
-								  if (json['success']) {
-									  $("#LoadingImage").hide();
-									  $('#cus_prof').val(json['success']);
-									  var zon_id = json['zone_select'];
-									  if (zon_id == 1503) {
-										  $('#zone_select_ret').val('Tamil nadu');
-									  } else if (zon_id == 1499) {
-										  $('#zone_select_ret').val('Puducherry');
-									  }
-									  $('#input-telephone_ret').val(json['telephone']);
-									  $("._top-sign-in").hide();
-									  $("._top-sign-otp").show();
-								  }
-								  if (json['error_warning']) {
-									  $("#LoadingImage").hide();
-									  $('#top-line-star').html('<i class="fa fa-times" aria-hidden="true"></i> ' + json['error_warning']);
-								  }
-								  if (json['error_telephone']) {
-									  $("#LoadingImage").hide();
-									  $('#top-line-star').html('<i class="fa fa-times" aria-hidden="true"></i> ' + json['error_telephone']);
-								  }
-								  if (json['telephone_number']) {
-									  $("#LoadingImage").hide();
-									  $('#top-line-star').html('<i class="fa fa-times" aria-hidden="true"></i> ' + json['telephone_number']);
-								  }
-							  }
-						  });
-					  });
-					  $('#sign-up-bon-top-prof').on('click', function () {
-						  $('#email-error').html('');
-						  $('#norm-pas').html('');
-						  $('#conf-pas').html('');
-						  $('#security_select_alt').html('');
-						  $('#security_answer_alt').html('');
-						  $.ajax({
-							  url: 'index.php?route=common/header/new_login_update',
-							  type: 'post',
-							  dataType: 'json',
-							  data: $("#_top-sign-otp").serialize(),
-							  success: function (json) {
-								  if (json['success']) {
-									  $('#cus_d_up').val(json['success']);
-									  $("._top-sign-otp").hide();
-									  $("._top-sign-upd").show()
-								  }
-								  if (json['error_email_empty']) {
-									  $('#email-error').html('<i class="fa fa-times" aria-hidden="true"></i>' + json['error_email']);
-								  }
-								  if (json['error_email']) {
-									  $('#email-error').html('<i class="fa fa-times" aria-hidden="true"></i>' + json['error_email']);
-								  }
-								  if (json['error_warning']) {
-									  $('#email-error').html('<i class="fa fa-times" aria-hidden="true"></i><span>' + json['error_warning']);
-								  }
-								  if (json['error_password']) {
-									  $('#norm-pas').html('<i class="fa fa-times" aria-hidden="true"></i><span>' + json['error_password']);
-								  }
-								  if (json['error_confirm']) {
-									  $('#conf-pas').html('<i class="fa fa-times" aria-hidden="true"></i><span>' + json['error_confirm']);
-								  }
-								  if (json['security_select']) {
-									  $('#security_select_alt').html('<i class="fa fa-times" aria-hidden="true"></i><span>' + json['security_select']);
-								  }
-								  if (json['security_answer']) {
-									  $('#security_answer_alt').html('<i class="fa fa-times" aria-hidden="true"></i><span>' + json['security_answer']);
-								  }
-							  }
-						  });
-					  });
-					  $('#updat-bon-det').on('click', function () {
-						  $.ajax({
-							  url: 'index.php?route=common/header/new_login_update_two',
-							  type: 'post',
-							  dataType: 'json',
-							  data: $("#top-sign-last").serialize(),
-							  success: function (json) {
-								  if (json['success']) {
-									  $('#_top-sign-otp').trigger("reset");
-									  $('#top-sign-last').trigger("reset");
-									  $('#reg-sucess').html('<i class="fa fa-check" aria-hidden="true"></i><span>' + json['success']);
-									  $("._top-sign-upd").hide();
-									  $("._top-log-in").show();
-								  }
-								  if (json['error_firstname']) {
-									  $('#fist-name-bon').html('<i class="fa fa-times" aria-hidden="true"></i><span>' + json['error_firstname']);
-								  }
-								  if (json['lastname']) {
-									  $('#last-name-bon').html('<i class="fa fa-times" aria-hidden="true"></i><span>' + json['lastname']);
-								  }
-								  if (json['error_address_1']) {
-									  $('#address-bon').html('<i class="fa fa-times" aria-hidden="true"></i><span>' + json['error_address_1']);
-								  }
-							  }
-						  });
-					  });
-					  $('#forget-btn-main-bon-type').on('click', function () {
-						  $('.text-dangers').html('');
-						  $("#LoadingImage1").show();
-						  $.ajax({
-							  url: 'index.php?route=common/header/forgot_pass_log',
-							  type: 'post',
-							  dataType: 'json',
-							  data: $("#forget-log-type").serialize(),
-							  success: function (json) {
-								  if (json['success']) {
-									  $("#LoadingImage1").hide();
-									  $('#forgt-phn-sec').val(json['success']);
-									  $('#forgt-phn-sec_nw').val(json['success']);
-									  $('#security_question_sec').val(json['q_name']);
-									  $("._forget-bon").hide();
-									  $("._forget-bon-sec").show();
-									  $("#qus_ans").hide();
-								  }
-								  if (json['forgt-phn-failure']) {
-									  $("#LoadingImage1").hide();
-									  $('#forgt-phn-failure').html('<i class="fa fa-times" aria-hidden="true"></i><span>' + json['forgt-phn-failure']);
-								  }
-							  }
-						  });
-					  });
-					  $(document).ready(function () {
-						  $("input#forgt-phn-otp").keyup(function () {
-							  var lgt = $('#forgt-phn-otp').val().length;
-							  if (lgt == 6) {
-								  $('.text-dangers').html('');
-								  $.ajax({
-									  url: 'index.php?route=common/header/forgot_pass_sec',
-									  type: 'post',
-									  dataType: 'json',
-									  data: $("#forget-log-sec").serialize(),
-									  success: function (json) {
-										  if (json['success']) {
-											  $('#cus_ids').val(json['success']);
-											  $('#otp-sec').val(1);
-											  $("#qus_ans").show();
-										  }
-										  if (json['sec_otp_sec']) {
-											  $('#sec_otp_sec').html('<i class="fa fa-times" aria-hidden="true"></i><span>' + json['sec_otp_sec']);
-										  }
-									  }
-								  });
-							  };
-						  });
-					  });
-					  $('#forget-btn-main-bon-sec').on('click', function () {
-						  $('.text-dangers').html('');
-						  $.ajax({
-							  url: 'index.php?route=common/header/forgot_pass_sec',
-							  type: 'post',
-							  dataType: 'json',
-							  data: $("#forget-log-sec").serialize(),
-							  success: function (json) {
-								  if (json['success']) {
-									  $('#cus_ids').val(json['success']);
-									  $("._forget-bon-sec").hide();
-									  $("._forget-bon-pass").show();
-								  }
-								  if (json['security_answer_sec']) {
-									  $('#security_answer_sec-er').html('<i class="fa fa-times" aria-hidden="true"></i><span>' + json['security_answer_sec']);
-								  }
-								  if (json['sec_otp_sec']) {
-									  $('#sec_otp_sec').html('<i class="fa fa-times" aria-hidden="true"></i><span>' + json['sec_otp_sec']);
-								  }
-							  }
-						  });
-					  });
+		$('#sign-up-bon-top').on('click', function () {
+			$('#top-line-star').html('');
+			$("#LoadingImage").show();
+			$.ajax({
+				url: 'index.php?route=common/header/new_login',
+				type: 'post',
+				dataType: 'json',
+				data: $("#sig_top_hd").serialize(),
+				success: function (json) {
+					if (json['success']) {
+						$("#LoadingImage").hide();
+						$('#cus_prof').val(json['success']);
+						var zon_id = json['zone_select'];
+						if (zon_id == 1503) {
+							$('#zone_select_ret').val('Tamil nadu');
+						} else if (zon_id == 1499) {
+							$('#zone_select_ret').val('Puducherry');
+						}
+						$('#input-telephone_ret').val(json['telephone']);
+						$("._top-sign-in").hide();
+						$("._top-sign-otp").show();
+					}
+					if (json['error_warning']) {
+						$("#LoadingImage").hide();
+						$('#top-line-star').html('<i class="fa fa-times" aria-hidden="true"></i> ' + json['error_warning']);
+					}
+					if (json['error_telephone']) {
+						$("#LoadingImage").hide();
+						$('#top-line-star').html('<i class="fa fa-times" aria-hidden="true"></i> ' + json['error_telephone']);
+					}
+					if (json['telephone_number']) {
+						$("#LoadingImage").hide();
+						$('#top-line-star').html('<i class="fa fa-times" aria-hidden="true"></i> ' + json['telephone_number']);
+					}
+				}
+			});
+		});
+		$('#sign-up-bon-top-prof').on('click', function () {
+			$('#email-error').html('');
+			$('#norm-pas').html('');
+			$('#conf-pas').html('');
+			$('#security_select_alt').html('');
+			$('#security_answer_alt').html('');
+			$.ajax({
+				url: 'index.php?route=common/header/new_login_update',
+				type: 'post',
+				dataType: 'json',
+				data: $("#_top-sign-otp").serialize(),
+				success: function (json) {
+					if (json['success']) {
+						$('#cus_d_up').val(json['success']);
+						$("._top-sign-otp").hide();
+						$("._top-sign-upd").show()
+					}
+					if (json['error_email_empty']) {
+						$('#email-error').html('<i class="fa fa-times" aria-hidden="true"></i>' + json['error_email']);
+					}
+					if (json['error_email']) {
+						$('#email-error').html('<i class="fa fa-times" aria-hidden="true"></i>' + json['error_email']);
+					}
+					if (json['error_warning']) {
+						$('#email-error').html('<i class="fa fa-times" aria-hidden="true"></i><span>' + json['error_warning']);
+					}
+					if (json['error_password']) {
+						$('#norm-pas').html('<i class="fa fa-times" aria-hidden="true"></i><span>' + json['error_password']);
+					}
+					if (json['error_confirm']) {
+						$('#conf-pas').html('<i class="fa fa-times" aria-hidden="true"></i><span>' + json['error_confirm']);
+					}
+					if (json['security_select']) {
+						$('#security_select_alt').html('<i class="fa fa-times" aria-hidden="true"></i><span>' + json['security_select']);
+					}
+					if (json['security_answer']) {
+						$('#security_answer_alt').html('<i class="fa fa-times" aria-hidden="true"></i><span>' + json['security_answer']);
+					}
+				}
+			});
+		});
+		$('#updat-bon-det').on('click', function () {
+			$.ajax({
+				url: 'index.php?route=common/header/new_login_update_two',
+				type: 'post',
+				dataType: 'json',
+				data: $("#top-sign-last").serialize(),
+				success: function (json) {
+					if (json['success']) {
+						$('#_top-sign-otp').trigger("reset");
+						$('#top-sign-last').trigger("reset");
+						$('#reg-sucess').html('<i class="fa fa-check" aria-hidden="true"></i><span>' + json['success']);
+						$("._top-sign-upd").hide();
+						$("._top-log-in").show();
+					}
+					if (json['error_firstname']) {
+						$('#fist-name-bon').html('<i class="fa fa-times" aria-hidden="true"></i><span>' + json['error_firstname']);
+					}
+					if (json['lastname']) {
+						$('#last-name-bon').html('<i class="fa fa-times" aria-hidden="true"></i><span>' + json['lastname']);
+					}
+					if (json['error_address_1']) {
+						$('#address-bon').html('<i class="fa fa-times" aria-hidden="true"></i><span>' + json['error_address_1']);
+					}
+				}
+			});
+		});
+		$('#forget-btn-main-bon-type').on('click', function () {
+			$('.text-dangers').html('');
+			$("#LoadingImage1").show();
+			$.ajax({
+				url: 'index.php?route=common/header/forgot_pass_log',
+				type: 'post',
+				dataType: 'json',
+				data: $("#forget-log-type").serialize(),
+				success: function (json) {
+					if (json['success']) {
+						$("#LoadingImage1").hide();
+						$('#forgt-phn-sec').val(json['success']);
+						$('#forgt-phn-sec_nw').val(json['success']);
+						$('#security_question_sec').val(json['q_name']);
+						$("._forget-bon").hide();
+						$("._forget-bon-sec").show();
+						$("#qus_ans").hide();
+					}
+					if (json['forgt-phn-failure']) {
+						$("#LoadingImage1").hide();
+						$('#forgt-phn-failure').html('<i class="fa fa-times" aria-hidden="true"></i><span>' + json['forgt-phn-failure']);
+					}
+				}
+			});
+		});
+		$(document).ready(function () {
+			$("input#forgt-phn-otp").keyup(function () {
+				var lgt = $('#forgt-phn-otp').val().length;
+				if (lgt == 6) {
+					$('.text-dangers').html('');
+					$.ajax({
+						url: 'index.php?route=common/header/forgot_pass_sec',
+						type: 'post',
+						dataType: 'json',
+						data: $("#forget-log-sec").serialize(),
+						success: function (json) {
+							if (json['success']) {
+								$('#cus_ids').val(json['success']);
+								$('#otp-sec').val(1);
+								$("#qus_ans").show();
+							}
+							if (json['sec_otp_sec']) {
+								$('#sec_otp_sec').html('<i class="fa fa-times" aria-hidden="true"></i><span>' + json['sec_otp_sec']);
+							}
+						}
+					});
+				};
+			});
+		});
+		$('#forget-btn-main-bon-sec').on('click', function () {
+			$('.text-dangers').html('');
+			$.ajax({
+				url: 'index.php?route=common/header/forgot_pass_sec',
+				type: 'post',
+				dataType: 'json',
+				data: $("#forget-log-sec").serialize(),
+				success: function (json) {
+					if (json['success']) {
+						$('#cus_ids').val(json['success']);
+						$("._forget-bon-sec").hide();
+						$("._forget-bon-pass").show();
+					}
+					if (json['security_answer_sec']) {
+						$('#security_answer_sec-er').html('<i class="fa fa-times" aria-hidden="true"></i><span>' + json['security_answer_sec']);
+					}
+					if (json['sec_otp_sec']) {
+						$('#sec_otp_sec').html('<i class="fa fa-times" aria-hidden="true"></i><span>' + json['sec_otp_sec']);
+					}
+				}
+			});
+		});
 
-					  $('#forget-btn-main-bon-pass').on('click', function () {
-						  $('.text-dangers').html('');
-						  $.ajax({
-							  url: 'index.php?route=common/header/forgot_pass_change',
-							  type: 'post',
-							  dataType: 'json',
-							  data: $("#forget-log-pass").serialize(),
-							  success: function (json) {
-								  if (json['success']) {
-									  $('#reg-sucess').html('<i class="fa fa-check" aria-hidden="true"></i><span>' + json['success']);
-									  $("._forget-bon-pass").hide();
-									  $("._top-log-in").show();
-								  }
-								  if (json['error_password']) {
-									  $('#forgt-phn-pass-fail').html('<i class="fa fa-times" aria-hidden="true"></i><span>' + json['error_password']);
-								  }
-								  if (json['error_confirm']) {
-									  $('#forgt-phn-pass-re-fail').html('<i class="fa fa-times" aria-hidden="true"></i><span>' + json['error_confirm']);
-								  }
-							  }
-						  });
-					  });
+		$('#forget-btn-main-bon-pass').on('click', function () {
+			$('.text-dangers').html('');
+			$.ajax({
+				url: 'index.php?route=common/header/forgot_pass_change',
+				type: 'post',
+				dataType: 'json',
+				data: $("#forget-log-pass").serialize(),
+				success: function (json) {
+					if (json['success']) {
+						$('#reg-sucess').html('<i class="fa fa-check" aria-hidden="true"></i><span>' + json['success']);
+						$("._forget-bon-pass").hide();
+						$("._top-log-in").show();
+					}
+					if (json['error_password']) {
+						$('#forgt-phn-pass-fail').html('<i class="fa fa-times" aria-hidden="true"></i><span>' + json['error_password']);
+					}
+					if (json['error_confirm']) {
+						$('#forgt-phn-pass-re-fail').html('<i class="fa fa-times" aria-hidden="true"></i><span>' + json['error_confirm']);
+					}
+				}
+			});
+		});
 
 
 
-					  function setCookiePosition(button) {
-						  if (button == 'ok') {
-							  var latlong = (document.getElementById("latitude").value + ", " + document.getElementById("longitude").value);
-							  $.cookie('myCookie', latlong);
-							  location.reload();
-							  return true;
-						  } else { return false; }
-					  }
+		function setCookiePosition(button) {
+			if (button == 'ok') {
+				var latlong = (document.getElementById("latitude").value + ", " + document.getElementById("longitude").value);
+				$.cookie('myCookie', latlong);
+				location.reload();
+				return true;
+			} else { return false; }
+		}
 	</script>
 	<style>
 		#examples a {
@@ -1531,8 +1404,6 @@
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
-					<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB7yf4Wg0LtSvk3qlVRYP_OUIz0SAuf9XM&libraries=places"></script>
-					<script src="http://rawgit.com/Logicify/jquery-locationpicker-plugin/master/dist/locationpicker.jquery.js"></script>
 
 					<h5 class="modal-title">Modal title</h5>
 					Location: <input type="text" id="us11-address" style="width: 200px" /> Lat.: <input type="text" id="us11-lat" /> Long.:
@@ -1555,76 +1426,76 @@
 		</div>
 	</div>
 	<script>
-					  $(document).ready(function () {
-						  function renderMap(lat, lan) {
-							  $('#us11').locationpicker({
-								  location: {
-									  latitude: lat,
-									  longitude: lan
-								  },
-								  radius: 0,
-								  inputBinding: {
-									  latitudeInput: $('#us11-lat'),
-									  longitudeInput: $('#us11-lon'),
-									  locationNameInput: $('#us11-address')
-								  },
-								  enableAutocomplete: true,
-								  onchanged: function (currentLocation, radius, isMarkerDropped) {
-									  getAddress(currentLocation.latitude + ", " + currentLocation.longitude, $("#divFormattedAddress"));
-								  }
+		$(document).ready(function () {
+			function renderMap(lat, lan) {
+				$('#us11').locationpicker({
+					location: {
+						latitude: lat,
+						longitude: lan
+					},
+					radius: 0,
+					inputBinding: {
+						latitudeInput: $('#us11-lat'),
+						longitudeInput: $('#us11-lon'),
+						locationNameInput: $('#us11-address')
+					},
+					enableAutocomplete: true,
+					onchanged: function (currentLocation, radius, isMarkerDropped) {
+						getAddress(currentLocation.latitude + ", " + currentLocation.longitude, $("#divFormattedAddress"));
+					}
 
-							  });
-						  }
-						  $('#map_mod').on('shown.bs.modal', function () {
-							  if ($.cookie("myCookie")) {
-								  var latLangCookie = $.cookie("myCookie").split(',');
-								  renderMap(latLangCookie[0], latLangCookie[1]);
-								  getAddress(latLangCookie, $("#divFormattedAddress"));
-							  }
-							  else {
-								  var latLangCookie = "13.0826802, 80.27071840000008";
-								  renderMap(13.0826802, 80.27071840000008);
-								  getAddress(latLangCookie, $("#divFormattedAddress"));
-							  }
-							  $('#us11').locationpicker('autosize');
-						  });
-					  });
-					  function setPosition() {
-						  var latitude = $('#us11-lat').val();
-						  var longitude = $('#us11-lon').val();
-						  var latlong = (latitude + ", " + longitude);
-						  $.cookie('myCookie', latlong);
-						  //alert('The value of myCookie is now "' + $.cookie('myCookie') + '". Now, reload the page, PHP should read it correctly.');
-						  location.reload();
-					  }
+				});
+			}
+			$('#map_mod').on('shown.bs.modal', function () {
+				if ($.cookie("myCookie")) {
+					var latLangCookie = $.cookie("myCookie").split(',');
+					renderMap(latLangCookie[0], latLangCookie[1]);
+					getAddress(latLangCookie, $("#divFormattedAddress"));
+				}
+				else {
+					var latLangCookie = "13.0826802, 80.27071840000008";
+					renderMap(13.0826802, 80.27071840000008);
+					getAddress(latLangCookie, $("#divFormattedAddress"));
+				}
+				$('#us11').locationpicker('autosize');
+			});
+		});
+		function setPosition() {
+			var latitude = $('#us11-lat').val();
+			var longitude = $('#us11-lon').val();
+			var latlong = (latitude + ", " + longitude);
+			$.cookie('myCookie', latlong);
+			//alert('The value of myCookie is now "' + $.cookie('myCookie') + '". Now, reload the page, PHP should read it correctly.');
+			location.reload();
+		}
 
 
-					  $("select#zone_select").change(function () {
-						  $('#top-line-star').html('');
-						  $('#zone-bon-error').html('');
-						  var zone_id = $(this).val()
-						  if ((zone_id == 1503) || (zone_id == 1499)) {
-							  $("#input-telephone").removeAttr('disabled');
-							  $("#sign-up-bon-top").removeAttr('disabled');
-						  } else {
-							  $('#zone-bon-error').html('<i class="fa fa-times" aria-hidden="true"></i><span>Currently available in Tamilnadu and Pondicherry only. Will be launched in above place soon.</span>');
-							  $("#input-telephone").attr('disabled', 'disabled');
-							  $("#sign-up-bon-top").attr('disabled', 'disabled');
-						  }
-					  });
-					  $("select#security_select").change(function () {
-						  $('#security_select_alt').html('');
-						  $('#security_answer_alt').html('');
-						  $(".security_answer").show();
-					  });
-					  function mouseoverPass(obj) {
-						  var obj = document.getElementById('input-password');
-						  obj.type = "text";
-					  }
-					  function mouseoutPass(obj) {
-						  var obj = document.getElementById('input-password');
-						  obj.type = "password";
-					  }
+		$("select#zone_select").change(function () {
+			$('#top-line-star').html('');
+			$('#zone-bon-error').html('');
+			var zone_id = $(this).val()
+			if ((zone_id == 1503) || (zone_id == 1499)) {
+				$("#input-telephone").removeAttr('disabled');
+				$("#sign-up-bon-top").removeAttr('disabled');
+			} else {
+				$('#zone-bon-error').html('<i class="fa fa-times" aria-hidden="true"></i><span>Currently available in Tamilnadu and Pondicherry only. Will be launched in above place soon.</span>');
+				$("#input-telephone").attr('disabled', 'disabled');
+				$("#sign-up-bon-top").attr('disabled', 'disabled');
+			}
+		});
+		$("select#security_select").change(function () {
+			$('#security_select_alt').html('');
+			$('#security_answer_alt').html('');
+			$(".security_answer").show();
+		});
+		function mouseoverPass(obj) {
+			var obj = document.getElementById('input-password');
+			obj.type = "text";
+		}
+		function mouseoutPass(obj) {
+			var obj = document.getElementById('input-password');
+			obj.type = "password";
+		}
 	</script>
 	<div class="modal fade" id="site_feedback_main" role="dialog">
 		<div class="modal-dialog">
@@ -1699,13 +1570,7 @@
 						  }
 
 						  $('#map_mod').modal('show');
-						  //  $("#geocomplete").geocomplete({
-						  //     map: ".map_canvas",
-						  //     details: "form ",
-						  //     markerOptions: {
-						  //       draggable: true
-						  //     }
-						  //   });
+
 
 						  $("#geocomplete").bind("geocode:dragged", function (event, latLng) {
 							  $("input[name=lat]").val(latLng.lat());
