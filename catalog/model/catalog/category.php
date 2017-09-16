@@ -15,6 +15,48 @@ class ModelCatalogCategory extends Model {
 		return $query->rows;
 	}
 
+	public function getCategoriesList() {
+		$categories = [];
+
+		$sql = "SELECT c.category_id, cd.name 
+			FROM " . DB_PREFIX . "category as c 
+			INNER JOIN " . DB_PREFIX . "category_description as cd ON cd.category_id = c.category_id  
+			WHERE c.parent_id = 0 AND cd.language_id = " . (int)$this->config->get('config_language_id');
+		
+		$query = $this->db->query($sql);
+
+		foreach ($query->rows as $row) {
+			$categories[$row['category_id']] = $row;
+		}
+
+		return $categories;
+	}
+
+	public function getSubCategories($category_id, $subcategory_ids) {
+		$sub_categories = [];
+
+		$sql = "SELECT cp.category_id AS category_id, 
+			GROUP_CONCAT(cd1.name ORDER BY cp.level SEPARATOR '&nbsp;&nbsp;&gt;&nbsp;&nbsp;') AS name, cp.path_id
+			FROM " . DB_PREFIX . "category_path cp 
+			LEFT JOIN " . DB_PREFIX . "category c1 ON (cp.category_id = c1.category_id) 
+			LEFT JOIN " . DB_PREFIX . "category c2 ON (cp.path_id = c2.category_id) 
+			LEFT JOIN " . DB_PREFIX . "category_description cd1 ON (cp.path_id = cd1.category_id) 
+			LEFT JOIN " . DB_PREFIX . "category_description cd2 ON (cp.category_id = cd2.category_id) 
+			WHERE cp.category_id IN ('".$subcategory_ids."') AND c1.parent_id != 0 AND cd1.language_id = ".(int)$this->config->get('config_language_id')." 
+			AND cd2.language_id = ".(int)$this->config->get('config_language_id')." GROUP BY cp.category_id 
+			HAVING cp.path_id = '".$category_id."' ORDER BY name ASC";
+
+			//echo $sql;
+
+			$query = $this->db->query($sql);
+
+			foreach ($query->rows as $row) {
+				$sub_categories[$row['category_id']] = $row;
+			}
+
+			return $sub_categories;
+	}
+
 	public function getSellerCategories($parent_id, $seller_id) {
 		$sql = "SELECT * FROM " . DB_PREFIX . "category c LEFT JOIN " . DB_PREFIX . "category_description cd ON (c.category_id = cd.category_id) LEFT JOIN ".DB_PREFIX."category_to_seller cs ON(c.category_id = cs.category_id) WHERE c.parent_id = '" . (int)$parent_id . "' AND c.status = '1' AND cs.seller_id = ".$seller_id." ORDER BY c.category_id ASC";
 		//print_r($sql);
@@ -174,6 +216,11 @@ class ModelCatalogCategory extends Model {
 		} else {
 			$this->db->query("UPDATE ".DB_PREFIX."customer SET seller_category = '".$inputs."' WHERE customer_id = '".(int) $this->customer->getID()."'");
 		}
+	}
+
+
+	public function storeSellerSubcategories($data) {
+		$this->db->query("UPDATE ".DB_PREFIX."customer SET seller_category = '".$data."' WHERE customer_id = '".(int) $this->customer->getID()."'");
 	}
 
 	public function getStoreSellerSubcategoriesPath($category_id) {		

@@ -12,13 +12,16 @@ class Controllersellerprofilesellerprofile extends Controller
             $this->response->redirect($this->url->link('common/home', '', 'SSL'));
         }
 
-        $this->load->model('sellerproduct/seller');		
+        $this->document->addScript('catalog/view/javascript/sellerprofile/sellerprofile.js');
+
+        $this->load->model('sellerproduct/seller');
+        $this->load->model('sellerprofile/sellerprofile');
+        $this->load->model('catalog/category');
+        $this->load->model('tool/image');
+        $this->load->model('selleradvertise/advertise');
 
         $this->load->language('sellerprofile/sellerprofile');
-
         $this->document->setTitle($this->language->get('heading_title'));
-
-        $this->load->model('sellerprofile/sellerprofile');
 
         $data['column_seller_group'] = $this->language->get('column_seller_group');
         $data['column_commission'] = $this->language->get('column_commission');
@@ -144,7 +147,6 @@ class Controllersellerprofilesellerprofile extends Controller
             $data['text_seller_agree'] = sprintf($this->language->get('text_seller_agree'), $information_info['title']);
         }
 
-        $this->load->model('sellerprofile/sellerprofile');
         $data['banks'] = $this->model_sellerprofile_sellerprofile->getbankes();
 
         $data['seller_id'] = $this->customer->getId();		
@@ -165,52 +167,33 @@ class Controllersellerprofilesellerprofile extends Controller
 
         $seller_info = $this->model_sellerprofile_sellerprofile->getseller($this->customer->getId());
 
-		//print_r($seller_info); die;
-
-		//echo "<pre>";print_r(unserialize($seller_info['seller_category']));exit;
 		$category_seller = array();
-		$this->load->model('catalog/category');
-		$seller_category_info = unserialize($seller_info['seller_category']);
-		$sub_cat = array();
-		if(!empty($seller_category_info['product_category'] )) {
-			foreach($seller_category_info['product_category'] as $seller_cat) {
-				if($seller_cat !='') {
-					$sub_cat[] = $this->model_catalog_category->getSubCategoryPath($seller_cat);
-					$sub_cat_name[$seller_cat] = $this->model_catalog_category->getCategoryName($seller_cat);
-				}
-			}
-			foreach($seller_category_info['category_ids'] as $cat) {
-				$category_seller[$cat]['name'] = $this->model_catalog_category->getCategoryName($cat);
-				if($sub_cat) {
-					foreach($sub_cat as $s_cat) {
-						if($cat == $s_cat['path']) {
-							//$category_seller[$cat][] = $s_cat['category'];
-							$category_seller[$cat][$s_cat['category']] = $sub_cat_name[$s_cat['category']];
-						}
-					}
-				}
-			}
-			
-		}
-		$data['category_seller'] = $category_seller;
-		//echo "<pre>";print_r($seller_category_info);exit;
+
+        $seller_categories = ['category' => [], 'sub_categories' => ''];
+
+		$category_ids = json_decode($seller_info['seller_category']);
+
+        $categories_list = $this->model_catalog_category->getCategoriesList();
+
+        foreach ($category_ids as $value) {
+            if($value->category && $categories_list[$value->category]) {
+                $seller_categories['category'][] = $categories_list[$value->category];
+                $sub_category_ids = implode($value->sub_categories, "','");
+                $sub_categories_list = $this->model_catalog_category->getSubCategories($value->category, $sub_category_ids);
+
+                $seller_categories['sub_categories'][] = $sub_categories_list;
+            }
+        }
+
+		$data['category_seller'] = $seller_categories;
 		$data['allow_products'] = $seller_info['allow_products'];
 		$data['allow_cart']     = $seller_info['allow_cart'];
-
 		$data['seller_approved'] = $seller_info['seller_approved'];
-
 		$data['seller_verified'] = $seller_info['seller_verified'];
-
 		$data['seller_reject_reason'] = $seller_info['seller_reject_reason'];
-
 		$data['token'] = (isset($this->session->data['token']) && $this->session->data['token'] != '') ? $this->session->data['token'] : '';
-
 		$data['login_type'] = (isset($this->session->data['login_type']) && $this->session->data['login_type'] != '') ? $this->session->data['login_type'] : '';
-
         $data['seller_product_total'] = $this->model_sellerprofile_sellerprofile->getTotalProducts();
-
-        $this->load->model('sellerprofile/sellerprofile');
-
         $data['seller_groups'] = $this->model_sellerprofile_sellerprofile->getSellerGroups();
 
         if (isset($this->request->post['seller_group_id'])) {
@@ -220,12 +203,14 @@ class Controllersellerprofilesellerprofile extends Controller
         } else {
             $data['seller_group_id'] = $this->config->get('config_seller_group_id');
         }
-        $this->load->model('tool/image');
+
+
         if ($this->config->get('config_sellerimageupload')) {
             $data['sellerimageupload'] = '1';
         } else {
             $data['sellerimageupload'] = '0';
         }
+
         if (isset($this->request->post['image'])) {
             $data['image'] = $this->request->post['image'];
         } elseif (!empty($seller_info)) {
@@ -233,6 +218,7 @@ class Controllersellerprofilesellerprofile extends Controller
         } else {
             $data['image'] = '';
         }
+
         if (isset($this->request->post['image']) && is_file(DIR_IMAGE.$this->request->post['image'])) {
             $data['thumb_image'] = $this->model_tool_image->resize($this->request->post['image'], 100, 100);
         } elseif (!empty($seller_info) && is_file(DIR_IMAGE.$seller_info['image'])) {
@@ -248,6 +234,7 @@ class Controllersellerprofilesellerprofile extends Controller
         } else {
             $data['banner'] = '';
         }
+
         if (isset($this->request->post['banner']) && is_file(DIR_IMAGE.$this->request->post['banner'])) {
             $data['thumb_banner'] = $this->model_tool_image->resize($this->request->post['banner'], 100, 100);
         } elseif (!empty($seller_info) && is_file(DIR_IMAGE.$seller_info['banner'])) {
@@ -259,20 +246,14 @@ class Controllersellerprofilesellerprofile extends Controller
         $data['placeholder'] = $this->model_tool_image->resize('no_image.png', 100, 100);
 
         $data['is_seller'] = $this->customer->isSeller();
+
         if (isset($this->request->post['seller_group'])) {
-            $data['seller_group'] = $this->request->post['seller_group'];
-			
+            $data['seller_group'] = $this->request->post['seller_group'];		
         } elseif (!empty($seller_info)) {
-
-
-            $this->load->model('sellerproduct/seller');
-
             $data['is_seller'] = $this->customer->isSeller();
-
             $data['seller_group'] = $seller_info['name'];
         } else {
             $data['seller_group'] = '';
-
         }
 
         if (isset($this->request->post['seller_group_limit'])) {
@@ -282,6 +263,7 @@ class Controllersellerprofilesellerprofile extends Controller
         } else {
             $data['seller_group_limit'] = '';
         }
+
         if (isset($this->request->post['seller_description'])) {
             $data['seller_description'] = $this->request->post['seller_description'];
         } elseif (!empty($seller_info)) {
@@ -325,8 +307,6 @@ class Controllersellerprofilesellerprofile extends Controller
 		if (isset($this->request->post['referred_by'])) {
             $data['referred_by'] = $this->request->post['referred_by'];
         } elseif (!empty($seller_info)) {
-			//$reff = $this->model_sellerprofile_sellerprofile->StoreReferrerNum($seller_info['referred_by']);
-            //$data['referred_by'] = isset($reff['refer_mobile']);
 			$data['referred_by'] = $seller_info['referred_by'];
         } else {
             $data['referred_by'] = '';
@@ -513,11 +493,8 @@ class Controllersellerprofilesellerprofile extends Controller
 		//difference
 		$diff = $finish - $today;
 
-		$data['daysleft']=floor($diff/(60*60*24));
-		//echo "$daysleft days left";
-
+		$data['daysleft'] = floor($diff/(60*60*24));
 		$data['favourites_customer_count'] = $this->model_sellerprofile_sellerprofile->getfavourites_customer_count($this->customer->getId());
-
         $data['column_left'] = $this->load->controller('common/column_left');
         $data['column_right'] = $this->load->controller('common/column_right');
         $data['content_top'] = $this->load->controller('common/content_top');
@@ -531,11 +508,8 @@ class Controllersellerprofilesellerprofile extends Controller
             $data['seller_group_id'] = $this->model_sellerprofile_sellerprofile->getSellerGroupId();
         }
 
-
-
-        $this->load->model('sellerproduct/seller');
-
         $data['seller_request'] = $this->model_sellerprofile_sellerprofile->getSellerrequest();
+
         if (isset($this->request->get['sort'])) {
             $sort = $this->request->get['sort'];
         } else {
@@ -616,38 +590,21 @@ class Controllersellerprofilesellerprofile extends Controller
                 'subscription_price' => $this->currency->format($result['subscription_price'], $this->session->data['currency']),
                 'subscription_duration' => $result['subscription_duration'],
                 'commission' => $this->currency->format($result['commission'], $this->session->data['currency']).' + '.$result['fee']."%",
-                'categories' => $this->model_sellerproduct_category->getsellergroupCategoriesByGroupId($result['seller_group_id']),
-
-
-
-                );
+                'categories' => $this->model_sellerproduct_category->getsellergroupCategoriesByGroupId($result['seller_group_id'])
+            );
         }
-		//$seller_categories_singles = $this->model_sellerproduct_category->getCategories_toseller('');
-		//foreach ($seller_categories_singles as $seller_categories_single_result) {
-			//$data['seller_categories_single'] = $seller_categories_single_result['category_id'];
-		//}
-        //$data['seller_categories_single_cat_id'] = $data['seller_categories_single']['category_id'];
 
-				$data['error_warning_product_limit'] = '';
+		$data['error_warning_product_limit'] = '';
+
         if (!empty($seller_info)) {
-					if ($seller_info['product_limit'] != 0) {
-
-
-            if ($seller_product_total >= $seller_info['product_limit']) {
-                $data['error_warning_product_limit'] = $this->language->get('warning_product_limit');
-            } else {
-                $data['error_warning_product_limit'] = '';
-            }
-
-						}
-        } else {
-            $data['error_warning_product_limit'] = '';
+			if ($seller_info['product_limit'] != 0) {
+                if ($seller_product_total >= $seller_info['product_limit']) {
+                    $data['error_warning_product_limit'] = $this->language->get('warning_product_limit');
+                }
+			}
         }
-
-
 
         $data['heading_title'] = $this->language->get('heading_title');
-
         $data['text_list'] = $this->language->get('text_list');
         $data['text_no_results'] = $this->language->get('text_no_results');
         $data['text_confirm'] = $this->language->get('text_confirm');
@@ -768,14 +725,10 @@ class Controllersellerprofilesellerprofile extends Controller
 			if ($result['address_format']) {
 				$format = $result['address_format'];
 			} else {
-				//$format = '{firstname} {lastname}' . "\n" . '{company}' . "\n" . '{address_1}' . "\n" . '{address_2}' . "\n" . '{city} {postcode}' . "\n" . '{zone}' . "\n" . '{country}';
 				$format = '{address_1}' . "\n" . '{address_2}' . "\n" . '{city} {postcode}' . "\n" . '{zone}' . "\n" . '{country}';
 			}
 
 			$find = array(
-				//'{firstname}',
-				//'{lastname}',
-				//'{company}',
 				'{address_1}',
 				'{address_2}',
 				'{city}',
@@ -786,9 +739,6 @@ class Controllersellerprofilesellerprofile extends Controller
 			);
 
 			$replace = array(
-				//'firstname' => $result['firstname'],
-				//'lastname'  => $result['lastname'],
-				//'company'   => $result['company'],
 				'address_1' => $result['address_1'],
 				'address_2' => $result['address_2'],
 				'city'      => $result['city'],
@@ -810,15 +760,8 @@ class Controllersellerprofilesellerprofile extends Controller
 		$data['placeholder'] = $this->model_tool_image->resize('no_image.png', 100, 100);
 		$data['button_image_add'] = $this->language->get('button_image_add');
 
-		/*if (isset($this->request->post['store_image'])) {
-			$store_images = $this->request->post['store_image'];
-		} elseif (isset($this->request->get['seller_id'])) {
-			$store_images = $this->model_sellerprofile_sellerprofile->getStoreImages($this->customer->getId());
-		} else {
-			$store_images = array();
-		}*/
-
 		$store_timings = $this->model_sellerprofile_sellerprofile->getstore_timings($this->customer->getId());
+
 		if($store_timings) {
 			$data['store_timings'] = $store_timings;
 		} else {
@@ -830,15 +773,10 @@ class Controllersellerprofilesellerprofile extends Controller
 				"thursday" => "a:4:{s:3:\"day\";s:6:\"monday\";s:6:\"status\";s:5:\"close\";s:4:\"from\";a:1:{i:0;s:7:\"8:00 PM\";}s:2:\"to\";a:1:{i:0;s:7:\"8:00 PM\";}}",
 				"friday" => "a:4:{s:3:\"day\";s:6:\"monday\";s:6:\"status\";s:5:\"close\";s:4:\"from\";a:1:{i:0;s:7:\"8:00 PM\";}s:2:\"to\";a:1:{i:0;s:7:\"8:00 PM\";}}",
 				"saturday" => "a:4:{s:3:\"day\";s:6:\"monday\";s:6:\"status\";s:5:\"close\";s:4:\"from\";a:1:{i:0;s:7:\"8:00 PM\";}s:2:\"to\";a:1:{i:0;s:7:\"8:00 PM\";}}",
-				"sunday" => "a:4:{s:3:\"day\";s:6:\"monday\";s:6:\"status\";s:5:\"close\";s:4:\"from\";a:1:{i:0;s:7:\"8:00 PM\";}s:2:\"to\";a:1:{i:0;s:7:\"8:00 PM\";}}");
-				
+				"sunday" => "a:4:{s:3:\"day\";s:6:\"monday\";s:6:\"status\";s:5:\"close\";s:4:\"from\";a:1:{i:0;s:7:\"8:00 PM\";}s:2:\"to\";a:1:{i:0;s:7:\"8:00 PM\";}}");		
 		}
 
-		//echo "<pre>"; print_r($data['store_timings']);die;
-
 		$store_images = $this->model_sellerprofile_sellerprofile->getStoreImages($this->customer->getId());
-
-		//print_r($data['store_timings']); die;
 
 		$data['store_images'] = array();
 
@@ -858,29 +796,23 @@ class Controllersellerprofilesellerprofile extends Controller
 			);
 		}
 
+		$data['draft_tt'] = $this->model_selleradvertise_advertise->getTotalAdvertisesDraft();
+		$data['submitted_tt'] = $this->model_selleradvertise_advertise->getTotalAdvertisesSubmitted();
+		$data['approved_tt'] = $this->model_selleradvertise_advertise->getTotalAdvertisesApproved();
+		$data['rejected_tt'] = $this->model_selleradvertise_advertise->getTotalAdvertisesRejected();
+		$data['paid_tt'] = $this->model_selleradvertise_advertise->getTotalAdvertisesPaid();
+		$data['archive_tt'] = $this->model_selleradvertise_advertise->getTotalAdvertisesArchive();
+		$data['trash_tt'] = $this->model_selleradvertise_advertise->getTotalAdvertisesTrash();
 
+		$ad = $this->model_selleradvertise_advertise->getTotalAdvertisesLive();
 
-			$this->load->model('selleradvertise/advertise');
+		foreach($ad as $ads) {
+			$adv[] = $ads['total'];
+		}		
 
-			$data['draft_tt'] = $this->model_selleradvertise_advertise->getTotalAdvertisesDraft();
-			$data['submitted_tt'] = $this->model_selleradvertise_advertise->getTotalAdvertisesSubmitted();
-			$data['approved_tt'] = $this->model_selleradvertise_advertise->getTotalAdvertisesApproved();
-			$data['rejected_tt'] = $this->model_selleradvertise_advertise->getTotalAdvertisesRejected();
-			$data['paid_tt'] = $this->model_selleradvertise_advertise->getTotalAdvertisesPaid();
-			//$data['live_tt'] = $this->model_selleradvertise_advertise->getTotalAdvertisesLive();
-			$data['archive_tt'] = $this->model_selleradvertise_advertise->getTotalAdvertisesArchive();
-			$data['trash_tt'] = $this->model_selleradvertise_advertise->getTotalAdvertisesTrash();
+		$data['live_tt'] = array_sum($adv);
 
-			$ad = $this->model_selleradvertise_advertise->getTotalAdvertisesLive();
-
-			foreach($ad as $ads) {
-				$adv[] = $ads['total'];
-			}		
-
-			$data['live_tt'] = array_sum($adv);
-
-            $this->response->setOutput($this->load->view('sellerprofile/sellerprofile_form', $data));
-
+        $this->response->setOutput($this->load->view('sellerprofile/sellerprofile_form', $data));
     }
 
     public function badge()
@@ -2661,12 +2593,6 @@ class Controllersellerprofilesellerprofile extends Controller
 			if (isset($this->error['advertise_location'])) {
 				$json['advertise_location'] = $this->error['advertise_location'];
 			}
-		 
-//print_r($this->request->post['loc']);
-
-		 /*  $this->load->model('sellerprofile/sellerprofile');
-        $data['seller_info'] = $this->model_sellerprofile_sellerprofile->getSellerInfo();
-		$json['info'] = $data['seller_info']; */
 		
 		$_SESSION['confirm']['amount'] = $this->request->post['amount'];
 		$_SESSION['confirm']['name'] = $this->getAdName($this->request->post['loc']);
@@ -2727,9 +2653,6 @@ class Controllersellerprofilesellerprofile extends Controller
 				if($this->request->post['position'] == ''){			
 					$this->error['position'] = $this->language->get('position');
 				}
-				/*if($this->request->post['amount'] == ''){			
-					$this->error['amount'] = $this->language->get('amount');
-				}*/
 			}
 			if($this->request->post['loc'] == '1') { 
 				if($this->request->post['top_banner_date'] == ''){			
@@ -2748,12 +2671,6 @@ class Controllersellerprofilesellerprofile extends Controller
 		$this->load->model('selleradvertise/advertise');
  
 		if ($this->request->post['loc'] != '' && $this->validate_move_live()) {
-			/*if($this->request->post['loc'] == '1') {
-				$avilable_dates = $this->model_selleradvertise_advertise->getAvialableDates();
-				if($avilable_dates != ''){
-					$json['success'] = "Testing";
-				}
-			}else*/
 
 			$basic_position_amount = $this->model_selleradvertise_advertise->getStoreOfferBasicPrice();
 			
@@ -3008,69 +2925,36 @@ class Controllersellerprofilesellerprofile extends Controller
 	}
 
 	public function categories_subcategories_store() {
-		$json = array();
+        try {
 
-		$this->load->language('selleradvertise/advertise');
-		$this->load->model('catalog/category');	
-		$inputs = serialize($this->request->post);
-			
-		$this->model_catalog_category->getStoreSellerSubcategories($inputs, '0');
-		//print_r($this->request->post);
-		$this->load->model('account/activity');
+            $json = array();
+            $validate_category = [];
 
-		$customer_id = $this->customer->getId();		
-		if(!empty($this->request->post['product_category'])) {
-			//delete
-			$this->model_catalog_category->getDeleteSellerCategories($customer_id);
-			foreach($this->request->post['product_category'] as $category) {
-				if($category !='') {
-					$path[] = $this->model_catalog_category->getStoreSellerSubcategoriesPath($category);
-					//$input['category_id'] = $category;
-					//$input['seller_id'] = $customer_id;
-					//$input['status'] = '1';
-					//$id = $this->model_catalog_category->getStoreSellerSubcategories($input, '1');
-					
-				}
-			}
-			foreach($path as $path_in) {
-				foreach($path_in as $path_inner){
-					foreach($path_inner as $path_innerr){
-						$path_outer[] = $path_innerr;
-					}
-				}
-				//$path_out[] = $path_in;
-			}
-			//$path_final = array_unique($path_outer);			
-		}
-		if(!empty($this->request->post['category_ids'])) {
-			foreach($this->request->post['category_ids'] as $cat) {
-				if($cat !='') {
-					$cat_main[] = $cat;
-					//$input['category_id'] = $cat;
-					//$input['seller_id'] = $customer_id;
-					//$input['status'] = '1';
-					//$id = $this->model_catalog_category->getStoreSellerSubcategories($input, '1');
-				}
-			}
-			
-		}
-		$category_to_seller = array_unique(array_merge($cat_main, $path_outer));
-		//print_r($category_to_seller);exit;
-		foreach($category_to_seller as $cat) {
-			$input['category_id'] = $cat;
-			$input['seller_id'] = $customer_id;
-			$input['status'] = '1';
-			$id = $this->model_catalog_category->getStoreSellerSubcategories($input, '1');
-		}
-		if($id) {
-			$json['success'] = 'success';
-		}
-		//............Category Approvel with store.........//
-		//$this->load->model('sellerprofile/sellerprofile');
-		//$this->model_sellerprofile_sellerprofile->getStoreCategoryAprrove();
-		$json['success'] = 'success';
-		$this->response->addHeader('Content-Type: application/json');
-		$this->response->setOutput(json_encode($json));
+            $this->load->language('selleradvertise/advertise');
+            $this->load->model('catalog/category');
+            $this->load->model('account/activity');
+
+            $categories_list = $this->model_catalog_category->getCategoriesList();
+
+            $categories = str_replace('&quot;', '"', $this->request->post['category']);
+            $category_ids = json_decode($categories);
+
+            foreach ($category_ids as $value) {
+                if($value->category && $categories_list[$value->category]) {
+                    $validate_category[] = $value;
+                }
+            }
+            
+            $this->model_catalog_category->storeSellerSubcategories(json_encode($validate_category));
+
+            $json['success'] = 'Successfully saved';
+                       
+        } catch (Exception $e) {
+            $json['error'] = $e->getMessage();
+        }
+
+        $this->response->addHeader('Content-Type: application/json');
+        $this->response->setOutput(json_encode($json));
 	}
 	
 	public function feature_store() {
@@ -3134,14 +3018,10 @@ class Controllersellerprofilesellerprofile extends Controller
     {
 		$json = array();
 
-		//$this->load->language('sellerprofile/sellerprofile');
 		$this->load->model('sellerprofile/sellerprofile');		
-		//print_r($this->request->post); die;
-		//if($this->request->post != ''){
 			
-			$this->model_sellerprofile_sellerprofile->clear_visitor_counter();
-			$data['success'] = 0;
-		//}
+		$this->model_sellerprofile_sellerprofile->clear_visitor_counter();
+		$data['success'] = 0;
 
 		$json = $data;
 		$this->response->addHeader('Content-Type: application/json');
@@ -3171,29 +3051,13 @@ class Controllersellerprofilesellerprofile extends Controller
 				$basic_position_amount = $this->model_selleradvertise_advertise->getStoreOfferBasicPrice(); //array('0'=>'500','1'=>'400','2'=>'300','3'=>'0');
 				//print_r($basic_position_amount);exit;
 				$position_amount = array_diff($value_filter, $basic_position_amount);
-				foreach($position_amount as $key => $position) {
-					//foreach($position as $pos) {					
-						$json[] = $position;					
-					//}
+				foreach($position_amount as $key => $position) {					
+					$json[] = $position;					
 				}
 				$json = array_unique($json);
 			} 
-		/*}else {
-			if($loc == '2') {
-				$value = array('0' => '500');
-				$json[] = $value;
-			}if($loc == '3') {
-				$value = array('0' => '400');
-				$json[] = $value;
-			}if($loc == '4') {
-				$value = array('0' => '300');
-				$json[] = $value;
-			}if($loc == '5') {
-				$value = array('0' => '200');
-				$json[] = $value;
-			}*/
 		}
-		//print_r($position_amount);exit;
+
 		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
@@ -3299,17 +3163,7 @@ class Controllersellerprofilesellerprofile extends Controller
 		if(empty($json['error'])) {//echo "fdh"; die;
 			$this->model_sellerprofile_sellerprofile->SellerProfileSave($this->request->post);
 			$json['success'] = "Store/Entity portals successfully updated.";
-		}
-
-                // Add to activity log
-      //$this->load->model('account/activity');
-
-        //$activity_data = array(
-                //'customer_id' => $this->customer->getId(),
-                //'name' => $this->customer->getFirstName().' '.$this->customer->getLastName(),
-            //);
-
-        //$this->model_account_activity->addActivity('profile_update', $activity_data);     
+		}    
 
         $this->response->addHeader('Content-Type: application/json');
         $this->response->setOutput(json_encode($json));

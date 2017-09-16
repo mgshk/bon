@@ -1,10 +1,5 @@
 <?php echo $header; ?>
 <div class="container-fluid mainn-topp-ress">
-   <!--<ul class="breadcrumb">
-      <?php foreach ($breadcrumbs as $breadcrumb) { ?>
-      <li><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a></li>
-      <?php } ?>
-      </ul>-->
    <?php if ($success) { ?>
    <div class="alert alert-success"><i class="fa fa-check-circle"></i> <?php echo $success; ?></div>
    <?php } ?>
@@ -33,17 +28,9 @@
             </div>
             <?php } ?>
             <div class="panel panel-default">
-               <!--<div class="panel-heading">
-                  <h3 class="panel-title"><i class="fa fa-user"></i> <?php echo $text_seller_profile; ?></h3>
-                  </div>-->
                <div class="panel-body">
                   <ul class="nav nav-tabs fixme" style="z-index:123; background: #cef0f5 none repeat scroll 0 0;">
                      <?php if ($is_seller) { ?>		     
-                     <!--<li class="<?php //if(isset($_GET['tab_section']) != 'store'){ echo 'active'; }?>">
-                        <a href="#tab-dashboard" data-toggle="tab">
-                        <?php echo $tab_dashboard; ?>
-                        </a>
-                        </li>-->
                      <li class="<?php if($_GET['tab_section'] == 'profile'){ echo 'active'; }?>">
                         <a href="#tab-profile_details" data-toggle="tab">
                         <?php //echo $tab_profile_details; ?>
@@ -134,176 +121,9 @@
                      </li>
 					 <?php } ?>
                      <?php } ?>
-                     <!--<li>
-                        <a href="#tab-badge" data-toggle="tab">
-                        <?php echo $tab_badge; ?>
-                        </a>
-                        </li>
-                        <li>
-                        <a class="sellerproduct" href="#tab-sellerproduct" data-toggle="tab">
-                        <?php echo $tab_sellerproduct; ?>
-                        </a>
-                        </li>
-                        <li>
-                        <a href="#tab-bankaccount" data-toggle="tab">
-                        <?php echo $tab_bankaccount; ?>
-                        </a>
-                        </li>                     
-                        <li>
-                        <a href="#tab-transaction" data-toggle="tab">
-                        <?php echo $tab_transaction; ?>
-                        </a>
-                        </li>
-                        <li>
-                        <a href="#tab-history" data-toggle="tab">
-                        <?php echo $tab_history; ?>
-                        </a>
-                        </li>
-                        <li <?php if (!$is_seller) { echo 'class="active"'; } ?>>
-                        <a href="#tab-request_membership" data-toggle="tab">
-                        <?php echo $tab_request_membership; ?>
-                        </a>
-                        </li>-->
                   </ul>
                   <div class="tab-content">
                      <?php if ($is_seller) { ?>
-                     <!--<div class="tab-pane" id="tab-dashboard">
-                        <div class="row">
-                           <div class="col-sm-12">
-                              <div class="well">				  
-                                 <a href="<?php echo $order_edit; ?>" data-toggle="tooltip" title="" class="btn btn-primary"><?php echo $button_edit_order; ?></a>
-                              </div>
-                              <div class="tab-pane" id="tab-seller">
-                                 <div class="col-md-6">
-                                    <blockquote>
-                                       <div class="panel-heading">
-                                          <h3 class="panel-title"><i class="fa fa-user"></i> <?php echo $text_seller_detail; ?></h3>
-                                       </div>
-                                       <div class="table-responsive">
-                                          <table class="table table-condensed">
-                                             <tbody>
-                                                <tr>
-                                                   <td>
-                                                      <button data-toggle="tooltip" title="<?php echo $entry_name; ?>" class="btn btn-info btn-xs"><i class="fa fa-user fa-fw"></i></button>
-                                                   </td>
-                                                   <td>
-                                                      <?php echo $firstname.' '.$lastname; ?>
-                                                      </a>
-                                                   </td>
-                                                </tr>
-                                                <tr>
-                                                   <td>
-                                                      <button data-toggle="tooltip" title="<?php echo $entry_seller_group; ?>" class="btn btn-info btn-xs"><i class="fa fa-users fa-fw"></i></button>
-                                                   </td>
-                                                   <td>
-                                                      <?php echo $seller_group; ?>
-                                                      </a>
-                                                   </td>
-                                                </tr>
-                                                <tr>
-                                                   <td>
-                                                      <button data-toggle="tooltip" title="<?php echo $entry_date_created; ?>" class="btn btn-info btn-xs"><i class="fa fa-calendar fa-fw"></i></button>
-                                                   </td>
-                                                   <td>
-                                                      <?php echo $date ; ?>
-                                                   </td>
-                                                </tr>
-                                                <tr>
-                                                   <td>
-                                                      <button data-toggle="tooltip" title="<?php echo $entry_date_end; ?>" class="btn btn-info btn-xs"><i class="fa fa-calendar fa-fw"></i></button>
-                                                   </td>
-                                                   <td>
-                                                      <?php echo $date_end; ?>
-                                                   </td>
-                                                </tr>
-                                                <tr>
-                                                   <td>
-                                                      <button data-toggle="tooltip" title="<?php echo $entry_email; ?>" class="btn btn-info btn-xs"><i class="fa fa-envelope-o fa-fw"></i></button>
-                                                   </td>
-                                                   <td>
-                                                      <?php echo $email; ?>
-                                                   </td>
-                                                </tr>
-                                                <tr>
-                                                   <td>
-                                                      <button data-toggle="tooltip" title="<?php echo $entry_telephone; ?>" class="btn btn-info btn-xs"><i class="fa fa-phone fa-fw"></i></button>
-                                                   </td>
-                                                   <td>
-                                                      <?php echo $telephone; ?>
-                                                   </td>
-                                                </tr>
-                                             </tbody>
-                                          </table>
-                                       </div>
-                                    </blockquote>
-                                 </div>
-                                 <div class="col-md-6">
-                                    <blockquote>
-                                       <div class="panel-heading">
-                                          <h3 class="panel-title"><i class="fa fa-users"></i> <?php echo $text_seller_group_detail; ?></h3>
-                                       </div>
-                                       <div class="table-responsive">
-                                          <table class="table table-condensed">
-                                             <tbody>
-                                                <tr>
-                                                   <td>
-                                                      <button data-toggle="tooltip" title="<?php echo $entry_seller_group_commission; ?>" class="btn btn-info btn-xs"><i class="fa fa-sitemap fa-fw"></i></button>
-                                                   </td>
-                                                   <td>
-                                                      <?php echo $commission; ?>
-                                                   </td>
-                                                </tr>
-                                                <tr>
-                                                   <td>
-                                                      <button data-toggle="tooltip" title="<?php echo $entry_seller_group_subscription_price; ?>" class="btn btn-info btn-xs"><i class="fa fa-usd fa-fw"></i></button>
-                                                   </td>
-                                                   <td>
-                                                      <?php echo $seller_group_subscription_price; ?>
-                                                   </td>
-                                                </tr>
-                                                <tr>
-                                                   <td>
-                                                      <button data-toggle="tooltip" title="<?php echo $entry_seller_product_total; ?>" class="btn btn-info btn-xs"><i class="fa fa-battery-quarter fa-fw"></i></button>
-                                                   </td>
-                                                   <td>
-                                                      <?php echo $seller_product_total; ?>
-                                                   </td>
-                                                </tr>
-                                                <tr>
-                                                   <td>
-                                                      <button data-toggle="tooltip" title="<?php echo $entry_seller_group_limit; ?>" class="btn btn-info btn-xs"><i class="fa fa-battery-full fa-fw"></i></button>
-                                                   </td>
-                                                   <td>
-                                                      <?php echo $seller_group_limit; ?>
-                                                   </td>
-                                                </tr>
-                                                <tr>
-                                                   <td>
-                                                      <button data-toggle="tooltip" title="<?php echo $entry_seller_product_left; ?>" class="btn btn-info btn-xs"><i class="fa fa-exclamation-triangle fa-fw"></i></button>
-                                                   </td>
-                                                   <td>
-                                                      <div class="progress">
-                                                         <div class="progress-bar active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:<?php echo ( $seller_group_limit ? (($seller_product_total / $seller_group_limit)*100) : 100) ;?>%">
-                                                            <?php echo ($seller_group_limit - $seller_product_total); ?>
-                                                         </div>
-                                                      </div>
-                                                   </td>
-                                                </tr>
-                                             </tbody>
-                                          </table>
-                                       </div>
-                                    </blockquote>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                        <div class="row">
-                           <div class="col-sm-12">
-                              <div class="col-md-6"><?php //echo $map; ?></div>
-                              <div class="col-md-6"><?php //echo $chart; ?></div>
-                           </div>
-                        </div>
-                        </div>-->
                      <div class="tab-pane <?php if($_GET['tab_section'] == 'profile'){ echo 'active'; }?>" id="tab-profile_details">
                         <div class="col-md-12">
                            <blockquote>
@@ -1495,67 +1315,70 @@
                <li>- Please be cautious in choosing main or sub category to keep your loyalty/credibility amongst buyers.</li>
             </ul>
             <br/>
-            <form action="" method="post" enctype="multipart/form-data" id="form-categories" class="form-horizontal">
+            <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
                <div class="table-responsive">
                   <table id="cats" class="table table-striped table-bordered table-hover">
                      <thead>
                         <tr>
-                           <td class="text-left">Main Category<?php //echo $entry_additional_image; ?></td>
-                           <td class="text-left">Sub category<?php //echo $entry_sort_order; ?></td>
+                           <td class="text-left">Main Category</td>
+                           <td class="text-left">Sub category</td>
                            <td></td>
                         </tr>
                      </thead>
                      <tbody>
                         <?php $cat_row = 0; ?>
-                        <?php if(!empty($category_seller)) {		  
-                           foreach ($category_seller as $key=> $seller_cat) { ?>		 
-                        <tr id="cat-rows<?php //echo $cat_row; ?>" class="extra remove<?php echo $cat_row; ?>">
+                        <?php if(!empty($category_seller)) {
+                           $i = 0;
+                           foreach ($category_seller['category'] as $seller_cat) { ?>		 
+                              <tr id="cat-rows<?php echo $cat_row; ?>" class="extra">
+                                 <td class="text-left cat">
+                                    <input type="text" name="category" data-row="<?php echo $cat_row; ?>" id="category_<?php echo $cat_row; ?>" value="<?php echo $seller_cat['name']; ?>" placeholder="Type here" class="form-control" />
+                                    <ul class="dropdown-menu_<?php echo $cat_row; ?>"></ul>
+                                    <input type="hidden" data-row="<?php echo $cat_row; ?>" name="category_id" id="category_hidden_<?php echo $cat_row; ?>" value="<?php echo $seller_cat['category_id']; ?>" />
+                                 </td>
+                                 <td class="text-left subcat">
+                                    <input type="text" name="sub_category" id="sub_category_<?php echo $cat_row; ?>" data-row="<?php echo $cat_row; ?>" value="" placeholder="Type here" class="form-control" />
+                                    <ul class="dropdown-submenu_<?php echo $cat_row; ?>"></ul>
+                                    <div id="product-category_<?php echo $cat_row; ?>" class="well well-sm" style="height: 150px; overflow: auto;">
+                                       <?php
+                                       foreach ($category_seller['sub_categories'][$cat_row] as $seller_sub_cat) { ?>
+                                             <p><i class="fa fa-minus-circle"></i> <?php echo $seller_sub_cat['name']; ?>
+                                                <input type="hidden" name="product_category[]" id="product_category_<?php echo $seller_sub_cat['category_id']; ?>" value="<?php echo $seller_sub_cat['category_id']; ?>"></p>
+                                       <?php } ?>
+                                    </div>
+                                    </div>
+                                 </td>
+                                 <td class="text-left">
+                                    <?php if($cat_row > 0) { ?>
+                                    <button type="button" onclick="$('#cat-rows<?php echo $cat_row; ?>').remove();" class="--minus-btn">-</button>
+                                    <?php } ?>
+                                 </td>
+                              </tr>
+                        <?php $cat_row++; } } else { ?>
+                        <tr id="cat-rows0" class="extra">
                            <td class="text-left cat">
-                              <input type="text" disabled data-catid="<?php echo $key; ?>" name="category<?php echo $cat_row; ?>" value="<?php echo $seller_cat['name']; ?>" placeholder="Type here" id="input-category" data-cat="" onKeyPress="inputsKeyup(this)" class="form-control" />
-                              <input type="hidden" name="category_id<?php echo $cat_row; ?>" value="<?php echo $key; ?>" placeholder="Type here" id="input-category-main" class="form-control" />
-                              <input type="hidden" id="hidden-category-main" name="category_ids[]" value="<?php echo $seller_cat['id']; ?>" />
+                              <input type="text" name="category_0" id="category_0" data-row="0" value="" placeholder="Type here" onKeyPress="getCategories(this.value, 0)" class="form-control" />
+                              <ul class="dropdown-menu_0"></ul>
+                              <input type="hidden" id="category_hidden_0" data-row="0" name="category_id" value="" />
                            </td>
                            <td class="text-left subcat">
-                              <input type="text" name="sub_category<?php echo $cat_row; ?>" style="display:none" data-cateid="<?php echo $key; ?>" data-val="<?php echo $cat_row; ?>" value="" placeholder="Type here" id="input-sub-category"  class="form-control" />
-                              <div id="product-category<?php echo $cat_row; ?>" class="well well-sm" style="height: 150px; overflow: auto;">
-                                 <?php foreach ($seller_cat as $sel_key => $seller_c) {  if($seller_cat['name'] != $seller_c){ ?>
-                                 <div id="product-category<?php echo $sel_key; ?>">
-                                    <!-- <i class="fa fa-minus-circle"></i> --> <?php echo $seller_c; ?>
-                                    <input type="hidden" name="product_category[]" value="<?php echo $seller_c; ?>" />
-                                 </div>
-                                 <?php } }?>
-                              </div>
+                              <input type="text" name="sub_category_0" value="" placeholder="Type here" data-row="0" class="form-control" />
+                              <ul class="dropdown-submenu_0"></ul>
+                              <div id="product-category_0" class="well well-sm" style="height: 150px; overflow: auto;"></div>
                            </td>
-                           <td><span class="text-left"><button type="button" onclick="$('tr.remove<?php echo $cat_row; ?>').remove();" class="--minus-btn">-</button></span></td>
+                           <td></td>
                         </tr>
-                        <?php $cat_row++; } }?>
-                        <tr id="cat-rows" class="extra clonediv">
-                           <td class="text-left cat">
-                              <input type="text" data-catid="" name="category" value="" placeholder="Type here" id="input-category" data-cat="" onKeyPress="inputsKeyup(this)" class="form-control" />
-                              <input type="hidden" name="category_id" value="" placeholder="Type here" id="input-category-main" class="form-control" />
-                              <input type="hidden" id="hidden-category-main" name="category_ids[]" value="" />
-                           </td>
-                           <td class="text-left subcat">
-                              <input type="text" name="sub_category" data-val="" value="" placeholder="Type here" id="input-sub-category" class="form-control" />
-                              <div id="product-category" class="well well-sm" style="height: 150px; overflow: auto;">
-                                 <div id="product-category">
-                                    <!-- <i class="fa fa-minus-circle"></i>-->
-                                    <input type="hidden" name="product_category[]" value="" />
-                                 </div>
-                              </div>
-                           </td>
-                        </tr>
+                        <?php } ?>
                      </tbody>
                      <tfoot>
                         <tr>
-                           <td colspan="2"></td>
-                           <td class="text-left"><button type="button" id="addBtn" class="--plus-btn">+</button></td>
+                           <td colspan="3">
+                              <button type="button" id="addBtnCategories" class="btn btn-primary">Add</button>
+                              <button type="button" id="button-cat-subcat-save" data-loading-text="<?php echo $text_loading; ?>" class="btn btn-primary pull-right"><?php echo $button_save; ?></button>
+                           </td>
                         </tr>
                      </tfoot>
                   </table>
-                  <button type="button" id="button-cat-subcat-save" data-loading-text="<?php echo $text_loading; ?>" class="btn btn-primary pull-right">
-                  <?php echo $button_save; ?>
-                  </button>
                </div>
             </form>
          </div>
@@ -1747,69 +1570,23 @@
 		   $('#store_success_timg').html('<div class="alert alert-success"><i class="fa fa-check-circle"></i>'  + data['success'] + '</div>');
 		   $('#store_timings').scrollTop(0);
 		     }
-		//$('body, html').animate({scrollTop:$('#store_timings').offset().top}, 'slow');
 	     }
 	   });
    });
 </script>
-<!--<div>
-   <?php $monthss ='';
-      $months = array("09:30 AM", "10:00 AM", "10:30 AM", "11:00 AM", "11:30 AM", "12:00 PM", "12:00 PM", "12:30 PM", "01:00 PM", "01:30 PM", "02:00 PM", "02:30 PM", "03:00 PM", "03:30 PM", "04:00 PM", "04:30 PM", "05:00 PM", "05:30 PM", "06:00 PM", "06:30 PM", "07:00 PM", "07:30 PM", "08:00 PM", "08:30 PM", "09:00 PM", "09:30 PM", "10:00 PM", "10:30 PM", "11:00 PM", "11:30 PM", "12:00 AM", "12:00 AM", "12:30 AM", "01:00 AM", "01:30 AM", "02:00 AM", "02:30 AM", "03:00 AM", "03:30 AM", "04:00 AM", "04:30 AM", "05:00 AM", "05:30 AM", "06:00 AM", "06:30 AM", "07:00 AM", "07:30 AM", "08:00 AM", "08:30 AM", "09:00 AM");						
-      ?>
-   <select class="" name="from" id="from" style="height: 50px;"
-   	<?php 
-      foreach ($months as $month) {
-      	 $selected = ($month == $monthss) ? "selected = selected" : "";
-      	echo "<option value=\"" . $month . "\"".$selected.">" . $month . "</option>";
-      }
-      ?>
-   </select>
-   </div>-->
-<script type="text/javascript"><!--
-   //var image_row = <?php //echo $image_row; ?>;
-   
-   /*function addImage() {//alert("test");
-   	html  = '<tr id="image-row' + image_row + '">';
-   	html += '  <td class="text-left"><a href="" id="thumb-image' + image_row + '"data-toggle="image" class="img-thumbnail"><img src="<?php echo $placeholder; ?>" alt="" title="" data-placeholder="<?php echo $placeholder; ?>" /></a><input class="imgae_empty_check" type="hidden" name="store_image[' + image_row + '][image]" value="" id="input-image' + image_row + '" /></td>';
-   	html += '  <td class="text-left"><input type="text" name="store_image[' + image_row + '][sort_order]" value="" placeholder="Sort Order" class="form-control" /></td>';
-   	html += '  <td class="text-left"><button type="button" onclick="$(\'#image-row' + image_row  + '\').remove();" class="--minus-btn">-</button></td>';
-   	html += '</tr>';
-   
-   	$('#images tbody').append(html);
-   
-   	image_row++;
-   }*/
-   
-   var cat_row = <?php echo $cat_row; ?>;
-   
-   function addCat() {//alert("test");
-   	html  = '<tr id="cat-row' + cat_row + '">';
-   	html += '  <td class="text-left"><input type="text" name="category" value="" placeholder="Type here" id="input-category' + cat_row + '" class="form-control" /><input type="hidden" name="category_id" value="" placeholder="Type here" id="input-category-main' + cat_row + '" class="form-control" /></td>';
-   	html += '  <td class="text-right"><input type="text" name="sub_category" value="" placeholder="Type here" id="input-sub-category' + image_row + '" class="form-control" /><div id="product-category' + image_row + '" class="well well-sm" style="height: 150px; overflow: auto;"><div id="product-category' + image_row + '"><i class="fa fa-minus-circle"></i><input type="hidden" name="product_category[]" value="" /></div></div></td>';
-   	html += '  <td class="text-left"><button type="button" onclick="$(\'#cat-row' + cat_row  + '\').remove();" data-toggle="tooltip" title="<?php echo $button_remove; ?>" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button></td>';
-   	html += '</tr>';
-   
-   	$('#cats tbody').append(html);
-   
-   	cat_row++;
-   }
-   
-   //$(".addbtn").on("click", function() {
-   function addbtnfnt(val) {//alert(343);
+<script type="text/javascript">
+
+   function addbtnfnt(val) {
        var addbtn_id = $(val).attr('id');
        var ctr = $(".select-"+addbtn_id).find(".extra").length;
        if (ctr < 1) {
            var $ddl = $(".select-"+addbtn_id).clone();
            $ddl.attr("id", "ddl" + ctr);
-           $ddl.addClass("extra");	
-   	//$(".select-"+addbtn_id).append($ddl);
-   //alert(addbtn_id);
    $(".second-time-"+addbtn_id).append($ddl);
    	$("#add-"+addbtn_id).html('<button type="button" class="removebtn" id="'+addbtn_id+'">-</button>');
    	 $('.timepicker1').timepicker();
        } 
      }
-    //});
    
     $('.col-sm-2').delegate('.removebtn', 'click', function() { 
    	 var addbtn_id = $(this).attr('id');
@@ -1817,9 +1594,8 @@
    	$("#add-"+addbtn_id).html('<button type="button" onclick="addbtnfnt(this);" class="addbtn" id="'+addbtn_id+'">+</button>');
    });
    
-   $('.col-sm-2').delegate('.removebtns', 'click', function() { //alert(233223);
+   $('.col-sm-2').delegate('.removebtns', 'click', function() {
    	 var addbtn_id = $(this).attr('id');
-   	 //alert(".select-"+addbtn_id+" .extras");
    	$(".select-"+addbtn_id+".extras").remove();	
    	$("#add-"+addbtn_id).html('<button type="button" onclick="addbtnfnt(this);" class="addbtn" id="'+addbtn_id+'">+</button>');
    });
@@ -1832,291 +1608,13 @@
    		$('#add-'+month).hide();
    	}
     });
-     
-   
-   $("#addBtn").on("click", function() {
-       var ctr = $("#cats tbody").find(".extra").length;
-       if (ctr < 8) {
-           var $ddl = $(".clonediv").clone();
-           $ddl.attr("id", "ddl" + ctr);
-           $ddl.addClass("extra");	
-   	$("#cats tbody").append($ddl);
-   	$('tr#ddl'+ctr).append('<span class="text-left"><button type="button" onclick="$(\'tr#ddl' + ctr + '\').remove();" class="--minus-btn">-</button></span>');
-   	$('tr#ddl'+ctr+' > td.cat > input#input-category').attr('name', 'category'+ctr);
-   	$('tr#ddl'+ctr+' > td.cat > input#input-category').attr('data-cat', ctr);
-   	$('tr#ddl'+ctr+' > td.cat > input#input-category-main').attr('name', 'category_id'+ctr);
-   	$('tr#ddl'+ctr+' > td.subcat > input#input-sub-category').attr('name', 'sub_category'+ctr);
-   	$('tr#ddl'+ctr+' > td.subcat > div').attr('id', 'product-category'+ctr);
-   	$('tr#ddl'+ctr+' > td.cat > input#hidden-category-main').attr('id', 'hidden-category-main'+ctr);
-         
-           var cat_hidden = [];
-   	$('tr>td>input#input-category-main').each(function() {		
-   		var cat_arr = $(this).val();	
-   		 cat_hidden.push(cat_arr);		
-   	});
-   	cat_hid_arr = $.unique(cat_hidden);
-   	$('input[name=category_ids]').val(cat_hid_arr);
-   	//alert($('input[name=sub_category'+ctr+']').data('val', ''));
-   	$('input[name=category'+ctr+']').val('');
-   	$('input[name=category_id'+ctr+']').val('');
-   	$('input[name=sub_category'+ctr+']').attr('data-val', '');
-   	$('#product-category'+ctr).empty();
-   	var cat_name = 'category'+ctr; 
-   	var cat_main_name = 'category_id'+ctr; 	
-   	var cat_sub_name = 'sub_category'+ctr;
-   	var sub_cat_div = 'product-category'+ctr;
-   	var cat_hidden_val = cat_hid_arr; //$('tr#ddl'+ctr+' > td.cat > input#input-category-main').attr('name', 'category_id'+ctr).val();
-   	autocompletecat(cat_name, cat_main_name, cat_hidden_val, ctr);
-   	autocompletesubcat(cat_sub_name, cat_main_name, sub_cat_div)
-       }
-   });
-   
-   
-   /*$("input").keyup(function(){
-       var lgt = $(this).val().length;   
-   	if (lgt == 0) { 
-   	//alert(lgt);
-   		$("#input-category-main").val('');
-   		$("#product-category").empty();
-   	};
-   });*/
-   
-   function inputsKeyup(value) {
-   	var lgt = $(value).val().length; 
-   	var value1 = $(value).data('cat');
-   	if (lgt == 0) {
-   		$('input[name=category_id'+value1+']').val('');
-   		$("#product-category"+value1).empty();
-   	};
-   	
-   }
-    // Category
-    function autocompletecat(cat_name, cat_main_name, cat_hidden_val, ctr) {
-   	$('input[name='+cat_name+']').autocomplete({
-   		'source': function(request, response) {
-   			$.ajax({
-   				url: 'index.php?route=sellerprofile/sellerprofile/category_autocomplete&token=<?php echo $token; ?>&filter_name=' +  encodeURIComponent(request),
-   				dataType: 'json',
-   				success: function(json) {				
-   					response($.map(json, function(item) {
-   						if($.inArray(item['category_id'], cat_hidden_val) == -1) {
-   							return {
-   								label: item['name'],
-   								value: item['category_id']
-   							}
-   						}
-   					}));					
-   				}
-   			});
-   		},
-   		'select': function(item) {
-   			$('input[name='+cat_name+']').val(item['label']);
-   			$('input[name='+cat_main_name+']').val(item['value']);
-   
-   			$('input#hidden-category-main'+ctr).val(item['value']);
-   			
-   			//$('#product-category' + item['value']).remove();
-   
-   			
-   		}
-   		//if(item['category_id'] != cat_hidden_val) {
-   					  // alert(item['category_id']);
-   		
-   	});
-   }
-   
-   var count = $("#cats tbody").find(".extra").length;
-   var cat_val = '';
-   for(var i=0; i<count; i++){	
-   	if(count == 1) {
-   		cat_val = $("#cats tbody .extra input").first().attr('name');
-   		var cat_val_new = 'category';
-   		var cat_id= 'category_id';
-   		var sub_cat_id= 'sub_category';
-   		var product_cat_id= 'product-category';
-   		category1(cat_val_new, cat_id);
-   		subcategory1(sub_cat_id, product_cat_id, cat_id);
-   	} else {
-   		cat_val = $("#cats tbody .extra input").first().attr('name');
-   		var cat_val_new = 'category'+i;
-   		var cat_id= 'category_id'+i;
-   		var sub_cat_id= 'sub_category'+i;
-   		var product_cat_id= 'product-category'+i;
-   		category1(cat_val_new, cat_id);
-   		subcategory1(sub_cat_id, product_cat_id, cat_id);
-   	}
-   }
-   
-   function category1(cat_val, cat_id) {
-   	$('input[name='+cat_val+']').autocomplete({
-   		'source': function(request, response) {
-   			$.ajax({
-   				url: 'index.php?route=sellerprofile/sellerprofile/category_autocomplete&token=<?php echo $token; ?>&filter_name=' +  encodeURIComponent(request),
-   				dataType: 'json',
-   				success: function(json) {
-   					response($.map(json, function(item) {
-   						return {
-   							label: item['name'],
-   							value: item['category_id']
-   						}
-   					}));
-   				}
-   			});
-   		},
-   		'select': function(item) {
-   			$('input[name='+cat_val+']').val(item['label']);
-   			$('input[name='+cat_id+']').val(item['value']);
-   			$('input[name=\'sub_category\']').attr("data-val", item['value']);
-   			$('input#hidden-category-main').val(item['value']);
-   			//$('#product-category' + item['value']).remove();
-   			
-   			//$('tr#cat-rows > td.cat').append('<input type="hidden" name="category_ids[]" value="' + item['value'] + '" />');		
-   		}
-   		
-   	});
-   }
-   $('input[name=\'category\']').autocomplete({
-   	'source': function(request, response) {
-   	var cat_hidden = [];
-   	$('tr>td>input#input-category-main').each(function() {		
-   		var cat_arr = $(this).val();	
-   		 cat_hidden.push(cat_arr);		
-   	});
-   	cat_hid_arr = $.unique(cat_hidden);
-   	var cat_hidden_val = cat_hid_arr;
-   		$.ajax({
-   			url: 'index.php?route=sellerprofile/sellerprofile/category_autocomplete&token=<?php echo $token; ?>&filter_name=' +  encodeURIComponent(request),
-   			dataType: 'json',
-   			success: function(json) {
-   				response($.map(json, function(item) {
-   				if($.inArray(item['category_id'], cat_hidden_val) == -1) {
-   					return {
-   						label: item['name'],
-   						value: item['category_id']
-   					}
-   				}
-   				}));
-   			}
-   		});
-   	},
-   	'select': function(item) {
-   		$('input[name=\'category\']').val(item['label']);
-   		$('input[name=\'category_id\']').val(item['value']);
-   		$('input[name=\'sub_category\']').attr("data-val", item['value']);
-   		$('input#hidden-category-main').val(item['value']);
-   		//$('#product-category' + item['value']).remove();
-   		
-   		//$('tr#cat-rows > td.cat').append('<input type="hidden" name="category_ids[]" value="' + item['value'] + '" />');		
-   	}
-   	
-   });
-   
-   $('input[name=\'sub_category\']').autocomplete({
-   	'source': function(request, response) {	
-   		var path_id = $('input[name=\'category_id\']').val();	
-   		$.ajax({
-   			url: 'index.php?route=sellerprofile/sellerprofile/sub_category_autocomplete&token=<?php echo $token; ?>&path_id=' + path_id + '&filter_name=' +  encodeURIComponent(request),
-   			dataType: 'json',
-   			success: function(json) {
-   				response($.map(json, function(item) {
-   					return {
-   						label: item['name'],
-   						value: item['category_id']
-   					}
-   				}));
-   			}
-   		});
-   	},
-   	'select': function(item, path_id) {
-   		$('input[name=\'sub_category\']').val('');
-   
-   		$('#product-category' + item['value']).remove();
-   		var cat_id = $(this).attr("data-val");
-   		$('#product-category').append('<div id="product-category' + item['value'] + '"><i class="fa fa-minus-circle"></i> ' + item['label'] + '<input type="hidden" name="product_category[]" value="' + item['value'] + '" /></div>');
-   	}
-   	
-   });
-   
-   // Sub Category
-   function autocompletesubcat(cat_sub_name, cat_main_name, sub_cat_div) {
-   	$('input[name='+cat_sub_name+']').autocomplete({
-   		'source': function(request, response) {
-   		if($(this).attr("data-val") != '') {
-   			var path_id = $(this).attr("data-val");
-   		} else {
-   			var path_id = $('input[name='+cat_main_name+']').val();
-   		}
-   		//alert(path_id);
-   			$.ajax({
-   				url: 'index.php?route=sellerprofile/sellerprofile/sub_category_autocomplete&token=<?php echo $token; ?>&path_id=' + path_id + '&filter_name=' +  encodeURIComponent(request),
-   				dataType: 'json',
-   				success: function(json) {
-   					response($.map(json, function(item) {
-   						return {
-   							label: item['name'],
-   							value: item['category_id']
-   						}
-   					}));
-   				}
-   			});
-   		},
-   		'select': function(item) {
-   			$('input[name='+cat_sub_name+']').val('');
-   
-   			$('#product-category' + item['value']).remove();
-   
-   			$('#'+sub_cat_div).append('<div id="product-category' + item['value'] + '"><i class="fa fa-minus-circle" onclick="$("#"+sub_cat_div).remove();"></i> ' + item['label'] + '<input type="hidden" name="product_category[]" value="' + item['value'] + '" /></div>');
-   		}
-   		
-   	});
-   }
-   
-   function subcategory1(sub_cat_id, product_cat_id, cat_id) {
-   	$('input[name='+sub_cat_id+']').autocomplete({
-   		'source': function(request, response) {
-   		if($(this).attr("data-val") != '') {
-   			var path_id = $(this).attr("data-cateid");
-   		} else {
-   			var path_id = $('input[name='+cat_id+']').val();
-   		}	
-   		
-   			$.ajax({
-   				url: 'index.php?route=sellerprofile/sellerprofile/sub_category_autocomplete&token=<?php echo $token; ?>&path_id=' + path_id + '&filter_name=' +  encodeURIComponent(request),
-   				dataType: 'json',
-   				success: function(json) {
-   					response($.map(json, function(item) {
-   						return {
-   							label: item['name'],
-   							value: item['category_id']
-   						}
-   					}));
-   				}
-   			});
-   		},
-   		'select': function(item, path_id) {
-   			$('input[name='+sub_cat_id+']').val('');
-   
-   			$('#product-category' + item['value']).remove();
-   			var cat_id = $(this).attr("data-val");
-   			$('#'+product_cat_id).append('<div id="product-category' + item['value'] + '"><i class="fa fa-minus-circle"></i> ' + item['label'] + '<input type="hidden" name="product_category[]" value="' + item['value'] + '" /></div>');
-   		}
-   		
-   	});
-   }
-   
-   
-   
    		
    	
    $('.well').delegate('.fa-minus-circle', 'click', function() {
-   	//$('.fa-minus-circle').click(function(){
    	$(this).parent().remove();
-   
-   	//alert($(this).parent());
-   
    });
    
-   $('#button-portals-save').on('click', function(e) {//alert(5345);
+   $('#button-portals-save').on('click', function(e) {
    	$.ajax({
    	    type: "POST",
    	    url: 'index.php?route=sellerprofile/sellerprofile/store_portal',
@@ -2148,15 +1646,9 @@
       success: function(json) {
    $('#val_ref_tt').html('');
     if (json['success']) {
-   //$('#val_ref_tt').html('<div class="alert alert-success"><i class="fa fa-check-circle"></i>'  + json['success'] + '</div>');
-   //$('#store_referred').scrollTop(0);
    if(refer_mobile_val == json['success']) {
    $('#input-referred-by-val').val('');
-   //$('.referrer-fom-build').css("display", "none");
-   //$('.referrer-fom-build-shown').css("display", "block");
-   //$('#ref-val-display').html(json['success']);
    $('#input-referred-by-val').val(json['success']);
-   //document.getElementById('#store_referred_frm').reset();
    $('#store_referred').modal('toggle');
    }
     }
@@ -2182,23 +1674,11 @@
    	    url: 'index.php?route=sellerprofile/sellerprofile/feature_store',
    	    data: $('#store-feature').serialize(),
    	    success: function(data) {
-   		//alert(data);
    		window.location.reload();
    	    }
    	  });
    });
    
-   $('#button-cat-subcat-save').on('click', function(e) {
-   	$.ajax({
-   	    type: "POST",
-   	    url: 'index.php?route=sellerprofile/sellerprofile/categories_subcategories_store',
-   	    data: $('#form-categories').serialize(),
-   	    success: function(data) {
-   		//alert(data);
-		$('#store_cat').modal('toggle');
-   	    }
-   	  });
-   });
    
    $('#clear_counter').on('click', function(e) {
    	$.ajax({
@@ -2206,7 +1686,6 @@
    	    url: 'index.php?route=sellerprofile/sellerprofile/clear_visitor_counter',
    	    success: function(data) {
    	    if(data['success'] == 0) {
-   		//alert(data['success']);
    		$('#manage_counter').html('');
    		$('#manage_counter').html(data['succes']);
    	    }
@@ -2217,7 +1696,7 @@
 <script type="text/javascript"><!--
    var image_row = <?php echo $image_row; ?>;
    
-   function addImage() {//alert("test");
+   function addImage() {
    	html  = '<tr id="image-row' + image_row + '">';
    	html += '  <td class="text-left"><a href="" id="thumb-image' + image_row + '"data-toggle="image" class="img-thumbnail"><img src="<?php echo $placeholder; ?>" alt="" title="" data-placeholder="<?php echo $placeholder; ?>" /></a><input type="hidden" class="imgae_empty_check" name="store_image[' + image_row + '][image]" value="" id="input-image' + image_row + '" /></td>';
    	html += '  <td class="text-right"><input type="text" name="store_image[' + image_row + '][sort_order]" value="" placeholder="Sort Order" class="form-control" /></td>';
@@ -2233,7 +1712,7 @@
 <script type="text/javascript"><!--
    var store_mobile_num_row = <?php echo $store_mobile_num_row; ?>;
    
-   function addStoreMobile() {//alert("test");
+   function addStoreMobile() {
    	html = '<div id="ad_mob' + store_mobile_num_row + '" class="row">';
    	html += '<div class="col-sm-2">';
    	html += '</div>';
@@ -2367,10 +1846,7 @@
    $('#sellerdraft').load('index.php?route=sellerprofile/sellerprofile/selleradvertisedraft&seller_id=<?php echo $seller_id; ?>');   
    }
    });
-   var tab_class = "<?php echo (isset($_GET['inner_store']) && $_GET['inner_store'] !='') ? $_GET['inner_store'] : '';  ?>";
-   //var tab_class = "<?php //echo $_GET['inner_store']; ?>";
-   //draft =  "$('."+draft+"')";
-   //alert(tab_class);		
+   var tab_class = "<?php echo (isset($_GET['inner_store']) && $_GET['inner_store'] !='') ? $_GET['inner_store'] : '';  ?>";	
    if(tab_class !='') {			
     $('#seller'+tab_class).delegate('.pagination a', 'click', function(e) {
      e.preventDefault();		  
@@ -2753,19 +2229,9 @@
        $(element).popover('hide');
      });
    });
-   
-   //-->
 </script>
 <script type="text/javascript">
-   <!--
    $(document).delegate('#button-profile-save', 'click', function() {
-   /*$('#agree_tt').change(function() {
-   if($(this).is(":checked")) {
-	$('input#agree').val('agree');
-   } else {
-	$('input#agree').val('not_agree');
-   }
-   });*/
 
    function convertToSlug(Text)
 {
@@ -2775,9 +2241,6 @@
         .replace(/ +/g,'-')
         ;
 }
-
-	   //var term_agree = $('input#agree').val();
-	   //var c = $('input[name="agree_tt"]:checked').length > 0;
 	
 
 	if ($('input[name="agree_tt"]').is(':checked')) {
@@ -2796,10 +2259,6 @@
 			has_change = true;
 		}
      
-	   /*var cond = db_nickname != nickname;
-	   if(banner != ''){
-		cond = (db_nickname != nickname) || (db_banner != banner);
-	   } */
 	   if(has_change){
 	   var modal = $('<div id="alert_pop_del" class="modal fade alert_prof_del_close" tabindex="-1" role="dialog" aria-labelledby="myModalLabel3" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="first_conf"><div class="modal-body"><p>Are you sure want to save?</p><br/><p>- Please validate your store/entity map location before saving.<br/> - Any change in store/entity name and banner are subject to approval.</p></p></div><div class="modal-footer"><button class="btn store_prof_btn" >Yes</button><button class="btn" data-dismiss="modal" aria-hidden="true">No</button></div></div></div></div></div>');  
     
@@ -2809,7 +2268,6 @@
 	    })	    
 	    $('.store_prof_btn').on('click', function(e) {
 	    $('.alert_prof_del_close').modal('hide');
-		   //if(confirm('If you update this detail. After web master approvel Your store will shown front pages')){
 			   $.ajax({
 			   url: 'index.php?route=sellerprofile/sellerprofile/profile&seller_id=<?php echo $seller_id; ?>',
 			   dataType: 'json',
@@ -2823,8 +2281,6 @@
 			    
 			   $('#button-profile-save').addClass('btn-success');
 			   $('#button-profile-save').removeClass('btn-primary');   
-			   
-			   //window.location.reload();
 			    
 			   },
 			   success: function(json) {
@@ -2846,9 +2302,6 @@
 			   alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
 			   }		  
 			   });
-		   //} else {
-			//window.location.reload();
-		   //}
 		   });
 
 	   } else {
@@ -2893,14 +2346,12 @@
 	$('body, html').animate({scrollTop:$('#content').offset().top}, 'slow');
    }
    });
-   //-->
 </script>
 <script type="text/javascript">
    <!--
    $(document).delegate('#button-image-save', 'click', function() {
    var imge_first_val = $('.imgae_empty_check').val();
    if(imge_first_val) {
-   //alert($('#input-image0').val());
      $.ajax({
        url: 'index.php?route=sellerprofile/sellerprofile/storeimage&seller_id=<?php echo $seller_id; ?>',
        dataType: 'json',
@@ -2937,7 +2388,6 @@
 	     modal.modal({
 	     show: true
 	    })	 
-	//alert("Please select atleadt one image...");
      }
    });
    //-->
@@ -2959,123 +2409,20 @@
    var valt = 0;
    var valt_title = $(this).val();
      }
-       //alert('uncheckd ' + $(this).val());
      if(ischecked) {
    var valt = 1;
    var valt_title = $(this).val();
      }
-       //alert('checkd ' + $(this).val());
      $.ajax({
      type: "POST",
      url: 'index.php?route=sellerprofile/sellerprofile/allow_products_cart&valt='+ valt +'&valt_title='+ valt_title,
-     //data: $('#store-timings').serialize(),
      success: function(data) {
-   alert(data['success']);
-   //window.location.reload();
+      alert(data['success']);
      }
    });
    }); 
 </script>
-<!--<script type="text/javascript">
-   /*
-    * Google Maps: Latitude-Longitude Finder Tool
-    * http://salman-w.blogspot.com/2009/03/latitude-longitude-finder-tool.html
-    */
-   function loadmap_st() {
-   	// initialize map
-   	if(document.getElementById("latitude_st").value != ''){
-   		var map = new google.maps.Map(document.getElementById("map-canvas"), {				
-   			center: new google.maps.LatLng(document.getElementById("latitude_st").value, document.getElementById("longitude_st").value),
-   			zoom: 13,
-   			mapTypeId: google.maps.MapTypeId.ROADMAP
-   		});
-   	} else {
-   		var map = new google.maps.Map(document.getElementById("map-canvas_st"), {				
-   			center: new google.maps.LatLng(13.072087, 80.262777),
-   			zoom: 10,
-   			mapTypeId: google.maps.MapTypeId.ROADMAP
-   		});	
-   	}
-   	// initialize marker
-   	var marker = new google.maps.Marker({
-   		position: map.getCenter(),
-   		draggable: true,
-   		map: map
-   	});
-   	// intercept map and marker movements
-   	google.maps.event.addListener(map, "idle", function() {
-   		marker.setPosition(map.getCenter());
-   		document.getElementById("latitude_st").value = map.getCenter().lat().toFixed(6);
-   		document.getElementById("longitude_st").value = map.getCenter().lng().toFixed(6);
-   	});
-   	google.maps.event.addListener(marker, "dragend", function(mapEvent) {
-   		map.panTo(mapEvent.latLng);
-   	});
-   	// initialize geocoder
-   	var geocoder = new google.maps.Geocoder();
-   	google.maps.event.addDomListener(document.getElementById("search-btn_st"), "click", function() {
-   		geocoder.geocode({ address: document.getElementById("search-txt_st").value }, function(results, status) {
-   			if (status == google.maps.GeocoderStatus.OK) {
-   				var result = results[0];
-   				document.getElementById("search-txt_st").value = result.formatted_address;
-   				if (result.geometry.viewport) {
-   					map.fitBounds(result.geometry.viewport);
-   				} else {
-   					map.setCenter(result.geometry.location);
-   				}
-   			} else if (status == google.maps.GeocoderStatus.ZERO_RESULTS) {
-   				alert("Sorry, geocoder API failed to locate the address.");
-   			} else {
-   				alert("Sorry, geocoder API failed with an error.");
-   			}
-   		});
-   	});
-   	google.maps.event.addDomListener(document.getElementById("search-txt"), "keydown", function(domEvent) {
-   		if (domEvent.which === 13 || domEvent.keyCode === 13) {
-   			google.maps.event.trigger(document.getElementById("search-btn"), "click");
-   		}
-   	});
-   	// initialize geolocation
-   	if (navigator.geolocation) {
-   		google.maps.event.addDomListener(document.getElementById("detect-btn"), "click", function() {
-   			navigator.geolocation.getCurrentPosition(function(position) {
-   				map.setCenter(new google.maps.LatLng(position.coords.latitude, position.coords.longitude));
-   			}, function() {
-   				alert("Sorry, geolocation API failed to detect your location.");
-   			});
-   		});
-   		document.getElementById("detect-btn").disabled = false;
-   	}
-   }
-   </script>
-   <script src="//maps.googleapis.com/maps/api/js?v=3&amp;sensor=false&amp;key=AIzaSyCd8_dkSlkxLyjEb0vv8AC6_zX6P7ios2g&amp;callback=loadmap_st" defer></script>
-   <style>
-          #map-search_st { position: absolute; top: 10px; left: 10px; right: 10px; }
-          #search-txt_st { float: left; width: 73%; }
-          #search-btn_st { float: left; width: 27%; }
-          #detect-btn_st { float: right; width: 19%; }
-          #map-canvas_st { position: sticky !important; top: 10px; bottom: 65px; left: 10px; right: 10px; width: 100%; height: 450px;}
-          #map-output_st { position: absolute; bottom: 10px; left: 10px; right: 10px; }
-          #map-output_st a { float: right; }
-          .addlinks {
-          border-bottom: 1px solid #ccc;
-          margin: 0 auto;
-          /*width: 67%;*/
-          }
-          /*.update_cancel {
-          border: 0 none;
-          left: 9%;
-          position: absolute;
-          top: 97%;
-          }*/
-          .btn12 {
-          bottom: 0;
-          left: 26%;
-          position: relative;
-          right: 0;
-          /*top: -71px;*/
-          }
-       </style>-->
+
 <?php
    if(isset($_COOKIE['myCookie'])){
     	$cookie = $_COOKIE['myCookie'];
@@ -3089,7 +2436,6 @@
    echo "<script>\n";
    echo "var lat_st = " . $latitude . ";\n";
    echo "var log_st = " . $longitude . ";\n";
-   //echo "alert(log_st);";
    echo "$('#latitude_st').val(lat_st);";
    echo "$('#longitude_st').val(log_st);";
    echo "</script>\n";
@@ -3104,9 +2450,7 @@
    $(document).on('click', '.print_me', function(e) {
    var data_id = $(this).data('id');
    var content = document.getElementById('print_me_qr_'+data_id).innerHTML;
-   var win = window.open();	
-   //win.document.write('<link href="css/style_v1.css" rel="stylesheet">');
-   //win.document.write('<link href="core/framework/libs/pj/css/pj-table.css" rel="stylesheet" type="text/css" />');			
+   var win = window.open();			
    win.document.write(content);	
    win.print();			
    });
