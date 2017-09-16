@@ -1316,7 +1316,6 @@ class Controllersellerprofilesellerprofile extends Controller
         $this->load->model('catalog/category'); 
 
         $seller_info = $this->model_sellerprofile_sellerprofile->getseller($this->customer->getId());
-        $seller_category_info = unserialize($seller_info['seller_category']);
 
 		if($this->request->post['tin'] != '' && $this->request->post['pan'] == ''){
 			$json['error'] = $this->language->get('error_pan');
@@ -1375,7 +1374,7 @@ class Controllersellerprofilesellerprofile extends Controller
 			$json['error'] = "Please enter Store/Entity email";
 		}
 
-        if(empty($seller_category_info['product_category'])) {
+        if(empty($seller_info['seller_category'])) {
             $json['error'] = $this->language->get('error_store_category_empty');
         }
 
