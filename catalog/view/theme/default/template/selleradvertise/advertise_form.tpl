@@ -1,29 +1,13 @@
 <?php echo $header; ?>
-<link rel="stylesheet" href="crop/cropper.css">
-<!--<link rel="stylesheet" href="crop/cropper.min.css">
-<link rel="stylesheet" href="crop/main.css">-->
-<style>
-   /*.cropper-container.cropper-bg {
-   height: 500px !important;
-   }
-   .cropper-crop-box {
-   height: 234px !important;
-   }
-   @media (min-width: 300px) and (max-width: 1324px) {
-   img#image_can {
-   border: 1px solid #ccc;
-   height: 182px;
-   width: 993px;
-   }*/
-   }
-   #croppedImage {margin-bottom: 10px;}
-</style>
+
+<link  href="catalog/view/javascript/croppie/croppie.css" rel="stylesheet">
+<script src="catalog/view/javascript/croppie/croppie.min.js"></script>
+<script src="catalog/view/javascript/advertise/advertise.js"></script>
+
+<link href="admin/view/javascript/summernote/summernote.css" rel="stylesheet">
+<script type="text/javascript" src="admin/view/javascript/summernote/summernote.js"></script>
+
 <div class="container-fluid">
-   <!--<ul class="breadcrumb">
-      <?php foreach ($breadcrumbs as $breadcrumb) { ?>
-      <li><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a></li>
-      <?php } ?>
-   </ul>-->
    <div class="row">
       <?php echo $column_left; ?>
       <?php if ($column_left && $column_right) { ?>
@@ -33,119 +17,85 @@
       <?php } else { ?>
       <?php $class = 'col-sm-12'; ?>
       <?php } ?>
-      <link href="admin/view/javascript/summernote/summernote.css" rel="stylesheet">
-      <script type="text/javascript" src="admin/view/javascript/summernote/summernote.js"></script>
+      
       <div id="content" class="<?php echo $class; ?>">
          <?php echo $content_top; ?>
          <div class="page-header">
             <div class="container-fluid">
-               <!--<div class="pull-right">
-                  <button type="submit" form="form-advertise" data-toggle="tooltip" title="<?php echo $button_save; ?>" class="btn btn-primary"><i class="fa fa-save"></i></button>
-                  <a href="<?php echo $cancel; ?>" data-toggle="tooltip" title="<?php echo $button_cancel; ?>" class="btn btn-default"><i class="fa fa-reply"></i></a></div>-->
-               <?php $advertise_id_edit = (isset($_GET['advertise_id']) && $_GET['advertise_id'] !='') ? $_GET['advertise_id'] : ''; ?>
-	       <?php if($advertise_id_edit) { ?>
-	       <h3>Edit advertisment</h3>
-	       <?php } else { ?>
-	       <h3>New advertisement<?php //echo $heading_title; ?></h3>
-	       <?php } ?>
+                <?php
+                  $advertise_id_edit = (isset($_GET['advertise_id']) && $_GET['advertise_id'] !='') ? 
+                      $_GET['advertise_id'] : '';
+
+                  if($advertise_id_edit) {
+      	             echo '<h3>Edit advertisment</h3>';
+      	         } else {
+      	             echo '<h3>New advertisement</h3>';
+      	         } 
+                ?>
             </div>
          </div>
          <div class="container-fluid">
-            <?php //if ($error_warning) { 
-	    if($image_empty_error) {?>
-            <div class="alert alert-danger"><i class="fa fa-exclamation-circle"></i> <?php echo $image_empty_error; ?>
-               <button type="button" class="close" data-dismiss="alert">&times;</button>
-            </div>
-            <?php }
-	    elseif($error_offer_title) { ?>
-	    <div class="alert alert-danger"><i class="fa fa-exclamation-circle"></i> <?php echo $error_offer_title; ?>
-               <button type="button" class="close" data-dismiss="alert">&times;</button>
-            </div>
-	    <?php } elseif($error_agree) { ?>
-	    <div class="alert alert-danger"><i class="fa fa-exclamation-circle"></i> <?php echo $error_agree; ?>
-               <button type="button" class="close" data-dismiss="alert">&times;</button>
-            </div>
-	    <?php } ?>
+            <?php
+          	    if($image_empty_error) {?>
+                      <div class="alert alert-danger"><i class="fa fa-exclamation-circle"></i> <?php echo $image_empty_error; ?>
+                         <button type="button" class="close" data-dismiss="alert">&times;</button>
+                      </div>
+                <?php } elseif($error_offer_title) { ?>
+          	    <div class="alert alert-danger"><i class="fa fa-exclamation-circle"></i> <?php echo $error_offer_title; ?>
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                </div>
+          	    <?php } elseif($error_agree) { ?>
+          	    <div class="alert alert-danger"><i class="fa fa-exclamation-circle"></i> <?php echo $error_agree; ?>
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                </div>
+      	    <?php } ?>
             <div class="panel panel-default">
-               <!--<div class="panel-heading">
-                  <h3 class="panel-title"><i class="fa fa-pencil"></i> <?php echo $text_form; ?></h3>
-               </div>-->
                <div class="panel-body">
                   <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" id="form-advertise" class="form-horizontal">
                      <input type="hidden" name="status" value="" id="status" />
+                     <input type="hidden" name="advertise_id" id="advertise_id" value="<?php echo $advertise_id_edit; ?>" />
                      <div class="form-group">
                         <label class="col-sm-2 control-label" for="input-name"><?php echo $entry_name; ?>: </label>
                         <div class="col-sm-10">
                            <input type="text" name="offer_title" value="<?php echo $offer_title; ?>" placeholder="<?php echo $entry_name; ?>" id="offer_title" class="form-control" />
-                           <?php //if (isset($error_offer_title)) { ?>
-                           <!--<div class="text-danger"><?php echo $error_offer_title; ?></div>-->
-                           <?php //} ?>
                         </div>
                      </div>
-                     <!-- <div class="form-group ">
-                        <label class="col-sm-2 control-label" for="position"><?php echo $entry_position; ?>: </label>
-                        <div class="col-sm-10">
-                        <?php 
-                           $options = array("Home - Top banner", "Home - National", "Home - State", "Home - Distict", "Home - Area", "Home - Right", "Store Ads free");						
-                           ?>
-                        <select class="form-control" name="position" id="position">
-                        	<option value="">Select your Advertise Postion</option>
-                        	<?php 
-                           foreach ($options as $key => $option) {
-                           	// $selected = (($key+1) == $position) ? "selected = selected" : "";
-                           	//echo "<option value=\"" . ($key+1) . "\"".$selected.">" . $option . "</option>";
-                           }
-                           ?>
-                        </select>			
-                          <?php if (isset($error_position)) { ?>
-                          <div class="text-danger"><?php //echo $error_position; ?></div>
-                          <?php } ?>
-                        </div>
-                         </div> -->
                      <div class="form-group">
-                        <label class="col-sm-2 control-label" for="input-image">Upload advertisement image: <?php //echo $entry_image; ?></label><span id="adv-size"></span>
+                        <label class="col-sm-2 control-label" for="input-image">Upload advertisement image: </label>
+                        <span id="adv-size"></span>
                         <div class="col-sm-10">
-                           <a href=""  style="display:none;" id="thumb-image" data-toggle="image" class="img-thumbnail"><img src="<?php echo $thumb; ?>" alt="" title="" data-placeholder="<?php echo $placeholder; ?>"/></a>
-                           <button type="button" id="button-image" class="btn btn-primary"><i class="fa fa-pencil"></i></button>
-                           <input type="hidden" name="offer_image" value="<?php echo $offer_image; ?>" id="input-image" />
-			   <?php //if (isset($image_empty_error)) { ?>
-			   <!--<div class="text-danger"><?php echo $image_empty_error; ?></div>-->
-			   <?php //} ?>
+                          <a href=""  style="display:none;" id="thumb-image" data-toggle="image" class="img-thumbnail"><img src="<?php echo $thumb; ?>" alt="" title="" data-placeholder="<?php echo $placeholder; ?>"/></a>
+                          <button type="button" id="button-image" class="btn btn-primary"><i class="fa fa-pencil"></i></button>
+                          <input type="hidden" name="offer_image" value="<?php echo $offer_image_original; ?>" id="input-image" />
+                          <input type="hidden" name="offer_image_original" value="<?php echo $offer_image_original; ?>" id="offer_image_original" />
                         </div>
                      </div>
-		     
-                     <div class="col-md-12">
-                        <div class="img-containers">
-			<?php //if(!isset($_GET['advertise_id'])) { ?>
-                           <img src="image/bg-empty.png" alt="Temp">
-			<?php //} else { ?>
-			   <!--<img src="image/<?php //echo $offer_image_original; ?>" alt="<?php //echo $offer_title; ?>">-->
-			<?php //} ?>
+		                
+                     <div style="width: 50%;">
+                        <div style="width: 300px;">
+                           <div id="img-containers" class="img-containers"></div>
                         </div>
                      </div>
+                     
                      <div class="col-md-12">
-                        <div class="row" id="actions">
-			<div class="col-sm-2"></div>
-			<div class="col-sm-10">
-			<div class="crr-img-bttt"><button class="crr-img-bt" type="button" style="display:none;" id="getCropped"><i class="fa fa-crop"></i> Crop</button></div>
-			</div>
+                        <div class="form-group row <?php if(!isset($_GET['advertise_id'])) { echo 'hide'; } ?>" id="cropping-panel">
+                      			<div class="col-sm-2"></div>
+                      			<div class="col-sm-10">
+                      			   <div class="crr-img-bttt"><button class="crr-img-bt" type="button" id="getCropped"><i class="fa fa-crop"></i> Crop</button></div>
+                      			</div>
                            <label class="col-sm-2 control-label" for="input-image">Cropped image: </label><span id="adv-size"></span>
                            <div class="col-md-10 docs-buttons">                              
                               <div class="btn-group btn-group-crop">                                 
-				 <span style="margin-bottom:10px;">Please ensure cropped image is of better quality before submitting.</span>
-                                 <div id="croppedImage">
-				 <?php if(!isset($_GET['advertise_id'])) { ?>
-					<img class="img-responsive" src="image/bg-empty1.png" alt="Temp">
-				 <?php } else { ?>
-					<img src="image/<?php echo $offer_image; ?>" alt="<?php echo $offer_title; ?>">
-				 <?php } ?>
-				 </div>
-                                 <div class="extra-preview extra-preview-sm"></div>
-				 <?php if(!isset($_GET['advertise_id'])) { ?>
-                                 <input type="hidden" name="image_crop" value="" id="image_crop" class="form-control" />
-				 <?php } else { ?>
-				 <input type="hidden" name="image_crop" value="1" id="image_crop" class="form-control" />
-				 <?php } ?>
+                          				 <span style="margin-bottom:10px;">Please ensure cropped image is of better quality before submitting.</span>
+                                    <div id="croppedImage">
+                            				 <?php //if(!isset($_GET['advertise_id'])) { ?>
+                            					<img class="img-responsive" src="image/bg-empty1.png" alt="Temp">
+                            				 <?php //} else { ?>
+                            					<!-- <img src="image/<?php echo $offer_image; ?>" alt="<?php echo $offer_title; ?>"> -->
+                            				 <?php //} ?>
+                          				 </div>
+                                    <div class="extra-preview extra-preview-sm"></div>
+                          				 <input type="hidden" name="image_crop" value="" id="image_crop" class="form-control" />
                               </div>
                            </div>
                         </div>
@@ -167,14 +117,13 @@
                               <input type="text" name="sort_order" value="<?php echo $sort_order; ?>" id="sort_order" class="form-control" />
                            </div>
                         </div>
-			<div class="form-group">
-                           <label class="col-sm-12" for="agree_tt" style="font-weight: bold;"><input type="hidden" name="agree" value="not_agree" id="agree">
-			   <input type="checkbox" name="agree_tt" value="agree" id="agree_tt"> I hereby declare that the advertisement detail furnished above are true and permissible to publish in public. I take the sole responsibility of the advertisement image quality rendered in any customer device.</label>                           
-                        </div>
+                  			<div class="form-group">
+                                             <label class="col-sm-12" for="agree_tt" style="font-weight: bold;"><input type="hidden" name="agree" value="not_agree" id="agree">
+                  			   <input type="checkbox" name="agree_tt" value="agree" id="agree_tt"> I hereby declare that the advertisement detail furnished above are true and permissible to publish in public. I take the sole responsibility of the advertisement image quality rendered in any customer device.</label></div>
                         <div class="pull-right">
-			<?php if(!$submitted) { ?>
+			                   <?php if(!$submitted) { ?>
                            <button id="save" data-toggle="tooltip" title="<?php echo $button_save; ?>" class="btn btn-primary">Save</button>
-			<?php } ?>
+			                     <?php } ?>
                            <button id="submitt" data-toggle="tooltip" title="<?php echo $button_submit; ?>" class="btn btn-primary">Submit</button>
                            <a href="<?php echo $cancel; ?>" data-toggle="tooltip" title="<?php echo $button_cancel; ?>" class="btn btn-default">Cancel</a>
                         </div>
@@ -186,25 +135,7 @@
       </div>
    </div>
 </div>
-<!-- Show the cropped image in modal
-   <div class="modal fade docs-cropped" id="getCroppedCanvasModal" role="dialog" aria-hidden="true" aria-labelledby="getCroppedCanvasTitle" tabindex="-1">
-     <div class="modal-dialog">
-       <div class="modal-content">
-         <div class="modal-header">
-           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-           <h4 class="modal-title" id="getCroppedCanvasTitle">Cropped</h4>
-         </div>
-         <div class="modal-body"></div>
-         <div class="modal-footer">
-           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-           <a class="btn btn-primary" id="download" href="javascript:void(0);" download="cropped.jpg">Download</a>
-         </div>
-   <span id="ttt"></span>
-       </div>
-     </div>
-   </div>< --><!-- /.modal -->
-<script src="crop/cropper.min.js"></script>
-<!--<script src="crop/main.js"></script> -->
+
 <script type="text/javascript">	
    $(document).ready(function(){
 	$('#agree_tt').change(function() {
@@ -376,123 +307,123 @@
      //alert( this.value );
    })
    
-   $(function () {
+  //  $(function () {
    
-       (function () {
-           var canvas = 0;
-           var $image = $('.img-containers > img'),
-               options = {
-   		viewMode: 0, 
-   		//dragMode: 'move',
-   		aspectRatio: 10/1.5,
-   		data: null,
-   		preview: '',
-   		responsive: true,
-   		restore: true,
-   		checkCrossOrigin: true,
-   		checkOrientation: true,
-   		modal: true,
-   		guides: true,
-   		center: true,
-   		highlight: true,
-   		background: true,
-   		autoCrop: true,
-   		autoCropArea: 1,
-   		movable: true,
-   		rotatable: true,
-   		scalable: true,
-   		zoomable: false,
-   		zoomOnTouch: true,
-   		zoomOnWheel: true,
-   		wheelZoomRatio: 0.1,
-   		cropBoxMovable: true,
-   		cropBoxResizable: false,
-   		toggleDragModeOnDblclick: false,
+  //      (function () {
+  //          var canvas = 0;
+  //          var $image = $('.img-containers > img'),
+  //              options = {
+  //  		viewMode: 0, 
+  //  		//dragMode: 'move',
+  //  		aspectRatio: 10/1.5,
+  //  		data: null,
+  //  		preview: '',
+  //  		responsive: true,
+  //  		restore: true,
+  //  		checkCrossOrigin: true,
+  //  		checkOrientation: true,
+  //  		modal: true,
+  //  		guides: true,
+  //  		center: true,
+  //  		highlight: true,
+  //  		background: true,
+  //  		autoCrop: true,
+  //  		autoCropArea: 1,
+  //  		movable: true,
+  //  		rotatable: true,
+  //  		scalable: true,
+  //  		zoomable: false,
+  //  		zoomOnTouch: true,
+  //  		zoomOnWheel: true,
+  //  		wheelZoomRatio: 0.1,
+  //  		cropBoxMovable: true,
+  //  		cropBoxResizable: false,
+  //  		toggleDragModeOnDblclick: false,
    
-   		  // Size limitation
-   		  minCanvasWidth: 0,
-   		  minCanvasHeight: 0,
-   		  minCropBoxWidth: 0,
-   		  minCropBoxHeight: 0,
-   		  minContainerWidth: 100,
-   		  minContainerHeight: 100,
+  //  		  // Size limitation
+  //  		  minCanvasWidth: 0,
+  //  		  minCanvasHeight: 0,
+  //  		  minCropBoxWidth: 0,
+  //  		  minCropBoxHeight: 0,
+  //  		  minContainerWidth: 100,
+  //  		  minContainerHeight: 100,
    
-   		  // Shortcuts of events
-   		  ready: null,
-   		  cropstart: null,
-   		  cropmove: null,
-   		  cropend: null,
-   		  crop: null,
-   		  zoom: null,
-                   crop: function (data) {}
-               };
+  //  		  // Shortcuts of events
+  //  		  ready: null,
+  //  		  cropstart: null,
+  //  		  cropmove: null,
+  //  		  cropend: null,
+  //  		  crop: null,
+  //  		  zoom: null,
+  //                  crop: function (data) {}
+  //              };
    
-           var $preview = $(".preview"),
-               width = $preview.width();
+  //          var $preview = $(".preview"),
+  //              width = $preview.width();
    
-           $image.on().cropper(options);
+  //          $image.on().cropper(options);
    
-           var $inputImage = $('#inputImage'),
-               URL = window.URL || window.webkitURL,
-               blobURL;
+  //          var $inputImage = $('#inputImage'),
+  //              URL = window.URL || window.webkitURL,
+  //              blobURL;
    
-           if (URL) {
-               $inputImage.change(function () {
-                   var files = this.files,
-                       file;
-                   if (files && files.length) {
-                       file = files[0];
+  //          if (URL) {
+  //              $inputImage.change(function () {
+  //                  var files = this.files,
+  //                      file;
+  //                  if (files && files.length) {
+  //                      file = files[0];
    
-                       if (/^image\/\w+$/.test(file.type)) {
-                           blobURL = URL.createObjectURL(file);
-                           $image.one('built.cropper', function () {
-                               URL.revokeObjectURL(blobURL);
-                           }).cropper('reset', true).cropper('clear').cropper('replace', blobURL);
-                           $("#main-container").show();
-                           $inputImage.val('');
-                       } else {
-                           showMessage('Please choose an image file.');
-                       }
-                   }
-               });
-           } else {
-               $inputImage.parent().remove();
-           }
+  //                      if (/^image\/\w+$/.test(file.type)) {
+  //                          blobURL = URL.createObjectURL(file);
+  //                          $image.one('built.cropper', function () {
+  //                              URL.revokeObjectURL(blobURL);
+  //                          }).cropper('reset', true).cropper('clear').cropper('replace', blobURL);
+  //                          $("#main-container").show();
+  //                          $inputImage.val('');
+  //                      } else {
+  //                          showMessage('Please choose an image file.');
+  //                      }
+  //                  }
+  //              });
+  //          } else {
+  //              $inputImage.parent().remove();
+  //          }
    
-   	$(function() {
+  //  	$(function() {
    
-   	$(".cropper").cropper({
+  //  	$(".cropper").cropper({
    
-   	preview: ".extra-preview" // A jQuery selector string, add extra elements to show preview.
+  //  	preview: ".extra-preview" // A jQuery selector string, add extra elements to show preview.
    
-   	});
+  //  	});
    
-   	})
+  //  	})
    
-           $("#getCropped").click(function (e) {
-		$('#croppedImage').html('');
-   		$('#croppedImage').html($image.cropper('getCroppedCanvas', {
-                   width: 993,
-                   height: 182
-               }));
-   		var canvas = $("canvas");
+  //          $("#getCropped").click(function (e) {
+		// $('#croppedImage').html('');
+  //  		$('#croppedImage').html($image.cropper('getCroppedCanvas', {
+  //                  width: 993,
+  //                  height: 182
+  //              }));
+  //  		var canvas = $("canvas");
    
-   		var dataURL = canvas.get(0).toDataURL();
-   		//var img = $("<img id='image_can' width='993' height='182' style='border:1px solid #ccc'></img>");
-		var img = $("<img id='image_can' class='img-responsive' style='border:1px solid #ccc'></img>");
-   		img.attr("src", dataURL);
+  //  		var dataURL = canvas.get(0).toDataURL();
+  //  		//var img = $("<img id='image_can' width='993' height='182' style='border:1px solid #ccc'></img>");
+		// var img = $("<img id='image_can' class='img-responsive' style='border:1px solid #ccc'></img>");
+  //  		img.attr("src", dataURL);
    
-   		canvas.replaceWith(img);
+  //  		canvas.replaceWith(img);
    
-   		$("#string_imge").val(dataURL);
+  //  		$("#string_imge").val(dataURL);
    		
-        var resut_str = dataURL.replace("data:image/png;base64,", "");
-   		$("#image_crop").attr("value",resut_str);
+  //       var resut_str = dataURL.replace("data:image/png;base64,", "");
+  //  		$("#image_crop").attr("value",resut_str);
    	   
-           });
+  //          });
    	
-       }());
+  //      }());
    
-   });   
+ //  });   
 </script>
 <?php echo $footer; ?>
