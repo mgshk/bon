@@ -42,7 +42,7 @@
 	<script src="catalog/view/javascript/chosen/chosen.jquery.js" type="text/javascript"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB7yf4Wg0LtSvk3qlVRYP_OUIz0SAuf9XM&libraries=places"></script>
-	<script src="http://rawgit.com/Logicify/jquery-locationpicker-plugin/master/dist/locationpicker.jquery.js"></script>
+	<script src="catalog/view/javascript/locationpicker.jquery.js"></script>
 
 	<link href="catalog/view/theme/default/stylesheet/stylesheet.css" rel="stylesheet">
 	<link rel="stylesheet" href="catalog/view/javascript/custom.css">
