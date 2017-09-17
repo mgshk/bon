@@ -515,10 +515,10 @@
 	<script>
 		$(document).ready(function () {
 			if (!$.cookie('myCookie')) {
-				getAddress("13.0826802,80.27071840000008", $('#location-search-val'));
+				getAddress("13.0826802,80.27071840000008", $('#location-search-val'), false);
 			}
 			else {
-				getAddress($.cookie('myCookie'), $('#location-search-val'));
+				getAddress($.cookie('myCookie'), $('#location-search-val'), false);
 			}
 		});
 
@@ -535,22 +535,26 @@
 				var latitude = position.coords.latitude;
 				var longitude = position.coords.longitude;
 				var latlong = (latitude + ", " + longitude);
-				$('#myModal').hide();
-				getAddress(latlong, $('#location-search-val'));
-				location.reload();
+				getAddress(latlong, $('#location-search-val'), true);
+				$('#myModal').hide();				
 			}
 		}
 
-		function getAddress(latLong, element) {
-			var url = "https://maps.googleapis.com/maps/api/geocode/json?latlng=" + latLong + "&sensor=false";
-			$.getJSON(url, function (data) {
-				if (data.results) {
-					var address = data.results[0].formatted_address;
-					element.val(address);
-					$.cookie('myCookie', latLong);
-					$.cookie('myCookieAddress', address);
-				}
-			})
+		function getAddress(latLong, element, pageReload) {
+			$.cookie('myCookie', latLong);
+			if (!pageReload) {
+				var url = "https://maps.googleapis.com/maps/api/geocode/json?latlng=" + latLong + "&sensor=false";
+				$.getJSON(url, function (data) {
+					if (data.results) {
+						var address = data.results[0].formatted_address;
+						element.val(address);
+
+						$.cookie('myCookieAddress', address);
+					}
+				})
+			} else {
+				location.reload();
+			}
 		}
 	</script>
 
@@ -1441,7 +1445,7 @@
 					},
 					enableAutocomplete: true,
 					onchanged: function (currentLocation, radius, isMarkerDropped) {
-						getAddress(currentLocation.latitude + ", " + currentLocation.longitude, $("#divFormattedAddress"));
+						getAddress(currentLocation.latitude + ", " + currentLocation.longitude, $("#divFormattedAddress"), false);
 					}
 
 				});
@@ -1450,12 +1454,12 @@
 				if ($.cookie("myCookie")) {
 					var latLangCookie = $.cookie("myCookie").split(',');
 					renderMap(latLangCookie[0], latLangCookie[1]);
-					getAddress(latLangCookie, $("#divFormattedAddress"));
+					getAddress(latLangCookie, $("#divFormattedAddress"), false);
 				}
 				else {
 					var latLangCookie = "13.0826802, 80.27071840000008";
 					renderMap(13.0826802, 80.27071840000008);
-					getAddress(latLangCookie, $("#divFormattedAddress"));
+					getAddress(latLangCookie, $("#divFormattedAddress"), false);
 				}
 				$('#us11').locationpicker('autosize');
 			});
@@ -1528,66 +1532,66 @@
 		</div>
 	</div>
 	<script>
-					  $('#button_site_feedback').on('click', function () {
-						  $.ajax({
-							  url: 'index.php?route=common/header/site_feedback',
-							  type: 'post',
-							  dataType: 'json',
-							  data: $("#site_feedback_main_ll").serialize(),
-							  success: function (json) {
-								  if (json['success']) {
-									  $('#site_feedback_main_ll').each(function () {
-										  this.reset();
-									  });
-									  $('#site_feed_alt').html('');
-									  $('#site_feed_alt').after('<div class="alert alert-success"><i class="fa fa-check-circle"></i>' + json['success'] + '</div>');
-								  }
-								  if (json['error']) {
-									  $('#site_feed_alt').html('');
-									  $('#site_feed_alt').after('<div class="alert alert-danger"><i class="fa fa-exclamation-circle"></i>' + json['error'] + '</div>');
-								  }
-							  }
-						  });
-					  });
-					  //$( ".res-set-mob" ).click(function() {
-					  $('.expand-one').click(function () {
-						  $('.content-one').slideToggle('slow');
-					  });
-					  $('.expand-two').click(function () {
-						  $('.content-two').slideToggle('slow');
-					  });
-					  //});
-					  $('.tet--nt').on('click', function () {
-						  var ids = this.id;
-						  if (ids = 'auto_detect') {
-							  $('#' + ids).addClass("main--pop-fst");
-						  }
-					  });
+		$('#button_site_feedback').on('click', function () {
+			$.ajax({
+				url: 'index.php?route=common/header/site_feedback',
+				type: 'post',
+				dataType: 'json',
+				data: $("#site_feedback_main_ll").serialize(),
+				success: function (json) {
+					if (json['success']) {
+						$('#site_feedback_main_ll').each(function () {
+							this.reset();
+						});
+						$('#site_feed_alt').html('');
+						$('#site_feed_alt').after('<div class="alert alert-success"><i class="fa fa-check-circle"></i>' + json['success'] + '</div>');
+					}
+					if (json['error']) {
+						$('#site_feed_alt').html('');
+						$('#site_feed_alt').after('<div class="alert alert-danger"><i class="fa fa-exclamation-circle"></i>' + json['error'] + '</div>');
+					}
+				}
+			});
+		});
+		//$( ".res-set-mob" ).click(function() {
+		$('.expand-one').click(function () {
+			$('.content-one').slideToggle('slow');
+		});
+		$('.expand-two').click(function () {
+			$('.content-two').slideToggle('slow');
+		});
+		//});
+		$('.tet--nt').on('click', function () {
+			var ids = this.id;
+			if (ids = 'auto_detect') {
+				$('#' + ids).addClass("main--pop-fst");
+			}
+		});
 
-					  function showMyModalSetTitle(v) {
-						  if (v != 'undefined') {
-							  $('#geocomplete').val(v);
-						  }
+		function showMyModalSetTitle(v) {
+			if (v != 'undefined') {
+				$('#geocomplete').val(v);
+			}
 
-						  $('#map_mod').modal('show');
+			$('#map_mod').modal('show');
 
 
-						  $("#geocomplete").bind("geocode:dragged", function (event, latLng) {
-							  $("input[name=lat]").val(latLng.lat());
-							  $("input[name=lng]").val(latLng.lng());
-							  $("#reset").show();
-						  });
+			$("#geocomplete").bind("geocode:dragged", function (event, latLng) {
+				$("input[name=lat]").val(latLng.lat());
+				$("input[name=lng]").val(latLng.lng());
+				$("#reset").show();
+			});
 
-						  $("#reset").click(function () {
-							  $("#geocomplete").geocomplete("resetMarker");
-							  $("#reset").hide();
-							  return false;
-						  });
+			$("#reset").click(function () {
+				$("#geocomplete").geocomplete("resetMarker");
+				$("#reset").hide();
+				return false;
+			});
 
-						  $("#find_nw").click(function () {
-							  $("#geocomplete").trigger("geocode");
-						  }).click();
-					  }
+			$("#find_nw").click(function () {
+				$("#geocomplete").trigger("geocode");
+			}).click();
+		}
 	</script>
 
 	<?php  unset($_SESSION['payment_success']); ?>
