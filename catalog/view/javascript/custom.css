@@ -79,9 +79,10 @@
 	.store-timing-share-top form{margin-bottom: 25px;}
 	/********* End Store Timings pop *******/
 	/*   07 - 07 -2017 - Tab Change*/
-	._bon_ts .tas_bon {width:25%; font-size: 16px; background: #cef0f5; text-align: center;}
-	._bon_ts1 .tas_bon {font-size: 16px; background: #0094fb; text-align: center;padding: 7px; color: #fff;}
-	._bon_ts>li>a {padding: 5px 0px; color: #000;}
+	._bon_ts .tas_bon {width:25%; font-size: 16px; border-right: 1px solid #f6f6f6;/*background: #cef0f5;*/height: 34px;background: #000000; text-align: center;}
+	._bon_ts1 .tas_bon {font-size: 16px; background: #0094fb; text-align: center;padding: 7px; color: #fff;
+	border-radius: 4px 0 0 0;}
+	._bon_ts>li>a {padding: 5px 0px; /*color: #000;*/color: #fff;}
 	._bon_ts1>li>a {padding: 5px 0px; color: #fff;}
 	._bon_ts>li.active>a {color: #0094fb;}
 	._home_tab--sel--main{display: inline-flex; width: 100%;}
@@ -437,7 +438,7 @@
 	.free-list-top--bon {
 		background: #00acec none repeat scroll 0 0;
 		border: 1px solid #00acec;
-		/*border-radius: 3px;*/
+		border-radius: 3px !important;
 		color: #fff;
 		/*font-size: 15px;*/
 		padding: 7px 10px;
@@ -471,7 +472,7 @@
 		border: 1px solid red;
 	}
 	.loc-pop {
-		border-radius: 0px;
+		/*border-radius: 0px;*/
 	}
 	.advertise-btn {
 		background: #00abeb none repeat scroll 0 0;
@@ -1012,7 +1013,11 @@ a.ui-button:active,
 	#search {border: 1px solid #ccc;}
 	.search_col .form-group{margin-bottom: 0px;}
 	#search #searcha{border-top-left-radius: 0; border-bottom-left-radius: 0;}
-	#search .home-search{border-top-right-radius: 0; border-bottom-right-radius: 0;}
+	#search .home-search{border-top-right-radius: 0; border-bottom-right-radius: 0;
+	background: #0094fb;
+color: #ffffff;
+border: 0;}
+.home-search .fa-search{font-size: 18px !important;}
 	#search select {
 		width: 25%;
 		height: 41px;

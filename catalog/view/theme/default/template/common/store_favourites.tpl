@@ -2,7 +2,7 @@
 <?php if($cus_logged) { ?>
   <a class="fis-dess cursor free-list-top--bon" data-toggle="dropdown" class="btn btn-inverse btn-block btn-lg dropdown-toggle" aria-expanded="true"><span id="fav-total">Favourites (<?php echo count($store_favourites_front); ?>)</span></span></a>
 <?php } else { ?>
-  <a class="fis-dess cursor free-list-top--bon" data-toggle="modal" data-target="#_log-bon"> <span class="hidden-xs hidden-sm hidden-md">Favourites (0)</span></a>
+  <a class="btn fis-dess cursor free-list-top--bon" data-toggle="modal" data-target="#_log-bon"> <span class="hidden-xs hidden-sm hidden-md">Favourites (0)</span></a>
 <?php } ?>  
   <ul class="dropdown-menu pull-right">
 	<li>

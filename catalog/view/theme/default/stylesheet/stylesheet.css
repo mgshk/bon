@@ -687,8 +687,19 @@ h2.price {
 }
 
 /* my css starts */
-.sell-ret h3{word-wrap: break-word;}
-
+.sell-ret h3{text-overflow: ellipsis;overflow: hidden;}
+.nav-tabs > li > a{margin-right: 0 !important;}
+.nav-tabs > li.active > a, .nav-tabs > li.active > a:focus, .nav-tabs > li.active > a:hover{
+	color: #fff !important;
+background-color: #f44336 !important;
+border:none;height: 34px;
+}
+.nav-tabs > li.active > a, .nav-tabs > li.active > a:focus, .nav-tabs > li > a:hover{
+	color: #fff !important;
+background-color: #f44336 !important;
+border:none;height: 34px;
+}
+.nav-tabs > li:last-child{border-right: none;}
 /* my css ends */
 
 @media (min-width: 1200px) {
