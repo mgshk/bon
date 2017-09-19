@@ -56,19 +56,26 @@
 	<?php foreach ($scripts as $script) { ?>
 	<script src="<?php echo $script; ?>" type="text/javascript"></script>
 	<?php } ?>
+	<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-515eeaf54693130e"></script>
+
 	<?php foreach ($analytics as $analytic) { ?>
 	<?php echo $analytic; ?>
 	<?php } ?>
 	<script>
-		$(document).ready(function () {
-			<?php if(isset($_SESSION['payment_success'])) { ?>
-				alert("<?php echo $_SESSION['payment_success']; ?>");
-				<?php } ?>
-				});
-
 		var $start_km = "<?php echo (!isset($_COOKIE['myCookiestart'])) ? '0': $_COOKIE['myCookiestart']; ?>";
 		var $end_km = "<?php echo (!isset($_COOKIE['myCookieend'])) ? '3': $_COOKIE['myCookieend']; ?>";
-
+		var qs = (function (a) {
+			if (a == "") return {};
+			var b = {};
+			for (var i = 0; i < a.length; ++i) {
+				var p = a[i].split('=', 2);
+				if (p.length == 1)
+					b[p[0]] = "";
+				else
+					b[p[0]] = decodeURIComponent(p[1].replace(/\+/g, " "));
+			}
+			return b;
+		})(window.location.search.substr(1).split('&'));
 		$(function () {
 			$("#slider-range").slider({
 				range: true,
@@ -80,6 +87,19 @@
 					$.cookie('myCookieend', ui.values[1]);
 					$("#amount").val($.cookie('myCookiestart'));
 					$("#amount1").val($.cookie('myCookieend'));
+				},
+				change: function (event, ui) {
+					var currentPath = qs["route"];
+
+					if ((currentPath == 'common/home') || (typeof (currentPath) == "undefined") || (currentPath == '')) {
+						$('.nav-tabs li.active').removeClass('active');
+						$('.tab-content div.tab-pane').removeClass('active');
+						$('.nav-tabs li#adv_settings').addClass('active');
+						$('.tab-content div#settings').addClass('active');
+						MakeUrl(path, tab_id = 'settings');
+					} else if (currentPath == 'seller/seller') {
+						location.reload();
+					}
 				}
 			});
 
@@ -97,58 +117,544 @@
 
 					$('.ui-slider-range').css('left', left1 + '%');
 					$('.ui-slider-range').css('width', differece + '%');
-					//alert('The value of myCookie is now "'+ $.cookie('myCookiestart')+ $.cookie('myCookieend')+ '". Now, reload the page, PHP should read it correctly.');
 				} else {
-					//alert('The value of myCookie is now "'+ $.cookie('myCookiestart')+ $.cookie('myCookieend')+ '". Now, reload the page, PHP should read it correctly.');
 					$("#amount").val($start_km);
 					$("#amount1").val($end_km);
-
 				}
 
 			} else {
-				//alert('The value of myCookie is now "'+ $.cookie('myCookiestart')+ $.cookie('myCookieend')+ '". Now, reload the page, PHP should read it correctly.');
 				$("#amount").val($("#slider-range").slider("values", 0));
 				$("#amount1").val($("#slider-range").slider("values", 1));
-
 			}
 
-		});
+			$(window).load(function () {
+				$("#pre_loader").fadeOut(1000);
+			});
+			if (!$.cookie('myCookie')) {
+				getAddress("13.0826802,80.27071840000008", $('#location-search-val'), false);
+			}
+			else {
+				getAddress($.cookie('myCookie'), $('#location-search-val'), false);
+			}
 
-
-		$(document).ready(function () {
-			var qs = (function (a) {
-				if (a == "") return {};
-				var b = {};
-				for (var i = 0; i < a.length; ++i) {
-					var p = a[i].split('=', 2);
-					if (p.length == 1)
-						b[p[0]] = "";
-					else
-						b[p[0]] = decodeURIComponent(p[1].replace(/\+/g, " "));
+			$('input.favts2, input.favts1').on('change', function () {
+				var fav_store_id = $(this).data('text');
+				var fav_name = $(this).data('name');
+				if ($(this).is(":checked")) {
+					var vat = 1;
+				} else {
+					var vat = 0;
 				}
-				return b;
-			})(window.location.search.substr(1).split('&'));
+				$.ajax({
+					url: "index.php?route=common/header/updatestore_favourites_front",
+					type: 'post',
+					dataType: 'json',
+					data: { store_id: fav_store_id, value: vat, fav_name: fav_name },
+					success: function (json) {
+					}
+				});
+			});
 
-			$("#kms_set").click(function () { //alert("test");
-				var ttt = qs["route"];
+			$(".free_listBtn_logged").click(function () {
+				$('#_log-bon').modal('show');
+				$("._top-log-in").hide();
+				$("._alreary_logged").show();
+				$('._sig_log').show().css('height', '100px');
+			});
+			$(".free_listBtn").click(function () {
+				$('#_log-bon').modal('show');
+				$("._top-log-in").hide();
+				$("._top-sign-in").show();
+			});
+			$("._bon--login").click(function () {
 
-				if ((ttt == 'common/home') || (typeof (ttt) == "undefined") || (ttt == '')) {
-					$('.nav-tabs li.active').removeClass('active');
-					$('.tab-content div.tab-pane').removeClass('active');
-					$('.nav-tabs li#adv_settings').addClass('active');
-					$('.tab-content div#settings').addClass('active');
-					MakeUrl(path, tab_id = 'settings');
-				} else if (ttt == 'seller/seller') {
-					location.reload();
+				$('#_log-bon').modal({
+					backdrop: 'static',
+					keyboard: false
+				})
+				$('#_log-bon').modal('show');
+				//$("._top-sign-in").hide();
+				//$("._top-log-in").show();
+			});
+
+			$("._sgn-sec").click(function () {
+				$("._top-log-in").hide();
+				$("._top-sign-in").show();
+			});
+			$("._sgn-out").click(function () {
+				$("._top-sign-in").hide();
+				$("._top-log-in").show();
+			});
+			$("._sgn-outt").click(function () {
+				$('.text-dangers').html('');
+				$('#_top-sign-otp').trigger("reset");
+				$("._top-sign-otp").hide();
+				$("._top-log-in").show();
+			});
+			$("#sign-up-bon-top-otp").click(function () {
+				var cus_d = $('#cus_d').val();
+				$('#cus_prof').val(cus_d);
+				$("._top-sign-otp").hide();
+				$("._top-sign-prof").show();
+			});
+			$("._skip-prof").click(function () {
+				$('.text-dangers').html('');
+				$('#_top-sign-otp').trigger("reset");
+				$('#top-sign-last').trigger("reset");
+				$("._top-sign-upd").hide();
+				$("._top-log-in").show();
+			});
+			$("input#otp").keyup(function () {
+				var lgt = $('#otp').val().length;
+				if (lgt == 6) {
+					$('#top-line-star-otp').html('');
+					$.ajax({
+						url: 'index.php?route=common/header/code_check',
+						type: 'post',
+						dataType: 'json',
+						data: $("#_top-sign-otp").serialize(),
+						success: function (json) {
+							if (json['success']) {//alert("fgggs");
+								$("#input-email-otp").removeAttr('disabled');
+								$("#input-password-otp").removeAttr('disabled');
+								$("#input-confirm-otp").removeAttr('disabled');
+								$("#security_select").removeAttr('disabled');
+								$("#sign-up-bon-top-prof").removeAttr('disabled');
+							}
+							if (json['error_warning']) {
+								$('#top-line-star-otp').html('<i class="fa fa-times" aria-hidden="true"></i> ' + json['error_warning']);
+							}
+						}
+					});
+
+					//$("#input-email-otp").removeAttr('disabled');
+					//$("#input-password-otp").removeAttr('disabled');
+					//$("#input-confirm-otp").removeAttr('disabled');
+					//$("#sign-up-bon-top-prof").removeAttr('disabled');
+				};
+			});
+			$("#frgt-pass").click(function () {
+				$("._top-log-in").hide();
+				$("._forget-bon").show();
+			});
+			$("._resr-log-bon").click(function () {
+				$("._forget-bon").hide();
+				$("._top-log-in").show();
+			});
+
+			//Login pop with mobile num
+			$('#main-log-bon input').on('keydown', function (e) {
+				if (e.keyCode == 13) {
+					$('#log-btn-main-bon').trigger('click');
 				}
+			});
+			$('#log-btn-main-bon').click(function () {
+				$('#zone-bon-error-login').html('');
+				$.ajax({
+					url: 'index.php?route=account/login/login',
+					type: 'post',
+					dataType: 'json',
+					data: $("#main-log-bon").serialize(),
+					success: function (json) {
+						//$('#modal-quicksignup .form-group').removeClass('has-error');								
 
+						if (json['error']) {
+							$('#zone-bon-error-login').html('<i class="fa fa-times" aria-hidden="true"></i> ' + json['error']);
+							$('#main-log-bon #input-email').focus();
+						}
+						if (json['success']) {
+							loacation();
+							$('#_log-bon').modal('hide');
+						}
+
+					}
+				});
+			});
+
+			$('#sign-up-bon-top').on('click', function () {
+				$('#top-line-star').html('');
+				$("#LoadingImage").show();
+				$.ajax({
+					url: 'index.php?route=common/header/new_login',
+					type: 'post',
+					dataType: 'json',
+					data: $("#sig_top_hd").serialize(),
+					success: function (json) {
+						if (json['success']) {
+							$("#LoadingImage").hide();
+							$('#cus_prof').val(json['success']);
+							var zon_id = json['zone_select'];
+							if (zon_id == 1503) {
+								$('#zone_select_ret').val('Tamil nadu');
+							} else if (zon_id == 1499) {
+								$('#zone_select_ret').val('Puducherry');
+							}
+							$('#input-telephone_ret').val(json['telephone']);
+							$("._top-sign-in").hide();
+							$("._top-sign-otp").show();
+						}
+						if (json['error_warning']) {
+							$("#LoadingImage").hide();
+							$('#top-line-star').html('<i class="fa fa-times" aria-hidden="true"></i> ' + json['error_warning']);
+						}
+						if (json['error_telephone']) {
+							$("#LoadingImage").hide();
+							$('#top-line-star').html('<i class="fa fa-times" aria-hidden="true"></i> ' + json['error_telephone']);
+						}
+						if (json['telephone_number']) {
+							$("#LoadingImage").hide();
+							$('#top-line-star').html('<i class="fa fa-times" aria-hidden="true"></i> ' + json['telephone_number']);
+						}
+					}
+				});
+			});
+			$('#sign-up-bon-top-prof').on('click', function () {
+				$('#email-error').html('');
+				$('#norm-pas').html('');
+				$('#conf-pas').html('');
+				$('#security_select_alt').html('');
+				$('#security_answer_alt').html('');
+				$.ajax({
+					url: 'index.php?route=common/header/new_login_update',
+					type: 'post',
+					dataType: 'json',
+					data: $("#_top-sign-otp").serialize(),
+					success: function (json) {
+						if (json['success']) {
+							$('#cus_d_up').val(json['success']);
+							$("._top-sign-otp").hide();
+							$("._top-sign-upd").show()
+						}
+						if (json['error_email_empty']) {
+							$('#email-error').html('<i class="fa fa-times" aria-hidden="true"></i>' + json['error_email']);
+						}
+						if (json['error_email']) {
+							$('#email-error').html('<i class="fa fa-times" aria-hidden="true"></i>' + json['error_email']);
+						}
+						if (json['error_warning']) {
+							$('#email-error').html('<i class="fa fa-times" aria-hidden="true"></i><span>' + json['error_warning']);
+						}
+						if (json['error_password']) {
+							$('#norm-pas').html('<i class="fa fa-times" aria-hidden="true"></i><span>' + json['error_password']);
+						}
+						if (json['error_confirm']) {
+							$('#conf-pas').html('<i class="fa fa-times" aria-hidden="true"></i><span>' + json['error_confirm']);
+						}
+						if (json['security_select']) {
+							$('#security_select_alt').html('<i class="fa fa-times" aria-hidden="true"></i><span>' + json['security_select']);
+						}
+						if (json['security_answer']) {
+							$('#security_answer_alt').html('<i class="fa fa-times" aria-hidden="true"></i><span>' + json['security_answer']);
+						}
+					}
+				});
+			});
+			$('#updat-bon-det').on('click', function () {
+				$.ajax({
+					url: 'index.php?route=common/header/new_login_update_two',
+					type: 'post',
+					dataType: 'json',
+					data: $("#top-sign-last").serialize(),
+					success: function (json) {
+						if (json['success']) {
+							$('#_top-sign-otp').trigger("reset");
+							$('#top-sign-last').trigger("reset");
+							$('#reg-sucess').html('<i class="fa fa-check" aria-hidden="true"></i><span>' + json['success']);
+							$("._top-sign-upd").hide();
+							$("._top-log-in").show();
+						}
+						if (json['error_firstname']) {
+							$('#fist-name-bon').html('<i class="fa fa-times" aria-hidden="true"></i><span>' + json['error_firstname']);
+						}
+						if (json['lastname']) {
+							$('#last-name-bon').html('<i class="fa fa-times" aria-hidden="true"></i><span>' + json['lastname']);
+						}
+						if (json['error_address_1']) {
+							$('#address-bon').html('<i class="fa fa-times" aria-hidden="true"></i><span>' + json['error_address_1']);
+						}
+					}
+				});
+			});
+			$('#forget-btn-main-bon-type').on('click', function () {
+				$('.text-dangers').html('');
+				$("#LoadingImage1").show();
+				$.ajax({
+					url: 'index.php?route=common/header/forgot_pass_log',
+					type: 'post',
+					dataType: 'json',
+					data: $("#forget-log-type").serialize(),
+					success: function (json) {
+						if (json['success']) {
+							$("#LoadingImage1").hide();
+							$('#forgt-phn-sec').val(json['success']);
+							$('#forgt-phn-sec_nw').val(json['success']);
+							$('#security_question_sec').val(json['q_name']);
+							$("._forget-bon").hide();
+							$("._forget-bon-sec").show();
+							$("#qus_ans").hide();
+						}
+						if (json['forgt-phn-failure']) {
+							$("#LoadingImage1").hide();
+							$('#forgt-phn-failure').html('<i class="fa fa-times" aria-hidden="true"></i><span>' + json['forgt-phn-failure']);
+						}
+					}
+				});
+			});
+			$("input#forgt-phn-otp").keyup(function () {
+				var lgt = $('#forgt-phn-otp').val().length;
+				if (lgt == 6) {
+					$('.text-dangers').html('');
+					$.ajax({
+						url: 'index.php?route=common/header/forgot_pass_sec',
+						type: 'post',
+						dataType: 'json',
+						data: $("#forget-log-sec").serialize(),
+						success: function (json) {
+							if (json['success']) {
+								$('#cus_ids').val(json['success']);
+								$('#otp-sec').val(1);
+								$("#qus_ans").show();
+							}
+							if (json['sec_otp_sec']) {
+								$('#sec_otp_sec').html('<i class="fa fa-times" aria-hidden="true"></i><span>' + json['sec_otp_sec']);
+							}
+						}
+					});
+				};
 			});
 		});
-	</script>
-	<script type="text/javascript">
-		$(window).load(function () {
-			$("#pre_loader").fadeOut(1000);
+		$('#forget-btn-main-bon-sec').on('click', function () {
+			$('.text-dangers').html('');
+			$.ajax({
+				url: 'index.php?route=common/header/forgot_pass_sec',
+				type: 'post',
+				dataType: 'json',
+				data: $("#forget-log-sec").serialize(),
+				success: function (json) {
+					if (json['success']) {
+						$('#cus_ids').val(json['success']);
+						$("._forget-bon-sec").hide();
+						$("._forget-bon-pass").show();
+					}
+					if (json['security_answer_sec']) {
+						$('#security_answer_sec-er').html('<i class="fa fa-times" aria-hidden="true"></i><span>' + json['security_answer_sec']);
+					}
+					if (json['sec_otp_sec']) {
+						$('#sec_otp_sec').html('<i class="fa fa-times" aria-hidden="true"></i><span>' + json['sec_otp_sec']);
+					}
+				}
+			});
 		});
+
+		$('#forget-btn-main-bon-pass').on('click', function () {
+			$('.text-dangers').html('');
+			$.ajax({
+				url: 'index.php?route=common/header/forgot_pass_change',
+				type: 'post',
+				dataType: 'json',
+				data: $("#forget-log-pass").serialize(),
+				success: function (json) {
+					if (json['success']) {
+						$('#reg-sucess').html('<i class="fa fa-check" aria-hidden="true"></i><span>' + json['success']);
+						$("._forget-bon-pass").hide();
+						$("._top-log-in").show();
+					}
+					if (json['error_password']) {
+						$('#forgt-phn-pass-fail').html('<i class="fa fa-times" aria-hidden="true"></i><span>' + json['error_password']);
+					}
+					if (json['error_confirm']) {
+						$('#forgt-phn-pass-re-fail').html('<i class="fa fa-times" aria-hidden="true"></i><span>' + json['error_confirm']);
+					}
+				}
+			});
+
+			function renderMap(lat, lan) {
+				$('#us11').locationpicker({
+					location: {
+						latitude: lat,
+						longitude: lan
+					},
+					radius: 0,
+					inputBinding: {
+						latitudeInput: $('#us11-lat'),
+						longitudeInput: $('#us11-lon'),
+						locationNameInput: $('#us11-address')
+					},
+					enableAutocomplete: true,
+					onchanged: function (currentLocation, radius, isMarkerDropped) {
+						getAddress(currentLocation.latitude + ", " + currentLocation.longitude, $("#divFormattedAddress"), false);
+					}
+ 
+				});
+			}
+			$('#map_mod').on('shown.bs.modal', function () {
+				if ($.cookie("myCookie")) {
+					var latLangCookie = $.cookie("myCookie").split(',');
+					renderMap(latLangCookie[0], latLangCookie[1]);
+					getAddress(latLangCookie, $("#divFormattedAddress"), false);
+				}
+				else {
+					var latLangCookie = "13.0826802, 80.27071840000008";
+					renderMap(13.0826802, 80.27071840000008);
+					getAddress(latLangCookie, $("#divFormattedAddress"), false);
+				}
+				$('#us11').locationpicker('autosize');
+			});
+
+			$("select#zone_select").change(function () {
+				$('#top-line-star').html('');
+				$('#zone-bon-error').html('');
+				var zone_id = $(this).val()
+				if ((zone_id == 1503) || (zone_id == 1499)) {
+					$("#input-telephone").removeAttr('disabled');
+					$("#sign-up-bon-top").removeAttr('disabled');
+				} else {
+					$('#zone-bon-error').html('<i class="fa fa-times" aria-hidden="true"></i><span>Currently available in Tamilnadu and Pondicherry only. Will be launched in above place soon.</span>');
+					$("#input-telephone").attr('disabled', 'disabled');
+					$("#sign-up-bon-top").attr('disabled', 'disabled');
+				}
+			});
+			$("select#security_select").change(function () {
+				$('#security_select_alt').html('');
+				$('#security_answer_alt').html('');
+				$(".security_answer").show();
+			});
+			$('#button_site_feedback').on('click', function () {
+				$.ajax({
+					url: 'index.php?route=common/header/site_feedback',
+					type: 'post',
+					dataType: 'json',
+					data: $("#site_feedback_main_ll").serialize(),
+					success: function (json) {
+						if (json['success']) {
+							$('#site_feedback_main_ll').each(function () {
+								this.reset();
+							});
+							$('#site_feed_alt').html('');
+							$('#site_feed_alt').after('<div class="alert alert-success"><i class="fa fa-check-circle"></i>' + json['success'] + '</div>');
+						}
+						if (json['error']) {
+							$('#site_feed_alt').html('');
+							$('#site_feed_alt').after('<div class="alert alert-danger"><i class="fa fa-exclamation-circle"></i>' + json['error'] + '</div>');
+						}
+					}
+				});
+			});
+			//$( ".res-set-mob" ).click(function() {
+			$('.expand-one').click(function () {
+				$('.content-one').slideToggle('slow');
+			});
+			$('.expand-two').click(function () {
+				$('.content-two').slideToggle('slow');
+			});
+			//});
+			$('.tet--nt').on('click', function () {
+				var ids = this.id;
+				if (ids = 'auto_detect') {
+					$('#' + ids).addClass("main--pop-fst");
+				}
+			});
+		});
+
+		function getLocation() {
+			if (navigator.geolocation) {
+				navigator.geolocation.getCurrentPosition(showPosition);
+			} else {
+				alert("Geolocation is not supported by this browser.");
+			}
+		}
+
+		function showPosition(position) {
+			if ((position.coords.latitude && position.coords.longitude) != '') {
+				var latitude = position.coords.latitude;
+				var longitude = position.coords.longitude;
+				var latlong = (latitude + ", " + longitude);
+				getAddress(latlong, $('#location-search-val'), true);
+				$('#myModal').hide();
+			}
+		}
+
+		function getAddress(latLong, element, pageReload) {
+			$.cookie('myCookie', latLong);
+			if (!pageReload) {
+				var url = "https://maps.googleapis.com/maps/api/geocode/json?latlng=" + latLong + "&sensor=false";
+				$.getJSON(url, function (data) {
+					if (data.results) {
+						var address = data.results[0].formatted_address;
+						element.val(address);
+
+						$.cookie('myCookieAddress', address);
+					}
+				})
+			} else {
+				location.reload();
+			}
+		}
+
+		function goBack() {
+			window.history.back();
+		}
+
+
+		function loacation() {
+			location.reload();
+		}
+
+		function setCookiePosition(button) {
+			if (button == 'ok') {
+				var latlong = (document.getElementById("latitude").value + ", " + document.getElementById("longitude").value);
+				$.cookie('myCookie', latlong);
+				location.reload();
+				return true;
+			} else { return false; }
+		}
+
+		function setPosition() {
+			var latitude = $('#us11-lat').val();
+			var longitude = $('#us11-lon').val();
+			var latlong = (latitude + ", " + longitude);
+			$.cookie('myCookie', latlong);
+			//alert('The value of myCookie is now "' + $.cookie('myCookie') + '". Now, reload the page, PHP should read it correctly.');
+			location.reload();
+		}
+
+
+
+		function mouseoverPass(obj) {
+			var obj = document.getElementById('input-password');
+			obj.type = "text";
+		}
+		function mouseoutPass(obj) {
+			var obj = document.getElementById('input-password');
+			obj.type = "password";
+		}
+
+
+
+		function showMyModalSetTitle(v) {
+			if (v != 'undefined') {
+				$('#geocomplete').val(v);
+			}
+
+			$('#map_mod').modal('show');
+
+
+			$("#geocomplete").bind("geocode:dragged", function (event, latLng) {
+				$("input[name=lat]").val(latLng.lat());
+				$("input[name=lng]").val(latLng.lng());
+				$("#reset").show();
+			});
+
+			$("#reset").click(function () {
+				$("#geocomplete").geocomplete("resetMarker");
+				$("#reset").hide();
+				return false;
+			});
+
+			$("#find_nw").click(function () {
+				$("#geocomplete").trigger("geocode");
+			}).click();
+		}
 	</script>
 	<style>
 		.dropdown-submenu:hover>.dropdown-menu {
@@ -197,6 +703,56 @@
 
 		.cursor_none {
 			cursor: default;
+		}
+
+		#examples a {
+			text-decoration: underline;
+		}
+
+		#geocomplete {
+			width: 200px
+		}
+
+		.map_canvas {
+			width: 600px;
+			height: 400px;
+			margin: 10px 20px 10px 0;
+		}
+
+		#multiple li {
+			cursor: pointer;
+			text-decoration: underline;
+		}
+
+		#geocomplete {
+			width: 200px
+		}
+
+		.map_canvas {
+			width: 100%;
+			height: 400px;
+			margin: 10px 20px 10px 0;
+		}
+
+		.pac-container.pac-logo {
+			z-index: 2147483647;
+		}
+
+		ul span {
+			color: #999;
+		}
+
+		.addlinks {
+			border-bottom: 1px solid #ccc;
+			margin: 0 auto;
+		}
+
+		.btn12 {
+			bottom: 0;
+			left: 26%;
+			position: relative;
+			right: 0;
+			/*top: -71px;*/
 		}
 	</style>
 </head>
@@ -309,7 +865,6 @@
 								<li><a href="#" title="Contact Us">Contact Us &nbsp;&nbsp;&nbsp;|</a></li>
 								<li>
 									<div class="addthis_toolbox addthis_default_style" data-url="<?php echo HTTP_SERVER; ?>"><a class="atc_s addthis_button_compact">Share &nbsp;&nbsp;&nbsp;|<span></span></a></div>
-									<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-515eeaf54693130e"></script>
 								</li>
 								<li><a class="cursor" data-toggle="modal" data-target="#site_feedback_main" title="Feedback">Feedback |</a></li>
 								<li><a href="#" title="FAQ">FAQ &nbsp;&nbsp;&nbsp;|</a></li>
@@ -458,17 +1013,11 @@
 					</div>
 					<div class="col-sm-3 header-center-kms">
 						<strong>Range in kilometers (km)</strong>
-						<form method="post" action="">
-							<div class="col-sm-1" style="display: none;"></div>
-							<div class="col-sm-9"></div>
-							<div class="col-sm-1" style="display: none;"></div>
-							<div id="slider-range"></div>
-							<div class="km--set">
-								<a class="cursor" id="kms_set"><i class="fa fa-refresh" aria-hidden="true"></i></a>
-							</div>
-							<input type="text" name="amount" id="amount" value="" readonly style="width: 20px; float: left;">
-							<input type="text" name="amount1" id="amount1" value="" readonly style="width: 20px; float: right;">
-						</form>
+
+						<div id="slider-range"></div>
+						<br/>
+						<input type="text" name="amount" id="amount" value="" readonly="" class="pull-left" style="width: 20px;">
+						<input type="text" name="amount1" id="amount1" value="" readonly="" class="pull-right" style="width: 20px;">
 					</div>
 					<?php //} elseif((isset($_GET['route']) && ($_GET['route'] == 'seller/seller/info'))) { ?>
 					<?php } else { ?>
@@ -512,51 +1061,7 @@
 		</div>
 	</div>
 	<p id="demo"></p>
-	<script>
-		$(document).ready(function () {
-			if (!$.cookie('myCookie')) {
-				getAddress("13.0826802,80.27071840000008", $('#location-search-val'), false);
-			}
-			else {
-				getAddress($.cookie('myCookie'), $('#location-search-val'), false);
-			}
-		});
 
-		function getLocation() {
-			if (navigator.geolocation) {
-				navigator.geolocation.getCurrentPosition(showPosition);
-			} else {
-				alert("Geolocation is not supported by this browser.");
-			}
-		}
-
-		function showPosition(position) {
-			if ((position.coords.latitude && position.coords.longitude) != '') {
-				var latitude = position.coords.latitude;
-				var longitude = position.coords.longitude;
-				var latlong = (latitude + ", " + longitude);
-				getAddress(latlong, $('#location-search-val'), true);
-				$('#myModal').hide();				
-			}
-		}
-
-		function getAddress(latLong, element, pageReload) {
-			$.cookie('myCookie', latLong);
-			if (!pageReload) {
-				var url = "https://maps.googleapis.com/maps/api/geocode/json?latlng=" + latLong + "&sensor=false";
-				$.getJSON(url, function (data) {
-					if (data.results) {
-						var address = data.results[0].formatted_address;
-						element.val(address);
-
-						$.cookie('myCookieAddress', address);
-					}
-				})
-			} else {
-				location.reload();
-			}
-		}
-	</script>
 
 	<div class="modal fade" id="myModal" role="dialog">
 		<div class="modal-dialog main--ts-rt">
@@ -603,32 +1108,9 @@
 			</div>
 		</div>
 	</div>
-	<script>
-		$('input.favts2, input.favts1').on('change', function () {
-			var fav_store_id = $(this).data('text');
-			var fav_name = $(this).data('name');
-			if ($(this).is(":checked")) {
-				var vat = 1;
-			} else {
-				var vat = 0;
-			}
-			$.ajax({
-				url: "index.php?route=common/header/updatestore_favourites_front",
-				type: 'post',
-				dataType: 'json',
-				data: { store_id: fav_store_id, value: vat, fav_name: fav_name },
-				success: function (json) {
-				}
-			});
-		});
-	</script>
-	<script>
-		function goBack() {
-			window.history.back();
-		}
-	</script>
+
 	<?php 
-					if(!isset($_COOKIE['myCookie'])){ ?>
+	if(!isset($_COOKIE['myCookie'])){ ?>
 	<script>
 		$('#myModal').modal({
 			backdrop: 'static',
@@ -654,7 +1136,7 @@
 									<label for="input-text-1">Name</label>
 									<input class="form-control" id="name" name="name" placeholder="Enter your Name" type="text" required>
 								</div>
-								<div class="form-group" style="">
+								<div class="form-group">
 									<label for="input-id-2">Email</label>
 									<input class="form-control" id="email" name="email" placeholder="Enter your email" type="email" required>
 								</div>
@@ -1006,403 +1488,6 @@
 			</div>
 		</div>
 	</div>
-	<script>
-		$(document).ready(function () {
-
-			$(".free_listBtn_logged").click(function () {
-				$('#_log-bon').modal('show');
-				$("._top-log-in").hide();
-				$("._alreary_logged").show();
-				$('._sig_log').show().css('height', '100px');
-			});
-			$(".free_listBtn").click(function () {
-				$('#_log-bon').modal('show');
-				$("._top-log-in").hide();
-				$("._top-sign-in").show();
-			});
-			$("._bon--login").click(function () {
-
-				$('#_log-bon').modal({
-					backdrop: 'static',
-					keyboard: false
-				})
-				$('#_log-bon').modal('show');
-				//$("._top-sign-in").hide();
-				//$("._top-log-in").show();
-			});
-		});
-		$(document).ready(function () {
-			$("._sgn-sec").click(function () {
-				$("._top-log-in").hide();
-				$("._top-sign-in").show();
-			});
-			$("._sgn-out").click(function () {
-				$("._top-sign-in").hide();
-				$("._top-log-in").show();
-			});
-			$("._sgn-outt").click(function () {
-				$('.text-dangers').html('');
-				$('#_top-sign-otp').trigger("reset");
-				$("._top-sign-otp").hide();
-				$("._top-log-in").show();
-			});
-			$("#sign-up-bon-top-otp").click(function () {
-				var cus_d = $('#cus_d').val();
-				$('#cus_prof').val(cus_d);
-				$("._top-sign-otp").hide();
-				$("._top-sign-prof").show();
-			});
-			$("._skip-prof").click(function () {
-				$('.text-dangers').html('');
-				$('#_top-sign-otp').trigger("reset");
-				$('#top-sign-last').trigger("reset");
-				$("._top-sign-upd").hide();
-				$("._top-log-in").show();
-			});
-			$("input#otp").keyup(function () {
-				var lgt = $('#otp').val().length;
-				if (lgt == 6) {
-					$('#top-line-star-otp').html('');
-					$.ajax({
-						url: 'index.php?route=common/header/code_check',
-						type: 'post',
-						dataType: 'json',
-						data: $("#_top-sign-otp").serialize(),
-						success: function (json) {
-							if (json['success']) {//alert("fgggs");
-								$("#input-email-otp").removeAttr('disabled');
-								$("#input-password-otp").removeAttr('disabled');
-								$("#input-confirm-otp").removeAttr('disabled');
-								$("#security_select").removeAttr('disabled');
-								$("#sign-up-bon-top-prof").removeAttr('disabled');
-							}
-							if (json['error_warning']) {
-								$('#top-line-star-otp').html('<i class="fa fa-times" aria-hidden="true"></i> ' + json['error_warning']);
-							}
-						}
-					});
-
-					//$("#input-email-otp").removeAttr('disabled');
-					//$("#input-password-otp").removeAttr('disabled');
-					//$("#input-confirm-otp").removeAttr('disabled');
-					//$("#sign-up-bon-top-prof").removeAttr('disabled');
-				};
-			});
-			$("#frgt-pass").click(function () {
-				$("._top-log-in").hide();
-				$("._forget-bon").show();
-			});
-			$("._resr-log-bon").click(function () {
-				$("._forget-bon").hide();
-				$("._top-log-in").show();
-			});
-		});
-
-		//Login pop with mobile num
-		$('#main-log-bon input').on('keydown', function (e) {
-			if (e.keyCode == 13) {
-				$('#log-btn-main-bon').trigger('click');
-			}
-		});
-		$('#log-btn-main-bon').click(function () {
-			$('#zone-bon-error-login').html('');
-			$.ajax({
-				url: 'index.php?route=account/login/login',
-				type: 'post',
-				dataType: 'json',
-				data: $("#main-log-bon").serialize(),
-				success: function (json) {
-					//$('#modal-quicksignup .form-group').removeClass('has-error');								
-
-					if (json['error']) {
-						$('#zone-bon-error-login').html('<i class="fa fa-times" aria-hidden="true"></i> ' + json['error']);
-						$('#main-log-bon #input-email').focus();
-					}
-					if (json['success']) {
-						loacation();
-						$('#_log-bon').modal('hide');
-					}
-
-				}
-			});
-		});
-
-		function loacation() {
-			location.reload();
-		}
-
-		$('#sign-up-bon-top').on('click', function () {
-			$('#top-line-star').html('');
-			$("#LoadingImage").show();
-			$.ajax({
-				url: 'index.php?route=common/header/new_login',
-				type: 'post',
-				dataType: 'json',
-				data: $("#sig_top_hd").serialize(),
-				success: function (json) {
-					if (json['success']) {
-						$("#LoadingImage").hide();
-						$('#cus_prof').val(json['success']);
-						var zon_id = json['zone_select'];
-						if (zon_id == 1503) {
-							$('#zone_select_ret').val('Tamil nadu');
-						} else if (zon_id == 1499) {
-							$('#zone_select_ret').val('Puducherry');
-						}
-						$('#input-telephone_ret').val(json['telephone']);
-						$("._top-sign-in").hide();
-						$("._top-sign-otp").show();
-					}
-					if (json['error_warning']) {
-						$("#LoadingImage").hide();
-						$('#top-line-star').html('<i class="fa fa-times" aria-hidden="true"></i> ' + json['error_warning']);
-					}
-					if (json['error_telephone']) {
-						$("#LoadingImage").hide();
-						$('#top-line-star').html('<i class="fa fa-times" aria-hidden="true"></i> ' + json['error_telephone']);
-					}
-					if (json['telephone_number']) {
-						$("#LoadingImage").hide();
-						$('#top-line-star').html('<i class="fa fa-times" aria-hidden="true"></i> ' + json['telephone_number']);
-					}
-				}
-			});
-		});
-		$('#sign-up-bon-top-prof').on('click', function () {
-			$('#email-error').html('');
-			$('#norm-pas').html('');
-			$('#conf-pas').html('');
-			$('#security_select_alt').html('');
-			$('#security_answer_alt').html('');
-			$.ajax({
-				url: 'index.php?route=common/header/new_login_update',
-				type: 'post',
-				dataType: 'json',
-				data: $("#_top-sign-otp").serialize(),
-				success: function (json) {
-					if (json['success']) {
-						$('#cus_d_up').val(json['success']);
-						$("._top-sign-otp").hide();
-						$("._top-sign-upd").show()
-					}
-					if (json['error_email_empty']) {
-						$('#email-error').html('<i class="fa fa-times" aria-hidden="true"></i>' + json['error_email']);
-					}
-					if (json['error_email']) {
-						$('#email-error').html('<i class="fa fa-times" aria-hidden="true"></i>' + json['error_email']);
-					}
-					if (json['error_warning']) {
-						$('#email-error').html('<i class="fa fa-times" aria-hidden="true"></i><span>' + json['error_warning']);
-					}
-					if (json['error_password']) {
-						$('#norm-pas').html('<i class="fa fa-times" aria-hidden="true"></i><span>' + json['error_password']);
-					}
-					if (json['error_confirm']) {
-						$('#conf-pas').html('<i class="fa fa-times" aria-hidden="true"></i><span>' + json['error_confirm']);
-					}
-					if (json['security_select']) {
-						$('#security_select_alt').html('<i class="fa fa-times" aria-hidden="true"></i><span>' + json['security_select']);
-					}
-					if (json['security_answer']) {
-						$('#security_answer_alt').html('<i class="fa fa-times" aria-hidden="true"></i><span>' + json['security_answer']);
-					}
-				}
-			});
-		});
-		$('#updat-bon-det').on('click', function () {
-			$.ajax({
-				url: 'index.php?route=common/header/new_login_update_two',
-				type: 'post',
-				dataType: 'json',
-				data: $("#top-sign-last").serialize(),
-				success: function (json) {
-					if (json['success']) {
-						$('#_top-sign-otp').trigger("reset");
-						$('#top-sign-last').trigger("reset");
-						$('#reg-sucess').html('<i class="fa fa-check" aria-hidden="true"></i><span>' + json['success']);
-						$("._top-sign-upd").hide();
-						$("._top-log-in").show();
-					}
-					if (json['error_firstname']) {
-						$('#fist-name-bon').html('<i class="fa fa-times" aria-hidden="true"></i><span>' + json['error_firstname']);
-					}
-					if (json['lastname']) {
-						$('#last-name-bon').html('<i class="fa fa-times" aria-hidden="true"></i><span>' + json['lastname']);
-					}
-					if (json['error_address_1']) {
-						$('#address-bon').html('<i class="fa fa-times" aria-hidden="true"></i><span>' + json['error_address_1']);
-					}
-				}
-			});
-		});
-		$('#forget-btn-main-bon-type').on('click', function () {
-			$('.text-dangers').html('');
-			$("#LoadingImage1").show();
-			$.ajax({
-				url: 'index.php?route=common/header/forgot_pass_log',
-				type: 'post',
-				dataType: 'json',
-				data: $("#forget-log-type").serialize(),
-				success: function (json) {
-					if (json['success']) {
-						$("#LoadingImage1").hide();
-						$('#forgt-phn-sec').val(json['success']);
-						$('#forgt-phn-sec_nw').val(json['success']);
-						$('#security_question_sec').val(json['q_name']);
-						$("._forget-bon").hide();
-						$("._forget-bon-sec").show();
-						$("#qus_ans").hide();
-					}
-					if (json['forgt-phn-failure']) {
-						$("#LoadingImage1").hide();
-						$('#forgt-phn-failure').html('<i class="fa fa-times" aria-hidden="true"></i><span>' + json['forgt-phn-failure']);
-					}
-				}
-			});
-		});
-		$(document).ready(function () {
-			$("input#forgt-phn-otp").keyup(function () {
-				var lgt = $('#forgt-phn-otp').val().length;
-				if (lgt == 6) {
-					$('.text-dangers').html('');
-					$.ajax({
-						url: 'index.php?route=common/header/forgot_pass_sec',
-						type: 'post',
-						dataType: 'json',
-						data: $("#forget-log-sec").serialize(),
-						success: function (json) {
-							if (json['success']) {
-								$('#cus_ids').val(json['success']);
-								$('#otp-sec').val(1);
-								$("#qus_ans").show();
-							}
-							if (json['sec_otp_sec']) {
-								$('#sec_otp_sec').html('<i class="fa fa-times" aria-hidden="true"></i><span>' + json['sec_otp_sec']);
-							}
-						}
-					});
-				};
-			});
-		});
-		$('#forget-btn-main-bon-sec').on('click', function () {
-			$('.text-dangers').html('');
-			$.ajax({
-				url: 'index.php?route=common/header/forgot_pass_sec',
-				type: 'post',
-				dataType: 'json',
-				data: $("#forget-log-sec").serialize(),
-				success: function (json) {
-					if (json['success']) {
-						$('#cus_ids').val(json['success']);
-						$("._forget-bon-sec").hide();
-						$("._forget-bon-pass").show();
-					}
-					if (json['security_answer_sec']) {
-						$('#security_answer_sec-er').html('<i class="fa fa-times" aria-hidden="true"></i><span>' + json['security_answer_sec']);
-					}
-					if (json['sec_otp_sec']) {
-						$('#sec_otp_sec').html('<i class="fa fa-times" aria-hidden="true"></i><span>' + json['sec_otp_sec']);
-					}
-				}
-			});
-		});
-
-		$('#forget-btn-main-bon-pass').on('click', function () {
-			$('.text-dangers').html('');
-			$.ajax({
-				url: 'index.php?route=common/header/forgot_pass_change',
-				type: 'post',
-				dataType: 'json',
-				data: $("#forget-log-pass").serialize(),
-				success: function (json) {
-					if (json['success']) {
-						$('#reg-sucess').html('<i class="fa fa-check" aria-hidden="true"></i><span>' + json['success']);
-						$("._forget-bon-pass").hide();
-						$("._top-log-in").show();
-					}
-					if (json['error_password']) {
-						$('#forgt-phn-pass-fail').html('<i class="fa fa-times" aria-hidden="true"></i><span>' + json['error_password']);
-					}
-					if (json['error_confirm']) {
-						$('#forgt-phn-pass-re-fail').html('<i class="fa fa-times" aria-hidden="true"></i><span>' + json['error_confirm']);
-					}
-				}
-			});
-		});
-
-
-
-		function setCookiePosition(button) {
-			if (button == 'ok') {
-				var latlong = (document.getElementById("latitude").value + ", " + document.getElementById("longitude").value);
-				$.cookie('myCookie', latlong);
-				location.reload();
-				return true;
-			} else { return false; }
-		}
-	</script>
-	<style>
-		#examples a {
-			text-decoration: underline;
-		}
-
-		#geocomplete {
-			width: 200px
-		}
-
-		.map_canvas {
-			width: 600px;
-			height: 400px;
-			margin: 10px 20px 10px 0;
-		}
-
-		#multiple li {
-			cursor: pointer;
-			text-decoration: underline;
-		}
-
-		#geocomplete {
-			width: 200px
-		}
-
-		.map_canvas {
-			width: 100%;
-			height: 400px;
-			margin: 10px 20px 10px 0;
-		}
-
-		.pac-container.pac-logo {
-			z-index: 2147483647;
-		}
-		/*fieldset { width: 320px; margin-top: 20px}
-					fieldset strong { display: block; margin: 0.5em 0 0em; }
-					fieldset input { width: 95%; }*/
-
-		ul span {
-			color: #999;
-		}
-
-		.addlinks {
-			border-bottom: 1px solid #ccc;
-			margin: 0 auto;
-			/*width: 67%;*/
-		}
-		/*.update_cancel {
-					border: 0 none;
-					left: 9%;
-					position: absolute;
-					top: 97%;
-					}*/
-
-		.btn12 {
-			bottom: 0;
-			left: 26%;
-			position: relative;
-			right: 0;
-			/*top: -71px;*/
-		}
-	</style>
-
 
 	<div class="modal fade" id="map_mod" role="dialog">
 		<div class="modal-dialog" role="document">
@@ -1429,78 +1514,7 @@
 			</div>
 		</div>
 	</div>
-	<script>
-		$(document).ready(function () {
-			function renderMap(lat, lan) {
-				$('#us11').locationpicker({
-					location: {
-						latitude: lat,
-						longitude: lan
-					},
-					radius: 0,
-					inputBinding: {
-						latitudeInput: $('#us11-lat'),
-						longitudeInput: $('#us11-lon'),
-						locationNameInput: $('#us11-address')
-					},
-					enableAutocomplete: true,
-					onchanged: function (currentLocation, radius, isMarkerDropped) {
-						getAddress(currentLocation.latitude + ", " + currentLocation.longitude, $("#divFormattedAddress"), false);
-					}
 
-				});
-			}
-			$('#map_mod').on('shown.bs.modal', function () {
-				if ($.cookie("myCookie")) {
-					var latLangCookie = $.cookie("myCookie").split(',');
-					renderMap(latLangCookie[0], latLangCookie[1]);
-					getAddress(latLangCookie, $("#divFormattedAddress"), false);
-				}
-				else {
-					var latLangCookie = "13.0826802, 80.27071840000008";
-					renderMap(13.0826802, 80.27071840000008);
-					getAddress(latLangCookie, $("#divFormattedAddress"), false);
-				}
-				$('#us11').locationpicker('autosize');
-			});
-		});
-		function setPosition() {
-			var latitude = $('#us11-lat').val();
-			var longitude = $('#us11-lon').val();
-			var latlong = (latitude + ", " + longitude);
-			$.cookie('myCookie', latlong);
-			//alert('The value of myCookie is now "' + $.cookie('myCookie') + '". Now, reload the page, PHP should read it correctly.');
-			location.reload();
-		}
-
-
-		$("select#zone_select").change(function () {
-			$('#top-line-star').html('');
-			$('#zone-bon-error').html('');
-			var zone_id = $(this).val()
-			if ((zone_id == 1503) || (zone_id == 1499)) {
-				$("#input-telephone").removeAttr('disabled');
-				$("#sign-up-bon-top").removeAttr('disabled');
-			} else {
-				$('#zone-bon-error').html('<i class="fa fa-times" aria-hidden="true"></i><span>Currently available in Tamilnadu and Pondicherry only. Will be launched in above place soon.</span>');
-				$("#input-telephone").attr('disabled', 'disabled');
-				$("#sign-up-bon-top").attr('disabled', 'disabled');
-			}
-		});
-		$("select#security_select").change(function () {
-			$('#security_select_alt').html('');
-			$('#security_answer_alt').html('');
-			$(".security_answer").show();
-		});
-		function mouseoverPass(obj) {
-			var obj = document.getElementById('input-password');
-			obj.type = "text";
-		}
-		function mouseoutPass(obj) {
-			var obj = document.getElementById('input-password');
-			obj.type = "password";
-		}
-	</script>
 	<div class="modal fade" id="site_feedback_main" role="dialog">
 		<div class="modal-dialog">
 			<!-- Modal content-->
@@ -1531,67 +1545,5 @@
 			</div>
 		</div>
 	</div>
-	<script>
-		$('#button_site_feedback').on('click', function () {
-			$.ajax({
-				url: 'index.php?route=common/header/site_feedback',
-				type: 'post',
-				dataType: 'json',
-				data: $("#site_feedback_main_ll").serialize(),
-				success: function (json) {
-					if (json['success']) {
-						$('#site_feedback_main_ll').each(function () {
-							this.reset();
-						});
-						$('#site_feed_alt').html('');
-						$('#site_feed_alt').after('<div class="alert alert-success"><i class="fa fa-check-circle"></i>' + json['success'] + '</div>');
-					}
-					if (json['error']) {
-						$('#site_feed_alt').html('');
-						$('#site_feed_alt').after('<div class="alert alert-danger"><i class="fa fa-exclamation-circle"></i>' + json['error'] + '</div>');
-					}
-				}
-			});
-		});
-		//$( ".res-set-mob" ).click(function() {
-		$('.expand-one').click(function () {
-			$('.content-one').slideToggle('slow');
-		});
-		$('.expand-two').click(function () {
-			$('.content-two').slideToggle('slow');
-		});
-		//});
-		$('.tet--nt').on('click', function () {
-			var ids = this.id;
-			if (ids = 'auto_detect') {
-				$('#' + ids).addClass("main--pop-fst");
-			}
-		});
-
-		function showMyModalSetTitle(v) {
-			if (v != 'undefined') {
-				$('#geocomplete').val(v);
-			}
-
-			$('#map_mod').modal('show');
-
-
-			$("#geocomplete").bind("geocode:dragged", function (event, latLng) {
-				$("input[name=lat]").val(latLng.lat());
-				$("input[name=lng]").val(latLng.lng());
-				$("#reset").show();
-			});
-
-			$("#reset").click(function () {
-				$("#geocomplete").geocomplete("resetMarker");
-				$("#reset").hide();
-				return false;
-			});
-
-			$("#find_nw").click(function () {
-				$("#geocomplete").trigger("geocode");
-			}).click();
-		}
-	</script>
 
 	<?php  unset($_SESSION['payment_success']); ?>
