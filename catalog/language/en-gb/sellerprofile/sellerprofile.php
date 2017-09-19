@@ -57,6 +57,7 @@ $_['entry_zone'] = 'Region/State';
 $_['entry_default'] = 'Default bankaccount';
 $_['entry_comment'] = 'Comment';
 $_['entry_description'] = 'Description';
+$_['entry_store_address'] = 'Store/Entity address';
 $_['entry_amount'] = 'Amount';
 $_['entry_points'] = 'Points';
 $_['entry_name'] = 'Name';
@@ -176,6 +177,7 @@ $_['entry_instagram'] = 'Instagram';
 $_['tab_profile_details'] = 'Profile detail';
 $_['tab_more_details'] = 'Store/Entity detail';
 $_['tab_store_ad'] = 'Store/Endity ADs';
+$_['entry_activate'] = 'Activate/ Deactivate Store';
 $_['entry_nickname'] = 'Store/Entity name';
 $_['entry_owner_name'] = 'Store/Entity owners name';
 $_['entry_tin'] = 'TIN/CST number';
@@ -223,7 +225,8 @@ $_['error_mobile'] = 'Please enter valid mobile number';
 $_['error_email'] = 'Please enter valid email ID';
 $_['refer_detail_updated'] = 'Referrer detail added';
 
-$_['error_nickname_req'] = 'Store/Entity Name not empty';
+$_['error_nickname_req'] = 'Store/Entity Name should not be empty';
 $_['error_lat_req'] = 'Please choose map location';
 $_['error_lng_req'] = 'Please choose map location';
+$_['error_seller_address_req'] = 'Store/Entity Address should not be empty';
 

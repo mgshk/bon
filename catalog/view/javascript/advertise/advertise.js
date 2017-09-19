@@ -4,6 +4,8 @@ $(document).ready(function() {
 	var advertise_image = $('#offer_image_original').val();
 
 	if(advertise_id) {
+		$('.img-containers').empty();
+		
 		$uploadCrop = $('.img-containers').croppie({
 			url: advertise_image,
 		    enableExif: false,
@@ -21,6 +23,8 @@ $(document).ready(function() {
 	}
 
 	$('body').on('click', 'a.thumbnail', function(e) {
+		$('.img-containers').empty();
+
 		$uploadCrop = $('.img-containers').croppie({
 			url: $(this).attr('href'),
 		    enableExif: false,

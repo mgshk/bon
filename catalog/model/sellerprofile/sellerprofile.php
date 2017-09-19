@@ -711,86 +711,139 @@ class Modelsellerprofilesellerprofile extends Model
         $this->db->query('UPDATE '.DB_PREFIX."customer SET banner = '' WHERE customer_id='".(int) $this->customer->getId()."'");
     }
 
+
     public function SellerProfileSave($data)
     {
-		$seller_details = $this->getSellerrequest();
-		//print_r($data); die;
-	if (isset($data['nickname'])) {
-		if($seller_details['nickname'] != $data['nickname']){		
-		  $this->db->query('UPDATE '.DB_PREFIX."customer SET nickname = '".$this->db->escape($data['nickname'])."', seller_approved = '0', seller_verified = '0' WHERE customer_id='".(int) $this->customer->getId()."'");
-		}
-	}
-	if (isset($data['banner'])) {
-		if($seller_details['banner'] != $data['banner']){		
-			$this->db->query('UPDATE '.DB_PREFIX."customer SET banner = '".$this->db->escape($data['banner'])."', seller_approved = '0', seller_verified = '0' WHERE customer_id='".(int) $this->customer->getId()."'");
-		}
-	}
-      
-		if (isset($data['image'])) {
-        $this->db->query('UPDATE '.DB_PREFIX."customer SET image = '".$this->db->escape($data['image'])."' WHERE customer_id='".(int) $this->customer->getId()."'");
-      }
-      if (isset($data['seller_description'])) {
-        $this->db->query('UPDATE '.DB_PREFIX."customer SET description = '".$this->db->escape($data['seller_description'])."' WHERE customer_id='".(int) $this->customer->getId()."'");
-      }
-      if (isset($data['website'])) {
-        $this->db->query('UPDATE '.DB_PREFIX."customer SET website = '".$this->db->escape($data['website'])."' WHERE customer_id='".(int) $this->customer->getId()."'");
-      }
-      if (isset($data['facebook'])) {
-        $this->db->query('UPDATE '.DB_PREFIX."customer SET facebook = '".$this->db->escape($data['facebook'])."' WHERE customer_id='".(int) $this->customer->getId()."'");
-      }
-      if (isset($data['twitter'])) {
-        $this->db->query('UPDATE '.DB_PREFIX."customer SET twitter = '".$this->db->escape($data['twitter'])."' WHERE customer_id='".(int) $this->customer->getId()."'");
-      }
-      if (isset($data['googleplus'])) {
-        $this->db->query('UPDATE '.DB_PREFIX."customer SET googleplus = '".$this->db->escape($data['googleplus'])."' WHERE customer_id='".(int) $this->customer->getId()."'");
-      }
-      if (isset($data['instagram'])) {
-        $this->db->query('UPDATE '.DB_PREFIX."customer SET instagram = '".$this->db->escape($data['instagram'])."' WHERE customer_id='".(int) $this->customer->getId()."'");
-      }      
-	if (isset($data['tin'])) {
-      $this->db->query('UPDATE '.DB_PREFIX."customer SET tin = '".$this->db->escape($data['tin'])."' WHERE customer_id='".(int) $this->customer->getId()."'");
-    }
-	if (isset($data['pan'])) {
-      $this->db->query('UPDATE '.DB_PREFIX."customer SET pan = '".$this->db->escape($data['pan'])."' WHERE customer_id='".(int) $this->customer->getId()."'");
-    }
-	if (isset($data['lat'])) {
-      $this->db->query('UPDATE '.DB_PREFIX."customer SET lat = '".$this->db->escape($data['lat'])."' WHERE customer_id='".(int) $this->customer->getId()."'");
-    }
-	if (isset($data['lng'])) {
-      $this->db->query('UPDATE '.DB_PREFIX."customer SET lng = '".$this->db->escape($data['lng'])."' WHERE customer_id='".(int) $this->customer->getId()."'");
-    }
-	if (isset($data['owner_name'])) {
-      $this->db->query('UPDATE '.DB_PREFIX."customer SET owner_name = '".$this->db->escape($data['owner_name'])."' WHERE customer_id='".(int) $this->customer->getId()."'");
-    }
-	if (isset($data['owner_ll_num'])) {
-      $this->db->query('UPDATE '.DB_PREFIX."customer SET owner_ll_num = '".$this->db->escape($data['owner_ll_num'])."' WHERE customer_id='".(int) $this->customer->getId()."'");
-    }	
-	if (isset($data['store_email'])) {
-      $this->db->query('UPDATE '.DB_PREFIX."customer SET store_email = '".$this->db->escape($data['store_email'])."' WHERE customer_id='".(int) $this->customer->getId()."'");
-    }
-	if($seller_details['referred_by'] == '') {
-	if (isset($data['referred_by'])) {
-      $this->db->query('UPDATE '.DB_PREFIX."customer SET referred_by = '".$this->db->escape($data['referred_by'])."' WHERE customer_id='".(int) $this->customer->getId()."'");
-    } else {
-	  $this->db->query('UPDATE '.DB_PREFIX."customer SET referred_by = '---' WHERE customer_id='".(int) $this->customer->getId()."'");
-	}
-	}
-	if (!empty($data['store_mobile_num'])) {
-		$mob = implode(",", array_filter($data['store_mobile_num']));//print_r($mob); die;
-		$this->db->query('UPDATE '.DB_PREFIX."customer SET store_mobile_num = '".$this->db->escape($mob)."' WHERE customer_id='".(int) $this->customer->getId()."'");
-    }
-	if ((!empty($data['store_ll_code'])) && (!empty($data['store_ll_num']))) {
-		for($i=0; $i<count($data['store_ll_code']); $i++){
-			$land_line_num[] = $data['store_ll_code'][$i].'-'.$data['store_ll_num'][$i];
-		}//print_r($land_line_num); die;
-		$land = ltrim(implode(",", array_filter($land_line_num)), '-,');
-		$this->db->query('UPDATE '.DB_PREFIX."customer SET store_ll_num = '".$this->db->escape($land)."' WHERE customer_id='".(int) $this->customer->getId()."'");
-	}
-	if (isset($data['delivery_type'])) {
-      $this->db->query('UPDATE '.DB_PREFIX."customer SET delivery_type = '".$this->db->escape($data['delivery_type'])."' WHERE customer_id='".(int) $this->customer->getId()."'");
+        $columns = '';
+        $seller_details = $this->getSellerrequest();
+
+        if($seller_details['nickname'] != $data['nickname'] || $seller_details['banner'] != $data['banner']) {
+            $columns .= ', seller_approved = 0, seller_verified = 0';
+        }
+
+        $mob = (!empty($data['store_mobile_num']) && is_array($data['store_mobile_num'])) ? implode(",", array_filter($data['store_mobile_num'])) : '';
+
+        if (!empty($data['store_ll_code']) && !empty($data['store_ll_num'])) {
+            for($i=0; $i<count($data['store_ll_code']); $i++) {
+                $land_line_num[] = $data['store_ll_code'][$i].'-'.$data['store_ll_num'][$i];
+            }
+
+            $land = ltrim(implode(",", array_filter($land_line_num)), '-,');
+
+            $columns .= ", store_ll_num = '".$this->db->escape($land)."'";
+        }
+
+        $this->db->query('UPDATE '.DB_PREFIX."customer 
+            SET nickname = '".$this->db->escape($data['nickname'])."', banner = '".$this->db->escape($data['banner'])."',
+            image = '".$this->db->escape($data['image'])."', description = '".$this->db->escape($data['seller_description'])."',
+            address = '".$this->db->escape($data['seller_address'])."', tin = '".$this->db->escape($data['tin'])."', 
+            pan = '".$this->db->escape($data['pan'])."', lat = '".$this->db->escape($data['lat'])."', lng = '".$this->db->escape($data['lng'])."',
+            owner_name = '".$this->db->escape($data['owner_name'])."', store_email = '".$this->db->escape($data['store_email'])."', referred_by = '".$this->db->escape($data['referred_by'])."',
+            store_mobile_num = '".$this->db->escape($mob)."', delivery_type = '".$this->db->escape($data['delivery_type'])."',
+            active = '".(int) $this->db->escape($data['store_activate'])."' '".$columns."' 
+            WHERE customer_id='".(int) $this->customer->getId()."'");
     }
 
-    }
+    // public function SellerProfileSave($data)
+    // {
+    //     $seller_details = $this->getSellerrequest();
+
+    //     if (isset($data['nickname'])) {
+    //         if($seller_details['nickname'] != $data['nickname']){       
+    //             $this->db->query('UPDATE '.DB_PREFIX."customer SET nickname = '".$this->db->escape($data['nickname'])."', seller_approved = '0', seller_verified = '0' WHERE customer_id='".(int) $this->customer->getId()."'");
+    //         }
+    //     }
+
+    //     if (isset($data['banner'])) {
+    //         if($seller_details['banner'] != $data['banner']){       
+    //             $this->db->query('UPDATE '.DB_PREFIX."customer SET banner = '".$this->db->escape($data['banner'])."', seller_approved = '0', seller_verified = '0' WHERE customer_id='".(int) $this->customer->getId()."'");
+    //         }
+    //     }
+
+    //     if (isset($data['image'])) {
+    //         $this->db->query('UPDATE '.DB_PREFIX."customer SET image = '".$this->db->escape($data['image'])."' WHERE customer_id='".(int) $this->customer->getId()."'");
+    //     }
+
+    //     if (isset($data['seller_description'])) {
+    //         $this->db->query('UPDATE '.DB_PREFIX."customer SET description = '".$this->db->escape($data['seller_description'])."' WHERE customer_id='".(int) $this->customer->getId()."'");
+    //     }
+
+    //     if (isset($data['seller_address'])) {
+    //         $this->db->query('UPDATE '.DB_PREFIX."customer SET address = '".$this->db->escape($data['seller_address'])."' WHERE customer_id='".(int) $this->customer->getId()."'");
+    //     }
+
+    //     if (isset($data['website'])) {
+    //         $this->db->query('UPDATE '.DB_PREFIX."customer SET website = '".$this->db->escape($data['website'])."' WHERE customer_id='".(int) $this->customer->getId()."'");
+    //     }
+
+    //     if (isset($data['facebook'])) {
+    //         $this->db->query('UPDATE '.DB_PREFIX."customer SET facebook = '".$this->db->escape($data['facebook'])."' WHERE customer_id='".(int) $this->customer->getId()."'");
+    //     }
+
+    //     if (isset($data['twitter'])) {
+    //         $this->db->query('UPDATE '.DB_PREFIX."customer SET twitter = '".$this->db->escape($data['twitter'])."' WHERE customer_id='".(int) $this->customer->getId()."'");
+    //     }
+
+    //     if (isset($data['googleplus'])) {
+    //         $this->db->query('UPDATE '.DB_PREFIX."customer SET googleplus = '".$this->db->escape($data['googleplus'])."' WHERE customer_id='".(int) $this->customer->getId()."'");
+    //     }
+
+    //     if (isset($data['instagram'])) {
+    //         $this->db->query('UPDATE '.DB_PREFIX."customer SET instagram = '".$this->db->escape($data['instagram'])."' WHERE customer_id='".(int) $this->customer->getId()."'");
+    //     }
+
+    //     if (isset($data['tin'])) {
+    //         $this->db->query('UPDATE '.DB_PREFIX."customer SET tin = '".$this->db->escape($data['tin'])."' WHERE customer_id='".(int) $this->customer->getId()."'");
+    //     }
+
+    //     if (isset($data['pan'])) {
+    //         $this->db->query('UPDATE '.DB_PREFIX."customer SET pan = '".$this->db->escape($data['pan'])."' WHERE customer_id='".(int) $this->customer->getId()."'");
+    //     }
+
+    //     if (isset($data['lat'])) {
+    //         $this->db->query('UPDATE '.DB_PREFIX."customer SET lat = '".$this->db->escape($data['lat'])."' WHERE customer_id='".(int) $this->customer->getId()."'");
+    //     }
+
+    //     if (isset($data['lng'])) {
+    //         $this->db->query('UPDATE '.DB_PREFIX."customer SET lng = '".$this->db->escape($data['lng'])."' WHERE customer_id='".(int) $this->customer->getId()."'");
+    //     }
+
+    //     if (isset($data['owner_name'])) {
+    //         $this->db->query('UPDATE '.DB_PREFIX."customer SET owner_name = '".$this->db->escape($data['owner_name'])."' WHERE customer_id='".(int) $this->customer->getId()."'");
+    //     }
+
+    //     if (isset($data['owner_ll_num'])) {
+    //         $this->db->query('UPDATE '.DB_PREFIX."customer SET owner_ll_num = '".$this->db->escape($data['owner_ll_num'])."' WHERE customer_id='".(int) $this->customer->getId()."'");
+    //     }
+
+    //     if (isset($data['store_email'])) {
+    //         $this->db->query('UPDATE '.DB_PREFIX."customer SET store_email = '".$this->db->escape($data['store_email'])."' WHERE customer_id='".(int) $this->customer->getId()."'");
+    //     }
+
+    //     if($seller_details['referred_by'] == '') {
+    //         if (isset($data['referred_by'])) {
+    //             $this->db->query('UPDATE '.DB_PREFIX."customer SET referred_by = '".$this->db->escape($data['referred_by'])."' WHERE customer_id='".(int) $this->customer->getId()."'");
+    //         } else {
+    //             $this->db->query('UPDATE '.DB_PREFIX."customer SET referred_by = '---' WHERE customer_id='".(int) $this->customer->getId()."'");
+    //         }
+    //     }
+
+    //     if (!empty($data['store_mobile_num'])) {
+    //         $mob = implode(",", array_filter($data['store_mobile_num']));//print_r($mob); die;
+    //         $this->db->query('UPDATE '.DB_PREFIX."customer SET store_mobile_num = '".$this->db->escape($mob)."' WHERE customer_id='".(int) $this->customer->getId()."'");
+    //     }
+
+    //     if ((!empty($data['store_ll_code'])) && (!empty($data['store_ll_num']))) {
+    //         for($i=0; $i<count($data['store_ll_code']); $i++){
+    //             $land_line_num[] = $data['store_ll_code'][$i].'-'.$data['store_ll_num'][$i];
+    //         }
+    //         $land = ltrim(implode(",", array_filter($land_line_num)), '-,');
+    //         $this->db->query('UPDATE '.DB_PREFIX."customer SET store_ll_num = '".$this->db->escape($land)."' WHERE customer_id='".(int) $this->customer->getId()."'");
+    //     }
+    //     if (isset($data['delivery_type'])) {
+    //         $this->db->query('UPDATE '.DB_PREFIX."customer SET delivery_type = '".$this->db->escape($data['delivery_type'])."' WHERE customer_id='".(int) $this->customer->getId()."'");
+    //     }
+    // }
 
 	public function getStoreImages($seller_id) {
 
