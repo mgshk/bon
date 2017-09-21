@@ -214,28 +214,35 @@
                               <div id="collapse1" class="panel-collapse collapse in">
                                  <div class="panel-body">
                                     <?php if($seller_approved != 1) { ?>
-                                    <div class="alert alert-danger"><i class="fa fa-times-circle"></i> Your store approval is pending.</div>
+                                       <div class="alert alert-danger"><i class="fa fa-times-circle"></i> Your store approval is pending.</div>
                                     <?php } else { ?>
-                                    <div class="alert alert-success"><i class="fa fa-check-circle"></i> Your store is approved.</div>
+                                       <div class="alert alert-success"><i class="fa fa-check-circle"></i> Your store is approved.</div>
                                     <?php } ?>
                                     <?php if($seller_verified != 1) { ?>
-                                    <div class="alert alert-danger"><i class="fa fa-times-circle"></i> Your store verification is pending.</div>
+                                       <div class="alert alert-danger"><i class="fa fa-times-circle"></i> Your store verification is pending.</div>
                                     <?php } else { ?>
-                                    <div class="alert alert-success"><i class="fa fa-check-circle"></i> Your store is verified.</div>
+                                       <div class="alert alert-success"><i class="fa fa-check-circle"></i> Your store is verified.</div>
                                     <?php } ?>									
                                     <div class="str--ftr-btn col-sm-12">
                                        <div class="row" style="float: right;">
                                           <?php if(strtotime($feature_store_end) > strtotime('now')) { ?>
-                                          <button disabled type="button" class="btn btn-primary">Featured Store/Entity</button>
+                                             <button disabled type="button" class="btn btn-primary">Featured Store/Entity</button>
                                           <?php } else { ?>
-                                          <button type="button" style="cursor:pointer;" id="store_featured_dt" data-toggle="modal" data-target="#store_featured" class="btn btn-primary">Featured Store/Entity</button>
+                                             <button type="button" style="cursor:pointer;" id="store_featured_dt" data-toggle="modal" data-target="#store_featured" class="btn btn-primary">Featured Store/Entity</button>
                                           <?php } ?>
                                        </div>
                                     </div>
                                     <form action="" method="post" enctype="multipart/form-data" id="form-profile" class="form-horizontal main--mb--bt">
-                                       <!--<button type="button" id="button-profile-save" data-loading-text="<?php echo $text_loading; ?>" class="btn btn-primary pull-right">
-                                          <?php echo $button_save; ?>
-                                          </button>-->
+                                       <div class="form-group required">
+                                          <label class="col-sm-2 control-label" for="input-nickname">
+                                          <?php echo $entry_activate; ?>
+                                          </label>
+                                          <div class="col-sm-8">
+                                             <input type="hidden" name="store_activate" value="2" />
+                                             <input type="checkbox" name="store_activate" <?php if ($store_activated == 1) { echo 'checked'; } ?> id="store_activate" value="1" />
+                                             <span class="input-group-btn"></span>
+                                          </div>
+                                       </div>
                                        <div class="form-group required">
                                           <label class="col-sm-2 control-label" for="input-nickname">
                                           <?php echo $entry_nickname; ?>
@@ -265,6 +272,15 @@
                                              <textarea style="white-space: normal;" name="seller_description" rows="4" placeholder="<?php echo $entry_description; ?>" id="input-description" class="form-control">
                                              <?php echo $seller_description; ?>
                                              </textarea>
+                                          </div>
+                                       </div>
+                                       <div class="form-group required">
+                                          <label class="col-sm-2 control-label" for="input-store-address">
+                                          <?php echo $entry_store_address; ?>
+                                          </label>
+                                          <div class="col-sm-8">
+                                             <input type="text" name="seller_address" maxlength="50" placeholder="<?php echo $entry_store_address; ?>" value="<?php echo $seller_address; ?>" id="input-seller-address" class="form-control" max-length="300" required/>
+                                             <span class="input-group-btn"></span>
                                           </div>
                                        </div>
                                        <div class="form-group required">
@@ -309,7 +325,7 @@
                                        <div class="form-group required">
                                           <div class="buttons">
                                              <label class="col-sm-2 control-label">
-                                             Store/Entity catogeries
+                                             Store/Entity categories
                                              </label>
                                              <div class="col-sm-10 additional_image sel--sec--ordd">
                                                 <a class="cursor sel--sec--ord" data-toggle="modal" data-target="#store_cat">Edit</a>
@@ -438,48 +454,37 @@
                                           Delivery type
                                           </label>
                                           <div class="col-sm-10">						     
-                                             <input type="radio" name="delivery_type" value="1" <?php if($delivery_type == 1){ echo "checked"; } ?>> Cash on home delivery<br>
+                                             <input type="radio" name="delivery_type" value="1" checked /> Cash on home delivery<br>
                                              <input type="radio" name="delivery_type" value="2" <?php if($delivery_type == 2){ echo "checked"; } ?>> Cash on Store delivery<br>
                                              <input type="radio" name="delivery_type" value="3" <?php if($delivery_type == 3){ echo "checked"; } ?>> Both
                                           </div>
                                        </div>
-                                       <?php if($referred_by != '') { ?>
-                                       <div class="form-group">
-                                          <label class="col-sm-2 control-label" for="input-referred-by">
-                                          Referred by
-                                          </label>
-                                          <div class="col-sm-10"  style="padding-top: 7px;">	
-                                             <?php if($referred_by != '---') {
-                                                $refed_val = explode("-", $referred_by); ?>
-                                             <span class="referred-by"><?php echo $refed_val[0]; ?></span>
-					     <input type="hidden" name="referred_by" value="<?php echo $refed_val[0]; ?>" id="input-referred-by" class="form-control" />
-                                             <?php } else { ?>
-                                             <span class="referred-by"><?php echo $referred_by; ?></span>
-                                             <?php } ?>                                             
+                                       <?php if($referred_by !== '') { ?>
+                                          <div class="form-group">
+                                             <label class="col-sm-2 control-label" for="input-referred-by">
+                                                Referred by
+                                             </label>
+                                             <div class="col-sm-10"  style="padding-top: 7px;">	
+                                                <?php if($referred_by != '---') {
+                                                   $refed_val = explode("-", $referred_by); ?>
+                                                      <span class="referred-by"><?php echo $refed_val[0]; ?></span>
+   					                                    <input type="hidden" name="referred_by" value="<?php echo $refed_val[0]; ?>" id="input-referred-by" class="form-control" />
+                                                <?php } else { ?>
+                                                   <span class="referred-by"><?php echo $referred_by; ?></span>
+                                                <?php } ?>                                             
+                                             </div>
                                           </div>
-                                       </div>
-                                       <?php } ?>
-                                       <div class="form-group referrer-fom-build-shownn" style="display: none;">
-										  <label class="col-sm-2 control-label" for="input-referred-by">
-										  Referred by
-										  </label>
-										  <div class="col-sm-10" style="padding-top: 7px;">
-											  <input id="input-referred-by-vall" class="form-control" name="referred_by" placeholder="Referred By" value="">
-												 <!--<span class="referred-by" id="ref-val-display"><?php //echo $referred_by; ?></span>-->
-												 <p>If you are a new referrer,<a class="cursor" data-toggle="modal" data-target="#store_referred"> click here</a></p>
-										  </div>
-										   </div>
-										   <?php if($referred_by == '') { ?>
-										   <div class="form-group referrer-fom-build">
-										  <label class="col-sm-2 control-label" for="input-referred-by">
-										  Referred by
-										  </label>
-										  <div class="col-sm-10" style="padding-top: 7px;">
-											 <input type="text" id="input-referred-by-val" name="referred_by" placeholder="Referred By" value="<?php echo $referred_by; ?>" id="input-referred-by" class="form-control" />
-											 <p>If you are a new referrer,<a class="cursor" data-toggle="modal" data-target="#store_referred"> click here</a></p>
-										  </div>
-										   </div>
-										   <?php } ?>
+                                          <?php } else { ?>
+         										   <div class="form-group referrer-fom-build">
+         										      <label class="col-sm-2 control-label" for="input-referred-by">
+         										        Referred by
+         										      </label>
+         										      <div class="col-sm-10" style="padding-top: 7px;">
+            											    <input type="text" id="input-referred-by-val" name="referred_by" placeholder="Referred By" value="<?php echo $referred_by; ?>" id="input-referred-by" class="form-control" />
+            											    <p>If you are a new referrer,<a class="cursor" data-toggle="modal" data-target="#store_referred"> click here</a></p>
+         										      </div>
+         										   </div>
+										         <?php } ?>
                                        <div class="diff--seller">
                                           <?php if($daysleft > 0) { ?>
                                           <div class="form-group">
@@ -765,9 +770,16 @@
 						<div class="alert alert-danger"><i class="fa fa-times-circle"></i> <?php echo $seller_reject_reason; ?></div>
 						<?php } ?>
                         <form action="" method="post" enctype="multipart/form-data" id="form-profile" class="form-horizontal main--mb--bt">
-							   <!--<button type="button" id="button-profile-save" data-loading-text="<?php echo $text_loading; ?>" class="btn btn-primary pull-right">
-								  <?php echo $button_save; ?>
-								  </button>-->
+							   <div class="form-group required">
+                           <label class="col-sm-2 control-label" for="input-nickname">
+                           <?php echo $entry_activate; ?>
+                           </label>
+                           <div class="col-sm-8">
+                              <input type="hidden" name="store_activate" value="2" />
+                              <input type="checkbox" name="store_activate" <?php if ($store_activated == 1) { echo 'checked'; } ?> id="store_activate" value="1" />
+                              <span class="input-group-btn"></span>
+                           </div>
+                        </div>
 							   <div class="form-group required">
 								  <label class="col-sm-2 control-label" for="input-nickname">
 								  <?php echo $entry_nickname; ?>
@@ -794,11 +806,20 @@
 								  <?php echo $entry_description; ?>
 								  </label>
 								  <div class="col-sm-10">
-									 <textarea style="white-space: normal;" name="seller_description" rows="5" placeholder="<?php echo $entry_description; ?>" id="input-description" class="form-control">
+									 <textarea style="white-space: normal;" name="seller_description" rows="4" placeholder="<?php echo $entry_description; ?>" id="input-description" class="form-control">
 									 <?php echo $seller_description; ?>
 									 </textarea>
 								  </div>
 							   </div>
+                        <div class="form-group required">
+                           <label class="col-sm-2 control-label" for="input-store-address">
+                           <?php echo $entry_store_address; ?>
+                           </label>
+                           <div class="col-sm-8">
+                              <input type="text" name="seller_address" maxlength="50" placeholder="<?php echo $entry_store_address; ?>" value="<?php echo $seller_address; ?>" id="input-seller-address" class="form-control" max-length="300" required/>
+                              <span class="input-group-btn"></span>
+                           </div>
+                        </div>
 							   <div class="form-group required">
 								  <label class="col-sm-2 control-label">Enter map location</label>
 								  <div class="col-sm-10">
@@ -841,7 +862,7 @@
 							   <div class="form-group required">
 								  <div class="buttons">
 									 <label class="col-sm-2 control-label">
-									 Store/Entity catogeries
+									 Store/Entity categories
 									 </label>
 									 <div class="col-sm-10 additional_image sel--sec--ordd">
 										<a class="cursor sel--sec--ord" data-toggle="modal" data-target="#store_cat">Edit</a>
@@ -970,7 +991,7 @@
 								  Delivery type
 								  </label>
 								  <div class="col-sm-10">						     
-									 <input type="radio" name="delivery_type" value="1" <?php if($delivery_type == 1){ echo "checked"; } ?>> Cash on home delivery<br>
+									 <input type="radio" name="delivery_type" value="1" checked ?>> Cash on home delivery<br>
 									 <input type="radio" name="delivery_type" value="2" <?php if($delivery_type == 2){ echo "checked"; } ?>> Cash on Store delivery<br>
 									 <input type="radio" name="delivery_type" value="3" <?php if($delivery_type == 3){ echo "checked"; } ?>> Both
 								  </div>

@@ -70,6 +70,19 @@
 		var $end_km = "<?php echo (!isset($_COOKIE['myCookieend'])) ? '3': $_COOKIE['myCookieend']; ?>";
 
 		$(function () {
+			var qs = (function (a) {
+				if (a == "") return {};
+				var b = {};
+				for (var i = 0; i < a.length; ++i) {
+					var p = a[i].split('=', 2);
+					if (p.length == 1)
+						b[p[0]] = "";
+					else
+						b[p[0]] = decodeURIComponent(p[1].replace(/\+/g, " "));
+				}
+				return b;
+			})(window.location.search.substr(1).split('&'));
+			
 			$("#slider-range").slider({
 				range: true,
 				min: 0,
@@ -80,7 +93,21 @@
 					$.cookie('myCookieend', ui.values[1]);
 					$("#amount").val($.cookie('myCookiestart'));
 					$("#amount1").val($.cookie('myCookieend'));
+				},
+				change: function (event, ui) {
+					var currentPath = qs["route"];
+
+					if ((currentPath == 'common/home') || (typeof (currentPath) == "undefined") || (currentPath == '')) {
+						$('.nav-tabs li.active').removeClass('active');
+						$('.tab-content div.tab-pane').removeClass('active');
+						$('.nav-tabs li#adv_settings').addClass('active');
+						$('.tab-content div#settings').addClass('active');
+						MakeUrl(path, tab_id = 'settings');
+					} else if (currentPath == 'seller/seller') {
+						location.reload();
+					}
 				}
+
 			});
 
 			if (($start_km != '') && ($end_km != '')) { //alert("456");
@@ -116,31 +143,10 @@
 
 
 		$(document).ready(function () {
-			var qs = (function (a) {
-				if (a == "") return {};
-				var b = {};
-				for (var i = 0; i < a.length; ++i) {
-					var p = a[i].split('=', 2);
-					if (p.length == 1)
-						b[p[0]] = "";
-					else
-						b[p[0]] = decodeURIComponent(p[1].replace(/\+/g, " "));
-				}
-				return b;
-			})(window.location.search.substr(1).split('&'));
+			
 
 			$("#kms_set").click(function () { //alert("test");
-				var ttt = qs["route"];
-
-				if ((ttt == 'common/home') || (typeof (ttt) == "undefined") || (ttt == '')) {
-					$('.nav-tabs li.active').removeClass('active');
-					$('.tab-content div.tab-pane').removeClass('active');
-					$('.nav-tabs li#adv_settings').addClass('active');
-					$('.tab-content div#settings').addClass('active');
-					MakeUrl(path, tab_id = 'settings');
-				} else if (ttt == 'seller/seller') {
-					location.reload();
-				}
+				
 
 			});
 		});
@@ -463,7 +469,8 @@
 							<div class="col-sm-9"></div>
 							<div class="col-sm-1" style="display: none;"></div>
 							<div id="slider-range"></div>
-							<div class="km--set">
+							<br/>
+							<div class="km--set" style="display:none">
 								<a class="cursor" id="kms_set"><i class="fa fa-refresh" aria-hidden="true"></i></a>
 							</div>
 							<input type="text" name="amount" id="amount" value="" readonly style="width: 20px; float: left;">

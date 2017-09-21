@@ -132,33 +132,6 @@ class Modelsellerseller extends Model
         }
     }
 
-	/*public function getsellersCategory($category_id)
-    {
-        
-            //$seller_data = $this->cache->get('seller.'.(int) $this->config->get('config_language_id'));
-			if(isset($_COOKIE['myCookie'])){
-				$cookie = $_COOKIE['myCookie'];
-				$cookie_res = explode(',',$cookie);
-				$latitude = $cookie_res[0];
-				$longitude = $cookie_res[1];
-			} else {
-				$latitude = '13.067439';
-				$longitude = '80.237617';
-			}
-
-            //if (!$seller_data) {
-                $sql = "SELECT *, CONCAT(c.firstname, ' ', c.lastname) AS name, cgd.name AS seller_group, ( 3959 * acos( cos( radians(".$latitude.") ) * cos( radians( lat ) ) *  cos( radians( lng ) - radians(".$longitude.") ) + sin( radians(".$latitude.") ) * sin( radians( lat ) ) ) ) AS distance FROM ".DB_PREFIX.'customer c LEFT JOIN '.DB_PREFIX."seller_group_description cgd ON (c.seller_group_id = cgd.seller_group_id)  LEFT JOIN ".DB_PREFIX."category_to_seller cs ON(c.customer_id = cs.seller_id) WHERE cgd.language_id = '".(int) $this->config->get('config_language_id')."' AND cs.category_id = ".$category_id."  HAVING distance < 50 ORDER BY distance ASC";
-
-				//echo "<pre>"; print_r($sql); die;
-				
-				$query = $this->db->query($sql);
-                $seller_data = $query->rows;
-				//echo "<pre>"; print_r($seller_data);
-                $this->cache->set('seller.'.(int) $this->config->get('config_language_id'), $seller_data);
-            //}			
-            return $seller_data;
-    }*/
-
 	public function getsellersList($category_id, $search_val, $by_search_val, $limit='', $adv_count='')
     {
         
@@ -181,53 +154,61 @@ class Modelsellerseller extends Model
 				$end_km = '3'/1.609344;
 			}
 
-            //if (!$seller_data) {
-                $sql = "SELECT *, (SELECT RAND()*(SELECT CASE WHEN feature_store_end > CURDATE() THEN '1' WHEN feature_store_end < CURDATE() THEN '0' ELSE 'not yet' END) as filtered) as filtered, CONCAT(c.firstname, ' ', c.lastname) AS name, ( 3959 * acos( cos( radians(".$latitude.") ) * cos( radians( lat ) ) *  cos( radians( lng ) - radians(".$longitude.") ) + sin( radians(".$latitude.") ) * sin( radians( lat ) ) ) ) AS distance, (SELECT AVG(rating) AS total FROM ".DB_PREFIX."sellerreview r1 WHERE r1.seller_id = c.customer_id AND r1.status = '1' GROUP BY r1.seller_id) AS rating,  (SELECT COUNT(sellerreview_id) FROM ".DB_PREFIX."sellerreview r2 WHERE r2.seller_id = c.customer_id AND r2.status = '1' GROUP BY r2.seller_id) AS review_count, (SELECT COUNT(advertise_id) FROM ".DB_PREFIX."store_offers st_o WHERE st_o.seller_id = c.customer_id AND st_o.position = '6' AND st_o.status = 'live' GROUP BY st_o.seller_id) AS store_ads FROM ".DB_PREFIX."customer c LEFT JOIN ".DB_PREFIX."category_to_seller cs ON(c.customer_id = cs.seller_id)";
+            $sql = "SELECT *, 
+            	(SELECT RAND()*(SELECT CASE WHEN feature_store_end > CURDATE() THEN '1' 
+            		WHEN feature_store_end < CURDATE() THEN '0' ELSE 'not yet' END) as filtered) as filtered, 
+				CONCAT(c.firstname, ' ', c.lastname) AS name, 
+				( 3959 * acos( cos( radians(".$latitude.") ) * cos( radians( lat ) ) *  cos( radians( lng ) - radians(".$longitude.") ) + sin( radians(".$latitude.") ) * sin( radians( lat ) ) ) ) AS distance, 
+				(SELECT AVG(rating) AS total FROM ".DB_PREFIX."sellerreview r1
+				 WHERE r1.seller_id = c.customer_id AND r1.status = '1' GROUP BY r1.seller_id) AS rating,  
+				(SELECT COUNT(sellerreview_id) FROM ".DB_PREFIX."sellerreview r2 
+					WHERE r2.seller_id = c.customer_id AND r2.status = '1' GROUP BY r2.seller_id) AS review_count, 
+				(SELECT COUNT(advertise_id) FROM ".DB_PREFIX."store_offers st_o WHERE st_o.seller_id = c.customer_id 
+					AND st_o.position = '6' AND st_o.status = 'live' GROUP BY st_o.seller_id) AS store_ads 
+				FROM ".DB_PREFIX."customer c 
+				LEFT JOIN ".DB_PREFIX."category_to_seller cs ON(c.customer_id = cs.seller_id)";
 
-				if($category_id == '' && $search_val == '' && $by_search_val != '') {
-					$sql .= " WHERE c.status = 1 AND c.seller_approved = 1";
-				} elseif($category_id != '' && $search_val == '' && $by_search_val != '') {
-					$sql .= " WHERE cs.category_id = ".$category_id." AND cs.status = 1";
-				} elseif($category_id != '' && $search_val != '' && $by_search_val == 1) {
-					$sql .= " LEFT JOIN ".DB_PREFIX."category_description cd ON(cs.category_id = cd.category_id) LEFT JOIN ".DB_PREFIX."product_to_seller ps ON(cs.seller_id = ps.seller_id) LEFT JOIN ".DB_PREFIX."product_description pd ON(ps.product_id = pd.product_id) WHERE cs.category_id = ".$category_id." AND cs.status = 1 AND cd.name LIKE '%$search_val%' OR c.nickname LIKE '%$search_val%' OR pd.name LIKE '%$search_val%'";
-				} elseif($category_id != '' && $search_val != '' && $by_search_val == 2) {
-					$sql .= " LEFT JOIN ".DB_PREFIX."category_description cd ON(cs.category_id = cd.category_id) WHERE cs.category_id = ".$category_id." AND cs.status = 1 AND cd.name LIKE '%$search_val%'";
-				} elseif($category_id != '' && $search_val != '' && $by_search_val == 3) {
-					$sql .= " WHERE cs.category_id = ".$category_id." AND cs.status = 1 AND c.nickname LIKE '%$search_val%'";
-				} elseif($category_id != '' && $search_val != '' && $by_search_val == 4) {
-					$sql .= " LEFT JOIN ".DB_PREFIX."product_to_seller ps ON(cs.seller_id = ps.seller_id) LEFT JOIN ".DB_PREFIX."product_description pd ON(ps.product_id = pd.product_id) WHERE cs.category_id = ".$category_id." AND cs.status = 1 AND pd.name LIKE '%$search_val%'";
+			if($category_id == '' && $search_val == '' && $by_search_val != '') {
+				$sql .= " WHERE c.status = 1 AND c.seller_approved = 1 AND c.active = 1";
+			} elseif($category_id != '' && $search_val == '' && $by_search_val != '') {
+				$sql .= " WHERE cs.category_id = ".$category_id." AND cs.status = 1";
+			} elseif($category_id != '' && $search_val != '' && $by_search_val == 1) {
+				$sql .= " LEFT JOIN ".DB_PREFIX."category_description cd ON(cs.category_id = cd.category_id) LEFT JOIN ".DB_PREFIX."product_to_seller ps ON(cs.seller_id = ps.seller_id) LEFT JOIN ".DB_PREFIX."product_description pd ON(ps.product_id = pd.product_id) WHERE cs.category_id = ".$category_id." AND cs.status = 1 AND cd.name LIKE '%$search_val%' OR c.nickname LIKE '%$search_val%' OR pd.name LIKE '%$search_val%'";
+			} elseif($category_id != '' && $search_val != '' && $by_search_val == 2) {
+				$sql .= " LEFT JOIN ".DB_PREFIX."category_description cd ON(cs.category_id = cd.category_id) WHERE cs.category_id = ".$category_id." AND cs.status = 1 AND cd.name LIKE '%$search_val%'";
+			} elseif($category_id != '' && $search_val != '' && $by_search_val == 3) {
+				$sql .= " WHERE cs.category_id = ".$category_id." AND cs.status = 1 AND c.nickname LIKE '%$search_val%'";
+			} elseif($category_id != '' && $search_val != '' && $by_search_val == 4) {
+				$sql .= " LEFT JOIN ".DB_PREFIX."product_to_seller ps ON(cs.seller_id = ps.seller_id) LEFT JOIN ".DB_PREFIX."product_description pd ON(ps.product_id = pd.product_id) WHERE cs.category_id = ".$category_id." AND cs.status = 1 AND pd.name LIKE '%$search_val%'";
 
-				} elseif($category_id == '' && $search_val != '' && $by_search_val == 1) {
-					$sql .= " LEFT JOIN ".DB_PREFIX."category_description cd ON(cs.category_id = cd.category_id) LEFT JOIN ".DB_PREFIX."product_to_seller ps ON(cs.seller_id = ps.seller_id) LEFT JOIN ".DB_PREFIX."product_description pd ON(ps.product_id = pd.product_id) WHERE cd.name LIKE '%$search_val%' OR c.nickname LIKE '%$search_val%' OR pd.name LIKE '%$search_val%'";
-				} elseif($category_id == '' && $search_val != '' && $by_search_val == 2) {
-					$sql .= " LEFT JOIN ".DB_PREFIX."category_description cd ON(cs.category_id = cd.category_id) WHERE cd.name LIKE '%$search_val%'";
-				} elseif($category_id == '' && $search_val != '' && $by_search_val == 3) {
-					$sql .= " WHERE c.nickname LIKE '%$search_val%'";
-				} elseif($category_id == '' && $search_val != '' && $by_search_val == 4) {
-					$sql .= " LEFT JOIN ".DB_PREFIX."product_to_seller ps ON(cs.seller_id = ps.seller_id) LEFT JOIN ".DB_PREFIX."product_description pd ON(ps.product_id = pd.product_id) WHERE pd.name LIKE '%$search_val%'";
-				}
+			} elseif($category_id == '' && $search_val != '' && $by_search_val == 1) {
+				$sql .= " LEFT JOIN ".DB_PREFIX."category_description cd ON(cs.category_id = cd.category_id) LEFT JOIN ".DB_PREFIX."product_to_seller ps ON(cs.seller_id = ps.seller_id) LEFT JOIN ".DB_PREFIX."product_description pd ON(ps.product_id = pd.product_id) WHERE cd.name LIKE '%$search_val%' OR c.nickname LIKE '%$search_val%' OR pd.name LIKE '%$search_val%'";
+			} elseif($category_id == '' && $search_val != '' && $by_search_val == 2) {
+				$sql .= " LEFT JOIN ".DB_PREFIX."category_description cd ON(cs.category_id = cd.category_id) WHERE cd.name LIKE '%$search_val%'";
+			} elseif($category_id == '' && $search_val != '' && $by_search_val == 3) {
+				$sql .= " WHERE c.nickname LIKE '%$search_val%'";
+			} elseif($category_id == '' && $search_val != '' && $by_search_val == 4) {
+				$sql .= " LEFT JOIN ".DB_PREFIX."product_to_seller ps ON(cs.seller_id = ps.seller_id) LEFT JOIN ".DB_PREFIX."product_description pd ON(ps.product_id = pd.product_id) WHERE pd.name LIKE '%$search_val%'";
+			}
 
-				if($category_id == '' && $search_val == '' && $by_search_val != '') {
-					$sql .= " GROUP BY c.customer_id HAVING distance BETWEEN ".$start_km." AND ".$end_km;
-				} else {
-					$sql .= " AND c.status = 1 AND c.seller_approved = 1 GROUP BY c.customer_id HAVING distance BETWEEN ".$start_km." AND ".$end_km;
-				}
+			if($category_id == '' && $search_val == '' && $by_search_val != '') {
+				$sql .= " GROUP BY c.customer_id HAVING distance BETWEEN ".$start_km." AND ".$end_km;
+			} else {
+				$sql .= " AND c.status = 1 AND c.seller_approved = 1 AND c.active = 1 GROUP BY c.customer_id HAVING distance BETWEEN ".$start_km." AND ".$end_km;
+			}
 
-				$sql .= " ORDER BY filtered DESC, distance ASC";
+			$sql .= " ORDER BY filtered DESC, distance ASC";
 
-				if($adv_count !='') {
-					$sql .= " limit ".$adv_count.", ".$limit;
-				} else {
-					$sql .= " limit 0,".$limit;
-				}
+			if($adv_count !='') {
+				$sql .= " limit ".$adv_count.", ".$limit;
+			} else {
+				$sql .= " limit 0,".$limit;
+			}
 
-				//echo "<pre>"; print_r($sql); die;
-				
-				$query = $this->db->query($sql);
-                $seller_data = $query->rows;
-				//echo "<pre>"; print_r($seller_data);
-                //$this->cache->set('seller.'.(int) $this->config->get('config_language_id'), $seller_data);
-            //}			
+			
+			$query = $this->db->query($sql);
+            $seller_data = $query->rows;
+
             return $seller_data;
     }
 

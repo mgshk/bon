@@ -87,6 +87,7 @@ class Controllersellerprofilesellerprofile extends Controller
         $data['entry_default'] = $this->language->get('entry_default');
         $data['entry_comment'] = $this->language->get('entry_comment');
         $data['entry_description'] = $this->language->get('entry_description');
+        $data['entry_store_address'] = $this->language->get('entry_store_address');
         $data['entry_amount'] = $this->language->get('entry_amount');
         $data['entry_points'] = $this->language->get('entry_points');
         $data['entry_seller_group_limit'] = $this->language->get('entry_seller_group_limit');
@@ -106,6 +107,7 @@ class Controllersellerprofilesellerprofile extends Controller
         $data['entry_facebook'] = $this->language->get('entry_facebook');
         $data['entry_website'] = $this->language->get('entry_website');
         $data['entry_twitter'] = $this->language->get('entry_twitter');
+        $data['entry_activate'] = $this->language->get('entry_activate');
         $data['entry_nickname'] = $this->language->get('entry_nickname');
 		$data['entry_owner_name'] = $this->language->get('entry_owner_name');
 		$data['entry_pan'] = $this->language->get('entry_pan');
@@ -271,6 +273,9 @@ class Controllersellerprofilesellerprofile extends Controller
         } else {
             $data['seller_description'] = '';
         }
+
+        $data['store_activated'] = $seller_info['active'];
+        $data['seller_address'] = $seller_info['address'];
 
         if (isset($this->request->post['facebook'])) {
             $data['facebook'] = $this->request->post['facebook'];
@@ -1358,17 +1363,21 @@ class Controllersellerprofilesellerprofile extends Controller
 			}
 		}
 
-		if($this->request->post['nickname']=='') {
+		if($this->request->post['nickname'] =='') {
 			$json['error'] = $this->language->get('error_nickname_req');
 		}
 
-		if($this->request->post['lat']=='') {
+		if($this->request->post['lat'] =='') {
 			$json['error'] = $this->language->get('error_lat_req');
 		}
 
-		if($this->request->post['lng']=='') {
+		if($this->request->post['lng'] =='') {
 			$json['error'] = $this->language->get('error_lng_req');
 		}
+
+        if($this->request->post['seller_address'] =='') {
+            $json['error'] = $this->language->get('error_seller_address_req');
+        }
 
 		if($this->request->post['store_email'] == '') {
 			$json['error'] = "Please enter Store/Entity email";

@@ -373,7 +373,7 @@
         },
         locationName: "",
         radius: 500,
-        zoom: 8,
+        zoom: 15,
         mapTypeId: google.maps.MapTypeId.ROADMAP,
         styles: [],
         mapOptions: {},
