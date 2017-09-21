@@ -572,10 +572,10 @@
 						<p class="left">Pioneer in buy (o) near!</p>
 						<p class="right">A new age is BoN!</p>
 					</div>
-					<button class="tet--nt" id="auto_detect" onclick="getLocation()">Auto detect my location</button>
-					<p>OR</p>
+					<button class="tet--nt btn" id="auto_detect" onclick="getLocation()">Auto detect my location</button>
+					<p class="bottom_10">OR</p>
 					<!-- <button class="tet--nt" id="map_detect" data-toggle="modal" data-target="#map_mod">Choose on map</button> -->
-					<button type="button" onClick="showMyModalSetTitle()">Choose on map</button>
+					<button type="button" onClick="showMyModalSetTitle()" class="btn">Choose on map</button>
 				</div>
 				<!--<div class="modal-footer">
 								<button class="" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -588,7 +588,7 @@
 			<div class="modal-content loc-pop">
 				<div class="modal-body loc-share-top alt--res-pop">
 					<p>Please login as a buyer and retry.</p><br/>
-					<p class="alt--res-bt cursor" data-dismiss="modal">Ok</p>
+					<button class="alt--res-bt btn btn-primary b1" data-dismiss="modal">Ok</button>
 				</div>
 			</div>
 		</div>
@@ -598,7 +598,7 @@
 			<div class="modal-content loc-pop">
 				<div class="modal-body loc-share-top alt--res-pop">
 					<p>Please login as a seller and retry.</p><br/>
-					<p class="alt--res-bt cursor" data-dismiss="modal">Ok</p>
+					<button class="alt--res-bt btn btn-primary b1" data-dismiss="modal">Ok</button>
 				</div>
 			</div>
 		</div>
@@ -1405,7 +1405,7 @@
 
 
 	<div class="modal fade" id="map_mod" role="dialog">
-		<div class="modal-dialog" role="document">
+		<div class="modal-dialog modal-lg" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
 
@@ -1524,7 +1524,7 @@
 							<textarea type="text" name="feedback" id="fd_feedback" value="" placeholder="Your concern/issue/feedback is valuable to us. Will be addressed shortly."></textarea>
 						</div>
 						<div class="form-group">
-							<button class="favv-str-btn" type="button" id="button_site_feedback">Submit</button>
+							<button class="favv-str-btn btn" type="button" id="button_site_feedback">Submit</button>
 						</div>
 					</form>
 				</div>

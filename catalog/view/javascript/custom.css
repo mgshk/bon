@@ -38,9 +38,9 @@
 	}
 	.alt--res-bt {
 		background: #0094fb none repeat scroll 0 0;
-		color: #fff;
+		/*color: #fff;
 		float: right;
-		padding: 0 11px;
+		padding: 0 11px;*/
 	}
 	.alt--res-pop {margin: 10px 30px !important;}
 	.hovereffect .fa-stack {width: 1em;}
@@ -161,14 +161,16 @@
 	._req-ic .fa {color: #c0c0c0; font-size: 25px; margin-left: 15px;}
 	/*********** QR- Back  **************/
 	/*********** Pay wallet Pop ***********/
-	._wallet-share-top {font-size: 21px; line-height: 1.55; margin: 20px 70px;}
+	._wallet-share-top {font-size: 21px; line-height: 1.55; margin: 0px 20px;}
 	._wall_bal {clear: left; margin-bottom: 10px; text-align: left;}
 	._wall_left, ._wall_left_in{float: left;}
 	._wall_right, ._wall_right_in{float: right;}
-	._wall_grp_rad{text-align: center;}
-	._wallet_tp_bt {margin-bottom: 30px;}
-	._wall_grp_rad {height: 180px; overflow-y: scroll; padding: 10px 85px; text-align: left;}
-	._wall_grp_rad .radio > label {font-size: 21px;}
+	._wall_grp_rad{text-align: center;margin-bottom: 10px;}
+	._wallet_tp_bt {width: 100%;display: table;}
+	._wall_bal_in{margin-bottom: 10px;}
+	._wall_grp_rad {height: 180px; overflow-y: scroll; padding: 10px 10px; text-align: left;}
+	._wall_grp_rad .radio > label {font-size: 14px;}
+	._wall_grp_rad .radio{margin-top: 0 !important;margin-bottom: 0 !important;}
 	/*.radio input {height: 25px; width: 0; margin-left: -30px !important;}*/
 	@media only screen and (max-width: 800px) {
 		._wall_right{float: right;}
@@ -465,11 +467,11 @@
 		margin: 30px;
 	}
 	.loc-share-top button{
-		padding: 10px;
+		/*padding: 10px;
 		background: red;
 		color: #fff;
 		font-size: 16px;
-		border: 1px solid red;
+		border: 1px solid red;*/
 	}
 	.loc-pop {
 		/*border-radius: 0px;*/
@@ -498,7 +500,7 @@
 			outline: none !important;
 	}
 	.top-header-new {
-		background: #fff;
+		/*background: #fff;*/
 		padding: 0px;
 		margin: 0 auto;
 	}
@@ -648,7 +650,7 @@
 	.lenth-dist {float: right;}
 	.widget_post_mailtitle p i{margin-right: 5px;}
 	.nw-rule-map-mak i{margin-right: 20px !important;}
-	.widget_post_mailtitle p {font-size: 17px; margin: 5px; color: #747474;}
+	.widget_post_mailtitle p {font-size: 17px; margin: 5px 5px 10px 5px; color: #747474;}
 	.widget_post_mailtitle p.right-str-cnt span{float: right; font-size: 30px;}
 	.widget_post_mailtitle p a{color: #747474; text-decoration: none;}
 	.widget_post_mailtitle p a:hover{color: red; text-decoration: none;}
@@ -656,6 +658,8 @@
 		padding: 5px;
 		box-shadow: 0 1px 6px rgba(0, 0, 0, 0.118), 0 1px 4px rgba(0, 0, 0, 0.118);
 		margin-top: 5px;
+		background: #f6f6f6;
+		margin-bottom: 10px;
 	}
 	.main-txt-grp:hover {
 		box-shadow: 0 1px 6px rgba(0, 0, 0, 0.225), 0 1px 4px rgba(0, 0, 0, 0.225);
@@ -667,6 +671,7 @@
 	.blog-widget {
 		float: left;
 		width: 100%;
+		padding: 5px;
 	}
 	.widget_post_mailtitle a {
 		font-size: 16px;
@@ -683,8 +688,9 @@
 	}
 	.widget-post h3 {
 		margin-top: 0px;
+		margin-bottom: 5px;
 	}
-	.widget-post h3 a{color:#000; font-size: 20px;}
+	.widget-post h3 a{color:#0094fb; font-size: 20px;}
 	/********* Center Image Hover Effect ***************/
 	.hovereffect h2.store_name {text-align: left;}
 	.filtered_ads {text-align: center; background: yellow; font-size: 13px; color: #000; padding: 1px 5px; position: absolute}
@@ -1063,7 +1069,7 @@ border: 0;}
 /******** First pop up *************/
 .top-atou-lc {margin: 0 auto;}
 .top-lc--mid > p {font-size: 20px; line-height: 1.5; color: #000;}
-.loc-share-top button {background: #00acec none repeat scroll 0 0; border: 1px solid #00acec; width: 100%}
+.loc-share-top button {/*background: #00acec none repeat scroll 0 0; border: 1px solid #00acec; width: 100%*/}
 .tet--nt {margin-bottom: 10px;}
 .tet--nt{margin-top: 10px;}
 .main--ts-rt{width: 400px;}
@@ -1094,8 +1100,8 @@ border: 0;}
 	line-height: 18px;
 	color: #FFF;
 	border:medium none;
-	background:url(../../../image/header_cart.jpg) no-repeat scroll 0px 0px transparent;
-	height:60px;
+	background:url(../../../image/header_cart.png) no-repeat scroll 0px 0px transparent;
+	height:40px;
 	width:60px;
 	border-radius:0;
 	-moz-border-radius:0;
@@ -1153,7 +1159,7 @@ border: 0;}
     border: 1px solid #ccc;
 }
 .bon--cart-prd tr {border-bottom: 1px solid #ccc;}
-#cart .dropdown-menu a{ color:#fff; text-decoration: underline;}
+#cart .dropdown-menu a{ color:#fff; margin-left: 10px;}
 #cart .button-container {  
     width: auto;
 	float:right;
@@ -1237,8 +1243,8 @@ border: 0;}
 .empty--fav {padding: 10px; text-align: center;}
 #store_portals_fm .col-sm-12{margin-bottom: 10px;}
 ._wallet_tp_btt span{margin-bottom: 10px;}
-._wallet_tp_btt span a{text-decoration: underline; font-size: 14px;}
-._wallet_tp_bt span a{text-decoration: underline; font-size: 14px;}
+._wallet_tp_btt span a{font-size: 12px;}
+._wallet_tp_bt span a{font-size: 10px;}
 /******************* Responsive css ****************/
 
 @media (min-width:992px) and (max-width:1199px) {

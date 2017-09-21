@@ -719,9 +719,9 @@
 						<?php if(!empty($store_favourites)) { ?>
 						<span class="_wall_left"><a style="cursor: default;color:#93d1ea;" title="You already added this to your favourites." class="store_favourites pay--expp cursor">Add this to your favourites</a></span>
 						<?php } else {?>
-						<span class="_wall_left"><a class="cursor pay--expp" data-toggle="modal" data-target="#store_favourites">Add this to your favourites</a></span>
+						<span class="_wall_left"><a class="cursor pay--expp btn btn-primary" data-toggle="modal" data-target="#store_favourites">Add this to your favourites</a></span>
 						<?php } ?>
-						<span class="_wall_right"><a class="cursor pay--expp" data-toggle="modal" data-target="#expense_fr_mb">Your expense report</a></span>
+						<span class="_wall_right"><a class="cursor pay--expp btn btn-primary" data-toggle="modal" data-target="#expense_fr_mb">Your expense report</a></span>
 					</div>
 					<div class="_wall_bal">
 						My Wallet balance = 0 ₹
@@ -756,8 +756,8 @@
 						</div>
 					</div>
 					<div class="_wallet_tp_bt">
-						<span class="_wall_left_in next_btn"><a style="color:#93d1ea;cursor: default;">Next</a></span>
-						<span class="_wall_right_in"><a style="cursor: pointer;" data-dismiss="modal">Cancel</a></span>
+						<span class="_wall_left_in next_btn"><a class="btn btn-primary">Next</a></span>
+						<span class="_wall_right_in"><a class="btn btn-primary" data-dismiss="modal">Cancel</a></span>
 					</div>
 				</form>
 			</div>
@@ -943,7 +943,7 @@
 					<?php echo $captcha; ?>
 					<div class="buttons clearfix">
 						<div class="pull-right">
-							<button type="button" id="button-sellerreview" data-loading-text="<?php echo $text_loading; ?>" class="favv-str-btn">Submit<?php //echo $button_continue; ?></button>
+							<button type="button" id="button-sellerreview" data-loading-text="<?php echo $text_loading; ?>" class="favv-str-btn btn btn-primary">Submit<?php //echo $button_continue; ?></button>
 						</div>
 					</div>
 					<?php } else { ?>
@@ -972,7 +972,7 @@
 		<div class="modal-content loc-pop">
 			<div class="modal-body loc-share-top alt--res-pop">
 				<p>This store is already in your favourites list.</p><br/>
-				<p class="alt--res-bt cursor" data-dismiss="modal">Ok</p>
+				<button class="alt--res-bt btn btn-primary b1" data-dismiss="modal">Ok</button>
 			</div>
 		</div>
 	</div>

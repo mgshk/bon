@@ -76,7 +76,7 @@
           </tr>
           <?php } } ?>
         </table>
-        <div class="text-right button-container"><a href="<?php echo $cart; ?>" style="margin-right:15px; color: #000;" class="addtocart"><strong><?php echo $text_cart; ?></strong></a><a style="margin-right:15px; color: #000;" href="<?php echo $checkout; ?>" class="checkout"><strong><?php echo $text_checkout; ?></strong></a></div>
+        <div class="text-right button-container"><a href="<?php echo $cart; ?>" class="addtocart btn btn-primary"><strong><?php echo $text_cart; ?></strong></a><a href="<?php echo $checkout; ?>" class="checkout btn btn-primary"><strong><?php echo $text_checkout; ?></strong></a></div>
       </div>
     </li>
     <?php } else { ?>
