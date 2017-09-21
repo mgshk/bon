@@ -711,6 +711,8 @@ margin-bottom: 5px;
 #adv_settings{border-top-right-radius: 5px;}
 .b1{display: table;margin: auto;}
 .loc-share-top p{font-size: 14px;}
+.str--gen--inf table tr td{border: 1px solid #ddd;}
+.str--gen--inf table tr th{border: 1px solid #ddd;}
 /* my css ends */
 
 @media (min-width: 1200px) {

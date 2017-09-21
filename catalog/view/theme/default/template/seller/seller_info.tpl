@@ -695,8 +695,8 @@
 							<textarea style="height:85px;" type="text" name="str_feedback" id="str_feedback" value="" placeholder=""></textarea>
 						</div>
 						<div class="form-group">
-							<button type="button" class="favv-str-btn seet--feeds" id="button_store_feedback">Submit</button>
-							<button type="button" class="favv-str-btn seet--feeds" data-dismiss="modal">Cancel</button>
+							<button type="button" class="favv-str-btn seet--feeds btn" id="button_store_feedback">Submit</button>
+							<button type="button" class="favv-str-btn seet--feeds btn" data-dismiss="modal">Cancel</button>
 						</div>
 					</div>
 				</form>
@@ -779,7 +779,7 @@
 						<td>
 							<h4>Name</h4>
 						</td>
-						<td> : <?php echo substr($nickname, 0, 25); ?></td>
+						<td><?php echo substr($nickname, 0, 25); ?></td>
 						<?php } ?>
 					</tr>
 					<tr>
@@ -787,7 +787,7 @@
 						<td>
 							<p>Owner name</p>
 						</td>
-						<td> : <?php echo $owner_name; ?></td>
+						<td><?php echo $owner_name; ?></td>
 						<?php } ?>
 					</tr>
 					<tr>
@@ -795,7 +795,7 @@
 						<td>
 							<p>Address</p>
 						</td>
-						<td> : <?php echo $seller_address; ?></td>
+						<td><?php echo $seller_address; ?></td>
 						<?php } ?>
 					</tr>
 					<tr>
@@ -803,7 +803,7 @@
 						<td>
 							<p>Mobile no.</p>
 						</td>
-						<td> : <?php echo $store_mobile_num; ?></td>
+						<td><?php echo $store_mobile_num; ?></td>
 						<?php } ?>
 					</tr>
 					<tr>
@@ -811,7 +811,7 @@
 						<td>
 							<p>Land-line no.</p>
 						</td>
-						<td> : <?php echo $store_ll_num; ?></td>
+						<td><?php echo $store_ll_num; ?></td>
 						<?php } ?>
 					</tr>
 					<tr>
@@ -819,7 +819,7 @@
 						<td>
 							<p>E-Mail ID</p>
 						</td>
-						<td> : <a href="mailto:<?php echo $store_email; ?>"><?php echo $store_email; ?></a></td>
+						<td><a href="mailto:<?php echo $store_email; ?>"><?php echo $store_email; ?></a></td>
 						<?php } ?>
 					</tr>
 					<tr>
@@ -827,7 +827,7 @@
 						<td>
 							<p>Description</p>
 						</td>
-						<td style="word-break: break-all;"> : <?php echo $description; ?></td>
+						<td style="word-break: break-all;"><?php echo $description; ?></td>
 						<?php } ?>
 					</tr>
 					<tr>
@@ -859,8 +859,8 @@
 					<input type="checkbox" name="email" value="1" <?php if(isset($store_favourites['email']) != '0'){echo "checked";} ?>> Allow to send AD update notification to you?<br/>
 					<span style="font-style: italic;">(Applicable only for paid advertisment)</span><!--<input type="checkbox" name="notification" value="1" <?php if(isset($store_favourites['notification']) != '0'){echo "checked";} ?>> Allow to send Mobile notification to you?--><br/>
 					<br/>
-					<button type="button" class="favv-str-btn" id="button-store_favourites" data-loading-text="<?php echo $text_loading; ?>">Yes</button>
-					<button type="button" class="favv-str-btn" data-dismiss="modal">Cancel</button>
+					<button type="button" class="favv-str-btn btn" id="button-store_favourites" data-loading-text="<?php echo $text_loading; ?>">Yes</button>
+					<button type="button" class="favv-str-btn btn" data-dismiss="modal">Cancel</button>
 				</form>
 			</div>
 		</div>
