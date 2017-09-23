@@ -41,7 +41,7 @@
 	<link href="catalog/view/javascript/chosen/chosen.css" rel="stylesheet" media="screen" />
 	<script src="catalog/view/javascript/chosen/chosen.jquery.js" type="text/javascript"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
-	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB7yf4Wg0LtSvk3qlVRYP_OUIz0SAuf9XM&libraries=places"></script>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCXvDvmhFTLZ5iJyGSQm3-3GEJg0G3iztk&libraries=places"></script>
 	<script src="catalog/view/javascript/locationpicker.jquery.js"></script>
 
 	<link href="catalog/view/theme/default/stylesheet/stylesheet.css" rel="stylesheet">
@@ -550,7 +550,7 @@
 		function getAddress(latLong, element, pageReload) {
 			$.cookie('myCookie', latLong);
 			if (!pageReload) {
-				var url = "https://maps.googleapis.com/maps/api/geocode/json?latlng=" + latLong + "&sensor=false";
+				var url = "https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyCXvDvmhFTLZ5iJyGSQm3-3GEJg0G3iztk&libraries=places&latlng=" + latLong + "&sensor=false";
 				$.getJSON(url, function (data) {
 					if (data.results) {
 						var address = data.results[0].formatted_address;
