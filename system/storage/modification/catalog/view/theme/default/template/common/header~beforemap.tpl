@@ -211,7 +211,7 @@
 											<?php if ($logged && $isseller) { ?>
 											<li class="dropdown">
 												<a href="<?php echo $seller_profile; ?>" title="<?php echo $text_seller_account; ?>" class="dropdown-toggle" data-toggle="dropdown"><?php //echo $text_seller_account; ?>Hi, <?php if (strlen($seller_info['firstname']) > 9){ echo substr($seller_info['firstname'], 0, 7) . '...';} else { echo $seller_info['firstname'];} ?> <span class="caret"></span> &nbsp;&nbsp;&nbsp;| </a>
-												<ul class="dropdown-menu dropdown-menu-right" style="background-color: wheat;">
+												<ul class="dropdown-menu dropdown-menu-right">
 													<li><a href="<?php echo $seller_profile; ?>&tab_section=profile#content">My Profile</a></li>
 													<?php if($login_type == 'seller') { ?>
 													<li><a href="<?php echo $seller_profile; ?>&tab_section=store_detail#content">Store/Entity detail</a></li>
@@ -309,7 +309,7 @@
 										<?php if ($logged && $isseller) { ?>
 										<li id="res_tete">
 											<a class="expand-one" title="<?php echo $text_seller_account; ?>"><?php //echo $text_seller_account; ?>Hi, <?php if (strlen($seller_info['firstname']) > 9){ echo substr($seller_info['firstname'], 0, 7) . '...';} else { echo $seller_info['firstname'];} ?> <span class="caret"></span></a>
-											<ul class="content-one" style="background-color: wheat;">
+											<ul class="content-one">
 												<li><a href="<?php echo $seller_profile; ?>&tab_section=profile#content">My Profile</a></li>
 												<?php if($login_type == 'seller') { ?>
 												<li><a href="<?php echo $seller_profile; ?>&tab_section=store_detail#content">Store/Entity detail</a></li>
@@ -378,8 +378,8 @@
 										<div class="km--set">
 											<a class="cursor" id="kms_set"><i class="fa fa-refresh" aria-hidden="true"></i></a>
 										</div>
-										<input type="text" name="amount" id="amount" value="" readonly style="width: 20px; float: left;">
-										<input type="text" name="amount1" id="amount1" value="" readonly style="width: 20px; float: right;">
+										<input type="text" name="amount" id="amount" value="" readonly>
+										<input type="text" name="amount1" id="amount1" value="" readonly>
 									</form>
 								</div>
 								<?php //} elseif((isset($_GET['route']) && ($_GET['route'] == 'seller/seller/info'))) { ?>

@@ -1,4 +1,4 @@
-<div id="favouries_str" class="btn-group btn-block str--fv favouries_str">
+<div id="favouries_str" class="btn-group btn-block str--fv favouries_str top5">
 <?php if($cus_logged) { ?>
   <a class="fis-dess cursor free-list-top--bon" data-toggle="dropdown" class="btn btn-inverse btn-block btn-lg dropdown-toggle" aria-expanded="true"><span id="fav-total">Favourites (<?php echo count($store_favourites_front); ?>)</span></span></a>
 <?php } else { ?>

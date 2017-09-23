@@ -318,8 +318,8 @@
                         <div class="col-sm-9"></div>
                         <div class="col-sm-1"  style="display: none;"></div>
                         <div id="slider-range"></div>
-                        <input type="text" name="amount" id="amount" value="" readonly style="width: 20px; float: left;">
-			<input type="text" name="amount1" id="amount1" value="" readonly style="width: 20px; float: right;">
+                        <input type="text" name="amount" id="amount" value="" readonly>
+			<input type="text" name="amount1" id="amount1" value="" readonly>
 			
                      </form><button id="kms_set">set</button>
                      <?php //echo $cart; ?>

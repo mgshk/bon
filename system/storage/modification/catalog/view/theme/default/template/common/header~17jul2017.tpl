@@ -348,8 +348,8 @@
 										<div class="km--set">
 											<a class="cursor" id="kms_set"><i class="fa fa-refresh" aria-hidden="true"></i></a>
 										</div>
-										<input type="text" name="amount" id="amount" value="" readonly style="width: 20px; float: left;">
-										<input type="text" name="amount1" id="amount1" value="" readonly style="width: 20px; float: right;">
+										<input type="text" name="amount" id="amount" value="" readonly>
+										<input type="text" name="amount1" id="amount1" value="" readonly>
 									</form>
 								</div>
 								<?php //} elseif((isset($_GET['route']) && ($_GET['route'] == 'seller/seller/info'))) { ?>

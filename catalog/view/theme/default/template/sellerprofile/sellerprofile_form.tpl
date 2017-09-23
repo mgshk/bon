@@ -14,7 +14,7 @@
       <?php } ?>
       <div id="content" class="<?php echo $class; ?> seller--prof-pg">
          <?php echo $content_top; ?>
-         <div class="container-fluid main--side--red">
+         <div class="container-fluid main--side--red profileBox">
             <?php if ($error_warning) { ?>
             <div class="alert alert-danger"><i class="fa fa-exclamation-circle"></i>
                <?php echo $error_warning; ?>
@@ -127,12 +127,12 @@
                      <div class="tab-pane <?php if($_GET['tab_section'] == 'profile'){ echo 'active'; }?>" id="tab-profile_details">
                         <div class="col-md-12">
                            <blockquote>
-                              <a href="<?php echo $profile_edit; ?>" data-toggle="tooltip" title="" class="prf--sell">Edit</a>
+                              <a href="<?php echo $profile_edit; ?>" data-toggle="tooltip" title="" class="prf--sell btn btn-primary edt">Edit</a>
                               <div class="panel-heading">
                                  <h3 class="panel-title"><i class="fa fa-user"></i> <?php echo $text_your_details; ?></h3>
                               </div>
                               <div class="table-responsive">
-                                 <table class="table table-condensed">
+                                 <table class="table table-condensed profileTable">
                                     <tbody>
                                        <tr>
                                           <td>
@@ -179,7 +179,7 @@
                                     </tbody>
                                  </table>
                               </div>
-                              <a href="<?php echo $password_edit; ?>" data-toggle="tooltip" title="" class="prf--sell">Change password</a><br><br>			       
+                              <a href="<?php echo $password_edit; ?>" data-toggle="tooltip" title="" class="prf--sell btn btn-primary edt">Change password</a><br><br>			       
                               <div class="panel-heading">
                                  <h3 class="panel-title"><i class="fa fa-user"></i> <?php echo $text_address_book; ?></h3>
                               </div>
@@ -189,7 +189,7 @@
                                     <?php foreach ($addresses as $result) { ?>
                                     <tr>
                                        <td class="text-left"><?php echo $result['address']; ?></td>
-                                       <td class="text-right"><a href="<?php echo $result['update']; ?>" class="prf--sell"><?php echo $button_edit; ?></a></td>
+                                       <td class="text-right"><a href="<?php echo $result['update']; ?>" class="prf--sell btn btn-primary edt"><?php echo $button_edit; ?></a></td>
                                     </tr>
                                     <?php } ?>
                                  </table>
@@ -211,6 +211,7 @@
                                  <li>- Store/Entity will be enforced for re-approval if you change it's name and/or add/modify it's banner.</li>
                                  <ul>
                               </div>
+                              <br>
                               <div id="collapse1" class="panel-collapse collapse in">
                                  <div class="panel-body">
                                     <?php if($seller_approved != 1) { ?>
@@ -268,7 +269,7 @@
                                           <label class="col-sm-2 control-label">
                                           <?php echo $entry_description; ?>
                                           </label>
-                                          <div class="col-sm-10">
+                                          <div class="col-sm-8">
                                              <textarea style="white-space: normal;" name="seller_description" rows="4" placeholder="<?php echo $entry_description; ?>" id="input-description" class="form-control">
                                              <?php echo $seller_description; ?>
                                              </textarea>
@@ -318,7 +319,7 @@
                                              Additional Store/Entity images
                                              </label>
                                              <div class="col-sm-10 additional_image sel--sec--ordd">
-                                                <a class="cursor sel--sec--ord" data-toggle="modal" data-target="#store_images">Edit</a>
+                                                <a class="cursor sel--sec--ord btn btn-primary edt" data-toggle="modal" data-target="#store_images">Edit</a>
                                              </div>
                                           </div>
                                        </div>
@@ -328,7 +329,7 @@
                                              Store/Entity categories
                                              </label>
                                              <div class="col-sm-10 additional_image sel--sec--ordd">
-                                                <a class="cursor sel--sec--ord" data-toggle="modal" data-target="#store_cat">Edit</a>
+                                                <a class="cursor sel--sec--ord btn btn-primary edt" data-toggle="modal" data-target="#store_cat">Edit</a>
                                              </div>
                                           </div>
                                        </div>
@@ -338,7 +339,7 @@
                                              Hours of operation
                                              </label>
                                              <div class="col-sm-10 additional_image sel--sec--ordd">
-                                                <a class="cursor sel--sec--ord" data-toggle="modal" data-target="#store_timings">Edit</a>
+                                                <a class="cursor sel--sec--ord btn btn-primary edt" data-toggle="modal" data-target="#store_timings">Edit</a>
                                              </div>
                                           </div>
                                        </div>
@@ -454,7 +455,7 @@
                                           Delivery type
                                           </label>
                                           <div class="col-sm-10">						     
-                                             <input type="radio" name="delivery_type" value="1" checked /> Cash on home delivery<br>
+                                             <input type="radio" name="delivery_type" value="1" checked> Cash on home delivery<br>
                                              <input type="radio" name="delivery_type" value="2" <?php if($delivery_type == 2){ echo "checked"; } ?>> Cash on Store delivery<br>
                                              <input type="radio" name="delivery_type" value="3" <?php if($delivery_type == 3){ echo "checked"; } ?>> Both
                                           </div>
@@ -530,7 +531,7 @@
                                        </div>
 				       <div class="form-group">
 					   <label class="col-sm-12 control-label" for="agree_tt" style="font-weight: bold; text-align: left;"><input type="hidden" name="agree" value="not_agree" id="agree">
-					   <input type="checkbox" name="agree_tt" class="agree_tt" value="agree" id="agree_tt"> I hereby declare that the detail furnished above are true and correct to the best of my knowledge. In case any of the information is found to be false or untrue or misleading or misrepresenting, I am aware that my detail will impact approval and verification process.</label>
+					   <input type="checkbox" name="agree_tt" class="agree_tt" value="agree" id="agree_tt"> &nbsp;I hereby declare that the detail furnished above are true and correct to the best of my knowledge. In case any of the information is found to be false or untrue or misleading or misrepresenting, I am aware that my detail will impact approval and verification process.</label>
 					</div>
                                        <!--<div class="form-group">
                                           <label class="col-sm-3 control-label">Address</label>
@@ -668,12 +669,12 @@
 					 <div class="tab-pane <?php if($_GET['tab_section'] == 'profile'){ echo 'active'; }?>" id="tab-profile_details">
                         <div class="col-md-12">
                            <blockquote>
-                              <a href="<?php echo $profile_edit; ?>" data-toggle="tooltip" title="" class="prf--sell">Edit</a>
+                              <a href="<?php echo $profile_edit; ?>" data-toggle="tooltip" title="" class="prf--sell btn btn-primary edt">Edit</a>
                               <div class="panel-heading">
                                  <h3 class="panel-title"><i class="fa fa-user"></i> <?php echo $text_your_details; ?></h3>
                               </div>
                               <div class="table-responsive">
-                                 <table class="table table-condensed">
+                                 <table class="table table-condensed profileTable">
                                     <tbody>
                                        <tr>
                                           <td>
