@@ -2439,7 +2439,7 @@
      type: "POST",
      url: 'index.php?route=sellerprofile/sellerprofile/allow_products_cart&valt='+ valt +'&valt_title='+ valt_title,
      success: function(data) {
-      alert(data['success']);
+     // alert(data['success']);
      }
    });
    }); 

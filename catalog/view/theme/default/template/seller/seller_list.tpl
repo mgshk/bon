@@ -43,15 +43,15 @@
                            <?php } ?>
                         </select>
                      </div>
-                     <div class="col-md-2 col-xs-3 allcategory_col">
+                     <div hidden class="col-md-2 col-xs-3 allcategory_col">
                         <select name="by_search" id="by_search">
-                           <option value="1" <?php if($by_search == '1'){echo 'selected';} ?>>By All</option>
+                           <option selected value="1" <?php if($by_search == '1'){echo 'selected';} ?>>By All</option>
                            <option value="2" <?php if($by_search == '2'){echo 'selected';} ?>>By Category</option>
                            <option value="3" <?php if($by_search == '3'){echo 'selected';} ?>>By Store/Entity</option>
                            <option value="4" <?php if($by_search == '4'){echo 'selected';} ?>>By Product</option>
                         </select>
                      </div>
-                     <div class="col-md-8 col-xs-7 search_col">
+                     <div class="col-md-10 col-xs-9 search_col">
                         <div class="form-group">
                            <div class="cols-sm-10">
                               <div class="input-group">
