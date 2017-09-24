@@ -82,7 +82,7 @@
 				}
 				return b;
 			})(window.location.search.substr(1).split('&'));
-			
+
 			$("#slider-range").slider({
 				range: true,
 				min: 0,
@@ -143,10 +143,10 @@
 
 
 		$(document).ready(function () {
-			
+
 
 			$("#kms_set").click(function () { //alert("test");
-				
+
 
 			});
 		});
@@ -543,7 +543,7 @@
 				var longitude = position.coords.longitude;
 				var latlong = (latitude + ", " + longitude);
 				getAddress(latlong, $('#location-search-val'), true);
-				$('#myModal').hide();				
+				$('#myModal').hide();
 			}
 		}
 
@@ -1457,7 +1457,16 @@
 
 				});
 			}
-			$('#map_mod').on('shown.bs.modal', function () {
+			$('#map_mod').on('shown.bs.modal', function (e) {
+				if (e.relatedTarget) {
+					if (e.relatedTarget.id == "search-btn_st")
+						$('#map_mod').attr("page_reload", "false");
+					else
+						$('#map_mod').attr("page_reload", "true");
+				}
+				else
+					$('#map_mod').attr("page_reload", "true");
+
 				if ($.cookie("myCookie")) {
 					var latLangCookie = $.cookie("myCookie").split(',');
 					renderMap(latLangCookie[0], latLangCookie[1]);

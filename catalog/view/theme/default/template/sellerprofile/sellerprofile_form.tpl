@@ -234,7 +234,7 @@
                                        </div>
                                     </div>
                                     <form action="" method="post" enctype="multipart/form-data" id="form-profile" class="form-horizontal main--mb--bt">
-                                       <div class="form-group required">
+                                       <div class="form-group">
                                           <label class="col-sm-2 control-label" for="input-nickname">
                                           <?php echo $entry_activate; ?>
                                           </label>
@@ -771,7 +771,7 @@
 						<div class="alert alert-danger"><i class="fa fa-times-circle"></i> <?php echo $seller_reject_reason; ?></div>
 						<?php } ?>
                         <form action="" method="post" enctype="multipart/form-data" id="form-profile" class="form-horizontal main--mb--bt">
-							   <div class="form-group required">
+							   <div class="form-group">
                            <label class="col-sm-2 control-label" for="input-nickname">
                            <?php echo $entry_activate; ?>
                            </label>
