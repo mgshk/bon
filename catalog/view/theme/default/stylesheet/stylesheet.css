@@ -724,6 +724,24 @@ bottom: 5px;}
 .str--gen--inf table tr th{border: 1px solid #ddd;}
 .profileTable tr td{border: 1px solid #ddd;padding: 10px !important;}
 .edt{font-size: 12px !important;text-decoration: none;}
+#site_faq_main .panel-heading .accordion-toggle:after {
+    /* symbol for "opening" panels */
+    font-family: 'Glyphicons Halflings';  /* essential for enabling glyphicon */
+    content: "\e114";    /* adjust as needed, taken from bootstrap.css */
+    float: right;        /* adjust as needed */
+    color: grey;         /* adjust as needed */
+}
+#site_faq_main .panel-heading .accordion-toggle.collapsed:after {
+    /* symbol for "collapsed" panels */
+    content: "\e080";    /* adjust as needed, taken from bootstrap.css */
+}
+#site_faq_main .panel-title{margin-bottom: 0 !important;font-size: 14px;}
+#site_faq_main .panel-heading{padding: 10px 20px 10px 15px !important;}
+#site_faq_main h4{margin-bottom: 10px;font-weight: bold;}
+#site_faq_main p{margin-bottom: 10px;font-size: 14px;line-height: 20px;}
+#site_faq_main ul{margin-left: 20px;}
+#site_faq_main ul li{margin-bottom: 10px;font-size: 14px;line-height: 20px;}
+#site_faq_main #accordion{max-height: 450px;overflow-y: auto;}
 /* my css ends */
 
 @media (min-width: 1200px) {
