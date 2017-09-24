@@ -41,7 +41,7 @@
 	<link href="catalog/view/javascript/chosen/chosen.css" rel="stylesheet" media="screen" />
 	<script src="catalog/view/javascript/chosen/chosen.jquery.js" type="text/javascript"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
-	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB7yf4Wg0LtSvk3qlVRYP_OUIz0SAuf9XM&libraries=places"></script>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCXvDvmhFTLZ5iJyGSQm3-3GEJg0G3iztk&libraries=places"></script>
 	<script src="catalog/view/javascript/locationpicker.jquery.js"></script>
 
 	<link href="catalog/view/theme/default/stylesheet/stylesheet.css" rel="stylesheet">
@@ -82,7 +82,7 @@
 				}
 				return b;
 			})(window.location.search.substr(1).split('&'));
-			
+
 			$("#slider-range").slider({
 				range: true,
 				min: 0,
@@ -143,10 +143,10 @@
 
 
 		$(document).ready(function () {
-			
+
 
 			$("#kms_set").click(function () { //alert("test");
-				
+
 
 			});
 		});
@@ -539,18 +539,27 @@
 
 		function showPosition(position) {
 			if ((position.coords.latitude && position.coords.longitude) != '') {
+
 				var latitude = position.coords.latitude;
 				var longitude = position.coords.longitude;
 				var latlong = (latitude + ", " + longitude);
+				if ($('#map_mod').attr("target") == "sellerprofile") {
+					sessionStorage.setItem("myStoreAddress", latlong);
+					pageReload = false;
+				}
+				else {
+					$.cookie('myCookie', latlong);
+				}
+
 				getAddress(latlong, $('#location-search-val'), true);
-				$('#myModal').hide();				
+				$('#myModal').hide();
 			}
 		}
 
 		function getAddress(latLong, element, pageReload) {
-			$.cookie('myCookie', latLong);
+
 			if (!pageReload) {
-				var url = "https://maps.googleapis.com/maps/api/geocode/json?latlng=" + latLong + "&sensor=false";
+				var url = "https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyCXvDvmhFTLZ5iJyGSQm3-3GEJg0G3iztk&libraries=places&latlng=" + latLong + "&sensor=false";
 				$.getJSON(url, function (data) {
 					if (data.results) {
 						var address = data.results[0].formatted_address;
@@ -562,6 +571,7 @@
 			} else {
 				location.reload();
 			}
+
 		}
 	</script>
 
@@ -1457,16 +1467,39 @@
 
 				});
 			}
-			$('#map_mod').on('shown.bs.modal', function () {
-				if ($.cookie("myCookie")) {
-					var latLangCookie = $.cookie("myCookie").split(',');
-					renderMap(latLangCookie[0], latLangCookie[1]);
-					getAddress(latLangCookie, $("#divFormattedAddress"), false);
+			$('#map_mod').on('shown.bs.modal', function (e) {
+				if (e.relatedTarget) {
+					if (e.relatedTarget.id == "search-btn_st")
+						$('#map_mod').attr("target", "sellerprofile");
+					else
+						$('#map_mod').attr("target", "home");
+				}
+				else
+					$('#map_mod').attr("page_reload", "home");
+
+				if ($('#map_mod').attr("target") == "sellerprofile") {
+					if (sessionStorage.getItem("myStoreAddress")) {
+						var latLangCookie = sessionStorage.getItem("myStoreAddress").split(',');
+						renderMap(latLangCookie[0], latLangCookie[1]);
+						getAddress(latLangCookie, $("#divFormattedAddress"), false);
+					}
+					else {
+						var latLangCookie = "13.0826802, 80.27071840000008";
+						renderMap(13.0826802, 80.27071840000008);
+						getAddress(latLangCookie, $("#divFormattedAddress"), false);
+					}
 				}
 				else {
-					var latLangCookie = "13.0826802, 80.27071840000008";
-					renderMap(13.0826802, 80.27071840000008);
-					getAddress(latLangCookie, $("#divFormattedAddress"), false);
+					if ($.cookie("myCookie")) {
+						var latLangCookie = $.cookie("myCookie").split(',');
+						renderMap(latLangCookie[0], latLangCookie[1]);
+						getAddress(latLangCookie, $("#divFormattedAddress"), false);
+					}
+					else {
+						var latLangCookie = "13.0826802, 80.27071840000008";
+						renderMap(13.0826802, 80.27071840000008);
+						getAddress(latLangCookie, $("#divFormattedAddress"), false);
+					}
 				}
 				$('#us11').locationpicker('autosize');
 			});
@@ -1475,9 +1508,15 @@
 			var latitude = $('#us11-lat').val();
 			var longitude = $('#us11-lon').val();
 			var latlong = (latitude + ", " + longitude);
-			$.cookie('myCookie', latlong);
-			//alert('The value of myCookie is now "' + $.cookie('myCookie') + '". Now, reload the page, PHP should read it correctly.');
-			location.reload();
+
+			if ($('#map_mod').attr("target") == "sellerprofile") {
+				sessionStorage.setItem("myStoreAddress", latlong);
+			}
+			else {
+				$.cookie('myCookie', latlong);
+				//alert('The value of myCookie is now "' + $.cookie('myCookie') + '". Now, reload the page, PHP should read it correctly.');
+				location.reload();
+			}
 		}
 
 
