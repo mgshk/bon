@@ -1367,23 +1367,23 @@ class Controllersellerprofilesellerprofile extends Controller
 			$json['error'] = $this->language->get('error_nickname_req');
 		}
 
-		if($this->request->post['lat'] =='') {
+		else if($this->request->post['lat'] =='') {
 			$json['error'] = $this->language->get('error_lat_req');
 		}
 
-		if($this->request->post['lng'] =='') {
+		else if($this->request->post['lng'] =='') {
 			$json['error'] = $this->language->get('error_lng_req');
 		}
 
-        if($this->request->post['seller_address'] =='') {
+        else if($this->request->post['seller_address'] =='') {
             $json['error'] = $this->language->get('error_seller_address_req');
         }
 
-		if($this->request->post['store_email'] == '') {
+		else if($this->request->post['store_email'] == '') {
 			$json['error'] = "Please enter Store/Entity email";
 		}
 
-        if(empty($seller_info['seller_category'])) {
+        else if(empty($seller_info['seller_category'])) {
             $json['error'] = $this->language->get('error_store_category_empty');
         }
 

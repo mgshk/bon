@@ -1808,20 +1808,20 @@
 
 </script>
 <script type="text/javascript">
-   <!--
+  <!--
    var image_row = <?php echo $image_row; ?>;
    
-   function addImage() {
-     html = '<tr id="image-row' + image_row + '">';
-     html += '  <td class="text-left"><a href="" id="thumb-image' + image_row + '"data-toggle="image" class="img-thumbnail"><img src="<?php echo $placeholder; ?>" alt="" title="" data-placeholder="<?php echo $placeholder; ?>" /></a><input type="hidden" class="imgae_empty_check" name="store_image[' + image_row + '][image]" value="" id="input-image' + image_row + '" /></td>';
-     html += '  <td class="text-right"><input type="text" name="store_image[' + image_row + '][sort_order]" value="" placeholder="Sort Order" class="form-control" /></td>';
-     html += '  <td class="text-left"><button type="button" onclick="$(\'#image-row' + image_row + '\').remove();" class="--minus-btn">-</button></td>';
-     html += '</tr>';
+  function addImage() {
+    html = '<tr id="image-row' + image_row + '">';
+    html += '  <td class="text-left"><a href="" id="thumb-image' + image_row + '"data-toggle="image" class="img-thumbnail"><img src="<?php echo $placeholder; ?>" alt="" title="" data-placeholder="<?php echo $placeholder; ?>" /></a><input type="hidden" class="imgae_empty_check" name="store_image[' + image_row + '][image]" value="" id="input-image' + image_row + '" /></td>';
+    html += '  <td class="text-right"><input type="text" name="store_image[' + image_row + '][sort_order]" value="" placeholder="Sort Order" class="form-control" /></td>';
+    html += '  <td class="text-left"><button type="button" onclick="$(\'#image-row' + image_row + '\').remove();" class="--minus-btn">-</button></td>';
+    html += '</tr>';
 
-     $('#images tbody').append(html);
+    $('#images tbody').append(html);
 
-     image_row++;
-   }
+    image_row++;
+  }
    //-->
 
 </script>
@@ -2158,39 +2158,39 @@
 
 </script>
 <script type="text/javascript">
-   <!--
-     $('#transaction').delegate('.pagination a', 'click', function (e) {
-       e.preventDefault();
+  <!--
+    $('#transaction').delegate('.pagination a', 'click', function (e) {
+      e.preventDefault();
 
-       $('#transaction').load(this.href);
-     });
+      $('#transaction').load(this.href);
+    });
 
-   $('#transaction').load('index.php?route=sellerprofile/sellerprofile/transaction&seller_id=<?php echo $seller_id; ?>');
+  $('#transaction').load('index.php?route=sellerprofile/sellerprofile/transaction&seller_id=<?php echo $seller_id; ?>');
 
-   $('#button-transaction').on('click', function (e) {
-     e.preventDefault();
+  $('#button-transaction').on('click', function (e) {
+    e.preventDefault();
 
-     $.ajax({
-       url: 'index.php?route=sellerprofile/sellerprofile/transaction&seller_id=<?php echo $seller_id; ?>',
-       type: 'post',
-       dataType: 'html',
-       data: 'seller_group_id=' + encodeURIComponent($('#tab-transaction select[name=\'seller_group_id\']').val()) + '&amount=' + encodeURIComponent($('#tab-transaction input[name=\'amount\']').val()),
-       beforeSend: function () {
-         $('#button-transaction').button('loading');
-       },
-       complete: function () {
-         $('#button-transaction').button('reset');
-       },
-       success: function (html) {
-         $('.alert').remove();
+    $.ajax({
+      url: 'index.php?route=sellerprofile/sellerprofile/transaction&seller_id=<?php echo $seller_id; ?>',
+      type: 'post',
+      dataType: 'html',
+      data: 'seller_group_id=' + encodeURIComponent($('#tab-transaction select[name=\'seller_group_id\']').val()) + '&amount=' + encodeURIComponent($('#tab-transaction input[name=\'amount\']').val()),
+      beforeSend: function () {
+        $('#button-transaction').button('loading');
+      },
+      complete: function () {
+        $('#button-transaction').button('reset');
+      },
+      success: function (html) {
+        $('.alert').remove();
 
-         $('#transaction').html(html);
+        $('#transaction').html(html);
 
-         $('#tab-transaction input[name=\'amount\']').val('');
-         $('#tab-transaction input[name=\'description\']').val('');
-       }
-     });
-   });
+        $('#tab-transaction input[name=\'amount\']').val('');
+        $('#tab-transaction input[name=\'description\']').val('');
+      }
+    });
+  });
    //-->
 
 </script>
@@ -2371,10 +2371,6 @@
        $('#latitude_st').val(latLang[0]);
        $('#longitude_st').val(latLang[1]);
      }
-     else {
-       $('#latitude_st').val('13.067439');
-       $('#longitude_st').val('80.237617');
-     }
 
      function convertToSlug(Text) {
        return Text
@@ -2427,7 +2423,6 @@
              },
              success: function (json) {
                $('.store_msg_alert').remove();
-
                if (json['error']) {
                  $('.agree_tt').attr('checked', false);
                  $('#content > .container-fluid').prepend('<div class="alert store_msg_alert alert-danger"><i class="fa fa-exclamation-circle"></i> ' + json['error'] + '</div>');
@@ -2464,7 +2459,6 @@
            },
            success: function (json) {
              $('.store_msg_alert').remove();
-
              if (json['error']) {
                $('.agree_tt').attr('checked', false);
                $('#content > .container-fluid').prepend('<div class="alert store_msg_alert alert-danger"><i class="fa fa-exclamation-circle"></i> ' + json['error'] + '</div>');
@@ -2584,15 +2578,13 @@
   //  echo "$('#latitude_st').val(lat_st);";
   //  echo "$('#longitude_st').val(log_st);";
   //  echo "</script>\n";
-  //  ?>
+?>
   //
   <script>
-    //   var lat_st = "<?php echo $latitude; ?>";
-  //   var log_st = "<?php echo $longitude; ?>";
-  //   $('#latitude_st').val(lat_st);
-  //   $('#longitude_st').val(log_st);
-
-  //
+    var lat_st = "<?php echo $lat; ?>";
+    var long_st = "<?php echo $lng; ?>";
+    if(lat_st != "" && long_st != "")
+        sessionStorage.setItem("myStoreAddress", lat_st + "," + long_st)
   </script>
   <script>
     $(document).on('click', '.print_me', function (e) {

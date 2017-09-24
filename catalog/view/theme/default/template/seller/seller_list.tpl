@@ -113,7 +113,9 @@
             <div class="widget main-txt-grp fis-des" id="<?php echo $category['id']; ?>">
                <div class="blog-widget">
                   <div class="widget-post widget_post_mailtitle">
-                     <?php if( $category['image'] != '') { ?>
+                     <?php 
+                     //echo implode(' ', $category);
+                     if( $category['image'] != '') { ?>
                      <a href="<?php echo $category['href']; ?>"><img src="image/<?php echo $category['image']; ?>" class="img-responsive" title="<?php echo $category['nickname']; ?>" alt="<?php echo $category['nickname']; ?>" style="width:280px; height:130px;"></a>
                      <?php } else { ?>
                      <a href="<?php echo $category['href']; ?>"><img src="image/no-image.jpg" class="img-responsive" title="<?php echo $category['nickname']; ?>" alt="<?php echo $category['nickname']; ?>" style="width:280px; height:130px;"></a>
