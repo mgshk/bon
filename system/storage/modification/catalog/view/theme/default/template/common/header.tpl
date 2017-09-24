@@ -539,16 +539,25 @@
 
 		function showPosition(position) {
 			if ((position.coords.latitude && position.coords.longitude) != '') {
+
 				var latitude = position.coords.latitude;
 				var longitude = position.coords.longitude;
 				var latlong = (latitude + ", " + longitude);
+				if ($('#map_mod').attr("target") == "sellerprofile") {
+					sessionStorage.setItem("myStoreAddress", latlong);
+					pageReload = false;
+				}
+				else {
+					$.cookie('myCookie', latlong);
+				}
+
 				getAddress(latlong, $('#location-search-val'), true);
 				$('#myModal').hide();
 			}
 		}
 
 		function getAddress(latLong, element, pageReload) {
-			$.cookie('myCookie', latLong);
+
 			if (!pageReload) {
 				var url = "https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyCXvDvmhFTLZ5iJyGSQm3-3GEJg0G3iztk&libraries=places&latlng=" + latLong + "&sensor=false";
 				$.getJSON(url, function (data) {
@@ -562,6 +571,7 @@
 			} else {
 				location.reload();
 			}
+
 		}
 	</script>
 
@@ -1460,22 +1470,36 @@
 			$('#map_mod').on('shown.bs.modal', function (e) {
 				if (e.relatedTarget) {
 					if (e.relatedTarget.id == "search-btn_st")
-						$('#map_mod').attr("page_reload", "false");
+						$('#map_mod').attr("target", "sellerprofile");
 					else
-						$('#map_mod').attr("page_reload", "true");
+						$('#map_mod').attr("target", "home");
 				}
 				else
-					$('#map_mod').attr("page_reload", "true");
+					$('#map_mod').attr("page_reload", "home");
 
-				if ($.cookie("myCookie")) {
-					var latLangCookie = $.cookie("myCookie").split(',');
-					renderMap(latLangCookie[0], latLangCookie[1]);
-					getAddress(latLangCookie, $("#divFormattedAddress"), false);
+				if ($('#map_mod').attr("target") == "sellerprofile") {
+					if (sessionStorage.getItem("myStoreAddress")) {
+						var latLangCookie = sessionStorage.getItem("myStoreAddress").split(',');
+						renderMap(latLangCookie[0], latLangCookie[1]);
+						getAddress(latLangCookie, $("#divFormattedAddress"), false);
+					}
+					else {
+						var latLangCookie = "13.0826802, 80.27071840000008";
+						renderMap(13.0826802, 80.27071840000008);
+						getAddress(latLangCookie, $("#divFormattedAddress"), false);
+					}
 				}
 				else {
-					var latLangCookie = "13.0826802, 80.27071840000008";
-					renderMap(13.0826802, 80.27071840000008);
-					getAddress(latLangCookie, $("#divFormattedAddress"), false);
+					if ($.cookie("myCookie")) {
+						var latLangCookie = $.cookie("myCookie").split(',');
+						renderMap(latLangCookie[0], latLangCookie[1]);
+						getAddress(latLangCookie, $("#divFormattedAddress"), false);
+					}
+					else {
+						var latLangCookie = "13.0826802, 80.27071840000008";
+						renderMap(13.0826802, 80.27071840000008);
+						getAddress(latLangCookie, $("#divFormattedAddress"), false);
+					}
 				}
 				$('#us11').locationpicker('autosize');
 			});
@@ -1484,9 +1508,15 @@
 			var latitude = $('#us11-lat').val();
 			var longitude = $('#us11-lon').val();
 			var latlong = (latitude + ", " + longitude);
-			$.cookie('myCookie', latlong);
-			//alert('The value of myCookie is now "' + $.cookie('myCookie') + '". Now, reload the page, PHP should read it correctly.');
-			location.reload();
+
+			if ($('#map_mod').attr("target") == "sellerprofile") {
+				sessionStorage.setItem("myStoreAddress", latlong);
+			}
+			else {
+				$.cookie('myCookie', latlong);
+				//alert('The value of myCookie is now "' + $.cookie('myCookie') + '". Now, reload the page, PHP should read it correctly.');
+				location.reload();
+			}
 		}
 
 
