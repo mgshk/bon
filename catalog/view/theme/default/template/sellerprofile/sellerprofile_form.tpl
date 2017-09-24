@@ -564,8 +564,8 @@
                                           	<input type="text" class="form-control" name="address" id="address_st" value="" />												
                                           </div>
                                           </div>-->
-                          <input type="text" class="form-control" name="lat" id="latitude_st" value="<?php echo $lat; ?>" />
-                          <input type="text" class="form-control" name="lng" id="longitude_st" value="<?php echo $lng; ?>" />
+                          <input type="hidden" class="form-control" name="lat" id="latitude_st" value="<?php echo $lat; ?>" />
+                          <input type="hidden" class="form-control" name="lng" id="longitude_st" value="<?php echo $lng; ?>" />
                           <button type="button" id="button-profile-save" data-loading-text="<?php echo $text_loading; ?>" class="btn btn-primary pull-right">
                                        <?php echo $button_save; ?>
                                        </button>
