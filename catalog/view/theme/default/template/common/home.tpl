@@ -3,67 +3,85 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script type="text/javascript" src="catalog/view/javascript/jquery.slimscroll.js"></script>
 <script>
-	$( function() {
-	  var availableTags = <?php //echo $auto_search_home; ?>
-	  $( "#search_val" ).autocomplete({
-	    source: availableTags
-	  });
-	} );
+	$(function () {
+		var availableTags = <?php //echo $auto_search_home; ?>
+	  $("#search_val").autocomplete({
+				source: availableTags
+			});
+	});
+
 </script>
 <style>
 	.dropbtn {
-	/*background-color: #4CAF50;
+		/*background-color: #4CAF50;
 	color: white;*/
-	padding: 16px;
-	font-size: 10px;
-	border: none;
-	cursor: pointer;
+		padding: 16px;
+		font-size: 10px;
+		border: none;
+		cursor: pointer;
 	}
-	.dropbtn:hover, .dropbtn:focus {
-	background-color: #3e8e41;
+
+	.dropbtn:hover,
+	.dropbtn:focus {
+		background-color: #3e8e41;
 	}
+
 	#myInput {
-	border-box: box-sizing;
-	background-image: url('searchicon.png');
-	background-position: 14px 12px;
-	background-repeat: no-repeat;
-	font-size: 16px;
-	padding: 14px 20px 12px 45px;
-	border: none;
+		border-box: box-sizing;
+		background-image: url('searchicon.png');
+		background-position: 14px 12px;
+		background-repeat: no-repeat;
+		font-size: 16px;
+		padding: 14px 20px 12px 45px;
+		border: none;
 	}
+
 	.dropdown {
-	position: relative;
-	display: inline-block;
+		position: relative;
+		display: inline-block;
 	}
+
 	.dropdown-content {
-	display: none;
-	position: absolute;
-	background-color: #f6f6f6;
-	min-width: 230px;
-	overflow: auto;
-	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-	z-index: 1;
+		display: none;
+		position: absolute;
+		background-color: #f6f6f6;
+		min-width: 230px;
+		overflow: auto;
+		box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+		z-index: 1;
 	}
+
 	.dropdown-content a {
-	color: black;
-	padding: 12px 16px;
-	text-decoration: none;
-	display: block;
+		color: black;
+		padding: 12px 16px;
+		text-decoration: none;
+		display: block;
 	}
-	.dropdown a:hover {background-color: #ddd}
-	.show {display:block;}
+
+	.dropdown a:hover {
+		background-color: #ddd
+	}
+
+	.show {
+		display: block;
+	}
+
 	.view_desc_sl {
-	    border-top: 1px solid #bbbbbb;
+		border-top: 1px solid #bbbbbb;
 	}
 </style>
 <style>
-.dropdowns-ss {
-    background: url(image/all-categories.jpg) no-repeat scroll 0px 0px transparent;
-    color: transparent !important;
-    border: 1px solid #fff;
-    height: 43px;
-}
-#search_val{border-top-left-radius: 0; border-bottom-left-radius: 0;}
+	.dropdowns-ss {
+		background: url(image/all-categories.jpg) no-repeat scroll 0px 0px transparent;
+		color: transparent !important;
+		border: 1px solid #fff;
+		height: 43px;
+	}
+
+	#search_val {
+		border-top-left-radius: 0;
+		border-bottom-left-radius: 0;
+	}
 </style>
 <!--<div class="dropdown">
 	<button onclick="myFunction()" class="dropbtn"><img src="image/books.png"></button>
@@ -86,11 +104,11 @@
 						$i = 0;
 						foreach($advertisement_top_banner as $advertisement_top) {
 						?>
-					<li data-target="#myCarousel" data-slide-to="<?php echo $i; ?>" class="<?php echo ($i == 0) ? 'active' : '';?>"></li>
-					<?php
+						<li data-target="#myCarousel" data-slide-to="<?php echo $i; ?>" class="<?php echo ($i == 0) ? 'active' : '';?>"></li>
+						<?php
 						$i++;
 						} ?>
-					<!--  <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+							<!--  <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
 						<li data-target="#myCarousel" data-slide-to="1"></li>
 						<li data-target="#myCarousel" data-slide-to="2"></li> -->
 				</ol>
@@ -100,26 +118,29 @@
 						$i = 0;
 						foreach($advertisement_top_banner as $advertisement_top) {
 						?>
-					<div class="item <?php echo ($i == 0) ? 'active' : ''; ?>">
-						<div class="hovereffect fis-des">
-							<img src="<?php echo $image_resize->resize($advertisement_top['offer_image'], 993, 182); ?>" class="img-responsive" title="<?php echo $advertisement_top['offer_title']; ?>" alt="<?php echo $advertisement_top['offer_title']; ?>" >
-							<div class="overlay">
-								<div class="carousel-caption">
-									<div class="col-sm-12">
-										<h2 class="advertise_title"><?php echo $advertisement_top['offer_title']; ?></h2>
+						<div class="item <?php echo ($i == 0) ? 'active' : ''; ?>">
+							<div class="hovereffect fis-des">
+								<img src="<?php echo $image_resize->resize($advertisement_top['offer_image'], 993, 182); ?>" class="img-responsive" title="<?php echo $advertisement_top['offer_title']; ?>"
+								 alt="<?php echo $advertisement_top['offer_title']; ?>">
+								<div class="overlay">
+									<div class="carousel-caption">
+										<div class="col-sm-12">
+											<h2 class="advertise_title">
+												<?php echo $advertisement_top['offer_title']; ?>
+											</h2>
+										</div>
+										<a class="info hmg--sel ne--str view-det-adv" href="index.php?route=seller/seller/info&seller_id=<?php echo $advertisement_top['seller_id']; ?>&path=&counter=1"><img src="image/store_front.png" class="img-responsive"></a>
+										<a class="info hmg--sel ne--opn view-det-adv cursor" data-id="<?php echo $advertisement_top['advertise_id']; ?>" onclick="viewDetAdv(this);"><i class="fa fa-arrows-alt"></i></a>
 									</div>
-									<a class="info hmg--sel ne--str view-det-adv" href="index.php?route=seller/seller/info&seller_id=<?php echo $advertisement_top['seller_id']; ?>&path=&counter=1"><img src="image/store_front.png" class="img-responsive"></a>
-									<a class="info hmg--sel ne--opn view-det-adv cursor" data-id="<?php echo $advertisement_top['advertise_id']; ?>" onclick="viewDetAdv(this);"><i class="fa fa-arrows-alt"></i></a>
 								</div>
 							</div>
-						</div>
-						<div class="sec-mob">
-							<a class="info view-det-adv" data-id="<?php echo $advertisement_top['advertise_id']; ?>" onclick="viewDetAdv(this);">
+							<div class="sec-mob">
+								<a class="info view-det-adv" data-id="<?php echo $advertisement_top['advertise_id']; ?>" onclick="viewDetAdv(this);">
 								<img src="<?php echo $image_resize->resize($advertisement_top['offer_image'], 993, 182); ?>" class="img-responsive" title="<?php echo $advertisement_top['offer_title']; ?>" alt="<?php echo $advertisement_top['offer_title']; ?>">
 							</a>
+							</div>
 						</div>
-					</div>
-					<?php
+						<?php
 						$i++;
 						 } ?>
 				</div>
@@ -159,43 +180,43 @@
 <div class="container-fluid" id="fix_height">
 	<div class="row">
 		<div class="col-sm-9 category-center">
-			<div class="fixme"  style="z-index:123">
+			<div class="fixme" style="z-index:123">
 				<div class="sel-cat-home">
 					<div id="search" class="input-group input-groupnew12">
 						<form action="<?php echo $search_pst; ?>">
 							<?php
 								$path = (isset($_GET['path']) && $_GET['path']) ? $_GET['path']: '';
 								?>
-							<div class="col-md-2 col-xs-2 allcategory_col">
-								<select name="path" id="path" onchange="pathChange(this);">
+								<div class="col-md-2 col-xs-2 allcategory_col">
+									<select name="path" id="path" onchange="pathChange(this);">
 									<option value="">All Category</option>
 									<?php foreach ($categories as $category) { 
 										$selected = ($category['category_id'] == $path) ? "selected = selected" : ""; ?>
 									<option value="<?php echo $category['category_id']; ?>" <?php echo $selected; ?>><?php echo $category['name']; ?></option>
 									<?php } ?>
 								</select>
-							</div>
-							<div class="col-md-2 col-xs-3 allcategory_col">
-								<select name="by_search" id="by_search" >
-									<option value="1">By All</option>
+								</div>
+								<div hidden class="col-md-2 col-xs-3 allcategory_col">
+									<select selected name="by_search" id="by_search">
+									<option selected value="1">By All</option>
 									<option value="2">By Category</option>
 									<option value="3">By Store/Entity</option>
 									<option value="4">By Product</option>
 								</select>
-							</div>
-							<div class="col-md-8 col-xs-7 search_col">
-								<div class="form-group">
-									<div class="cols-sm-10">
-										<div class="input-group">
-											<input type="text" class="form-control" name="search" id="search_val"  placeholder="Search"/>
-											<span class="input-group-addon home-search cursor"><i class="fa fa-search fa" aria-hidden="true"></i></span>
+								</div>
+								<div class="col-md-10 col-xs-9 search_col">
+									<div class="form-group">
+										<div class="cols-sm-10">
+											<div class="input-group">
+												<input type="text" class="form-control" name="search" id="search_val" placeholder="Search" />
+												<span class="input-group-addon home-search cursor"><i class="fa fa-search fa" aria-hidden="true"></i></span>
+											</div>
 										</div>
 									</div>
 								</div>
-							</div>
 						</form>
 					</div>
-				</div>				
+				</div>
 				<!-- Nav tabs -->
 				<?php 
 					if(isset($_COOKIE['myCookie'])){
@@ -262,18 +283,34 @@
 				<div class="_home_tab--sel--main">
 					<ul class="_bon_ts1 fis-des">
 						<?php if ($logged && $login_type != 'buyer') { ?>
-						<a href="index.php?route=selleradvertise/advertise/add" ><li class="tas_bon" role="presentation">Post AD</li></a>
+						<a href="index.php?route=selleradvertise/advertise/add">
+							<li class="tas_bon" role="presentation">Post AD</li>
+						</a>
 						<?php } else { ?>
-						<a class="cursor" data-toggle="modal" data-target="#login_frc_seller"><li class="tas_bon" role="presentation">Post AD</li></a>
+						<a class="cursor" data-toggle="modal" data-target="#login_frc_seller">
+							<li class="tas_bon" role="presentation">Post AD</li>
+						</a>
 						<?php } ?>
 					</ul>
 					<ul class="nav nav-tabs _bon_ts" role="tablist">
 						<?php if($address_det[3] !='') {?>
-						<li id="adv_home" class="tas_bon active" role="presentation"><a href="#home" aria-controls="home" role="tab" data-toggle="tab"><?php echo $address_det[3]; ?></a></li>
+						<li id="adv_home" class="tas_bon active" role="presentation">
+							<a href="#home" aria-controls="home" role="tab" data-toggle="tab">
+								<?php echo $address_det[3]; ?>
+							</a>
+						</li>
 						<?php } if($address_det[2] !='') {?>
-						<li id="adv_profile" class="tas_bon" role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab"><?php echo $address_det[2]; ?></a></li>
+						<li id="adv_profile" class="tas_bon" role="presentation">
+							<a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">
+								<?php echo $address_det[2]; ?>
+							</a>
+						</li>
 						<?php } if($address_det[1] !='') {?>
-						<li id="adv_messages" class="tas_bon" role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab"><?php echo $address_det[1]; ?></a></li>
+						<li id="adv_messages" class="tas_bon" role="presentation">
+							<a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">
+								<?php echo $address_det[1]; ?>
+							</a>
+						</li>
 						<?php } ?>
 						<li id="adv_settings" class="tas_bon" role="presentation"><a href="#settings" aria-controls="settings" id="setting_tab" role="tab" data-toggle="tab"><?php echo 'Nearby ';if(isset($_COOKIE['myCookiestart']) || isset($_COOKIE['myCookieend'])){echo '<span>('.$_COOKIE['myCookiestart']. '-' .$_COOKIE['myCookieend'].' km)</span>';} else {echo '<span>(0-3 km)</span>';}//$address_det[0]; ?></a></li>
 					</ul>
@@ -284,15 +321,16 @@
 				<div role="tabpanel" class="tab-pane active" id="home">
 					<?php if(count($advertisement_national) > 0) {
 						foreach($advertisement_national as $advertisement_na) { ?>
-					<div class="col-sm-12 advertise_count" id="<?php echo $advertisement_na['advertise_id']; ?>" >
+					<div class="col-sm-12 advertise_count" id="<?php echo $advertisement_na['advertise_id']; ?>">
 						<div class="row">
 							<div class="hovereffect fis-des">
-								<img src="<?php echo $image_resize->resize($advertisement_na['offer_image'], 993, 182); ?>" class="img-responsive" title="<?php echo $advertisement_na['offer_title']; ?>" alt="<?php echo $advertisement_na['offer_title']; ?>">
+								<img src="<?php echo $image_resize->resize($advertisement_na['offer_image'], 993, 182); ?>" class="img-responsive" title="<?php echo $advertisement_na['offer_title']; ?>"
+								 alt="<?php echo $advertisement_na['offer_title']; ?>">
 								<div class="overlay">
 									<div class="col-sm-12">
 										<div class="col-sm-9">
 											<h2 class="store_name">
-												<?php echo $advertisement_na['nickname']; ?>				
+												<?php echo $advertisement_na['nickname']; ?>
 											</h2>
 										</div>
 										<div class="col-sm-3">
@@ -310,7 +348,9 @@
 										</div>
 									</div>
 									<div class="col-sm-12">
-										<h2 class="advertise_title"><?php echo $advertisement_na['offer_title']; ?></h2>
+										<h2 class="advertise_title">
+											<?php echo $advertisement_na['offer_title']; ?>
+										</h2>
 									</div>
 									<a class="info hmg--sel ne--str view-det-adv" href="index.php?route=seller/seller/info&seller_id=<?php echo $advertisement_na['seller_id']; ?>&path=&counter=1"><img src="image/store_front.png" class="img-responsive"></a>
 									<a class="info hmg--sel ne--opn view-det-adv cursor" data-id="<?php echo $advertisement_na['advertise_id']; ?>" onclick="viewDetAdv(this);"><i class="fa fa-arrows-alt"></i></a>
@@ -348,27 +388,30 @@
 						</div>
 					</div>
 					<?php $count_na = count($advertisement_national); ?>
-					<script>var national_adv_id = "<?php echo $advertisement_na['advertise_id']; ?>"; var count_na = "<?php echo $count_na; ?>";</script>
+					<script>
+						var national_adv_id = "<?php echo $advertisement_na['advertise_id']; ?>"; var count_na = "<?php echo $count_na; ?>";
+					</script>
 					<?php } } else { ?>
 					<div class="col-sm-12">
 						<div class="row">
 							<p>No Advertisement Yet...</p>
 						</div>
 					</div>
-					<?php } ?>	   
+					<?php } ?>
 				</div>
 				<div role="tabpanel" class="tab-pane" id="profile">
 					<?php if(count($advertisement_state) > 0) {
 						foreach($advertisement_state as $advertisement_st) { ?>
-					<div class="col-sm-12 advertise_count" id="<?php echo $advertisement_st['advertise_id']; ?>" >
+					<div class="col-sm-12 advertise_count" id="<?php echo $advertisement_st['advertise_id']; ?>">
 						<div class="row">
 							<div class="hovereffect fis-des">
-								<img src="<?php echo $image_resize->resize($advertisement_st['offer_image'], 993, 182); ?>" class="img-responsive" title="<?php echo $advertisement_st['offer_title']; ?>" alt="<?php echo $advertisement_st['offer_title']; ?>">
+								<img src="<?php echo $image_resize->resize($advertisement_st['offer_image'], 993, 182); ?>" class="img-responsive" title="<?php echo $advertisement_st['offer_title']; ?>"
+								 alt="<?php echo $advertisement_st['offer_title']; ?>">
 								<div class="overlay">
 									<div class="col-sm-12">
 										<div class="col-sm-9">
 											<h2 class="store_name">
-												<?php echo $advertisement_st['nickname']; ?>				
+												<?php echo $advertisement_st['nickname']; ?>
 											</h2>
 										</div>
 										<div class="col-sm-3">
@@ -386,7 +429,9 @@
 										</div>
 									</div>
 									<div class="col-sm-12">
-										<h2 class="advertise_title"><?php echo $advertisement_st['offer_title']; ?></h2>
+										<h2 class="advertise_title">
+											<?php echo $advertisement_st['offer_title']; ?>
+										</h2>
 									</div>
 									<a class="info hmg--sel ne--str view-det-adv" href="index.php?route=seller/seller/info&seller_id=<?php echo $advertisement_st['seller_id']; ?>&path=&counter=1"><img src="image/store_front.png" class="img-responsive"></a>
 									<a class="info hmg--sel ne--opn view-det-adv cursor" data-id="<?php echo $advertisement_st['advertise_id']; ?>" onclick="viewDetAdv(this);"><i class="fa fa-arrows-alt"></i></a>
@@ -423,15 +468,17 @@
 							</div>
 						</div>
 					</div>
-					<?php $count_st = count($advertisement_state); ?>	    
-					<script>var state_adv_id = "<?php echo $advertisement_st['advertise_id']; ?>"; var count_st = "<?php echo $count_st; ?>";</script>
+					<?php $count_st = count($advertisement_state); ?>
+					<script>
+						var state_adv_id = "<?php echo $advertisement_st['advertise_id']; ?>"; var count_st = "<?php echo $count_st; ?>";
+					</script>
 					<?php } } else { ?>
 					<div class="col-sm-12">
 						<div class="row">
 							<p>No Advertisement Yet...</p>
 						</div>
 					</div>
-					<?php } ?>	    
+					<?php } ?>
 				</div>
 				<div role="tabpanel" class="tab-pane" id="messages">
 					<?php if(count($advertisement_city) > 0) {
@@ -439,12 +486,13 @@
 					<div class="col-sm-12 advertise_count" id="<?php echo $advertisement_ci['advertise_id']; ?>">
 						<div class="row">
 							<div class="hovereffect fis-des">
-								<img src="<?php echo $image_resize->resize($advertisement_ci['offer_image'], 993, 182); ?>" class="img-responsive" title="<?php echo $advertisement_ci['offer_title']; ?>" alt="<?php echo $advertisement_ci['offer_title']; ?>">
+								<img src="<?php echo $image_resize->resize($advertisement_ci['offer_image'], 993, 182); ?>" class="img-responsive" title="<?php echo $advertisement_ci['offer_title']; ?>"
+								 alt="<?php echo $advertisement_ci['offer_title']; ?>">
 								<div class="overlay">
 									<div class="col-sm-12">
 										<div class="col-sm-9">
 											<h2 class="store_name">
-												<?php echo $advertisement_ci['nickname']; ?>				
+												<?php echo $advertisement_ci['nickname']; ?>
 											</h2>
 										</div>
 										<div class="col-sm-3">
@@ -462,7 +510,9 @@
 										</div>
 									</div>
 									<div class="col-sm-12">
-										<h2 class="advertise_title"><?php echo $advertisement_ci['offer_title']; ?></h2>
+										<h2 class="advertise_title">
+											<?php echo $advertisement_ci['offer_title']; ?>
+										</h2>
 									</div>
 									<a class="info hmg--sel ne--str view-det-adv" href="index.php?route=seller/seller/info&seller_id=<?php echo $advertisement_ci['seller_id']; ?>&path=&counter=1"><img src="image/store_front.png" class="img-responsive"></a>
 									<a class="info hmg--sel ne--opn view-det-adv cursor" data-id="<?php echo $advertisement_ci['advertise_id']; ?>" onclick="viewDetAdv(this);"><i class="fa fa-arrows-alt"></i></a>
@@ -500,27 +550,30 @@
 						</div>
 					</div>
 					<?php $count_ct = count($advertisement_city); ?>
-					<script>var city_adv_id = "<?php echo $advertisement_ci['advertise_id']; ?>"; var count_ct = "<?php echo $count_ct; ?>";</script>
+					<script>
+						var city_adv_id = "<?php echo $advertisement_ci['advertise_id']; ?>"; var count_ct = "<?php echo $count_ct; ?>";
+					</script>
 					<?php } } else { ?>
 					<div class="col-sm-12">
 						<div class="row">
 							<p>No Advertisement Yet...</p>
 						</div>
 					</div>
-					<?php } ?>	   
+					<?php } ?>
 				</div>
 				<div role="tabpanel" class="tab-pane" id="settings">
 					<?php if(count($advertisement_local) > 0 && !empty($advertisement_local)) {
 						foreach($advertisement_local as $advertisement_lo) { ?>
-					<div class="col-sm-12 advertise_count" id="<?php echo $advertisement_lo['advertise_id']; ?>" >
+					<div class="col-sm-12 advertise_count" id="<?php echo $advertisement_lo['advertise_id']; ?>">
 						<div class="row">
 							<div class="hovereffect fis-des">
-								<img src="<?php echo $image_resize->resize($advertisement_lo['offer_image'], 993, 182); ?>" class="img-responsive" title="<?php echo $advertisement_lo['offer_title']; ?>" alt="<?php echo $advertisement_lo['offer_title']; ?>">
+								<img src="<?php echo $image_resize->resize($advertisement_lo['offer_image'], 993, 182); ?>" class="img-responsive" title="<?php echo $advertisement_lo['offer_title']; ?>"
+								 alt="<?php echo $advertisement_lo['offer_title']; ?>">
 								<div class="overlay">
 									<div class="col-sm-12">
 										<div class="col-sm-9">
 											<h2 class="store_name">
-												<?php echo $advertisement_lo['nickname']; ?>				
+												<?php echo $advertisement_lo['nickname']; ?>
 											</h2>
 										</div>
 										<div class="col-sm-3">
@@ -538,7 +591,9 @@
 										</div>
 									</div>
 									<div class="col-sm-12">
-										<h2 class="advertise_title"><?php echo $advertisement_lo['offer_title']; ?></h2>
+										<h2 class="advertise_title">
+											<?php echo $advertisement_lo['offer_title']; ?>
+										</h2>
 									</div>
 									<a class="info hmg--sel ne--str view-det-adv" href="index.php?route=seller/seller/info&seller_id=<?php echo $advertisement_lo['seller_id']; ?>&path=&counter=1"><img src="image/store_front.png" class="img-responsive"></a>
 									<a class="info hmg--sel ne--opn view-det-adv cursor" data-id="<?php echo $advertisement_lo['advertise_id']; ?>" onclick="viewDetAdv(this);"><i class="fa fa-arrows-alt"></i></a>
@@ -575,15 +630,17 @@
 							</div>
 						</div>
 					</div>
-					<?php $count_lo = count($advertisement_local); ?>	    
-					<script>var local_adv_id = "<?php echo $advertisement_lo['advertise_id']; ?>"; var count_lo = "<?php echo $count_lo; ?>";</script>
+					<?php $count_lo = count($advertisement_local); ?>
+					<script>
+						var local_adv_id = "<?php echo $advertisement_lo['advertise_id']; ?>"; var count_lo = "<?php echo $count_lo; ?>";
+					</script>
 					<?php } } else { ?>
 					<div class="col-sm-12">
 						<div class="row">
 							<p>No Advertisement Yet...</p>
 						</div>
 					</div>
-					<?php } ?>	     
+					<?php } ?>
 				</div>
 				<?php if( (isset($advertisement_national) && !empty($advertisement_national)) || (isset($advertisement_state) && !empty($advertisement_state)) || (isset($advertisement_city) && !empty($advertisement_city)) || (isset($advertisement_local) && !empty($advertisement_local))) { ?>
 				<p id="loader_page"><img src="catalog/view/theme/default/image/ajax_loader.gif"></p>
@@ -601,36 +658,39 @@
 				<button type="button" class="close" data-dismiss="modal">&times;</button>
 				<!--h4 class="modal-title loc-share-title">Advertise Details</h4>-->
 			</div>
-			<div class="modal-body loc-share-topps" id="ad_det_id">			
+			<div class="modal-body loc-share-topps" id="ad_det_id">
 			</div>
 		</div>
 	</div>
 </div>
 <script>
 	//$(".chosen-select").chosen();
+
 </script>
 <script>
-	function viewDetAdv(val) {
-	 //$('a.view-det-adv').on('click', function() {
-	 var data_id = $(val).data('id');
-	 $.ajax({
-		url: 'index.php?route=selleradvertise/advertise/get_single_advertise',
-		type: 'post',
-		dataType: 'json',
-		data: {data_id: data_id},
-		success: function(json) {
-			var img = json['offer_image_original'];
-			var str_lnk = 'index.php?route=seller/seller/info&seller_id='+json['seller_id']+'&path=&counter=1';
-			if (json['success']) {
-				if(json['advertise_id']) {
-					$('#ad_det_id').html('<a href=\"'+str_lnk+'\"><h4><strong>'+json['nickname']+'</strong></h4></a><h5><strong>Title: </strong>'+json['offer_title']+'</h5><img src=\"image/'+img+'\" alt=\"'+json['offer_title']+'\" class=\"img-thumbnail img-responsive\" /><p><strong>Description: </strong>'+json['offer_desc']+'<p><strong>URL: </strong><a href='+json['offer_url']+'>'+json['offer_url']+'</a></p><div class="view_desc_sl"><p>Terms & Conditions</p><p>- The advertisement provided by the "'+json['nickname']+'" is true to best of their knowledge.</p><p>- BoN Online Services holds no responsibility of the advertisement information.</p></div>');
-	         		}
-				$('#ad_details').modal('toggle');
-				
-			}
-		}
-	 }); }
-	 //});   
+						function viewDetAdv(val) {
+							//$('a.view-det-adv').on('click', function() {
+							var data_id = $(val).data('id');
+							$.ajax({
+								url: 'index.php?route=selleradvertise/advertise/get_single_advertise',
+								type: 'post',
+								dataType: 'json',
+								data: { data_id: data_id },
+								success: function (json) {
+									var img = json['offer_image_original'];
+									var str_lnk = 'index.php?route=seller/seller/info&seller_id=' + json['seller_id'] + '&path=&counter=1';
+									if (json['success']) {
+										if (json['advertise_id']) {
+											$('#ad_det_id').html('<a href=\"' + str_lnk + '\"><h4><strong>' + json['nickname'] + '</strong></h4></a><h5><strong>Title: </strong>' + json['offer_title'] + '</h5><img src=\"image/' + img + '\" alt=\"' + json['offer_title'] + '\" class=\"img-thumbnail img-responsive\" /><p><strong>Description: </strong>' + json['offer_desc'] + '<p><strong>URL: </strong><a href=' + json['offer_url'] + '>' + json['offer_url'] + '</a></p><div class="view_desc_sl"><p>Terms & Conditions</p><p>- The advertisement provided by the "' + json['nickname'] + '" is true to best of their knowledge.</p><p>- BoN Online Services holds no responsibility of the advertisement information.</p></div>');
+										}
+										$('#ad_details').modal('toggle');
+
+									}
+								}
+							});
+						}
+	 //});
+
 </script>
 <script>
 	var tabs = new Array();
@@ -638,283 +698,242 @@
 	var seconds_time = 1000;
 	var tab_id = '';
 	var id = '';
-	var count = ''; 
-	var timeout;	
+	var count = '';
+	var timeout;
 	var tabpane_position = $("#home");//.position();
-		
-	
-	
-	 function pathChange(val) { //$('#path').on('change', function() {
+
+	var liArr = $.makeArray($('.nav-tabs li'));
+	var tabPaneArr = $.makeArray($('.tab-pane'));
+	var intervalTime = null;
+	var i = 0;
+
+	var mTimer = null;
+	var hTimer = null;
+
+	changeTab();
+	function changeTab() {
+		intervalTime = setInterval(function () {
+			$('.nav-tabs li, .tab-pane').removeClass('active');
+			$(liArr[i]).addClass('active');
+			$(tabPaneArr[i]).addClass('active');
+			i++;
+			if (i == 4)
+				i = 0;
+		}, 5000);
+	}
+
+
+	function pathChange(val) { //$('#path').on('change', function() {
 		path = $(val).val(); //alert(path); //$(val).data('id'); alert(path);
 		$('.nav-tabs li.active').removeClass('active');
-		$('.tab-content div.tab-pane').removeClass('active');	     
+		$('.tab-content div.tab-pane').removeClass('active');
 		$('.nav-tabs li#adv_settings').addClass('active');
 		$('.tab-content div#settings').addClass('active');
-	   //window.location.href = "index.php?route=common/home&path="+path;
+		changeTab();
+		//window.location.href = "index.php?route=common/home&path="+path;
 		MakeUrl(path, tab_id);
-	      }//);
-	      $(".home-search").click(function(){
-		path = $( "#path" ).val();
-		var search = $( "#search_val" ).val();
-		var by_search = $( "#by_search" ).val();
-		window.location.href = "index.php?route=seller/seller&path="+path+"&searcha="+search+"&by_search="+by_search;
-	      });     
-	
-	  
-	var is_loading = false; 
+	}//);
+	$(".home-search").click(function () {
+		path = $("#path").val();
+		var search = $("#search_val").val();
+		var by_search = $("#by_search").val();
+		window.location.href = "index.php?route=seller/seller&path=" + path + "&searcha=" + search + "&by_search=" + by_search;
+	});
+
+
+	var is_loading = false;
 	var limit = 6; // limit items per page	
-	 
+
 	tab_id = 'home';
-	if(typeof(national_adv_id) != "undefined" && national_adv_id !== null) {	
-		var id = national_adv_id;		
+	if (typeof (national_adv_id) != "undefined" && national_adv_id !== null) {
+		var id = national_adv_id;
 	}
-	if(typeof(count_na) != "undefined" && count_na !== null) {	
-		var count = count_na;		
+	if (typeof (count_na) != "undefined" && count_na !== null) {
+		var count = count_na;
 	}
-	
-	
+
+
 	$('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
 		var target = $(e.target).attr("href") // activated tab		
-		target = target.replace('#','');
+		target = target.replace('#', '');
 		tab_id = target;
-		id = $("#"+tab_id+" div:first-child").attr("id");
-		count = $("#"+tab_id+" div.advertise_count").length;
-	               is_loading = false;
+		id = $("#" + tab_id + " div:first-child").attr("id");
+		count = $("#" + tab_id + " div.advertise_count").length;
+		is_loading = false;
 		//alert(tab_id+','+id+','+count); 
-	MakeUrl(path, tab_id);
+		MakeUrl(path, tab_id);
 	});
-	
+
 	$('#adv_home,#adv_home,#adv_home,#adv_home').click(function (e) {
 		var target = $(e.target).attr("href") // activated tab		
-		target = target.replace('#','');
+		target = target.replace('#', '');
 		tab_id = target;
-		id = $("#"+tab_id+" div:first-child").attr("id");
-		count = $("#"+tab_id+" div.advertise_count").length;
-	               is_loading = false;
+		id = $("#" + tab_id + " div:first-child").attr("id");
+		count = $("#" + tab_id + " div.advertise_count").length;
+		is_loading = false;
 		//alert(tab_id+','+id+','+count);
-	MakeUrl(path, tab_id);
+		MakeUrl(path, tab_id);
 	});
-	
-	function MakeUrl(path, tab_id) { 
-	var limit = 4;
-	if(tab_id =='') {
-		tab_id = 'settings';
-	}
-	if((typeof($.cookie('myCookiestart')) != "undefined" && $.cookie('myCookiestart') !='')  && (typeof($.cookie('myCookiestart')) != "undefined" && $.cookie('myCookieend') !='')){    
-		$( "#setting_tab" ).html( 'Nearby <span>('+$.cookie('myCookiestart')+'-'+$.cookie('myCookieend')+' km)</span>');
-	}
-	//alert($( "#setting_tab" ).html());
-	is_loading = true;
-	count = 0;
-	$.ajax({
-		url: "index.php?route=common/home/getLoadMore&path="+path+"&tab_id="+tab_id+"&id="+id+"&count="+count,
-		type: 'GET',
-		success:function(data){
-		$('#'+tab_id).empty();
-		var str = $.trim(data);
-		if(str == 'no_record_found') { 
-			$('#loader_page').hide();
-			$('#'+tab_id).append('<p>No Advertisement Yet...</p>');	
-			is_loading = true;
-			count = '';
-			tab_id = '';
-			id = '';
-		} else {
-			$('#loader_page').hide();
-			$('#'+tab_id).append(data);						
-			is_loading = false;						
+
+	function MakeUrl(path, tab_id) {
+		var limit = 4;
+		if (tab_id == '') {
+			tab_id = 'settings';
 		}
-		 }
-	});
-	 }
-	
-	
-	$(function() {
-	$("html, body").animate({ scrollTop: 0 }, "fast");
-		$(window).scroll(function() {
-		if(tab_id) {
-			if (is_loading == false) { 					
-				if($(window).scrollTop() + $(window).height() >= $(document).height() - 300) {
+		if ((typeof ($.cookie('myCookiestart')) != "undefined" && $.cookie('myCookiestart') != '') && (typeof ($.cookie('myCookiestart')) != "undefined" && $.cookie('myCookieend') != '')) {
+			$("#setting_tab").html('Nearby <span>(' + $.cookie('myCookiestart') + '-' + $.cookie('myCookieend') + ' km)</span>');
+		}
+		//alert($( "#setting_tab" ).html());
+		is_loading = true;
+		count = 0;
+		$.ajax({
+			url: "index.php?route=common/home/getLoadMore&path=" + path + "&tab_id=" + tab_id + "&id=" + id + "&count=" + count,
+			type: 'GET',
+			success: function (data) {
+				$('#' + tab_id).empty();
+				var str = $.trim(data);
+				if (str == 'no_record_found') {
+					$('#loader_page').hide();
+					$('#' + tab_id).append('<p>No Advertisement Yet...</p>');
 					is_loading = true;
-					$('#loader_page').show(); 
-					$.ajax({
-					    url: "index.php?route=common/home/getLoadMore&path="+path+"&tab_id="+tab_id+"&id="+id+"&count="+count,
-					    type: 'GET',
-					    success:function(data){	
-						var str = $.trim(data);
-						if(str == 'no_record_found') {
-							$('#loader_page').hide();
-							is_loading = true;
-							count = '';
-							tab_id = '';
-							id = '';
-						} else {
-							$('#loader_page').hide();							
-							$('#'+tab_id).append(data);										
-													
-							is_loading = false;						
-						}
-					    }
-					});
+					count = '';
+					tab_id = '';
+					id = '';
+				} else {
+					$('#loader_page').hide();
+					$('#' + tab_id).append(data);
+					is_loading = false;
 				}
-			}			
-			//is_loading = true;
-		} else {			
-			return false;			
-		}
-		});		
-		
-	});	
-	function myFunction() {
-	  var dropbtn_class = $('.dropdown-content').attr('class');
-	  if(dropbtn_class == 'dropdown-content') {
-	  $('.dropbtn').empty();
-	   $('.dropbtn').append('<img src="image/open-book.png" />');	     
-	  } else { 
-	   $('.dropbtn').empty();
-	   $('.dropbtn').append('<img src="image/books.png" />');	
-	  }
-	  document.getElementById("myDropdown").classList.toggle("show");
+			}
+		});
 	}
-	
-	function filterFunction() {
-	  
-	  var input, filter, ul, li, a, i;
-	  input = document.getElementById("myInput");
-	  filter = input.value.toUpperCase();
-	  div = document.getElementById("myDropdown");
-	  a = div.getElementsByTagName("a");
-	  for (i = 0; i < a.length; i++) {
-	if (a[i].innerHTML.toUpperCase().indexOf(filter) > -1) {
-	   a[i].style.display = "";
-	} else {
-	   a[i].style.display = "none";
-	}
-	  }  
-	}
-	
-</script>
-<script>
-if($(window).width() < 767) {
-	$("#path").addClass("dropdowns-ss");
-}
-	var fixmeTop = $('.fixme').offset().top;
-	$(window).scroll(function() {
-	    var currentScroll = $(window).scrollTop();
-	    if (currentScroll >= fixmeTop) {
-	        $('.fixme').css({
-	            position: 'sticky',
-	            top: '0',
-	            
-	        });
-	    } else {
-	        $('.fixme').css({
-	            position: 'static'
-	        });
-	    }
+
+
+	$(function () {
+		$("html, body").animate({ scrollTop: 0 }, "fast");
+		$(window).scroll(function () {
+			if (tab_id) {
+				if (is_loading == false) {
+					if ($(window).scrollTop() + $(window).height() >= $(document).height() - 300) {
+						is_loading = true;
+						$('#loader_page').show();
+						$.ajax({
+							url: "index.php?route=common/home/getLoadMore&path=" + path + "&tab_id=" + tab_id + "&id=" + id + "&count=" + count,
+							type: 'GET',
+							success: function (data) {
+								var str = $.trim(data);
+								if (str == 'no_record_found') {
+									$('#loader_page').hide();
+									is_loading = true;
+									count = '';
+									tab_id = '';
+									id = '';
+								} else {
+									$('#loader_page').hide();
+									$('#' + tab_id).append(data);
+
+									is_loading = false;
+								}
+							}
+						});
+					}
+				}
+				//is_loading = true;
+			} else {
+				return false;
+			}
+		});
+
 	});
-	
+	function myFunction() {
+		var dropbtn_class = $('.dropdown-content').attr('class');
+		if (dropbtn_class == 'dropdown-content') {
+			$('.dropbtn').empty();
+			$('.dropbtn').append('<img src="image/open-book.png" />');
+		} else {
+			$('.dropbtn').empty();
+			$('.dropbtn').append('<img src="image/books.png" />');
+		}
+		document.getElementById("myDropdown").classList.toggle("show");
+	}
+
+	function filterFunction() {
+
+		var input, filter, ul, li, a, i;
+		input = document.getElementById("myInput");
+		filter = input.value.toUpperCase();
+		div = document.getElementById("myDropdown");
+		a = div.getElementsByTagName("a");
+		for (i = 0; i < a.length; i++) {
+			if (a[i].innerHTML.toUpperCase().indexOf(filter) > -1) {
+				a[i].style.display = "";
+			} else {
+				a[i].style.display = "none";
+			}
+		}
+	}
+
+
+	if ($(window).width() < 767) {
+		$("#path").addClass("dropdowns-ss");
+	}
+	var fixmeTop = $('.fixme').offset().top;
+	$(window).scroll(function () {
+		var currentScroll = $(window).scrollTop();
+		if (currentScroll >= fixmeTop) {
+			$('.fixme').css({
+				position: 'sticky',
+				top: '0',
+
+			});
+		} else {
+			$('.fixme').css({
+				position: 'static'
+			});
+		}
+	});
+
 	var $tab = $('.fixme');
 	var body_height = $tab.height();
 	//alert(body_height);
-	
+
 	var window_height = $(window).height();
 	//alert(window_height);
-	
+
 	var tab_height = parseInt(window_height) - parseInt(body_height);
-	$('.home-tt-r').slimscroll({height: tab_height});
-	$('.home-tt-r .tab-pane').css({ 
-		height: tab_height	 
+	$('.home-tt-r').slimscroll({ height: tab_height });
+	$('.home-tt-r .tab-pane').css({
+		height: tab_height
 	});
 	//$('.home-tt-r .tab-pane').slimscroll();
 
 	//$('.home-tt-r .tab-pane').css('overflow-y', 'scroll');
 
 	$('#testDiv').slimscroll({
-	  height: 'auto'
+		height: 'auto'
 	});
-	
-	</script>
-<script>
-   $('select.dropdowns-ss').on('change', function() {
-     if(this.value != '') {
-   	$('.dropdowns-ss').css('background', 'url(image/all-categories-open.jpg) no-repeat scroll 0px 0px transparent')
-     } else {
-   	$('.dropdowns-ss').css('background', 'url(image/all-categories.jpg) no-repeat scroll 0px 0px transparent')
-     }
-   }); 
-	var liArr = $.makeArray($('.nav-tabs li'));
-	var tabPaneArr = $.makeArray($('.tab-pane'));
-	var intervalTime = null;
-	var i = 0;
-	
-	var mTimer = null;
-	var hTimer = null;
-	
-	changeTab();
-	function changeTab()
-	{
-		intervalTime = setInterval(function(){
-			$('.nav-tabs li, .tab-pane').removeClass('active');
-			$(liArr[i]).addClass('active');
-			$(tabPaneArr[i]).addClass('active');			
-			i++;
-			if(i==4)
-				i=0;
-		},5000);
-	}
-	
-	$(document).ready(function(){
-		$( ".nav-tabs, .slimScrollDiv" ).hover(function() {
-			console.log('hover in');
-			clearInterval(intervalTime);
-			intervalTime = null;
-			
-			clearInterval(mTimer);
-			mTimer = null;
-			
-			clearInterval(hTimer);
-			hTimer = null;
-			
-		  }, function() {	
-			console.log('hover out');
-			
-			clearInterval(mTimer);
-			mTimer = null;
-			
-			clearInterval(mTimer);						
-			hTimer =  setInterval(function(){						
-				clearInterval(hTimer);					
-				$('#test').append('<br/>hover out');
-				console.log('call from hover out');
-				changeTab('---45--');
-			}, 5000);
-		  }
-		);
 
-		var fadeInBuffer = false;
-		$( ".nav-tabs, .slimScrollDiv" ).mousemove(function () {
-			console.log('mousemove');
-			if (!fadeInBuffer) {
-				if (mTimer) {
-					clearInterval(mTimer);
-					mTimer = null;
-					clearInterval(intervalTime);
-					intervalTime = null;
-				}
-			} else {
-				fadeInBuffer = false;
-			}
-			mTimer = setInterval(function () {
-				clearInterval(mTimer);
-				$('#test').append('<br/>mousemove');
-				console.log('call from mo');
-				changeTab('---73--');
-				fadeInBuffer = true;
-			}, 5000);
-		});			
-		
+
+	$('select.dropdowns-ss').on('change', function () {
+		if (this.value != '') {
+			$('.dropdowns-ss').css('background', 'url(image/all-categories-open.jpg) no-repeat scroll 0px 0px transparent')
+		} else {
+			$('.dropdowns-ss').css('background', 'url(image/all-categories.jpg) no-repeat scroll 0px 0px transparent')
+		}
 	});
 	
+
+	$(document).ready(function () {
+		$(".nav-tabs, .slimScrollDiv").hover(function () {
+			clearInterval(intervalTime);
+
+		});
+
+		$(".nav-tabs, .slimScrollDiv").mousemove(function () {
+			clearInterval(intervalTime);
+		});
+
+	});
+
 </script>
 <?php echo $footer; ?>

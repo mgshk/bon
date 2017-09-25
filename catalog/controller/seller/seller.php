@@ -87,8 +87,8 @@ class Controllersellerseller extends Controller
 				$seller_address = '';
 			}
 
-			if (!empty($result) && is_file(DIR_IMAGE.$result['image'])) {
-				$banner_image = $result['image'];
+			if (!empty($result) && is_file(DIR_IMAGE.$result['banner'])) {
+				$banner_image = $result['banner'];
 			} else {
 				$banner_image = 'no-image.jpg';
 			}

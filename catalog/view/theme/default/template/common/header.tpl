@@ -50,7 +50,7 @@
 				   <li class="dropdown"><a href="<?php echo $seller_profile; ?>" title="<?php echo $text_seller_account; ?>" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-users"></i> <span class="hidden-xs hidden-sm hidden-md" style="
     color: red;
 "><?php echo $text_seller_account; ?></span> <span class="caret"></span></a>
-          <ul class="dropdown-menu dropdown-menu-right" style="background-color: wheat;">
+          <ul class="dropdown-menu dropdown-menu-right">
 
             <li><a href="<?php echo $seller_profile; ?>"><?php echo $text_seller_account; ?></a></li>
             <li><a href="<?php echo $seller_order; ?>"><?php echo $text_seller_order; ?></a></li>

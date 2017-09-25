@@ -166,7 +166,7 @@ $('#button-search').on('click', function(e) {
 $('#button-upload').on('click', function() {
 	$('#form-upload').remove();
 
-	$('body').prepend('<form enctype="multipart/form-data" id="form-upload" style="display: none;"><input type="file" name="file" value="" /></form>');
+	$('body').prepend('<form enctype="multipart/form-data" id="form-upload" style="display: none;"><input type="file" name="file" value="" accept=".jpg, .jpeg, .png, .bmp"/></form>');
 
 	$('#form-upload input[name=\'file\']').trigger('click');
 

@@ -41,7 +41,7 @@
 	<link href="catalog/view/javascript/chosen/chosen.css" rel="stylesheet" media="screen" />
 	<script src="catalog/view/javascript/chosen/chosen.jquery.js" type="text/javascript"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
-	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB7yf4Wg0LtSvk3qlVRYP_OUIz0SAuf9XM&libraries=places"></script>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCXvDvmhFTLZ5iJyGSQm3-3GEJg0G3iztk&libraries=places"></script>
 	<script src="catalog/view/javascript/locationpicker.jquery.js"></script>
 
 	<link href="catalog/view/theme/default/stylesheet/stylesheet.css" rel="stylesheet">
@@ -82,7 +82,7 @@
 				}
 				return b;
 			})(window.location.search.substr(1).split('&'));
-			
+
 			$("#slider-range").slider({
 				range: true,
 				min: 0,
@@ -143,10 +143,10 @@
 
 
 		$(document).ready(function () {
-			
+
 
 			$("#kms_set").click(function () { //alert("test");
-				
+
 
 			});
 		});
@@ -318,7 +318,7 @@
 									<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-515eeaf54693130e"></script>
 								</li>
 								<li><a class="cursor" data-toggle="modal" data-target="#site_feedback_main" title="Feedback">Feedback |</a></li>
-								<li><a href="#" title="FAQ">FAQ &nbsp;&nbsp;&nbsp;|</a></li>
+								<li><a href="#" data-toggle="modal" data-target="#site_faq_main" title="FAQ">FAQ &nbsp;&nbsp;&nbsp;|</a></li>
 								<li><a href="#" title="Help">Help</a></li>
 							</ul>
 						</div>
@@ -473,8 +473,8 @@
 							<div class="km--set" style="display:none">
 								<a class="cursor" id="kms_set"><i class="fa fa-refresh" aria-hidden="true"></i></a>
 							</div>
-							<input type="text" name="amount" id="amount" value="" readonly style="width: 20px; float: left;">
-							<input type="text" name="amount1" id="amount1" value="" readonly style="width: 20px; float: right;">
+							<input type="text" name="amount" id="amount" value="" readonly>
+							<input type="text" name="amount1" id="amount1" value="" readonly>
 						</form>
 					</div>
 					<?php //} elseif((isset($_GET['route']) && ($_GET['route'] == 'seller/seller/info'))) { ?>
@@ -539,18 +539,27 @@
 
 		function showPosition(position) {
 			if ((position.coords.latitude && position.coords.longitude) != '') {
+
 				var latitude = position.coords.latitude;
 				var longitude = position.coords.longitude;
 				var latlong = (latitude + ", " + longitude);
+				if ($('#map_mod').attr("target") == "sellerprofile") {
+					sessionStorage.setItem("myStoreAddress", latlong);
+					pageReload = false;
+				}
+				else {
+					$.cookie('myCookie', latlong);
+				}
+
 				getAddress(latlong, $('#location-search-val'), true);
-				$('#myModal').hide();				
+				$('#myModal').hide();
 			}
 		}
 
 		function getAddress(latLong, element, pageReload) {
-			$.cookie('myCookie', latLong);
+
 			if (!pageReload) {
-				var url = "https://maps.googleapis.com/maps/api/geocode/json?latlng=" + latLong + "&sensor=false";
+				var url = "https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyCXvDvmhFTLZ5iJyGSQm3-3GEJg0G3iztk&libraries=places&latlng=" + latLong + "&sensor=false";
 				$.getJSON(url, function (data) {
 					if (data.results) {
 						var address = data.results[0].formatted_address;
@@ -562,6 +571,7 @@
 			} else {
 				location.reload();
 			}
+
 		}
 	</script>
 
@@ -579,10 +589,10 @@
 						<p class="left">Pioneer in buy (o) near!</p>
 						<p class="right">A new age is BoN!</p>
 					</div>
-					<button class="tet--nt" id="auto_detect" onclick="getLocation()">Auto detect my location</button>
-					<p>OR</p>
+					<button class="tet--nt btn" id="auto_detect" onclick="getLocation()">Auto detect my location</button>
+					<p class="bottom_10">OR</p>
 					<!-- <button class="tet--nt" id="map_detect" data-toggle="modal" data-target="#map_mod">Choose on map</button> -->
-					<button type="button" onClick="showMyModalSetTitle()">Choose on map</button>
+					<button type="button" onClick="showMyModalSetTitle()" class="btn">Choose on map</button>
 				</div>
 				<!--<div class="modal-footer">
 								<button class="" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -595,7 +605,7 @@
 			<div class="modal-content loc-pop">
 				<div class="modal-body loc-share-top alt--res-pop">
 					<p>Please login as a buyer and retry.</p><br/>
-					<p class="alt--res-bt cursor" data-dismiss="modal">Ok</p>
+					<button class="alt--res-bt btn btn-primary b1" data-dismiss="modal">Ok</button>
 				</div>
 			</div>
 		</div>
@@ -605,7 +615,7 @@
 			<div class="modal-content loc-pop">
 				<div class="modal-body loc-share-top alt--res-pop">
 					<p>Please login as a seller and retry.</p><br/>
-					<p class="alt--res-bt cursor" data-dismiss="modal">Ok</p>
+					<button class="alt--res-bt btn btn-primary b1" data-dismiss="modal">Ok</button>
 				</div>
 			</div>
 		</div>
@@ -1412,7 +1422,7 @@
 
 
 	<div class="modal fade" id="map_mod" role="dialog">
-		<div class="modal-dialog" role="document">
+		<div class="modal-dialog modal-lg" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
 
@@ -1457,16 +1467,39 @@
 
 				});
 			}
-			$('#map_mod').on('shown.bs.modal', function () {
-				if ($.cookie("myCookie")) {
-					var latLangCookie = $.cookie("myCookie").split(',');
-					renderMap(latLangCookie[0], latLangCookie[1]);
-					getAddress(latLangCookie, $("#divFormattedAddress"), false);
+			$('#map_mod').on('shown.bs.modal', function (e) {
+				if (e.relatedTarget) {
+					if (e.relatedTarget.id == "search-btn_st")
+						$('#map_mod').attr("target", "sellerprofile");
+					else
+						$('#map_mod').attr("target", "home");
+				}
+				else
+					$('#map_mod').attr("page_reload", "home");
+
+				if ($('#map_mod').attr("target") == "sellerprofile") {
+					if (sessionStorage.getItem("myStoreAddress")) {
+						var latLangCookie = sessionStorage.getItem("myStoreAddress").split(',');
+						renderMap(latLangCookie[0], latLangCookie[1]);
+						getAddress(latLangCookie, $("#divFormattedAddress"), false);
+					}
+					else {
+						var latLangCookie = "13.0826802, 80.27071840000008";
+						renderMap(13.0826802, 80.27071840000008);
+						getAddress(latLangCookie, $("#divFormattedAddress"), false);
+					}
 				}
 				else {
-					var latLangCookie = "13.0826802, 80.27071840000008";
-					renderMap(13.0826802, 80.27071840000008);
-					getAddress(latLangCookie, $("#divFormattedAddress"), false);
+					if ($.cookie("myCookie")) {
+						var latLangCookie = $.cookie("myCookie").split(',');
+						renderMap(latLangCookie[0], latLangCookie[1]);
+						getAddress(latLangCookie, $("#divFormattedAddress"), false);
+					}
+					else {
+						var latLangCookie = "13.0826802, 80.27071840000008";
+						renderMap(13.0826802, 80.27071840000008);
+						getAddress(latLangCookie, $("#divFormattedAddress"), false);
+					}
 				}
 				$('#us11').locationpicker('autosize');
 			});
@@ -1475,9 +1508,15 @@
 			var latitude = $('#us11-lat').val();
 			var longitude = $('#us11-lon').val();
 			var latlong = (latitude + ", " + longitude);
-			$.cookie('myCookie', latlong);
-			//alert('The value of myCookie is now "' + $.cookie('myCookie') + '". Now, reload the page, PHP should read it correctly.');
-			location.reload();
+
+			if ($('#map_mod').attr("target") == "sellerprofile") {
+				sessionStorage.setItem("myStoreAddress", latlong);
+			}
+			else {
+				$.cookie('myCookie', latlong);
+				//alert('The value of myCookie is now "' + $.cookie('myCookie') + '". Now, reload the page, PHP should read it correctly.');
+				location.reload();
+			}
 		}
 
 
@@ -1531,13 +1570,387 @@
 							<textarea type="text" name="feedback" id="fd_feedback" value="" placeholder="Your concern/issue/feedback is valuable to us. Will be addressed shortly."></textarea>
 						</div>
 						<div class="form-group">
-							<button class="favv-str-btn" type="button" id="button_site_feedback">Submit</button>
+							<button class="favv-str-btn btn" type="button" id="button_site_feedback">Submit</button>
 						</div>
 					</form>
 				</div>
 			</div>
 		</div>
 	</div>
+
+	<!-- faq modal -->
+	<div class="modal fade" id="site_faq_main" role="dialog">
+		<div class="modal-dialog">
+			<!-- Modal content-->
+			<div class="modal-content loc-pop">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title loc-share-title">FAQ</h4>
+				</div>
+				<div class="modal-body">
+					
+					<div class="panel-group" id="accordion">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+          What is the purpose and uniqueness of this website?
+        </a>
+      </h4>
+    </div>
+    <div id="collapseOne" class="panel-collapse collapse in">
+      <div class="panel-body">
+        <h4>Purpose:</h4>
+        <p>Helps business of any level to promote in all places, irrespective of any number of competencies. Sellers can post their advertisement for free or they are allowed to bid and choose a desired position from the existing AD list. Buyers can view posted offers/advertisements instantly depending on the category needed. It acts as online exhibition favouring both sellers and buyers.</p>
+        <h4>Uniqueness:</h4>
+        <p>BoN treats all stores/entities at a same level, shows no partiality to low or high return stores/entities in seeking commission charges. It is the ONLY place for sellers with trading mind and buyers who likes to save their money, with no effort.</p>
+		<p>Buyers mostly have a good opinion on few stores/entities. It is not practical or possible to analyse all stores/entities at the same time. This leads to lose their money and satisfaction on most or all the time. Using BoN alias buyonear.in buyers now can prevent this from happening.
+		</p>
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+          Why BoN, what is the need?
+        </a>
+      </h4>
+    </div>
+    <div id="collapseTwo" class="panel-collapse collapse">
+      <div class="panel-body">
+        <p>World is slowly (rather quickly) moving online. Business is not the same as how it was 10 or 20 years back. It will surely not be the same like how it is now sooner. So think online think BoN before it is too late. It is FREE.</p>
+		<p>It is the single place to complete your search and get the best you want near you or from the place you are looking for. It will not force you to believe the best is what it shows on the item you are interested. </p>
+		<p>“LET’S START SEARCHING FROM HERE!” before we do with untrusted, unreliable and unknown sellers.</p>
+		<p>It is a centralized online exhibition. Where sellers meet buyers online, especially with lot many offers. The earlier you enrol, the more benefits you get.
+		</p>
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+          As a seller how this website helps?
+        </a>
+      </h4>
+    </div>
+    <div id="collapseThree" class="panel-collapse collapse">
+      <div class="panel-body">
+        <h4>Seller:</h4>
+        <ul>
+		<li>i. No technical knowledge required.</li>
+		<li>ii. Irrespective of the level, move your business online.</li>
+		<li>iii. BoN allows seller to add products, post advertisements, track buyer’s order and get buyer reviews without any effort. BoN takes care of marketing on your behalf.</li>
+		<li>iv. Post advertisements and get immediate attention from buyers.</li>
+		<li>v. Top the listing by featuring your store/entity to get more attention from buyers.</li>
+		<li>vi. Add your products with offers or discounts if you have, for buyers to easily pick.</li>
+		</ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseFour">
+          As a buyer how this website helps?
+        </a>
+      </h4>
+    </div>
+    <div id="collapseFour" class="panel-collapse collapse">
+      <div class="panel-body">
+        <h4>Buyer:</h4>
+        <ul>
+		<li>i.	Saves your money, time and effort.</li>
+		<li>ii.	Most or all buyers though few may prefer online shopping sometimes, likes to do shopping themselves near them or from a place they want to. Buyers likes to spend their hard earned money wisely barring few percentage of it. BoN helps buyers do the same in a lot better and easier way.</li>
+		<li>iii. Easy to filter advertisements and store/entity listing based on the needed category.</li>
+		<li>iv.	Since it is free, brings all stores/entities near you to your hand.</li>
+		<li>v.	It is the single place to complete your search and get the best you want near you or from the place you are looking for. It will not force you to believe the best is what it shows on the item you are interested.</li>
+		<li>vi.	It is much more than a telephone directory.</li>
+		</ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseFive">
+          Being a buyer can I use “Seller” feature or vice versa?
+        </a>
+      </h4>
+    </div>
+    <div id="collapseFive" class="panel-collapse collapse">
+      <div class="panel-body">
+        <p>Of course you can. While signing up, BoN will not ask whether you are a seller or buyer. Need to provide only at the time of logging into BoN with your credentials.</p>
+		<p>Every seller is naturally a buyer too to run his daily life. Also most buyers who are house wives or new entrepreneurs, are willing to start own or home based business. More than money, marketing efforts makes them not to. For them BoN is the answer, it takes their business outside with no effort making them succeed in no time.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseSix">
+          How is BoN good to both sellers and buyers?
+        </a>
+      </h4>
+    </div>
+    <div id="collapseSix" class="panel-collapse collapse">
+      <div class="panel-body">
+        <p>It is good to both sellers and buyers.</p>
+		<p><strong>Assuming case 1:</strong></p>
+		<p>All sellers are using BoN.</p>
+		<p>Hurray!! Buyers job is made easier now, they get their best with low price in few minutes without a sweat like how they want it to be done before BoN.</p>
+		<p><strong>Assuming case 2:</strong></p>
+		<p>All buyers are using BoN.</p>
+		<p>Hurray!! Sellers job is made easier now, they get all buyers to see what they are offering. BoN makes their visibility lot higher hence increasing their sales. It covers almost all essence of business to achieve more profit.</p>
+		<p>It's a win-win situation to both Buyers and Sellers. Hence both needs to get others join as fast as they could to make it a big success for both of them.</p> 
+		<p>Sellers who knows BoN should register and ask their usual Buyers to use BoN, to let them know offers every time sellers post instantly.</p>
+		<p>Buyers who knows BoN should use and ask sellers nearby or whom they meet often to join BoN, to let other buyers know their offers.</p> 
+		<p>It needs a push from both to make a good profit/savings.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseSeven">
+          I am a seller, is there usability restriction for any type of business?
+        </a>
+      </h4>
+    </div>
+    <div id="collapseSeven" class="panel-collapse collapse">
+      <div class="panel-body">
+        <p>NO, it is for all types of businesses.</p>
+		<p>It is the best approach for all sellers, especially to new sellers or to whom who really means business. Sellers who go by their names might think twice before joining BoN at first but seeing buyers using BoN makes them realise names matter less. And Sellers who doesn't have much buyers using BoN in their area will make them buy with the price they set.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseEight">
+          Sellers nearby my place do not use BoN, can I wait for someone to join before me?
+        </a>
+      </h4>
+    </div>
+    <div id="collapseEight" class="panel-collapse collapse">
+      <div class="panel-body">
+        <p>Considering the advantage and feature, it only takes less or no time in reaching everyone.</p>
+		<p>If you delay, it is advantage to your competitor, so it's wise to join now itself. It is FREE. No need to pay for joining or for adding products or for posting AD's.</p>
+		<p>Moreover you get lot more visibility and no fight!</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseNine">
+			I am a store/entity owner (seller), how do I get mine added in the website?
+        </a>
+      </h4>
+    </div>
+    <div id="collapseNine" class="panel-collapse collapse">
+      <div class="panel-body">
+        <p>It only takes few minutes to add your store/entity and get benefited. Please follow below simple steps.</p>
+        <ul>
+		<li>i.	Sign-up and login as a seller.</li>
+		<li>ii.	In your account enter detail about your business. (Business name, banner, category(s), location, etc.)</li>
+		<li>iii.	After approval you get added.</li>
+		</ul>
+		<p>Own a personal webstore for no cost and no marketing worries.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseTen">
+			If I want to buy something how do I go about it?
+        </a>
+      </h4>
+    </div>
+    <div id="collapseTen" class="panel-collapse collapse">
+      <div class="panel-body">
+        <p>It just needs below simple steps.</p>
+		<ul>
+		<li>i.	Login as a buyer.</li>
+		<li>ii.	Choose the category in home page to filter advertisements. Pick the store/entity which attracts you and find the product. Add it to your cart.</li>
+		<li>iii.	Also you can search for the item you are interested. From the store/entity search result, find the item and add it to your cart.</li>
+		<li>iv.	Proceed to check out.</li>
+		</ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseEleven">
+			I do not see any stores around me in the website?
+        </a>
+      </h4>
+    </div>
+    <div id="collapseEleven" class="panel-collapse collapse">
+      <div class="panel-body">
+        <p>You do not see only because of below two reasons.</p>
+        <ul>
+		<li>i.	From the range you set, there is no available store/entity near you.
+		Alter the range and search again. If you still do not find any, you can modify the location in home page and repeat your search.</li>
+		<li>ii.	Stores/entities have not joined BoN.
+		Since it is free, only possibility will be unawareness by sellers. Make them aware and join BoN for yours and others benefit.</li>
+		</ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseTwelve">
+			Do you charge one time or monthly fees to register my store?
+        </a>
+      </h4>
+    </div>
+    <div id="collapseTwelve" class="panel-collapse collapse">
+      <div class="panel-body">
+        <p>NO, it is absolutely free to join and register your store/entity in BoN.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseThirteen">
+			Heard I can upload products or post advertisements for free in your website, is it true!?
+        </a>
+      </h4>
+    </div>
+    <div id="collapseThirteen" class="panel-collapse collapse">
+      <div class="panel-body">
+        <p>YES, it is free to upload products and post your advertisements.</p> 
+		<p>Also since BoN covers all level of businesses from low to high returns, bidding approach is followed to make every seller happy. You can bid and choose a position from the existing AD list to post your advertisement according to your budget.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseFourteen">
+			I think ideally this is the best approach but how are you going to get all stores added in your website?
+        </a>
+      </h4>
+    </div>
+    <div id="collapseFourteen" class="panel-collapse collapse">
+      <div class="panel-body">
+        <p>It is free and more helpful for both sellers and buyers. We just need to spread the news.</p> 
+		<p>Stage is beautifully set, gates are open for all, no entry fee for anyone and exit with more benefits… what else we need!!!</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseFifteen">
+			If I have a feedback or get into any issues, whom or how should I contact?
+        </a>
+      </h4>
+    </div>
+    <div id="collapseFifteen" class="panel-collapse collapse">
+      <div class="panel-body">
+        <p>You can post your feedback or issues or concerns in the ‘Feedback’. We will respond immediately.</p> 
+		<p>If you want to pass any other information, please send email to bononlineservices@buyonear.in. We will respond in 24 to 48 hours.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseSixteen">
+			Why the advertisement I posted is of low image quality (blurred)?
+        </a>
+      </h4>
+    </div>
+    <div id="collapseSixteen" class="panel-collapse collapse">
+      <div class="panel-body">
+        <p>Please make sure below points before submitting the advertisement for BoN’s approval to get good image quality and high response.</p>
+        <ul>
+		<li>i.	Title should be clear and short.</li> 
+		<li>ii.	Cropped image quality should be bright, easily understandable and of high image quality.</li>
+		<li>iii.	Provide detailed description about the advertisement in ‘Description’ field. This is not mandatory.</li>
+		<li>iv.	Provide URL if you have.</li>
+		</ul>
+		<p>True and good quality advertisement will surely increase the attention and your ranking which in turn increases your sales.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseSeventeen">
+			When do I get to use My Wallet/Pay/Expense Report feature?
+        </a>
+      </h4>
+    </div>
+    <div id="collapseSeventeen" class="panel-collapse collapse">
+      <div class="panel-body">
+        <p>They are under development. It needs minor adjustments according to the usability and feedback by the users.</p>
+		<p>Once the design or approach is finalized after considering feedbacks by the users, will be released.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseEighteen">
+			Is there any other future improvements/plans you have?
+        </a>
+      </h4>
+    </div>
+    <div id="collapseEighteen" class="panel-collapse collapse">
+      <div class="panel-body">
+        <p>Yes, there are many more surprising ideas to be implemented sooner. Please await surprises to unfold and provide your cooperation in spreading the news at this time for everyone’s benefit.</p>
+		<p>Let us work together for a better living.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseNineteen">
+			Does BoN website work in all browsers?
+        </a>
+      </h4>
+    </div>
+    <div id="collapseNineteen" class="panel-collapse collapse">
+      <div class="panel-body">
+        <p>BoN works very well in google chrome, internet explorer and firefox browser. Though we tested extensively in all three browsers, if you happen to get into any issues in one try in other browsers.</p>
+		<p>Mobile app development is currently in progress. We are working hard to get them released for user’s convenience.</p>
+		<p>You may post your issue in ‘Feedback’ menu if it does not work in any browsers.</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- faq modal -->
 	<script>
 		$('#button_site_feedback').on('click', function () {
 			$.ajax({

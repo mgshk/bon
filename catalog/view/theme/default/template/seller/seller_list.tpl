@@ -43,15 +43,15 @@
                            <?php } ?>
                         </select>
                      </div>
-                     <div class="col-md-2 col-xs-3 allcategory_col">
+                     <div hidden class="col-md-2 col-xs-3 allcategory_col">
                         <select name="by_search" id="by_search">
-                           <option value="1" <?php if($by_search == '1'){echo 'selected';} ?>>By All</option>
+                           <option selected value="1" <?php if($by_search == '1'){echo 'selected';} ?>>By All</option>
                            <option value="2" <?php if($by_search == '2'){echo 'selected';} ?>>By Category</option>
                            <option value="3" <?php if($by_search == '3'){echo 'selected';} ?>>By Store/Entity</option>
                            <option value="4" <?php if($by_search == '4'){echo 'selected';} ?>>By Product</option>
                         </select>
                      </div>
-                     <div class="col-md-8 col-xs-7 search_col">
+                     <div class="col-md-10 col-xs-9 search_col">
                         <div class="form-group">
                            <div class="cols-sm-10">
                               <div class="input-group">
@@ -113,7 +113,9 @@
             <div class="widget main-txt-grp fis-des" id="<?php echo $category['id']; ?>">
                <div class="blog-widget">
                   <div class="widget-post widget_post_mailtitle">
-                     <?php if( $category['image'] != '') { ?>
+                     <?php 
+                     //echo implode(' ', $category);
+                     if( $category['image'] != '') { ?>
                      <a href="<?php echo $category['href']; ?>"><img src="image/<?php echo $category['image']; ?>" class="img-responsive" title="<?php echo $category['nickname']; ?>" alt="<?php echo $category['nickname']; ?>" style="width:280px; height:130px;"></a>
                      <?php } else { ?>
                      <a href="<?php echo $category['href']; ?>"><img src="image/no-image.jpg" class="img-responsive" title="<?php echo $category['nickname']; ?>" alt="<?php echo $category['nickname']; ?>" style="width:280px; height:130px;"></a>
