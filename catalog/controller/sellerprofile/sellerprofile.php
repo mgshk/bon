@@ -15,7 +15,6 @@ class Controllersellerprofilesellerprofile extends Controller
         $this->document->addStyle('http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/base/jquery-ui.css');
         $this->document->addScript('catalog/view/javascript/jquery-ui.multidatespicker.js');
         $this->document->addScript('catalog/view/javascript/sellerprofile/sellerprofile.js');
-        $this->document->addScript('catalog/view/javascript/sellerprofile/sellerprofile_selleradvertise_approved.js');
 
         $this->load->model('sellerproduct/seller');
         $this->load->model('sellerprofile/sellerprofile');
@@ -2688,45 +2687,50 @@ class Controllersellerprofilesellerprofile extends Controller
 
 			$basic_position_amount = $this->model_selleradvertise_advertise->getStoreOfferBasicPrice();
 			
-			if(($this->request->post['from_date'] != '') && ($this->request->post['end_date'] != '') && ($this->request->post['position'] != '')){				
+			if(($this->request->post['from_date'] != '') && ($this->request->post['end_date'] != '') && ($this->request->post['position'] != '')) {			
 				$from_date = $this->request->post['from_date'];
 				$end_date = $this->request->post['end_date'];
 				$loc = $this->request->post['loc'];
-				$ad_order = $this->request->post['position'];
+				$position = $this->request->post['position'];
 				$km = (isset($this->request->post['km']) && ($this->request->post['km'] != '')) ? $this->request->post['km']: '';
-				$position_amt = $this->model_selleradvertise_advertise->getPostionAmount($from_date, $end_date, $loc, $ad_order, $km);
+
+				$position_amt = $this->model_selleradvertise_advertise->getPostionAmount($from_date, $end_date, $loc, $position, $km);
 				
-				if($position_amt != ''){
-					if(count($position_amt) > 0){ 
+				if($position_amt != '') {
+					if(count($position_amt) > 0) {
+
 						foreach($position_amt as $key => $position_a) {
 							$value_filter[] = $position_a['price'];
 						}
+
 						if(count($value_filter) > 0) {
 							//$basic_position_amount = array('0'=>'500','1'=>'400','2'=>'300','3'=>'200');
 							$position_amount = array_diff($value_filter, $basic_position_amount);
 							$position_amount = array_unique($position_amount);
 							$value = array();
-							if(count($position_amount) > 0) {
-								if(count($position_amount)+2 == $ad_order) {
-									if($loc == '2') {
+
+							if (count($position_amount) > 0) {
+								if(count($position_amount)+2 == $position) {
+									if ($loc == '2') {
 										$value[0] = $basic_position_amount['home_national'];
 										
-									}if($loc == '3') {
+									} elseif ($loc == '3') {
 										$value[0] = $basic_position_amount['home_state'];
 										
-									}if($loc == '4') {
+									} elseif ($loc == '4') {
 										$value[0] = $basic_position_amount['home_city'];
 										
-									}if($loc == '5') {
+									} elseif ($loc == '5') {
 										$value[0] = $basic_position_amount['home_local'];
 									}
 								}
+
 								foreach($position_amount as $key => $position) {					
 									if(count($position_amount) == 1) { 
-										if(($key+1) == $ad_order) {
+										if(($key+1) == $position) {
 											$value[0] = $position;
 										}
-										if(count($position_amount)+1 == $ad_order) {
+										if(count($position_amount)+1 == $position) {
 											$value[0] = $position;
 											if($loc == '2') {
 												$value[1] = $basic_position_amount['home_national'];
@@ -2742,7 +2746,7 @@ class Controllersellerprofilesellerprofile extends Controller
 											}
 										}
 									} else {										
-										if(count($position_amount)+1 == $ad_order) {
+										if(count($position_amount)+1 == $position) {
 											$value[0] = $position;
 											if($loc == '2') {
 												$value[1] = $basic_position_amount['home_national'];
@@ -2757,13 +2761,13 @@ class Controllersellerprofilesellerprofile extends Controller
 												$value[1] = $basic_position_amount['home_local'];
 											}
 										} else {
-											if($key+1 == $ad_order && $ad_order == 1) { 
+											if($key+1 == $position && $position == 1) { 
 												$value[0] = $position; break;
 											} else {
-												if($key+2 == $ad_order) {  
+												if($key+2 == $position) {  
 													$value[0] = $position;
 												}
-												if($key+1 == $ad_order) {
+												if($key+1 == $position) {
 													$value[1] = $position;
 												}
 											}
@@ -2802,7 +2806,7 @@ class Controllersellerprofilesellerprofile extends Controller
 							$json['success'] = $value;
 						}
 					}
-				}else {
+				} else {
 					if($loc == '2') {
 						$value[0] = $basic_position_amount['home_national'];
 						$json['success'] = $value;

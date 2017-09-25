@@ -1427,63 +1427,64 @@
               </thead>
               <tbody>
                 <?php $cat_row = 0; ?>
-                <?php if(!empty($category_seller)) {
-                           $i = 0;
-                           foreach ($category_seller['category'] as $seller_cat) { ?>
-                <tr id="cat-rows<?php echo $cat_row; ?>" class="extra">
-                  <td class="text-left cat">
-                    <input type="text" name="category" data-row="<?php echo $cat_row; ?>" id="category_<?php echo $cat_row; ?>" value="<?php echo $seller_cat['name']; ?>"
-                      placeholder="Type here" class="form-control" />
-                    <ul class="dropdown-menu_<?php echo $cat_row; ?>"></ul>
-                    <input type="hidden" data-row="<?php echo $cat_row; ?>" name="category_id" id="category_hidden_<?php echo $cat_row; ?>" value="<?php echo $seller_cat['category_id']; ?>"
-                    />
-                  </td>
-                  <td class="text-left subcat">
-                    <input type="text" name="sub_category" id="sub_category_<?php echo $cat_row; ?>" data-row="<?php echo $cat_row; ?>" value=""
-                      placeholder="Type here" class="form-control" />
-                    <ul class="dropdown-submenu_<?php echo $cat_row; ?>"></ul>
-                    <div id="product-category_<?php echo $cat_row; ?>" class="well well-sm" style="height: 150px; overflow: auto;">
-                      <?php
-                                       foreach ($category_seller['sub_categories'][$cat_row] as $seller_sub_cat) { ?>
-                        <p><i class="fa fa-minus-circle"></i>
-                          <?php echo $seller_sub_cat['name']; ?>
-                          <input type="hidden" name="product_category[]" id="product_category_<?php echo $seller_sub_cat['category_id']; ?>" value="<?php echo $seller_sub_cat['category_id']; ?>"></p>
-                        <?php } ?>
+                <?php 
+                  if(!empty($category_seller['category'])) { 
+                    $i = 0;
+                    foreach ($category_seller['category'] as $seller_cat) { ?>
+                  <tr id="cat-rows<?php echo $cat_row; ?>" class="extra">
+                    <td class="text-left cat">
+                      <input type="text" name="category" data-row="<?php echo $cat_row; ?>" id="category_<?php echo $cat_row; ?>" value="<?php echo $seller_cat['name']; ?>"
+                        placeholder="Type here" class="form-control" />
+                      <ul class="dropdown-menu_<?php echo $cat_row; ?>"></ul>
+                      <input type="hidden" data-row="<?php echo $cat_row; ?>" name="category_id" id="category_hidden_<?php echo $cat_row; ?>" value="<?php echo $seller_cat['category_id']; ?>"
+                      />
+                    </td>
+                    <td class="text-left subcat">
+                      <input type="text" name="sub_category" id="sub_category_<?php echo $cat_row; ?>" data-row="<?php echo $cat_row; ?>" value=""
+                        placeholder="Type here" class="form-control" />
+                      <ul class="dropdown-submenu_<?php echo $cat_row; ?>"></ul>
+                      <div id="product-category_<?php echo $cat_row; ?>" class="well well-sm" style="height: 150px; overflow: auto;">
+                        <?php
+                                         foreach ($category_seller['sub_categories'][$cat_row] as $seller_sub_cat) { ?>
+                          <p><i class="fa fa-minus-circle"></i>
+                            <?php echo $seller_sub_cat['name']; ?>
+                            <input type="hidden" name="product_category[]" id="product_category_<?php echo $seller_sub_cat['category_id']; ?>" value="<?php echo $seller_sub_cat['category_id']; ?>"></p>
+                          <?php } ?>
+                      </div>
                     </div>
-          </div>
-          </td>
-          <td class="text-left">
-            <?php if($cat_row > 0) { ?>
-            <button type="button" onclick="$('#cat-rows<?php echo $cat_row; ?>').remove();" class="--minus-btn">-</button>
-            <?php } ?>
-          </td>
-          </tr>
-          <?php $cat_row++; } } else { ?>
-          <tr id="cat-rows0" class="extra">
-            <td class="text-left cat">
-              <input type="text" name="category_0" id="category_0" data-row="0" value="" placeholder="Type here" onKeyPress="getCategories(this.value, 0)"
-                class="form-control" />
-              <ul class="dropdown-menu_0"></ul>
-              <input type="hidden" id="category_hidden_0" data-row="0" name="category_id" value="" />
-            </td>
-            <td class="text-left subcat">
-              <input type="text" name="sub_category_0" value="" placeholder="Type here" data-row="0" class="form-control" />
-              <ul class="dropdown-submenu_0"></ul>
-              <div id="product-category_0" class="well well-sm" style="height: 150px; overflow: auto;"></div>
-            </td>
-            <td></td>
-          </tr>
-          <?php } ?>
-          </tbody>
-          <tfoot>
-            <tr>
-              <td colspan="3">
-                <button type="button" id="addBtnCategories" class="btn btn-primary">Add</button>
-                <button type="button" id="button-cat-subcat-save" data-loading-text="<?php echo $text_loading; ?>" class="btn btn-primary pull-right"><?php echo $button_save; ?></button>
-              </td>
-            </tr>
-          </tfoot>
-          </table>
+                    </td>
+                    <td class="text-left">
+                      <?php if($cat_row > 0) { ?>
+                      <button type="button" onclick="$('#cat-rows<?php echo $cat_row; ?>').remove();" class="--minus-btn">-</button>
+                      <?php } ?>
+                    </td>
+                  </tr>
+                  <?php $cat_row++; } } else { ?>
+                  <tr id="cat-rows0" class="extra">
+                    <td class="text-left cat">
+                      <input type="text" name="category_0" id="category_0" data-row="0" value="" placeholder="Type here" onKeyPress="getCategories(this.value, 0)"
+                        class="form-control" />
+                      <ul class="dropdown-menu_0"></ul>
+                      <input type="hidden" id="category_hidden_0" data-row="0" name="category_id" value="" />
+                    </td>
+                    <td class="text-left subcat">
+                      <input type="text" name="sub_category_0" value="" placeholder="Type here" data-row="0" class="form-control" />
+                      <ul class="dropdown-submenu_0"></ul>
+                      <div id="product-category_0" class="well well-sm" style="height: 150px; overflow: auto;"></div>
+                    </td>
+                    <td></td>
+                  </tr>
+                  <?php } ?>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <td colspan="3">
+                    <button type="button" id="addBtnCategories" class="btn btn-primary">Add</button>
+                    <button type="button" id="button-cat-subcat-save" data-loading-text="<?php echo $text_loading; ?>" class="btn btn-primary pull-right"><?php echo $button_save; ?></button>
+                  </td>
+                </tr>
+              </tfoot>
+              </table>
       </div>
       </form>
     </div>

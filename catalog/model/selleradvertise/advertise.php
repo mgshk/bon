@@ -668,6 +668,7 @@ class ModelselleradvertiseAdvertise extends Model
 	public function getPostionAmount($from_date, $end_date, $loc, $ad_order, $km='')
     {
 		$correct_level = array();
+
 		if($km != '' && $loc == '5') {
 			$sql = "SELECT lat, lng FROM ".DB_PREFIX."customer WHERE customer_id = '".(int) $this->customer->getID()."'";
 			$query = $this->db->query($sql);
@@ -691,16 +692,16 @@ class ModelselleradvertiseAdvertise extends Model
 			} else {
 				$correct_level = $correct_level2;
 			}
-			
-			//print_r($correct_level);exit;
 		} else {
-			$sql = "SELECT price FROM ".DB_PREFIX."store_offers WHERE from_date = '".$from_date."' AND position = '".(int) $loc."' order by price Desc";
+			$sql = "SELECT price FROM ".DB_PREFIX."store_offers 
+                WHERE from_date = '".$from_date."' AND position = '".(int) $loc."' 
+                order by price Desc";
+                
 			$query = $this->db->query($sql);
 			$correct_level = $query->rows;
 		}		
 
-		return $correct_level;     
-
+		return $correct_level;
     }
 
 	public function getdateCheckForFirstPosition()
