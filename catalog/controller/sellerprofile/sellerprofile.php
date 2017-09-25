@@ -12,7 +12,10 @@ class Controllersellerprofilesellerprofile extends Controller
             $this->response->redirect($this->url->link('common/home', '', 'SSL'));
         }
 
+        $this->document->addStyle('http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/base/jquery-ui.css');
+        $this->document->addScript('catalog/view/javascript/jquery-ui.multidatespicker.js');
         $this->document->addScript('catalog/view/javascript/sellerprofile/sellerprofile.js');
+        $this->document->addScript('catalog/view/javascript/sellerprofile/sellerprofile_selleradvertise_approved.js');
 
         $this->load->model('sellerproduct/seller');
         $this->load->model('sellerprofile/sellerprofile');
@@ -1612,7 +1615,7 @@ class Controllersellerprofilesellerprofile extends Controller
 
     }
 	public function sellerAdvertiseapproved()
-    {
+    {        
         $this->load->language('selleradvertise/advertise');
         $this->load->language('sellerprofile/sellerprofile');
         $this->load->model('sellerprofile/sellerprofile');
@@ -1623,7 +1626,10 @@ class Controllersellerprofilesellerprofile extends Controller
         } else {
             $data['error_warning'] = '';
         }
-		$data['basic_position_amount'] = $this->model_selleradvertise_advertise->getStoreOfferBasicPrice();
+
+		$basic_position_amount = $this->model_selleradvertise_advertise->getStoreOfferBasicPrice();
+
+        $data['basic_position_amount'] = json_encode($basic_position_amount);
 		$data['basic_price_cashback'] = $this->model_selleradvertise_advertise->getStoreOfferBasicPriceWithCashBack();
 
         $data['entry_selleradvertise'] = $this->language->get('entry_selleradvertise');
@@ -3200,5 +3206,14 @@ class Controllersellerprofilesellerprofile extends Controller
 		}		
 		return $adName;
 	}
+
+    public function getStoreOfferBasicPrice() {
+        $this->load->model('selleradvertise/advertise');
+
+        $basic_position_amount = $this->model_selleradvertise_advertise->getStoreOfferBasicPrice();
+
+        echo json_encode($basic_position_amount);
+        exit;
+    }
 	
 }
