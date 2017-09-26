@@ -460,16 +460,19 @@ if(adss)
 
 			var select_value = (parseInt(this.value) + parseInt(1));
 			var total_position_length = $('#position > option').length;
+			var banner_name = $('input[name="loc"]:checked').data('advertiseName');
+
+			$('#min_price').val(bannerBasicPrice[banner_name]);
 
 			if(total_position_length == select_value) {
-				$('#amount_val').val('').hide();
-				$('.advertise-btn_live').hide();
+				$('#amount_val').val(bannerBasicPrice[banner_name]).hide();
+
+				$('#payable_amnt').text(bannerBasicPrice[banner_name]);
+    			$('.advertise-btn_live').show();
 			} else {
 				$('#amount_val').val('').show();
+				$('.advertise-btn_live').hide();
 			}
-
-			var banner_name = $('input[name="loc"]').val();
-			$('#min_price').val(bannerBasicPrice[banner_name]);
 			
 			if (this.value.length != 0 && this.value.length != '') {
 				$('.text-dangers').html('');
