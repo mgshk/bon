@@ -288,22 +288,20 @@ class ControllerSellerseller extends Controller
 
             $transaction_approve_comment = sprintf($this->language->get('transaction_approve_comment'), $seller_group_info['name']);
 
-            $this->model_seller_seller->addTransaction($this->request->get['seller_id'], $transaction_approve_comment, $seller_group_info['subscription_price'] * -1);
-            $this->model_seller_seller->approve($this->request->get['seller_id']);
-
 			//QR - Code process start
-			$enu=urlencode(HTTP_CATALOG.'index.php?route=seller/seller/info&seller_id='.$this->request->get['seller_id'].'&path=&counter=1&qr=op');
-			$tm=time();
-			$qrname="view/image/qr_images/buyonear.in_".$this->request->get['seller_id'];
-			$qrname_ex=".png";
-			$durl="https://chart.googleapis.com/chart?chs=376x344&cht=qr&chl=".$enu."&choe=UTF-8";
+			$enu = urlencode(HTTP_CATALOG.'index.php?route=seller/seller/info&seller_id='.$this->request->get['seller_id'].'&path=&counter=1&qr=op');
+			$tm = time();
+			$qrname = "view/image/qr_images/buyonear.in_".$this->request->get['seller_id'];
+			$qrname_ex = ".png";
+			$durl = "https://chart.googleapis.com/chart?chs=376x344&cht=qr&chl=".$enu."&choe=UTF-8";
 			copy($durl,$qrname.$qrname_ex);
+
 			$this->db->query('UPDATE '.DB_PREFIX."customer SET seller_qr = '".$qrname."' WHERE customer_id = '".(int) $this->request->get['seller_id']."'");
 			$main1 = imagecreatefromjpeg('view/image/qr_images/main1.jpg');
 			$src1 = imagecreatefrompng($qrname.$qrname_ex);
 			imagealphablending($main1, false);
 			imagesavealpha($main1, true);
-			//imagecopymerge($main1, $src1, 110, 830, 50, 50, 376, 344, 100); //have to play with these numbers for it to work for you, etc.
+			
 			imagecopymerge($main1, $src1, 100, 850, 0, 0, 376, 344, 100); //have to play with these numbers for it to work for you, etc.			
 			imagepng($main1, $qrname.'_main1.png');
 			imagedestroy($main1);
@@ -313,11 +311,16 @@ class ControllerSellerseller extends Controller
 			$src2 = imagecreatefrompng($qrname.$qrname_ex);
 			imagealphablending($main2, false);
 			imagesavealpha($main2, true);
-			//imagecopymerge($main2, $src2, 10, 730, 50, 50, 376, 344, 100); //have to play with these numbers for it to work for you, etc.
+
 			imagecopymerge($main2, $src2, 15, 720, 0, 0, 376, 344, 100); //have to play with these numbers for it to work for you, etc.			
 			imagepng($main2, $qrname.'_main2.png');
 			imagedestroy($main2);
 			imagedestroy($src2);
+
+            if (file_exists($qrname.'_main1.png') && file_exists($qrname.'main2.png')) {
+                $this->model_seller_seller->addTransaction($this->request->get['seller_id'], $transaction_approve_comment, $seller_group_info['subscription_price'] * -1);
+                $this->model_seller_seller->approve($this->request->get['seller_id']);
+            }
 
             $this->session->data['success'] = $this->language->get('text_success');
 
