@@ -286,7 +286,7 @@ if(adss)
     			min_price = bannerBasicPrice[banner_name];
     		}
 
-    		if (amount > min_price) {
+    		if (parseInt(amount) > parseInt(min_price)) {
     			$('#payable_amnt').text(amount);
     			$('.advertise-btn_live').show();
     		} else {
