@@ -153,12 +153,17 @@ if(adss)
 						    <input id="state" name="state" type="hidden" value="<?php echo strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', trim($state)))); ?>">
 						    <input id="city" name="city" type="hidden" value="<?php echo strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', trim($city)))); ?>">
 						   
-						    <input type="radio" name="loc" id="home_top" data-advertise-id="<?php echo $advetise['advertise_id']; ?>" data-advertise-name="top_banner" value="1"/><label for="home_top">Home - Top banner</label><br/>
-						    <input type="radio" <?php if($country =='') { echo "disabled"; }?> name="loc" id="home_national" data-advertise-name="home_national" value="2"/><label for="home_national">Home - National (<?php if($country !='') { echo $country; } else { echo "Cannot get country name from your store geo code.";}?>)<?php echo ($basic_price_cashback['home_national'] !='0') ? $basic_price_cashback['home_national'].'%':''; ?></label><br/>
-						    <input type="radio" <?php if($state =='') { echo "disabled"; }?> name="loc" id="home_state" data-advertise-name="home_state" value="3"/><label for="home_state">Home - State (<?php if($state !='') { echo $state; } else { echo "Cannot get state name from your store geo code.";}?>)<?php echo ($basic_price_cashback['home_state'] !='0') ? $basic_price_cashback['home_state'].'%': ''; ?></label><br/>
-						    <input type="radio" <?php if($city =='') { echo "disabled"; }?> name="loc" id="home_city" data-advertise-name="home_city" value="4"/><label for="home_city">Home - City (<?php if($city !='') { echo $city; } else { echo "Cannot get city name from your store geo code.";}?>)<?php echo ($basic_price_cashback['home_city'] !='0') ? $basic_price_cashback['home_city'].'%': ''; ?></label><br/>
-						    <input type="radio" name="loc" id="home_local" data-advertise-name="home_local" value="5"/><label for="home_local">Home - Nearby</label><br/>
-						    <input type="radio" name="loc" id="store_ad" data-advertise-name="store_ad" value="6"/><label for="store_ad">In your Page - Free</label><br/>
+						    <input type="radio" name="loc" id="home_top" data-advertise-id="<?php echo $advetise['advertise_id']; ?>" data-advertise-name="top_banner" data-cash-back="<?php echo $basic_price_cashback['top_banner']; ?>" value="1"/><label for="home_top">Home - Top banner</label><br/>
+
+						    <input type="radio" <?php if($country =='') { echo "disabled"; }?> name="loc" id="home_national" data-advertise-name="home_national" data-cash-back="<?php echo $basic_price_cashback['home_national']; ?>" value="2"/><label for="home_national">Home - National (<?php if($country !='') { echo $country; } else { echo "Cannot get country name from your store geo code.";}?>)</label><br/>
+
+						    <input type="radio" <?php if($state =='') { echo "disabled"; }?> name="loc" id="home_state" data-advertise-name="home_state" data-cash-back="<?php echo $basic_price_cashback['home_state']; ?>" value="3"/><label for="home_state">Home - State (<?php if($state !='') { echo $state; } else { echo "Cannot get state name from your store geo code.";}?>)</label><br/>
+
+						    <input type="radio" <?php if($city =='') { echo "disabled"; }?> name="loc" id="home_city" data-advertise-name="home_city" data-cash-back="<?php echo $basic_price_cashback['home_city']; ?>" value="4"/><label for="home_city">Home - City (<?php if($city !='') { echo $city; } else { echo "Cannot get city name from your store geo code.";}?>)</label><br/>
+
+						    <input type="radio" name="loc" id="home_local" data-advertise-name="home_local" data-cash-back="<?php echo $basic_price_cashback['home_local']; ?>" value="5"/><label for="home_local">Home - Nearby</label><br/>
+
+						    <input type="radio" name="loc" id="store_ad" data-advertise-name="store_ad" data-cash-back="0" value="6"/><label for="store_ad">In your Page - Free</label><br/>
 						</div>
 						<div class="rigth--stat">
 							<p id="show_basic_price" class="set--trp" style="display:none;"><strong>Basic price: <span id="basic_price"></span></strong></p>
@@ -193,6 +198,9 @@ if(adss)
 						    <!-- <label>Price - Current Level: </label><span class="text-green" id="min_price_add">0 </span> Rs    
 						    <label>Leavel one above: </label><span class="text-green" id="max_price_add">0 </span> Rs -->
 
+						    <div id="validation_txt" style="display:none">
+							    <label>Price </label> (<span class="text-green" id="price_vaidation_txt"></span>)
+							</div>
 						    <input type="text" name="amount" id="amount_val" class="form-control" style="display: none;"/>
 						    <input type="hidden" name="min_price" id="min_price" />
 							<input type="hidden" name="max_price" id="max_price" />
@@ -211,9 +219,9 @@ if(adss)
 							<div class="margin-ttep">Total price (no. of days x basic price) : <span class="display_amount_1" id="display_amount"> </span></div>
 						</div>
 					     
-						<button class="advertise-btn_live" style="display:none;" type="button">Pay &#8377;<span id="payable_amnt"></span></button>
+						<button class="advertise-btn_live" style="display:none;" disabled type="button">Pay</button>
 						<button class="advertise-btn" type="button" onclick="this.form.reset();" data-dismiss="modal" aria-hidden="true">Cancel</button>
-						<span class="text-dangers" id="error_check"> </span>
+						<span class="text-dangers" id="error_check"></span>
 					</div>
 			    </form>
 		    </div>
@@ -267,31 +275,21 @@ if(adss)
 
 		$('#altField').multiDatesPicker({
     		onSelect: function () {
-    			$('#display_amount').text(parseInt($('#altField').multiDatesPicker('getDates').length) * parseInt(bannerBasicPrice['top_banner']));
-    			$('#display_total').text(parseInt($('#altField').multiDatesPicker('getDates').length));
+    			var discount = $('input[name="loc"]:checked').data('cashBack');
+    			var length = parseInt($('#altField').multiDatesPicker('getDates').length);
+
+    			$('#display_total').text(length);
+
+    			var total_price = length * parseInt(bannerBasicPrice['top_banner']);
+    			var discount_price = (discount / 100) * total_price;
+    			var discount_txt = '<del>'+total_price+'</del> '+discount+'% '+ discount_price;
+    			$('#display_amount').html(discount_txt);
+
+    			if ($('#altField').multiDatesPicker('getDates').length > 0)
+    				$('.advertise-btn_live').attr('disabled', false);
+    			else
+    				$('.advertise-btn_live').attr('disabled', true);
     		}
-    	});
-
-    	$(document).on('keyup', '#amount_val', function() {
-
-    		var min_price = 0;
-    		var level = $('#position').find(":selected").text();
-    		var price = level.split('-');
-    		var amount = $(this).val();
-    		var banner_name = $('input[name="loc"]:checked').data('advertiseName');
-
-    		if (price[1].replace(/\s/g, '') === 'New') {
-    			min_price = bannerBasicPrice[banner_name];
-    		} else {
-    			min_price = bannerBasicPrice[banner_name];
-    		}
-
-    		if (parseInt(amount) > parseInt(min_price)) {
-    			$('#payable_amnt').text(amount);
-    			$('.advertise-btn_live').show();
-    		} else {
-    			$('.advertise-btn_live').hide();
-    		}	
     	});
 
 		$(document).on('click', 'input[name="loc"]', function() {
@@ -307,36 +305,36 @@ if(adss)
 
 			$('#basic_price').text(bannerBasicPrice[banner_name]);
 			$('#show_basic_price').show();
-
-			if(loc != 5) {
-				$("select#km").val('');			
-			}
-
+			$('.advertise-btn_live').show();
 			$('.position_local_visible').hide();
-			
-			if(loc == 5) { $('.position_local_visible').show(); }
-
 			$('#datetimepicker_end_'+advertise_id).datepicker('destroy');
 
-			if(loc == '1') {
+			if(loc == 1) {
+
 				$('#home_top_hide').hide();
 				$('#home_top_show').show();
-				$.ajax({
-				      type: "Post",
-				      url: "index.php?route=sellerprofile/sellerprofile/top_banner_date_check",
-				      success: function(json)
-				      {
-						  if(json['success'].length > 0) {
-							$('#hide_date').val(json['success']);
 
-							$('#altField').multiDatesPicker({ 
-								dateFormat: "yy-mm-dd",
-								addDisabledDates: json['success']
-							});
-						  }				  
-				      }		    
-				 });
+				// $.ajax({
+				//       type: "post",
+				//       url: "index.php?route=sellerprofile/sellerprofile/top_banner_date_check",
+				//       success: function(json) {
+				//       	console.log(json);
+
+				// 		  if(json['success'].length > 0) {
+				// 			$('#hide_date').val(json['success']);
+
+				// 			$('#altField').multiDatesPicker({ 
+				// 				dateFormat: "yy-mm-dd",
+				// 				addDisabledDates: json['success']
+				// 			});
+				// 		  }			  
+				//       }		    
+				//  });
 			}
+
+			if (loc != 5) { $("select#km").val('');	}
+
+			if (loc == 5) { $('.position_local_visible').show(); }
 
 			if(loc == '6') {
 				$('#home_top_hide').show();
@@ -381,7 +379,7 @@ if(adss)
 								    if(data.length != (parseInt(i) + parseInt(1))) {						
 										sel.append('<option value="' + (parseInt(i) + parseInt(1)) + '" >' + html_value + '</option>');
 								    } else {
-										var basic_val = (parseInt(i) + parseInt(2))+ '- New';
+										var basic_val = (parseInt(i) + parseInt(2))+ ' - New';
 										sel.append('<option value="' + (parseInt(i) + parseInt(1)) + '" >' + html_value + '</option>');							
 										sel.append("<option value='" + (parseInt(i) + parseInt(2)) + "' >" + basic_val + "</option>");
 										sel.append("<option value='" + (parseInt(i) + parseInt(3)) + "' >Basic price</option>");
@@ -448,90 +446,173 @@ if(adss)
 		    dateFormat: "yy-mm-dd"
 		});
 
+		$(document).on('keyup', '#amount_val', function() {
+
+    		var min_price = 0;
+    		var level = $('#position').find(":selected").text();
+    		var price = level.split('-');
+    		var amount = $(this).val();
+    		var banner_name = $('input[name="loc"]:checked').data('advertiseName');
+
+    		if (price[1].replace(/\s/g, '') === 'New') {
+    			min_price = bannerBasicPrice[banner_name];
+    		} else {
+    			min_price = price[1];
+    		}
+
+    		if (parseInt(amount) > parseInt(min_price)) {
+    			$('.advertise-btn_live').attr('disabled', false);
+    		} else {
+    			$('.advertise-btn_live').attr('disabled', true);
+    		}	
+    	});
+
 		$('.check_amount').on('change', function() {
 			
+			if (this.value.length === 0)
+			    return;
+
 			$('#error_position').html('');
 			$('#error_amount').html('');
 			$('#max_price_add').html('');
 			$('#min_price_add').html('');
-
-			if (this.value.length === 0)
-			    return;
+			$('#validation_txt').show();
 
 			var select_value = (parseInt(this.value) + parseInt(1));
 			var total_position_length = $('#position > option').length;
 			var banner_name = $('input[name="loc"]:checked').data('advertiseName');
 
-			$('#min_price').val(bannerBasicPrice[banner_name]);
+			var min_price = 0;
+			var max_price = 0;
+    		var level = $(this).find(':selected').text();
+    		var price = level.split('-');
 
-			if(total_position_length == select_value) {
-				$('#amount_val').val(bannerBasicPrice[banner_name]).hide();
+    		$.ajax({
+				url: 'index.php?route=sellerprofile/sellerprofile/advertiseAmountList',
+				type: 'post',
+				dataType: 'json',
+				data: {
+					loc: $('input:radio[name=loc]:checked').val(),
+					from_date: $('#datetimepicker_start_'+advertise_id).val()
+				},
+				success: function(json) {
+					if (price[1] && price[1].replace(/\s/g, '') === 'New') {
+		    			min_price = bannerBasicPrice[banner_name];
 
-				$('#payable_amnt').text(bannerBasicPrice[banner_name]);
-    			$('.advertise-btn_live').show();
-			} else {
-				$('#amount_val').val('').show();
-				$('.advertise-btn_live').hide();
-			}
+		    			if(price[0] === 1) {
+		    				$('#price_vaidation_txt').text('Should be Greater than '+bannerBasicPrice[banner_name]+ ' Rs');
+		    			} else {
+		    				var selected_length = $('#position > option:checked').val();
+		    				max_price = json[parseInt(selected_length) - 2];
+
+		    				$('#price_vaidation_txt').text('Should be Between '+bannerBasicPrice[banner_name]+ ' Rs and ' + max_price + ' Rs');
+		    			}
+
+		    		} else if (level === 'Basic price') {
+		    			min_price = bannerBasicPrice[banner_name];
+		    			$('#price_vaidation_txt').text('Should be '+bannerBasicPrice[banner_name]+ ' Rs');
+		    		} else if ($('.check_amount').find(':selected').val() === '1') {
+		    			min_price = json[0];
+		    			$('#price_vaidation_txt').text('Should be Greater than '+min_price+ ' Rs');
+		    		} else {
+		    			var selected_length = $('#position > option:checked').length;
+		    			min_price = price[1].replace(/\s/g, '');
+	    				max_price = json[selected_length - 1];
+
+	    				$('#price_vaidation_txt').text('Should be Between '+min_price+ ' Rs and ' + max_price + ' Rs');
+		    		}
+				}
+			 });
+
+   //  		var prevElement = $('#position option:eq('+ (total_position_length - 1) +')').text();
+   //  		var nextElement = $('#position option:eq('+ (total_position_length + 1) +')').text();
+
+   //  		console.log(prevElement);
+   //  		console.log(nextElement);
+
+    		// if (price[1] && price[1].replace(/\s/g, '') === 'New') {
+    		// 	min_price = bannerBasicPrice[banner_name];
+    		// 	$('#price_vaidation_txt').text('Should be Greater than '+bannerBasicPrice[banner_name]+ ' Rs');
+    		// } else if (level === 'Basic price') {
+    		// 	min_price = bannerBasicPrice[banner_name];
+    		// 	$('#price_vaidation_txt').text('Should be '+bannerBasicPrice[banner_name]+ ' Rs');
+    		// } else if (total_position_length === select_value) {
+    		// 	min_price = price[1];
+    		// 	$('#price_vaidation_txt').text('Should be Greater than '+price[1]+ ' Rs');
+    		// } else {
+    		// 	var prevElement = $(this +'').find(':selected').prev('option');
+    		// 	var nextElement = $(this).find(':selected').next('option');
+    		// 	console.log(total_position_length);
+    		// }
+
+			// if(total_position_length == select_value) {
+			// 	$('#amount_val').val(bannerBasicPrice[banner_name]).hide();
+   //  			$('.advertise-btn_live').attr('disabled', false);
+			// } else {
+
+			$('#amount_val').val('').show();
+			$('.advertise-btn_live').attr('disabled', true);
+
+			// }
 			
-			if (this.value.length != 0 && this.value.length != '') {
-				$('.text-dangers').html('');
+			// if (this.value.length != 0 && this.value.length != '') {
+			// 	$('.text-dangers').html('');
 
-				$.ajax({
-					url: 'index.php?route=sellerprofile/sellerprofile/location_ad',
-					type: 'post',
-					dataType: 'json',
-					data: $("#advertise_move_live").serialize(),
-					success: function(json) {
-						if (json['success']) {
-							if((json['success']).length === 0 && json['success'] == '') {
-								$('#min_price_add').html('0');
-								$('#max_price_add').html('500');
+			// 	$.ajax({
+			// 		url: 'index.php?route=sellerprofile/sellerprofile/location_ad',
+			// 		type: 'post',
+			// 		dataType: 'json',
+			// 		data: $("#advertise_move_live").serialize(),
+			// 		success: function(json) {
+			// 			if (json['success']) {
+			// 				if((json['success']).length === 0 && json['success'] == '') {
+			// 					$('#min_price_add').html('0');
+			// 					$('#max_price_add').html('500');
 
-								$('#min_price').val(0);
-								$('#max_price').val(500);
+			// 					$('#min_price').val(0);
+			// 					$('#max_price').val(500);
 
-							} else {
-								if(json['success'][0]) {
-									$('#min_price_add').html('0');
-									$('#max_price_add').html(json['success'][0]);
+			// 				} else {
+			// 					if(json['success'][0]) {
+			// 						$('#min_price_add').html('0');
+			// 						$('#max_price_add').html(json['success'][0]);
 
-									$('#min_price').val(0);
-									$('#max_price').val(json['success'][0]);
-								}
+			// 						$('#min_price').val(0);
+			// 						$('#max_price').val(json['success'][0]);
+			// 					}
 
-								if(json['success'][0] && json['success'][1]) {							
-									$('#max_price_add').html(json['success'][0]);
-									$('#min_price_add').html(json['success'][1]);
+			// 					if(json['success'][0] && json['success'][1]) {							
+			// 						$('#max_price_add').html(json['success'][0]);
+			// 						$('#min_price_add').html(json['success'][1]);
 
-									$('#max_price').val(json['success'][0]);
-									$('#min_price').val(json['success'][1]);
-								}												
-							}
-						}
+			// 						$('#max_price').val(json['success'][0]);
+			// 						$('#min_price').val(json['success'][1]);
+			// 					}												
+			// 				}
+			// 			}
 
-						if(json['advertise_location']) {
-							$('#error_loc').html('<i class="fa fa-times" aria-hidden="true"></i><span>'+json['advertise_location']);
-						}
+			// 			if(json['advertise_location']) {
+			// 				$('#error_loc').html('<i class="fa fa-times" aria-hidden="true"></i><span>'+json['advertise_location']);
+			// 			}
 
-						if(json['from_date']) {
-							$('#error_from_date').html('<i class="fa fa-times" aria-hidden="true"></i><span>'+json['from_date']);
-						}
+			// 			if(json['from_date']) {
+			// 				$('#error_from_date').html('<i class="fa fa-times" aria-hidden="true"></i><span>'+json['from_date']);
+			// 			}
 
-						if(json['end_date']) {
-							$('#error_end_date').html('<i class="fa fa-times" aria-hidden="true"></i><span>'+json['end_date']);
-						}
+			// 			// if(json['end_date']) {
+			// 			// 	$('#error_end_date').html('<i class="fa fa-times" aria-hidden="true"></i><span>'+json['end_date']);
+			// 			// }
 
-						if(total_position_length == select_value) { 
-							$('.amount_show_for_basic').html(json['success'][0]);					
-							$('.amount_hide_for_basic').val(json['success'][0]);
-							$('.amount_hide_for_basic').hide();
-						}
-					}
-				});
-			} else {
-				return false;
-			}	
+			// 			// if(total_position_length == select_value) { 
+			// 			// 	$('.amount_show_for_basic').html(json['success'][0]);					
+			// 			// 	$('.amount_hide_for_basic').val(json['success'][0]);
+			// 			// 	$('.amount_hide_for_basic').hide();
+			// 			// }
+			// 		}
+			// 	});
+			// } else {
+			// 	return false;
+			// }	
 		});
     });
 </script>
@@ -600,6 +681,7 @@ $('.advertise-btn_live').on('click', function(e) {
 				$('#payu_form').submit();
 				return false;
 			}
+
 			if(json['free_check'] == 1) {
 				if(loc == '5') {
 					if(modetrue == false) {
@@ -621,24 +703,32 @@ $('.advertise-btn_live').on('click', function(e) {
 					}
 				} 
 			}
+
 			if(json['advertise_location']) {
 				$('#error_loc').html('<i class="fa fa-times" aria-hidden="true"></i><span>'+json['advertise_location']);
 			}
+
 			if(json['from_date']) {
 				$('#error_from_date').html('<i class="fa fa-times" aria-hidden="true"></i><span>'+json['from_date']);
 			}
+
 			if(json['end_date']) {
 				$('#error_end_date').html('<i class="fa fa-times" aria-hidden="true"></i><span>'+json['end_date']);
 			}
+
 			if(json['amount']) {
 				$('#error_amount').html('<i class="fa fa-times" aria-hidden="true"></i><span>'+json['amount']);
 			}
+
 			if(json['position']) {
 				$('#error_position').html('<i class="fa fa-times" aria-hidden="true"></i><span>'+json['position']);
 			}
-			if(loc == '1') { if(json['top_banner_date']) {
-				$('#error_top_banner_date').html('<i class="fa fa-times" aria-hidden="true"></i><span>'+json['top_banner_date']);
-			} }
+
+			if(loc == '1') { 
+				if(json['top_banner_date']) {
+					$('#error_top_banner_date').html('<i class="fa fa-times" aria-hidden="true"></i><span>'+json['top_banner_date']);
+				} 
+			}
 		}
 	 });
  });
@@ -650,7 +740,7 @@ $('.area_km').on('change',function() {
 	km = $('select[name=km]').val();
 
 	//alert(from_date);
-	$.post('index.php?route=sellerprofile/sellerprofile/advertiseAmountList', { 
+	$.post('index.php?route=sellerprofile/sellerprofile/advertiseAmountList', {
 	  'loc' : loc, 'from_date' : from_date, 'km': km },
 	  function(data) { //alert(data);
 		$('#loader').html('');
@@ -666,7 +756,7 @@ $('.area_km').on('change',function() {
 		for (var i=0; i<data.length; i++) {					
 							
 			var html_value = (parseInt(i) + parseInt(1))+ '-' + data[i];
-		  if(data.length != (parseInt(i) + parseInt(1))) {						
+		  if(data.length != (parseInt(i) + parseInt(1))) {					
 			sel.append('<option value="' + (parseInt(i) + parseInt(1)) + '" >' + html_value + '</option>');
 		   } else {
 			//if(data.length == 1) {							

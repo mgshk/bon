@@ -179,13 +179,15 @@ class Controllersellerprofilesellerprofile extends Controller
 
         $categories_list = $this->model_catalog_category->getCategoriesList();
 
-        foreach ($category_ids as $value) {
-            if($value->category && $categories_list[$value->category]) {
-                $seller_categories['category'][] = $categories_list[$value->category];
-                $sub_category_ids = implode($value->sub_categories, "','");
-                $sub_categories_list = $this->model_catalog_category->getSubCategories($value->category, $sub_category_ids);
+        if (!empty($category_ids)) {
+            foreach ($category_ids as $value) {
+                if($value->category && $categories_list[$value->category]) {
+                    $seller_categories['category'][] = $categories_list[$value->category];
+                    $sub_category_ids = implode($value->sub_categories, "','");
+                    $sub_categories_list = $this->model_catalog_category->getSubCategories($value->category, $sub_category_ids);
 
-                $seller_categories['sub_categories'][] = $sub_categories_list;
+                    $seller_categories['sub_categories'][] = $sub_categories_list;
+                }
             }
         }
 
@@ -2383,7 +2385,7 @@ class Controllersellerprofilesellerprofile extends Controller
 				if($loc == 3) { $basic_amount_loc = $basic_position_amount['home_state']; }
 				if($loc == 4) { $basic_amount_loc = $basic_position_amount['home_city']; }
 				if($loc == 5) { $basic_amount_loc = $basic_position_amount['home_local']; }
-				if($loc == '2' || $loc == '3' || $loc == '4' || $loc == '5') {					
+				if($loc == '2' || $loc == '3' || $loc == '4' || $loc == '5') {		
 					$km = (isset($this->request->post['km']) && ($this->request->post['km'] != '')) ? $this->request->post['km']: '';
 					$position_amt = $this->model_selleradvertise_advertise->getPostionAmount($from_date, $end_date, $loc, $ad_order, $km);
 										

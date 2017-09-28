@@ -665,7 +665,7 @@ class ModelselleradvertiseAdvertise extends Model
 
     }
 
-	public function getPostionAmount($from_date, $end_date, $loc, $ad_order, $km='')
+	public function getPostionAmount($from_date, $end_date, $loc, $ad_order, $km = '')
     {
 		$correct_level = array();
 
