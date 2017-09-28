@@ -68,7 +68,7 @@ $(document).ready(function() {
 		return false;
 	});
 
-	$('#save').click(function(){
+	$(document).on('click', '#save', function(){
 		if ($('input[name="agree_tt"]').is(':checked')) {
 			if($('input#offer_title').val() != '') {
 				$('input#status').val('draft');
@@ -84,11 +84,9 @@ $(document).ready(function() {
 			$('#content > .container-fluid').prepend('<div class="alert alert-danger"><i class="fa fa-exclamation-circle"></i> Please agree to the terms and conditions mentioned and then save.</div>');	
 			$('body, html').animate({scrollTop:$('#content').offset().top}, 'slow');
 		}
-
-		return false;
    	});
 
-   	$('#submitt').click(function(){	
+   	$(document).on('click', '#submitt', function() {	
 		if ($('input[name="agree_tt"]').is(':checked')) {
 			if($('input#offer_title').val() != ''){
 				$('input#status').val('submitted');
@@ -104,8 +102,6 @@ $(document).ready(function() {
 			$('#content > .container-fluid').prepend('<div class="alert alert-danger"><i class="fa fa-exclamation-circle"></i>Please agree to the terms and conditions mentioned and then save.</div>');	
 			$('body, html').animate({scrollTop:$('#content').offset().top}, 'slow');
 		}
-
-		return false;
    	});
 
    	$('#button-image').on('click', function() {
