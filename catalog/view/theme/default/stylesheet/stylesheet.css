@@ -742,6 +742,29 @@ bottom: 5px;}
 #site_faq_main ul{margin-left: 20px;}
 #site_faq_main ul li{margin-bottom: 10px;font-size: 14px;line-height: 20px;}
 #site_faq_main #accordion{max-height: 450px;overflow-y: auto;}
+.contact-modal p{margin-bottom: 10px;font-size: 14px;}
+#site_feedback_main{z-index: 100000;}
+#us11{width: 100%; height: 370px;box-shadow: 1px 1px 1px 1px #C9C9C9;
+	-webkit-box-shadow: 1px 1px 1px 1px #C9C9C9;
+ -moz-box-shadow: 1px 1px 1px 1px #C9C9C9}
+.relative-pos{position: relative;}
+#us11-address{width: 170px;display: inline-block;margin-right: 10px;}
+#us11-lat{width: 170px;display: inline-block;margin-right: 10px;}
+#us11-lon{width: 170px;display: inline-block;margin-right: 10px;}
+#divFormattedAddress{
+	box-shadow: 2px 2px 3px 1px #C9C9C9;
+	-webkit-box-shadow: 2px 2px 3px 1px #C9C9C9;
+ -moz-box-shadow: 2px 2px 3px 1px #C9C9C9;
+position: absolute;
+top: 20px;
+left: 20px;
+z-index: 100;
+width: 60%;
+height: 40px;
+font-size: 14px;
+}
+.map-header label{font-size: 14px;font-weight: bold;margin-right: 5px;}
+.getloc{position: relative;bottom: 2px;}
 /* my css ends */
 
 @media (min-width: 1200px) {

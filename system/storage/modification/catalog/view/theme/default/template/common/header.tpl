@@ -312,7 +312,7 @@
 									</ul>
 								</li>
 								<?php } ?>
-								<li><a href="#" title="Contact Us">Contact Us &nbsp;&nbsp;&nbsp;|</a></li>
+								<li><a href="#" title="Contact Us" data-toggle="modal" data-target="#site_contact_main">Contact Us &nbsp;&nbsp;&nbsp;|</a></li>
 								<li>
 									<div class="addthis_toolbox addthis_default_style" data-url="<?php echo HTTP_SERVER; ?>"><a class="atc_s addthis_button_compact">Share &nbsp;&nbsp;&nbsp;|<span></span></a></div>
 									<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-515eeaf54693130e"></script>
@@ -1424,20 +1424,19 @@
 	<div class="modal fade" id="map_mod" role="dialog">
 		<div class="modal-dialog modal-lg" role="document">
 			<div class="modal-content">
-				<div class="modal-header">
+				<div class="modal-header map-header">
 
-					<h5 class="modal-title">Modal title</h5>
-					Location: <input type="text" id="us11-address" style="width: 200px" /> Lat.: <input type="text" id="us11-lat" /> Long.:
-					<input type="text" id="us11-lon" />
+					<label>Location:</label> <input type="text" id="us11-address" class="form-control" /> <label>Lat:</label> <input type="text" id="us11-lat" class="form-control" /> <label>Long:</label>
+					<input type="text" id="us11-lon" class="form-control" />
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
           					<span aria-hidden="true">&times;</span>
         			</button>
-					<button type="button" class="btn btn-primary" data-dismiss="modal" onclick="getLocation()">Get Current Location</button>
+					<button type="button" class="btn btn-primary getloc" data-dismiss="modal" onclick="getLocation()">Get Current Location</button>
 
 				</div>
-				<div class="modal-body">
-					<div id="us11" style="width: 100%; height: 400px;"></div>
-					<input type="text" id="divFormattedAddress" />
+				<div class="modal-body relative-pos">
+					<div id="us11"></div>
+					<input type="text" id="divFormattedAddress" class="form-control" />
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-primary" data-dismiss="modal" onclick="setPosition()">Set Location</button>
@@ -1547,6 +1546,8 @@
 			obj.type = "password";
 		}
 	</script>
+
+	<!-- feedback modal -->
 	<div class="modal fade" id="site_feedback_main" role="dialog">
 		<div class="modal-dialog">
 			<!-- Modal content-->
@@ -1578,6 +1579,26 @@
 		</div>
 	</div>
 
+	<!-- feedback modal -->
+
+	<!-- contact modal -->
+	<div class="modal fade" id="site_contact_main" role="dialog">
+		<div class="modal-dialog">
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title loc-share-title">Contact us</h4>
+				</div>
+				<div class="modal-body contact-modal">
+					<p>If you are facing any issue or have a concern or want to leave a <a class="cursor" data-toggle="modal" data-target="#site_feedback_main" title="Feedback">Feedback</a>.</p>
+					<p>For anyother information or queries please send email to bononlineservices@buyonear.in. We will respond in 24 to 48 hours.</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- contact modal -->
+
 	<!-- faq modal -->
 	<div class="modal fade" id="site_faq_main" role="dialog">
 		<div class="modal-dialog">
@@ -1598,7 +1619,7 @@
         </a>
       </h4>
     </div>
-    <div id="collapseOne" class="panel-collapse collapse in">
+    <div id="collapseOne" class="panel-collapse collapse">
       <div class="panel-body">
         <h4>Purpose:</h4>
         <p>Helps business of any level to promote in all places, irrespective of any number of competencies. Sellers can post their advertisement for free or they are allowed to bid and choose a desired position from the existing AD list. Buyers can view posted offers/advertisements instantly depending on the category needed. It acts as online exhibition favouring both sellers and buyers.</p>
@@ -1617,7 +1638,7 @@
         </a>
       </h4>
     </div>
-    <div id="collapseTwo" class="panel-collapse collapse">
+    <div id="collapseTwo" class="panel-collapse collapse in">
       <div class="panel-body">
         <p>World is slowly (rather quickly) moving online. Business is not the same as how it was 10 or 20 years back. It will surely not be the same like how it is now sooner. So think online think BoN before it is too late. It is FREE.</p>
 		<p>It is the single place to complete your search and get the best you want near you or from the place you are looking for. It will not force you to believe the best is what it shows on the item you are interested. </p>
