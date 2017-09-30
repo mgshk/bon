@@ -499,7 +499,8 @@ if(adss)
 					if (price[1] && price[1].replace(/\s/g, '') === 'New') {
 		    			min_price = bannerBasicPrice[banner_name];
 
-		    			if(price[0] === 1) {
+
+		    			if (price[0].replace(/\s/g, '') == '1') {
 		    				$('#price_vaidation_txt').text('Should be Greater than '+bannerBasicPrice[banner_name]+ ' Rs');
 		    			} else {
 		    				var selected_length = $('#position > option:checked').val();
