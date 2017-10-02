@@ -1426,14 +1426,42 @@
 			<div class="modal-content">
 				<div class="modal-header map-header">
 
-					<label>Location:</label> <input type="text" id="us11-address" class="form-control" />
-					<button type="button" class="btn btn-primary getloc" data-dismiss="modal" onclick="getLocation()">Search</button>
-					<label>Lat:</label> <input type="text" id="us11-lat" class="form-control" /> <label>Long:</label>
-					<input type="text" id="us11-lon" class="form-control" />
-					<button type="button" class="btn btn-primary getloc" data-dismiss="modal" onclick="getLocation()">Search</button>
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				<div class="row" id="showLocationArea">
+					<div class="col-xs-12 col-sm-6 col-md-6">
+					<input type="text" id="us11-address" class="form-control" placeholder="location" />
+					<span class="input-group-addon mapsearch cursor" data-dismiss="modal" onclick="getLocation()"><i class="fa fa-search fa" aria-hidden="true"></i></span>
+					</div>
+
+					<div class="col-xs-12 col-sm-6 col-md-6">
+					<button type="button" class="close pull-right" data-dismiss="modal" aria-label="Close">
           					<span aria-hidden="true">&times;</span>
         			</button>
+					<a class="linkMap pull-right" onclick="showLatArea()">Search by latitude longitude</a>
+					</div>
+
+				</div>
+
+				<div class="row" id="showLatLongArea">
+				<div class="col-xs-5 col-sm-5 col-md-3 right0">
+					<input type="text" id="us11-lat" class="form-control" placeholder="Latitude" />
+				</div>
+
+				<div class="col-xs-5 col-sm-5 col-md-3 right0">
+					<input type="text" id="us11-lon" class="form-control" placeholder="Langitude" />
+				</div>
+
+				<div class="col-xs-2 col-sm-2 col-md-2">
+					<span class="input-group-addon mapsearch cursor" data-dismiss="modal" onclick="getLocation()"><i class="fa fa-search fa" aria-hidden="true"></i></span>
+				</div>
+
+				<div class="col-xs-12 col-sm-2 col-md-4">
+				<button type="button" class="close pull-right" data-dismiss="modal" aria-label="Close">
+          					<span aria-hidden="true">&times;</span>
+        		</button>
+				<a class="linkMap pull-right" onclick="showLocArea()">Search by location</a>
+				</div>
+
+				</div>
 					
 
 				</div>
@@ -1442,8 +1470,9 @@
 					<input type="text" id="divFormattedAddress" class="form-control" />
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-primary pull-left" data-dismiss="modal" onclick="setPosition()">Set Location</button>
-					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-primary getloc pull-left" data-dismiss="modal" onclick="getLocation()">Get current location</button>
+					<button type="button" class="btn btn-primary" data-dismiss="modal" onclick="setPosition()">Ok</button>
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
 				</div>
 			</div>
 		</div>
@@ -1986,7 +2015,368 @@
 
 <!-- tamil -->
 	<div id="tamilFaq">
-		Tamil faq
+
+		<div class="panel-group" id="accordion1">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne1">
+          இந்த வலைத்தளத்தின் நோக்கம் மற்றும் தனித்துவம் என்ன?
+        </a>
+      </h4>
+    </div>
+    <div id="collapseOne1" class="panel-collapse collapse">
+      <div class="panel-body">
+        <h4>நோக்கம்:</h4>
+        <p>எத்தகைய வணிகமாக (குறு, சிறு மற்றும் பெருந்தொழில்) இருந்தாலும், எந்த இடத்தில இருந்தாலும், எவ்வளவு போட்டியாளர்கள் இருந்தாலும் உங்களின் விற்பனையை ஊக்குவிக்க BoN (buyonear.in) இணையத்தளம் உதவும். விற்பனையாளர்கள் தங்கள் விளம்பரங்களை “இலவசமாக” பதிவு செய்யலாம் அல்லது ஏற்கனவே இருக்கும் விளம்பரப் பட்டியலில் இருந்து பிடித்த இடத்தை தகுந்த ஏலத்திற்கு தேர்வு செய்ய அனுமதிக்கப்படுகிறார்கள்.</p>
+        <p>வாடிக்கையாளர்கள், வெளியிடப்பட்ட சலுகைகளை/விளம்பரங்களை உடனடியாக தேவையான வகைக்கேற்ப பார்க்க முடியும். விற்பனையாளர்கள் மற்றும் வாடிக்கையாளர்கள் ஆகிய இருவருக்கும் சாதகமான ஆன்லைன் கண்காட்சியாக இது செயல்படுகிறது.</p>
+        <h4>தனித்தன்மை:</h4>
+        <p>BoN அனைத்துக் கடைகளையும் / நிறுவனங்களையும் ஒரே அளவில் பார்க்கிறது, கமிஷன் கட்டணத்திர்காக குறைந்த அல்லது அதிகமான வருமானம் உள்ள கடைகள் / நிறுவனங்களுக்கு எந்தப் பாரபட்சமும் பார்க்காது. இது வணிகம் விரும்பும் விற்பனையாளர்களுக்கு மற்றும் சேமிக்கும் வாடிக்கையாளர்களுக்கு ஒரே சிறந்த இடம்.</p>
+		<p>வாடிக்கையாளர்கள் பெரும்பாலும் ஒரு சில கடைகளின் / நிறுவனங்களின் மீதே நன் மதிப்பு கொண்டிருப்பர். ஒரே நேரத்தில் அணைத்து கடைகளையும் / நிறுவனங்களையும் ஆராய மாட்டார்கள், அது நடைமுறைக்கு சாத்தியமும் அல்ல. பல அல்லது எல்லா நேரங்களிலும் இது அவர்களுக்கு நஷ்டத்தையும் கஷ்டத்தையுமே தரும். BoN / buyonear.in உபயோகித்தால் இதை தவிர்க்கலாம்.</p>
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo2">
+          ஏன் BoN, தேவை என்ன?
+        </a>
+      </h4>
+    </div>
+    <div id="collapseTwo2" class="panel-collapse collapse in">
+      <div class="panel-body">
+        <p>உலகம் மெதுவாக (மாறாக விரைவாக) ஆன்லைனை நோக்கி நகர்கிறது. இப்போதைய வணிகம் 10 அல்லது 20 ஆண்டுகளுக்கு முன்பு இருந்ததைவிட அதிகம் மாறிவிட்டது. இது நிலைக்கும் என்றும் சொல்லிவிட முடியாது, மாறிக்கொன்டே இருக்கும். அதனால் தாமதிக்காமல் ஆன்லைனுக்கு வாருங்கள், BoN’க்கு வாருங்கள். BoN முற்றிலும் இலவசம்.</p>
+		<p>இது உங்கள் தேடலை எளிமையாக்கி, உங்கள் அருகில் அல்லது நீங்கள் விரும்பிய இடத்திலிருந்து விரும்பியதை பெற சிறந்த ஒரே இடம். நீங்கள் விரும்பியதை பெற உங்களை நம்பவிக்கும் நோக்கத்தோடு BoN எவ்வித முயற்சியும் செய்யாது. அறிமுகமில்லாத நம்பிக்கையில்லாத விற்பனையாளரிடம் தேடுவதற்குமுன் “LET’S START SEARCHING FROM HERE”!</p>
+		<p>இது ஒரு மையப்படுத்தப்பட்ட ஆன்லைன் கண்காட்சி ஆகும், குறிப்பாக நிறைய சலுகைகளுடன். விரைவில் சேர்ந்திடுங்கள் அதிக பயனடைந்திடுங்கள்.</p>
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseThree3">
+          விற்பனையாளர்களுக்கு இந்த வலைத்தளம் எப்படி உதவுகிறது?
+        </a>
+      </h4>
+    </div>
+    <div id="collapseThree3" class="panel-collapse collapse">
+      <div class="panel-body">
+        <h4>விற்பனையாளர்கள்:</h4>
+        <ul>
+		<li>i. தொழில்நுட்ப அறிவு தேவை இல்லை.</li>
+		<li>ii.	எத்தகைய வணிகமாக (குறு, சிறு மற்றும் பெருந்தொழில்) இருந்தாலும், ஆன்லைனுக்கு நகர்த்துங்கள்.</li>
+		<li>iii. BoN விற்பனையாளரின் பொருட்களை சேர்க்க, விளம்பரங்களை பதிவேற்ற, விற்பனையாளர்கள் ஆர்டர்களை கண்காணிக்க மற்றும் விற்பனையாளர்கள் மதிப்பை பெற எளிதாக அனுமதிக்கிறது. BoN உங்கள் சார்பாக வணிக விளம்பரத்தை கவனித்துக்கொள்கிறது.</li>
+		<li>iv.	விளம்பரங்களை பதிவு செய்து வாடிக்கையாளர்களின் உடனடி கவனத்திற்கு கொண்டு செல்லும்.</li>
+		<li>v.	கடை நிறுவன பட்டியலில் முதன்மை பெற்று வாடிக்கையாளர்களின் கவனத்தை பெற உதவும் </li>
+		<li>vi.	நீங்கள் விற்கும் பொருட்களின் சலுகைகள் மற்றும் தள்ளுபடிகள் மூலம் வாடிக்கையாளர்களை ஈர்க்கலாம்.</li>
+		</ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseFour4">
+          வாடிக்கையாளர்களுக்கு இந்த வலைத்தளம் எப்படி உதவுகிறது?
+        </a>
+      </h4>
+    </div>
+    <div id="collapseFour4" class="panel-collapse collapse">
+      <div class="panel-body">
+        <h4>வாடிக்கையாளர்கள்:</h4>
+        <ul>
+		<li>i.	உங்கள் பணம், நேரம் மற்றும் முயற்சி சேமிக்கப்படுகிறது.</li>
+		<li>ii.	சில அல்லது பெரும்பாலான வாடிக்கையாளர்கள் ஆன்லைன் ஷாப்பிங்கை விரும்பலாம், மற்ற நேரங்களில் அவர்கள் அருகிலோ அல்லது விரும்பிய இடத்திலோ ஷாப்பிங் செய்யவே விரும்புவர். வாடிக்கையாளர்கள் சில சதவிகிதம் தவிர்த்து தங்கள் கடின உழைப்பினால் பெற்ற பணத்தை மிக புத்திசாலித்தனமாக செலவழிக்கவே விரும்புவர். BoN வாடிக்கையாளர்களின் எண்ணத்திற்கு ஏற்றவாறு ஒத்துழைத்து பயனளிக்கிறது.</li>
+		<li>iii.	விளம்பரம் மற்றும் கடை/நிறுவன பட்டியலை தேவைக்கேற்ற வகையின் அடிப்படையில் வடிகட்ட (Filter) உதவுகிறது.</li>
+		<li>iv.	இது இலவசம் என்பதால் அருகிலுள்ள கடை/நிறுவனங்களை உங்கள் முன்னே கொண்டு வரும்.</li>
+		<li>v.	இது உங்கள் தேடலை எளிமையாக்கி, உங்கள் அருகில் அல்லது நீங்கள் விரும்பிய இடத்திலிருந்து விரும்பியதை பெற சிறந்த ஒரே இடம். நீங்கள் விரும்பியதை பெற உங்களை நம்பவிக்கும் நோக்கத்தோடு BoN எவ்வித முயற்சியும் செய்யாது.</li>
+		<li>vi.	இது தொலைபேசி புத்தகத்தைவிட (Telephone Directory) மிக பயனுள்ளது.</li>
+		</ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseFive5">
+          வடிக்கையாளராகிய நான் விற்பனையாளர் அம்சத்தை அல்லது விற்பனையாளராகிய நான் வாடிக்கையாளர் அம்சத்தை உபயோகப்படுத்த முடியுமா?
+        </a>
+      </h4>
+    </div>
+    <div id="collapseFive5" class="panel-collapse collapse">
+      <div class="panel-body">
+        <p>கண்டிப்பாக முடியம். பதிவு செய்யும் போது நீங்கள் ஒரு விற்பனையாளரா அல்லது வாடிக்கையாளரா என்பதை BoN கேட்காது. உங்கள் சான்றுகளுடன் BoN’ல் உள்நுழையும் நேரத்தில் மட்டுமே வழங்க வேண்டும்.</p>
+		<p>ஒவ்வொரு விற்பனையாளரும் தினசரி வாழ்க்கையை நடத்துவதற்கு இயற்கையாக ஒரு வாடிக்கையாளரே. மேலும் வீட்டின் மனைவி அல்லது புதிய தொழில் முனைவோர் போன்ற பெரும்பாலானோர் சொந்த அல்லது வீட்டில் இருந்தபடியே தொழில் ஆரம்பிக்க எண்ணம் இருந்தாலும் மார்க்கெட்டிங் முயற்சியின் மேல் உள்ள பயத்தினாலேயே அவ்வெண்ணத்தை கைவிடுவர். அவர்களுக்கு BoN’எ பதில், இது வெளிஉலகிற்கு எந்த ஒரு முயற்சியுமின்றி கொண்டுசென்று உங்களை வெற்றியடைய செய்யும்.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseSix6">
+          விற்பனையாளர்களுக்கும் வாடிக்கையாளர்களுக்கும் இது எவ்வாறு நல்லது?
+        </a>
+      </h4>
+    </div>
+    <div id="collapseSix6" class="panel-collapse collapse">
+      <div class="panel-body">
+        <p>இது விற்பனையாளரகள் மற்றும் வாடிக்கையாளர்கள் இருவருக்கும் பயன் அளிக்கிறது.</p>
+		<p><strong>முதல் அனுமானிப்பு (Assuming case 1):</strong></p>
+		<p>அணைத்து விற்பனையாளர்களும் BoN’ஐ உபயோகிக்கின்றனர். </p>
+		<p>அற்புதம்!! வாடிக்கையாளர்களின் வேலை இப்போது எளிதானது, அவர்கள் குறைந்த விலையில் குறைந்த நேரத்தில் குறைந்த முயற்சியில் BoN’ற்கு முன்னாள் எவ்வாறு செய்ய நினைத்தார்களோ அதை BoN’ன் மூலம் எளிதாக செய்ய முடியும்.</p>
+		<p><strong>இரண்டாவது அனுமானிப்பு (Assuming case 2):</strong></p>
+		<p>அணைத்து வாடிக்கையாளர்களும் BoN’ஐ உபயோகிக்கின்றனர்.</p>
+		<p>அற்புதம்!! விற்பனையாளர்களின் வேலை இப்போது எளிதானது, வாடிக்கையாளர்களை எளிதாக அவர்களின் விளம்பரங்களின் மூலம் அணுகலாம். BoN விற்பனையாளர்கள் ஈர்ப்பை அதிகரித்து அவர்களின் விற்பனையை உயர்த்துகிறது. இது கிட்டத்தட்ட வணிகத்தின் அணைத்து பிரிவுகளையும் கவனித்து விற்பனையாளர்களின் இலாபத்தை உயர்த்துகிறது.</p>
+		<p>இதனால் விற்பனையாளர் மற்றும் வாடிக்கையாளர் இருவருக்கும் பயனளிக்கிறது. அதனால் இருவரும் சேர்ந்து மற்றவர்களை Bon’ல் சேர உதவி செய்து வெற்றி காண வேண்டும்.</p> 
+		<p>விற்பனையாளர் BoN’ல் சேர்ந்து அவர்களின் அன்றாட வாடிக்கையாளர்களை BoN’ஐ உபயோகப்படுத்துமாறு கேட்டு கொண்டு அவர்களின் வெளியிட்ட விளம்பரங்களை கண்டு பயன் பெற செய்ய வேண்டும்.</p>
+		<p>வாடிக்கையாளர் BoN’ல் சேர்ந்து அவர்களின் அன்றாட விற்பனையாளர்களை BoN’ல் சேரச் சொல்லி அவர்களின் விளம்பரங்களை மற்ற வாடிக்கையாளர்களுக்கும் தெரியப் படுத்த வேண்டும்.</p> 
+		<p>நல்ல இலாபம் / சேமிப்பு பெறுவதற்கு இருவரின் ஈடுபாடும் தேவை.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseSeven7">
+          நான் ஒரு விற்பனையாளர், சில வகை வியாபாரங்களுக்கு ஏதாவது பொருந்தக்கூடிய கட்டுப்பாடு இருக்கிறதா?
+        </a>
+      </h4>
+    </div>
+    <div id="collapseSeven7" class="panel-collapse collapse">
+      <div class="panel-body">
+        <p>இல்லை, இது அணைத்து வகை வியாபாரங்களுக்குமானது. </p>
+		<p>இது எல்லா விற்பனையாளர்களுக்கும் சிறந்த அணுகுமுறை, குறிப்பாக புதிய விற்பனையாளர்களுக்கும் மற்றும் வணிக குறிக்கோளுடனான விற்பனையாளர்களுக்கும். தனது பெயரினால் நடத்தும் வியாபார வணிகர்கள் முதலில் BoN’ல் சேர யோசிக்கலாம் அனால் வாடிக்கையாளர்கள் BoN’ஐ உபயோகிப்பிப்பதை கண்டு தனது பெயரைவிட வாடிக்கையாளர்களை கவர்வதையே வியாபார யுக்தி என்று உணர்ந்து கொள்வர். மற்றும் BoN’ஐ உபயோகிக்காத வாடிக்கையாளர்கள் மத்தியில் விற்பனையாளர்கள் தான் வைத்த விலையே சரி என கருதலாம். </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseEight8">
+          அருகிலுள்ள விற்பனையாளர்கள் என் இடத்தில் BoN‘ஐப் பயன்படுத்துவதில்லை, நான் சேருவதற்கு முன் யாராவது சேர காத்திருக்கலாமா?
+        </a>
+      </h4>
+    </div>
+    <div id="collapseEight8" class="panel-collapse collapse">
+      <div class="panel-body">
+        <p>BoN’ன் நன்மை மற்றும் வசதியைக் கருத்தில் கொண்டு, குறைவான அல்லது உடனே அனைவரையும் சென்றடைந்திடும்.</p>
+		<p>விற்பனையாளர்கள் தாமதித்தால் அவர்களின் போட்டியாளர்களுக்கு சாதகமாகிவிடும், அதனால் உடனே BoN’ல் சேர்வது நல்லது. இது முற்றிலும் இலவசம். BoN’ல் சேர்வதற்கோ அல்லது தங்கள் பொருட்களை சேர்ப்பதற்கோ அல்லது விளம்பரத்தை பதிவிறக்குவதற்கோ எவ்வித கட்டணமும் வசூலிக்க படமாட்டாது.</p>
+		<p>மேலும் போட்டியின்றி உங்கள் வணிகத்தை முன்னிறுத்தலாம்.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseNine9">
+			நான் கடை/நிறுவன உரிமையாளர் (விற்பனையாளர்), நான் எப்படி BoN இணையத்தளத்தில் சேரலாம்?
+        </a>
+      </h4>
+    </div>
+    <div id="collapseNine9" class="panel-collapse collapse">
+      <div class="panel-body">
+        <p>நான் கடை/நிறுவன உரிமையாளர் (விற்பனையாளர்), நான் எப்படி BoN இணையத்தளத்தில் சேரலாம்?</p>
+        <ul>
+		<li>i.	BoN’ல் பதிந்து விற்பனையாளராக உள்நுழையவும்.</li>
+		<li>ii.	உங்கள் ‘My Account’ல் வியாபாரத்தைப் பற்றிய விவரங்களை கொடுக்கவும். (Business name, banner, category(s), location, etc.)</li>
+		<li>iii.	BoN’ன் ஒப்புதலுக்குப் பிறகு நீங்கள் சேர்க்கப்படுவீர்கள்.</li>
+		</ul>
+		<p>சொந்த இணையதள அங்காடியை எந்த செலவுமில்லாமல் மார்க்கெட்டிங் பற்றி சிறிதும் கவலையின்றி உரிமம் பெற்று பயனடையலாம்.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseTen10">
+			நான் ஏதாவது ஒன்றை வாங்க வேண்டுமென்றால் எவ்வாறு BoN இணைய தளத்தைப் பயன்படுத்த முடியும்?
+        </a>
+      </h4>
+    </div>
+    <div id="collapseTen10" class="panel-collapse collapse">
+      <div class="panel-body">
+        <p>கீழுள்ள எளிய வழிமுறைகளை பின்பற்றவும்.</p>
+		<ul>
+		<li>i.	BoN’ல் பதிந்து வாடிக்கையாளராக உள்நுழையவும். </li>
+		<li>ii.	விளம்பரங்களை வடிகட்ட, முகப்புப் பக்கத்தில் வகைகளைத் தேர்வுசெய்யவும். உங்களை ஈர்க்கும் கடை/நிறுவனத்தை தேர்ந்தெடுத்து விரும்பிய பொருளை தேடிடவும். தேடிய பொருளை உங்கள் cart’ல் (Add to cart) சேர்க்கவும்.</li>
+		<li>iii.	மேலும் நீங்கள் விரும்பும் பொருளை முகப்பு பக்கத்தில் தேடலாம். தங்களது கடை/ நிறுவனம் தேடல் முடிவில் பொருட்களை தேடி cart’ல் (Add to cart) சேர்க்கவும்.</li>
+		<li>iv.	Cart’ல் சேர்த்த பொருளை வாங்கவும்.</li>
+		</ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseEleven11">
+			வலைத்தளத்தில் என்னைக் சுற்றி எந்த கடை/நிறுவனங்களையும் நான் காணவில்லை?
+        </a>
+      </h4>
+    </div>
+    <div id="collapseEleven11" class="panel-collapse collapse">
+      <div class="panel-body">
+        <p>நீங்கள் கீழுள்ள இரண்டு காரணங்களால் மட்டுமே காணவில்லை.</p>
+        <ul>
+		<li>i.	நீங்கள் அமைத்த வரம்பிலிருந்து, உங்கள் அருகில் எந்த கடை/நிறுவனமோ இல்லை. வரம்பை மாற்றி மீண்டும் தேடவும். நீங்கள் இன்னும் காணவில்லை என்றால், நீங்கள் முகப்பு பக்கத்தில் இடம் மாற்றி மறுபடியும் தேடி முயற்சிக்கவும். </li>
+		<li>ii.	கடைகள்/நிறுவனங்கள் BoN’ல் இணைந்திருக்கவில்லை.
+	இது இலவசம் என்பதால் விற்பனையாளர்களின் அறியாமையே காரணமாக இருக்க முடியும். அவர்களுக்கு அறியப்படுத்தி மற்றும் BoN’ல் இனைய செய்து உங்களுக்கும் மற்றவர்களுக்கும் பயன் பெற உதவவும்.
+</li>
+		</ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseTwelve12">
+			நீங்கள் என் கடையை பதிவு செய்ய ஒரு முறை அல்லது மாத கட்டணம் வசூலிக்கிறீர்களா?
+        </a>
+      </h4>
+    </div>
+    <div id="collapseTwelve12" class="panel-collapse collapse">
+      <div class="panel-body">
+        <p>இல்லை, BoN’ல் சேர மற்றும் தங்களது கடை/நிறுவனத்தை பதிவு செய்ய முற்றிலும் “இலவசமாகும்”.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseThirteen13">
+			உங்கள் வலைத்தளத்தில் இலவசமாக பொருட்களைப் பதிவேற்றலாம் அல்லது விளம்பரங்களை வெளியிடலாம் என்பதை நான் கேள்விப்பட்டிருக்கிறேன், இது உண்மைதானா?
+        </a>
+      </h4>
+    </div>
+    <div id="collapseThirteen13" class="panel-collapse collapse">
+      <div class="panel-body">
+        <p>ஆம், உங்கள் பொருட்களை சேர்க்க மற்றும் விளம்பரங்களை பதிவேற்ற முற்றிலும் இலவசம். </p> 
+		<p>மேலும் BoN’ன் கவனத்தில் குறைந்தது முதல் அதிக வருவாய் ஈட்டும் கடை/நிறுவனம் உள்ளது என்பதினால், அணைத்து விற்பனையாளர்களையும் மகிழ்விக்க ஏல அணுகுமுறை பின்பற்றப்படுகிறது. நீங்கள் ஏற்கனவே உள்ள பட்டியலிலிருந்து விரும்பிய இடத்தை பட்ஜெட்டின்படி தேர்வு செய்து தங்களது விளம்பரத்தை பதிவேற்றலாம்.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseFourteen14">
+			இது தான் சிறந்த அணுகுமுறை என்று நான் நினைக்கிறேன், ஆனால் நீங்கள் BoN வலைத்தளத்தில் எப்படி அனைத்து கடைகளையும் சேர்க்க போகிறீர்கள்?
+        </a>
+      </h4>
+    </div>
+    <div id="collapseFourteen14" class="panel-collapse collapse">
+      <div class="panel-body">
+        <p>இது முற்றிலும் இலவசம் மற்றும் விற்பனையாளர்களுக்கும் வாடிக்கையாளர்களுக்கும் மிகவும் பயனுள்ளது என்பதால் அணைவருக்கும் தெரியப்படுத்த வேண்டும்.</p> 
+		<p>மேடை அற்புதமாக அமைத்தாகிவிட்டது, கதவுகள் எல்லோருக்கும் திறந்துவிடப்பட்டுவிட்டது, நுழைவு கட்டணம் யாருக்கும் இல்லை மற்றும் முடிவில் அதிக பலனை பெற்றிடலாம்… வேறென்ன தேவை நமக்கு!!!</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseFifteen15">
+			என் பின்னூட்டம் (Feedback) அல்லது எந்தவொரு விஷயத்திற்காகவும் நான் தொடர்பு கொள்ள வேண்டும் என்றால் யாரை தொடர்பு கொள்ள வேண்டும்?
+        </a>
+      </h4>
+    </div>
+    <div id="collapseFifteen15" class="panel-collapse collapse">
+      <div class="panel-body">
+        <p>உங்கள் கருத்துகளை, பிரச்சனைகளை மற்றும் அக்கறைகளை முகப்பு பக்கத்திலுள்ள 'Feedback' menu’வில் பதிவு செய்யுங்கள். நாங்கள் உடனடியாக பதிலளிக்கிறோம்.</p>
+<p>வேறு எந்த தகவலையும் அனுப்ப விரும்பினால், கொடுக்கப்பட்டுள்ள மின்னஞ்சலுக்கு அனுப்பவும் bononlineservices@buyonear.in. நாங்கள் 24 முதல் 48 மணி நேரத்தில் பதிலளிப்போம்.
+</p> 
+
+      </div>
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseSixteen16">நான் வெளியிடும் விளம்பரம் நேரலையில் பார்க்கும்போது, அது குறைந்த பட தரமாக (மங்கலாக) காண்பிக்கிறதே?
+        </a>
+      </h4>
+    </div>
+    <div id="collapseSixteen16" class="panel-collapse collapse">
+      <div class="panel-body">
+        <p>BoN’ன் விளம்பர ஒப்புதல், நல்ல படத் தரம் மற்றும் விற்பனையாளர்கள் கவனத்தை எளிதில் பெறுவதற்கு முன் கீழே உள்ள புள்ளிகளை உறுதி செய்யுங்கள்.</p>
+        <ul>
+		<li>i.	தலைப்பு தெளிவாகவும் குறுகியதாகவும் இருக்க வேண்டும். </li> 
+		<li>ii.	குறுக்கிடப்பட்ட படத் தரம் பிரகாசமானதாகவும், எளிதில் புரிந்துகொள்ளக்கூடியதாகவும், உயர்ந்த தரமானதாகவும் இருக்க வேண்டும்.</li>
+		<li>iii.	'Description'ல் விளம்பரம் குறித்த விரிவான விளக்கத்தை வழங்கவும். இது கட்டாயமில்லை.</li>
+		<li>iv.	URL’s உங்களிடமிருந்தால் வழங்கவும்.</li>
+		</ul>
+		<p>உண்மையான மற்றும் நல்ல தரமான விளம்பரமாக இருப்பின் நிச்சயம் வாடிக்கையாளரின் கவனத்தை அதிகரிக்கும் மற்றும் உங்கள் தரவரிசையையும் உங்கள் விற்பனையையும் அதிகரிக்கும்.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseSeventeen17">
+			நான் எப்போது My Wallet/Pay/Expense Report’ஐ பயன்படுத்த முடியும்?
+        </a>
+      </h4>
+    </div>
+    <div id="collapseSeventeen17" class="panel-collapse collapse">
+      <div class="panel-body">
+        <p>அவை வளர்ச்சியில் உள்ளன. பயனர்களின் பயன்பாட்டினைக் கருத்திற்கொண்டு சிறு மற்றம் செய்ய வேண்டிருக்கிறது.</p>
+		<p>பயனர்களின் கருத்துக்களை கருத்தில் கொண்டு வடிவமைப்பு மற்றும் அணுகுமுறை முடிக்கப்பட்டவுடன், வெளியிடப்படும்.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseEighteen18">
+			மேம்பாடுகள்/திட்டங்கள் ஏதாயினும் எதிர்காலத்தில் இருக்கிறதா?
+        </a>
+      </h4>
+    </div>
+    <div id="collapseEighteen18" class="panel-collapse collapse">
+      <div class="panel-body">
+        <p>ஆம், இன்னும் பல ஆச்சரியமான யோசனைகள் விரைவில் செயல்படுத்தப்பட உள்ளன. தயவு செய்து ஆச்சரியங்களுக்கு காத்திருங்கள் மற்றும் அனைவருக்கும் நன்மைக்கான செய்தியை பரப்புவதில் உங்கள் ஒத்துழைப்பை வழங்கவும்.
+</p>
+		<p>அனைவரின் நல் வாழ்க்கைக்கு ஒன்றாக செயல்படுவோம்.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseNineteen19">
+			BoN வலைத்தளம் அனைத்து ப்ரவுசர்களிலும் வேலை செயகிறதா?
+        </a>
+      </h4>
+    </div>
+    <div id="collapseNineteen19" class="panel-collapse collapse">
+      <div class="panel-body">
+        <p>கூகுள் குரோம், இன்டர்நெட் எஸ்ப்ளோரர் மற்றும் ஃபயர்ஃபாக்ஸ் ப்ரவுசர்களில் BoN வலைத்தளம் நன்றாக செயல்படுகிறது. நாங்கள் மூன்று ப்ரவுசர்களிலும் விரிவாக சோதனை செய்திருந்தாலும், எந்த ஒரு பிரௌசரிலும் எதேனும் சிக்கலை சந்திக்க நேர்ந்தால் மற்ற பிரௌசரில் முயற்சிக்கவும்.</p>
+
+<p>Mobile app தற்போது வளர்ச்சியில் உள்ளது. பயனரின் வசதிக்காக அவற்றை வெளியிட கடினமாக உழைத்துக்கொண்டிருக்குகிறோம்.
+</p>
+		<p>மூன்று ப்ரவுசர்களிலும் செயல்படாவிட்டால் உங்கள் சிக்கலை ‘Feedback’ menu’வில் பதிவுசெய்யுங்கள்.</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+
 	</div>
 <!-- tamil -->
 
@@ -2076,6 +2466,19 @@
 				$('#englishFaq').hide();
 				$('#tamilFaq').show();
 			}
+		}
+
+		$('#showLocationArea').show();
+		$('#showLatLongArea').hide();
+
+		function showLocArea(){
+			$('#showLocationArea').show();
+			$('#showLatLongArea').hide();
+		}
+
+		function showLatArea(){
+			$('#showLocationArea').hide();
+			$('#showLatLongArea').show();
 		}
 	</script>
 
