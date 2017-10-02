@@ -197,8 +197,10 @@ class Controllersellerprofilesellerprofile extends Controller
 
 		$data['category_seller'] = $seller_categories;
 
+        $store_address = array();
         //Store Address
         $address_info = $this->model_account_address->getAddress($seller_info['address_id']);
+
         $data['address_1'] = $seller_info['address_1']? : $address_info['address_1'];
         $data['address_2'] = $seller_info['address_2']? : $address_info['address_2'];
         $data['city'] = $seller_info['city']? : $address_info['city'];
@@ -209,6 +211,15 @@ class Controllersellerprofilesellerprofile extends Controller
 
         $data['countries'] = $this->model_localisation_country->getCountries();
 
+        $store_address[] = $data['address_1'];
+        $store_address[] = $data['address_2'];
+        $store_address[] = $data['city'];
+        $store_address[] = $address_info['zone'];
+        $store_address[] = $address_info['country'];
+        $store_address[] = $data['postcode'];
+
+        $data['address_store'] = implode(array_filter($store_address), ", ");
+ 
 		$data['allow_products'] = $seller_info['allow_products'];
 		$data['allow_cart']     = $seller_info['allow_cart'];
 		$data['seller_approved'] = $seller_info['seller_approved'];
