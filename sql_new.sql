@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 19, 2017 at 08:33 PM
+-- Generation Time: Oct 02, 2017 at 10:29 AM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -48,7 +48,8 @@ CREATE TABLE `oc_address` (
 --
 
 INSERT INTO `oc_address` (`address_id`, `customer_id`, `firstname`, `lastname`, `company`, `address_1`, `address_2`, `city`, `postcode`, `country_id`, `zone_id`, `custom_field`, `security_select`, `security_answer`) VALUES
-(1, 1, 'Magesh', 'K', '', 'Siva Nagar, Cuddalore', '', '', '', 99, 1503, '', 1, 'joseph');
+(1, 1, 'Magesh', 'K', '', 'Siva Nagar, Cuddalore', '', '', '', 99, 1503, '', 1, 'joseph'),
+(2, 2, 'Rave', 'R ', '', 'Test address', '', '', '', 99, 1503, '', 4, 'kadhal kanmani');
 
 -- --------------------------------------------------------
 
@@ -11066,9 +11067,9 @@ CREATE TABLE `oc_currency` (
 --
 
 INSERT INTO `oc_currency` (`currency_id`, `title`, `code`, `symbol_left`, `symbol_right`, `decimal_place`, `value`, `status`, `date_modified`) VALUES
-(1, 'Pound Sterling', 'GBP', '£', '', '2', 0.73580003, 1, '2017-09-17 16:04:42'),
-(2, 'US Dollar', 'USD', '$', '', '2', 1.00000000, 1, '2017-09-17 16:04:43'),
-(3, 'Euro', 'EUR', '', '€', '2', 0.83690000, 1, '2017-09-17 16:04:43');
+(1, 'Pound Sterling', 'GBP', '£', '', '2', 0.74680001, 1, '2017-09-28 03:56:13'),
+(2, 'US Dollar', 'USD', '$', '', '2', 1.00000000, 1, '2017-09-28 03:56:13'),
+(3, 'Euro', 'EUR', '', '€', '2', 0.85189998, 1, '2017-09-28 03:56:13');
 
 -- --------------------------------------------------------
 
@@ -11108,12 +11109,17 @@ CREATE TABLE `oc_customer` (
   `facebook` varchar(255) DEFAULT NULL,
   `website` varchar(255) DEFAULT NULL,
   `description` text,
-  `address` varchar(300) NOT NULL,
   `image` varchar(255) DEFAULT NULL,
   `owner_name` varchar(250) NOT NULL,
   `store_ll_num` text NOT NULL,
   `store_mobile_num` text NOT NULL,
   `store_email` varchar(250) NOT NULL,
+  `address_1` varchar(128) NOT NULL,
+  `address_2` varchar(128) DEFAULT NULL,
+  `city` varchar(128) NOT NULL,
+  `postcode` varchar(10) NOT NULL,
+  `country_id` int(11) NOT NULL,
+  `zone_id` int(11) NOT NULL,
   `product_status` tinyint(1) DEFAULT NULL,
   `banner` varchar(255) DEFAULT NULL,
   `tin` varchar(150) NOT NULL,
@@ -11143,8 +11149,9 @@ CREATE TABLE `oc_customer` (
 -- Dumping data for table `oc_customer`
 --
 
-INSERT INTO `oc_customer` (`customer_id`, `customer_group_id`, `store_id`, `language_id`, `firstname`, `lastname`, `email`, `telephone`, `fax`, `password`, `salt`, `cart`, `wishlist`, `newsletter`, `address_id`, `seller_group_id`, `seller_approved`, `seller_verified`, `seller_reject_reason`, `seller_changegroup`, `seller_date_added`, `referred_by`, `nickname`, `lat`, `lng`, `instagram`, `googleplus`, `twitter`, `facebook`, `website`, `description`, `address`, `image`, `owner_name`, `store_ll_num`, `store_mobile_num`, `store_email`, `product_status`, `banner`, `tin`, `pan`, `seller_category`, `bankaccount_id`, `custom_field`, `ip`, `status`, `approved`, `active`, `safe`, `token`, `code`, `date_added`, `seller_counter`, `feature_store_amount`, `feature_store_start`, `feature_store_end`, `delivery_type`, `allow_products`, `allow_cart`, `seller_qr`) VALUES
-(1, 1, 0, 1, 'Magesh', 'K', 'mgshk.1507@gmail.com', '9791729266', '', '4faef3df15f481f5932b6237730e133374620c7c', 'LqwdUnqS7', NULL, NULL, 0, 1, 1, 1, '0', '', 0, '2017-09-16 23:09:15', '7896541230', 'Test Store', '12.993825900000001', ' 80.1919199', NULL, NULL, NULL, NULL, NULL, '                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            									 									                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             ', 'test address', '', '', '', '9791729266', 'mgshk.1507@gmail.com', NULL, '', '', '', '[{\"category\":\"36\",\"sub_categories\":[\"37\"]}]', 0, '', '::1', 1, 1, 1, 0, '', '', '2017-09-16 22:59:03', 0, 0, '0000-00-00', '0000-00-00', 2, '0', '0', 'view/image/qr_images/buyonear.in_1');
+INSERT INTO `oc_customer` (`customer_id`, `customer_group_id`, `store_id`, `language_id`, `firstname`, `lastname`, `email`, `telephone`, `fax`, `password`, `salt`, `cart`, `wishlist`, `newsletter`, `address_id`, `seller_group_id`, `seller_approved`, `seller_verified`, `seller_reject_reason`, `seller_changegroup`, `seller_date_added`, `referred_by`, `nickname`, `lat`, `lng`, `instagram`, `googleplus`, `twitter`, `facebook`, `website`, `description`, `image`, `owner_name`, `store_ll_num`, `store_mobile_num`, `store_email`, `address_1`, `address_2`, `city`, `postcode`, `country_id`, `zone_id`, `product_status`, `banner`, `tin`, `pan`, `seller_category`, `bankaccount_id`, `custom_field`, `ip`, `status`, `approved`, `active`, `safe`, `token`, `code`, `date_added`, `seller_counter`, `feature_store_amount`, `feature_store_start`, `feature_store_end`, `delivery_type`, `allow_products`, `allow_cart`, `seller_qr`) VALUES
+(1, 1, 0, 1, 'Magesh', 'K', 'mgshk.1507@gmail.com', '9791729266', '', '4faef3df15f481f5932b6237730e133374620c7c', 'LqwdUnqS7', NULL, NULL, 0, 1, 1, 1, '1', '', 0, '2017-09-21 23:10:10', '7896541230', 'Test Store', '12.993825900000001', ' 80.1919199', NULL, NULL, NULL, NULL, NULL, '                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            									 									                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             ', '', '', '', '9791729266', 'mgshk.1507@gmail.com', 'Siva Nagar', 'Vandipalayam Main Road', 'Pondicherry', '607004', 99, 1503, NULL, '', '', '', '[]', 0, '', '::1', 1, 1, 1, 0, '', '', '2017-09-16 22:59:03', 0, 0, '0000-00-00', '0000-00-00', 2, '0', '0', 'view/image/qr_images/buyonear.in_1'),
+(2, 1, 0, 1, 'Rave', 'R ', '1507@gmail.com', '8939615673', '', '9efa6f7b51852b7a7f8c98d17e3175d4a9193667', 'K2c2X9Zjc', NULL, NULL, 0, 2, 1, 1, '1', '', 0, '2017-09-28 07:27:06', '', 'Test Rave', '13.0826802', ' 80.27071840000008', NULL, NULL, NULL, NULL, NULL, '									 									 ', '', '', '', '8939615673', '1507@gmail.com', '', NULL, '', '', 0, 0, NULL, '', '', '', '[]', 0, '', '::1', 1, 1, 1, 0, '', '', '2017-09-27 23:03:43', 0, 0, '0000-00-00', '0000-00-00', 1, '0', '0', 'view/image/qr_images/buyonear.in_2');
 
 -- --------------------------------------------------------
 
@@ -11182,7 +11189,22 @@ INSERT INTO `oc_customer_activity` (`customer_activity_id`, `customer_id`, `key`
 (14, 1, 'advertise_add', '{\"customer_id\":\"1\",\"name\":\"Magesh K\"}', '::1', '2017-09-17 20:54:29'),
 (15, 1, 'advertise_edit', '{\"customer_id\":\"1\",\"name\":\"Magesh K\"}', '::1', '2017-09-17 21:00:41'),
 (16, 1, 'advertise_edit', '{\"customer_id\":\"1\",\"name\":\"Magesh K\"}', '::1', '2017-09-17 21:07:10'),
-(17, 1, 'login', '{\"customer_id\":\"1\",\"name\":\"Magesh K\"}', '::1', '2017-09-19 20:17:57');
+(17, 1, 'login', '{\"customer_id\":\"1\",\"name\":\"Magesh K\"}', '::1', '2017-09-19 20:17:57'),
+(18, 1, 'login', '{\"customer_id\":\"1\",\"name\":\"Magesh K\"}', '::1', '2017-09-20 20:40:21'),
+(19, 1, 'advertise_add', '{\"customer_id\":\"1\",\"name\":\"Magesh K\"}', '::1', '2017-09-20 20:43:58'),
+(20, 1, 'login', '{\"customer_id\":\"1\",\"name\":\"Magesh K\"}', '::1', '2017-09-21 20:27:52'),
+(21, 1, 'login', '{\"customer_id\":\"1\",\"name\":\"Magesh K\"}', '::1', '2017-09-21 23:08:48'),
+(22, 1, 'login', '{\"customer_id\":\"1\",\"name\":\"Magesh K\"}', '::1', '2017-09-25 21:08:02'),
+(23, 1, 'login', '{\"customer_id\":\"1\",\"name\":\"Magesh K\"}', '::1', '2017-09-26 20:26:11'),
+(24, 1, 'login', '{\"customer_id\":\"1\",\"name\":\"Magesh K\"}', '::1', '2017-09-27 21:03:33'),
+(25, 2, 'login', '{\"customer_id\":\"2\",\"name\":\"Rave R \"}', '::1', '2017-09-27 23:25:35'),
+(26, 2, 'login', '{\"customer_id\":\"2\",\"name\":\"Rave R \"}', '::1', '2017-09-28 07:24:03'),
+(27, 2, 'login', '{\"customer_id\":\"2\",\"name\":\"Rave R \"}', '::1', '2017-09-28 07:32:23'),
+(28, 2, 'login', '{\"customer_id\":\"2\",\"name\":\"Rave R \"}', '::1', '2017-09-28 07:32:37'),
+(29, 2, 'advertise_add', '{\"customer_id\":\"2\",\"name\":\"Rave R \"}', '::1', '2017-09-28 07:41:12'),
+(30, 1, 'login', '{\"customer_id\":\"1\",\"name\":\"Magesh K\"}', '::1', '2017-09-28 07:58:44'),
+(31, 1, 'login', '{\"customer_id\":\"1\",\"name\":\"Magesh K\"}', '::1', '2017-09-30 19:09:50'),
+(32, 1, 'login', '{\"customer_id\":\"1\",\"name\":\"Magesh K\"}', '::1', '2017-10-02 11:03:41');
 
 -- --------------------------------------------------------
 
@@ -11243,7 +11265,14 @@ CREATE TABLE `oc_customer_history` (
 --
 
 INSERT INTO `oc_customer_history` (`customer_history_id`, `customer_id`, `comment`, `date_added`) VALUES
-(1, 1, 'Your Request Is Accepted ', '2017-09-16 23:09:14');
+(1, 1, 'Your Request Is Accepted ', '2017-09-16 23:09:14'),
+(2, 1, 'Your Request Is Verified ', '2017-09-21 23:10:09'),
+(3, 2, 'Your Request Is Accepted ', '2017-09-28 07:26:23'),
+(4, 2, 'Your Request Is Accepted ', '2017-09-28 07:26:39'),
+(5, 2, 'Your Request Is Verified ', '2017-09-28 07:27:05'),
+(6, 2, 'Your Request Is Accepted ', '2017-09-28 07:27:09'),
+(7, 2, 'Your Request Is Accepted ', '2017-09-28 07:27:11'),
+(8, 2, 'Your Request Is Accepted ', '2017-09-28 07:27:27');
 
 -- --------------------------------------------------------
 
@@ -11263,7 +11292,8 @@ CREATE TABLE `oc_customer_ip` (
 --
 
 INSERT INTO `oc_customer_ip` (`customer_ip_id`, `customer_id`, `ip`, `date_added`) VALUES
-(1, 1, '::1', '2017-09-16 23:00:03');
+(1, 1, '::1', '2017-09-16 23:00:03'),
+(2, 2, '::1', '2017-09-27 23:25:35');
 
 -- --------------------------------------------------------
 
@@ -11299,7 +11329,7 @@ CREATE TABLE `oc_customer_online` (
 --
 
 INSERT INTO `oc_customer_online` (`ip`, `customer_id`, `url`, `referer`, `date_added`) VALUES
-('::1', 1, 'http://localhost/bon/index.php?route=seller/seller&amp;path=&amp;searcha=&amp;by_search=3', 'http://localhost/bon/', '2017-09-19 20:33:21');
+('::1', 1, 'http://localhost/bon/index.php?route=account/address/edit&amp;address_id=1', 'http://localhost/bon/index.php?route=sellerprofile/sellerprofile&amp;tab_section=profile', '2017-10-02 10:24:58');
 
 -- --------------------------------------------------------
 
@@ -12260,6 +12290,24 @@ CREATE TABLE `oc_order` (
   `date_modified` datetime NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `oc_order`
+--
+
+INSERT INTO `oc_order` (`order_id`, `invoice_no`, `invoice_prefix`, `store_id`, `store_name`, `store_url`, `customer_id`, `customer_group_id`, `firstname`, `lastname`, `email`, `telephone`, `fax`, `custom_field`, `payment_firstname`, `payment_lastname`, `payment_company`, `payment_address_1`, `payment_address_2`, `payment_city`, `payment_postcode`, `payment_country`, `payment_country_id`, `payment_zone`, `payment_zone_id`, `payment_address_format`, `payment_custom_field`, `payment_method`, `payment_code`, `shipping_firstname`, `shipping_lastname`, `shipping_company`, `shipping_address_1`, `shipping_address_2`, `shipping_city`, `shipping_postcode`, `shipping_country`, `shipping_country_id`, `shipping_zone`, `shipping_zone_id`, `shipping_address_format`, `shipping_custom_field`, `shipping_method`, `shipping_code`, `comment`, `total`, `order_status_id`, `affiliate_id`, `commission`, `marketing_id`, `tracking`, `language_id`, `currency_id`, `currency_code`, `currency_value`, `ip`, `forwarded_ip`, `user_agent`, `accept_language`, `date_added`, `date_modified`) VALUES
+(1, 0, 'INV-2013-00', 0, 'BoN', 'http://localhost/bon/', 1, 1, 'Magesh', 'K', 'mgshk.1507@gmail.com', '9791729266', '', '', 'Magesh', 'K', '', 'Siva Nagar, Cuddalore', '', '', '', '', 99, '', 1503, '', '[]', '', 'payu', '', '', '', '', '', '', '', '', 0, '', 0, '', '[]', '', '', '', '3001.0000', 0, 0, '0.0000', 0, '', 1, 2, 'USD', '1.00000000', '::1', '', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.113 Safari/537.36', 'en-US,en;q=0.8', '2017-09-25 21:52:38', '2017-09-25 21:52:38'),
+(2, 0, 'INV-2013-00', 0, 'BoN', 'http://localhost/bon/', 1, 1, 'Magesh', 'K', 'mgshk.1507@gmail.com', '9791729266', '', '', 'Magesh', 'K', '', 'Siva Nagar, Cuddalore', '', '', '', '', 99, '', 1503, '', '[]', '', 'payu', '', '', '', '', '', '', '', '', 0, '', 0, '', '[]', '', '', '', '3002.0000', 0, 0, '0.0000', 0, '', 1, 2, 'USD', '1.00000000', '::1', '', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.113 Safari/537.36', 'en-US,en;q=0.8', '2017-09-25 22:08:29', '2017-09-25 22:08:29'),
+(3, 0, 'INV-2013-00', 0, 'BoN', 'http://localhost/bon/', 1, 1, 'Magesh', 'K', 'mgshk.1507@gmail.com', '9791729266', '', '', 'Magesh', 'K', '', 'Siva Nagar, Cuddalore', '', '', '', '', 99, '', 1503, '', '[]', '', 'payu', '', '', '', '', '', '', '', '', 0, '', 0, '', '[]', '', '', '', '3002.0000', 0, 0, '0.0000', 0, '', 1, 2, 'USD', '1.00000000', '::1', '', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.113 Safari/537.36', 'en-US,en;q=0.8', '2017-09-25 23:27:10', '2017-09-25 23:27:10'),
+(4, 0, 'INV-2013-00', 0, 'BoN', 'http://localhost/bon/', 1, 1, 'Magesh', 'K', 'mgshk.1507@gmail.com', '9791729266', '', '', 'Magesh', 'K', '', 'Siva Nagar, Cuddalore', '', '', '', '', 99, '', 1503, '', '[]', '', 'payu', '', '', '', '', '', '', '', '', 0, '', 0, '', '[]', '', '', '', '0.0000', 0, 0, '0.0000', 0, '', 1, 2, 'USD', '1.00000000', '::1', '', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.113 Safari/537.36', 'en-US,en;q=0.8', '2017-09-26 10:00:02', '2017-09-26 10:00:02'),
+(5, 0, 'INV-2013-00', 0, 'BoN', 'http://localhost/bon/', 1, 1, 'Magesh', 'K', 'mgshk.1507@gmail.com', '9791729266', '', '', 'Magesh', 'K', '', 'Siva Nagar, Cuddalore', '', '', '', '', 99, '', 1503, '', '[]', '', 'payu', '', '', '', '', '', '', '', '', 0, '', 0, '', '[]', '', '', '', '3000.0000', 0, 0, '0.0000', 0, '', 1, 2, 'USD', '1.00000000', '::1', '', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.113 Safari/537.36', 'en-US,en;q=0.8', '2017-09-26 10:02:50', '2017-09-26 10:02:50'),
+(6, 0, 'INV-2013-00', 0, 'BoN', 'http://localhost/bon/', 1, 1, 'Magesh', 'K', 'mgshk.1507@gmail.com', '9791729266', '', '', 'Magesh', 'K', '', 'Siva Nagar, Cuddalore', '', '', '', '', 99, '', 1503, '', '[]', '', 'payu', '', '', '', '', '', '', '', '', 0, '', 0, '', '[]', '', '', '', '3001.0000', 0, 0, '0.0000', 0, '', 1, 2, 'USD', '1.00000000', '::1', '', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.113 Safari/537.36', 'en-US,en;q=0.8', '2017-09-26 23:17:34', '2017-09-26 23:17:34'),
+(7, 0, 'INV-2013-00', 0, 'BoN', 'http://localhost/bon/', 1, 1, 'Magesh', 'K', 'mgshk.1507@gmail.com', '9791729266', '', '', 'Magesh', 'K', '', 'Siva Nagar, Cuddalore', '', '', '', '', 99, '', 1503, '', '[]', '', 'payu', '', '', '', '', '', '', '', '', 0, '', 0, '', '[]', '', '', '', '3001.0000', 0, 0, '0.0000', 0, '', 1, 2, 'USD', '1.00000000', '::1', '', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.113 Safari/537.36', 'en-US,en;q=0.8', '2017-09-26 23:18:19', '2017-09-26 23:18:19'),
+(8, 0, 'INV-2013-00', 0, 'BoN', 'http://localhost/bon/', 1, 1, 'Magesh', 'K', 'mgshk.1507@gmail.com', '9791729266', '', '', 'Magesh', 'K', '', 'Siva Nagar, Cuddalore', '', '', '', '', 99, '', 1503, '', '[]', '', 'payu', '', '', '', '', '', '', '', '', 0, '', 0, '', '[]', '', '', '', '3002.0000', 0, 0, '0.0000', 0, '', 1, 2, 'USD', '1.00000000', '::1', '', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36', 'en-US,en;q=0.8', '2017-09-28 09:17:17', '2017-09-28 09:17:17'),
+(9, 0, 'INV-2013-00', 0, 'BoN', 'http://localhost/bon/', 1, 1, 'Magesh', 'K', 'mgshk.1507@gmail.com', '9791729266', '', '', 'Magesh', 'K', '', 'Siva Nagar, Cuddalore', '', '', '', '', 99, '', 1503, '', '[]', '', 'payu', '', '', '', '', '', '', '', '', 0, '', 0, '', '[]', '', '', '', '3002.0000', 0, 0, '0.0000', 0, '', 1, 2, 'USD', '1.00000000', '::1', '', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36', 'en-US,en;q=0.8', '2017-09-28 09:17:25', '2017-09-28 09:17:25'),
+(10, 0, 'INV-2013-00', 0, 'BoN', 'http://localhost/bon/', 1, 1, 'Magesh', 'K', 'mgshk.1507@gmail.com', '9791729266', '', '', 'Magesh', 'K', '', 'Siva Nagar, Cuddalore', '', '', '', '', 99, '', 1503, '', '[]', '', 'payu', '', '', '', '', '', '', '', '', 0, '', 0, '', '[]', '', '', '', '0.0000', 0, 0, '0.0000', 0, '', 1, 2, 'USD', '1.00000000', '::1', '', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36', 'en-US,en;q=0.8', '2017-10-01 14:12:41', '2017-10-01 14:12:41'),
+(11, 0, 'INV-2013-00', 0, 'BoN', 'http://localhost/bon/', 1, 1, 'Magesh', 'K', 'mgshk.1507@gmail.com', '9791729266', '', '', 'Magesh', 'K', '', 'Siva Nagar, Cuddalore', '', '', '', '', 99, '', 1503, '', '[]', '', 'payu', '', '', '', '', '', '', '', '', 0, '', 0, '', '[]', '', '', '', '1.0000', 0, 0, '0.0000', 0, '', 1, 2, 'USD', '1.00000000', '::1', '', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36', 'en-US,en;q=0.8', '2017-10-01 14:38:49', '2017-10-01 14:38:49'),
+(12, 0, 'INV-2013-00', 0, 'BoN', 'http://localhost/bon/', 1, 1, 'Magesh', 'K', 'mgshk.1507@gmail.com', '9791729266', '', '', 'Magesh', 'K', '', 'Siva Nagar, Cuddalore', '', '', '', '', 99, '', 1503, '', '[]', '', 'payu', '', '', '', '', '', '', '', '', 0, '', 0, '', '[]', '', '', '', '500000.0000', 0, 0, '0.0000', 0, '', 1, 2, 'USD', '1.00000000', '::1', '', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36', 'en-US,en;q=0.8', '2017-10-02 11:11:34', '2017-10-02 11:11:34');
+
 -- --------------------------------------------------------
 
 --
@@ -12331,6 +12379,24 @@ CREATE TABLE `oc_order_product` (
   `tax` decimal(15,4) NOT NULL DEFAULT '0.0000',
   `reward` int(8) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `oc_order_product`
+--
+
+INSERT INTO `oc_order_product` (`order_product_id`, `order_id`, `product_id`, `name`, `model`, `quantity`, `price`, `status_id`, `shipping_method`, `shipping_code`, `total`, `tax`, `reward`) VALUES
+(1, 1, 7, 'Home - National (India)10%', '', 0, '3001.0000', 0, '', '', '3001.0000', '0.0000', 0),
+(2, 2, 7, 'Home - National (India)10%', '', 0, '3002.0000', 0, '', '', '3002.0000', '0.0000', 0),
+(3, 3, 7, 'Home - National (India)10%', '', 0, '3002.0000', 0, '', '', '3002.0000', '0.0000', 0),
+(4, 4, 7, 'Home - National (India)10%', '', 0, '0.0000', 0, '', '', '0.0000', '0.0000', 0),
+(5, 5, 7, 'Home - National (India)10%', '', 0, '3000.0000', 0, '', '', '3000.0000', '0.0000', 0),
+(6, 6, 7, 'Home - National (India)10%', '', 0, '3001.0000', 0, '', '', '3001.0000', '0.0000', 0),
+(7, 7, 7, 'Home - National (India)10%', '', 0, '3001.0000', 0, '', '', '3001.0000', '0.0000', 0),
+(8, 8, 7, 'Home - National (India)10%', '', 0, '3002.0000', 0, '', '', '3002.0000', '0.0000', 0),
+(9, 9, 7, 'Home - National (India)10%', '', 0, '3002.0000', 0, '', '', '3002.0000', '0.0000', 0),
+(10, 10, 7, 'Home - Nearby', '', 0, '0.0000', 0, '', '', '0.0000', '0.0000', 0),
+(11, 11, 7, 'Home - Nearby', '', 0, '1.0000', 0, '', '', '1.0000', '0.0000', 0),
+(12, 12, 7, 'Home - City (Chennai)', '', 0, '500000.0000', 0, '', '', '500000.0000', '0.0000', 0);
 
 -- --------------------------------------------------------
 
@@ -13013,7 +13079,9 @@ CREATE TABLE `oc_seller_transaction` (
 --
 
 INSERT INTO `oc_seller_transaction` (`seller_transaction_id`, `customer_id`, `order_id`, `description`, `amount`, `date_added`) VALUES
-(1, 1, 0, 'Subscription To [ Free ]', '0.0000', '2017-09-16 23:09:14');
+(1, 1, 0, 'Subscription To [ Free ]', '0.0000', '2017-09-16 23:09:14'),
+(2, 1, 0, 'Subscription To [ Free ]', '0.0000', '2017-09-21 23:10:09'),
+(3, 2, 0, 'Subscription To [ Free ]', '0.0000', '2017-09-28 07:27:05');
 
 -- --------------------------------------------------------
 
@@ -13402,7 +13470,9 @@ INSERT INTO `oc_store_offers` (`advertise_id`, `seller_id`, `offer_title`, `offe
 (3, 1, 'Edit Test 1', 'catalog/seller_images/1/Advertise/1505659662_advertise.jpg', 'image/catalog/seller_images/1/taj image.jpg', '', '', 0, NULL, NULL, NULL, NULL, '', 1, '2017-09-17 19:38:52', '2017-09-17 20:31:02', 'deleted', '0', '0000-00-00', '0000-00-00', NULL, 0, 'no'),
 (4, 1, 'Test Advert 1', 'catalog/seller_images/1/Advertise/1505660502_advertise.jpg', 'image/catalog/seller_images/1/Chrysanthemum.jpg', '', '', 0, NULL, NULL, NULL, NULL, '', 1, '2017-09-17 20:30:24', '2017-09-17 20:48:47', 'deleted', '0', '0000-00-00', '0000-00-00', NULL, 0, 'no'),
 (5, 1, 'Test Advert', 'catalog/seller_images/1/Advertise/1505661709_advertise.jpg', 'image/catalog/seller_images/1/Desert.jpg', '', '', 0, NULL, NULL, NULL, NULL, '', 1, '2017-09-17 20:49:44', '2017-09-17 21:13:02', 'deleted', '0', '0000-00-00', '0000-00-00', NULL, 0, 'no'),
-(6, 1, 'Edit Test 1', 'catalog/seller_images/1/Advertise/1505662630_advertise.jpg', 'image/catalog/seller_images/1/Desert.jpg', '', '', 0, NULL, NULL, NULL, NULL, '', 1, '2017-09-17 20:54:29', '2017-09-17 21:13:06', 'deleted', '0', '0000-00-00', '0000-00-00', NULL, 0, 'no');
+(6, 1, 'Edit Test 1', 'catalog/seller_images/1/Advertise/1505662630_advertise.jpg', 'image/catalog/seller_images/1/Desert.jpg', '', '', 0, NULL, NULL, NULL, NULL, '', 1, '2017-09-17 20:54:29', '2017-09-17 21:13:06', 'deleted', '0', '0000-00-00', '0000-00-00', NULL, 0, 'no'),
+(7, 1, 'Edit Test 1', 'catalog/seller_images/1/Advertise/1505920438_advertise.jpg', 'catalog/seller_images/1/Chrysanthemum.jpg', '', '', 4, 0, '', '', 'kanchipuram', '', 1, '2017-09-20 20:43:58', '2017-10-02 11:11:34', 'approved', '0', '2017-10-02', '2017-10-07', NULL, 500000, 'no'),
+(8, 2, 'Edit Test 1', 'catalog/seller_images/2/Advertise/1506564672_advertise.jpg', 'catalog/seller_images/2/Koala.jpg', '', '', 2, 0, 'india', '', '', '', 1, '2017-09-28 07:41:12', '2017-09-28 07:59:10', 'approved', '0', '2017-09-29', '2017-10-01', NULL, 3001, 'no');
 
 -- --------------------------------------------------------
 
@@ -13423,9 +13493,9 @@ CREATE TABLE `oc_store_offer_basic_price` (
 
 INSERT INTO `oc_store_offer_basic_price` (`id`, `tabs`, `basic_price`, `cash_back`) VALUES
 (1, 'top_banner', 5000, 0),
-(2, 'home_national', 3000, 10),
-(3, 'home_state', 2000, 0),
-(4, 'home_city', 1000, 0),
+(2, 'home_national', 3000, 0),
+(3, 'home_state', 2000, 50),
+(4, 'home_city', 1000, 50),
 (5, 'home_local', 0, 0);
 
 -- --------------------------------------------------------
@@ -15813,7 +15883,9 @@ INSERT INTO `oc_user_activity` (`user_activity_id`, `user_id`, `activity_id`, `k
 (42, 1, 95, 'ad_approved', '183.82.35.20', '2017-08-12 10:07:31'),
 (43, 1, 104, 'ad_approved', '103.81.237.200', '2017-08-23 04:14:42'),
 (44, 1, 1, 'ad_approved', '::1', '2017-09-17 15:27:34'),
-(45, 1, 2, 'ad_approved', '::1', '2017-09-17 19:36:04');
+(45, 1, 2, 'ad_approved', '::1', '2017-09-17 19:36:04'),
+(46, 1, 7, 'ad_approved', '::1', '2017-09-20 20:44:47'),
+(47, 1, 8, 'ad_approved', '::1', '2017-09-28 07:44:34');
 
 -- --------------------------------------------------------
 
@@ -21210,7 +21282,7 @@ ALTER TABLE `oc_zone_to_geo_zone`
 -- AUTO_INCREMENT for table `oc_address`
 --
 ALTER TABLE `oc_address`
-  MODIFY `address_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `address_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `oc_affiliate`
 --
@@ -21330,12 +21402,12 @@ ALTER TABLE `oc_currency`
 -- AUTO_INCREMENT for table `oc_customer`
 --
 ALTER TABLE `oc_customer`
-  MODIFY `customer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `customer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `oc_customer_activity`
 --
 ALTER TABLE `oc_customer_activity`
-  MODIFY `customer_activity_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `customer_activity_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 --
 -- AUTO_INCREMENT for table `oc_customer_group`
 --
@@ -21345,12 +21417,12 @@ ALTER TABLE `oc_customer_group`
 -- AUTO_INCREMENT for table `oc_customer_history`
 --
 ALTER TABLE `oc_customer_history`
-  MODIFY `customer_history_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `customer_history_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `oc_customer_ip`
 --
 ALTER TABLE `oc_customer_ip`
-  MODIFY `customer_ip_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `customer_ip_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `oc_customer_login`
 --
@@ -21500,7 +21572,7 @@ ALTER TABLE `oc_option_value`
 -- AUTO_INCREMENT for table `oc_order`
 --
 ALTER TABLE `oc_order`
-  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT for table `oc_order_custom_field`
 --
@@ -21520,7 +21592,7 @@ ALTER TABLE `oc_order_option`
 -- AUTO_INCREMENT for table `oc_order_product`
 --
 ALTER TABLE `oc_order_product`
-  MODIFY `order_product_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `order_product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT for table `oc_order_recurring`
 --
@@ -21650,7 +21722,7 @@ ALTER TABLE `oc_seller_shipping`
 -- AUTO_INCREMENT for table `oc_seller_transaction`
 --
 ALTER TABLE `oc_seller_transaction`
-  MODIFY `seller_transaction_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `seller_transaction_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `oc_setting`
 --
@@ -21685,7 +21757,7 @@ ALTER TABLE `oc_store_image`
 -- AUTO_INCREMENT for table `oc_store_offers`
 --
 ALTER TABLE `oc_store_offers`
-  MODIFY `advertise_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `advertise_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `oc_store_referred`
 --
@@ -21700,7 +21772,7 @@ ALTER TABLE `oc_store_timing`
 -- AUTO_INCREMENT for table `oc_user_activity`
 --
 ALTER TABLE `oc_user_activity`
-  MODIFY `user_activity_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `user_activity_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
