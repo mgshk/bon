@@ -741,7 +741,7 @@ bottom: 5px;}
 #site_faq_main p{margin-bottom: 10px;font-size: 14px;line-height: 20px;}
 #site_faq_main ul{margin-left: 20px;}
 #site_faq_main ul li{margin-bottom: 10px;font-size: 14px;line-height: 20px;}
-#site_faq_main #accordion{max-height: 450px;overflow-y: auto;}
+#site_faq_main #accordion{max-height: 400px;overflow-y: auto;}
 .contact-modal p{margin-bottom: 10px;font-size: 14px;}
 #site_feedback_main{z-index: 100000;}
 #us11{width: 100%; height: 370px;box-shadow: 1px 1px 1px 1px #C9C9C9;
@@ -764,7 +764,10 @@ height: 40px;
 font-size: 14px;
 }
 .map-header label{font-size: 14px;font-weight: bold;margin-right: 5px;}
-.getloc{position: relative;bottom: 2px;}
+.getloc{position: relative;bottom: 2px;margin-right: 10px;}
+.langu{width: 200px;display: inline-block !important;}
+.slectLang{margin-bottom: 15px;}
+.slectLang span{font-size: 14px;}
 /* my css ends */
 
 @media (min-width: 1200px) {

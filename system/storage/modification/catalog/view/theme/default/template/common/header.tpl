@@ -1426,12 +1426,15 @@
 			<div class="modal-content">
 				<div class="modal-header map-header">
 
-					<label>Location:</label> <input type="text" id="us11-address" class="form-control" /> <label>Lat:</label> <input type="text" id="us11-lat" class="form-control" /> <label>Long:</label>
+					<label>Location:</label> <input type="text" id="us11-address" class="form-control" />
+					<button type="button" class="btn btn-primary getloc" data-dismiss="modal" onclick="getLocation()">Search</button>
+					<label>Lat:</label> <input type="text" id="us11-lat" class="form-control" /> <label>Long:</label>
 					<input type="text" id="us11-lon" class="form-control" />
+					<button type="button" class="btn btn-primary getloc" data-dismiss="modal" onclick="getLocation()">Search</button>
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
           					<span aria-hidden="true">&times;</span>
         			</button>
-					<button type="button" class="btn btn-primary getloc" data-dismiss="modal" onclick="getLocation()">Get Current Location</button>
+					
 
 				</div>
 				<div class="modal-body relative-pos">
@@ -1439,7 +1442,7 @@
 					<input type="text" id="divFormattedAddress" class="form-control" />
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-primary" data-dismiss="modal" onclick="setPosition()">Set Location</button>
+					<button type="button" class="btn btn-primary pull-left" data-dismiss="modal" onclick="setPosition()">Set Location</button>
 					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 				</div>
 			</div>
@@ -1591,7 +1594,7 @@
 					<h4 class="modal-title loc-share-title">Contact us</h4>
 				</div>
 				<div class="modal-body contact-modal">
-					<p>If you are facing any issue or have a concern or want to leave a <a class="cursor" data-toggle="modal" data-target="#site_feedback_main" title="Feedback">Feedback</a>.</p>
+					<p>If you are facing any issue or have a concern or want to leave a <a class="cursor" onclick="showFeedbackModal()" title="Feedback">Feedback</a>.</p>
 					<p>For anyother information or queries please send email to bononlineservices@buyonear.in. We will respond in 24 to 48 hours.</p>
 				</div>
 			</div>
@@ -1609,6 +1612,17 @@
 					<h4 class="modal-title loc-share-title">FAQ</h4>
 				</div>
 				<div class="modal-body">
+
+				<div class="slectLang">
+					<label><span>Select language: </span> 
+					<select class="form-control langu" onchange="toggleFaq()" id="faqLanguage">
+						<option value="english">English</option>
+						<option value="tamil">Tamil</option>
+					</select>
+					</label>
+				</div>
+
+				<div id="englishFaq">
 					
 					<div class="panel-group" id="accordion">
   <div class="panel panel-default">
@@ -1967,6 +1981,17 @@
 
 </div>
 
+</div>
+<!-- english -->
+
+<!-- tamil -->
+	<div id="tamilFaq">
+		Tamil faq
+	</div>
+<!-- tamil -->
+
+
+
 				</div>
 			</div>
 		</div>
@@ -2032,6 +2057,25 @@
 			$("#find_nw").click(function () {
 				$("#geocomplete").trigger("geocode");
 			}).click();
+		}
+
+		function showFeedbackModal(){
+			$('#site_contact_main').modal('hide');
+			$('#site_feedback_main').modal('show');
+		}
+
+		$('#englishFaq').show();
+		$('#tamilFaq').hide();
+
+		function toggleFaq(){
+			var faqvalue = $('#faqLanguage').val();
+			if(faqvalue === 'english'){
+				$('#englishFaq').show();
+				$('#tamilFaq').hide();
+			} else {
+				$('#englishFaq').hide();
+				$('#tamilFaq').show();
+			}
 		}
 	</script>
 
