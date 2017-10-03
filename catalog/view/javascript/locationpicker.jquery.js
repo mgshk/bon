@@ -393,7 +393,7 @@
         onchanged: function(currentLocation, radius, isMarkerDropped) {},
         onlocationnotfound: function(locationName) {},
         oninitialized: function(component) {},
-        markerIcon: undefined,
+        markerIcon: 'image/marker.png',
         markerDraggable: true,
         markerVisible: true
     };
