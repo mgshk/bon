@@ -21,6 +21,8 @@ class Controllersellerprofilesellerprofile extends Controller
         $this->load->model('catalog/category');
         $this->load->model('tool/image');
         $this->load->model('selleradvertise/advertise');
+        $this->load->model('localisation/country');
+        $this->load->model('account/address');
 
         $this->load->language('sellerprofile/sellerprofile');
         $this->document->setTitle($this->language->get('heading_title'));
@@ -82,6 +84,8 @@ class Controllersellerprofilesellerprofile extends Controller
         $data['entry_bank'] = $this->language->get('entry_bank');
         $data['entry_bankaccount_1'] = $this->language->get('entry_bankaccount_1');
         $data['entry_bankaccount_2'] = $this->language->get('entry_bankaccount_2');
+        $data['entry_address_1'] = $this->language->get('entry_address_1');
+        $data['entry_address_2'] = $this->language->get('entry_address_2');
         $data['entry_city'] = $this->language->get('entry_city');
         $data['entry_postcode'] = $this->language->get('entry_postcode');
         $data['entry_zone'] = $this->language->get('entry_zone');
@@ -192,6 +196,19 @@ class Controllersellerprofilesellerprofile extends Controller
         }
 
 		$data['category_seller'] = $seller_categories;
+
+        //Store Address
+        $address_info = $this->model_account_address->getAddress($seller_info['address_id']);
+        $data['address_1'] = $seller_info['address_1']? : $address_info['address_1'];
+        $data['address_2'] = $seller_info['address_2']? : $address_info['address_2'];
+        $data['city'] = $seller_info['city']? : $address_info['city'];
+        $data['country_id'] = $seller_info['country_id'] ? : $address_info['country_id'];
+
+        $data['postcode'] = $seller_info['postcode']? : $address_info['postcode'];
+        $data['zone_id'] = $seller_info['zone_id'] ? : $address_info['zone_id'];
+
+        $data['countries'] = $this->model_localisation_country->getCountries();
+
 		$data['allow_products'] = $seller_info['allow_products'];
 		$data['allow_cart']     = $seller_info['allow_cart'];
 		$data['seller_approved'] = $seller_info['seller_approved'];
@@ -279,7 +296,6 @@ class Controllersellerprofilesellerprofile extends Controller
         }
 
         $data['store_activated'] = $seller_info['active'];
-        $data['seller_address'] = $seller_info['address'];
 
         if (isset($this->request->post['facebook'])) {
             $data['facebook'] = $this->request->post['facebook'];
@@ -1367,6 +1383,10 @@ class Controllersellerprofilesellerprofile extends Controller
 			}
 		}
 
+        $this->load->model('localisation/country');
+
+        $country_info = $this->model_localisation_country->getCountry($this->request->post['country_id']);
+
 		if($this->request->post['nickname'] =='') {
 			$json['error'] = $this->language->get('error_nickname_req');
 		}
@@ -1379,9 +1399,29 @@ class Controllersellerprofilesellerprofile extends Controller
 			$json['error'] = $this->language->get('error_lng_req');
 		}
 
-        else if($this->request->post['seller_address'] =='') {
-            $json['error'] = $this->language->get('error_seller_address_req');
+        else if ((utf8_strlen(trim($this->request->post['address_1'])) < 3) || (utf8_strlen(trim($this->request->post['address_1'])) > 128)) {
+            $json['error'] = $this->language->get('error_address_1');
         }
+
+        else if ((utf8_strlen(trim($this->request->post['city'])) < 2) || (utf8_strlen(trim($this->request->post['city'])) > 128)) {
+            $json['error'] = $this->language->get('error_city');
+        }
+
+        else if ($country_info && $country_info['postcode_required'] && (utf8_strlen(trim($this->request->post['postcode'])) < 2 || utf8_strlen(trim($this->request->post['postcode'])) > 10)) {
+            $json['error'] = $this->language->get('error_postcode');
+        }
+
+        else if ($this->request->post['country_id'] == '' || !is_numeric($this->request->post['country_id'])) {
+            $json['error'] = $this->language->get('error_country');
+        }
+
+        else if (!isset($this->request->post['zone_id']) || $this->request->post['zone_id'] == '' || !is_numeric($this->request->post['zone_id'])) {
+            $json['error'] = $this->language->get('error_zone');
+        }
+
+        // else if($this->request->post['seller_address'] =='') {
+        //     $json['error'] = $this->language->get('error_seller_address_req');
+        // }
 
 		else if($this->request->post['store_email'] == '') {
 			$json['error'] = "Please enter Store/Entity email";

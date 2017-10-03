@@ -201,7 +201,8 @@ if(adss)
 						    <div id="validation_txt" style="display:none">
 							    <label>Price </label> (<span class="text-green" id="price_vaidation_txt"></span>)
 							</div>
-						    <input type="number" name="amount" id="amount_val" class="form-control" style="display: none;"/>
+						    <input type="number" name="amount_val" id="amount_val" class="form-control" style="display: none;"/>
+						    <input type="hidden" name="amount" id="actual_price"/>
 						    <input type="hidden" name="min_price" id="min_price" />
 							<input type="hidden" name="max_price" id="max_price" />
 
@@ -216,14 +217,15 @@ if(adss)
 							<input type="hidden" name="dates_for_hide" id="hide_date" />
 							<span class="text-dangers" id="error_top_banner_date"> </span>			 
 							<div class="margin-ttep">
-								Number of days selected : <span class="display_total_2" id="display_total"></span>
+								Number of days selected : <span class="display_total_2" id="display_total">0</span>
 							</div>
 							<div class="margin-ttep">Total price (no. of days x basic price) : <span class="display_amount_1" id="display_amount"> </span></div>
 						</div>
 					     
 						<button class="advertise-btn_live" type="button">Pay</button>
 						<span id="display_amount_1" style="display:none;"></span>
-						<button class="advertise-btn" type="button" onclick="this.form.reset();" data-dismiss="modal" aria-hidden="true">Cancel</button>
+						<button class="advertise-btn" type="button" onClick="this.form.reset();" data-dismiss="modal" aria-hidden="true">Cancel</button>
+						<button class="advertise-btn reset" type="button" style="display:none;">Reset</button>
 						<span class="text-dangers" id="error_check"></span>
 					</div>
 			    </form>
@@ -297,6 +299,9 @@ if(adss)
 					sel.append("<option selected value='" + (parseInt(i) + parseInt(3)) + "' >Basic price</option>");
 			    }
 			}
+
+			$(".check_amount")[0].selectedIndex = $(".check_amount option").length - 1;
+
 		 }, "json");
 
 		return false;
@@ -316,26 +321,46 @@ if(adss)
 		$('#altField').multiDatesPicker({
 			minDate: 0,
     		onSelect: function () {
+    			var discount_txt = '';
+    			var discount_price = 0;
     			var discount = $('input[name="loc"]:checked').data('cashBack');
     			var length = parseInt($('#altField').multiDatesPicker('getDates').length);
 
     			$('#display_total').text(length);
 
     			var total_price = length * parseInt(bannerBasicPrice['top_banner']);
-    			var discount_price = (discount / 100) * total_price;
-    			var discount_txt = '<del>'+total_price+' Rs</del> '+ discount_price + ' Rs (' +discount+'% discount)';
-    			$('#display_amount').html(discount_txt);
 
-    			$('#amount_val').val(discount_price);
+    			if (discount === 0) {
+    				discount_txt = total_price+' Rs (' +discount+'% discount)';
+    				discount_price = total_price;
+    			} else {
+    				discount_price = (discount / 100) * total_price;
+    				discount_txt = '<del>'+total_price+' Rs</del> '+ discount_price + ' Rs (' +discount+'% discount)';
+    			}
+
+    			$('#display_amount').html(discount_txt);
+    			$('#actual_price').val(discount_price);
 
     			if ($('#altField').multiDatesPicker('getDates').length > 0) {
     				$('.advertise-btn_live').attr('disabled', false);
     			} else {
     				$('.advertise-btn_live').attr('disabled', true);
-    				$('#display_amount').html();
+    				$('#display_amount').empty();
     			}
     		}
     	});
+
+		$('.reset').on('click', function() {
+			//reset fields
+			$('#display_amount_1').empty();
+			$('#amount_val').hide();
+			$('.check_amount').removeAttr('selected');
+
+			$(".check_amount")[0].selectedIndex = $(".check_amount option").length - 1;
+			$('.advertise-btn_live').attr('disabled', false);
+
+			return false;
+		});
 
 		$('input[name="loc"]').on('click', function() {
 			
@@ -351,7 +376,9 @@ if(adss)
 			$('#basic_price').text(bannerBasicPrice[banner_name]);
 			$('#show_basic_price').show();
 			$('.position_local_visible').hide();
-			$('#datetimepicker_end_'+advertise_id).datepicker('destroy');
+
+			$('.reset').trigger('click');
+			$('#actual_price').val(bannerBasicPrice[banner_name]);
 			$('.advertise-btn_live').attr('disabled', true);
 
 			if(loc == 1) {
@@ -481,6 +508,8 @@ if(adss)
 						sel.append("<option selected value='" + (parseInt(i) + parseInt(3)) + "' >Basic price</option>");
 				   }
 				}
+
+				$('.reset').trigger('click');
 			 }, "json");	
 		});
 
@@ -490,7 +519,7 @@ if(adss)
 			var banner_name = $('input[name="loc"]:checked').data('advertiseName');
 
 			$('#basic_price').text(bannerBasicPrice[banner_name]);
-			$('#amount_val').val(bannerBasicPrice[banner_name]);
+			$('#actual_price').val(bannerBasicPrice[banner_name]);
 		}, 1000);
 
 		$('.check_amount').on('change', function() {
@@ -548,7 +577,7 @@ if(adss)
 			    		}
 					} else {
 						$('#validation_txt').hide();
-						$('#amount_val').val(bannerBasicPrice[banner_name]).hide();
+						$('#actual_price').val(bannerBasicPrice[banner_name]);
 					}
 				}
 			});
@@ -605,13 +634,22 @@ if(adss)
     		if ($('input[name="loc"]:checked').val() !== '5' && $('input[name="loc"]:checked').val() !== '6') {
     			if (showPriceText) {
 	    			var discount = $('input[name="loc"]:checked').data('cashBack');;
-	    			var discount_price = (discount / 100) * parseInt(amount);
-	    			var discount_txt = 'Offer price: <del>'+amount+' Rs</del> '+ discount_price + ' Rs (' +discount+'% discount)';
+	    			var discount_price = 0;
+	    			var discount_txt = '';
+
+	    			if (discount === 0) {
+	    				discount_txt = amount+' Rs (' +discount+'% discount)';
+	    				discount_price = amount;
+	    			} else {
+	    				discount_price = (discount / 100) * parseInt(amount);
+	    				discount_txt = 'Offer price: <del>'+amount+' Rs</del> '+ discount_price + ' Rs (' +discount+'% discount)';
+	    			}
+
 	    			$('#display_amount_1').html(discount_txt).show();
-	    			$('#amount_val').val(discount_price);
+	    			$('#actual_price').val(discount_price);
 	    		} else {
 	    			$('#display_amount_1').empty().hide();
-	    			$('#amount_val').val(bannerBasicPrice[banner_name]);
+	    			$('#actual_price').val(bannerBasicPrice[banner_name]);
 	    		}
     		}
     	});
@@ -622,83 +660,74 @@ if(adss)
 
 	$('.advertise-btn_live').on('click', function(e) {
 		$('#error_amount').html('');
+		$('.text-dangers').html('');
 
-		var loc = $('input:radio[name=loc]:checked').val(),
-			amount = parseInt($('#amount_val').val());
-			var total_position_length = $('#position > option').length;
-
-			if(total_position_length == 2) {
-				position = (parseInt($('select[name=position]').val())+parseInt(2))
-			} else {
-				position = (parseInt($('select[name=position]').val())+parseInt(1));
-			}
-		
-		 	$('.text-dangers').html('');
-
-			 $.ajax({
-				url: 'index.php?route=sellerprofile/sellerprofile/move_live&delete_val='+delete_val,
-				type: 'post',
-				dataType: 'json',
-				data: $("#advertise_move_live").serialize(),
-				success: function(json) { 
-					if (json['success']) {				
-						$('#myModal_adv').append(json['confirmForm']);
-						$('#payu_form').submit();
-						return false;
-					}
-
-					if(json['free_check'] == 1) {
-						if(loc == '5') {
-							if(modetrue == false) {
-								e.preventDefault();
-
-								var modal = $('<div id="myModalfree" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel3" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button><h3 id="myModalLabel3">Confirmation</h3></div><div class="modal-body"><p>Only one free Ad is allowed in "Home - Local" tab.</p><p>Do you want to removed old and post this Ad?</p></p></div><div class="modal-footer"><button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button><button class="btn-primary btn" id="SubForm">Yes</button></div></div></div></div>');			
-								
-								$('body').append(modal);
-									modal.modal({
-									show: true
-								})
-							
-								.one('click', '#SubForm', function (e) {
-									modetrue = true;
-									delete_val = 1;
-									$('#myModalfree').modal('hide');					
-									$('.advertise-btn_live').click();
-								})
-							}
-						} 
-					}
-
-					if(json['advertise_location']) {
-						$('#error_loc').html('<i class="fa fa-times" aria-hidden="true"></i><span>'+json['advertise_location']);
-					}
-
-					if(json['from_date']) {
-						$('#error_from_date').html('<i class="fa fa-times" aria-hidden="true"></i><span>'+json['from_date']);
-					}
-
-					if(json['end_date']) {
-						$('#error_end_date').html('<i class="fa fa-times" aria-hidden="true"></i><span>'+json['end_date']);
-					}
-
-					if(json['amount']) {
-						$('#error_amount').html('<i class="fa fa-times" aria-hidden="true"></i><span>'+json['amount']);
-					}
-
-					if(json['position']) {
-						$('#error_position').html('<i class="fa fa-times" aria-hidden="true"></i><span>'+json['position']);
-					}
-
-					if(loc == '1') { 
-						if(json['top_banner_date']) {
-							$('#error_top_banner_date').html('<i class="fa fa-times" aria-hidden="true"></i><span>'+json['top_banner_date']);
-						} 
-					}
+		$.ajax({
+			url: 'index.php?route=sellerprofile/sellerprofile/move_live&delete_val='+delete_val,
+			type: 'post',
+			dataType: 'json',
+			data: $("#advertise_move_live").serialize(),
+			success: function(json) { 
+				if (json['success']) {				
+					$('#myModal_adv').append(json['confirmForm']);
+					$('#payu_form').submit();
+					return false;
 				}
-			});
-	 });
 
-	 $('.advertise_live_details').on('click', function() {
+				if(json['free_check'] == 1) {
+					if(loc == '5') {
+						if(modetrue == false) {
+							e.preventDefault();
+
+							var modal = $('<div id="myModalfree" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel3" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button><h3 id="myModalLabel3">Confirmation</h3></div><div class="modal-body"><p>Only one free Ad is allowed in "Home - Local" tab.</p><p>Do you want to removed old and post this Ad?</p></p></div><div class="modal-footer"><button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button><button class="btn-primary btn" id="SubForm">Yes</button></div></div></div></div>');			
+							
+							$('body').append(modal);
+								modal.modal({
+								show: true
+							})
+						
+							.one('click', '#SubForm', function (e) {
+								modetrue = true;
+								delete_val = 1;
+								$('#myModalfree').modal('hide');					
+								$('.advertise-btn_live').click();
+							})
+						}
+					} 
+				}
+
+				if(json['advertise_location']) {
+					$('#error_loc').html('<i class="fa fa-times" aria-hidden="true"></i><span>'+json['advertise_location']);
+				}
+
+				if(json['from_date']) {
+					$('#error_from_date').html('<i class="fa fa-times" aria-hidden="true"></i><span>'+json['from_date']);
+				}
+
+				if(json['end_date']) {
+					$('#error_end_date').html('<i class="fa fa-times" aria-hidden="true"></i><span>'+json['end_date']);
+				}
+
+				if(json['amount']) {
+					$('#error_amount').html('<i class="fa fa-times" aria-hidden="true"></i><span>'+json['amount']);
+				}
+
+				if(json['position']) {
+					$('#error_position').html('<i class="fa fa-times" aria-hidden="true"></i><span>'+json['position']);
+				}
+
+				if(loc == '1') { 
+					if(json['top_banner_date']) {
+						$('#error_top_banner_date').html('<i class="fa fa-times" aria-hidden="true"></i><span>'+json['top_banner_date']);
+					} 
+				}
+			}
+		});
+
+		return false
+	});
+
+	$('.advertise_live_details').on('click', function() {
 	    var href = $(this).data('target');
 	    var id = $(this).data('id');
 
