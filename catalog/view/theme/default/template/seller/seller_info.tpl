@@ -315,7 +315,9 @@
 						</p>
 					</div>
 					<div class="col-sm-6">
-						<img src="image/verified.png" class="img-responsive" style="float: right;">
+						 <?php if( $seller_verified != '0') { ?>
+						 	<img src="image/verified.png" class="img-responsive" style="float: right;">
+						<?php } ?>
 						<div class="new-store-banner">
 							<div id="myCarousel" class="carousel slide" data-ride="carousel">
 								<!-- Indicators -->
@@ -437,7 +439,9 @@
 				<div class="row">
 					<div class="col-sm-6">
 						<div class="new-store-banner">
-							<img src="image/verified.png" class="img-responsive" style="float: right;">
+							<?php if( $seller_verified != '0') { ?>
+								<img src="image/verified.png" class="img-responsive" style="float: right;">
+							<?php } ?>
 							<div id="myCarousel" class="carousel slide" data-ride="carousel">
 								<!-- Indicators -->
 								<ol class="carousel-indicators">
