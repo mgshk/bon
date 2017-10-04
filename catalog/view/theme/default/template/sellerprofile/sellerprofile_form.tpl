@@ -283,62 +283,77 @@
                               <textarea style="white-space: normal;" name="seller_description" rows="4" placeholder="<?php echo $entry_description; ?>" id="input-description" class="form-control"><?php echo $seller_description; ?></textarea>
                             </div>
                           </div>
-                          <div class="form-group required">
-                            <label class="col-sm-2 control-label" for="input-address-1"><?php echo $entry_address_1; ?></label>
-                            <div class="col-sm-10">
-                              <input type="text" name="address_1" value="<?php echo $address_1; ?>" placeholder="<?php echo $entry_address_1; ?>" id="input-address-1" class="form-control" />
+
+                          <div id="store_address" class="modal fade" role="dialog">
+                            <div class="modal-dialog">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                  <h4 class="modal-title">Update Store Address</h4>
+                                </div>
+                                <div class="modal-body">
+                                  <div class="form-group required">
+                                    <label class="col-sm-2 control-label" for="input-address-1"><?php echo $entry_address_1; ?></label>
+                                    <div class="col-sm-10">
+                                      <input type="text" name="address_1" value="<?php echo $address_1; ?>" placeholder="<?php echo $entry_address_1; ?>" id="input-address-1" class="form-control" />
+                                    </div>
+                                  </div>
+                                  <div class="form-group">
+                                    <label class="col-sm-2 control-label" for="input-address-2"><?php echo $entry_address_2; ?></label>
+                                    <div class="col-sm-10">
+                                      <input type="text" name="address_2" value="<?php echo $address_2; ?>" placeholder="<?php echo $entry_address_2; ?>" id="input-address-2" class="form-control" />
+                                    </div>
+                                  </div>
+                                  <div class="form-group required">
+                                    <label class="col-sm-2 control-label" for="input-city"><?php echo $entry_city; ?></label>
+                                    <div class="col-sm-10">
+                                      <input type="text" name="city" value="<?php echo $city; ?>" placeholder="<?php echo $entry_city; ?>" id="input-city" class="form-control" />
+                                    </div>
+                                  </div>
+                                  <div class="form-group required">
+                                    <label class="col-sm-2 control-label" for="input-postcode"><?php echo $entry_postcode; ?></label>
+                                    <div class="col-sm-10">
+                                      <input type="text" name="postcode" value="<?php echo $postcode; ?>" placeholder="<?php echo $entry_postcode; ?>" id="input-postcode" class="form-control" />
+                                    </div>
+                                  </div>
+                                  <div class="form-group required">
+                                    <label class="col-sm-2 control-label" for="input-country"><?php echo $entry_country; ?></label>
+                                    <div class="col-sm-10">
+                                      <select name="country_id" id="input-country" class="form-control">
+                                        <option value=""><?php echo $text_select; ?></option>
+                                        <?php foreach ($countries as $country) { ?>
+                                        <?php if ($country['country_id'] == $country_id) { ?>
+                                        <option value="<?php echo $country['country_id']; ?>" selected="selected"><?php echo $country['name']; ?></option>
+                                        <?php } else { ?>
+                                        <option value="<?php echo $country['country_id']; ?>"><?php echo $country['name']; ?></option>
+                                        <?php } ?>
+                                        <?php } ?>
+                                      </select>
+                                    </div>
+                                  </div>
+                                  <div class="form-group required">
+                                    <label class="col-sm-2 control-label" for="input-zone"><?php echo $entry_zone; ?></label>
+                                    <div class="col-sm-10">
+                                      <input type="hidden" id="zone_id" name="hidden_zone_id" value="<?php echo $zone_id; ?>" />
+                                      <select name="zone_id" id="input-zone" class="form-control"></select>
+                                    </div> 
+                                  </div>
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                                </div>
+                              </div>
                             </div>
-                          </div>
-                          <div class="form-group">
-                            <label class="col-sm-2 control-label" for="input-address-2"><?php echo $entry_address_2; ?></label>
-                            <div class="col-sm-10">
-                              <input type="text" name="address_2" value="<?php echo $address_2; ?>" placeholder="<?php echo $entry_address_2; ?>" id="input-address-2" class="form-control" />
-                            </div>
-                          </div>
+                         </div>
                           <div class="form-group required">
-                            <label class="col-sm-2 control-label" for="input-city"><?php echo $entry_city; ?></label>
-                            <div class="col-sm-10">
-                              <input type="text" name="city" value="<?php echo $city; ?>" placeholder="<?php echo $entry_city; ?>" id="input-city" class="form-control" />
-                            </div>
-                          </div>
-                          <div class="form-group required">
-                            <label class="col-sm-2 control-label" for="input-postcode"><?php echo $entry_postcode; ?></label>
-                            <div class="col-sm-10">
-                              <input type="text" name="postcode" value="<?php echo $postcode; ?>" placeholder="<?php echo $entry_postcode; ?>" id="input-postcode" class="form-control" />
-                            </div>
-                          </div>
-                          <div class="form-group required">
-                            <label class="col-sm-2 control-label" for="input-country"><?php echo $entry_country; ?></label>
-                            <div class="col-sm-10">
-                              <select name="country_id" id="input-country" class="form-control">
-                                <option value=""><?php echo $text_select; ?></option>
-                                <?php foreach ($countries as $country) { ?>
-                                <?php if ($country['country_id'] == $country_id) { ?>
-                                <option value="<?php echo $country['country_id']; ?>" selected="selected"><?php echo $country['name']; ?></option>
-                                <?php } else { ?>
-                                <option value="<?php echo $country['country_id']; ?>"><?php echo $country['name']; ?></option>
-                                <?php } ?>
-                                <?php } ?>
-                              </select>
-                            </div>
-                          </div>
-                          <div class="form-group required">
-                            <label class="col-sm-2 control-label" for="input-zone"><?php echo $entry_zone; ?></label>
-                            <div class="col-sm-10">
-                              <input type="hidden" id="zone_id" name="hidden_zone_id" value="<?php echo $zone_id; ?>" />
-                              <select name="zone_id" id="input-zone" class="form-control"></select>
-                            </div> 
-                          </div>
-                          <!--<div class="form-group required">
                             <label class="col-sm-2 control-label" for="input-store-address">
-                                          <?php echo $entry_store_address; ?>
-                                          </label>
-                            <div class="col-sm-8">
-                              <input type="text" name="seller_address" maxlength="50" placeholder="<?php echo $entry_store_address; ?>" value="<?php echo $seller_address; ?>"
-                                id="input-seller-address" class="form-control" max-length="300" required/>
-                              <span class="input-group-btn"></span>
+                              <?php echo $entry_store_address; ?>
+                            </label>
+                            <div class="col-sm-10 additional_image sel--sec--ordd">
+                                <?php echo $address_store; ?> &nbsp; &nbsp;
+                                <a class="cursor sel--sec--ord btn btn-primary edt" data-toggle="modal" data-target="#store_address">Edit</a>
                             </div>
-                          </div>-->
+                          </div>
                           <div class="form-group required">
                             <label class="col-sm-2 control-label">Enter map location</label>
                             <div class="col-sm-10">
@@ -349,8 +364,8 @@
                           </div>
                           <div class="form-group">
                             <label class="col-sm-2 control-label" for="input-owner-name">
-                                          <?php echo $entry_owner_name; ?>
-                                          </label>
+                              <?php echo $entry_owner_name; ?>
+                            </label>
                             <div class="col-sm-8">
                               <input type="text" name="owner_name" maxlength="50" placeholder="<?php echo $entry_owner_name; ?>" value="<?php echo $owner_name; ?>"
                                 id="input-owner-name" class="form-control" required/>
@@ -506,11 +521,9 @@
                           </div>
                           <div class="form-group">
                             <div class="buttons">
-                              <label class="col-sm-2 control-label">
-                                             Store/Entity portals
-                                             </label>
+                              <label class="col-sm-2 control-label">Store/Entity portals</label>
                               <div class="col-sm-10 additional_image sel--sec--ordd">
-                                <a class="cursor sel--sec--ord" data-toggle="modal" data-target="#store_portals">Edit</a>
+                                <a class="cursor sel--sec--ord btn btn-primary edt" data-toggle="modal" data-target="#store_portals">Edit</a>
                               </div>
                             </div>
                           </div>
@@ -951,16 +964,15 @@
                               <select name="zone_id" id="input-zone" class="form-control"></select>
                             </div> 
                           </div>
-                          <!-- <div class="form-group required">
+                          <div class="form-group required">
                             <label class="col-sm-2 control-label" for="input-store-address">
-                           <?php echo $entry_store_address; ?>
-                           </label>
+                              <?php echo $entry_store_address; ?>
+                            </label>
                             <div class="col-sm-8">
-                              <input type="text" name="seller_address" maxlength="50" placeholder="<?php echo $entry_store_address; ?>" value="<?php echo $seller_address; ?>"
-                                id="input-seller-address" class="form-control" max-length="300" required/>
+                                <?php echo $address_store; ?>
                               <span class="input-group-btn"></span>
                             </div>
-                          </div> -->
+                          </div>
                           <div class="form-group required">
                             <label class="col-sm-2 control-label">Enter map location</label>
                             <div class="col-sm-10">
@@ -2669,7 +2681,7 @@
   //  echo "$('#longitude_st').val(log_st);";
   //  echo "</script>\n";
 ?>
-  //
+
   <script>
     var lat_st = "<?php echo $lat; ?>";
     var long_st = "<?php echo $lng; ?>";
