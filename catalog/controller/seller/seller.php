@@ -598,7 +598,7 @@ class Controllersellerseller extends Controller
 		}
 
 		//echo "<pre>"; print_r($seller_info); die;
-
+        $data['seller_verified'] = $seller_info['seller_verified'];
 		$data['path'] = (isset($this->request->get['path']) && $this->request->get['path'] !='') ? $this->request->get['path'] : '';
 		$data['tab_section'] = (isset($this->request->get['tab_section']) && $this->request->get['tab_section'] !='') ? $this->request->get['tab_section'] : '';
 		$data['prod_search'] = (isset($this->request->get['prod_search']) && $this->request->get['prod_search'] !='') ? $this->request->get['prod_search'] : '';
