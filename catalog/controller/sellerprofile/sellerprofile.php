@@ -201,13 +201,23 @@ class Controllersellerprofilesellerprofile extends Controller
         //Store Address
         $address_info = $this->model_account_address->getAddress($seller_info['address_id']);
 
-        $data['address_1'] = $seller_info['address_1']? : $address_info['address_1'];
-        $data['address_2'] = $seller_info['address_2']? : $address_info['address_2'];
-        $data['city'] = $seller_info['city']? : $address_info['city'];
-        $data['country_id'] = $seller_info['country_id'] ? : $address_info['country_id'];
+        if ($seller_info['address_1']) {
+            $data['address_1'] = $seller_info['address_1'];
+            $data['address_2'] = $seller_info['address_2'];
+            $data['city'] = $seller_info['city'];
+            $data['country_id'] = $seller_info['country_id'];
 
-        $data['postcode'] = $seller_info['postcode']? : $address_info['postcode'];
-        $data['zone_id'] = $seller_info['zone_id'] ? : $address_info['zone_id'];
+            $data['postcode'] = $seller_info['postcode'];
+            $data['zone_id'] = $seller_info['zone_id'];
+        } else {
+            $data['address_1'] = $address_info['address_1'];
+            $data['address_2'] = $address_info['address_2'];
+            $data['city'] = $address_info['city'];
+            $data['country_id'] = $address_info['country_id'];
+
+            $data['postcode'] = $address_info['postcode'];
+            $data['zone_id'] = $address_info['zone_id'];
+        }
 
         $data['countries'] = $this->model_localisation_country->getCountries();
 

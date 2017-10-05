@@ -908,7 +908,7 @@
 					<tr>
 						<?php if($nickname != '') { ?>
 						<td>
-							<h4>Name</h4>
+							<h4>Store Name</h4>
 						</td>
 						<td>
 							<?php echo substr($nickname, 0, 25); ?>
@@ -926,9 +926,17 @@
 						<?php } ?>
 					</tr>
 					<tr>
+						<?php if($seller_image != '') { ?>
+						<td>
+							<p>Profile Photo</p>
+						</td>
+						<td> <img src="<?php echo $seller_image; ?>"></td>
+						<?php } ?>
+					</tr>
+					<tr>
 						<?php if($seller_address != '') { ?>
 						<td>
-							<p>Address</p>
+							<p>Store Address</p>
 						</td>
 						<td>
 							<?php echo $seller_address; ?>
@@ -975,14 +983,6 @@
 						<td style="word-break: break-all;">
 							<?php echo $description; ?>
 						</td>
-						<?php } ?>
-					</tr>
-					<tr>
-						<?php if($seller_image != '') { ?>
-						<td>
-							<p>Banner</p>
-						</td>
-						<td> <img src="<?php echo $seller_image; ?>"></td>
 						<?php } ?>
 					</tr>
 				</table>

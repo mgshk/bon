@@ -3,16 +3,16 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <style>
    .dropdowns-ss {
-   background: url(image/all-categories.jpg) no-repeat scroll 0px 0px transparent;
-   color: transparent !important;
-   border: 1px solid #fff;
-   height: 43px;
+      background: url(image/all-categories.jpg) no-repeat scroll 0px 0px transparent;
+      color: transparent !important;
+      border: 1px solid #fff;
+      height: 43px;
    }
    .dropdowns-oo {
-   background: url(image/all-categories-open.jpg) no-repeat scroll 0px 0px transparent;
-   color: transparent !important;
-   border: 1px solid #fff;
-   height: 43px;
+      background: url(image/all-categories-open.jpg) no-repeat scroll 0px 0px transparent;
+      color: transparent !important;
+      border: 1px solid #fff;
+      height: 43px;
    }
    #search_val{border-top-left-radius: 0; border-bottom-left-radius: 0;}
 </style>
@@ -238,7 +238,11 @@
             </div>
             <?php //} } } } } else {?>
             <?php $count = count($categories); ?>	    
-            <script>var cat_id = "<?php echo $category['id']; ?>"; var count = "<?php echo $count; ?>";var first_count = "<?php echo $count; ?>";</script>
+               <script>
+                  var cat_id = "<?php echo $category['id']; ?>"; 
+                  var count = "<?php echo $count; ?>";
+                  var first_count = "<?php echo $count; ?>";
+               </script>
             <?php } } else {?>
             <p><?php echo $seller_empty; ?></p>
             <div class="buttons clearfix">
@@ -331,7 +335,7 @@ if(cat_path != '0') {
 </script>
 <script>
    $(document).ready(function(){
-               $(".home-search").click(function(){
+      $(".home-search").click(function(){
    		var path = $( "#path" ).val();
    		var search = $( "#searcha" ).val();
    		var by_search = $( "#by_search" ).val();
@@ -346,38 +350,39 @@ if(cat_path != '0') {
    var path = $( "#path" ).val();
 	var search = $( "#searcha" ).val();
 	var by_search = $( "#by_search" ).val();
-     $(function() { 
-      if(id != '' && first_count > 3) {
-   	$(window).scroll(function() {
-   if (is_loading == false) { 					
-   if($(window).scrollTop() + $(window).height() >= $(document).height() - 300) {
-   	is_loading = true;
-   	$('#loader_page').show(); 
-   	$.ajax({
-   	    url: "index.php?route=seller/seller/advertisement_seller_list&path="+path+"&searcha="+search+"&by_search="+by_search+"&count="+count,
-   	    type: 'GET',				    
-   	    success:function(data){	
-   		var str = $.trim(data);
-   		if(str == 'no_record_found') {
-   			$('#loader_page').hide();
-   			is_loading = true;
-   			count = '';						
-   			id = '';
-   		} else {
-   			$('#loader_page').hide();							
-   			$('#seller_append').append(data);										
-   									
-   			is_loading = false;						
-   		}
-   	    }
-   	});
-   }
-   }
-   	
-   	});
-   }  else { 
-   $('#loader_page').hide();
-   }
+
+   $(function() {
+      if(id != '' && typeof first_count !== 'undefined' && first_count > 3) {
+      	$(window).scroll(function() {
+            if (is_loading == false) { 					
+               if($(window).scrollTop() + $(window).height() >= $(document).height() - 300) {
+               	is_loading = true;
+               	$('#loader_page').show(); 
+               	$.ajax({
+               	    url: "index.php?route=seller/seller/advertisement_seller_list&path="+path+"&searcha="+search+"&by_search="+by_search+"&count="+count,
+               	    type: 'GET',				    
+               	    success:function(data){	
+                  		var str = $.trim(data);
+
+                  		if(str == 'no_record_found') {
+                  			$('#loader_page').hide();
+                  			is_loading = true;
+                  			count = '';						
+                  			id = '';
+                  		} else {
+                  			$('#loader_page').hide();							
+                  			$('#seller_append').append(data);										
+                  									
+                  			is_loading = false;						
+                  		}
+               	    }
+               	});
+               }
+            }
+      	});
+      } else { 
+         $('#loader_page').hide();
+      }
    });	
 </script>
 <script>

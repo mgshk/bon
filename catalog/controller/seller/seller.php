@@ -7,8 +7,9 @@ class Controllersellerseller extends Controller
         $this->load->language('seller/seller');
 
         $this->load->model('seller/seller');
-
         $this->load->model('tool/image');
+        $this->load->model('account/address');
+        $this->load->model('sellerprofile/sellerprofile');
 
         $this->document->setTitle($this->language->get('heading_title'));
 
@@ -20,7 +21,7 @@ class Controllersellerseller extends Controller
 
         $data['button_continue'] = $this->language->get('button_continue');
 
-		 $data['breadcrumbs'] = array();
+		$data['breadcrumbs'] = array();
 
         $data['breadcrumbs'][] = array(
             'text' => $this->language->get('text_home'),
@@ -65,6 +66,7 @@ class Controllersellerseller extends Controller
 		$count='';
 
         $data['categories'] = array();
+        $store_address = array();
         $results = $this->model_seller_seller->getsellersList($category_id, $search_val, $by_search_val, $limit, $count);
 
 		//echo "<pre>"; print_r($results);
@@ -76,16 +78,39 @@ class Controllersellerseller extends Controller
                 $key = utf8_substr(utf8_strtoupper($result['name']), 0, 1);
             }
 
-            //if (!isset($data['categories'][$key])) {
-                //$data['categories'][$key]['name'] = $key;
-            //}
+			//$seller_add = $this->model_seller_seller->getsellers_address($result['address_id']);
 
-			$seller_add = $this->model_seller_seller->getsellers_address($result['address_id']);
-			if(!empty($seller_add)) {
-				$seller_address = $seller_add[0]['address_1'].' '.$seller_add[0]['address_2'].' '.$seller_add[0]['city'].' '.$seller_add[0]['postcode'];
-			} else {
-				$seller_address = '';
-			}
+			$seller_info = $this->model_sellerprofile_sellerprofile->getseller($result['customer_id']);
+			$address_info = $this->model_account_address->getAddress($seller_info['address_id']);
+
+			if ($seller_info['address_1']) {
+	            $address_1 = $seller_info['address_1'];
+	            $address_2 = $seller_info['address_2'];
+	            $city = $seller_info['city'];
+	            $postcode = $seller_info['postcode'];
+	        } else {
+	            $address_1 = $address_info['address_1'];
+	            $address_2 = $address_info['address_2'];
+	            $city = $address_info['city'];
+	            $postcode = $address_info['postcode'];
+	        }
+
+			$store_address[] = $address_1;
+	        $store_address[] = $address_2;
+	        $store_address[] = $city;
+	        $store_address[] = $address_info['zone'];
+	        $store_address[] = $address_info['country'];
+	        $store_address[] = $postcode;
+
+        	$seller_address = implode(array_filter($store_address), ", ");
+
+			//print_r($seller_add);
+
+			// if(!empty($seller_add)) {
+			// 	$seller_address = $seller_add[0]['address_1'].' '.$seller_add[0]['address_2'].' '.$seller_add[0]['city'].' '.$seller_add[0]['postcode'];
+			// } else {
+			// 	$seller_address = '';
+			// }
 
 			if (!empty($result) && is_file(DIR_IMAGE.$result['banner'])) {
 				$banner_image = $result['banner'];
@@ -143,8 +168,9 @@ class Controllersellerseller extends Controller
 		$this->load->language('seller/seller');
 
         $this->load->model('seller/seller');
-
         $this->load->model('tool/image');
+        $this->load->model('account/address');
+        $this->load->model('sellerprofile/sellerprofile');
 
 		$this->load->model('catalog/category');
 		if (isset($this->request->get['path'])) {
@@ -186,6 +212,7 @@ class Controllersellerseller extends Controller
 		}	
 
         $data['categories'] = array();
+        $store_address = array();
         $results = $this->model_seller_seller->getsellersList($category_id, $search_val, $by_search_val, $limit, $count);
 
 		//echo "<pre>"; print_r($results);
@@ -201,12 +228,37 @@ class Controllersellerseller extends Controller
                 //$data['categories'][$key]['name'] = $key;
             //}
 
-			$seller_add = $this->model_seller_seller->getsellers_address($result['address_id']);
-			if(!empty($seller_add)) {
-				$seller_address = $seller_add[0]['address_1'].' '.$seller_add[0]['address_2'].' '.$seller_add[0]['city'].' '.$seller_add[0]['postcode'];
-			} else {
-				$seller_address = '';
-			}
+			//$seller_add = $this->model_seller_seller->getsellers_address($result['address_id']);
+
+			$seller_info = $this->model_sellerprofile_sellerprofile->getseller($result['customer_id']);
+			$address_info = $this->model_account_address->getAddress($seller_info['address_id']);
+
+			if ($seller_info['address_1']) {
+	            $address_1 = $seller_info['address_1'];
+	            $address_2 = $seller_info['address_2'];
+	            $city = $seller_info['city'];
+	            $postcode = $seller_info['postcode'];
+	        } else {
+	            $address_1 = $address_info['address_1'];
+	            $address_2 = $address_info['address_2'];
+	            $city = $address_info['city'];
+	            $postcode = $address_info['postcode'];
+	        }
+
+			$store_address[] = $address_1;
+	        $store_address[] = $address_2;
+	        $store_address[] = $city;
+	        $store_address[] = $address_info['zone'];
+	        $store_address[] = $address_info['country'];
+	        $store_address[] = $postcode;
+
+        	$seller_address = implode(array_filter($store_address), ", ");
+
+			// if(!empty($seller_add)) {
+			// 	$seller_address = $seller_add[0]['address_1'].' '.$seller_add[0]['address_2'].' '.$seller_add[0]['city'].' '.$seller_add[0]['postcode'];
+			// } else {
+			// 	$seller_address = '';
+			// }
 
 			//echo "<pre>"; print_r($results);
 
@@ -378,10 +430,10 @@ class Controllersellerseller extends Controller
         $this->load->language('seller/seller');
 
         $this->load->model('seller/seller');
-
         $this->load->model('catalog/product');
-
         $this->load->model('tool/image');
+        $this->load->model('account/address');
+        $this->load->model('sellerprofile/sellerprofile');
 
 		$data['cus_logged'] = $this->customer->isLogged();	
 
@@ -580,12 +632,39 @@ class Controllersellerseller extends Controller
  
 		//echo "<pre>"; print_r($data['advertisement_store']); die;
 
-		$seller_add = $this->model_seller_seller->getsellers_address($seller_info['address_id']);
-		if(!empty($seller_add)) {
-			$data['seller_address'] = $seller_add[0]['address_1'].' '.$seller_add[0]['address_2'].' '.$seller_add[0]['city'].' '.$seller_add[0]['postcode'];
-		} else {
-			$data['seller_address'] = '';
-		}
+		//$seller_add = $this->model_seller_seller->getsellers_address($seller_info['address_id']);
+
+		$store_address_details = $this->model_sellerprofile_sellerprofile->getseller($seller_id);
+		$address_info = $this->model_account_address->getAddress($seller_info['address_id']);
+
+		if ($store_address_details['address_1']) {
+            $address_1 = $store_address_details['address_1'];
+            $address_2 = $store_address_details['address_2'];
+            $city = $store_address_details['city'];
+            $postcode = $store_address_details['postcode'];
+        } else {
+            $address_1 = $address_info['address_1'];
+            $address_2 = $address_info['address_2'];
+            $city = $address_info['city'];
+            $postcode = $address_info['postcode'];
+        }
+
+        $store_address = array();
+
+		$store_address[] = $address_1;
+        $store_address[] = $address_2;
+        $store_address[] = $city;
+        $store_address[] = $address_info['zone'];
+        $store_address[] = $address_info['country'];
+        $store_address[] = $postcode;
+
+    	$data['seller_address'] = implode(array_filter($store_address), ", ");
+
+		// if(!empty($seller_add)) {
+		// 	$data['seller_address'] = $seller_add[0]['address_1'].' '.$seller_add[0]['address_2'].' '.$seller_add[0]['city'].' '.$seller_add[0]['postcode'];
+		// } else {
+		// 	$data['seller_address'] = '';
+		// }
 
 		if($seller_info['delivery_type'] == 1) {
 			$data['delivery_type'] = "Cash on home delivery";
