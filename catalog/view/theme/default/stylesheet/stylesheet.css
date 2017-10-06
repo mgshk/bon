@@ -712,6 +712,9 @@ border:none;
 box-shadow: 0px 0px 5px #999999;
 margin-bottom: 5px;
 }
+.top-current-loc .fa-map-marker{position: relative;
+left: 4px;
+top: 2px;font-size: 20px;}
 .top5{margin-top: 5px !important;}
 #amount{background: transparent !important;width: 20px;float: left;
 position: relative;bottom: 5px;right: 4px;}
