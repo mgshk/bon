@@ -18,7 +18,6 @@
 <div class="row">
 <div class="col-xs-12 col-sm-12 col-md-12">
 <!-- faq modal -->
-<h2 class="faqhead">FAQ:</h2>
 <div id="site_faq_main">
 	<div>
 		<!-- Modal content-->
@@ -26,7 +25,7 @@
 			<div>
 
 			<div class="slectLang">
-				<label><span>Select language: </span> 
+				<label><span>FAQ: Select language </span> 
 				<select class="form-control langu" onchange="toggleFaq()" id="faqLanguage">
 					<option value="english">English</option>
 					<option value="tamil">Tamil</option>
@@ -69,8 +68,8 @@
         <p>World is slowly (rather quickly) moving online. Business is not the same as how it was 10 or 20 years back. It will surely not be the same like how it is now sooner. So think online think BoN before it is too late. It is FREE.</p>
 		<p>It is the single place to complete your search and get the best you want near you or from the place you are looking for. It will not force you to believe the best is what it shows on the item you are interested. </p>
 		<p>“LET’S START SEARCHING FROM HERE!” before we do with untrusted, unreliable and unknown sellers.</p>
-		<p>It is a centralized online exhibition. Where sellers meet buyers online, especially with lot many offers. The earlier you enrol, the more benefits you get.
-		</p>
+		<p>It is a centralized online exhibition. Where sellers meet buyers online, especially with lot many offers. The earlier you enrol, the more benefits you get.</p>
+    <img src="image/faq1.png" class="img-responsive" alt="FAQ">
       </div>
     </div>
   </div>
@@ -432,6 +431,7 @@
         <p>உலகம் மெதுவாக (மாறாக விரைவாக) ஆன்லைனை நோக்கி நகர்கிறது. இப்போதைய வணிகம் 10 அல்லது 20 ஆண்டுகளுக்கு முன்பு இருந்ததைவிட அதிகம் மாறிவிட்டது. இது நிலைக்கும் என்றும் சொல்லிவிட முடியாது, மாறிக்கொன்டே இருக்கும். அதனால் தாமதிக்காமல் ஆன்லைனுக்கு வாருங்கள், BoN’க்கு வாருங்கள். BoN முற்றிலும் இலவசம்.</p>
 		<p>இது உங்கள் தேடலை எளிமையாக்கி, உங்கள் அருகில் அல்லது நீங்கள் விரும்பிய இடத்திலிருந்து விரும்பியதை பெற சிறந்த ஒரே இடம். நீங்கள் விரும்பியதை பெற உங்களை நம்பவிக்கும் நோக்கத்தோடு BoN எவ்வித முயற்சியும் செய்யாது. அறிமுகமில்லாத நம்பிக்கையில்லாத விற்பனையாளரிடம் தேடுவதற்குமுன் “LET’S START SEARCHING FROM HERE”!</p>
 		<p>இது ஒரு மையப்படுத்தப்பட்ட ஆன்லைன் கண்காட்சி ஆகும், குறிப்பாக நிறைய சலுகைகளுடன். விரைவில் சேர்ந்திடுங்கள் அதிக பயனடைந்திடுங்கள்.</p>
+    <img src="image/faq1.png" class="img-responsive" alt="FAQ">
       </div>
     </div>
   </div>

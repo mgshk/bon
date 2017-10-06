@@ -738,10 +738,10 @@ bottom: 5px;}
     /* symbol for "collapsed" panels */
     content: "\e080";    /* adjust as needed, taken from bootstrap.css */
 }
-#site_faq_main .panel-title{margin-bottom: 0 !important;font-size: 14px;}
+#site_faq_main .panel-title{margin-bottom: 0 !important;}
 #site_faq_main .panel-heading{padding: 10px 20px 10px 15px !important;}
 #site_faq_main h4{margin-bottom: 10px;font-weight: bold;}
-#site_faq_main p{margin-bottom: 10px;font-size: 14px;line-height: 20px;}
+#site_faq_main p{margin-bottom: 10px;line-height: 20px;}
 #site_faq_main ul{margin-left: 20px;}
 #site_faq_main ul li{margin-bottom: 10px;font-size: 14px;line-height: 20px;}
 .contact-modal p{margin-bottom: 10px;font-size: 14px;}
@@ -751,8 +751,7 @@ bottom: 5px;}
  -moz-box-shadow: 1px 1px 1px 1px #C9C9C9}
 .relative-pos{position: relative;}
 #us11-address{max-width: 300px;display: inline-block;margin-right: 10px;}
-.faqtop{margin-top: 20px;margin-bottom: 20px;}
-.faqhead{font-size: 20px;margin-bottom: 25px;}
+.faqtop{margin-top: 20px;}
 #divFormattedAddress{
 	box-shadow: 2px 2px 3px 1px #C9C9C9;
 	-webkit-box-shadow: 2px 2px 3px 1px #C9C9C9;
@@ -780,9 +779,10 @@ height: 34px;
 border-radius: 4px !important;
 }
 .mapsearch .fa-search{position: relative;right: 2px;font-size: 20px;bottom: 2px;}
-.linkMap{cursor: pointer;font-size: 14px;margin-right: 20px;font-weight: bold;}
-.linkMap:hover{text-decoration: none;}
+.linkMap{cursor: pointer;font-size: 14px;margin-right: 20px;text-decoration: underline;}
 .right0{padding-right: 0 !important;}
+.panel .panel-title{color: #00acec !important;font-size: 13px;}
+.panel .panel-body{font-size: 13px;}
 /* my css ends */
 
 @media (min-width: 1200px) {

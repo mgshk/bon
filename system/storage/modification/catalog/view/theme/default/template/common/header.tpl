@@ -1467,7 +1467,7 @@
 				</div>
 				<div class="modal-body relative-pos">
 					<div id="us11"></div>
-					<input type="text" id="divFormattedAddress" class="form-control" />
+					<input type="text" id="divFormattedAddress" class="form-control" readonly="true" />
 				</div>
 				<div class="modal-footer">
 				<a class="linkMap pull-left" onclick="getLocation()">Get current location</a>
