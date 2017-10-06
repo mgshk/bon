@@ -1470,7 +1470,7 @@
 					<input type="text" id="divFormattedAddress" class="form-control" />
 				</div>
 				<div class="modal-footer">
-				<button type="button" class="btn btn-primary getloc pull-left" data-dismiss="modal" onclick="getLocation()">Get current location</button>
+				<a class="linkMap pull-left" onclick="getLocation()">Get current location</a>
 					<button type="button" class="btn btn-primary" data-dismiss="modal" onclick="setPosition()">Ok</button>
 					<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
 				</div>

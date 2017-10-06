@@ -14,7 +14,11 @@
 	}
 </script>
 
+<div class="container faqtop">
+<div class="row">
+<div class="col-xs-12 col-sm-12 col-md-12">
 <!-- faq modal -->
+<h2 class="faqhead">FAQ:</h2>
 <div id="site_faq_main">
 	<div>
 		<!-- Modal content-->
@@ -766,5 +770,9 @@
 		</div>
 	</div>
 	<!-- faq modal -->
+
+  </div>
+  </div>
+  </div>
 
 	<?php echo $footer; ?>
