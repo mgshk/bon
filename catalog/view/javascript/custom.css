@@ -1240,7 +1240,7 @@ border: 0;}
 /*.portals-set {background: #fff; padding: 5px; border: 1px solid #ccc;}*/
 .portals-set {background: #fff; text-align: center;}
 .portals-set i {margin-right: 5px;}
-.seet-alg .nav-tabs > li {white-space: nowrap; background: #cef0f5 none repeat scroll 0 0;width: 33.333%; text-align: center;}
+.seet-alg .nav-tabs > li {white-space: nowrap; background: gainsboro none repeat scroll 0 0;width: 33.333%; text-align: center;}
 .seet-alg .nav-tabs > li > a {color: #000;}
 .seet-alg .nav-tabs {border-bottom: none;width: 100%; margin-bottom: 15px;}
 ._login_type-log-bon {margin-bottom: 10px; margin-top: 10px;}
@@ -1249,8 +1249,8 @@ border: 0;}
 .main--side--red > li {width: 14.2556%;}
 .sel--sec--ord {font-size: 14px; text-decoration: underline;}
 .sel--sec--ordd{padding-top: 7px; }
-.seller--prof-pg .nav-tabs > li {white-space: nowrap; background: #cef0f5 none repeat scroll 0 0; }
-#tab_store_ad li {background: #cef5da none repeat scroll 0 0;}
+.seller--prof-pg .nav-tabs > li {white-space: nowrap; background: #f1f1f1 none repeat scroll 0 0; }
+#tab_store_ad li {background: gainsboro none repeat scroll 0 0;}
 #myModal_adv li {background: none;}
 .loc-share-topps {margin: 15px; text-align: left;}
 .loc-share-topps strong {font-weight: bold;}
@@ -1478,4 +1478,16 @@ border: 0;}
 		font-size: 15px;
 		margin: 0;
 	}
+}
+html {
+    overflow: scroll;
+    overflow-x: hidden;
+}
+::-webkit-scrollbar {
+    width: 0px;  /* remove scrollbar space */
+    background: transparent;  /* optional: just make scrollbar invisible */
+}
+/* optional: show position indicator in red */
+::-webkit-scrollbar-thumb {
+    background:transparent;
 }

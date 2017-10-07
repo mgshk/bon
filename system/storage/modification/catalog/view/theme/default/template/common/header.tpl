@@ -275,7 +275,7 @@
 									<a href="<?php echo $seller_profile; ?>" title="<?php echo $text_seller_account; ?>" class="dropdown-toggle" data-toggle="dropdown">
 										<?php //echo $text_seller_account; ?>Hi, User <span class="caret"></span> &nbsp;&nbsp;&nbsp;| </a>
 									<?php } ?>
-									<ul class="dropdown-menu dropdown-menu-right" style="background-color: wheat;">
+									<ul class="dropdown-menu dropdown-menu-right" style="background-color: gainsboro;">
 										<li><a href="<?php echo $seller_profile; ?>&tab_section=profile#content">My Profile</a></li>
 										<?php if($login_type == 'seller') { ?>
 										<li><a href="<?php echo $seller_profile; ?>&tab_section=store_detail#content">Store/Entity detail</a></li>
@@ -300,7 +300,7 @@
 										<li><a href="index.php?route=sellerreview/sellerreview#content">Reviews</a></li>
 										<?php } ?>
 										<?php if($logged) { ?>
-										<li style="border-top: 1px solid #000;">
+										<li style="border-top: 1px solid #cacaca;">
 											<a href="<?php echo $logout; ?>">
 												<?php echo $text_logout; ?>
 											</a>
@@ -311,7 +311,7 @@
 										<li><a href="<?php echo $seller_profile; ?>&tab_section=my_wallet#content">My Wallet</a></li>
 										<li><a href="<?php echo $seller_profile; ?>&tab_section=expense_report#content">Expense Report</a></li>
 										<?php if($logged) { ?>
-										<li style="border-top: 1px solid #000;">
+										<li style="border-top: 1px solid #cacaca;">
 											<a href="<?php echo $logout; ?>">
 												<?php echo $text_logout; ?>
 											</a>
@@ -403,7 +403,7 @@
 								<a class="expand-one" title="<?php echo $text_seller_account; ?>">
 									<?php //echo $text_seller_account; ?>Hi, User <span class="caret"></span></a>
 								<?php } ?>
-								<ul class="content-one" style="background-color: wheat;">
+								<ul class="content-one" style="background-color: gainsboro;">
 									<li><a href="<?php echo $seller_profile; ?>&tab_section=profile#content">My Profile</a></li>
 									<?php if($login_type == 'seller') { ?>
 									<li><a href="<?php echo $seller_profile; ?>&tab_section=store_detail#content">Store/Entity detail</a></li>
@@ -426,7 +426,7 @@
 									<li><a href="<?php echo $seller_order; ?>#content">Orders</a></li>
 									<li><a href="index.php?route=sellerreview/sellerreview#content">Reviews</a></li>
 									<?php if($logged) { ?>
-									<li style="border-top: 1px solid #000;">
+									<li style="border-top: 1px solid #cacaca;">
 										<a href="<?php echo $logout; ?>">
 											<?php echo $text_logout; ?>
 										</a>
@@ -437,7 +437,7 @@
 									<li><a href="<?php echo $seller_profile; ?>&tab_section=my_wallet#content">My Wallet</a></li>
 									<li><a href="<?php echo $seller_profile; ?>&tab_section=expense_report#content">Expense Report</a></li>
 									<?php if($logged) { ?>
-									<li style="border-top: 1px solid #000;">
+									<li style="border-top: 1px solid #cacaca;">
 										<a href="<?php echo $logout; ?>">
 											<?php echo $text_logout; ?>
 										</a>
@@ -496,7 +496,7 @@
 					
 					<div class="col-sm-4 str--fv fis-des tttt">
 						<?php if($login_type == 'seller') { ?>
-						<div class="btn-group btn-block str--fv">
+						<div class="pull-left">
 							<a class="cursor free-list-top--bon" data-toggle="modal" data-target="#login_frc_buyer"> <span class="hidden-xs hidden-sm hidden-md">Favourites (0)</span></a>
 						</div>
 						<?php } else { ?>

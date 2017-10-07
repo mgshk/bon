@@ -31,7 +31,7 @@
         <?php } ?>
         <div class="panel panel-default">
           <div class="panel-body">
-            <ul class="nav nav-tabs fixme" style="z-index:123; background: #cef0f5 none repeat scroll 0 0;">
+            <ul class="nav nav-tabs fixme" style="z-index:123; background:  none repeat scroll 0 0;">
               <?php if ($is_seller) { ?>
               <li class="<?php if($_GET['tab_section'] == 'profile'){ echo 'active'; }?>">
                 <a href="#tab-profile_details" data-toggle="tab">
