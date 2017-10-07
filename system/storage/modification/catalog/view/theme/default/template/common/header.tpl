@@ -1438,15 +1438,14 @@
 
 					<div class="row" id="showLocationArea">
 						<div class="col-xs-12 col-sm-6 col-md-6">
-							<input type="text" id="us11-address" class="form-control" placeholder="location" />
-							<span class="input-group-addon mapsearch cursor" data-dismiss="modal" onclick="getLocation()"><i class="fa fa-search fa" aria-hidden="true"></i></span>
+							<input type="text" id="us11-address" class="form-control" placeholder="Location" />
 						</div>
 
 						<div class="col-xs-12 col-sm-6 col-md-6">
 							<button type="button" class="close pull-right" data-dismiss="modal" aria-label="Close">
           					<span aria-hidden="true">&times;</span>
         			</button>
-							<a class="linkMap pull-right" onclick="showLatArea()">Search by latitude longitude</a>
+							<a class="linkMap pull-right" onclick="showLatArea()">Search By Latitude & Longitude</a>
 						</div>
 
 					</div>
@@ -1461,7 +1460,6 @@
 						</div>
 
 						<div class="col-xs-2 col-sm-2 col-md-2">
-							<span class="input-group-addon mapsearch cursor" data-dismiss="modal" onclick="getLocation()"><i class="fa fa-search fa" aria-hidden="true"></i></span>
 						</div>
 
 						<div class="col-xs-12 col-sm-2 col-md-4">

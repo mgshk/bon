@@ -779,7 +779,7 @@ height: 34px;
 border-radius: 4px !important;
 }
 .mapsearch .fa-search{position: relative;right: 2px;font-size: 20px;bottom: 2px;}
-.linkMap{cursor: pointer;font-size: 14px;margin-right: 20px;text-decoration: underline;}
+.linkMap{cursor: pointer; padding-top: 14px; font-size: 14px;margin-right: 20px;text-decoration: underline;}
 .right0{padding-right: 0 !important;}
 .panel .panel-title{color: #00acec !important;font-size: 13px;}
 .panel .panel-body{font-size: 13px;}

@@ -229,42 +229,44 @@
 						$longitude = '80.237617';
 					}	
 					function getAddress1($latitude,$longitude){
-					if(!empty($latitude) && !empty($longitude)){
-					$add_loc = array();
-					//Send request and receive json data by address
-					$geocodeFromLatLong = file_get_contents('https://maps.googleapis.com/maps/api/geocode/json?latlng='.trim($latitude).','.trim($longitude).'&sensor=false'); 
-					$data = json_decode($geocodeFromLatLong);
-					$add_array  = $data->results;
-					if(isset($add_array) && !empty($add_array)) {
-					 $add_array = $add_array[0];
-					 $add_array = $add_array->address_components;		
-					 //echo "<pre>";print_r($add_array);
-					 foreach ($add_array as $key) {
-					 if($key->types[0] == 'political') {
-					 if($key->types[2] == 'sublocality_level_1') { $add_loc['local_address'] = $key->long_name; }
-					 }
-					 if($key->types[0] == 'administrative_area_level_2')
-					 {
-					 $add_loc['city_address'] = $key->long_name;
-					 }
-					 if($key->types[0] == 'administrative_area_level_1')
-					 {
-					 $add_loc['state_address'] = $key->long_name;
-					 }
-					 if($key->types[0] == 'country')
-					 {
-					 $add_loc['country_address'] = $key->long_name;
-					 }
-					 }
-					 }
-					if(!empty($add_loc)){
-					return $add_loc;		   
-					}else{
-					return false;
-					}
-					}else{
-					return false;   
-					}
+						if(!empty($latitude) && !empty($longitude)){
+							$add_loc = array();
+							//Send request and receive json data by address
+							$geocodeFromLatLong = file_get_contents('https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyCXvDvmhFTLZ5iJyGSQm3-3GEJg0G3iztk&latlng='.trim($latitude).','.trim($longitude).'&sensor=false'); 
+							$data = json_decode($geocodeFromLatLong);
+							$add_array  = $data->results;
+							if(isset($add_array) && !empty($add_array)) {
+								$add_array = $add_array[0];
+								$add_array = $add_array->address_components;		
+								//echo "<pre>";print_r($add_array);
+								foreach ($add_array as $key) {
+									if($key->types[0] == 'political') {
+										if($key->types[2] == 'sublocality_level_1') { 
+											$add_loc['local_address'] = $key->long_name; 
+										}
+									}
+									if($key->types[0] == 'administrative_area_level_2')
+									{
+										$add_loc['city_address'] = $key->long_name;
+									}
+									if($key->types[0] == 'administrative_area_level_1')
+									{
+										$add_loc['state_address'] = $key->long_name;
+									}
+									if($key->types[0] == 'country')
+									{
+										$add_loc['country_address'] = $key->long_name;
+									}
+								}
+							}
+							if(!empty($add_loc)){
+							return $add_loc;		   
+							}else{
+							return false;
+						}
+						}else{
+							return false;   
+						}
 					}
 					
 					

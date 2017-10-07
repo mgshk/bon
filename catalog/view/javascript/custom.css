@@ -95,11 +95,11 @@ border-radius: 3px;
 	.store-timing-share-top form{margin-bottom: 25px;}
 	/********* End Store Timings pop *******/
 	/*   07 - 07 -2017 - Tab Change*/
-	._bon_ts .tas_bon {width:25%; font-size: 16px; border-right: 1px solid #f6f6f6;/*background: #cef0f5;*/height: 34px;background: #f1f1f1; text-align: center;}
+	._bon_ts .tas_bon {width:25%; font-size: 13px; border-right: 1px solid #000000;/*background: #cef0f5;*/height: 34px;background: #f1f1f1; text-align: center;}
 	._bon_ts1 .tas_bon {font-size: 16px; background: #0094fb; text-align: center;padding: 7px; color: #fff;
 	border-radius: 4px 0 0 0;}
-	._bon_ts>li>a {padding: 5px 0px;color: #000;}
-	._bon_ts1>li>a {padding: 5px 0px; color: #000;}
+	._bon_ts>li>a {padding: 8px 0px;color: #000;}
+	._bon_ts1>li>a {padding: 8px 0px; color: #000;}
 	._bon_ts>li.active>a {color: #000;}
 	._home_tab--sel--main{display: inline-flex; width: 100%;}
 	._home_tab--sel--main ul {white-space: nowrap;}
