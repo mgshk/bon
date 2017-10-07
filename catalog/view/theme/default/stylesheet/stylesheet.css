@@ -716,9 +716,9 @@ margin-bottom: 5px;
 left: 4px;
 top: 2px;font-size: 20px;}
 .top5{margin-top: 5px !important;}
-#amount{background: transparent !important;width: 20px;float: left;
+.startkilometer{background: transparent !important;width: 20px;float: left;
 position: relative;bottom: 5px;right: 4px;}
-#amount1{background: transparent !important;width: 20px;float: left;margin-left: 171px;position: relative;
+.endkilometer{background: transparent !important;width: 20px;float: left;margin-left: 171px;position: relative;
 bottom: 5px;}
 #adv_settings{border-top-right-radius: 5px;}
 .b1{display: table;margin: auto;}

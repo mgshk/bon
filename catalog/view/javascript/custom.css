@@ -540,7 +540,7 @@ border-radius: 3px;
 	.col-sm-2.str--fv.fis-des.tttt {text-align: center;}
 	/*.km--set > a {background: #00acec none repeat scroll 0 0; border-radius: 3px;color: #fff;padding: 3px 7px;text-transform: uppercase;}*/
 	.km--set > a {color: #000;}
-	.header-center-kms {padding-top: 10px;}
+	.header-center-kms {padding-top: 8px;}
 	.header-center-kms input {border:0; color:#0094fe; font-weight:bold; background: #fff; font-size: 14px;}	.vcenter {
 		display: inline-block;
 		vertical-align: middle;
@@ -1112,9 +1112,10 @@ border: 0;}
 	float:right;
 }
 #cart > .btn {
+	box-shadow: none;
 	font-size: 12px;
 	line-height: 18px;
-	color: #FFF;
+	color:#f6f6f6;
 	border:medium none;
 	background:url(../../../image/header_cart.png) no-repeat scroll 0px 0px transparent;
 	height:40px;
@@ -1142,9 +1143,9 @@ border: 0;}
     z-index: 9;
 }
 #cart.open > .btn {
-	background-color: #fff;
+	background-color: #f6f6f6;
 	border: medium none;
-	color: #fff;
+	color: #f6f6f6;
 	box-shadow: none;
 	-moz-box-shadow:none; 
 	-webkit-box-shadow:none; 
@@ -1168,7 +1169,8 @@ border: 0;}
 	border-bottom:none; border-left:none; border-right:none;
 	border-top:1px solid #ffe400;
 	background:#fff; 
-	color:#000;
+	/* color:#000; */
+	 font-size: 14px !important; 
 }
 .cart--bon-cncl.btn-xs {
     background: #ccc none repeat scroll 0 0;
@@ -1285,8 +1287,8 @@ border: 0;}
 	.sec-mob{display:none;}
 	.sec-mobb{display:none;}
 	.fis-des{display:block;}
-	.header-center-kms {padding-top: 0px; margin-top: -5px;}
-	#cart{margin-top: 15px;}
+	.header-center-kms {padding-top: 8px; margin-top: -5px;}
+	#cart{margin-top: 23px;}
 	/*._sig_log{height: 500px;}
 	._bonlg{border-right: 1px solid #4980a7; height: 450px;}*/
 	._sig_log{height: 550px;}
@@ -1365,7 +1367,7 @@ border: 0;}
 	.ft--mb-st img{width: 20px; height: 20px; margin: 0 auto;}
 	.ft--mb-st a{color: #838383 !important;}
 	/*** ft sticky ***********/
-	.header-center-kms{padding-top: 0px;}
+	.header-center-kms{padding-top: 8px;}
 	.header-center-kms input{margin-top: 0px;}
 	.header-ad img{margin-top: 0px;}
 	/*** Home tab Section *********/

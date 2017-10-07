@@ -91,8 +91,10 @@
 				slide: function (event, ui) {
 					$.cookie('myCookiestart', ui.values[0]);
 					$.cookie('myCookieend', ui.values[1]);
-					$("#amount").val($.cookie('myCookiestart'));
-					$("#amount1").val($.cookie('myCookieend'));
+					//$("#startKilometer").val($.cookie('myCookiestart'));
+					$("#spnStart").text($.cookie('myCookiestart'))
+					//$("#endKilometer").val($.cookie('myCookieend'));
+					$("#spnEnd").text($.cookie('myCookieend'))
 				},
 				change: function (event, ui) {
 					var currentPath = qs["route"];
@@ -113,9 +115,10 @@
 			if (($start_km != '') && ($end_km != '')) { //alert("456");
 				if ((typeof ($.cookie('myCookiestart')) != "undefined" && $.cookie('myCookiestart') != '') && (typeof ($.cookie('myCookiestart')) != "undefined" && $.cookie('myCookieend') != '')) {
 
-					$("#amount").val($.cookie('myCookiestart'));
-					$("#amount1").val($.cookie('myCookieend'));
-
+					//$("#startKilometer").val($.cookie('myCookiestart'));
+					$("#spnStart").text($.cookie('myCookiestart'));
+					//$("#endKilometer").val($.cookie('myCookieend'));
+					$("#spnEnd").text($.cookie('myCookieend'));
 					var left1 = ($.cookie('myCookiestart') * 5);
 					var left2 = ($.cookie('myCookieend') * 5);
 					var differece = ((parseInt($.cookie('myCookieend')) - parseInt($.cookie('myCookiestart'))) * 5);
@@ -127,15 +130,21 @@
 					//alert('The value of myCookie is now "'+ $.cookie('myCookiestart')+ $.cookie('myCookieend')+ '". Now, reload the page, PHP should read it correctly.');
 				} else {
 					//alert('The value of myCookie is now "'+ $.cookie('myCookiestart')+ $.cookie('myCookieend')+ '". Now, reload the page, PHP should read it correctly.');
-					$("#amount").val($start_km);
-					$("#amount1").val($end_km);
+
+					//$("#startKilometer").val($start_km);
+					$("#spnStart").text($start_km);
+					//$("#endKilometer").val($end_km);
+					$("#spnEnd").text($end_km);
 
 				}
 
 			} else {
 				//alert('The value of myCookie is now "'+ $.cookie('myCookiestart')+ $.cookie('myCookieend')+ '". Now, reload the page, PHP should read it correctly.');
-				$("#amount").val($("#slider-range").slider("values", 0));
-				$("#amount1").val($("#slider-range").slider("values", 1));
+				//$("#startKilometer").val($("#slider-range").slider("values", 0));
+				//$("#endKilometer").val($("#slider-range").slider("values", 1));
+				$("#spnStart").text($("#slider-range").slider("values", 0));
+				$("#spnEnd").text($("#slider-range").slider("values", 1));
+				
 
 			}
 
@@ -463,7 +472,7 @@
 						</div>
 					</div>
 					<div class="col-sm-3 header-center-kms">
-						<strong>Range in kilometers (km)</strong>
+						<strong>Range: <span id="spnStart"></span> to <span id="spnEnd"></span> Kilometers</strong>
 						<form method="post" action="">
 							<div class="col-sm-1" style="display: none;"></div>
 							<div class="col-sm-9"></div>
@@ -473,8 +482,10 @@
 							<div class="km--set" style="display:none">
 								<a class="cursor" id="kms_set"><i class="fa fa-refresh" aria-hidden="true"></i></a>
 							</div>
-							<input type="text" name="amount" id="amount" value="" readonly>
-							<input type="text" name="amount1" id="amount1" value="" readonly>
+							<!--<div >
+							 	<input type="text" class="startkilometer" name="startKilometer" id="startKilometer" value="" readonly>
+							 	<input type="text" class="endkilometer" name="endKilometer" id="endKilometer" value="" readonly>
+							</div>-->
 						</form>
 					</div>
 					<?php //} elseif((isset($_GET['route']) && ($_GET['route'] == 'seller/seller/info'))) { ?>
@@ -482,7 +493,8 @@
 					<div class="col-sm-7">
 					</div>
 					<?php } ?>
-					<div class="col-sm-2 fis-des">
+					
+					<div class="col-sm-4 str--fv fis-des tttt">
 						<?php if($login_type == 'seller') { ?>
 						<div class="btn-group btn-block str--fv">
 							<a class="cursor free-list-top--bon" data-toggle="modal" data-target="#login_frc_buyer"> <span class="hidden-xs hidden-sm hidden-md">Favourites (0)</span></a>
@@ -490,8 +502,6 @@
 						<?php } else { ?>
 						<?php echo $store_favouries; ?>
 						<?php } ?>
-					</div>
-					<div class="col-sm-2 str--fv fis-des tttt">
 						<?php if(!$logged) { ?>
 						<a class="free-list-top--bon cursor _bon--login">Wish List (0)</a>
 						<?php } else { ?>
@@ -1426,43 +1436,43 @@
 			<div class="modal-content">
 				<div class="modal-header map-header">
 
-				<div class="row" id="showLocationArea">
-					<div class="col-xs-12 col-sm-6 col-md-6">
-					<input type="text" id="us11-address" class="form-control" placeholder="location" />
-					<span class="input-group-addon mapsearch cursor" data-dismiss="modal" onclick="getLocation()"><i class="fa fa-search fa" aria-hidden="true"></i></span>
-					</div>
+					<div class="row" id="showLocationArea">
+						<div class="col-xs-12 col-sm-6 col-md-6">
+							<input type="text" id="us11-address" class="form-control" placeholder="location" />
+							<span class="input-group-addon mapsearch cursor" data-dismiss="modal" onclick="getLocation()"><i class="fa fa-search fa" aria-hidden="true"></i></span>
+						</div>
 
-					<div class="col-xs-12 col-sm-6 col-md-6">
-					<button type="button" class="close pull-right" data-dismiss="modal" aria-label="Close">
+						<div class="col-xs-12 col-sm-6 col-md-6">
+							<button type="button" class="close pull-right" data-dismiss="modal" aria-label="Close">
           					<span aria-hidden="true">&times;</span>
         			</button>
-					<a class="linkMap pull-right" onclick="showLatArea()">Search by latitude longitude</a>
+							<a class="linkMap pull-right" onclick="showLatArea()">Search by latitude longitude</a>
+						</div>
+
 					</div>
 
-				</div>
+					<div class="row" id="showLatLongArea">
+						<div class="col-xs-5 col-sm-5 col-md-3 right0">
+							<input type="text" id="us11-lat" class="form-control" placeholder="Latitude" />
+						</div>
 
-				<div class="row" id="showLatLongArea">
-				<div class="col-xs-5 col-sm-5 col-md-3 right0">
-					<input type="text" id="us11-lat" class="form-control" placeholder="Latitude" />
-				</div>
+						<div class="col-xs-5 col-sm-5 col-md-3 right0">
+							<input type="text" id="us11-lon" class="form-control" placeholder="Langitude" />
+						</div>
 
-				<div class="col-xs-5 col-sm-5 col-md-3 right0">
-					<input type="text" id="us11-lon" class="form-control" placeholder="Langitude" />
-				</div>
+						<div class="col-xs-2 col-sm-2 col-md-2">
+							<span class="input-group-addon mapsearch cursor" data-dismiss="modal" onclick="getLocation()"><i class="fa fa-search fa" aria-hidden="true"></i></span>
+						</div>
 
-				<div class="col-xs-2 col-sm-2 col-md-2">
-					<span class="input-group-addon mapsearch cursor" data-dismiss="modal" onclick="getLocation()"><i class="fa fa-search fa" aria-hidden="true"></i></span>
-				</div>
-
-				<div class="col-xs-12 col-sm-2 col-md-4">
-				<button type="button" class="close pull-right" data-dismiss="modal" aria-label="Close">
+						<div class="col-xs-12 col-sm-2 col-md-4">
+							<button type="button" class="close pull-right" data-dismiss="modal" aria-label="Close">
           					<span aria-hidden="true">&times;</span>
         		</button>
-				<a class="linkMap pull-right" onclick="showLocArea()">Search by location</a>
-				</div>
+							<a class="linkMap pull-right" onclick="showLocArea()">Search by location</a>
+						</div>
 
-				</div>
-					
+					</div>
+
 
 				</div>
 				<div class="modal-body relative-pos">
@@ -1470,7 +1480,7 @@
 					<input type="text" id="divFormattedAddress" class="form-control" readonly="true" />
 				</div>
 				<div class="modal-footer">
-				<a class="linkMap pull-left" onclick="getLocation()">Get current location</a>
+					<a class="linkMap pull-left" onclick="getLocation()">Get current location</a>
 					<button type="button" class="btn btn-primary" data-dismiss="modal" onclick="setPosition()">Ok</button>
 					<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
 				</div>
@@ -1624,7 +1634,8 @@
 				</div>
 				<div class="modal-body contact-modal">
 					<p>If you are facing any issue or have a concern or want to leave a <a class="cursor" onclick="showFeedbackModal()" title="Feedback">Feedback</a>.</p>
-					<p>For anyother information or queries please send email to bononlineservices@buyonear.in. We will respond in 24 to 48 hours.</p>
+					<p>For anyother information or queries please send email to bononlineservices@buyonear.in. We will respond in 24 to 48
+						hours.</p>
 				</div>
 			</div>
 		</div>
@@ -1693,7 +1704,7 @@
 			}).click();
 		}
 
-		function showFeedbackModal(){
+		function showFeedbackModal() {
 			$('#site_contact_main').modal('hide');
 			$('#site_feedback_main').modal('show');
 		}
@@ -1701,12 +1712,12 @@
 		$('#showLocationArea').show();
 		$('#showLatLongArea').hide();
 
-		function showLocArea(){
+		function showLocArea() {
 			$('#showLocationArea').show();
 			$('#showLatLongArea').hide();
 		}
 
-		function showLatArea(){
+		function showLatArea() {
 			$('#showLocationArea').hide();
 			$('#showLatLongArea').show();
 		}

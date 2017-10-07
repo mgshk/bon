@@ -1,10 +1,10 @@
-<div id="favouries_str" class="btn-group btn-block str--fv favouries_str top5">
+<div id="favouries_str" class="pull-left">
 <?php if($cus_logged) { ?>
-  <a class="fis-dess cursor free-list-top--bon" data-toggle="dropdown" class="btn btn-inverse btn-block btn-lg dropdown-toggle" aria-expanded="true"><span id="fav-total">Favourites (<?php echo count($store_favourites_front); ?>)</span></span></a>
+  <a class="cursor free-list-top--bon" data-toggle="dropdown" class="btn btn-inverse btn-block btn-lg dropdown-toggle" aria-expanded="true"><span id="fav-total">Favourites (<?php echo count($store_favourites_front); ?>)</span></span></a>
 <?php } else { ?>
-  <a class="btn fis-dess cursor free-list-top--bon" data-toggle="modal" data-target="#_log-bon"> <span class="hidden-xs hidden-sm hidden-md">Favourites (0)</span></a>
+  <a class="cursor free-list-top--bon" data-toggle="modal" data-target="#_log-bon"> <span class="hidden-xs hidden-sm hidden-md">Favourites (0)</span></a>
 <?php } ?>  
-  <ul class="dropdown-menu pull-right">
+  <ul class="dropdown-menu">
 	<li>
 	<?php if($store_favourites_front) { ?>
       <table class="table table-striped fis-des">
