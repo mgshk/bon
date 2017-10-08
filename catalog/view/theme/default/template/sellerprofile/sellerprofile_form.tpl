@@ -847,7 +847,7 @@
                   <?php if($allow_products != 0) {$checked_products = "checked";} else {$checked_products = "";}
                               if($allow_cart != 0) {$checked_cart = "checked";} else {$checked_cart = "";} ?>
                   <p>
-                    <input type="checkbox" checked class="allow-prod-cart" name="allow_products" <?php echo $checked_products; ?>                    id="allow_products" value="allow_products"> Allow products to visible to buyer in store/entity page.</p>
+                    <input type="checkbox" class="allow-prod-cart" name="allow_products" <?php echo $checked_products; ?> id="allow_products" value="allow_products"> Allow products to visible to buyer in store/entity page.</p>
                   <p><span class="txt--itc">(Hide products tab incase if you do not need it or if you want to update it)</span></p>
                   <p><input type="checkbox" class="allow-prod-cart" name="allow_products" <?php echo $checked_cart; ?> id="allow_cart"
                     value="allow_cart"> Allow buyers to thier cart to continue online shooping.</p>

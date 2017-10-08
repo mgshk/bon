@@ -95,6 +95,11 @@ border-radius: 3px;
 	.store-timing-share-top form{margin-bottom: 25px;}
 	/********* End Store Timings pop *******/
 	/*   07 - 07 -2017 - Tab Change*/
+	._bon_ts_home .tas_bon {
+		margin-right: 0px !important;
+		margin-left: 0px !important;
+		width:25% !important; 
+	}
 	._bon_ts .tas_bon {
 		margin-right: 2px;
 		margin-left: 2px;

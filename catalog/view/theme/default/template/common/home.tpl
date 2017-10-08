@@ -294,7 +294,7 @@
 						</a>
 						<?php } ?>
 					</ul>
-					<ul class="nav nav-tabs _bon_ts" role="tablist">
+					<ul class="nav nav-tabs _bon_ts _bon_ts_home" role="tablist">
 						<?php if($address_det[3] !='') {?>
 						<li id="adv_home" class="tas_bon active" role="presentation">
 							<a href="#home" aria-controls="home" role="tab" data-toggle="tab">
