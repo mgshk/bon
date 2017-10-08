@@ -1339,13 +1339,13 @@
           <?php $cat_row++; } } else { ?>
           <tr id="cat-rows0" class="extra">
             <td class="text-left cat">
-              <input type="text" name="category_0" id="category_0" data-row="0" value="" placeholder="Type here" onKeyPress="getCategories(this.value, 0)"
+              <input type="text" name="category" id="category_0" data-row="0" value="" placeholder="Type here" onKeyPress="getCategories(this.value, 0)"
                 class="form-control" />
               <ul class="dropdown-menu_0"></ul>
               <input type="hidden" id="category_hidden_0" data-row="0" name="category_id" value="" />
             </td>
             <td class="text-left subcat">
-              <input type="text" name="sub_category_0" value="" placeholder="Type here" data-row="0" class="form-control" />
+              <input type="text" name="sub_category" value="" placeholder="Type here" data-row="0" class="form-control" />
               <ul class="dropdown-submenu_0"></ul>
               <div id="product-category_0" class="well well-sm" style="height: 150px; overflow: auto;"></div>
             </td>
