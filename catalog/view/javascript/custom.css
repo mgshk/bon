@@ -95,7 +95,21 @@ border-radius: 3px;
 	.store-timing-share-top form{margin-bottom: 25px;}
 	/********* End Store Timings pop *******/
 	/*   07 - 07 -2017 - Tab Change*/
-	._bon_ts .tas_bon {width:25%; font-size: 13px; border-right: 1px solid #000000;/*background: #cef0f5;*/height: 34px;background: #f1f1f1; text-align: center;}
+	._bon_ts_home .tas_bon {
+		margin-right: 0px !important;
+		margin-left: 0px !important;
+		width:25% !important; 
+	}
+	._bon_ts .tas_bon {
+		margin-right: 2px;
+		margin-left: 2px;
+		width:40%; 
+		font-size: 13px; 
+		border-right: 1px solid #000000;/*background: #cef0f5;*/
+		height: 34px;
+		background: #f1f1f1; 
+		text-align: center;
+	}
 	._bon_ts1 .tas_bon {font-size: 16px; background: #0094fb; text-align: center;padding: 7px; color: #fff;
 	border-radius: 4px 0 0 0;}
 	._bon_ts>li>a {padding: 8px 0px;color: #000;}
@@ -1318,7 +1332,7 @@ border: 0;}
 	.rigth--stat {float: right;width: 50%; margin-top: 10px;}
 	.set--sel--bt {float: left;width: 50%; margin-top: 10px;}
 	.modal-body.timing-share-top td {width: 33.3333%;}
-	.seller--prof-pg .nav-tabs > li {width: 14.2556%;}
+	.seller--prof-pg .nav-tabs > li {width: 13.2556%;}
 	#tab_store_ad li {width: 12.5%;}
 	#myModal_adv li {width: 100%;}
 	.dtlwpr.pstnst.col-xs-12.btnnav > li {width: 16.666%;}
@@ -1490,3 +1504,33 @@ border: 0;}
 ::-webkit-scrollbar-thumb {
     background:transparent;
 }*/
+
+.bonbadge {
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    display: inline-block;
+    margin-left: 6px;
+    margin-top: 2px;
+    min-width: 10px;
+    padding: 2px 6px;
+    font-size: 11px !important;
+    font-weight: 100;
+    line-height: 1;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    background-color: #1f92bd;
+    border-radius: 10px;
+}
+
+.badgemenu{
+	right: auto !important; 
+	padding-left: 10px;
+	background: #d8e4ec;
+}

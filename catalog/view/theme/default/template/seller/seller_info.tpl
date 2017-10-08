@@ -315,8 +315,8 @@
 						</p>
 					</div>
 					<div class="col-sm-6">
-						 <?php if( $seller_verified != '0') { ?>
-						 	<img src="image/verified.png" class="img-responsive" style="float: right;">
+						<?php if( $seller_verified != '0') { ?>
+						<img src="image/verified.png" class="img-responsive" style="float: right;">
 						<?php } ?>
 						<div class="new-store-banner">
 							<div id="myCarousel" class="carousel slide" data-ride="carousel">
@@ -440,7 +440,7 @@
 					<div class="col-sm-6">
 						<div class="new-store-banner">
 							<?php if( $seller_verified != '0') { ?>
-								<img src="image/verified.png" class="img-responsive" style="float: right;">
+							<img src="image/verified.png" class="img-responsive" style="float: right;">
 							<?php } ?>
 							<div id="myCarousel" class="carousel slide" data-ride="carousel">
 								<!-- Indicators -->
@@ -557,20 +557,20 @@
 			</div>
 			<div class="col-sm-12 fixmee seet-alg" style="z-index: 1; background: rgb(255, 255, 255);">
 				<div class="row">
-					<ul class="nav nav-tabs">
-						<li id="adv_tab" class="<?php if(isset($_GET['tab_section']) != 'product_tab'){ echo 'active'; }?>">
+					<ul class="nav nav-tabs _bon_ts _bon_ts_home">
+						<li id="adv_tab" class="tas_bon <?php if(isset($_GET['tab_section']) != 'product_tab'){ echo 'active'; }?>">
 							<a href="#tab-sellerads" data-toggle="tab">
 								<?php echo $tab_sellerads; ?>
 							</a>
 						</li>
 						<?php if($allow_products == 1) { ?>
-						<li id="product_tab" class="<?php if(isset($_GET['tab_section']) == 'product_tab'){ echo 'active'; }?>">
+						<li id="product_tab" class="tas_bon <?php if(isset($_GET['tab_section']) == 'product_tab'){ echo 'active'; }?>">
 							<a href="#tab-sellerproducts" data-toggle="tab">
 								<?php echo $tab_sellerproducts; ?> (
 								<?php echo $seller_products_total; ?>)</a>
 						</li>
 						<?php } ?>
-						<li>
+						<li class = "tas_bon">
 							<a href="#tab-sellerreview" data-toggle="tab">
 								<?php echo $tab_sellerreview; ?>
 							</a>
@@ -1491,11 +1491,11 @@
 </script>
 
 <script>
-	 //Product search text box
-	 $("#prod_search_bt").click(function () {
-		 var search_val = $('#prod_search').val();
-		 window.location = "index.php?route=seller/seller/info&path=<?php echo $path; ?>&seller_id=<?php echo $seller_id; ?>&tab_section=<?php echo $tab_section; ?>&prod_search=" + search_val;
-	 });
+	//Product search text box
+	$("#prod_search_bt").click(function () {
+		var search_val = $('#prod_search').val();
+		window.location = "index.php?route=seller/seller/info&path=<?php echo $path; ?>&seller_id=<?php echo $seller_id; ?>&tab_section=<?php echo $tab_section; ?>&prod_search=" + search_val;
+	});
 
 </script>
 <?php echo $footer; ?>

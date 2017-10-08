@@ -268,7 +268,7 @@ class Controllersellerprofilesellerprofile extends Controller
         } elseif (!empty($seller_info) && is_file(DIR_IMAGE.$seller_info['image'])) {
             $data['thumb_image'] = $this->model_tool_image->resize($seller_info['image'], 100, 100);
         } else {
-            $data['thumb_image'] = $this->model_tool_image->resize('no_image.png', 100, 100);
+            $data['thumb_image'] = $this->model_tool_image->resize('no_person_img.png', 100, 100);
         }
 
         if (isset($this->request->post['banner'])) {
