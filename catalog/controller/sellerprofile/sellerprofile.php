@@ -284,10 +284,10 @@ class Controllersellerprofilesellerprofile extends Controller
         } elseif (!empty($seller_info) && is_file(DIR_IMAGE.$seller_info['banner'])) {
             $data['thumb_banner'] = $this->model_tool_image->resize($seller_info['banner'], 100, 100);
         } else {
-            $data['thumb_banner'] = $this->model_tool_image->resize('no_image.png', 100, 100);
+            $data['thumb_banner'] = $this->model_tool_image->resize('no_store_img.png', 100, 100);
         }
 
-        $data['placeholder'] = $this->model_tool_image->resize('no_image.png', 100, 100);
+        $data['placeholder'] = $this->model_tool_image->resize('no_store_img.png', 100, 100);
 
         $data['is_seller'] = $this->customer->isSeller();
 
