@@ -764,7 +764,7 @@ class Controllersellerseller extends Controller
             if ($seller_info['banner']) {
                 $seller_banner[] = $this->model_tool_image->resize($seller_info['banner'], 975, 300);
             } else {
-                $seller_banner[] = $this->model_tool_image->resize('placeholder.png', 975, 300);
+                $seller_banner[] = $this->model_tool_image->resize('no_store_img.png', 975, 300);
             }
 
 			//print_r($seller_images_val);
