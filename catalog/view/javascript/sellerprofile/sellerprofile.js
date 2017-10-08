@@ -72,7 +72,7 @@ function getZones(val) {
           for (i = 0; i < json['zone'].length; i++) {
             html += '<option value="' + json['zone'][i]['zone_id'] + '"';
 
-            if (json['zone'][i]['zone_id'] == $('#zone_id').val()) {
+            if (json['zone'][i]['zone_id'] == $('#hidden_zone_id').val()) {
               html += ' selected="selected"';
             }
 

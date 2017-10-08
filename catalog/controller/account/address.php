@@ -502,16 +502,16 @@ print_r($this->request->post); die;
 			$this->error['city'] = $this->language->get('error_city');
 		}
 
+		if ($this->request->post['country_id'] == '' || !is_numeric($this->request->post['country_id'])) {
+			$this->error['country'] = $this->language->get('error_country');
+		}
+
 		$this->load->model('localisation/country');
 
 		$country_info = $this->model_localisation_country->getCountry($this->request->post['country_id']);
 
 		if ($country_info && $country_info['postcode_required'] && (utf8_strlen(trim($this->request->post['postcode'])) < 2 || utf8_strlen(trim($this->request->post['postcode'])) > 10)) {
 			$this->error['postcode'] = $this->language->get('error_postcode');
-		}
-
-		if ($this->request->post['country_id'] == '' || !is_numeric($this->request->post['country_id'])) {
-			$this->error['country'] = $this->language->get('error_country');
 		}
 
 		if (!isset($this->request->post['zone_id']) || $this->request->post['zone_id'] == '' || !is_numeric($this->request->post['zone_id'])) {
