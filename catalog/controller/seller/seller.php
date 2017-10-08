@@ -742,7 +742,7 @@ class Controllersellerseller extends Controller
             if ($seller_info['image']) {
                 $data['seller_image'] = $this->model_tool_image->resize($seller_info['image'], 150, 150);
             } else {
-                $data['seller_image'] = $this->model_tool_image->resize('placeholder.png', 150, 150);
+                $data['seller_image'] = $this->model_tool_image->resize('no_person_img.png', 150, 150);
             }
 
 			$data['review_count'] = $seller_info['review_count'];
