@@ -115,7 +115,7 @@ class Controllersellerseller extends Controller
 			if (!empty($result) && is_file(DIR_IMAGE.$result['banner'])) {
 				$banner_image = $result['banner'];
 			} else {
-				$banner_image = 'no-image.jpg';
+				$banner_image = 'no_store_img.png';
 			}
 
 			//echo "<pre>"; print_r($results);
