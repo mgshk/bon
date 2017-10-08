@@ -115,7 +115,7 @@ class Controllersellerseller extends Controller
 			if (!empty($result) && is_file(DIR_IMAGE.$result['banner'])) {
 				$banner_image = $result['banner'];
 			} else {
-				$banner_image = 'no-image.jpg';
+				$banner_image = 'no_store_img.png';
 			}
 
 			//echo "<pre>"; print_r($results);
@@ -742,7 +742,7 @@ class Controllersellerseller extends Controller
             if ($seller_info['image']) {
                 $data['seller_image'] = $this->model_tool_image->resize($seller_info['image'], 150, 150);
             } else {
-                $data['seller_image'] = $this->model_tool_image->resize('placeholder.png', 150, 150);
+                $data['seller_image'] = $this->model_tool_image->resize('no_person_img.png', 150, 150);
             }
 
 			$data['review_count'] = $seller_info['review_count'];
@@ -764,7 +764,7 @@ class Controllersellerseller extends Controller
             if ($seller_info['banner']) {
                 $seller_banner[] = $this->model_tool_image->resize($seller_info['banner'], 975, 300);
             } else {
-                $seller_banner[] = $this->model_tool_image->resize('placeholder.png', 975, 300);
+                $seller_banner[] = $this->model_tool_image->resize('no_store_img.png', 975, 300);
             }
 
 			//print_r($seller_images_val);
