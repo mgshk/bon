@@ -67,7 +67,7 @@
                           <a href=""  style="display:none;" id="thumb-image" data-toggle="image" class="img-thumbnail"><img src="<?php echo $thumb; ?>" alt="" title="" data-placeholder="<?php echo $placeholder; ?>"/></a>
                           <button type="button" id="button-image" class="btn btn-primary"><i class="fa fa-pencil"></i></button>
                           <input type="hidden" name="offer_image" value="<?php echo $offer_image_original; ?>" id="input-image" />
-                          <input type="hidden" name="offer_image_original" value="<?php echo $offer_image_original; ?>" id="offer_image_original" />
+                          <input type="hidden" name="offer_image_original" value="image/<?php echo $offer_image_original; ?>" id="offer_image_original" />
                         </div>
                      </div>
 		                

@@ -908,11 +908,46 @@
 									<li><span id="last-name-bon" class="text-dangers"></span></li>
 								</ul>
 								<div class="_again-passwrd-log-bon">
-									<input type="text" name="address_1" value="" placeholder="Address" id="input-address-1" class="inputText" required/>
+									<input type="text" name="address_1" value="" placeholder="Address 1" id="input-address-1" class="inputText" required/>
+								</div>
+								<div class="_email-log-bon">
+									<input type="text" name="address_2" value="" class="inputText" placeholder="Address 2" id="address_2" required/>
 								</div>
 								<ul class="_erroe-li">
-									<li><span id="address-bon" class="text-dangers"></span></li>
+									<li><span id="address_2-bon" class="text-dangers"></span></li>
 								</ul>
+								<div class="_email-log-bon">
+									<input type="text" name="city" value="" class="inputText" placeholder="City" id="input-city" required/>
+								</div>
+								<ul class="_erroe-li">
+									<li><span id="city-bon" class="text-dangers"></span></li>
+								</ul>
+								<div class="_email-log-bon">
+									<input type="text" name="postcode" value="" class="inputText" placeholder="Postcode" id="input-postcode" required/>
+								</div>
+								<ul class="_erroe-li">
+									<li><span id="postcode-bon" class="text-dangers"></span></li>
+								</ul>
+								<div class="_email-log-bon">
+									<select name="country_id" id="input-country" class="form-control">
+                                        <option value=""><?php echo $text_select; ?></option>
+                                        <?php foreach ($countries as $country) { ?>
+                                        <option value="<?php echo $country['country_id']; ?>"><?php echo $country['name']; ?></option> 
+                                        <?php } ?>
+                                      </select>
+								</div>
+								<ul class="_erroe-li">
+									<li><span id="country-bon" class="text-dangers"></span></li>
+								</ul>
+								<div class="_email-log-bon">
+									<select name="zone_id" id="input-zone" class="form-control"></select>
+								</div>
+								<ul class="_erroe-li">
+									<li><span id="zone-bon" class="text-dangers"></span></li>
+								</ul>
+								<!-- <ul class="_erroe-li">
+									<li><span id="address-bon" class="text-dangers"></span></li>
+								</ul> -->
 								<div class="_log-btn-btm" style="position: static;">
 									<button class="advertise-btn _btn-fin" id="updat-bon-det" type="button">Submit</button>
 								</div>

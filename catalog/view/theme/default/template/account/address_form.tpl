@@ -96,6 +96,7 @@
           <div class="form-group required">
             <label class="col-sm-2 control-label" for="input-zone"><?php echo $entry_zone; ?></label>
             <div class="col-sm-10">
+              <input type="hidden" name="hidden_zone_id" id="hidden_zone_id" value="<?php echo $zone_id; ?>" />
               <select name="zone_id" id="input-zone" class="form-control">
               </select>
               <?php if ($error_zone) { ?>
@@ -307,6 +308,50 @@ $('.form-group[data-sort]').detach().each(function() {
 		$('.form-group:first').before(this);
 	}
 });
+
+function getZones(val) {
+  $.ajax({
+      url: 'index.php?route=account/account/country&country_id=' + val,
+      dataType: 'json',
+      beforeSend: function() {
+        $('select[name=\'country_id\']').after(' <i class="fa fa-circle-o-notch fa-spin"></i>');
+      },
+      complete: function() {
+        $('.fa-spin').remove();
+      },
+      success: function(json) {
+        html = '<option value=""> --- Please Select --- </option>';
+
+        if (json['zone'] && json['zone'] != '') {
+          for (i = 0; i < json['zone'].length; i++) {
+            html += '<option value="' + json['zone'][i]['zone_id'] + '"';
+
+            if (json['zone'][i]['zone_id'] == $('#hidden_zone_id').val()) {
+              html += ' selected="selected"';
+            }
+
+            html += '>' + json['zone'][i]['name'] + '</option>';
+          }
+        } else {
+          html += '<option value="0" selected="selected"> --- Please Select --- </option>';
+        }
+
+        $('select[name=\'zone_id\']').html(html);
+      },
+      error: function(xhr, ajaxOptions, thrownError) {
+        alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+      }
+  });
+
+  return false;
+}
+
+$(document).on('change', 'select[name=\'country_id\']', function() {
+  getZones($(this).val());
+});
+
+$('select[name=\'country_id\']').trigger('change');
+  
 //--></script>
 <script type="text/javascript"><!--
 $('button[id^=\'button-custom-field\']').on('click', function() {
