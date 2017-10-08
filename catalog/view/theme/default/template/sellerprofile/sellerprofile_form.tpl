@@ -120,7 +120,6 @@
               <?php } ?>
             </ul>
             <div class="tab-content">
-              <?php if ($is_seller) { ?>
               <div class="tab-pane <?php if($_GET['tab_section'] == 'profile'){ echo 'active'; }?>" id="tab-profile_details">
                 <div class="col-md-12">
                   <blockquote>
@@ -745,7 +744,7 @@
                           <?php } else { ?>
                           <div class="form-group referrer-fom-build">
                             <label class="col-sm-2 control-label" for="input-referred-by">
-         										        Referred by
+                                    Referred by
                                      <div class="pull-right">
                                             <a class="cursor" data-toggle="dropdown" aria-expanded="true">
                                               <span class="bonbadge"><i class="fa-info" aria-hidden="true"></i></span>
@@ -756,7 +755,7 @@
                                               </li>    
                                              </ul>      
                                           </div>
-         										</label>
+                            </label>
                             <div class="col-sm-10" style="padding-top: 7px;">
                               <input type="text" id="input-referred-by-val" name="referred_by" placeholder="Referred By" value="<?php echo $referred_by; ?>"
                                 id="input-referred-by" class="form-control" />
@@ -820,12 +819,12 @@
                           </div>
                           <div class="form-group">
                             <label class="col-sm-12 control-label" for="agree_tt" style="font-weight: bold; text-align: left;"><input type="hidden" name="agree" value="not_agree" id="agree">
-					   <input type="checkbox" name="agree_tt" class="agree_tt" value="agree" id="agree_tt"> &nbsp;I hereby declare that the detail furnished above are true and correct to the best of my knowledge. In case any of the information is found to be false or untrue or misleading or misrepresenting, I am aware that my detail will impact approval and verification process.</label>
+             <input type="checkbox" name="agree_tt" class="agree_tt" value="agree" id="agree_tt"> &nbsp;I hereby declare that the detail furnished above are true and correct to the best of my knowledge. In case any of the information is found to be false or untrue or misleading or misrepresenting, I am aware that my detail will impact approval and verification process.</label>
                           </div>
                           <!--<div class="form-group">
                                           <label class="col-sm-3 control-label">Address</label>
                                           <div class="col-sm-5">
-                                          	<input type="text" class="form-control" name="address" id="address_st" value="" />												
+                                            <input type="text" class="form-control" name="address" id="address_st" value="" />                        
                                           </div>
                                           </div>-->
                           <input type="hidden" class="form-control" name="lat" id="latitude_st" value="<?php echo $lat; ?>" />
@@ -859,6 +858,7 @@
                 </div>
                 <br />
               </div>
+              <?php if ($is_seller) { ?>
               <div class="tab-pane <?php if($_GET['tab_section'] == 'store'){ echo 'active'; }?>" id="tab_store_ad">
                 <ul class="nav nav-tabs fixme-sec _bon_ts" style="z-index:123 background-color: #f1f1f1 !important;">
                   <li class="tas_bon <?php if($_GET['inner_store'] == 'draft'){ echo 'active'; }?>"><a href="#draftt" data-txt="draft" class="draft" data-toggle="tab">Drafts (<span class="black_s" id="sellerdraftcount"><?php echo $draft_tt; ?></span>)</a></li>
@@ -959,8 +959,8 @@
                 <div id="sellerexpense"></div>
                 <br />
               </div>
-              <?php } else { ?>
-              <div class="tab-pane <?php if($_GET['tab_section'] == 'profile'){ echo 'active'; }?>" id="tab-profile_details">
+              <?php } ?>
+              <!-- <div class="tab-pane <?php if($_GET['tab_section'] == 'profile'){ echo 'active'; }?>" id="tab-profile_details">
                 <div class="col-md-12">
                   <blockquote>
                     <a href="<?php echo $profile_edit; ?>" data-toggle="tooltip" title="" class="prf--sell btn btn-primary edt">Edit</a>
@@ -1039,8 +1039,8 @@
                     <?php } ?>
                   </blockquote>
                 </div>
-              </div>
-              <?php } ?>
+              </div> -->
+
             </div>
           </div>
         </div>
@@ -1385,7 +1385,7 @@
             <?php $days = array("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"); ?>
             <?php $i = 0; foreach($days as $day) { 
                      $str_tmg = unserialize($store_timings[strtolower($day)]);
-		     //echo "<pre>"; print_r($store_timings['monday']);
+         //echo "<pre>"; print_r($store_timings['monday']);
                      if($str_tmg['status'] == "open") { ?>
             <div class="row">
               <div class="col-sm-2">
@@ -1398,8 +1398,8 @@
                   data-id="<?php echo $i; ?>"> // onchange='check()'
                         <?php 
                            foreach ($status as $statu) {
-                           	 $selected = ($statu == $str_tmg['status']) ? "selected = selected" : "";
-                           	echo "<option value=\"" . $statu . "\"".$selected.">" . strtoupper($statu) . "</option>";
+                             $selected = ($statu == $str_tmg['status']) ? "selected = selected" : "";
+                            echo "<option value=\"" . $statu . "\"".$selected.">" . strtoupper($statu) . "</option>";
                            }
                            ?>
                         </select>
@@ -1462,8 +1462,8 @@
                   data-id="<?php echo $i; ?>"> // onchange='check()'
                         <?php 
                            foreach ($status as $statu) {
-                           	 $selected = ($statu == $str_tmg['status']) ? "selected = selected" : "";
-                           	echo "<option value=\"" . $statu . "\"".$selected.">" . strtoupper($statu) . "</option>";
+                             $selected = ($statu == $str_tmg['status']) ? "selected = selected" : "";
+                            echo "<option value=\"" . $statu . "\"".$selected.">" . strtoupper($statu) . "</option>";
                            }
                            ?>
                         </select>
@@ -1839,7 +1839,7 @@
 </script>
 <script type="text/javascript">
    $(document).ready(function () {
-     var target = $('#tab_store_ad a[data-toggle="tab"]').attr("href") // activated tab		
+     var target = $('#tab_store_ad a[data-toggle="tab"]').attr("href") // activated tab   
      target1 = target.replace('#', '.');
      if (target1 != '') {
        $('#sellerdraft').load('index.php?route=sellerprofile/sellerprofile/selleradvertisedraft&seller_id=<?php echo $seller_id; ?>');
@@ -2380,7 +2380,7 @@
             $('#button-image-save').addClass('btn-success');
             $('#button-image-save').removeClass('btn-primary');
             //$("#store_images").removeClass('in');
-            //$("#store_images").hide();	 
+            //$("#store_images").hide();   
             $('#store_images').modal('toggle');
 
           },
@@ -2442,13 +2442,13 @@
 
 <?php
   //  if(isset($_COOKIE['myStoreAddress'])){
-  //   	$cookie = $_COOKIE['myStoreAddress'];
-  //   	$cookie_res = explode(',',$cookie);
-  //   	$latitude = $cookie_res[0];
-  //   	$longitude = $cookie_res[1];
+  //    $cookie = $_COOKIE['myStoreAddress'];
+  //    $cookie_res = explode(',',$cookie);
+  //    $latitude = $cookie_res[0];
+  //    $longitude = $cookie_res[1];
   //   } else {
-  //   	$latitude = '13.067439';
-  //   	$longitude = '80.237617';
+  //    $latitude = '13.067439';
+  //    $longitude = '80.237617';
   //   }
   //  echo "<script>\n";
   //  echo "var lat_st = " . $latitude . ";\n";
