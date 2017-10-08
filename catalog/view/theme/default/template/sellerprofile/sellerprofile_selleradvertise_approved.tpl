@@ -8,7 +8,7 @@
      	$longitude = '80.237617';
     }
 
-	$data = file_get_contents("http://maps.google.com/maps/api/geocode/json?latlng=".trim($latitude).",".trim($longitude)."&sensor=false");
+	$data = file_get_contents("https://maps.google.com/maps/api/geocode/json?key=AIzaSyCXvDvmhFTLZ5iJyGSQm3-3GEJg0G3iztk&latlng=".trim($latitude).",".trim($longitude)."&sensor=false");
 	$data = json_decode($data);
 	$add_array  = $data->results;
 	$add_array = $add_array[0];

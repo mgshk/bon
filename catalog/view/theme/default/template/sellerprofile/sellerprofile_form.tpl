@@ -31,87 +31,87 @@
         <?php } ?>
         <div class="panel panel-default">
           <div class="panel-body">
-            <ul class="nav nav-tabs fixme" style="z-index:123; background:  none repeat scroll 0 0;">
+            <ul class="nav nav-tabs fixme _bon_ts" style="z-index:123;    background-color: #f1f1f1 !important; background:  none repeat scroll 0 0;">
               <?php if ($is_seller) { ?>
-              <li class="<?php if($_GET['tab_section'] == 'profile'){ echo 'active'; }?>">
+              <li class="tas_bon <?php if($_GET['tab_section'] == 'profile'){ echo 'active'; }?>">
                 <a href="#tab-profile_details" data-toggle="tab">
                   <?php //echo $tab_profile_details; ?> My Profile
                 </a>
               </li>
               <?php if($login_type == 'seller') { ?>
-              <li class="<?php if($_GET['tab_section'] == 'store_detail'){ echo 'active'; }?>">
+              <li class="tas_bon <?php if($_GET['tab_section'] == 'store_detail'){ echo 'active'; }?>">
                 <a href="#tab-more_details" data-toggle="tab">
                   <?php //echo $tab_more_details; ?> Store/Entity detail
                 </a>
               </li>
-              <li class="<?php if($_GET['tab_section'] == 'product'){ echo 'active'; }?>">
+              <li class="tas_bon <?php if($_GET['tab_section'] == 'product'){ echo 'active'; }?>">
                 <a class="sellerproduct" href="#tab-sellerproduct" data-toggle="tab">
                   <?php //echo $tab_sellerproduct; ?> Products
                 </a>
               </li>
-              <li class="<?php if($_GET['tab_section'] == 'store'){ echo 'active'; }?>">
+              <li class="tas_bon <?php if($_GET['tab_section'] == 'store'){ echo 'active'; }?>">
                 <a class="tab_store_ad" href="#tab_store_ad" data-toggle="tab">
                         Advertisements
                         </a>
               </li>
-              <li class="<?php if($_GET['tab_section'] == 'qr_code'){ echo 'active'; }?>">
+              <li class="tas_bon <?php if($_GET['tab_section'] == 'qr_code'){ echo 'active'; }?>">
                 <a class="tab_qr_code" href="#tab_qr_code" data-toggle="tab">
                         QR-code
                         </a>
               </li>
-              <li class="<?php if($_GET['tab_section'] == 'order'){ echo 'active'; }?>">
+              <li class="tas_bon <?php if($_GET['tab_section'] == 'order'){ echo 'active'; }?>">
                 <a class="tab_review" href="<?php echo $order_edit; ?>">
                         Orders
                         </a>
               </li>
-              <li class="<?php if($_GET['tab_section'] == 'review'){ echo 'active'; }?>">
+              <li class="tas_bon <?php if($_GET['tab_section'] == 'review'){ echo 'active'; }?>">
                 <a class="tab_review" target="_self" href="index.php?route=sellerreview/sellerreview">
                         Reviews
                         </a>
               </li>
               <?php } ?>
               <?php if($login_type == 'buyer') { ?>
-              <li class="<?php if($_GET['tab_section'] == 'order_history'){ echo 'active'; }?>">
+              <li class="tas_bon <?php if($_GET['tab_section'] == 'order_history'){ echo 'active'; }?>">
                 <a class="tab_order_history" target="_self" href="index.php?route=account/order">
                         My Orders
                         </a>
               </li>
-              <li class="<?php if($_GET['tab_section'] == 'my_wallet'){ echo 'active'; }?> wallet">
+              <li class="tas_bon <?php if($_GET['tab_section'] == 'my_wallet'){ echo 'active'; }?> wallet">
                 <a class="wallet" href="#tab_my_wallet" data-toggle="tab">
                         My Wallet
                         </a>
               </li>
-              <li class="<?php if($_GET['tab_section'] == 'expense_report'){ echo 'active'; }?> expense">
+              <li class="tas_bon <?php if($_GET['tab_section'] == 'expense_report'){ echo 'active'; }?> expense">
                 <a class="expense" href="#tab_expense_report" data-toggle="tab">
                         Expense Report
                         </a>
               </li>
               <?php } ?>
               <?php } else { ?>
-              <li class="<?php if($_GET['tab_section'] == 'profile'){ echo 'active'; }?>">
+              <li class="tas_bon <?php if($_GET['tab_section'] == 'profile'){ echo 'active'; }?>">
                 <a href="#tab-profile_details" data-toggle="tab">
                   <?php //echo $tab_profile_details; ?> My Profile
                 </a>
               </li>
               <?php if($login_type == 'seller') { ?>
-              <li class="<?php if($_GET['tab_section'] == 'store_detail'){ echo 'active'; }?>">
+              <li class="tas_bon <?php if($_GET['tab_section'] == 'store_detail'){ echo 'active'; }?>">
                 <a href="#tab-more_details" data-toggle="tab">
                   <?php //echo $tab_more_details; ?> Store/Entity detail
                 </a>
               </li>
               <?php } ?>
               <?php if($login_type == 'buyer') { ?>
-              <li class="<?php if($_GET['tab_section'] == 'order_history'){ echo 'active'; }?>">
+              <li class="tas_bon <?php if($_GET['tab_section'] == 'order_history'){ echo 'active'; }?>">
                 <a class="tab_order_history" target="_self" href="index.php?route=account/order">
                         My Orders
                         </a>
               </li>
-              <li class="<?php if($_GET['tab_section'] == 'my_wallet'){ echo 'active'; }?> wallet">
+              <li class="tas_bon <?php if($_GET['tab_section'] == 'my_wallet'){ echo 'active'; }?> wallet">
                 <a class="wallet" href="#tab_my_wallet" data-toggle="tab">
                         My Wallet
                         </a>
               </li>
-              <li class="<?php if($_GET['tab_section'] == 'expense_report'){ echo 'active'; }?> expense">
+              <li class="tas_bon <?php if($_GET['tab_section'] == 'expense_report'){ echo 'active'; }?> expense">
                 <a class="expense" href="#tab_expense_report" data-toggle="tab">
                         Expense Report
                         </a>
@@ -247,16 +247,26 @@
                             <label class="col-sm-2 control-label" for="input-nickname">
                                           <?php echo $entry_activate; ?>
                                           </label>
-                            <div class="col-sm-8">
+                            <div class="col-sm-8" style="padding-top: 7px;">
                               <input type="hidden" name="store_activate" value="2" />
                               <input type="checkbox" name="store_activate" <?php if ($store_activated==1 ) { echo 'checked'; } ?>                              id="store_activate" value="1" />
-                              <span class="input-group-btn"></span>
+                              <span style="font-style: italic;">(Keep this checked to let the buyers see your store/entity.)</span>
                             </div>
                           </div>
                           <div class="form-group required">
                             <label class="col-sm-2 control-label" for="input-nickname">
                                           <?php echo $entry_nickname; ?>
-                                          </label>
+                                          <div class="pull-right">
+                                            <a class="cursor" data-toggle="dropdown" aria-expanded="true">
+                                              <span class="bonbadge"><i class="fa-info" aria-hidden="true"></i></span>
+                                            </a>                                            
+                                            <ul class="dropdown-menu badgemenu">
+                                              <li>
+                                                Enter Store Name
+                                              </li>    
+                                             </ul>      
+                                          </div>
+                              </label>
                             <div class="col-sm-8">
                               <input type="text" maxlength="50" name="nickname" placeholder="<?php echo $entry_nickname; ?>" value="<?php echo $nickname; ?>"
                                 id="input-nickname" class="form-control" required/>
@@ -268,7 +278,17 @@
                             <div class="buttons">
                               <label class="col-sm-2 control-label">
                                              <?php echo $entry_seller_banner; ?>
-                                             </label>
+                                         <div class="pull-right">
+                                            <a class="cursor" data-toggle="dropdown" aria-expanded="true">
+                                              <span class="bonbadge"><i class="fa-info" aria-hidden="true"></i></span>
+                                            </a>                                            
+                                            <ul class="dropdown-menu badgemenu">
+                                              <li>
+                                                Enter Store Name
+                                              </li>    
+                                             </ul>      
+                                          </div>
+                              </label>
                               <div class="col-sm-10">
                                 <a href="" id="thumb-banner" data-toggle="banner" class="img-thumbnail"><img src="<?php echo $thumb_banner; ?>" alt="" title="" data-placeholder="<?php echo $placeholder; ?>" /></a>
                                 <input type="hidden" name="banner" value="<?php echo $banner; ?>" id="input-banner" />
@@ -278,9 +298,19 @@
                           <div class="form-group">
                             <label class="col-sm-2 control-label">
                                           <?php echo $entry_description; ?>
-                                          </label>
+                                         <div class="pull-right">
+                                            <a class="cursor" data-toggle="dropdown" aria-expanded="true">
+                                              <span class="bonbadge"><i class="fa-info" aria-hidden="true"></i></span>
+                                            </a>                                            
+                                            <ul class="dropdown-menu badgemenu">
+                                              <li>
+                                                Enter Store Name
+                                              </li>    
+                                             </ul>      
+                                          </div> </label>
                             <div class="col-sm-8">
-                              <textarea style="white-space: normal;" name="seller_description" rows="4" placeholder="<?php echo $entry_description; ?>" id="input-description" class="form-control"><?php echo $seller_description; ?></textarea>
+                              <textarea style="white-space: normal;" name="seller_description" rows="4" placeholder="<?php echo $entry_description; ?>"
+                                id="input-description" class="form-control"><?php echo $seller_description; ?></textarea>
                             </div>
                           </div>
 
@@ -295,25 +325,29 @@
                                   <div class="form-group required">
                                     <label class="col-sm-2 control-label" for="input-address-1"><?php echo $entry_address_1; ?></label>
                                     <div class="col-sm-10">
-                                      <input type="text" name="address_1" value="<?php echo $address_1; ?>" placeholder="<?php echo $entry_address_1; ?>" id="input-address-1" class="form-control" />
+                                      <input type="text" name="address_1" value="<?php echo $address_1; ?>" placeholder="<?php echo $entry_address_1; ?>" id="input-address-1"
+                                        class="form-control" />
                                     </div>
                                   </div>
                                   <div class="form-group">
                                     <label class="col-sm-2 control-label" for="input-address-2"><?php echo $entry_address_2; ?></label>
                                     <div class="col-sm-10">
-                                      <input type="text" name="address_2" value="<?php echo $address_2; ?>" placeholder="<?php echo $entry_address_2; ?>" id="input-address-2" class="form-control" />
+                                      <input type="text" name="address_2" value="<?php echo $address_2; ?>" placeholder="<?php echo $entry_address_2; ?>" id="input-address-2"
+                                        class="form-control" />
                                     </div>
                                   </div>
                                   <div class="form-group required">
                                     <label class="col-sm-2 control-label" for="input-city"><?php echo $entry_city; ?></label>
                                     <div class="col-sm-10">
-                                      <input type="text" name="city" value="<?php echo $city; ?>" placeholder="<?php echo $entry_city; ?>" id="input-city" class="form-control" />
+                                      <input type="text" name="city" value="<?php echo $city; ?>" placeholder="<?php echo $entry_city; ?>" id="input-city" class="form-control"
+                                      />
                                     </div>
                                   </div>
                                   <div class="form-group required">
                                     <label class="col-sm-2 control-label" for="input-postcode"><?php echo $entry_postcode; ?></label>
                                     <div class="col-sm-10">
-                                      <input type="text" name="postcode" value="<?php echo $postcode; ?>" placeholder="<?php echo $entry_postcode; ?>" id="input-postcode" class="form-control" />
+                                      <input type="text" name="postcode" value="<?php echo $postcode; ?>" placeholder="<?php echo $entry_postcode; ?>" id="input-postcode"
+                                        class="form-control" />
                                     </div>
                                   </div>
                                   <div class="form-group required">
@@ -336,7 +370,7 @@
                                     <div class="col-sm-10">
                                       <input type="hidden" id="zone_id" name="hidden_zone_id" value="<?php echo $zone_id; ?>" />
                                       <select name="zone_id" id="input-zone" class="form-control"></select>
-                                    </div> 
+                                    </div>
                                   </div>
                                 </div>
                                 <div class="modal-footer">
@@ -344,18 +378,40 @@
                                 </div>
                               </div>
                             </div>
-                         </div>
+                          </div>
                           <div class="form-group required">
                             <label class="col-sm-2 control-label" for="input-store-address">
                               <?php echo $entry_store_address; ?>
+                                          <div class="pull-right">
+                                            <a class="cursor" data-toggle="dropdown" aria-expanded="true">
+                                              <span class="bonbadge"><i class="fa-info" aria-hidden="true"></i></span>
+                                            </a>                                            
+                                            <ul class="dropdown-menu badgemenu">
+                                              <li>
+                                                Enter Store Name
+                                              </li>    
+                                             </ul>      
+                                          </div>
                             </label>
                             <div class="col-sm-10 additional_image sel--sec--ordd">
-                                <?php echo $address_store; ?> &nbsp; &nbsp;
-                                <a class="cursor sel--sec--ord btn btn-primary edt" data-toggle="modal" data-target="#store_address">Edit</a>
+                               <a class="cursor sel--sec--ord btn btn-primary edt" data-toggle="modal" data-target="#store_address">Edit</a>
+                              &nbsp; &nbsp;
+                              <?php echo $address_store; ?>
                             </div>
                           </div>
                           <div class="form-group required">
-                            <label class="col-sm-2 control-label">Enter map location</label>
+                            <label class="col-sm-2 control-label">Enter map location
+                              <div class="pull-right">
+                                            <a class="cursor" data-toggle="dropdown" aria-expanded="true">
+                                              <span class="bonbadge"><i class="fa-info" aria-hidden="true"></i></span>
+                                            </a>                                            
+                                            <ul class="dropdown-menu badgemenu">
+                                              <li>
+                                                Enter Store Name
+                                              </li>    
+                                             </ul>      
+                                          </div>
+                            </label>
                             <div class="col-sm-10">
                               <div id="map-search" class="map-sample">
                                 <img class="cursor img-responsive" id="search-btn_st" data-toggle="modal" data-target="#map_mod" src="image/gmap.jpg" />
@@ -365,6 +421,16 @@
                           <div class="form-group">
                             <label class="col-sm-2 control-label" for="input-owner-name">
                               <?php echo $entry_owner_name; ?>
+                                          <div class="pull-right">
+                                            <a class="cursor" data-toggle="dropdown" aria-expanded="true">
+                                              <span class="bonbadge"><i class="fa-info" aria-hidden="true"></i></span>
+                                            </a>                                            
+                                            <ul class="dropdown-menu badgemenu">
+                                              <li>
+                                                Enter Store Name
+                                              </li>    
+                                             </ul>      
+                                          </div>
                             </label>
                             <div class="col-sm-8">
                               <input type="text" name="owner_name" maxlength="50" placeholder="<?php echo $entry_owner_name; ?>" value="<?php echo $owner_name; ?>"
@@ -377,7 +443,17 @@
                             <div class="buttons">
                               <label class="col-sm-2 control-label">
                                              <?php echo $entry_seller_avatar; ?>
-                                             </label>
+                                             <div class="pull-right">
+                                            <a class="cursor" data-toggle="dropdown" aria-expanded="true">
+                                              <span class="bonbadge"><i class="fa-info" aria-hidden="true"></i></span>
+                                            </a>                                            
+                                            <ul class="dropdown-menu badgemenu">
+                                              <li>
+                                                Enter Store Name
+                                              </li>    
+                                             </ul>      
+                                          </div>
+                              </label>
                               <div class="col-sm-10">
                                 <a href="" id="thumb-image" data-toggle="image" class="img-thumbnail"><img src="<?php echo $thumb_image; ?>" alt="" title="" data-placeholder="<?php echo $placeholder; ?>" /></a>
                                 <input type="hidden" name="image" value="<?php echo $image; ?>" id="input-image" />
@@ -388,7 +464,17 @@
                             <div class="buttons">
                               <label class="col-sm-2 control-label">
                                              Additional Store/Entity images
-                                             </label>
+                                             <div class="pull-right">
+                                            <a class="cursor" data-toggle="dropdown" aria-expanded="true">
+                                              <span class="bonbadge"><i class="fa-info" aria-hidden="true"></i></span>
+                                            </a>                                            
+                                            <ul class="dropdown-menu badgemenu">
+                                              <li>
+                                                Enter Store Name
+                                              </li>    
+                                             </ul>      
+                                          </div>
+                              </label>
                               <div class="col-sm-10 additional_image sel--sec--ordd">
                                 <a class="cursor sel--sec--ord btn btn-primary edt" data-toggle="modal" data-target="#store_images">Edit</a>
                               </div>
@@ -398,7 +484,17 @@
                             <div class="buttons">
                               <label class="col-sm-2 control-label">
                                              Store/Entity categories
-                                             </label>
+                                          <div class="pull-right">
+                                            <a class="cursor" data-toggle="dropdown" aria-expanded="true">
+                                              <span class="bonbadge"><i class="fa-info" aria-hidden="true"></i></span>
+                                            </a>                                            
+                                            <ul class="dropdown-menu badgemenu">
+                                              <li>
+                                                Enter Store Name
+                                              </li>    
+                                             </ul>      
+                                          </div>
+                              </label>
                               <div class="col-sm-10 additional_image sel--sec--ordd">
                                 <a class="cursor sel--sec--ord btn btn-primary edt" data-toggle="modal" data-target="#store_cat">Edit</a>
                               </div>
@@ -408,7 +504,17 @@
                             <div class="buttons">
                               <label class="col-sm-2 control-label">
                                              Hours of operation
-                                             </label>
+                                          <div class="pull-right">
+                                            <a class="cursor" data-toggle="dropdown" aria-expanded="true">
+                                              <span class="bonbadge"><i class="fa-info" aria-hidden="true"></i></span>
+                                            </a>                                            
+                                            <ul class="dropdown-menu badgemenu">
+                                              <li>
+                                                Enter Store Name
+                                              </li>    
+                                             </ul>      
+                                          </div>
+                              </label>
                               <div class="col-sm-10 additional_image sel--sec--ordd">
                                 <a class="cursor sel--sec--ord btn btn-primary edt" data-toggle="modal" data-target="#store_timings">Edit</a>
                               </div>
@@ -418,7 +524,17 @@
                             <div class="row">
                               <label class="col-sm-2 control-label" for="input-ll-num">
                                              <?php echo $entry_store_ll_num; ?>
-                                             </label>
+                                             <div class="pull-right">
+                                            <a class="cursor" data-toggle="dropdown" aria-expanded="true">
+                                              <span class="bonbadge"><i class="fa-info" aria-hidden="true"></i></span>
+                                            </a>                                            
+                                            <ul class="dropdown-menu badgemenu">
+                                              <li>
+                                                Enter Store Name
+                                              </li>    
+                                             </ul>      
+                                          </div>
+                              </label>
                               <?php $store_ll_num_row = 0; $store_ll_num = explode(",", $store_ll_num); ?>
                               <?php foreach ($store_ll_num as $store_ll_nums) { $store_ll = explode("-", $store_ll_nums);
                                                 $store_ll_0 = (isset($store_ll[0]) && $store_ll[0] != '') ? $store_ll[0] : ''; 
@@ -455,7 +571,17 @@
                             <div class="row">
                               <label class="col-sm-2 control-label" for="input-store-num">
                                              <?php echo $entry_store_mobile_num; ?>
-                                             </label>
+                                             <div class="pull-right">
+                                            <a class="cursor" data-toggle="dropdown" aria-expanded="true">
+                                              <span class="bonbadge"><i class="fa-info" aria-hidden="true"></i></span>
+                                            </a>                                            
+                                            <ul class="dropdown-menu badgemenu">
+                                              <li>
+                                                Enter Store Name
+                                              </li>    
+                                             </ul>      
+                                          </div>
+                              </label>
                               <?php $store_mobile_num_row = 0; $store_mobile_num = explode(",", $store_mobile_num); ?>
                               <?php foreach ($store_mobile_num as $store_mobile_nums) { ?>
                               <?php if($store_mobile_num_row != 0) { ?>
@@ -487,7 +613,17 @@
                           <div class="form-group required">
                             <label class="col-sm-2 control-label" for="input-store-email">
                                           <?php echo $entry_store_email; ?>
-                                          </label>
+                                         <div class="pull-right">
+                                            <a class="cursor" data-toggle="dropdown" aria-expanded="true">
+                                              <span class="bonbadge"><i class="fa-info" aria-hidden="true"></i></span>
+                                            </a>                                            
+                                            <ul class="dropdown-menu badgemenu">
+                                              <li>
+                                                Enter Store Name
+                                              </li>    
+                                             </ul>      
+                                          </div>
+                            </label>
                             <div class="col-sm-10">
                               <input type="text" name="store_email" placeholder="<?php echo $entry_store_email; ?>" value="<?php echo $store_email; ?>"
                                 id="input-store-email" class="form-control" required/>
@@ -500,7 +636,17 @@
                           <div class="form-group">
                             <label class="col-sm-2 control-label" for="input-tin">
                                           <?php echo $entry_tin; ?>
-                                          </label>
+                                          <div class="pull-right">
+                                            <a class="cursor" data-toggle="dropdown" aria-expanded="true">
+                                              <span class="bonbadge"><i class="fa-info" aria-hidden="true"></i></span>
+                                            </a>                                            
+                                            <ul class="dropdown-menu badgemenu">
+                                              <li>
+                                                Enter Store Name
+                                              </li>    
+                                             </ul>      
+                                          </div>
+                            </label>
                             <div class="col-sm-10">
                               <input maxlength="30" type="text" name="tin" placeholder="<?php echo $placeholder_tin; ?>" value="<?php echo $tin; ?>" id="input-tin"
                                 class="form-control" required/>
@@ -511,7 +657,17 @@
                           <div class="form-group">
                             <label class="col-sm-2 control-label" for="input-pan">
                                           <?php echo $entry_pan; ?>
-                                          </label>
+                                          <div class="pull-right">
+                                            <a class="cursor" data-toggle="dropdown" aria-expanded="true">
+                                              <span class="bonbadge"><i class="fa-info" aria-hidden="true"></i></span>
+                                            </a>                                            
+                                            <ul class="dropdown-menu badgemenu">
+                                              <li>
+                                                Enter Store Name
+                                              </li>    
+                                             </ul>      
+                                          </div>
+                            </label>
                             <div class="col-sm-10">
                               <input maxlength="30" type="text" name="pan" placeholder="<?php echo $placeholder_pan; ?>" value="<?php echo $pan; ?>" id="input-pan"
                                 class="form-control" required/>
@@ -521,7 +677,18 @@
                           </div>
                           <div class="form-group">
                             <div class="buttons">
-                              <label class="col-sm-2 control-label">Store/Entity portals</label>
+                              <label class="col-sm-2 control-label">Store/Entity portals
+                                <div class="pull-right">
+                                            <a class="cursor" data-toggle="dropdown" aria-expanded="true">
+                                              <span class="bonbadge"><i class="fa-info" aria-hidden="true"></i></span>
+                                            </a>                                            
+                                            <ul class="dropdown-menu badgemenu">
+                                              <li>
+                                                Enter Store Name
+                                              </li>    
+                                             </ul>      
+                                          </div>
+                              </label>
                               <div class="col-sm-10 additional_image sel--sec--ordd">
                                 <a class="cursor sel--sec--ord btn btn-primary edt" data-toggle="modal" data-target="#store_portals">Edit</a>
                               </div>
@@ -530,7 +697,17 @@
                           <div class="form-group">
                             <label class="col-sm-2 control-label" for="input-delivery_type">
                                           Delivery type
-                                          </label>
+                                          <div class="pull-right">
+                                            <a class="cursor" data-toggle="dropdown" aria-expanded="true">
+                                              <span class="bonbadge"><i class="fa-info" aria-hidden="true"></i></span>
+                                            </a>                                            
+                                            <ul class="dropdown-menu badgemenu">
+                                              <li>
+                                                Enter Store Name
+                                              </li>    
+                                             </ul>      
+                                          </div>
+                            </label>
                             <div class="col-sm-10">
                               <input type="radio" name="delivery_type" value="1" checked> Cash on home delivery<br>
                               <input type="radio" name="delivery_type" value="2" <?php if($delivery_type==2 ){ echo "checked"; } ?>>
@@ -543,7 +720,17 @@
                           <div class="form-group">
                             <label class="col-sm-2 control-label" for="input-referred-by">
                                                 Referred by
-                                             </label>
+                                                <div class="pull-right">
+                                            <a class="cursor" data-toggle="dropdown" aria-expanded="true">
+                                              <span class="bonbadge"><i class="fa-info" aria-hidden="true"></i></span>
+                                            </a>                                            
+                                            <ul class="dropdown-menu badgemenu">
+                                              <li>
+                                                Enter Store Name
+                                              </li>    
+                                             </ul>      
+                                          </div>
+                            </label>
                             <div class="col-sm-10" style="padding-top: 7px;">
                               <?php if($referred_by != '---') {
                                                    $refed_val = explode("-", $referred_by); ?>
@@ -559,7 +746,17 @@
                           <div class="form-group referrer-fom-build">
                             <label class="col-sm-2 control-label" for="input-referred-by">
          										        Referred by
-         										      </label>
+                                     <div class="pull-right">
+                                            <a class="cursor" data-toggle="dropdown" aria-expanded="true">
+                                              <span class="bonbadge"><i class="fa-info" aria-hidden="true"></i></span>
+                                            </a>                                            
+                                            <ul class="dropdown-menu badgemenu">
+                                              <li>
+                                                Enter Store Name
+                                              </li>    
+                                             </ul>      
+                                          </div>
+         										</label>
                             <div class="col-sm-10" style="padding-top: 7px;">
                               <input type="text" id="input-referred-by-val" name="referred_by" placeholder="Referred By" value="<?php echo $referred_by; ?>"
                                 id="input-referred-by" class="form-control" />
@@ -572,7 +769,17 @@
                             <div class="form-group">
                               <label class="col-sm-3 control-label" for="input-referred-by">
                                              - Set as <span style="background: yellow;">featured</span> to top the list :
-                                             </label>
+                                             <div class="pull-right">
+                                            <a class="cursor" data-toggle="dropdown" aria-expanded="true">
+                                              <span class="bonbadge"><i class="fa-info" aria-hidden="true"></i></span>
+                                            </a>                                            
+                                            <ul class="dropdown-menu badgemenu">
+                                              <li>
+                                                Enter Store Name
+                                              </li>    
+                                             </ul>      
+                                          </div>
+                              </label>
                               <div class="col-sm-9">
                                 <span class="referred-by"><?php echo $daysleft; ?> day(s) left</span>
                               </div>
@@ -581,7 +788,8 @@
                             <div class="form-group">
                               <label class="col-sm-3 control-label" for="input-referred-by">
                                              - Not set as <span style="background: yellow;">featured.</span>
-                                             </label>
+                                             
+                              </label>
                               <div class="col-sm-9">
                               </div>
                             </div>
@@ -589,7 +797,7 @@
                             <div class="form-group">
                               <label class="col-sm-3 control-label" for="input-referred-by">
                                              - Number of times buyers viewed your listing :
-                                             </label>
+                              </label>
                               <div class="col-sm-9" style="padding-top: 7px">
                                 <div class="cnt--sell">
                                   <?php if($seller_counter == '0') { ?>
@@ -639,7 +847,7 @@
                   <?php if($allow_products != 0) {$checked_products = "checked";} else {$checked_products = "";}
                               if($allow_cart != 0) {$checked_cart = "checked";} else {$checked_cart = "";} ?>
                   <p>
-                    <input type="checkbox" checked class="allow-prod-cart" name="allow_products" <?php echo $checked_products; ?> id="allow_products" value="allow_products"> Allow products to visible to buyer in store/entity page.</p>
+                    <input type="checkbox" checked class="allow-prod-cart" name="allow_products" <?php echo $checked_products; ?>                    id="allow_products" value="allow_products"> Allow products to visible to buyer in store/entity page.</p>
                   <p><span class="txt--itc">(Hide products tab incase if you do not need it or if you want to update it)</span></p>
                   <p><input type="checkbox" class="allow-prod-cart" name="allow_products" <?php echo $checked_cart; ?> id="allow_cart"
                     value="allow_cart"> Allow buyers to thier cart to continue online shooping.</p>
@@ -652,15 +860,15 @@
                 <br />
               </div>
               <div class="tab-pane <?php if($_GET['tab_section'] == 'store'){ echo 'active'; }?>" id="tab_store_ad">
-                <ul class="nav nav-tabs fixme-sec" style="z-index:123">
-                  <li class="<?php if($_GET['inner_store'] == 'draft'){ echo 'active'; }?>"><a href="#draftt" data-txt="draft" class="draft" data-toggle="tab">Drafts (<span class="black_s" id="sellerdraftcount"><?php echo $draft_tt; ?></span>)</a></li>
-                  <li class="<?php if($_GET['inner_store'] == 'submitted'){ echo 'active'; }?>"><a href="#submitted" data-txt="submitted" class="submitted" data-toggle="tab">Submitted (<span class="black_s" id="sellersubmittedcount"><?php echo $submitted_tt; ?></span>)</a></li>
-                  <li class="<?php if($_GET['inner_store'] == 'approved'){ echo 'active'; }?>"><a href="#approved" data-txt="approved" class="approved" data-toggle="tab">Approved (<span class="black_s" id="sellerapprovedcount"><?php echo $approved_tt; ?></span>)</a></li>
-                  <li class="<?php if($_GET['inner_store'] == 'live'){ echo 'active'; }?>"><a href="#live" data-txt="live" class="live" data-toggle="tab">Live (<span class="black_s" id="sellerlivecount"><?php echo $live_tt; ?></span>)</a></li>
-                  <li class="<?php if($_GET['inner_store'] == 'yet_to_live'){ echo 'active'; }?>"><a href="#yet_to_live" data-txt="yet_to_live" class="yet_to_live" data-toggle="tab">Yet to go live (<span class="black_s" id="sellerpaidcount"><?php echo $paid_tt; ?></span>)</a></li>
-                  <li class="<?php if($_GET['inner_store'] == 'rejected'){ echo 'active'; }?>"><a href="#rejected" data-txt="rejected" class="rejected" data-toggle="tab">Rejected (<span class="black_s" id="sellerrejectedcount"><?php echo $rejected_tt; ?></span>)</a></li>
-                  <li class="<?php if($_GET['inner_store'] == 'archive'){ echo 'active'; }?>"><a href="#archive" data-txt="archive" class="archive" data-toggle="tab">Archive (<span class="black_s" id="sellerarchivecount"><?php echo $archive_tt; ?></span>)</a></li>
-                  <li class="<?php if($_GET['inner_store'] == 'trash'){ echo 'active'; }?>"><a href="#trash" data-txt="trash" class="trash" data-toggle="tab">Trash (<span class="black_s" id="sellertrashcount"><?php echo $trash_tt; ?></span>)</a></li>
+                <ul class="nav nav-tabs fixme-sec _bon_ts" style="z-index:123 background-color: #f1f1f1 !important;">
+                  <li class="tas_bon <?php if($_GET['inner_store'] == 'draft'){ echo 'active'; }?>"><a href="#draftt" data-txt="draft" class="draft" data-toggle="tab">Drafts (<span class="black_s" id="sellerdraftcount"><?php echo $draft_tt; ?></span>)</a></li>
+                  <li class="tas_bon <?php if($_GET['inner_store'] == 'submitted'){ echo 'active'; }?>"><a href="#submitted" data-txt="submitted" class="submitted" data-toggle="tab">Submitted (<span class="black_s" id="sellersubmittedcount"><?php echo $submitted_tt; ?></span>)</a></li>
+                  <li class="tas_bon <?php if($_GET['inner_store'] == 'approved'){ echo 'active'; }?>"><a href="#approved" data-txt="approved" class="approved" data-toggle="tab">Approved (<span class="black_s" id="sellerapprovedcount"><?php echo $approved_tt; ?></span>)</a></li>
+                  <li class="tas_bon <?php if($_GET['inner_store'] == 'live'){ echo 'active'; }?>"><a href="#live" data-txt="live" class="live" data-toggle="tab">Live (<span class="black_s" id="sellerlivecount"><?php echo $live_tt; ?></span>)</a></li>
+                  <li class="tas_bon <?php if($_GET['inner_store'] == 'yet_to_live'){ echo 'active'; }?>"><a href="#yet_to_live" data-txt="yet_to_live" class="yet_to_live" data-toggle="tab">Yet to go live (<span class="black_s" id="sellerpaidcount"><?php echo $paid_tt; ?></span>)</a></li>
+                  <li class="tas_bon <?php if($_GET['inner_store'] == 'rejected'){ echo 'active'; }?>"><a href="#rejected" data-txt="rejected" class="rejected" data-toggle="tab">Rejected (<span class="black_s" id="sellerrejectedcount"><?php echo $rejected_tt; ?></span>)</a></li>
+                  <li class="tas_bon <?php if($_GET['inner_store'] == 'archive'){ echo 'active'; }?>"><a href="#archive" data-txt="archive" class="archive" data-toggle="tab">Archive (<span class="black_s" id="sellerarchivecount"><?php echo $archive_tt; ?></span>)</a></li>
+                  <li class="tas_bon <?php if($_GET['inner_store'] == 'trash'){ echo 'active'; }?>"><a href="#trash" data-txt="trash" class="trash" data-toggle="tab">Trash (<span class="black_s" id="sellertrashcount"><?php echo $trash_tt; ?></span>)</a></li>
                 </ul>
                 <!-- Nav tabs content -->
                 <div class="tab-content">
@@ -1100,60 +1308,60 @@
                   if(!empty($category_seller['category'])) { 
                     $i = 0;
                     foreach ($category_seller['category'] as $seller_cat) { ?>
-                  <tr id="cat-rows<?php echo $cat_row; ?>" class="extra">
-                    <td class="text-left cat">
-                      <input type="text" name="category" data-row="<?php echo $cat_row; ?>" id="category_<?php echo $cat_row; ?>" value="<?php echo $seller_cat['name']; ?>"
-                        placeholder="Type here" class="form-control" />
-                      <ul class="dropdown-menu_<?php echo $cat_row; ?>"></ul>
-                      <input type="hidden" data-row="<?php echo $cat_row; ?>" name="category_id" id="category_hidden_<?php echo $cat_row; ?>" value="<?php echo $seller_cat['category_id']; ?>"
-                      />
-                    </td>
-                    <td class="text-left subcat">
-                      <input type="text" name="sub_category" id="sub_category_<?php echo $cat_row; ?>" data-row="<?php echo $cat_row; ?>" value=""
-                        placeholder="Type here" class="form-control" />
-                      <ul class="dropdown-submenu_<?php echo $cat_row; ?>"></ul>
-                      <div id="product-category_<?php echo $cat_row; ?>" class="well well-sm" style="height: 150px; overflow: auto;">
-                        <?php
-                                         foreach ($category_seller['sub_categories'][$cat_row] as $seller_sub_cat) { ?>
-                          <p><i class="fa fa-minus-circle"></i>
-                            <?php echo $seller_sub_cat['name']; ?>
-                            <input type="hidden" name="product_category[]" id="product_category_<?php echo $seller_sub_cat['category_id']; ?>" value="<?php echo $seller_sub_cat['category_id']; ?>"></p>
-                          <?php } ?>
-                      </div>
-                    </div>
-                    </td>
-                    <td class="text-left">
-                      <?php if($cat_row > 0) { ?>
-                      <button type="button" onclick="$('#cat-rows<?php echo $cat_row; ?>').remove();" class="--minus-btn">-</button>
-                      <?php } ?>
-                    </td>
-                  </tr>
-                  <?php $cat_row++; } } else { ?>
-                  <tr id="cat-rows0" class="extra">
-                    <td class="text-left cat">
-                      <input type="text" name="category_0" id="category_0" data-row="0" value="" placeholder="Type here" onKeyPress="getCategories(this.value, 0)"
-                        class="form-control" />
-                      <ul class="dropdown-menu_0"></ul>
-                      <input type="hidden" id="category_hidden_0" data-row="0" name="category_id" value="" />
-                    </td>
-                    <td class="text-left subcat">
-                      <input type="text" name="sub_category_0" value="" placeholder="Type here" data-row="0" class="form-control" />
-                      <ul class="dropdown-submenu_0"></ul>
-                      <div id="product-category_0" class="well well-sm" style="height: 150px; overflow: auto;"></div>
-                    </td>
-                    <td></td>
-                  </tr>
-                  <?php } ?>
-              </tbody>
-              <tfoot>
-                <tr>
-                  <td colspan="3">
-                    <button type="button" id="addBtnCategories" class="btn btn-primary">Add</button>
-                    <button type="button" id="button-cat-subcat-save" data-loading-text="<?php echo $text_loading; ?>" class="btn btn-primary pull-right"><?php echo $button_save; ?></button>
+                <tr id="cat-rows<?php echo $cat_row; ?>" class="extra">
+                  <td class="text-left cat">
+                    <input type="text" name="category" data-row="<?php echo $cat_row; ?>" id="category_<?php echo $cat_row; ?>" value="<?php echo $seller_cat['name']; ?>"
+                      placeholder="Type here" class="form-control" />
+                    <ul class="dropdown-menu_<?php echo $cat_row; ?>"></ul>
+                    <input type="hidden" data-row="<?php echo $cat_row; ?>" name="category_id" id="category_hidden_<?php echo $cat_row; ?>" value="<?php echo $seller_cat['category_id']; ?>"
+                    />
                   </td>
-                </tr>
-              </tfoot>
-              </table>
+                  <td class="text-left subcat">
+                    <input type="text" name="sub_category" id="sub_category_<?php echo $cat_row; ?>" data-row="<?php echo $cat_row; ?>" value=""
+                      placeholder="Type here" class="form-control" />
+                    <ul class="dropdown-submenu_<?php echo $cat_row; ?>"></ul>
+                    <div id="product-category_<?php echo $cat_row; ?>" class="well well-sm" style="height: 150px; overflow: auto;">
+                      <?php
+                                         foreach ($category_seller['sub_categories'][$cat_row] as $seller_sub_cat) { ?>
+                        <p><i class="fa fa-minus-circle"></i>
+                          <?php echo $seller_sub_cat['name']; ?>
+                          <input type="hidden" name="product_category[]" id="product_category_<?php echo $seller_sub_cat['category_id']; ?>" value="<?php echo $seller_sub_cat['category_id']; ?>"></p>
+                        <?php } ?>
+                    </div>
+          </div>
+          </td>
+          <td class="text-left">
+            <?php if($cat_row > 0) { ?>
+            <button type="button" onclick="$('#cat-rows<?php echo $cat_row; ?>').remove();" class="--minus-btn">-</button>
+            <?php } ?>
+          </td>
+          </tr>
+          <?php $cat_row++; } } else { ?>
+          <tr id="cat-rows0" class="extra">
+            <td class="text-left cat">
+              <input type="text" name="category_0" id="category_0" data-row="0" value="" placeholder="Type here" onKeyPress="getCategories(this.value, 0)"
+                class="form-control" />
+              <ul class="dropdown-menu_0"></ul>
+              <input type="hidden" id="category_hidden_0" data-row="0" name="category_id" value="" />
+            </td>
+            <td class="text-left subcat">
+              <input type="text" name="sub_category_0" value="" placeholder="Type here" data-row="0" class="form-control" />
+              <ul class="dropdown-submenu_0"></ul>
+              <div id="product-category_0" class="well well-sm" style="height: 150px; overflow: auto;"></div>
+            </td>
+            <td></td>
+          </tr>
+          <?php } ?>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td colspan="3">
+                <button type="button" id="addBtnCategories" class="btn btn-primary">Add</button>
+                <button type="button" id="button-cat-subcat-save" data-loading-text="<?php echo $text_loading; ?>" class="btn btn-primary pull-right"><?php echo $button_save; ?></button>
+              </td>
+            </tr>
+          </tfoot>
+          </table>
       </div>
       </form>
     </div>
@@ -1496,51 +1704,51 @@
 
 </script>
 <script type="text/javascript">
-   <!--
+  <!--
    var store_mobile_num_row = <?php echo $store_mobile_num_row; ?>;
    
-   function addStoreMobile() {
-     html = '<div id="ad_mob' + store_mobile_num_row + '" class="row">';
-     html += '<div class="col-sm-2">';
-     html += '</div>';
-     html += '<div class="col-sm-8 addition-mobile ' + store_mobile_num_row + '">';
-     html += '  <input type="text" name="store_mobile_num[]" value="" placeholder="Store/Entity mobile number" class="form-control mat--lt" />';
-     html += '</div>';
-     html += '<div class="col-sm-2 addition-mobile">';
-     html += '  <span class="text-left"><button type="button" onclick="$(\'#ad_mob' + store_mobile_num_row + '\').remove();" class="--minus-btn">-</button></span>';
-     html += '</div>';
-     html += '</div>';
+  function addStoreMobile() {
+    html = '<div id="ad_mob' + store_mobile_num_row + '" class="row">';
+    html += '<div class="col-sm-2">';
+    html += '</div>';
+    html += '<div class="col-sm-8 addition-mobile ' + store_mobile_num_row + '">';
+    html += '  <input type="text" name="store_mobile_num[]" value="" placeholder="Store/Entity mobile number" class="form-control mat--lt" />';
+    html += '</div>';
+    html += '<div class="col-sm-2 addition-mobile">';
+    html += '  <span class="text-left"><button type="button" onclick="$(\'#ad_mob' + store_mobile_num_row + '\').remove();" class="--minus-btn">-</button></span>';
+    html += '</div>';
+    html += '</div>';
 
-     $('#str_mob').append(html);
+    $('#str_mob').append(html);
 
-     store_mobile_num_row++;
-   }
+    store_mobile_num_row++;
+  }
    //-->
 
 </script>
 <script type="text/javascript">
-   <!--
+  <!--
    var store_ll_num_row = <?php echo $store_ll_num_row; ?>;
    
-   function addStoreLandLine() {//alert("test");
-     html = '<div id="ad_ll' + store_ll_num_row + '" class="row">';
-     html += '<div class="col-sm-2">';
-     html += '</div>';
-     html += '<div class="col-sm-2 addition-mobile ' + store_ll_num_row + '">';
-     html += '  <input type="text" maxlength="5" name="store_ll_code[]" value="" placeholder="Store/Entity STD code" class="form-control mat--lt" />';
-     html += '</div>';
-     html += '<div class="col-sm-6 addition-mobile ' + store_ll_num_row + '">';
-     html += '  <input type="text" maxlength="10" name="store_ll_num[]" value="" placeholder="Store/Entity landline number" class="form-control mat--lt" />';
-     html += '</div>';
-     html += '<div class="col-sm-2 addition-mobile">';
-     html += '  <span class="text-left"><button type="button" onclick="$(\'#ad_ll' + store_ll_num_row + '\').remove();" class="--minus-btn">-</button></span>';
-     html += '</div>';
-     html += '</div>';
+  function addStoreLandLine() {//alert("test");
+    html = '<div id="ad_ll' + store_ll_num_row + '" class="row">';
+    html += '<div class="col-sm-2">';
+    html += '</div>';
+    html += '<div class="col-sm-2 addition-mobile ' + store_ll_num_row + '">';
+    html += '  <input type="text" maxlength="5" name="store_ll_code[]" value="" placeholder="Store/Entity STD code" class="form-control mat--lt" />';
+    html += '</div>';
+    html += '<div class="col-sm-6 addition-mobile ' + store_ll_num_row + '">';
+    html += '  <input type="text" maxlength="10" name="store_ll_num[]" value="" placeholder="Store/Entity landline number" class="form-control mat--lt" />';
+    html += '</div>';
+    html += '<div class="col-sm-2 addition-mobile">';
+    html += '  <span class="text-left"><button type="button" onclick="$(\'#ad_ll' + store_ll_num_row + '\').remove();" class="--minus-btn">-</button></span>';
+    html += '</div>';
+    html += '</div>';
 
-     $('#str_ll').append(html);
+    $('#str_ll').append(html);
 
-     store_mobile_num_row++;
-   }
+    store_mobile_num_row++;
+  }
    //-->
 
 </script>
@@ -1865,173 +2073,173 @@
 
 </script>
 <script type="text/javascript">
-   <!--
-     $('#request_membership').delegate('.pagination a', 'click', function (e) {
-       e.preventDefault();
+  <!--
+    $('#request_membership').delegate('.pagination a', 'click', function (e) {
+      e.preventDefault();
 
-       $('#request_membership').load(this.href);
-     });
+      $('#request_membership').load(this.href);
+    });
 
-   $('#request_membership').load('index.php?route=sellerprofile/sellerprofile/request_membership&seller_id=<?php echo $seller_id; ?>');
+  $('#request_membership').load('index.php?route=sellerprofile/sellerprofile/request_membership&seller_id=<?php echo $seller_id; ?>');
 
-   $('#button-request_membership').on('click', function (e) {
-     e.preventDefault();
-     if ($('#tab-request_membership input[name=\'agree\']').prop('checked')) {
-       var seller_group_id = $('#tab-request_membership input[name=\'selected\']:checkbox:checked').val();
-       $.ajax({
-         url: 'index.php?route=sellerprofile/sellerprofile/request_membership&seller_id=<?php echo $seller_id; ?>',
-         type: 'POST',
-         dataType: 'html',
-         data: $('#tab-request_membership .scrollbox-' + seller_group_id + ' input[name=\'seller_category[]\']').serialize() + '&seller_group_name=' + encodeURIComponent($(
-           '#tab-request_membership input[name=\'selected\']:checkbox:checked').attr("id")) + '&description=' + encodeURIComponent($('#tab-request_membership input[name=\'description\']').val()) + '&seller_group_id=' +
-         encodeURIComponent($('#tab-request_membership input[name=\'selected\']:checkbox:checked').val()),
-         beforeSend: function () {
-           $('#button-request_membership').button('loading');
-         },
-         complete: function () {
-           $('#button-request_membership').button('reset');
-         },
-         success: function (html) {
+  $('#button-request_membership').on('click', function (e) {
+    e.preventDefault();
+    if ($('#tab-request_membership input[name=\'agree\']').prop('checked')) {
+      var seller_group_id = $('#tab-request_membership input[name=\'selected\']:checkbox:checked').val();
+      $.ajax({
+        url: 'index.php?route=sellerprofile/sellerprofile/request_membership&seller_id=<?php echo $seller_id; ?>',
+        type: 'POST',
+        dataType: 'html',
+        data: $('#tab-request_membership .scrollbox-' + seller_group_id + ' input[name=\'seller_category[]\']').serialize() + '&seller_group_name=' + encodeURIComponent($(
+          '#tab-request_membership input[name=\'selected\']:checkbox:checked').attr("id")) + '&description=' + encodeURIComponent($('#tab-request_membership input[name=\'description\']').val()) + '&seller_group_id=' +
+        encodeURIComponent($('#tab-request_membership input[name=\'selected\']:checkbox:checked').val()),
+        beforeSend: function () {
+          $('#button-request_membership').button('loading');
+        },
+        complete: function () {
+          $('#button-request_membership').button('reset');
+        },
+        success: function (html) {
 
-           $('#request_membership').html(html);
+          $('#request_membership').html(html);
 
-           $('#tab-request_membership input[name=\'points\']').val('');
-           $('#tab-request_membership input[name=\'description\']').val('');
-         }
-       });
+          $('#tab-request_membership input[name=\'points\']').val('');
+          $('#tab-request_membership input[name=\'description\']').val('');
+        }
+      });
 
 
 
-     } else {
-       var text_seller_agree = '<?php echo $text_seller_agree; ?>';
+    } else {
+      var text_seller_agree = '<?php echo $text_seller_agree; ?>';
 
-       $('#request_membership').prepend('<div class="alert alert-danger"><i class="fa fa-check-circle"></i> ' + text_seller_agree + '<button type="button" class="close" data-dismiss="alert">&times;</button></div>');
-     }
-   });
+      $('#request_membership').prepend('<div class="alert alert-danger"><i class="fa fa-check-circle"></i> ' + text_seller_agree + '<button type="button" class="close" data-dismiss="alert">&times;</button></div>');
+    }
+  });
 
    //-->
 
 </script>
 <script type="text/javascript">
-   <!--
-     $('#button-request_membership').attr("disabled", "disabled");
-   // the selector will match all input controls of type :checkbox
-   // and attach a click event handler
-   $(".text-center input:checkbox").on('click', function () {
-     // in the handler, 'this' refers to the box clicked on
-     var $box = $(this);
-     if ($box.is(":checked")) {
-       $('#button-request_membership').removeAttr('disabled');
+  <!--
+    $('#button-request_membership').attr("disabled", "disabled");
+  // the selector will match all input controls of type :checkbox
+  // and attach a click event handler
+  $(".text-center input:checkbox").on('click', function () {
+    // in the handler, 'this' refers to the box clicked on
+    var $box = $(this);
+    if ($box.is(":checked")) {
+      $('#button-request_membership').removeAttr('disabled');
 
-       var group = "input:checkbox[name='" + $box.attr("name") + "']";
+      var group = "input:checkbox[name='" + $box.attr("name") + "']";
 
-       $(group).prop("checked", false);
-       $box.prop("checked", true);
-     } else {
-       $('#button-request_membership').attr("disabled", "disabled");
-       $box.prop("checked", false);
-     }
-   });
+      $(group).prop("checked", false);
+      $box.prop("checked", true);
+    } else {
+      $('#button-request_membership').attr("disabled", "disabled");
+      $box.prop("checked", false);
+    }
+  });
 
-   // Image Manager
-   $(document).delegate('a[data-toggle=\'image\']', 'click', function (e) {
-     e.preventDefault();
+  // Image Manager
+  $(document).delegate('a[data-toggle=\'image\']', 'click', function (e) {
+    e.preventDefault();
 
-     var element = this;
+    var element = this;
 
-     $(element).popover({
-       html: true,
-       placement: 'right',
-       trigger: 'manual',
-       content: function () {
-         return '<button type="button" id="button-image" class="btn btn-primary"><i class="fa fa-pencil"></i></button> <button type="button" id="button-clear" class="btn btn-danger"><i class="fa fa-trash-o"></i></button>';
-       }
-     });
+    $(element).popover({
+      html: true,
+      placement: 'right',
+      trigger: 'manual',
+      content: function () {
+        return '<button type="button" id="button-image" class="btn btn-primary"><i class="fa fa-pencil"></i></button> <button type="button" id="button-clear" class="btn btn-danger"><i class="fa fa-trash-o"></i></button>';
+      }
+    });
 
-     $(element).popover('toggle');
+    $(element).popover('toggle');
 
-     $('#button-image').on('click', function () {
-       $('#modal-image').remove();
+    $('#button-image').on('click', function () {
+      $('#modal-image').remove();
 
-       $.ajax({
-         url: 'index.php?route=sellerproduct/filemanager&token=' + getURLVar('token') + '&target=' + $(element).parent().find('input').attr('id') + '&thumb=' + $(element).attr('id'),
-         dataType: 'html',
-         beforeSend: function () {
-           $('#button-image i').replaceWith('<i class="fa fa-circle-o-notch fa-spin"></i>');
-           $('#button-image').prop('disabled', true);
-         },
-         complete: function () {
-           $('#button-image i').replaceWith('<i class="fa fa-upload"></i>');
-           $('#button-image').prop('disabled', false);
-         },
-         success: function (html) {
-           $('body').append('<div id="modal-image" class="modal">' + html + '</div>');
+      $.ajax({
+        url: 'index.php?route=sellerproduct/filemanager&token=' + getURLVar('token') + '&target=' + $(element).parent().find('input').attr('id') + '&thumb=' + $(element).attr('id'),
+        dataType: 'html',
+        beforeSend: function () {
+          $('#button-image i').replaceWith('<i class="fa fa-circle-o-notch fa-spin"></i>');
+          $('#button-image').prop('disabled', true);
+        },
+        complete: function () {
+          $('#button-image i').replaceWith('<i class="fa fa-upload"></i>');
+          $('#button-image').prop('disabled', false);
+        },
+        success: function (html) {
+          $('body').append('<div id="modal-image" class="modal">' + html + '</div>');
 
-           $('#modal-image').modal('show');
-         }
-       });
+          $('#modal-image').modal('show');
+        }
+      });
 
-       $(element).popover('hide');
-     });
+      $(element).popover('hide');
+    });
 
-     $('#button-clear').on('click', function () {
-       $(element).find('img').attr('src', $(element).find('img').attr('data-placeholder'));
+    $('#button-clear').on('click', function () {
+      $(element).find('img').attr('src', $(element).find('img').attr('data-placeholder'));
 
-       $(element).parent().find('input').attr('value', '');
+      $(element).parent().find('input').attr('value', '');
 
-       $(element).popover('hide');
-     });
-   });
+      $(element).popover('hide');
+    });
+  });
 
-   // banner Manager
-   $(document).delegate('a[data-toggle=\'banner\']', 'click', function (e) {
-     e.preventDefault();
+  // banner Manager
+  $(document).delegate('a[data-toggle=\'banner\']', 'click', function (e) {
+    e.preventDefault();
 
-     var element = this;
+    var element = this;
 
-     $(element).popover({
-       html: true,
-       placement: 'right',
-       trigger: 'manual',
-       content: function () {
-         return '<button type="button" id="button-banner" class="btn btn-primary"><i class="fa fa-pencil"></i></button> <button type="button" id="button-clear" class="btn btn-danger"><i class="fa fa-trash-o"></i></button>';
-       }
-     });
+    $(element).popover({
+      html: true,
+      placement: 'right',
+      trigger: 'manual',
+      content: function () {
+        return '<button type="button" id="button-banner" class="btn btn-primary"><i class="fa fa-pencil"></i></button> <button type="button" id="button-clear" class="btn btn-danger"><i class="fa fa-trash-o"></i></button>';
+      }
+    });
 
-     $(element).popover('toggle');
+    $(element).popover('toggle');
 
-     $('#button-banner').on('click', function () {
-       $('#modal-image').remove();
+    $('#button-banner').on('click', function () {
+      $('#modal-image').remove();
 
-       $.ajax({
-         url: 'index.php?route=sellerproduct/filemanager&token=' + getURLVar('token') + '&target=' + $(element).parent().find('input').attr('id') + '&thumb=' + $(element).attr('id'),
-         dataType: 'html',
-         beforeSend: function () {
-           $('#button-banner i').replaceWith('<i class="fa fa-circle-o-notch fa-spin"></i>');
-           $('#button-banner').prop('disabled', true);
-         },
-         complete: function () {
-           $('#button-banner i').replaceWith('<i class="fa fa-upload"></i>');
-           $('#button-banner').prop('disabled', false);
-         },
-         success: function (html) {
-           $('body').append('<div id="modal-image" class="modal">' + html + '</div>');
+      $.ajax({
+        url: 'index.php?route=sellerproduct/filemanager&token=' + getURLVar('token') + '&target=' + $(element).parent().find('input').attr('id') + '&thumb=' + $(element).attr('id'),
+        dataType: 'html',
+        beforeSend: function () {
+          $('#button-banner i').replaceWith('<i class="fa fa-circle-o-notch fa-spin"></i>');
+          $('#button-banner').prop('disabled', true);
+        },
+        complete: function () {
+          $('#button-banner i').replaceWith('<i class="fa fa-upload"></i>');
+          $('#button-banner').prop('disabled', false);
+        },
+        success: function (html) {
+          $('body').append('<div id="modal-image" class="modal">' + html + '</div>');
 
-           $('#modal-image').modal('show');
-         }
-       });
+          $('#modal-image').modal('show');
+        }
+      });
 
-       $(element).popover('hide');
-     });
+      $(element).popover('hide');
+    });
 
-     $('#button-clear').on('click', function () {
-       $(element).find('img').attr('src', $(element).find('img').attr('data-placeholder'));
+    $('#button-clear').on('click', function () {
+      $(element).find('img').attr('src', $(element).find('img').attr('data-placeholder'));
 
-       $(element).parent().find('input').attr('value', '');
+      $(element).parent().find('input').attr('value', '');
 
-       $(element).popover('hide');
-     });
-   });
+      $(element).popover('hide');
+    });
+  });
 
 </script>
 <script type="text/javascript">
@@ -2253,8 +2461,8 @@
   <script>
     var lat_st = "<?php echo $lat; ?>";
     var long_st = "<?php echo $lng; ?>";
-    if(lat_st != "" && long_st != "")
-        sessionStorage.setItem("myStoreAddress", lat_st + "," + long_st)
+    if (lat_st != "" && long_st != "")
+      sessionStorage.setItem("myStoreAddress", lat_st + "," + long_st)
   </script>
   <script>
     $(document).on('click', '.print_me', function (e) {
