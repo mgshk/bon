@@ -559,9 +559,10 @@
 				}
 				else {
 					$.cookie('myCookie', latlong);
+					pageReload = true;
 				}
 
-				getAddress(latlong, $('#location-search-val'), true);
+				getAddress(latlong, $('#location-search-val'), pageReload);
 				$('#myModal').hide();
 			}
 		}
@@ -1513,7 +1514,7 @@
 					<input type="text" id="divFormattedAddress" class="form-control" readonly="true" />
 				</div>
 				<div class="modal-footer">
-					<a class="linkMap pull-left" onclick="getLocation()">Get current location</a>
+					<a class="linkMap pull-left" onclick="getLocation()"  data-dismiss="modal">Get current location</a>
 					<button type="button" class="btn btn-primary" data-dismiss="modal" onclick="setPosition()">Ok</button>
 					<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
 				</div>
