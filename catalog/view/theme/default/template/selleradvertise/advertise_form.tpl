@@ -70,12 +70,19 @@
                           <input type="hidden" name="offer_image_original" value="image/<?php echo $offer_image_original; ?>" id="offer_image_original" />
                         </div>
                      </div>
+
+                     <div class="form-group">
+                        <label class="col-sm-2 control-label"> </label>
+                        <div class="col-sm-10">
+                          <div id="img-containers" class="img-containers"></div>
+                        </div>
+                     </div>
 		                
-                     <div style="width: 50%;">
+                     <!-- <div style="width: 50%;">
                         <div style="width: 300px;">
                            <div id="img-containers" class="img-containers"></div>
                         </div>
-                     </div>
+                     </div> -->
                      
                      <div class="col-md-12">
                         <div class="form-group row <?php if(empty($advertise_id_edit)) { echo 'hide'; } ?>" id="cropping-panel">
