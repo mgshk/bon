@@ -1,6 +1,6 @@
     <div class="prod--sell-ed">
           
-          <a href="<?php echo $edit; ?>" class="prf--sell">Edit</a>
+          <a href="<?php echo $edit; ?>" class="prf--sell btn btn-primary edt">Edit</a>
  </div>
  
 

@@ -220,6 +220,11 @@ class ModelCatalogCategory extends Model {
 		}
 	}
 
+	public function storeCategoryToSeller($category_id, $seller_id) {
+		$this->db->query("INSERT INTO ".DB_PREFIX."category_to_seller SET category_id = '".$category_id."', 
+			seller_id = '".$seller_id."', status = 1");	
+	}
+
 
 	public function storeSellerSubcategories($data) {
 		$this->db->query("UPDATE ".DB_PREFIX."customer SET seller_category = '".$data."' WHERE customer_id = '".(int) $this->customer->getID()."'");

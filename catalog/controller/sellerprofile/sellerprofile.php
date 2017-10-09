@@ -3015,12 +3015,18 @@ class Controllersellerprofilesellerprofile extends Controller
             $this->load->model('catalog/category');
             $this->load->model('account/activity');
 
+            $customer_id = $this->customer->getId();
             $categories_list = $this->model_catalog_category->getCategoriesList();
 
             $categories = str_replace('&quot;', '"', $this->request->post['category']);
             $category_ids = json_decode($categories);
 
+            $this->model_catalog_category->getDeleteSellerCategories($customer_id);
+
             foreach ($category_ids as $value) {
+
+                $this->model_catalog_category->storeCategoryToSeller($value->category, $customer_id);
+
                 if($value->category && $categories_list[$value->category]) {
                     $validate_category[] = $value;
                 }
