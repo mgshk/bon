@@ -623,7 +623,7 @@
                                              </ul>      
                                           </div>
                             </label>
-                            <div class="col-sm-10">
+                            <div class="col-sm-8">
                               <input type="text" name="store_email" placeholder="<?php echo $entry_store_email; ?>" value="<?php echo $store_email; ?>"
                                 id="input-store-email" class="form-control" required/>
                               <span class="input-group-btn">
@@ -646,7 +646,7 @@
                                              </ul>      
                                           </div>
                             </label>
-                            <div class="col-sm-10">
+                            <div class="col-sm-8">
                               <input maxlength="30" type="text" name="tin" placeholder="<?php echo $placeholder_tin; ?>" value="<?php echo $tin; ?>" id="input-tin"
                                 class="form-control" required/>
                               <span class="input-group-btn">
@@ -667,7 +667,7 @@
                                              </ul>      
                                           </div>
                             </label>
-                            <div class="col-sm-10">
+                            <div class="col-sm-8">
                               <input maxlength="30" type="text" name="pan" placeholder="<?php echo $placeholder_pan; ?>" value="<?php echo $pan; ?>" id="input-pan"
                                 class="form-control" required/>
                               <span class="input-group-btn">
@@ -756,7 +756,7 @@
                                              </ul>      
                                           </div>
                             </label>
-                            <div class="col-sm-10" style="padding-top: 7px;">
+                            <div class="col-sm-8" style="padding-top: 7px;">
                               <input type="text" id="input-referred-by-val" name="referred_by" placeholder="Referred By" value="<?php echo $referred_by; ?>"
                                 id="input-referred-by" class="form-control" />
                               <p>If you are a new referrer,<a class="cursor" data-toggle="modal" data-target="#store_referred"> click here</a></p>
