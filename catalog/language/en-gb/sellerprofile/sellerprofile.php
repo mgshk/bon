@@ -190,6 +190,7 @@ $_['button_edit_order'] = 'Order edit';
 $_['button_edit_profile'] = 'Profile edit';
 $_['button_edit_password'] = 'Password edit';
 $_['text_update_profile_success'] = 'Store/Entity detail updated successfully';
+$_['text_update_address_success'] = 'Store/Entity address updated successfully';
 
 $_['error_tin'] = 'Cannot leave TIN/CST number empty when PAN is filled';
 $_['error_pan'] = 'Cannot leave PAN empty when TIN/CST number is filled';
@@ -232,3 +233,8 @@ $_['error_lat_req'] = 'Please choose map location';
 $_['error_lng_req'] = 'Please choose map location';
 $_['error_seller_address_req'] = 'Store/Entity Address should not be empty';
 
+$_['error_address_1'] = 'Please fill address';
+$_['error_city'] = 'Please fill city';
+$_['error_postcode'] = 'Please fill postcode';
+$_['error_country'] = 'Please select country';
+$_['error_zone'] = 'Please select Region/State';

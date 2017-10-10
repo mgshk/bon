@@ -23,6 +23,7 @@ class Controllersellerprofilesellerprofile extends Controller
         $this->load->model('selleradvertise/advertise');
         $this->load->model('localisation/country');
         $this->load->model('account/address');
+        $this->load->model('localisation/zone');
 
         $this->load->language('sellerprofile/sellerprofile');
         $this->document->setTitle($this->language->get('heading_title'));
@@ -220,12 +221,20 @@ class Controllersellerprofilesellerprofile extends Controller
         }
 
         $data['countries'] = $this->model_localisation_country->getCountries();
+        $country_info = $this->model_localisation_country->getCountry($data['country_id']);
+        $zones = $this->model_localisation_zone->getZonesByCountryId($data['country_id']);
 
         $store_address[] = $data['address_1'];
         $store_address[] = $data['address_2'];
         $store_address[] = $data['city'];
-        $store_address[] = $address_info['zone'];
-        $store_address[] = $address_info['country'];
+
+        foreach ($zones as $zone) {
+            if ($zone['zone_id'] === $data['zone_id']) {
+                $store_address[] = $zone['name'];
+            }
+        }
+        
+        $store_address[] = $country_info['name'];
         $store_address[] = $data['postcode'];
 
         $data['address_store'] = implode(array_filter($store_address), ", ");
@@ -1404,11 +1413,7 @@ class Controllersellerprofilesellerprofile extends Controller
 			}
 		}
 
-        $this->load->model('localisation/country');
-
-        $country_info = $this->model_localisation_country->getCountry($this->request->post['country_id']);
-
-		if($this->request->post['nickname'] =='') {
+        if($this->request->post['nickname'] =='') {
 			$json['error'] = $this->language->get('error_nickname_req');
 		}
 
@@ -1419,26 +1424,6 @@ class Controllersellerprofilesellerprofile extends Controller
 		else if($this->request->post['lng'] =='') {
 			$json['error'] = $this->language->get('error_lng_req');
 		}
-
-        else if ((utf8_strlen(trim($this->request->post['address_1'])) < 3) || (utf8_strlen(trim($this->request->post['address_1'])) > 128)) {
-            $json['error'] = $this->language->get('error_address_1');
-        }
-
-        else if ((utf8_strlen(trim($this->request->post['city'])) < 2) || (utf8_strlen(trim($this->request->post['city'])) > 128)) {
-            $json['error'] = $this->language->get('error_city');
-        }
-
-        else if ($country_info && $country_info['postcode_required'] && (utf8_strlen(trim($this->request->post['postcode'])) < 2 || utf8_strlen(trim($this->request->post['postcode'])) > 10)) {
-            $json['error'] = $this->language->get('error_postcode');
-        }
-
-        else if ($this->request->post['country_id'] == '' || !is_numeric($this->request->post['country_id'])) {
-            $json['error'] = $this->language->get('error_country');
-        }
-
-        else if (!isset($this->request->post['zone_id']) || $this->request->post['zone_id'] == '' || !is_numeric($this->request->post['zone_id'])) {
-            $json['error'] = $this->language->get('error_zone');
-        }
 
         // else if($this->request->post['seller_address'] =='') {
         //     $json['error'] = $this->language->get('error_seller_address_req');
@@ -1456,6 +1441,64 @@ class Controllersellerprofilesellerprofile extends Controller
 			$this->model_sellerprofile_sellerprofile->SellerProfileSave($this->request->post);
 			$json['success'] = $this->language->get('text_update_profile_success');
 		}
+
+        $this->response->addHeader('Content-Type: application/json');
+        $this->response->setOutput(json_encode($json));
+    }
+
+    public function saveStoreAddress() {
+        $json = array();
+
+        $this->load->language('sellerprofile/sellerprofile');
+
+        $this->load->model('sellerprofile/sellerprofile');
+        $this->load->model('localisation/country');
+        $country_info = $this->model_localisation_country->getCountry($this->request->post['country_id']);
+
+        if ((utf8_strlen(trim($this->request->post['address_1'])) < 3) || (utf8_strlen(trim($this->request->post['address_1'])) > 150)) {
+            $json['error'] = $this->language->get('error_address_1');
+        }
+
+        else if ((utf8_strlen(trim($this->request->post['city'])) < 2) || (utf8_strlen(trim($this->request->post['city'])) > 100)) {
+            $json['error'] = $this->language->get('error_city');
+        }
+
+        else if ($country_info && $country_info['postcode_required'] && (utf8_strlen(trim($this->request->post['postcode'])) < 2 || utf8_strlen(trim($this->request->post['postcode'])) > 10)) {
+            $json['error'] = $this->language->get('error_postcode');
+        }
+
+        else if ($this->request->post['country_id'] == '' || !is_numeric($this->request->post['country_id'])) {
+            $json['error'] = $this->language->get('error_country');
+        }
+
+        else if (!isset($this->request->post['zone_id']) || $this->request->post['zone_id'] == '' || !is_numeric($this->request->post['zone_id'])) {
+            $json['error'] = $this->language->get('error_zone');
+        }
+
+        $data = [
+            'address_1' => $this->request->post['address_1'],
+            'address_2' => $this->request->post['address_2'],
+            'city' => $this->request->post['city'],
+            'postcode' => $this->request->post['postcode'],
+            'country_id' => $this->request->post['country_id'],
+            'zone_id' => $this->request->post['zone_id']
+        ];
+
+        if(empty($json['error'])) {
+            $this->model_sellerprofile_sellerprofile->saveStoreAddress($data, $this->customer->getId());
+            $json['success'] = $this->language->get('text_update_address_success');
+
+            $store_address = [
+                'address_1' => $this->request->post['address_1'],
+                'address_2' => $this->request->post['address_2'],
+                'city' => $this->request->post['city'],
+                'zone_name' => $this->request->post['zone_name'],
+                'country_name' => $this->request->post['country_name'],
+                'postcode' => $this->request->post['postcode']
+            ];
+
+            $json['address'] = implode(array_filter($store_address), ", ");
+        }
 
         $this->response->addHeader('Content-Type: application/json');
         $this->response->setOutput(json_encode($json));

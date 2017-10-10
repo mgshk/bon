@@ -10,7 +10,9 @@ class Controllersellerseller extends Controller
         $this->load->model('tool/image');
         $this->load->model('account/address');
         $this->load->model('sellerprofile/sellerprofile');
-
+        $this->load->model('localisation/country');
+        $this->load->model('localisation/zone');
+        
         $this->document->setTitle($this->language->get('heading_title'));
 
         $data['heading_title'] = $this->language->get('heading_title');
@@ -88,18 +90,31 @@ class Controllersellerseller extends Controller
 	            $address_2 = $seller_info['address_2'];
 	            $city = $seller_info['city'];
 	            $postcode = $seller_info['postcode'];
+	            $country_id = $seller_info['country_id'];
+	            $zone_id = $seller_info['zone_id'];
 	        } else {
 	            $address_1 = $address_info['address_1'];
 	            $address_2 = $address_info['address_2'];
 	            $city = $address_info['city'];
 	            $postcode = $address_info['postcode'];
+	            $country_id = $address_info['country_id'];
+	            $zone_id = $address_info['zone_id'];
 	        }
 
 			$store_address[] = $address_1;
 	        $store_address[] = $address_2;
 	        $store_address[] = $city;
-	        $store_address[] = $address_info['zone'];
-	        $store_address[] = $address_info['country'];
+
+	        $country_info = $this->model_localisation_country->getCountry($country_id);
+        	$zones = $this->model_localisation_zone->getZonesByCountryId($country_id);
+
+        	foreach ($zones as $zone) {
+	            if ($zone['zone_id'] === $zone_id) {
+	                $store_address[] = $zone['name'];
+	            }
+	        }
+        
+       		$store_address[] = $country_info['name'];
 	        $store_address[] = $postcode;
 
         	$seller_address = implode(array_filter($store_address), ", ");
@@ -171,8 +186,10 @@ class Controllersellerseller extends Controller
         $this->load->model('tool/image');
         $this->load->model('account/address');
         $this->load->model('sellerprofile/sellerprofile');
-
 		$this->load->model('catalog/category');
+		$this->load->model('localisation/zone');
+		$this->load->model('localisation/country');
+
 		if (isset($this->request->get['path'])) {
 			$category_id = $this->request->get['path'];
 		} else {
@@ -238,18 +255,31 @@ class Controllersellerseller extends Controller
 	            $address_2 = $seller_info['address_2'];
 	            $city = $seller_info['city'];
 	            $postcode = $seller_info['postcode'];
+	            $country_id = $seller_info['country_id'];
+	            $zone_id = $seller_info['zone_id'];
 	        } else {
 	            $address_1 = $address_info['address_1'];
 	            $address_2 = $address_info['address_2'];
 	            $city = $address_info['city'];
 	            $postcode = $address_info['postcode'];
+	            $country_id = $address_info['country_id'];
+	            $zone_id = $address_info['zone_id'];
 	        }
 
 			$store_address[] = $address_1;
 	        $store_address[] = $address_2;
 	        $store_address[] = $city;
-	        $store_address[] = $address_info['zone'];
-	        $store_address[] = $address_info['country'];
+
+	        $country_info = $this->model_localisation_country->getCountry($country_id);
+        	$zones = $this->model_localisation_zone->getZonesByCountryId($country_id);
+
+        	foreach ($zones as $zone) {
+	            if ($zone['zone_id'] === $zone_id) {
+	                $store_address[] = $zone['name'];
+	            }
+	        }
+        
+       		$store_address[] = $country_info['name'];
 	        $store_address[] = $postcode;
 
         	$seller_address = implode(array_filter($store_address), ", ");

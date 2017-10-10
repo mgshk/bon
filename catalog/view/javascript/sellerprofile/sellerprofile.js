@@ -55,18 +55,18 @@ function autoCompleteSubcategories() {
   return false;
 }
 
-function getZones(val) {
+function getStoreZones(val) {
   $.ajax({
       url: 'index.php?route=account/account/country&country_id=' + val,
       dataType: 'json',
       beforeSend: function() {
-        $('select[name=\'country_id\']').after(' <i class="fa fa-circle-o-notch fa-spin"></i>');
+        $('select[name=\'store_country_id\']').after(' <i class="fa fa-circle-o-notch fa-spin"></i>');
       },
       complete: function() {
         $('.fa-spin').remove();
       },
       success: function(json) {
-        html = '<option value=""> --- Please Select --- </option>';
+        var html = '<option value="0"> --- Please Select --- </option>';
 
         if (json['zone'] && json['zone'] != '') {
           for (i = 0; i < json['zone'].length; i++) {
@@ -78,11 +78,9 @@ function getZones(val) {
 
             html += '>' + json['zone'][i]['name'] + '</option>';
           }
-        } else {
-          html += '<option value="0" selected="selected"> --- Please Select --- </option>';
         }
 
-        $('select[name=\'zone_id\']').html(html);
+        $('select[name=\'store_zone\']').html(html);
       },
       error: function(xhr, ajaxOptions, thrownError) {
         alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
@@ -92,16 +90,101 @@ function getZones(val) {
   return false;
 }
 
+function storeAddress() {
+ 
+  try {
+
+    var address1 = $('#store-address-1').val();
+    var address2 = $('#store-address-2').val();
+    var city = $('#store-city').val();
+    var postcode = $('#store-postcode').val();
+    var country_name = $('#store_address select[name=\'store_country_id\'] option:selected').text();
+    var country_id = $('#store_address select[name=\'store_country_id\'] option:selected').val();
+    var zone_name = $('#store_address select[name=\'store_zone\'] option:selected').text();
+    var zone_id = $('#store_address select[name=\'store_zone\'] option:selected').val();
+
+    if ($.trim(address1) === '' || address1.length < 3 || address1.length > 150)
+      throw "Please fill Address";
+
+    if ($.trim(city) === '' || city.length < 2 || city.length > 100)
+      throw "Please fill City";
+
+    if ($.trim(postcode) === '' || postcode.length < 2 || postcode.length > 10)
+      throw "Please fill Postcode";
+
+    if (country_id === '0')
+      throw "Please select Country";
+
+    if (zone_id === '0')
+      throw "Please select Region/State";
+
+    $.ajax({
+        cache: false,
+        url: 'index.php?route=sellerprofile/sellerprofile/saveStoreAddress',
+        dataType: 'json',
+        method: 'POST',
+        data : {
+          address_1: address1,
+          address_2: address2,
+          city: city,
+          postcode: postcode,
+          country_name: country_name,
+          country_id: country_id,
+          zone_name: zone_name,
+          zone_id: zone_id
+        },
+        success: function(json) {
+          $('#successMsg').empty().hide();
+          $('#successMsg').html('<i class="fa fa-check-circle"></i> '+ json.success).show();
+
+          setTimeout(function() {
+            $('#store_address').modal('toggle');
+            $('#store_address_update').html(json.address);
+            $('#successMsg').empty().hide();
+          }, 3000);
+        },
+      error: function(xhr, ajaxOptions, thrownError) {
+        $('#errorMsg').html('<i class="fa fa-times-circle"></i> '+xhr.responseText).show();
+
+        setTimeout(function() {
+          $('#errorMsg').empty().hide();
+        }, 3000);
+      }
+    });
+
+  } catch (e) {
+    $('#errorMsg').html('<i class="fa fa-times-circle"></i> '+ e).show();
+
+    setTimeout(function() {
+      $('#errorMsg').empty().hide();
+    }, 3000);
+  }
+
+  return false;
+}
+
 $(document).ready(function() {
 
   autoCompleteCategories();
   autoCompleteSubcategories();
 
-  $(document).on('change', 'select[name=\'country_id\']', function() {
-    getZones($(this).val());
+  $(document).on('change', 'select[name=\'store_country_id\']', function() {
+    getStoreZones($(this).val());
+
+    return false;
   });
 
-  $('select[name=\'country_id\']').trigger('change');
+  $(document).on('click', '#openStoreAddress', function() {
+    var countryId = $('#hidden_store_countryId').val();
+
+    getStoreZones(countryId);
+
+    $('#store_address').modal('toggle');
+
+    return false;
+  });
+
+  //$('select[name=\'store_country_id\']').trigger('change');
 
   $("body").on("click", "#addBtnCategories", function() {
     var ctr = $("#cats tbody").find(".extra").length;

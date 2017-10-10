@@ -736,15 +736,20 @@ class Modelsellerprofilesellerprofile extends Model
         $this->db->query('UPDATE '.DB_PREFIX."customer 
             SET nickname = '".$this->db->escape($data['nickname'])."', banner = '".$this->db->escape($data['banner'])."',
             image = '".$this->db->escape($data['image'])."', description = '".$this->db->escape($data['seller_description'])."',
-            address_1 = '".$this->db->escape($data['address_1'])."', address_2 = '".$this->db->escape($data['address_2'])."', 
-            city = '".$this->db->escape($data['city'])."', postcode = '".$this->db->escape($data['postcode'])."',
-            country_id = '".$this->db->escape($data['country_id'])."', zone_id = '".$this->db->escape($data['zone_id'])."', 
             tin = '".$this->db->escape($data['tin'])."', pan = '".$this->db->escape($data['pan'])."', 
             lat = '".$this->db->escape($data['lat'])."', lng = '".$this->db->escape($data['lng'])."',
             owner_name = '".$this->db->escape($data['owner_name'])."', store_email = '".$this->db->escape($data['store_email'])."', referred_by = '".$this->db->escape($data['referred_by'])."',
             store_mobile_num = '".$this->db->escape($mob)."', delivery_type = '".$this->db->escape($data['delivery_type'])."',
             active = '".(int) $this->db->escape($data['store_activate'])."' ".$columns." 
             WHERE customer_id='".(int) $this->customer->getId()."'");
+    }
+
+    public function saveStoreAddress ($data, $customer_id) {
+        $this->db->query('UPDATE '.DB_PREFIX."customer 
+            SET address_1 = '".$this->db->escape($data['address_1'])."', address_2 = '".$this->db->escape($data['address_2'])."', 
+            city = '".$this->db->escape($data['city'])."', postcode = '".$this->db->escape($data['postcode'])."',
+            country_id = '".$this->db->escape($data['country_id'])."', zone_id = '".$this->db->escape($data['zone_id'])."'
+            WHERE customer_id='".(int) $customer_id."'");
     }
 
     // public function SellerProfileSave($data)

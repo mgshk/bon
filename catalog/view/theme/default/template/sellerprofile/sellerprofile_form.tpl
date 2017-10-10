@@ -321,39 +321,40 @@
                                   <h4 class="modal-title">Update Store Address</h4>
                                 </div>
                                 <div class="modal-body">
+                                  <div id="errorMsg" class="alert alert-danger" style="display:none;"></div>
+                                  <div id="successMsg" class="alert alert-success" style="display:none;"></div>
+
                                   <div class="form-group required">
-                                    <label class="col-sm-2 control-label" for="input-address-1"><?php echo $entry_address_1; ?></label>
+                                    <label class="col-sm-2 control-label" for="store-address-1"><?php echo $entry_address_1; ?></label>
                                     <div class="col-sm-10">
-                                      <input type="text" name="address_1" value="<?php echo $address_1; ?>" placeholder="<?php echo $entry_address_1; ?>" id="input-address-1"
-                                        class="form-control" />
+                                      <input type="text" name="address_1" maxlength="150" value="<?php echo $address_1; ?>" placeholder="<?php echo $entry_address_1; ?>" id="store-address-1" class="form-control" autocomplete="off" />
                                     </div>
                                   </div>
                                   <div class="form-group">
-                                    <label class="col-sm-2 control-label" for="input-address-2"><?php echo $entry_address_2; ?></label>
+                                    <label class="col-sm-2 control-label" for="store-address-2"><?php echo $entry_address_2; ?></label>
                                     <div class="col-sm-10">
-                                      <input type="text" name="address_2" value="<?php echo $address_2; ?>" placeholder="<?php echo $entry_address_2; ?>" id="input-address-2"
-                                        class="form-control" />
+                                      <input type="text" name="address_2" maxlength="150" value="<?php echo $address_2; ?>" placeholder="<?php echo $entry_address_2; ?>" id="store-address-2" class="form-control" 
+                                      autocomplete="off" />
                                     </div>
                                   </div>
                                   <div class="form-group required">
-                                    <label class="col-sm-2 control-label" for="input-city"><?php echo $entry_city; ?></label>
+                                    <label class="col-sm-2 control-label" for="store-city"><?php echo $entry_city; ?></label>
                                     <div class="col-sm-10">
-                                      <input type="text" name="city" value="<?php echo $city; ?>" placeholder="<?php echo $entry_city; ?>" id="input-city" class="form-control"
-                                      />
+                                      <input type="text" maxlength="100" name="city" value="<?php echo $city; ?>" placeholder="<?php echo $entry_city; ?>" id="store-city" class="form-control" autocomplete="off" />
                                     </div>
                                   </div>
                                   <div class="form-group required">
-                                    <label class="col-sm-2 control-label" for="input-postcode"><?php echo $entry_postcode; ?></label>
+                                    <label class="col-sm-2 control-label" for="store-postcode"><?php echo $entry_postcode; ?></label>
                                     <div class="col-sm-10">
-                                      <input type="text" name="postcode" value="<?php echo $postcode; ?>" placeholder="<?php echo $entry_postcode; ?>" id="input-postcode"
-                                        class="form-control" />
+                                      <input type="text" name="postcode" maxlength="10" value="<?php echo $postcode; ?>" placeholder="<?php echo $entry_postcode; ?>" id="store-postcode" class="form-control" autocomplete="off" />
                                     </div>
                                   </div>
                                   <div class="form-group required">
-                                    <label class="col-sm-2 control-label" for="input-country"><?php echo $entry_country; ?></label>
+                                    <label class="col-sm-2 control-label" for="store-country"><?php echo $entry_country; ?></label>
                                     <div class="col-sm-10">
-                                      <select name="country_id" id="input-country" class="form-control">
-                                        <option value=""><?php echo $text_select; ?></option>
+                                      <input type="hidden" id="hidden_store_countryId" name="hidden_store_countryId" value="<?php echo $country_id; ?>" />
+                                      <select name="store_country_id" id="store-country" class="form-control">
+                                        <option value="0"><?php echo $text_select; ?></option>
                                         <?php foreach ($countries as $country) { ?>
                                         <?php if ($country['country_id'] == $country_id) { ?>
                                         <option value="<?php echo $country['country_id']; ?>" selected="selected"><?php echo $country['name']; ?></option>
@@ -365,15 +366,16 @@
                                     </div>
                                   </div>
                                   <div class="form-group required">
-                                    <label class="col-sm-2 control-label" for="input-zone"><?php echo $entry_zone; ?></label>
+                                    <label class="col-sm-2 control-label" for="store-zone"><?php echo $entry_zone; ?></label>
                                     <div class="col-sm-10">
-                                      <input type="hidden" id="zone_id" name="hidden_zone_id" value="<?php echo $zone_id; ?>" />
-                                      <select name="zone_id" id="input-zone" class="form-control"></select>
+                                      <input type="hidden" id="hidden_zone_id" name="hidden_zone_id" value="<?php echo $zone_id; ?>" />
+                                      <select name="store_zone" id="store-zone" class="form-control"></select>
                                     </div>
                                   </div>
                                 </div>
                                 <div class="modal-footer">
-                                  <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                                  <button type="button" class="btn btn-primary" onclick="storeAddress();">Save</button>
+                                  <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
                                 </div>
                               </div>
                             </div>
@@ -393,9 +395,9 @@
                                           </div>
                             </label>
                             <div class="col-sm-10 additional_image sel--sec--ordd">
-                               <a class="cursor sel--sec--ord btn btn-primary edt" data-toggle="modal" data-target="#store_address">Edit</a>
+                               <a class="cursor sel--sec--ord btn btn-primary edt" id="openStoreAddress">Edit</a>
                               &nbsp; &nbsp;
-                              <?php echo $address_store; ?>
+                              <span id="store_address_update"><?php echo $address_store; ?></span>
                             </div>
                           </div>
                           <div class="form-group required">
