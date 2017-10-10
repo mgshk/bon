@@ -750,6 +750,8 @@ class Modelsellerprofilesellerprofile extends Model
             lat = '".$this->db->escape($data['lat'])."', lng = '".$this->db->escape($data['lng'])."',
             owner_name = '".$this->db->escape($data['owner_name'])."', store_email = '".$this->db->escape($data['store_email'])."', referred_by = '".$ref_by."',
             store_mobile_num = '".$this->db->escape($mob)."', delivery_type = '".$this->db->escape($data['delivery_type'])."',
+	    website = '".$this->db->escape($data['website'])."', facebook = '".$this->db->escape($data['facebook'])."', twitter = '".$this->db->escape($data['twitter'])."', 
+	    googleplus = '".$this->db->escape($data['googleplus'])."', instagram = '".$this->db->escape($data['instagram'])."',
             active = '".(int) $this->db->escape($data['store_activate'])."' ".$columns." 
             WHERE customer_id='".(int) $this->customer->getId()."'");
     }
