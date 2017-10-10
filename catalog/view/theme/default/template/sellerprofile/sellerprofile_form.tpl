@@ -223,14 +223,14 @@
                     <div id="collapse1" class="panel-collapse collapse in">
                       <div class="panel-body">
                         <?php if($seller_approved != 1) { ?>
-                        <div class="alert alert-danger"><i class="fa fa-times-circle"></i> Your store approval is pending.</div>
+                        <div class="alert alert-danger"><i class="fa fa-times-circle"></i> Your store/entity approval is pending. Enter all fields correctly and save for approval.</div>
                         <?php } else { ?>
-                        <div class="alert alert-success"><i class="fa fa-check-circle"></i> Your store is approved.</div>
+                        <div class="alert alert-success"><i class="fa fa-check-circle"></i> Your store/entity is approved. It is now live for public view.</div>
                         <?php } ?>
                         <?php if($seller_verified != 1) { ?>
-                        <div class="alert alert-danger"><i class="fa fa-times-circle"></i> Your store verification is pending.</div>
+                        <div class="alert alert-danger"><i class="fa fa-times-circle"></i> Your store/entity verification is pending. Get crowned (<img width="20" height="20" src="image/verified.png">) and earn buyers trust by getting verified.</div>
                         <?php } else { ?>
-                        <div class="alert alert-success"><i class="fa fa-check-circle"></i> Your store is verified.</div>
+                        <div class="alert alert-success"><i class="fa fa-check-circle"></i> Your store is verified. Got crowned (<img width="20" height="20" src="image/verified.png">), now you are leading the race to reach buyers.</div>
                         <?php } ?>
                         <div class="str--ftr-btn col-sm-12">
                           <div class="row" style="float: right;">
@@ -261,7 +261,7 @@
                                             </a>                                            
                                             <ul class="dropdown-menu badgemenu">
                                               <li>
-                                                Enter Store Name
+                                                Must match name in banner and/or registered name.
                                               </li>    
                                              </ul>      
                                           </div>
@@ -283,7 +283,7 @@
                                             </a>                                            
                                             <ul class="dropdown-menu badgemenu">
                                               <li>
-                                                Enter Store Name
+                                                Image must be clear and concise.
                                               </li>    
                                              </ul>      
                                           </div>
@@ -303,7 +303,7 @@
                                             </a>                                            
                                             <ul class="dropdown-menu badgemenu">
                                               <li>
-                                                Enter Store Name
+                                                Detail about your business.
                                               </li>    
                                              </ul>      
                                           </div> </label>
@@ -389,7 +389,7 @@
                                             </a>                                            
                                             <ul class="dropdown-menu badgemenu">
                                               <li>
-                                                Enter Store Name
+                                                Save correct store/entity address for buyers access.
                                               </li>    
                                              </ul>      
                                           </div>
@@ -408,7 +408,7 @@
                                             </a>                                            
                                             <ul class="dropdown-menu badgemenu">
                                               <li>
-                                                Enter Store Name
+                                                Save accurate location of you store/entity for buyers to search and find you in BoN.
                                               </li>    
                                              </ul>      
                                           </div>
@@ -428,7 +428,7 @@
                                             </a>                                            
                                             <ul class="dropdown-menu badgemenu">
                                               <li>
-                                                Enter Store Name
+                                                Enter full name.
                                               </li>    
                                              </ul>      
                                           </div>
@@ -450,7 +450,7 @@
                                             </a>                                            
                                             <ul class="dropdown-menu badgemenu">
                                               <li>
-                                                Enter Store Name
+                                                Image must be clear.
                                               </li>    
                                              </ul>      
                                           </div>
@@ -471,7 +471,7 @@
                                             </a>                                            
                                             <ul class="dropdown-menu badgemenu">
                                               <li>
-                                                Enter Store Name
+                                                Additional images of your business.
                                               </li>    
                                              </ul>      
                                           </div>
@@ -491,7 +491,7 @@
                                             </a>                                            
                                             <ul class="dropdown-menu badgemenu">
                                               <li>
-                                                Enter Store Name
+                                                Entered category will affect your ranking inturn buyers views, if not accurate.
                                               </li>    
                                              </ul>      
                                           </div>
@@ -511,7 +511,7 @@
                                             </a>                                            
                                             <ul class="dropdown-menu badgemenu">
                                               <li>
-                                                Enter Store Name
+                                                Provide working hours for buyer visits.
                                               </li>    
                                              </ul>      
                                           </div>
@@ -531,7 +531,7 @@
                                             </a>                                            
                                             <ul class="dropdown-menu badgemenu">
                                               <li>
-                                                Enter Store Name
+                                                Enter correct contact landline number for buyers access.
                                               </li>    
                                              </ul>      
                                           </div>
@@ -578,7 +578,8 @@
                                             </a>                                            
                                             <ul class="dropdown-menu badgemenu">
                                               <li>
-                                                Enter Store Name
+                                                Enter correct contact mobile number for buyers easy access. Entered mobile number will be used while sending posted advertisement
+                                                detail, buyers order detail, BoN offers etc.,
                                               </li>    
                                              </ul>      
                                           </div>
@@ -594,10 +595,6 @@
                                     id="input-store-num" class="form-control mat--lt" required/>
                                   <span class="input-group-btn">
                                                    </span>
-                                  <?php if($store_mobile_num_row == 0) { ?>
-                                  <p class="special--email-txt mat--lt --bon-res-scrooll">(Above mobile no. will be used while sending posted advertisement detail, buyers order
-                                    detail, BoN offers, etc.)</p>
-                                  <?php } ?>
                                 </div>
                                 <?php if($store_mobile_num_row == 0) { ?>
                                 <div class="col-sm-2">
@@ -620,18 +617,17 @@
                                             </a>                                            
                                             <ul class="dropdown-menu badgemenu">
                                               <li>
-                                                Enter Store Name
+                                                Enter valid email address. Entered email ID will be used while sending posted advertisement
+                                                detail, buyers order detal, BoN offers etc.,
                                               </li>    
                                              </ul>      
                                           </div>
                             </label>
-                            <div class="col-sm-8">
+                            <div class="col-sm-10">
                               <input type="text" name="store_email" placeholder="<?php echo $entry_store_email; ?>" value="<?php echo $store_email; ?>"
                                 id="input-store-email" class="form-control" required/>
                               <span class="input-group-btn">
                                              </span>
-                              <p class="special--email-txt --bon-res-scrooll">(Above email ID will be used while sending posted advertisement detail, buyers order detail,
-                                BoN offers, etc.)</p>
                             </div>
                           </div>
                           <div class="form-group">
@@ -643,13 +639,13 @@
                                             </a>                                            
                                             <ul class="dropdown-menu badgemenu">
                                               <li>
-                                                Enter Store Name
+                                                Enter registered TIN/TAN/CST number to verify your business and get more attention.
                                               </li>    
                                              </ul>      
                                           </div>
                             </label>
-                            <div class="col-sm-8">
-                              <input maxlength="30" type="text" name="tin" placeholder="<?php echo $placeholder_tin; ?>" value="<?php echo $tin; ?>" id="input-tin"
+                            <div class="col-sm-10">
+                              <input maxlength="30" type="text" name="tin" value="<?php echo $tin; ?>" id="input-tin"
                                 class="form-control" required/>
                               <span class="input-group-btn">
                                              </span>
@@ -664,12 +660,12 @@
                                             </a>                                            
                                             <ul class="dropdown-menu badgemenu">
                                               <li>
-                                                Enter Store Name
+                                                Enter PAN used to get TIN/TAN/CST number to verify your business and get more attention.
                                               </li>    
                                              </ul>      
                                           </div>
                             </label>
-                            <div class="col-sm-8">
+                            <div class="col-sm-10">
                               <input maxlength="30" type="text" name="pan" placeholder="<?php echo $placeholder_pan; ?>" value="<?php echo $pan; ?>" id="input-pan"
                                 class="form-control" required/>
                               <span class="input-group-btn">
@@ -685,7 +681,7 @@
                                             </a>                                            
                                             <ul class="dropdown-menu badgemenu">
                                               <li>
-                                                Enter Store Name
+                                                Enter full and correct URL's of your business portals if you have.
                                               </li>    
                                              </ul>      
                                           </div>
@@ -704,7 +700,7 @@
                                             </a>                                            
                                             <ul class="dropdown-menu badgemenu">
                                               <li>
-                                                Enter Store Name
+                                                Choose current delivery type you run your business.
                                               </li>    
                                              </ul>      
                                           </div>
@@ -727,7 +723,7 @@
                                             </a>                                            
                                             <ul class="dropdown-menu badgemenu">
                                               <li>
-                                                Enter Store Name
+                                                Referrers would get 20% of the first paid advertisement posted by the store/entity you referred.
                                               </li>    
                                              </ul>      
                                           </div>
@@ -753,13 +749,13 @@
                                             </a>                                            
                                             <ul class="dropdown-menu badgemenu">
                                               <li>
-                                                Enter Store Name
+                                                Referrers would get 20% of the first paid advertisement posted by the store/entity you referred.
                                               </li>    
                                              </ul>      
                                           </div>
                             </label>
-                            <div class="col-sm-8" style="padding-top: 7px;">
-                              <input type="text" id="input-referred-by-val" name="referred_by" placeholder="Referred By" value="<?php echo $referred_by; ?>"
+                            <div class="col-sm-10" style="padding-top: 7px;">
+                              <input type="text" id="input-referred-by-val" name="referred_by" placeholder="<?php echo $entry_store_mobile_num; ?>" value="<?php echo $referred_by; ?>"
                                 id="input-referred-by" class="form-control" />
                               <p>If you are a new referrer,<a class="cursor" data-toggle="modal" data-target="#store_referred"> click here</a></p>
                             </div>
@@ -769,17 +765,7 @@
                             <?php if($daysleft > 0) { ?>
                             <div class="form-group">
                               <label class="col-sm-3 control-label" for="input-referred-by">
-                                             - Set as <span style="background: yellow;">featured</span> to top the list :
-                                             <div class="pull-right">
-                                            <a class="cursor" data-toggle="dropdown" aria-expanded="true">
-                                              <span class="bonbadge"><i class="fa-info" aria-hidden="true"></i></span>
-                                            </a>                                            
-                                            <ul class="dropdown-menu badgemenu">
-                                              <li>
-                                                Enter Store Name
-                                              </li>    
-                                             </ul>      
-                                          </div>
+                                             - Set as <span style="background: yellow;"> Featured </span>. Now you lead the race no matter how far you are from buyers by topping their search list. 
                               </label>
                               <div class="col-sm-9">
                                 <span class="referred-by"><?php echo $daysleft; ?> day(s) left</span>
@@ -788,7 +774,7 @@
                             <?php } else { ?>
                             <div class="form-group">
                               <label class="col-sm-3 control-label" for="input-referred-by">
-                                             - Not set as <span style="background: yellow;">featured.</span>
+                                             - Not set as <span style="background: yellow;"> Featured </span>. Don't be one among the crowd, rise above from the rest.
                                              
                               </label>
                               <div class="col-sm-9">
@@ -843,15 +829,15 @@
               <div class="tab-pane <?php if($_GET['tab_section'] == 'product'){ echo 'active'; }?>" id="tab-sellerproduct">
                 <div class="--bon-res-scrooll">
                   <p>Products you upload here are closely monitored by our experts. If found not permissable to public, store/entity
-                    might be banned from the listing after a warning.</p>
+                    will be banned from the listing without a warning.</p>
                   <br/>
                   <?php if($allow_products != 0) {$checked_products = "checked";} else {$checked_products = "";}
                               if($allow_cart != 0) {$checked_cart = "checked";} else {$checked_cart = "";} ?>
                   <p>
-                    <input type="checkbox" class="allow-prod-cart" name="allow_products" <?php echo $checked_products; ?> id="allow_products" value="allow_products"> Allow products to visible to buyer in store/entity page.</p>
+                    <input type="checkbox" class="allow-prod-cart" name="allow_products" <?php echo $checked_products; ?> id="allow_products" value="allow_products"> Allow products tab visible to buyer in store/entity detail page.</p>
                   <p><span class="txt--itc">(Hide products tab incase if you do not need it or if you want to update it)</span></p>
                   <p><input type="checkbox" class="allow-prod-cart" name="allow_products" <?php echo $checked_cart; ?> id="allow_cart"
-                    value="allow_cart"> Allow buyers to thier cart to continue online shooping.</p>
+                    value="allow_cart"> Allow buyers to add products to thier cart to continue online shooping.</p>
                   <p><span class="txt--itc">(Hide 'Add to cart' button incase if you want buyers to only see your products)</span></p>
                   <br/>
                 </div>
@@ -926,8 +912,7 @@
               </div>
               <div class="tab-pane <?php if($_GET['tab_section'] == 'qr_code'){ echo 'active'; }?>" id="tab_qr_code">
                 <div class="col-sm-12 --bon-res-scrooll">
-                  <p>Please download any or both below images having QR code of your store/entity and have them for display
-                    to your buyers.
+                  <p>Please download any or both images below having QR code of your store/entity and display them to your buyers.
                     <p>By scanning buyers can
                       <p>
                         <p style="margin-left:20px;">- add yours as their favorites to get your AD's notification the moment you upload. It increases
@@ -1073,7 +1058,7 @@
             <div class="form-group">
               <input name="refer_email" id="refer_email" value="" placeholder="Email" required="" type="email">
             </div>
-            <div class="form-temp">Referrer bank detail</div>
+            <div class="form-temp">Referrer bank detail:</div>
             <div class="form-group">
               <input name="bank_name" id="bank_name" value="" placeholder="Bank Name" required="" type="text">
             </div>
@@ -1091,20 +1076,20 @@
             </div>
             <div class="form-group">
               <div class="main--res-redor">
-                <span class="pull-left"><input type="radio" checked name="account_type" id="salary_account" value="salary_account"><label for="salary_account"> saving account</label></span>
+                <span class="pull-left"><input type="radio" checked name="account_type" id="salary_account" value="salary_account"><label for="salary_account"> savings account</label></span>
                 <span class="pull-right"><input type="radio" name="account_type" id="current_account" value="current_account"><label for="current_account"> current account</label></span><br/>
               </div>
             </div>
             <div class="det--ref" style="margin-bottom:10px;clear: both;">Above information including bank detail are true and correct to the best of my knowledge. If there is any issue
               or incorrect data provided by me, BoN is in no way will be held responsible.</div>
             <div class="form-group">
-              <input type="checkbox" name="terms" id="agree_bank" value="agree" style="margin-right: 5px;"><label for="agree"> I agree</label>
+              <input type="checkbox" name="terms" id="agree_bank" value="agree" style="margin-right: 5px;"><label for="agree"> I agree and would like to earn money.</label>
             </div>
-            <div class="det--ref" style="margin-bottom:20px;"><strong>Note:</strong> BoN will not share your information including bank detail with anyone for any purpose.</div>
             <div class="form-group">
               <button type="button" data-dismiss="modal" class="btn btn-primary pull-left">Cancel</button>
               <button type="button" id="button-refer-save" data-loading-text="<?php echo $text_loading; ?>" class="btn btn-primary pull-right">Save</button>
             </div>
+            <div class="det--ref" style="margin-bottom:20px;"><strong>Note:</strong> BoN will not share your information including bank detail with anyone for any purpose.</div>
           </div>
         </form>
       </div>

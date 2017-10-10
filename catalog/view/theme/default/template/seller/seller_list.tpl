@@ -121,7 +121,7 @@
                      <?php } else { ?>
                      <a href="<?php echo $category['href']; ?>"><img src="image/no_store_img.jpg" class="img-responsive" title="<?php echo $category['nickname']; ?>" alt="<?php echo $category['nickname']; ?>" style="width:280px; height:130px;"></a>
                      <?php } ?>	
-					 <?php if( $category['seller_verified'] != '0') { ?>
+					 <?php if( $category['seller_verified'] == '1') { ?>
                      <img style="position: absolute; margin-left: 250px;" src="image/verified.png" class="img-responsive">
                      <?php } ?>
                      <span class="lenth-dist"><?php if(($category['lat'] && $category['lng']) != '') { ?>
@@ -173,7 +173,7 @@
                      <div class="col-xs-12">
                         <div class="row sellr-list">
                            <div class="col-xs-6">			
-                              <?php if( $category['seller_verified'] != '0') { ?>
+                              <?php if( $category['seller_verified'] == '1') { ?>
 							 <img style="float: right;" src="image/verified.png" class="img-responsive">
 							 <?php } ?>
 							 <?php if( $category['image'] != '') { ?>
