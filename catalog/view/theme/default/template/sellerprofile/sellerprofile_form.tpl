@@ -643,7 +643,7 @@
                                           </div>
                             </label>
                             <div class="col-sm-10">
-                              <input maxlength="30" type="text" name="tin" placeholder="<?php echo $placeholder_tin; ?>" value="<?php echo $tin; ?>" id="input-tin"
+                              <input maxlength="30" type="text" name="tin" value="<?php echo $tin; ?>" id="input-tin"
                                 class="form-control" required/>
                               <span class="input-group-btn">
                                              </span>
