@@ -179,20 +179,20 @@ $_['entry_instagram'] = 'Instagram';
 $_['tab_profile_details'] = 'Profile detail';
 $_['tab_more_details'] = 'Store/Entity detail';
 $_['tab_store_ad'] = 'Store/Endity ADs';
-$_['entry_activate'] = 'Activate/ Deactivate Store';
+$_['entry_activate'] = 'Activate/Deactivate Store';
 $_['entry_nickname'] = 'Store/Entity name';
 $_['entry_owner_name'] = 'Store/Entity owners name';
-$_['entry_tin'] = 'TIN/CST number';
+$_['entry_tin'] = 'TIN/TAN/CST number';
 $_['entry_pan'] = 'PAN';
-$_['placeholder_tin'] = 'TIN/CST number';
-$_['placeholder_pan'] = 'PAN used to get the TIN/CST number';
+$_['placeholder_tin'] = 'TIN/TAN/CST number';
+$_['placeholder_pan'] = 'PAN used to get the TIN/TAN/CST number';
 $_['button_edit_order'] = 'Order edit';
 $_['button_edit_profile'] = 'Profile edit';
 $_['button_edit_password'] = 'Password edit';
 $_['text_update_profile_success'] = 'Store/Entity detail updated successfully';
 
-$_['error_tin'] = 'Cannot leave TIN/CST number empty when PAN is filled';
-$_['error_pan'] = 'Cannot leave PAN empty when TIN/CST number is filled';
+$_['error_tin'] = 'Cannot leave TIN/TAN/CST number empty when PAN is filled';
+$_['error_pan'] = 'Cannot leave PAN empty when TIN/TAN/CST number is filled';
 $_['error_nickname'] = 'Store/Entity name should not be more than 200 characters!';
 $_['error_seller_description'] = 'Store/Entity description should not be more than 2000 characters!';
 $_['error_owner_name'] = 'Owner name should not be more than 200 characters!';
@@ -206,13 +206,13 @@ $_['error_store_mobile_num'] = 'Store/Entity mobile number should not be more or
 $_['error_store_ll_num'] = 'Store/Entity land line code or land line number should not be empty!';
 $_['error_referred_by'] = 'Referred by field should not be more or less than 10 digits!';
 $_['error_store_mobile_num_valid'] = 'Store/Entity mobile number is not valid!';
-$_['error_store_ll_num_valid'] = 'Store/Entity land line code or land line number is not valid!';
+$_['error_store_ll_num_valid'] = 'Store/Entity STD code or land line number is not valid!';
 $_['error_store_category_empty'] = 'Please add atleast one category of your business. Press Edit in Store/Entity categories';
 
-$_['entry_store_email'] = 'Store/Entity email ID';
-$_['entry_store_ll_code'] = 'Store/Entity STD code';
-$_['entry_store_mobile_num'] = 'Store/Entity mobile number';
-$_['entry_store_ll_num'] = 'Store/Entity landline number';
+$_['entry_store_email'] = 'Valid email ID';
+$_['entry_store_ll_code'] = 'STD code';
+$_['entry_store_mobile_num'] = '10 digit mobile number';
+$_['entry_store_ll_num'] = 'LL number';
 
 //Refer pop
 $_['enter_name'] = 'Please enter Name';
