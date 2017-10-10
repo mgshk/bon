@@ -1375,7 +1375,7 @@ class Controllersellerprofilesellerprofile extends Controller
 			$json['error'] = $this->language->get('error_owner_name');
 		} elseif($this->request->post['store_email'] != '' && (strlen($this->request->post['store_email']) > 100)) {
 			$json['error'] = $this->language->get('error_store_email');
-		} elseif($this->request->post['referred_by'] != '' && (strlen($this->request->post['referred_by']) != 10)) {
+		} elseif($this->request->post['referred_by'] != '' && $this->request->post['referred_by'] != '-' && (strlen($this->request->post['referred_by']) != 10)) {
 			$json['error'] = $this->language->get('error_referred_by');
 		} elseif(!empty($this->request->post['store_mobile_num'])) {
 			$str_mob_filter = array_filter($this->request->post['store_mobile_num']);//print_r($str_mob_filter); die;
