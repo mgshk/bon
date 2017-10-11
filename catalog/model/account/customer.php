@@ -20,7 +20,7 @@ class ModelAccountCustomer extends Model {
 			salt = '" . $this->db->escape($salt = token(9)) . "', 
 			password = '" . $this->db->escape(sha1($salt . sha1($salt . sha1($data['password'])))) . "', 
 			newsletter = '" . (isset($data['newsletter']) ? (int)$data['newsletter'] : 0) . "', 
-			ip = '" . $this->db->escape($this->request->server['REMOTE_ADDR']) . "', status = '1', allow_products = 1,
+			ip = '" . $this->db->escape($this->request->server['REMOTE_ADDR']) . "', 
 			approved = '" . (int)!$customer_group_info['approval'] . "', date_added = NOW()");
 
 		$customer_id = $this->db->getLastId();
