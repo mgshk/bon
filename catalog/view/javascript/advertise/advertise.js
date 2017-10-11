@@ -48,12 +48,11 @@ $(document).ready(function() {
 	});
 
 	$('#getCropped').on('click', function (ev) {
+		$('#cropped_result').show();
+		
 	   	$uploadCrop.croppie('result', {
 			type: 'canvas',
-			size: {
-				width: 993,
-				height: 200
-			},
+			size: 'viewport',
 			format: 'jpeg'
 	  	}).then(function (resp) {
 

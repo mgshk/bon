@@ -785,7 +785,7 @@ border-radius: 4px !important;
 .panel .panel-body{font-size: 13px;}
 .croppie-container .cr-slider-wrap{width: 25% !important;margin: 0 20px 10px 20px !important;
 position: relative;bottom: 20px;}
-.crr-img-bttt{width: 100px !important;position: absolute;bottom: 16px;left: 37%;z-index: 1000;}
+.crr-img-bttt{width: 100px !important;position: absolute;bottom: 30px;right:10px;z-index: 1000;}
 .cropedimg{width: 50% !important;position: absolute;bottom: 15px;right: 40px;text-align: center;z-index: 1000;}
 #img-containers{background: #eeeeee !important;}
 #img-containers .cr-boundary{margin-bottom: 40px;}

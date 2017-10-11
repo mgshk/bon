@@ -96,22 +96,24 @@
                         </div>
                      </div> -->
                      
-                     <div class="col-md-12">
+                     <div>
                         <div class="form-group row <?php if(empty($advertise_id_edit)) { echo 'hide'; } ?>" id="cropping-panel">
                       			<div class="col-sm-2"></div>
                       			<div class="col-sm-10">
                       			   <div class="crr-img-bttt"><button class="crr-img-bt" type="button" id="getCropped"><i class="fa fa-crop"></i> Crop</button></div>
                       			</div>
-                           <label class="col-sm-2 control-label" for="input-image">Cropped image: </label><span id="adv-size"></span>
-                           <div class="col-md-10 docs-buttons">
-                              <div class="btn-group btn-group-crop">
-                          				 <span style="margin-bottom:10px;">Please ensure cropped image is of better quality before submitting.</span>
-                                    <div id="croppedImage">
-                            					<img class="img-responsive" src="image/bg-empty1.png" alt="Temp">
-                          				 </div>
-                                    <div class="extra-preview extra-preview-sm"></div>
-                          				 <input type="hidden" name="image_crop" value="" id="image_crop" class="form-control" />
-                              </div>
+                            <div id="cropped_result" style="display:none;">
+                             <label class="col-sm-2 control-label" for="input-image">Cropped image: </label><span id="adv-size"></span>
+                             <div class="col-md-10 docs-buttons">
+                                <div class="btn-group btn-group-crop">
+                            				 <span style="margin-bottom:10px;">Please ensure cropped image is of better quality before submitting.</span>
+                                      <div id="croppedImage">
+                              					<img class="img-responsive" src="image/bg-empty1.png" alt="Temp">
+                            				 </div>
+                                      <div class="extra-preview extra-preview-sm"></div>
+                            				 <input type="hidden" name="image_crop" value="" id="image_crop" class="form-control" />
+                                </div>
+                             </div>
                            </div>
                         </div>
                         <div class="form-group">
