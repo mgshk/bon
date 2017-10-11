@@ -211,15 +211,9 @@
               <div class="tab-pane <?php if($_GET['tab_section'] == 'store_detail'){ echo 'active'; }?>" id="tab-more_details">
                 <div class="panel-group" id="accordion">
                   <div class="panel panel-default">
-                    <div class="panel-heading">
-                      <ul class="--bon-res-scrooll">
-                        <li>- Please enter accurate information.</li>
-                        <li>- Store/Entity name, location, at least one main category and email ID are needed to get the approval.</li>
-                        <li>- Get buyers attention more by filling other fields to get your store/entity verified.</li>
-                        <li>- Store/Entity will be enforced for re-approval if you change it's name and/or add/modify it's banner.</li>
-                        <ul>
-                    </div>
-                    <br>
+                      </br>
+                      <a href="" id="openTermsOfUse" style="margin-left: 20px"><u>Terms of service.</u></a>
+                      </br>
                     <div id="collapse1" class="panel-collapse collapse in">
                       <div class="panel-body">
                         <?php if($seller_approved != 1) { ?>
@@ -312,7 +306,43 @@
                                 id="input-description" class="form-control"><?php echo $seller_description; ?></textarea>
                             </div>
                           </div>
-
+                    <div id="terms_of_use" class="modal fade" role="dialog">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title"><u>Terms of service</u></h4>
+                          </div>
+                          <div class="modal-body">
+                            <div class="form-group">
+                              <table>
+                                  <tr>
+                                    <td>1.&nbsp&nbsp</td>
+                                    <td><?php echo $terms_of_service_1; ?></td>
+                                  </tr><tr><td></td><td></td></tr>
+                                  <tr>
+                                    <td>2.&nbsp&nbsp</td>
+                                    <td><?php echo $terms_of_service_2; ?></td>
+                                  </tr>
+                                  <tr>
+                                    <td>3.&nbsp&nbsp</td>
+                                    <td><?php echo $terms_of_service_3; ?></td>
+                                  </tr>
+                                  <tr>
+                                    <td>4.&nbsp&nbsp</td>
+                                    <td><?php echo $terms_of_service_4; ?></td>
+                                  </tr>
+                              </table>
+                            </div>
+                          </div>
+                          <div class="modal-footer">
+                            <input type="checkbox" name="read_terms" id="terms_read" value="1"/>
+                            <label>I read and will abide the terms strictly.&nbsp&nbsp&nbsp</label>
+                            <button type="button" class="btn btn-primary" data-dismiss="modal" id="btnTermsReadOk" disabled>Ok</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                           <div id="store_address" class="modal fade" role="dialog">
                             <div class="modal-dialog">
                               <div class="modal-content">
@@ -713,7 +743,7 @@
                               Both
                             </div>
                           </div>
-                          <?php if($referred_by !== '') { ?>
+                          <?php if($referred_by !== '' && !empty($referred_by)) { ?>
                           <div class="form-group">
                             <label class="col-sm-2 control-label" for="input-referred-by">
                                                 Referred by
@@ -820,6 +850,7 @@
                           <button type="button" id="button-profile-save" data-loading-text="<?php echo $text_loading; ?>" class="btn btn-primary pull-right">
                                        <?php echo $button_save; ?>
                                        </button>
+                                                           </br>
                         </form>
                       </div>
                     </div>
@@ -1450,6 +1481,13 @@
   </div>
 </div>
 <script>
+
+  var termsRead = document.getElementById('terms_read');
+  var termsReadOk = document.getElementById('btnTermsReadOk');
+  termsRead.onchange = function() {
+    termsReadOk.disabled = !this.checked;
+  };
+
   var fixmeTop = $('.fixme').offset().top;
   $(window).scroll(function () {
     var currentScroll = $(window).scrollTop();

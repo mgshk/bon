@@ -137,6 +137,10 @@ class Controllersellerprofilesellerprofile extends Controller
 		$data['tab_store_ad'] = $this->language->get('tab_store_ad');
 		$data['tab_profile_details'] = $this->language->get('tab_profile_details');
         $data['tab_ip'] = $this->language->get('tab_ip');
+        $data['terms_of_service_1'] = $this->language->get('terms_of_service_1');
+	$data['terms_of_service_2'] = $this->language->get('terms_of_service_2');
+        $data['terms_of_service_3'] = $this->language->get('terms_of_service_3');
+	$data['terms_of_service_4'] = $this->language->get('terms_of_service_4');
 
         if ($this->config->get('config_seller_agree_id')) {
             $this->load->model('catalog/information');

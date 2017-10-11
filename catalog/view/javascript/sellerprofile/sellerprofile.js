@@ -250,6 +250,13 @@ $(document).ready(function() {
     return false;
   });
 
+  $(document).on('click', '#openTermsOfUse', function() {
+ 
+    $('#terms_of_use').modal('toggle');
+    return false;
+ 
+  });
+  
   //$('select[name=\'store_country_id\']').trigger('change');
 
   $("body").on("click", "#addBtnCategories", function() {
