@@ -860,10 +860,15 @@
                                           </div>-->
                           <input type="hidden" class="form-control" name="lat" id="latitude_st" value="<?php echo $lat; ?>" />
                           <input type="hidden" class="form-control" name="lng" id="longitude_st" value="<?php echo $lng; ?>" />
-                          <button type="button" id="button-profile-save" data-loading-text="<?php echo $text_loading; ?>" class="btn btn-primary pull-right">
-                                       <?php echo $button_save; ?>
-                                       </button>
-                                                           </br>
+                                  <?php if(($entry_nickname == '' && $seller_approved == 0) || $seller_approved == 1) { ?>
+                                    <button type="button" id="button-profile-save" data-loading-text="<?php echo $text_loading; ?>" class="btn btn-primary pull-right"><?php echo $button_save; ?></button>
+                                  <?php } else { ?>
+                                    <label style="font-size: 13px;font-style: italic;font-weight: bold">Save option will enable after approval.&nbsp&nbsp&nbsp</label>
+                                    <button type="button" id="button-profile-save-disabled" data-loading-text="<?php echo $text_loading; ?>" class="btn pull-right" disabled><?php echo $button_save; ?></button>
+
+                                  <?php } ?>
+                                                           
+                              </br>
                         </form>
                       </div>
                     </div>
@@ -1779,13 +1784,20 @@
 
 </script>
 <script type="text/javascript">
+  $(window).on('load',function(){
+     $('#terms_of_use').modal({backdrop: 'static', keyboard: false});
+    });
+  
    $(document).ready(function () {
      var tab_class = "<?php echo (isset($_GET['tab_section']) && $_GET['tab_section'] !='') ? $_GET['tab_section'] : '';  ?>";
      if (tab_class == 'product') {
        $('#pre_loaderr').show();
        $('#sellerproduct').load('index.php?route=sellerprofile/sellerprofile/sellerproduct&seller_id=<?php echo $seller_id; ?>');
        $('#pre_loaderr').delay(10000).fadeOut(5000);
+       
      }
+     
+     button-profile-save
    });
 
 
@@ -1834,7 +1846,6 @@
      if (target1 != '') {
        $('#sellerdraft').load('index.php?route=sellerprofile/sellerprofile/selleradvertisedraft&seller_id=<?php echo $seller_id; ?>');
      }
-     $('#terms_of_use').modal({backdrop: 'static', keyboard: false});
    });
    var tab_class = "<?php echo (isset($_GET['inner_store']) && $_GET['inner_store'] !='') ? $_GET['inner_store'] : '';  ?>";
    if (tab_class != '') {
@@ -2267,7 +2278,7 @@
        }
 
        if (has_change) {
-         var modal = $('<div id="alert_pop_del" class="modal fade alert_prof_del_close" tabindex="-1" role="dialog" aria-labelledby="myModalLabel3" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="first_conf"><div class="modal-body"><p>Are you sure want to save?</p><br/><p>- Please validate your store/entity map location before saving.<br/> - Any change in store/entity name and banner are subject to approval.</p></p></div><div class="modal-footer"><button class="btn store_prof_btn" >Yes</button><button class="btn" data-dismiss="modal" aria-hidden="true">No</button></div></div></div></div></div>');
+         var modal = $('<div id="alert_pop_del" class="modal fade alert_prof_del_close" tabindex="-1" role="dialog" aria-labelledby="myModalLabel3" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="first_conf"><div class="modal-body"><p>Are you sure want to save?</p><br/><p>You have changed mandatory fields which requires approval from BoN admin. Till it is approved your store/entity will be taken from public access and also you can not save new changes.</p></p></div><div class="modal-footer"><button class="btn store_prof_btn" >Yes</button><button class="btn" data-dismiss="modal" aria-hidden="true">No</button></div></div></div></div></div>');
 
          $('body').append(modal);
          modal.modal({
@@ -2291,16 +2302,30 @@
 
              },
              success: function (json) {
-               $('.store_msg_alert').remove();
-               if (json['error']) {
-                 $('.agree_tt').attr('checked', false);
-                 $('#content > .container-fluid').prepend('<div class="alert store_msg_alert alert-danger"><i class="fa fa-exclamation-circle"></i> ' + json['error'] + '</div>');
-                 $('body, html').animate({ scrollTop: $('#content').offset().top }, 'slow');
+                $('.store_msg_alert').remove();
+                if (json['error']) {
+                  //$('#image_pop_cls').prop('disabled', false);
+
+                  var modal = $('<div id="alert_pop" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel3" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="first_conf"><div class="modal-body"><p>'+"Successfully saved store/entity detail!"+'</p></p></div><div class="modal-footer"><button class="btn" data-dismiss="modal" aria-hidden="true" id="btnSaved" onClick="window.location.reload()">Ok</button></div></div></div></div></div>');
+                  
+                  $('body').append(modal);
+                    modal.modal({
+                      show: true
+                    })
+                  //$('.agree_tt').attr('checked', false);
+                  //$('#content > .container-fluid').prepend('<div class="alert store_msg_alert alert-danger"><i class="fa fa-exclamation-circle"></i> ' + json['error'] + '</div>');
+                  //$('body, html').animate({ scrollTop: $('#content').offset().top }, 'slow');
                }
                else if (json['success']) {
-                 $('.agree_tt').attr('checked', false);
-                 $('#content > .container-fluid').prepend('<div class="alert store_msg_alert alert-success"><i class="fa fa-exclamation-circle"></i> ' + json['success'] + '</div>');
-                 $('body, html').animate({ scrollTop: $('#content').offset().top }, 'slow');
+                  var modal = $('<div id="alert_pop" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel3" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="first_conf"><div class="modal-body"><p>'+"Successfully saved store/entity detail!"+'</p></p></div><div class="modal-footer"><button class="btn" data-dismiss="modal" aria-hidden="true" id="btnSaved" onClick="window.location.reload()">Ok</button></div></div></div></div></div>');
+                  
+                  $('body').append(modal);
+                    modal.modal({
+                      show: true
+                    })
+                //$('.agree_tt').attr('checked', false);
+                 //$('#content > .container-fluid').prepend('<div class="alert store_msg_alert alert-success"><i class="fa fa-exclamation-circle"></i> ' + json['success'] + '</div>');
+                 //$('body, html').animate({ scrollTop: $('#content').offset().top }, 'slow');
                }
 
              },
@@ -2329,14 +2354,23 @@
            success: function (json) {
              $('.store_msg_alert').remove();
              if (json['error']) {
-               $('.agree_tt').attr('checked', false);
-               $('#content > .container-fluid').prepend('<div class="alert store_msg_alert alert-danger"><i class="fa fa-exclamation-circle"></i> ' + json['error'] + '</div>');
-               $('body, html').animate({ scrollTop: $('#content').offset().top }, 'slow');
+                var modal = $('<div id="alert_pop" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel3" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="first_conf"><div class="modal-body"><p>'+"Successfully saved store/entity detail!"+'</p></p></div><div class="modal-footer"><button class="btn" data-dismiss="modal" aria-hidden="true" id="btnSaved" onClick="window.location.reload()">Ok</button></div></div></div></div></div>');
+              
+                $('body').append(modal);
+                  modal.modal({
+                  show: true
+                })
+               //$('.agree_tt').attr('checked', false);
+               //$('#content > .container-fluid').prepend('<div class="alert store_msg_alert alert-danger"><i class="fa fa-exclamation-circle"></i> ' + json['error'] + '</div>');
+               //$('body, html').animate({ scrollTop: $('#content').offset().top }, 'slow');
              }
              else if (json['success']) {
-               $('.agree_tt').attr('checked', false);
-               $('#content > .container-fluid').prepend('<div class="alert store_msg_alert alert-success"><i class="fa fa-exclamation-circle"></i> ' + json['success'] + '</div>');
-               $('body, html').animate({ scrollTop: $('#content').offset().top }, 'slow');
+              var modal = $('<div id="alert_pop" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel3" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="first_conf"><div class="modal-body"><p>'+"Successfully saved store/entity detail!"+'</p></p></div><div class="modal-footer"><button class="btn" data-dismiss="modal" aria-hidden="true" id="btnSaved" onClick="window.location.reload()">Ok</button></div></div></div></div></div>');
+              
+              $('body').append(modal);
+                modal.modal({
+                  show: true
+                })
              }
 
            },
