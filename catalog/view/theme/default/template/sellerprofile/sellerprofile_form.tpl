@@ -1,4 +1,4 @@
-<?php echo $header; ?>
+Referred by<?php echo $header; ?>
 <div class="container-fluid mainn-topp-ress">
   <?php if ($success) { ?>
   <div class="alert alert-success"><i class="fa fa-check-circle"></i>
@@ -8,7 +8,7 @@
   <div class="row">
     <?php echo $column_left; ?>
     <?php if ($column_left && $column_right) { ?>
-    <?php $class = 'col-sm-6'; ?>
+    <?php $class = 'col-md-4'; ?>
     <?php } elseif ($column_left || $column_right) { ?>
     <?php $class = 'col-sm-9'; ?>
     <?php } else { ?>
@@ -287,7 +287,7 @@
                         </div>
                         <form action="" method="post" enctype="multipart/form-data" id="form-profile" class="form-horizontal main--mb--bt">
                           <div class="form-group">
-                            <label class="col-sm-2 control-label" for="input-nickname">
+                            <label class="col-md-4 control-label" for="input-nickname">
                                           <?php echo $entry_activate; ?>
                                           </label>
                             <div class="col-sm-8" style="padding-top: 7px;">
@@ -297,7 +297,7 @@
                             </div>
                           </div>
                           <div class="form-group required">
-                            <label class="col-sm-2 control-label" for="input-nickname">
+                            <label class="col-md-4 control-label" for="input-nickname">
                                           <?php echo $entry_nickname; ?>
                                           <div class="pull-right">
                                             <a class="cursor" data-toggle="dropdown" aria-expanded="true">
@@ -319,7 +319,7 @@
                           </div>
                           <div class="form-group">
                             <div class="buttons">
-                              <label class="col-sm-2 control-label">
+                              <label class="col-md-4 control-label">
                                              <?php echo $entry_seller_banner; ?>
                                          <div class="pull-right">
                                             <a class="cursor" data-toggle="dropdown" aria-expanded="true">
@@ -332,14 +332,14 @@
                                              </ul>      
                                           </div>
                               </label>
-                              <div class="col-sm-10">
+                              <div class="col-md-4">
                                 <a href="" id="thumb-banner" data-toggle="banner" class="img-thumbnail"><img src="<?php echo $thumb_banner; ?>" alt="" title="" data-placeholder="<?php echo $placeholder; ?>" /></a>
                                 <input type="hidden" name="banner" value="<?php echo $banner; ?>" id="input-banner" />
                               </div>
                             </div>
                           </div>
                           <div class="form-group">
-                            <label class="col-sm-2 control-label">
+                            <label class="col-md-4 control-label">
                                           <?php echo $entry_description; ?>
                                          <div class="pull-right">
                                             <a class="cursor" data-toggle="dropdown" aria-expanded="true">
@@ -368,33 +368,33 @@
                                   <div id="successMsg" class="alert alert-success" style="display:none;"></div>
 
                                   <div class="form-group required">
-                                    <label class="col-sm-2 control-label" for="store-address-1"><?php echo $entry_address_1; ?></label>
-                                    <div class="col-sm-10">
+                                    <label class="col-md-4 control-label" for="store-address-1"><?php echo $entry_address_1; ?></label>
+                                    <div class="col-md-4">
                                       <input type="text" name="address_1" maxlength="150" value="<?php echo $address_1; ?>" placeholder="<?php echo $entry_address_1; ?>" id="store-address-1" class="form-control" autocomplete="off" />
                                     </div>
                                   </div>
                                   <div class="form-group">
-                                    <label class="col-sm-2 control-label" for="store-address-2"><?php echo $entry_address_2; ?></label>
-                                    <div class="col-sm-10">
+                                    <label class="col-md-4 control-label" for="store-address-2"><?php echo $entry_address_2; ?></label>
+                                    <div class="col-md-4">
                                       <input type="text" name="address_2" maxlength="150" value="<?php echo $address_2; ?>" placeholder="<?php echo $entry_address_2; ?>" id="store-address-2" class="form-control" 
                                       autocomplete="off" />
                                     </div>
                                   </div>
                                   <div class="form-group required">
-                                    <label class="col-sm-2 control-label" for="store-city"><?php echo $entry_city; ?></label>
-                                    <div class="col-sm-10">
+                                    <label class="col-md-4 control-label" for="store-city"><?php echo $entry_city; ?></label>
+                                    <div class="col-md-4">
                                       <input type="text" maxlength="100" name="city" value="<?php echo $city; ?>" placeholder="<?php echo $entry_city; ?>" id="store-city" class="form-control" autocomplete="off" />
                                     </div>
                                   </div>
                                   <div class="form-group required">
-                                    <label class="col-sm-2 control-label" for="store-postcode"><?php echo $entry_postcode; ?></label>
-                                    <div class="col-sm-10">
+                                    <label class="col-md-4 control-label" for="store-postcode"><?php echo $entry_postcode; ?></label>
+                                    <div class="col-md-4">
                                       <input type="text" name="postcode" maxlength="10" value="<?php echo $postcode; ?>" placeholder="<?php echo $entry_postcode; ?>" id="store-postcode" class="form-control" autocomplete="off" />
                                     </div>
                                   </div>
                                   <div class="form-group required">
-                                    <label class="col-sm-2 control-label" for="store-country"><?php echo $entry_country; ?></label>
-                                    <div class="col-sm-10">
+                                    <label class="col-md-4 control-label" for="store-country"><?php echo $entry_country; ?></label>
+                                    <div class="col-md-4">
                                       <input type="hidden" id="hidden_store_countryId" name="hidden_store_countryId" value="<?php echo $country_id; ?>" />
                                       <select name="store_country_id" id="store-country" class="form-control">
                                         <option value="0"><?php echo $text_select; ?></option>
@@ -409,8 +409,8 @@
                                     </div>
                                   </div>
                                   <div class="form-group required">
-                                    <label class="col-sm-2 control-label" for="store-zone"><?php echo $entry_zone; ?></label>
-                                    <div class="col-sm-10">
+                                    <label class="col-md-4 control-label" for="store-zone"><?php echo $entry_zone; ?></label>
+                                    <div class="col-md-4">
                                       <input type="hidden" id="hidden_zone_id" name="hidden_zone_id" value="<?php echo $zone_id; ?>" />
                                       <select name="store_zone" id="store-zone" class="form-control"></select>
                                     </div>
@@ -424,7 +424,7 @@
                             </div>
                           </div>
                           <div class="form-group required">
-                            <label class="col-sm-2 control-label" for="input-store-address">
+                            <label class="col-md-4 control-label" for="input-store-address">
                               <?php echo $entry_store_address; ?>
                                           <div class="pull-right">
                                             <a class="cursor" data-toggle="dropdown" aria-expanded="true">
@@ -437,14 +437,14 @@
                                              </ul>      
                                           </div>
                             </label>
-                            <div class="col-sm-10 additional_image sel--sec--ordd">
+                            <div class="col-sm-8 additional_image sel--sec--ordd">
                                <a class="cursor sel--sec--ord btn btn-primary edt" id="openStoreAddress">Edit</a>
                               &nbsp; &nbsp;
                               <span id="store_address_update"><?php echo $address_store; ?></span>
                             </div>
                           </div>
                           <div class="form-group required">
-                            <label class="col-sm-2 control-label">Enter map location
+                            <label class="col-md-4 control-label">Enter map location
                               <div class="pull-right">
                                             <a class="cursor" data-toggle="dropdown" aria-expanded="true">
                                               <span class="bonbadge"><i class="fa-info" aria-hidden="true"></i></span>
@@ -456,14 +456,14 @@
                                              </ul>      
                                           </div>
                             </label>
-                            <div class="col-sm-10">
+                            <div class="col-md-4">
                               <div id="map-search" class="map-sample">
                                 <img class="cursor img-responsive" id="search-btn_st" data-toggle="modal" data-target="#map_mod" src="image/gmap.jpg" />
                               </div>
                             </div>
                           </div>
                           <div class="form-group">
-                            <label class="col-sm-2 control-label" for="input-owner-name">
+                            <label class="col-md-4 control-label" for="input-owner-name">
                               <?php echo $entry_owner_name; ?>
                                           <div class="pull-right">
                                             <a class="cursor" data-toggle="dropdown" aria-expanded="true">
@@ -485,7 +485,7 @@
                           </div>
                           <div class="form-group">
                             <div class="buttons">
-                              <label class="col-sm-2 control-label">
+                              <label class="col-md-4 control-label">
                                              <?php echo $entry_seller_avatar; ?>
                                              <div class="pull-right">
                                             <a class="cursor" data-toggle="dropdown" aria-expanded="true">
@@ -498,7 +498,7 @@
                                              </ul>      
                                           </div>
                               </label>
-                              <div class="col-sm-10">
+                              <div class="col-md-4">
                                 <a href="" id="thumb-image" data-toggle="image" class="img-thumbnail"><img src="<?php echo $thumb_image; ?>" alt="" title="" data-placeholder="<?php echo $placeholder; ?>" /></a>
                                 <input type="hidden" name="image" value="<?php echo $image; ?>" id="input-image" />
                               </div>
@@ -506,7 +506,7 @@
                           </div>
                           <div class="form-group">
                             <div class="buttons">
-                              <label class="col-sm-2 control-label">
+                              <label class="col-md-4 control-label">
                                              Additional Store/Entity images
                                              <div class="pull-right">
                                             <a class="cursor" data-toggle="dropdown" aria-expanded="true">
@@ -519,14 +519,14 @@
                                              </ul>      
                                           </div>
                               </label>
-                              <div class="col-sm-10 additional_image sel--sec--ordd">
+                              <div class="col-md-4 additional_image sel--sec--ordd">
                                 <a class="cursor sel--sec--ord btn btn-primary edt" data-toggle="modal" data-target="#store_images">Edit</a>
                               </div>
                             </div>
                           </div>
                           <div class="form-group required">
                             <div class="buttons">
-                              <label class="col-sm-2 control-label">
+                              <label class="col-md-4 control-label">
                                              Store/Entity categories
                                           <div class="pull-right">
                                             <a class="cursor" data-toggle="dropdown" aria-expanded="true">
@@ -539,14 +539,14 @@
                                              </ul>      
                                           </div>
                               </label>
-                              <div class="col-sm-10 additional_image sel--sec--ordd">
+                              <div class="col-md-4 additional_image sel--sec--ordd">
                                 <a class="cursor sel--sec--ord btn btn-primary edt" data-toggle="modal" data-target="#store_cat">Edit</a>
                               </div>
                             </div>
                           </div>
                           <div class="form-group">
                             <div class="buttons">
-                              <label class="col-sm-2 control-label">
+                              <label class="col-md-4 control-label">
                                              Hours of operation
                                           <div class="pull-right">
                                             <a class="cursor" data-toggle="dropdown" aria-expanded="true">
@@ -559,14 +559,14 @@
                                              </ul>      
                                           </div>
                               </label>
-                              <div class="col-sm-10 additional_image sel--sec--ordd">
+                              <div class="col-md-4 additional_image sel--sec--ordd">
                                 <a class="cursor sel--sec--ord btn btn-primary edt" data-toggle="modal" data-target="#store_timings">Edit</a>
                               </div>
                             </div>
                           </div>
                           <div class="form-group new--mtt">
                             <div class="row">
-                              <label class="col-sm-2 control-label" for="input-ll-num">
+                              <label class="col-md-4 control-label" for="input-ll-num">
                                              <?php echo $entry_store_ll_num; ?>
                                              <div class="pull-right">
                                             <a class="cursor" data-toggle="dropdown" aria-expanded="true">
@@ -585,15 +585,15 @@
                                                 $store_ll_1 = (isset($store_ll[1]) && $store_ll[1] != '') ? $store_ll[1] : ''; ?>
                               <?php if($store_ll_num_row != 0) { ?>
                               <div id="ad_ll<?php echo $store_ll_num_row; ?>" class="row addition-mobile">
-                                <div class="col-sm-2"></div>
+                                <div class="col-md-4"></div>
                                 <?php } ?>
-                                <div class="col-sm-2">
+                                <div class="col-md-2">
                                   <input type="text" name="store_ll_code[]" placeholder="<?php echo $entry_store_ll_code; ?>" value="<?php echo $store_ll_0; ?>"
                                     id="input-ll-code" maxlength="5" class="form-control mat--lt" required/>
                                   <span class="input-group-btn">
                                                    </span>
                                 </div>
-                                <div class="col-sm-6">
+                                <div class="col-md-2">
                                   <input type="text" name="store_ll_num[]" placeholder="<?php echo $entry_store_ll_num; ?>" value="<?php echo $store_ll_1; ?>"
                                     id="input-store-num" maxlength="10" class="form-control mat--lt" required/>
                                   <span class="input-group-btn">
@@ -605,7 +605,7 @@
                                 </div>
                               </div>
                               <?php } else { ?>
-                              <div class="col-sm-2"><span class="text-left"><button type="button" onclick="ad_ll<?php echo $store_ll_num_row; ?>.remove();" class="--minus-btn">-</button></span></div>
+                              <div class="col-md-4"><span class="text-left"><button type="button" onclick="ad_ll<?php echo $store_ll_num_row; ?>.remove();" class="--minus-btn">-</button></span></div>
                             </div>
                             <?php } ?>
                             <?php $store_ll_num_row++; } ?>
@@ -613,7 +613,7 @@
                           </div>
                           <div class="form-group new--mtt">
                             <div class="row">
-                              <label class="col-sm-2 control-label" for="input-store-num">
+                              <label class="col-md-4 control-label" for="input-store-num">
                                              <?php echo $entry_store_mobile_num; ?>
                                              <div class="pull-right">
                                             <a class="cursor" data-toggle="dropdown" aria-expanded="true">
@@ -631,28 +631,28 @@
                               <?php foreach ($store_mobile_num as $store_mobile_nums) { ?>
                               <?php if($store_mobile_num_row != 0) { ?>
                               <div id="ad_mob<?php echo $store_mobile_num_row; ?>" class="row addition-mobile">
-                                <div class="col-sm-2"></div>
+                                <div class="col-md-4"></div>
                                 <?php } ?>
-                                <div class="col-sm-8">
+                                <div class="col-sm-2">
                                   <input type="text" name="store_mobile_num[]" placeholder="<?php echo $entry_store_mobile_num; ?>" value="<?php echo $store_mobile_nums; ?>"
                                     id="input-store-num" class="form-control mat--lt" required/>
                                   <span class="input-group-btn">
                                                    </span>
                                 </div>
                                 <?php if($store_mobile_num_row == 0) { ?>
-                                <div class="col-sm-2">
+                                <div class="col-md-4">
                                   <button type="button" onclick="addStoreMobile();" class="--plus-btn">+</button>
                                 </div>
                               </div>
                               <?php } else { ?>
-                              <div class="col-sm-2"><span class="text-left"><button type="button" onclick="ad_mob<?php echo $store_mobile_num_row; ?>.remove();" class="--minus-btn"> - </button></span></div>
+                              <div class="col-md-4"><span class="text-left"><button type="button" onclick="ad_mob<?php echo $store_mobile_num_row; ?>.remove();" class="--minus-btn"> - </button></span></div>
                             </div>
                             <?php } ?>
                             <?php $store_mobile_num_row++; } ?>
                             <div id="str_mob"></div>
                           </div>
                           <div class="form-group required">
-                            <label class="col-sm-2 control-label" for="input-store-email">
+                            <label class="col-md-4 control-label" for="input-store-email">
                                           <?php echo $entry_store_email; ?>
                                          <div class="pull-right">
                                             <a class="cursor" data-toggle="dropdown" aria-expanded="true">
@@ -666,7 +666,7 @@
                                              </ul>      
                                           </div>
                             </label>
-                            <div class="col-sm-10">
+                            <div class="col-md-4">
                               <input type="text" name="store_email" placeholder="<?php echo $entry_store_email; ?>" value="<?php echo $store_email; ?>"
                                 id="input-store-email" class="form-control" required/>
                               <span class="input-group-btn">
@@ -674,7 +674,7 @@
                             </div>
                           </div>
                           <div class="form-group">
-                            <label class="col-sm-2 control-label" for="input-tin">
+                            <label class="col-md-4 control-label" for="input-tin">
                                           <?php echo $entry_tin; ?>
                                           <div class="pull-right">
                                             <a class="cursor" data-toggle="dropdown" aria-expanded="true">
@@ -687,7 +687,7 @@
                                              </ul>      
                                           </div>
                             </label>
-                            <div class="col-sm-10">
+                            <div class="col-md-4">
                               <input maxlength="30" type="text" name="tin" value="<?php echo $tin; ?>" id="input-tin"
                                 class="form-control" required/>
                               <span class="input-group-btn">
@@ -695,7 +695,7 @@
                             </div>
                           </div>
                           <div class="form-group">
-                            <label class="col-sm-2 control-label" for="input-pan">
+                            <label class="col-md-4 control-label" for="input-pan">
                                           <?php echo $entry_pan; ?>
                                           <div class="pull-right">
                                             <a class="cursor" data-toggle="dropdown" aria-expanded="true">
@@ -708,7 +708,7 @@
                                              </ul>      
                                           </div>
                             </label>
-                            <div class="col-sm-10">
+                            <div class="col-md-4">
                               <input maxlength="30" type="text" name="pan" placeholder="<?php echo $placeholder_pan; ?>" value="<?php echo $pan; ?>" id="input-pan"
                                 class="form-control" required/>
                               <span class="input-group-btn">
@@ -717,7 +717,7 @@
                           </div>
                           <div class="form-group">
                             <div class="buttons">
-                              <label class="col-sm-2 control-label">Store/Entity portals
+                              <label class="col-md-4 control-label">Store/Entity portals
                                 <div class="pull-right">
                                             <a class="cursor" data-toggle="dropdown" aria-expanded="true">
                                               <span class="bonbadge"><i class="fa-info" aria-hidden="true"></i></span>
@@ -729,13 +729,13 @@
                                              </ul>      
                                           </div>
                               </label>
-                              <div class="col-sm-10 additional_image sel--sec--ordd">
+                              <div class="col-md-4 additional_image sel--sec--ordd">
                                 <a class="cursor sel--sec--ord btn btn-primary edt" data-toggle="modal" data-target="#store_portals">Edit</a>
                               </div>
                             </div>
                           </div>
                           <div class="form-group">
-                            <label class="col-sm-2 control-label" for="input-delivery_type">
+                            <label class="col-md-4 control-label" for="input-delivery_type">
                                           Delivery type
                                           <div class="pull-right">
                                             <a class="cursor" data-toggle="dropdown" aria-expanded="true">
@@ -748,7 +748,7 @@
                                              </ul>      
                                           </div>
                             </label>
-                            <div class="col-sm-10">
+                            <div class="col-md-4">
                               <input type="radio" name="delivery_type" value="1" checked> Cash on home delivery<br>
                               <input type="radio" name="delivery_type" value="2" <?php if($delivery_type==2 ){ echo "checked"; } ?>>
                               Cash on Store delivery<br>
@@ -758,7 +758,7 @@
                           </div>
                           <?php if($referred_by !== '' && !empty($referred_by)) { ?>
                           <div class="form-group">
-                            <label class="col-sm-2 control-label" for="input-referred-by">
+                            <label class="col-md-4 control-label" for="input-referred-by">
                                                 Referred by
                                                 <div class="pull-right">
                                             <a class="cursor" data-toggle="dropdown" aria-expanded="true">
@@ -771,7 +771,7 @@
                                              </ul>      
                                           </div>
                             </label>
-                            <div class="col-sm-10" style="padding-top: 7px;">
+                            <div class="col-md-4" style="padding-top: 7px;">
                               <?php if($referred_by != '---') {
                                                    $refed_val = explode("-", $referred_by); ?>
                               <span class="referred-by"><?php echo $refed_val[0]; ?></span>
@@ -784,7 +784,7 @@
                           </div>
                           <?php } else { ?>
                           <div class="form-group referrer-fom-build">
-                            <label class="col-sm-2 control-label" for="input-referred-by">
+                            <label class="col-md-4 control-label" for="input-referred-by">
                                     Referred by
                                      <div class="pull-right">
                                             <a class="cursor" data-toggle="dropdown" aria-expanded="true">
@@ -797,7 +797,7 @@
                                              </ul>      
                                           </div>
                             </label>
-                            <div class="col-sm-10" style="padding-top: 7px;">
+                            <div class="col-md-2" style="padding-top: 7px;">
                               <input type="text" id="input-referred-by-val" name="referred_by" placeholder="<?php echo $entry_store_mobile_num; ?>" value="<?php echo $referred_by; ?>"
                                 id="input-referred-by" class="form-control" />
                               <p>If you are a new referrer,<a class="cursor" data-toggle="modal" data-target="#store_referred"> click here</a></p>
@@ -807,7 +807,7 @@
                           <div class="diff--seller">
                             <?php if($daysleft > 0) { ?>
                             <div class="form-group">
-                              <label class="col-sm-3 control-label" for="input-referred-by">
+                              <label class="col-sm-12 control-label" for="input-referred-by">
                                              - Set as <span style="background: yellow;"> Featured </span>. Now you lead the race no matter how far you are from buyers by topping their search list. 
                               </label>
                               <div class="col-sm-9">
@@ -816,7 +816,7 @@
                             </div>
                             <?php } else { ?>
                             <div class="form-group">
-                              <label class="col-sm-3 control-label" for="input-referred-by">
+                              <label class="col-sm-12 control-label" for="input-referred-by">
                                              - Not set as <span style="background: yellow;"> Featured </span>. Don't be one among the crowd, rise above from the rest.
                                              
                               </label>
@@ -825,7 +825,7 @@
                             </div>
                             <?php } ?>
                             <div class="form-group">
-                              <label class="col-sm-3 control-label" for="input-referred-by">
+                              <label class="col-sm-12 control-label" for="input-referred-by">
                                              - Number of times buyers viewed your listing :
                               </label>
                               <div class="col-sm-9" style="padding-top: 7px">
@@ -840,7 +840,7 @@
                               </div>
                             </div>
                             <div class="form-group">
-                              <label class="col-sm-3 control-label" for="input-referred-by">
+                              <label class="col-sm-12 control-label" for="input-referred-by">
                                              - Number of buyers added this to their favourites :
                                              </label>
                               <div class="col-sm-9" style="margin-top: 5px;">
@@ -863,8 +863,8 @@
                                   <?php if(($entry_nickname == '' && $seller_approved == 0) || $seller_approved == 1) { ?>
                                     <button type="button" id="button-profile-save" data-loading-text="<?php echo $text_loading; ?>" class="btn btn-primary pull-right"><?php echo $button_save; ?></button>
                                   <?php } else { ?>
-                                    <label style="font-size: 13px;font-style: italic;font-weight: bold">Save option will enable after approval.&nbsp&nbsp&nbsp</label>
                                     <button type="button" id="button-profile-save-disabled" data-loading-text="<?php echo $text_loading; ?>" class="btn pull-right" disabled><?php echo $button_save; ?></button>
+                                    <label style="font-size: 13px;font-style: italic;font-weight: bold">Save option will be enabled after store/entity is approved by BoN admin.&nbsp&nbsp&nbsp</label>
 
                                   <?php } ?>
                                                            
@@ -1157,32 +1157,32 @@
 	<div id="portalSuccessMsg" class="alert alert-success" style="display:none;"></div>
 	
         <div class="form-group">
-	  <label class="col-sm-2 control-label" for="input-website"><?php echo $entry_website; ?></label>
-	  <div class="col-sm-10">
+	  <label class="col-md-4 control-label" for="input-website"><?php echo $entry_website; ?></label>
+	  <div class="col-md-4">
             <input type="text" name="website" maxlength="500" value="<?php echo $website; ?>" placeholder="http://www.example.com" id="input-website" class="form-control" autocomplete="off" />
           </div>
 	</div>	
 	<div class="form-group">
-	  <label class="col-sm-2 control-label" for="input-facebook"><?php echo $entry_facebook; ?></label>
-	  <div class="col-sm-10">
+	  <label class="col-md-4 control-label" for="input-facebook"><?php echo $entry_facebook; ?></label>
+	  <div class="col-md-4">
             <input type="text" name="facebook" maxlength="500" value="<?php echo $facebook; ?>" placeholder="http://www.facebook.com/youraccount" id="input-facebook" class="form-control" autocomplete="off" />
           </div>
 	</div>
         <div class="form-group">
-	  <label class="col-sm-2 control-label" for="input-twitter"><?php echo $entry_twitter; ?></label>
-	  <div class="col-sm-10">
+	  <label class="col-md-4 control-label" for="input-twitter"><?php echo $entry_twitter; ?></label>
+	  <div class="col-md-4">
             <input type="text" name="twitter" maxlength="500" value="<?php echo $twitter; ?>" placeholder="http://twitter.com/youraccount" id="input-twitter" class="form-control" autocomplete="off" />
           </div>
 	</div>
         <div class="form-group">
-	  <label class="col-sm-2 control-label" for="input-googleplus"><?php echo $entry_googleplus; ?></label>
-	  <div class="col-sm-10">
+	  <label class="col-md-4 control-label" for="input-googleplus"><?php echo $entry_googleplus; ?></label>
+	  <div class="col-md-4">
             <input type="text" name="googleplus" maxlength="500" value="<?php echo $googleplus; ?>" placeholder="http://plus.google.com/youraccount" id="input-googleplus" class="form-control" autocomplete="off" />
           </div>
 	</div>
         <div class="form-group">
-	  <label class="col-sm-2 control-label" for="input-instagram"><?php echo $entry_instagram; ?></label>
-	  <div class="col-sm-10">
+	  <label class="col-md-4 control-label" for="input-instagram"><?php echo $entry_instagram; ?></label>
+	  <div class="col-md-4">
             <input type="text" name="instagram" maxlength="500" value="<?php echo $instagram; ?>" placeholder="http://www.instagram.com/youraccount" id="input-instagram" class="form-control" autocomplete="off" />
           </div>
 	</div>	
@@ -1390,10 +1390,10 @@
          //echo "<pre>"; print_r($store_timings['monday']);
                      if($str_tmg['status'] == "open") { ?>
             <div class="row">
-              <div class="col-sm-2">
+              <div class="col-md-4">
                 <label><?php echo $day; ?></label>
               </div>
-              <div class="col-sm-2">
+              <div class="col-md-4">
                 <?php $status = array("close", "open", "holiday", "leave"); ?>
                 <input type="hidden" name="<?php echo strtolower($day); ?>[day]" value="<?php echo strtolower($day); ?>">
                 <select name="<?php echo strtolower($day); ?>[status]" id="select-<?php echo strtolower($day); ?>" data-month="<?php echo strtolower($day).$i; ?>"
@@ -1406,7 +1406,7 @@
                            ?>
                         </select>
               </div>
-              <div class="col-sm-6">
+              <div class="col-md-4">
                 <div class="select-<?php echo strtolower($day.$i); ?>" style="margin-bottom: 10px; display: inline-flex;">
                   <?php if($str_tmg['from'][0] != '') { ?>
                   <div class="input-group bootstrap-timepicker timepicker">
@@ -1443,21 +1443,21 @@
                 </div>
               </div>
               <?php if(count($str_tmg['from']) != 2) { ?>
-              <div class="col-sm-2" id="add-<?php echo strtolower($day.$i); ?>">
+              <div class="col-md-4" id="add-<?php echo strtolower($day.$i); ?>">
                 <button type="button" class="addbtn" onclick="addbtnfnt(this);" id="<?php echo strtolower($day.$i); ?>">+</button>
               </div>
               <?php } else { ?>
-              <div class="col-sm-2" id="add-<?php echo strtolower($day.$i); ?>">
+              <div class="col-md-4" id="add-<?php echo strtolower($day.$i); ?>">
                 <button type="button" class="removebtns" id="<?php echo strtolower($day.$i); ?>">-</button>
               </div>
               <?php } ?>
             </div>
             <?php } else { ?>
             <div class="row">
-              <div class="col-sm-2">
+              <div class="col-md-4">
                 <label><?php echo $day; ?></label>
               </div>
-              <div class="col-sm-2">
+              <div class="col-md-4">
                 <?php $status = array("close", "open", "holiday", "leave"); ?>
                 <input type="hidden" name="<?php echo strtolower($day); ?>[day]" value="<?php echo strtolower($day); ?>">
                 <select name="<?php echo strtolower($day); ?>[status]" id="select-<?php echo strtolower($day); ?>" data-month="<?php echo strtolower($day).$i; ?>"
@@ -1470,7 +1470,7 @@
                            ?>
                         </select>
               </div>
-              <div class="col-sm-6">
+              <div class="col-md-4">
                 <div class="select-<?php echo strtolower($day.$i); ?>" style="display:none; margin-bottom: 10px;">
                   <div class="input-group bootstrap-timepicker timepicker">
                     <input id="timepicker1" name="<?php echo strtolower($day); ?>[from][]" type="text" value="" class="form-control input-small timepicker1"
@@ -1486,7 +1486,7 @@
                 <div class="second-time-<?php echo strtolower($day.$i); ?>">
                 </div>
               </div>
-              <div class="col-sm-2" id="add-<?php echo strtolower($day.$i); ?>" style="display:none;">
+              <div class="col-md-4" id="add-<?php echo strtolower($day.$i); ?>" style="display:none;">
                 <button type="button" class="addbtn" id="<?php echo strtolower($day.$i); ?>" onclick="addbtnfnt(this);">+</button>
               </div>
             </div>
@@ -1594,13 +1594,13 @@
     }
   }
 
-  $('.col-sm-2').delegate('.removebtn', 'click', function () {
+  $('.col-md-4').delegate('.removebtn', 'click', function () {
     var addbtn_id = $(this).attr('id');
     $(".select-" + addbtn_id + ".extra").remove();
     $("#add-" + addbtn_id).html('<button type="button" onclick="addbtnfnt(this);" class="addbtn" id="' + addbtn_id + '">+</button>');
   });
 
-  $('.col-sm-2').delegate('.removebtns', 'click', function () {
+  $('.col-md-4').delegate('.removebtns', 'click', function () {
     var addbtn_id = $(this).attr('id');
     $(".select-" + addbtn_id + ".extras").remove();
     $("#add-" + addbtn_id).html('<button type="button" onclick="addbtnfnt(this);" class="addbtn" id="' + addbtn_id + '">+</button>');
@@ -1704,12 +1704,12 @@
    
   function addStoreMobile() {
     html = '<div id="ad_mob' + store_mobile_num_row + '" class="row">';
-    html += '<div class="col-sm-2">';
+    html += '<div class="col-md-4">';
     html += '</div>';
-    html += '<div class="col-sm-8 addition-mobile ' + store_mobile_num_row + '">';
-    html += '  <input type="text" name="store_mobile_num[]" value="" placeholder="Store/Entity mobile number" class="form-control mat--lt" />';
+    html += '<div class="col-sm-2 addition-mobile ' + store_mobile_num_row + '">';
+    html += '  <input type="text" name="store_mobile_num[]" value="" placeholder="10 digit mobile number" class="form-control mat--lt" />';
     html += '</div>';
-    html += '<div class="col-sm-2 addition-mobile">';
+    html += '<div class="col-md-2 addition-mobile">';
     html += '  <span class="text-left"><button type="button" onclick="$(\'#ad_mob' + store_mobile_num_row + '\').remove();" class="--minus-btn">-</button></span>';
     html += '</div>';
     html += '</div>';
@@ -1727,15 +1727,15 @@
    
   function addStoreLandLine() {//alert("test");
     html = '<div id="ad_ll' + store_ll_num_row + '" class="row">';
-    html += '<div class="col-sm-2">';
+    html += '<div class="col-md-4">';
     html += '</div>';
-    html += '<div class="col-sm-2 addition-mobile ' + store_ll_num_row + '">';
-    html += '  <input type="text" maxlength="5" name="store_ll_code[]" value="" placeholder="Store/Entity STD code" class="form-control mat--lt" />';
+    html += '<div class="col-md-2 addition-mobile ' + store_ll_num_row + '">';
+    html += '  <input type="text" maxlength="5" name="store_ll_code[]" value="" placeholder="STD code" class="form-control mat--lt" />';
     html += '</div>';
-    html += '<div class="col-sm-6 addition-mobile ' + store_ll_num_row + '">';
-    html += '  <input type="text" maxlength="10" name="store_ll_num[]" value="" placeholder="Store/Entity landline number" class="form-control mat--lt" />';
+    html += '<div class="col-md-2 addition-mobile ' + store_ll_num_row + '">';
+    html += '  <input type="text" maxlength="10" name="store_ll_num[]" value="" placeholder="LL number" class="form-control mat--lt" />';
     html += '</div>';
-    html += '<div class="col-sm-2 addition-mobile">';
+    html += '<div class="col-md-2 addition-mobile">';
     html += '  <span class="text-left"><button type="button" onclick="$(\'#ad_ll' + store_ll_num_row + '\').remove();" class="--minus-btn">-</button></span>';
     html += '</div>';
     html += '</div>';
