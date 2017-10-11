@@ -12,11 +12,11 @@ $(document).ready(function() {
 			url: advertise_image,
 		    enableExif: false,
 		    viewport: {
-		        width: 993,
-		        height: 182
+		        width: $('.img-containers').width() - 10,
+		        height: 187
 		    },
 		    boundary: {
-		        width: 1000,
+		        width: $('.img-containers').width(),
 		        height: 200
 		    },
 		    enforceBoundary: true,
@@ -31,11 +31,11 @@ $(document).ready(function() {
 			url: $(this).attr('href'),
 		    enableExif: false,
 		    viewport: {
-		        width: 993,
-		        height: 182
+		        width: $('.img-containers').width() - 10,
+		        height: 187
 		    },
 		    boundary: {
-		        width: 1000,
+		        width: $('.img-containers').width(),
 		        height: 200
 		    },
 		    enforceBoundary: true,
@@ -50,7 +50,10 @@ $(document).ready(function() {
 	$('#getCropped').on('click', function (ev) {
 	   	$uploadCrop.croppie('result', {
 			type: 'canvas',
-			size: 'viewport',
+			size: {
+				width: 993,
+				height: 200
+			},
 			format: 'jpeg'
 	  	}).then(function (resp) {
 

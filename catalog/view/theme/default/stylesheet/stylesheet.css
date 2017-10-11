@@ -788,9 +788,9 @@ position: relative;bottom: 20px;}
 .crr-img-bttt{width: 100px !important;position: absolute;bottom: 16px;left: 37%;z-index: 1000;}
 .cropedimg{width: 50% !important;position: absolute;bottom: 15px;right: 40px;text-align: center;z-index: 1000;}
 #img-containers{background: #eeeeee !important;}
-#img-containers .cr-boundary{height: 300px !important;margin-bottom: 40px;}
-#img-containers .cr-viewport{height: 290px !important;}
-#croppedImage img{height: 30px;width: 70%;display: block;margin: auto;margin-top: 5px;}
+#img-containers .cr-boundary{margin-bottom: 40px;}
+/*#img-containers .cr-viewport{height: 290px !important;}
+#croppedImage img{height: 30px;width: 70%;display: block;margin: auto;margin-top: 5px;}*/
 .rel{position: relative;}
 /* my css ends */
 

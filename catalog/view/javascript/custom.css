@@ -1227,7 +1227,7 @@ border: 0;}
 
 /******************* main--head ********************/
 /********* Seller page **************/
-.diff--seller {background: #ccc none repeat scroll 0 0;border-radius: 5px;margin-bottom: 10px;padding: 5px;}
+.diff--seller {background: #dee8ef none repeat scroll 0 0;border-radius: 5px;margin-bottom: 10px;padding: 5px;}
 .cnt--sell {display: inline-flex;}
 .cnt--sell a{margin-left: 10px;}
 .form-horizontal .diff--seller .control-label {text-align: left;}
