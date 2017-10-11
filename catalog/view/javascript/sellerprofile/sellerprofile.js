@@ -163,6 +163,72 @@ function storeAddress() {
   return false;
 }
 
+function storePortals() {
+ 
+  try {
+
+    var website1    = $('#input-website').val();
+    var facebook1   = $('#input-facebook').val();
+    var twitter1    = $('#input-twitter').val();
+    var googleplus1 = $('#input-googleplus').val();
+    var instagram1  = $('#input-instagram').val();
+
+    if (website1.length > 500)
+      throw "Website address can not be > 500 chars.";
+    
+    if (facebook1.length > 500)
+      throw "Facebook address can not be > 500 chars.";
+    
+    if (twitter1.length > 500)
+      throw "Twitter address can not be > 500 chars.";
+    
+    if (googleplus1.length > 500)
+      throw "GooglePlus address can not be > 500 chars.";
+    
+    if (instagram1.length > 500)
+      throw "Instagram address can not be > 500 chars.";
+
+    $.ajax({
+        cache: false,
+        url: 'index.php?route=sellerprofile/sellerprofile/saveStorePortals',
+        dataType: 'json',
+        method: 'POST',
+        data : {
+          website_1: website1,
+          facebook_1: facebook1,
+          twitter_1: twitter1,
+          googleplus_1: googleplus1,
+          instagram_1: instagram1,
+        },
+        success: function(json) {
+          $('#portalSuccessMsg').empty().hide();
+          $('#portalSuccessMsg').html('<i class="fa fa-check-circle"></i> '+ json.success).show();
+
+          setTimeout(function() {
+            $('#store_portals').modal('toggle');
+            $('#portalSuccessMsg').empty().hide();
+          }, 3000);
+        },
+        error: function(xhr, ajaxOptions, thrownError) {
+          $('#portalErrorMsg').html('<i class="fa fa-times-circle"></i> '+xhr.responseText).show();
+
+        setTimeout(function() {
+          $('#portalErrorMsg').empty().hide();
+        }, 3000);
+      }
+    });
+
+  } catch (e) {
+    $('#portalErrorMsg').html('<i class="fa fa-times-circle"></i> '+ e).show();
+
+    setTimeout(function() {
+      $('#portalErrorMsg').empty().hide();
+    }, 3000);
+  }
+
+  return false;
+}
+
 $(document).ready(function() {
 
   autoCompleteCategories();

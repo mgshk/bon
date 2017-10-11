@@ -191,6 +191,7 @@ $_['button_edit_profile'] = 'Profile edit';
 $_['button_edit_password'] = 'Password edit';
 $_['text_update_profile_success'] = 'Store/Entity detail updated successfully';
 $_['text_update_address_success'] = 'Store/Entity address updated successfully';
+$_['text_update_portals_success'] = 'Store/Entity portals updated successfully';
 
 $_['error_tin'] = 'Cannot leave TIN/TAN/CST number empty when PAN is filled';
 $_['error_pan'] = 'Cannot leave PAN empty when TIN/TAN/CST number is filled';

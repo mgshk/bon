@@ -3270,7 +3270,7 @@ class Controllersellerprofilesellerprofile extends Controller
         $this->response->setOutput(json_encode($json));
     }
 
-	public function store_portal()
+/*	public function store_portal()
     {
 		$this->load->language('sellerprofile/sellerprofile');
 
@@ -3298,7 +3298,51 @@ class Controllersellerprofilesellerprofile extends Controller
         $this->response->addHeader('Content-Type: application/json');
         $this->response->setOutput(json_encode($json));
 	}
-	
+*/	
+	public function saveStorePortals() {
+	    $json = array();
+    
+	    $this->load->language('sellerprofile/sellerprofile');
+    
+	    $this->load->model('sellerprofile/sellerprofile');
+    
+	    if ((utf8_strlen(trim($this->request->post['website_1'])) > 500)) {
+		$json['error'] = $this->language->get('error_website');
+	    }
+    
+	    else if ((utf8_strlen(trim($this->request->post['facebook_1'])) > 500)) {
+		$json['error'] = $this->language->get('error_facebook');
+	    }
+    
+	    else if ((utf8_strlen(trim($this->request->post['twitter_1'])) > 500)) {
+		$json['error'] = $this->language->get('error_twitter');
+	    }
+    
+	    else if ((utf8_strlen(trim($this->request->post['googleplus_1'])) > 500)) {
+		$json['error'] = $this->language->get('error_googleplus');
+	    }
+    
+	    else if ((utf8_strlen(trim($this->request->post['instagram_1'])) > 500)) {
+		$json['error'] = $this->language->get('error_instagram');
+	    }
+    
+	    $data = [
+		'website' => $this->request->post['website_1'],
+		'facebook' => $this->request->post['facebook_1'],
+		'twitter' => $this->request->post['twitter_1'],
+		'googleplus' => $this->request->post['googleplus_1'],
+		'instagram' => $this->request->post['instagram_1'],
+	    ];
+    
+	    if(empty($json['error'])) {
+		$this->model_sellerprofile_sellerprofile->saveStorePortals($data, $this->customer->getId());
+		$json['success'] = $this->language->get('text_update_portals_success');
+	    }
+    
+	    $this->response->addHeader('Content-Type: application/json');
+	    $this->response->setOutput(json_encode($json));
+	}
+
 	public function getAdName($id)
 	{
 		$adName = 'free';

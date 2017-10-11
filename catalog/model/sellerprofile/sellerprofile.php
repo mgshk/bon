@@ -763,7 +763,7 @@ class Modelsellerprofilesellerprofile extends Model
         $this->db->query('UPDATE '.DB_PREFIX."customer 
             SET instagram = '".$this->db->escape($data['instagram'])."', googleplus = '".$this->db->escape($data['googleplus'])."', 
             twitter = '".$this->db->escape($data['twitter'])."', facebook = '".$this->db->escape($data['facebook'])."',
-            website = '".$this->db->escape($data['  website'])."' WHERE customer_id='".(int) $customer_id."'");
+            website = '".$this->db->escape($data['website'])."' WHERE customer_id='".(int) $customer_id."'");
     }
 
     //website = '".$this->db->escape($data['website'])."', facebook = '".$this->db->escape($data['facebook'])."', twitter = '".$this->db->escape($data['twitter'])."', 

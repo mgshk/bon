@@ -1096,88 +1096,54 @@
     </div>
   </div>
 </div>
-<div class="modal fade" id="store_portals" role="dialog">
+<div id="store_portals" class="modal fade" role="dialog">
   <div class="modal-dialog">
-    <!-- Modal content-->
-    <div class="modal-content loc-pop">
+    <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title loc-share-title">Store/Entity portals</h4>
+	<button type="button" class="close" data-dismiss="modal">&times;</button>
+	<h4 class="modal-title">Update store/entity portals</h4>
       </div>
-      <div class="modal-body str--fet--stt">
-        <div class="row">
-          <form action="" method="post" enctype="multipart/form-data" id="store_portals_fm" class="form-horizontal">
-            <div class="col-sm-12 col-xs-12">
-              <div class="portal_alert"></div>
-            </div>
-            <div class="col-sm-12 col-xs-12">
-              <div class="col-sm-2 col-xs-2">
-                <label>Website</label>
-              </div>
-              <div class="col-sm-10 col-xs-10">
-                <input type="text" name="website" placeholder="http://www.example.com" value="<?php echo $website; ?>" id="input-website"
-                  class="form-control" />
-                <span class="input-group-btn">
-                        </span>
-              </div>
-            </div>
-            <div class="col-sm-12 col-xs-12">
-              <div class="col-sm-2 col-xs-2">
-                <label>Facebook</label>
-              </div>
-              <div class="col-sm-10 col-xs-10">
-                <input type="text" name="facebook" placeholder="http://www.facebook.com/youraccount" value="<?php echo $facebook; ?>" id="input-facebook"
-                  class="form-control" />
-                <span class="input-group-btn">
-                        </span>
-              </div>
-            </div>
-            <div class="col-sm-12 col-xs-12">
-              <div class="col-sm-2 col-xs-2">
-                <label>Twitter</label>
-              </div>
-              <div class="col-sm-10 col-xs-10">
-                <input type="text" name="twitter" placeholder="http://twitter.com/youraccount" value="<?php echo $twitter; ?>" id="input-twitter"
-                  class="form-control" />
-                <span class="input-group-btn">
-                        </span>
-              </div>
-            </div>
-            <div class="col-sm-12 col-xs-12">
-              <div class="col-sm-2 col-xs-2">
-                <label>Google+</label>
-              </div>
-              <div class="col-sm-10 col-xs-10">
-                <input type="text" name="googleplus" placeholder="http://plus.google.com/youraccount" value="<?php echo $googleplus; ?>"
-                  id="input-googleplus" class="form-control" />
-                <span class="input-group-btn">
-                        </span>
-              </div>
-            </div>
-            <div class="col-sm-12 col-xs-12">
-              <div class="col-sm-2 col-xs-2">
-                <label>Intagram</label>
-              </div>
-              <div class="col-sm-10 col-xs-10">
-                <input type="text" name="instagram" placeholder="http://www.instagram.com/youraccount" value="<?php echo $instagram; ?>"
-                  id="input-instagram" class="form-control" />
-                <span class="input-group-btn">
-                        </span>
-              </div>
-            </div>
-            <div class="col-sm-12 col-xs-12">
-              <div class="col-sm-10 col-xs-10">
-              </div>
-              <div class="col-sm-2 col-xs-2">
-                <button type="button" id="button-portals-save" data-loading-text="Loading..." class="btn btn-primary pull-right">Save</button>
-              </div>
-            </div>
-        </div>
-        </form>
+      <div class="modal-body">
+	<div id="portalErrorMsg" class="alert alert-danger" style="display:none;"></div>
+	<div id="portalSuccessMsg" class="alert alert-success" style="display:none;"></div>
+	
+        <div class="form-group">
+	  <label class="col-sm-2 control-label" for="input-website"><?php echo $entry_website; ?></label>
+	  <div class="col-sm-10">
+            <input type="text" name="website" maxlength="500" value="<?php echo $website; ?>" placeholder="http://www.example.com" id="input-website" class="form-control" autocomplete="off" />
+          </div>
+	</div>	
+	<div class="form-group">
+	  <label class="col-sm-2 control-label" for="input-facebook"><?php echo $entry_facebook; ?></label>
+	  <div class="col-sm-10">
+            <input type="text" name="facebook" maxlength="500" value="<?php echo $facebook; ?>" placeholder="http://www.facebook.com/youraccount" id="input-facebook" class="form-control" autocomplete="off" />
+          </div>
+	</div>
+        <div class="form-group">
+	  <label class="col-sm-2 control-label" for="input-twitter"><?php echo $entry_twitter; ?></label>
+	  <div class="col-sm-10">
+            <input type="text" name="twitter" maxlength="500" value="<?php echo $twitter; ?>" placeholder="http://twitter.com/youraccount" id="input-twitter" class="form-control" autocomplete="off" />
+          </div>
+	</div>
+        <div class="form-group">
+	  <label class="col-sm-2 control-label" for="input-googleplus"><?php echo $entry_googleplus; ?></label>
+	  <div class="col-sm-10">
+            <input type="text" name="googleplus" maxlength="500" value="<?php echo $googleplus; ?>" placeholder="http://plus.google.com/youraccount" id="input-googleplus" class="form-control" autocomplete="off" />
+          </div>
+	</div>
+        <div class="form-group">
+	  <label class="col-sm-2 control-label" for="input-instagram"><?php echo $entry_instagram; ?></label>
+	  <div class="col-sm-10">
+            <input type="text" name="instagram" maxlength="500" value="<?php echo $instagram; ?>" placeholder="http://www.instagram.com/youraccount" id="input-instagram" class="form-control" autocomplete="off" />
+          </div>
+	</div>	
+      </div>
+      <div class="modal-footer">
+	<button type="button" class="btn btn-primary" onclick="storePortals();">Save</button>
+	<button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
       </div>
     </div>
   </div>
-</div>
 </div>
 <div class="modal fade" id="store_featured" role="dialog">
   <div class="modal-dialog">
@@ -1590,26 +1556,6 @@
 
   $('.well').delegate('.fa-minus-circle', 'click', function () {
     $(this).parent().remove();
-  });
-
-  $('#button-portals-save').on('click', function (e) {
-    $.ajax({
-      type: "POST",
-      url: 'index.php?route=sellerprofile/sellerprofile/store_portal',
-      data: $('#store_portals_fm').serialize(),
-      success: function (data) {
-        //alert(data);
-        $('.portal_alert').html('');
-        if (data['success']) {
-          $('.portal_alert').html('<div class="alert alert-success"><i class="fa fa-check-circle"></i>' + data['success'] + '</div>');
-          $('#store_portals').scrollTop(0);
-        }
-        if (data['error']) {
-          $('.portal_alert').html('<div class="alert alert-danger"><i class="fa fa-check-circle"></i>' + data['error'] + '</div>');
-          $('#store_portals').scrollTop(0);
-        }
-      }
-    });
   });
 
   $('#button-refer-save').on('click', function (e) {//alert(235);
