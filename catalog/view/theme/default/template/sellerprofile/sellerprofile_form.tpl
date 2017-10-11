@@ -1153,43 +1153,43 @@
 	<h4 class="modal-title">Update store/entity portals</h4>
       </div>
       <div class="modal-body">
-	<div id="portalErrorMsg" class="alert alert-danger" style="display:none;"></div>
-	<div id="portalSuccessMsg" class="alert alert-success" style="display:none;"></div>
-	
+      	<div id="portalErrorMsg" class="alert alert-danger" style="display:none;"></div>
+      	<div id="portalSuccessMsg" class="alert alert-success" style="display:none;"></div>
+      	
         <div class="form-group">
-	  <label class="col-sm-2 control-label" for="input-website"><?php echo $entry_website; ?></label>
-	  <div class="col-sm-10">
+          <label class="col-sm-2 control-label" for="input-website"><?php echo $entry_website; ?></label>
+          <div class="col-sm-10">
             <input type="text" name="website" maxlength="500" value="<?php echo $website; ?>" placeholder="http://www.example.com" id="input-website" class="form-control" autocomplete="off" />
           </div>
-	</div>	
-	<div class="form-group">
-	  <label class="col-sm-2 control-label" for="input-facebook"><?php echo $entry_facebook; ?></label>
-	  <div class="col-sm-10">
-            <input type="text" name="facebook" maxlength="500" value="<?php echo $facebook; ?>" placeholder="http://www.facebook.com/youraccount" id="input-facebook" class="form-control" autocomplete="off" />
-          </div>
-	</div>
+        </div>	
+      	<div class="form-group">
+      	  <label class="col-sm-2 control-label" for="input-facebook"><?php echo $entry_facebook; ?></label>
+      	  <div class="col-sm-10">
+              <input type="text" name="facebook" maxlength="500" value="<?php echo $facebook; ?>" placeholder="http://www.facebook.com/youraccount" id="input-facebook" class="form-control" autocomplete="off" />
+            </div>
+      	</div>
         <div class="form-group">
-	  <label class="col-sm-2 control-label" for="input-twitter"><?php echo $entry_twitter; ?></label>
-	  <div class="col-sm-10">
-            <input type="text" name="twitter" maxlength="500" value="<?php echo $twitter; ?>" placeholder="http://twitter.com/youraccount" id="input-twitter" class="form-control" autocomplete="off" />
-          </div>
-	</div>
+      	  <label class="col-sm-2 control-label" for="input-twitter"><?php echo $entry_twitter; ?></label>
+      	  <div class="col-sm-10">
+              <input type="text" name="twitter" maxlength="500" value="<?php echo $twitter; ?>" placeholder="http://twitter.com/youraccount" id="input-twitter" class="form-control" autocomplete="off" />
+            </div>
+      	</div>
         <div class="form-group">
-	  <label class="col-sm-2 control-label" for="input-googleplus"><?php echo $entry_googleplus; ?></label>
-	  <div class="col-sm-10">
-            <input type="text" name="googleplus" maxlength="500" value="<?php echo $googleplus; ?>" placeholder="http://plus.google.com/youraccount" id="input-googleplus" class="form-control" autocomplete="off" />
-          </div>
-	</div>
+      	  <label class="col-sm-2 control-label" for="input-googleplus"><?php echo $entry_googleplus; ?></label>
+      	  <div class="col-sm-10">
+              <input type="text" name="googleplus" maxlength="500" value="<?php echo $googleplus; ?>" placeholder="http://plus.google.com/youraccount" id="input-googleplus" class="form-control" autocomplete="off" />
+            </div>
+      	</div>
         <div class="form-group">
-	  <label class="col-sm-2 control-label" for="input-instagram"><?php echo $entry_instagram; ?></label>
-	  <div class="col-sm-10">
-            <input type="text" name="instagram" maxlength="500" value="<?php echo $instagram; ?>" placeholder="http://www.instagram.com/youraccount" id="input-instagram" class="form-control" autocomplete="off" />
-          </div>
-	</div>	
+      	  <label class="col-sm-2 control-label" for="input-instagram"><?php echo $entry_instagram; ?></label>
+      	  <div class="col-sm-10">
+              <input type="text" name="instagram" maxlength="500" value="<?php echo $instagram; ?>" placeholder="http://www.instagram.com/youraccount" id="input-instagram" class="form-control" autocomplete="off" />
+            </div>
+      	</div>	
       </div>
       <div class="modal-footer">
-	<button type="button" class="btn btn-primary" onclick="storePortals();">Save</button>
-	<button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary" onclick="storePortals();">Save</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
       </div>
     </div>
   </div>
@@ -1796,8 +1796,6 @@
        $('#pre_loaderr').delay(10000).fadeOut(5000);
        
      }
-     
-     button-profile-save
    });
 
 

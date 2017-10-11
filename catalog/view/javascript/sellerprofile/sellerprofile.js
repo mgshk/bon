@@ -173,20 +173,37 @@ function storePortals() {
     var googleplus1 = $('#input-googleplus').val();
     var instagram1  = $('#input-instagram').val();
 
+    var FBurl = /^(https?:\/\/)?((w{3}\.)?)facebook.com\/.*/i;
+    var TWurl = /https?:\/\/twitter\.com\/(#!\/)?[a-z0-9_]+$/i;
+    var GPurl = /^(https?:\/\/)?((w{3}\.)?)plus.google.com\/.*/i;
+    var INurl = /^(https?:\/\/)?((w{3}\.)?)instagram.com\/.*/i;
+
     if (website1.length > 500)
       throw "Website address can not be > 500 chars.";
     
     if (facebook1.length > 500)
       throw "Facebook address can not be > 500 chars.";
+
+    if (facebook1.length <= 500 && !FBurl.test(facebook1))
+      throw "Invalid Facebook url";
     
     if (twitter1.length > 500)
       throw "Twitter address can not be > 500 chars.";
+
+    if (twitter1.length <= 500 && !TWurl.test(twitter1))
+      throw "Invalid Twitter url";
     
     if (googleplus1.length > 500)
       throw "GooglePlus address can not be > 500 chars.";
+
+    if (googleplus1.length <= 500 && !GPurl.test(googleplus1))
+      throw "Invalid GooglePlus url";
     
     if (instagram1.length > 500)
       throw "Instagram address can not be > 500 chars.";
+
+    if (instagram1.length <= 500 && !INurl.test(instagram1))
+      throw "Invalid Instagram url";
 
     $.ajax({
         cache: false,
