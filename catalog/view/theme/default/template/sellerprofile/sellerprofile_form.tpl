@@ -29,6 +29,59 @@
           <button type="button" class="close" data-dismiss="alert">&times;</button>
         </div>
         <?php } ?>
+        <a href="" id="openTermsOfUse" style="margin-left: 20px"><u>Terms of service.</u></a>
+        <div id="terms_of_use" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h4 class="modal-title"><u>Terms of service</u></h4>
+              </div>
+              <div class="modal-body">
+                <div class="form-group">
+                  <table>
+                      <tr>
+                        <td>1.&nbsp&nbsp</td>
+                        <td><?php echo $terms_of_service_1; ?></td>
+                      </tr><tr><td></td><td></td></tr>
+                      <tr>
+                        <td>2.&nbsp&nbsp</td>
+                        <td><?php echo $terms_of_service_2; ?></td>
+                      </tr>
+                      <tr>
+                        <td>3.&nbsp&nbsp</td>
+                        <td><?php echo $terms_of_service_3; ?></td>
+                      </tr>
+                      <tr>
+                        <td>4.&nbsp&nbsp</td>
+                        <td><?php echo $terms_of_service_4; ?></td>
+                      </tr>
+                      <tr>
+                        <td>5.&nbsp&nbsp</td>
+                        <td><?php echo $terms_of_service_5; ?></td>
+                      </tr>
+                      <tr>
+                        <td>6.&nbsp&nbsp</td>
+                        <td><?php echo $terms_of_service_6; ?></td>
+                      </tr>
+                      <tr>
+                        <td>7.&nbsp&nbsp</td>
+                        <td><?php echo $terms_of_service_7; ?></td>
+                      </tr>
+                      <tr>
+                        <td>8.&nbsp&nbsp</td>
+                        <td><?php echo $terms_of_service_8; ?></td>
+                      </tr>
+                  </table>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <input type="checkbox" name="read_terms" id="terms_read" value="1"/>
+                <label for="terms_read">I read and will abide the terms strictly.&nbsp&nbsp&nbsp</label>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" id="btnTermsReadOk" disabled>Ok</button>
+              </div>
+            </div>
+          </div>
+        </div>
         <div class="panel panel-default">
           <div class="panel-body">
             <ul class="nav nav-tabs fixme fixme-sec _bon_ts" style="z-index:123;    background-color: #f1f1f1 !important; background:  none repeat scroll 0 0;">
@@ -211,9 +264,6 @@
               <div class="tab-pane <?php if($_GET['tab_section'] == 'store_detail'){ echo 'active'; }?>" id="tab-more_details">
                 <div class="panel-group" id="accordion">
                   <div class="panel panel-default">
-                      </br>
-                      <a href="" id="openTermsOfUse" style="margin-left: 20px"><u>Terms of service.</u></a>
-                      </br>
                     <div id="collapse1" class="panel-collapse collapse in">
                       <div class="panel-body">
                         <?php if($seller_approved != 1) { ?>
@@ -306,43 +356,6 @@
                                 id="input-description" class="form-control"><?php echo $seller_description; ?></textarea>
                             </div>
                           </div>
-                    <div id="terms_of_use" class="modal fade" role="dialog">
-                      <div class="modal-dialog">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h4 class="modal-title"><u>Terms of service</u></h4>
-                          </div>
-                          <div class="modal-body">
-                            <div class="form-group">
-                              <table>
-                                  <tr>
-                                    <td>1.&nbsp&nbsp</td>
-                                    <td><?php echo $terms_of_service_1; ?></td>
-                                  </tr><tr><td></td><td></td></tr>
-                                  <tr>
-                                    <td>2.&nbsp&nbsp</td>
-                                    <td><?php echo $terms_of_service_2; ?></td>
-                                  </tr>
-                                  <tr>
-                                    <td>3.&nbsp&nbsp</td>
-                                    <td><?php echo $terms_of_service_3; ?></td>
-                                  </tr>
-                                  <tr>
-                                    <td>4.&nbsp&nbsp</td>
-                                    <td><?php echo $terms_of_service_4; ?></td>
-                                  </tr>
-                              </table>
-                            </div>
-                          </div>
-                          <div class="modal-footer">
-                            <input type="checkbox" name="read_terms" id="terms_read" value="1"/>
-                            <label>I read and will abide the terms strictly.&nbsp&nbsp&nbsp</label>
-                            <button type="button" class="btn btn-primary" data-dismiss="modal" id="btnTermsReadOk" disabled>Ok</button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
                           <div id="store_address" class="modal fade" role="dialog">
                             <div class="modal-dialog">
                               <div class="modal-content">
@@ -1540,6 +1553,12 @@
     }
 
   });
+  
+  //$('#btnTermsReadOk').on('click', function () {
+    //document.getElementById('terms_read').checked = false;
+    //document.getElementById('terms_of_use').modal('hide');
+    //document.getElementById('btnTermsReadOk').disabled = true;
+  //});
 
   $('#button-timing-save').on('click', function (e) {
     $.ajax({
@@ -1815,6 +1834,7 @@
      if (target1 != '') {
        $('#sellerdraft').load('index.php?route=sellerprofile/sellerprofile/selleradvertisedraft&seller_id=<?php echo $seller_id; ?>');
      }
+     $('#terms_of_use').modal({backdrop: 'static', keyboard: false});
    });
    var tab_class = "<?php echo (isset($_GET['inner_store']) && $_GET['inner_store'] !='') ? $_GET['inner_store'] : '';  ?>";
    if (tab_class != '') {

@@ -251,8 +251,8 @@ $(document).ready(function() {
   });
 
   $(document).on('click', '#openTermsOfUse', function() {
- 
-    $('#terms_of_use').modal('toggle');
+
+    $('#terms_of_use').modal({backdrop: 'static', keyboard: false});
     return false;
  
   });

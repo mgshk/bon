@@ -141,6 +141,10 @@ class Controllersellerprofilesellerprofile extends Controller
 	$data['terms_of_service_2'] = $this->language->get('terms_of_service_2');
         $data['terms_of_service_3'] = $this->language->get('terms_of_service_3');
 	$data['terms_of_service_4'] = $this->language->get('terms_of_service_4');
+	$data['terms_of_service_5'] = $this->language->get('terms_of_service_5');
+	$data['terms_of_service_6'] = $this->language->get('terms_of_service_6');
+	$data['terms_of_service_7'] = $this->language->get('terms_of_service_7');
+	$data['terms_of_service_8'] = $this->language->get('terms_of_service_8');
 
         if ($this->config->get('config_seller_agree_id')) {
             $this->load->model('catalog/information');
