@@ -244,6 +244,11 @@
 		margin-top: 20px;
 		margin-bottom: 65px;
 	}
+
+	.fa-disabled {
+		opacity: 0.6;
+		cursor: not-allowed;
+	}
 </style>
 <?php echo $seller_left_menu; ?>
 <div id="mySidenav" class="sidenav">
@@ -409,7 +414,9 @@
 							<li><a class="cursor" data-toggle="modal" data-target="#login_frc_buyer"><i class="fa fa-commenting-o"></i><br/> Feedback</a></li>
 							<?php } ?>
 							<li <?php echo ($ins !='' && $goo !='' && $twi !='' && $fac !='' && $web !='' ) ? '': 'disabled'; ?> class="dropdown">
+								<?php if ($ins !='' && $goo !='' && $twi !='' && $fac !='' && $web !='' )  { ?>
 								<i class="fa fa-cube"></i><br/>Portals
+									
 								<div class="dropdown-content portals-set">
 									<?php if($ins != '') { ?>
 									<a target="_blank" href="<?php echo $ins; ?>"><i class="fa fa-instagram" aria-hidden="true"></i> Instagram</a>
@@ -423,6 +430,9 @@
 									<a target="_blank" href="<?php echo $web; ?>"><i class="fa fa-globe" aria-hidden="true"></i> Website</a>
 									<?php } ?>
 								</div>
+								<?php } else { ?> 
+								<span class="fa-disabled"><i class="fa fa-cube"></i><br/>Portals</span>
+								<?php }?> 
 							</li>
 						</ul>
 					</div>
