@@ -69,7 +69,7 @@
 		<p>It is the single place to complete your search and get the best you want near you or from the place you are looking for. It will not force you to believe the best is what it shows on the item you are interested. </p>
 		<p><span style="font-weight: bold">LET’S START SEARCHING FROM HERE</span> (from you) before we do with untrusted, unreliable and unknown sellers.</p>
 		<p>It is a centralized online exhibition. Where sellers meet buyers online, especially with lot many offers. The earlier you enrol, the more benefits you get.</p>
-		<p><img src="image/faq1.png" class="img-responsive" style="margin: auto;width:500px;height:300px;" alt="FAQ"></p>
+		<p><img src="image/faq1.png" class="img-responsive" style="margin: auto;" alt="FAQ"></p>
       </div>
     </div>
   </div>
