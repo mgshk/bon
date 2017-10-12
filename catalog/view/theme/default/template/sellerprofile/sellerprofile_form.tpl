@@ -84,7 +84,7 @@ Referred by<?php echo $header; ?>
         </div>
         <div class="panel panel-default">
           <div class="panel-body">
-            <ul class="nav nav-tabs fixme fixme-sec _bon_ts" style="z-index:123;    background-color: #f1f1f1 !important; background:  none repeat scroll 0 0;">
+            <ul class="nav nav-tabs fixme _bon_ts" style="z-index:123;    background-color: #f1f1f1 !important; background:  none repeat scroll 0 0;">
               <?php if ($is_seller) { ?>
               <li class="tas_bon <?php if($_GET['tab_section'] == 'profile'){ echo 'active'; }?>">
                 <a href="#tab-profile_details" data-toggle="tab">
@@ -1525,14 +1525,17 @@ Referred by<?php echo $header; ?>
     }
   });
   // Section tab section
-  var fixmeTop = $('.fixme-sec').offset().top;
+  var fixmeTop;
+  if($('.fixme-sec').offset()){
+    var fixmeTop = $('.fixme-sec').offset().top;
+  }
   $(window).scroll(function () {
     var currentScroll = $(window).scrollTop();
     if (currentScroll >= fixmeTop) {
       $('.fixme-sec').css({
         position: 'sticky',
         top: '40px',
-
+        'z-index': '1'
       });
     } else {
       $('.fixme-sec').css({
@@ -1797,10 +1800,7 @@ Referred by<?php echo $header; ?>
        $('#pre_loaderr').delay(10000).fadeOut(5000);
        
      }
-<<<<<<< HEAD
-=======
-     
->>>>>>> d2ab3c64f95bd306f9078655a760ce1f838a035b
+
    });
 
 
@@ -1845,9 +1845,11 @@ Referred by<?php echo $header; ?>
 <script type="text/javascript">
    $(document).ready(function () {
      var target = $('#tab_store_ad a[data-toggle="tab"]').attr("href") // activated tab   
-     target1 = target.replace('#', '.');
-     if (target1 != '') {
-       $('#sellerdraft').load('index.php?route=sellerprofile/sellerprofile/selleradvertisedraft&seller_id=<?php echo $seller_id; ?>');
+     if(target){
+        target1 = target.replace('#', '.');
+        if (target1 != '') {
+          $('#sellerdraft').load('index.php?route=sellerprofile/sellerprofile/selleradvertisedraft&seller_id=<?php echo $seller_id; ?>');
+        }
      }
    });
    var tab_class = "<?php echo (isset($_GET['inner_store']) && $_GET['inner_store'] !='') ? $_GET['inner_store'] : '';  ?>";
