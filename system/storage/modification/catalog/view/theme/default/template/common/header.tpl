@@ -1688,12 +1688,23 @@
 						$('#site_feedback_main_ll').each(function () {
 							this.reset();
 						});
+						//$('#site_feed_alt').html('');
+						//$('#site_feed_alt').after('<div class="alert alert-success"><i class="fa fa-check-circle"></i>' + json['success'] + '</div>');
 						$('#site_feed_alt').html('');
-						$('#site_feed_alt').after('<div class="alert alert-success"><i class="fa fa-check-circle"></i>' + json['success'] + '</div>');
+						$('#site_feed_alt').html('<div class="alert alert-success"><i class="fa fa-check-circle"></i>' + json['success'] + '</div>');
+				      
+						setTimeout(function() {
+						  $('#site_feedback_main').modal('toggle');
+						  $('#site_feed_alt').html('');
+						}, 3000);
 					}
 					if (json['error']) {
 						$('#site_feed_alt').html('');
-						$('#site_feed_alt').after('<div class="alert alert-danger"><i class="fa fa-exclamation-circle"></i>' + json['error'] + '</div>');
+						$('#site_feed_alt').html('<div class="alert alert-danger"><i class="fa fa-exclamation-circle"></i>' + json['error'] + '</div>');
+
+						setTimeout(function() {
+						  $('#site_feed_alt').html('');
+						}, 3000);
 					}
 				}
 			});

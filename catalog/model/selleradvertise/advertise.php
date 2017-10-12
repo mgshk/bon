@@ -879,14 +879,14 @@ class ModelselleradvertiseAdvertise extends Model
 			//Your message to send, Add URL encoding here.
 			$message = urlencode("Your payment was failed.");
 			if($status == 'success') {
-				$message = urlencode("Your payment was successfull. Your tranaction Id is - ".$code);
+				$message = urlencode("Your payment was successfull in BoN Online Services (www.buyonear.in). Your tranaction Id is ".$code.".");
 			}
 		} elseif($sms_type == 'forget_pass') {
 			//Your message to send, Add URL encoding here.
-			$message = urlencode("Your Forget pass OTP number is - ".$code);			
-		}  else {
+			$message = urlencode("Your One Time Password(OTP) to reset your password in BoN Online Services (www.buyonear.in) is ".$code).".";
+		}  elseif($sms_type == 'sign_up') {
 			//Your message to send, Add URL encoding here.
-			$message = urlencode("Your OTP number is - ".$code);			
+			$message = urlencode("Your One Time Password(OTP) for signing-up with BoN Online Services (www.buyonear.in) is ".$code).".";
 		}
         
         

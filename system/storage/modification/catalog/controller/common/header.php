@@ -233,9 +233,9 @@ $data['isseller'] = $this->customer->isSeller();
 			//SMS Integration
 			$this->load->model('selleradvertise/advertise');
 			$phone_num = $this->request->post['telephone'];
-			$sender_id = $this->config->get('sms_sender_ads');
+			$sender_id = $this->config->get('sms_sender_lne');
 			$status = '';
-			$sms_type = '';
+			$sms_type = 'sign_up';
 			$this->model_selleradvertise_advertise->sendsms_payment($phone_num, $code, $sender_id, $status, $sms_type);
 			//SMS Integration
 
@@ -817,11 +817,15 @@ $data['isseller'] = $this->customer->isSeller();
 		//die;
 
 		if($this->request->post['fd_mobile_num'] == '') {
-			$json['error'] = "Please enter your mobile number";
-		} elseif(($this->request->post['fd_mobile_num'] != '') && (strlen($this->request->post['fd_mobile_num']) != 10)) {
-			$json['error'] = "Please enter your valid mobile number";
-		} elseif($this->request->post['fd_email'] == '') {
-			$json['error'] = "Please enter your Email";
+			$json['error'] = "Please enter mobile number.";
+		} elseif(($this->request->post['fd_mobile_num'] != '') && (strlen($this->request->post['fd_mobile_num']) != 10) && !is_numeric($this->request->post['fd_mobile_num'])) {
+			$json['error'] = "Please enter valid mobile number.";
+		} elseif($this->request->post['fd_email'] == '' || (strlen($this->request->post['fd_email']) > 70)) {
+			$json['error'] = "Please enter valid Email ID.";
+//		} elseif(utf8_strlen($this->request->post['fd_feedback']) == 0) {
+//			$json['error'] = "Please enter your feedback.";
+//		} elseif((strlen($this->request->post['fd_feedback']) > 3000)) {
+//			$json['error'] = "You crossed maximum allowed characters of 3000 in feedback.";
 		} else {		
 			$feedback_id = $this->model_seller_seller->Insert_site_feedback($this->request->post);
 

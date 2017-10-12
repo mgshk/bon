@@ -797,7 +797,7 @@
                                              </ul>      
                                           </div>
                             </label>
-                            <div class="col-md-2" style="padding-top: 7px;">
+                            <div class="col-md-4" style="padding-top: 7px;">
                               <input type="text" id="input-referred-by-val" name="referred_by" placeholder="<?php echo $entry_store_mobile_num; ?>" value="<?php echo $referred_by; ?>"
                                 id="input-referred-by" class="form-control" />
                               <p>If you are a new referrer,<a class="cursor" data-toggle="modal" data-target="#store_referred"> click here</a></p>
