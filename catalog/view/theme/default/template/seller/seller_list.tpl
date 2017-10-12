@@ -246,9 +246,9 @@
                </script>
             <?php } } else {?>
             <p><?php echo $seller_empty; ?></p>
-            <div class="buttons clearfix">
+            <!--<div class="buttons clearfix">
                <div class="pull-right"><a href="<?php echo $continue; ?>" class="btn btn-primary"><?php echo $button_continue; ?></a></div>
-            </div>
+            </div>-->
             <?php } }?>
             <?php if(isset($categories) && !empty($categories)) { ?>
             <p id="loader_page"><img src="catalog/view/theme/default/image/ajax_loader.gif"></p>

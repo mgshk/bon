@@ -1499,7 +1499,10 @@ Referred by<?php echo $header; ?>
   </div>
 </div>
 <script>
-
+    $(window).on('load',function(){
+     $('#terms_of_use').modal({backdrop: 'static', keyboard: false});
+    });
+    
   var termsRead = document.getElementById('terms_read');
   var termsReadOk = document.getElementById('btnTermsReadOk');
   termsRead.onchange = function() {
@@ -1784,9 +1787,7 @@ Referred by<?php echo $header; ?>
 
 </script>
 <script type="text/javascript">
-  $(window).on('load',function(){
-     $('#terms_of_use').modal({backdrop: 'static', keyboard: false});
-    });
+
   
    $(document).ready(function () {
      var tab_class = "<?php echo (isset($_GET['tab_section']) && $_GET['tab_section'] !='') ? $_GET['tab_section'] : '';  ?>";
