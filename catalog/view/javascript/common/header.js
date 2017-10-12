@@ -3,13 +3,13 @@ function getZones(val) {
       url: 'index.php?route=account/account/country&country_id=' + val,
       dataType: 'json',
       beforeSend: function() {
-        $('select[name=\'country_id\']').after(' <i class="fa fa-circle-o-notch fa-spin"></i>');
+        $('select[name=\'register_country_id\']').after(' <i class="fa fa-circle-o-notch fa-spin"></i>');
       },
       complete: function() {
         $('.fa-spin').remove();
       },
       success: function(json) {
-        html = '<option value=""> --- Please Select --- </option>';
+        var html = '<option value="0"> --- Please Select --- </option>';
 
         if (json['zone'] && json['zone'] != '') {
           for (i = 0; i < json['zone'].length; i++) {
@@ -21,11 +21,9 @@ function getZones(val) {
 
             html += '>' + json['zone'][i]['name'] + '</option>';
           }
-        } else {
-          html += '<option value="0" selected="selected"> --- Please Select --- </option>';
         }
 
-        $('select[name=\'zone_id\']').html(html);
+        $('select[name=\'register_zone_id\']').html(html);
       },
       error: function(xhr, ajaxOptions, thrownError) {
         alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
@@ -36,9 +34,9 @@ function getZones(val) {
 }
 
 $(document).ready(function() {
-  $(document).on('change', 'select[name=\'country_id\']', function() {
+  $(document).on('change', 'select[name=\'register_country_id\']', function() {
     getZones($(this).val());
   });
 
-  $('select[name=\'country_id\']').trigger('change');
+  $('select[name=\'register_country_id\']').trigger('change');
 });

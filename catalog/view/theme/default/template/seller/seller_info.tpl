@@ -315,7 +315,7 @@
 						</p>
 					</div>
 					<div class="col-sm-6">
-						<?php if( $seller_verified != '0') { ?>
+						<?php if( $seller_verified == '1') { ?>
 						<img src="image/verified.png" class="img-responsive" style="float: right;">
 						<?php } ?>
 						<div class="new-store-banner">
@@ -439,7 +439,7 @@
 				<div class="row">
 					<div class="col-sm-6">
 						<div class="new-store-banner">
-							<?php if( $seller_verified != '0') { ?>
+							<?php if( $seller_verified == '1') { ?>
 							<img src="image/verified.png" class="img-responsive" style="float: right;">
 							<?php } ?>
 							<div id="myCarousel" class="carousel slide" data-ride="carousel">

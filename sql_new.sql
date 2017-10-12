@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 02, 2017 at 10:29 AM
+-- Generation Time: Oct 11, 2017 at 05:56 AM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -32,9 +32,9 @@ CREATE TABLE `oc_address` (
   `firstname` varchar(32) NOT NULL,
   `lastname` varchar(32) NOT NULL,
   `company` varchar(40) NOT NULL,
-  `address_1` varchar(128) NOT NULL,
-  `address_2` varchar(128) NOT NULL,
-  `city` varchar(128) NOT NULL,
+  `address_1` varchar(150) NOT NULL,
+  `address_2` varchar(150) NOT NULL,
+  `city` varchar(100) NOT NULL,
   `postcode` varchar(10) NOT NULL,
   `country_id` int(11) NOT NULL DEFAULT '0',
   `zone_id` int(11) NOT NULL DEFAULT '0',
@@ -49,7 +49,10 @@ CREATE TABLE `oc_address` (
 
 INSERT INTO `oc_address` (`address_id`, `customer_id`, `firstname`, `lastname`, `company`, `address_1`, `address_2`, `city`, `postcode`, `country_id`, `zone_id`, `custom_field`, `security_select`, `security_answer`) VALUES
 (1, 1, 'Magesh', 'K', '', 'Siva Nagar, Cuddalore', '', '', '', 99, 1503, '', 1, 'joseph'),
-(2, 2, 'Rave', 'R ', '', 'Test address', '', '', '', 99, 1503, '', 4, 'kadhal kanmani');
+(2, 2, 'Rave', 'R ', '', 'Test address', '', '', '', 99, 1503, '', 4, 'kadhal kanmani'),
+(3, 3, '', '', '', '', '', '', '', 99, 1503, '', 2, 'qwer'),
+(4, 4, 'Magesh', 'K', '', '5,Siva Nagar', 'Vandipalayam Road', 'Cuddalore', '607004', 99, 1503, '', 2, 'qwer'),
+(5, 5, 'Magesh', 'K', '', 'Siva Nagar, Cuddalore', '', 'Cuddalore', '607004', 99, 1503, '', 1, '1234');
 
 -- --------------------------------------------------------
 
@@ -462,7 +465,6 @@ CREATE TABLE `oc_cart` (
 --
 
 INSERT INTO `oc_cart` (`cart_id`, `api_id`, `customer_id`, `session_id`, `product_id`, `recurring_id`, `option`, `quantity`, `date_added`) VALUES
-(1, 0, 3, '644a5fb13f78ea30aa7f080f9c', 50, 0, '[]', 1, '2017-02-10 09:23:34'),
 (7, 0, 79, '6d1b09792d546efc04a804c16a', 60, 0, '[]', 1, '2017-07-20 12:44:13'),
 (8, 0, 79, '6d1b09792d546efc04a804c16a', 71, 0, '[]', 1, '2017-08-02 11:29:15');
 
@@ -10639,6 +10641,14 @@ CREATE TABLE `oc_category_to_seller` (
   `status` tinyint(1) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `oc_category_to_seller`
+--
+
+INSERT INTO `oc_category_to_seller` (`category_id`, `seller_id`, `status`) VALUES
+(27, 2, 1),
+(2, 2, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -11067,9 +11077,9 @@ CREATE TABLE `oc_currency` (
 --
 
 INSERT INTO `oc_currency` (`currency_id`, `title`, `code`, `symbol_left`, `symbol_right`, `decimal_place`, `value`, `status`, `date_modified`) VALUES
-(1, 'Pound Sterling', 'GBP', '£', '', '2', 0.74680001, 1, '2017-09-28 03:56:13'),
-(2, 'US Dollar', 'USD', '$', '', '2', 1.00000000, 1, '2017-09-28 03:56:13'),
-(3, 'Euro', 'EUR', '', '€', '2', 0.85189998, 1, '2017-09-28 03:56:13');
+(1, 'Pound Sterling', 'GBP', '£', '', '2', 0.76120001, 1, '2017-10-09 18:32:35'),
+(2, 'US Dollar', 'USD', '$', '', '2', 1.00000000, 1, '2017-10-09 18:32:35'),
+(3, 'Euro', 'EUR', '', '€', '2', 0.85070002, 1, '2017-10-09 18:32:35');
 
 -- --------------------------------------------------------
 
@@ -11114,9 +11124,9 @@ CREATE TABLE `oc_customer` (
   `store_ll_num` text NOT NULL,
   `store_mobile_num` text NOT NULL,
   `store_email` varchar(250) NOT NULL,
-  `address_1` varchar(128) NOT NULL,
-  `address_2` varchar(128) DEFAULT NULL,
-  `city` varchar(128) NOT NULL,
+  `address_1` varchar(150) NOT NULL,
+  `address_2` varchar(150) DEFAULT NULL,
+  `city` varchar(100) NOT NULL,
   `postcode` varchar(10) NOT NULL,
   `country_id` int(11) NOT NULL,
   `zone_id` int(11) NOT NULL,
@@ -11128,7 +11138,7 @@ CREATE TABLE `oc_customer` (
   `bankaccount_id` int(11) NOT NULL,
   `custom_field` text NOT NULL,
   `ip` varchar(40) NOT NULL,
-  `status` tinyint(1) NOT NULL,
+  `status` enum('0','1') NOT NULL DEFAULT '1',
   `approved` tinyint(1) NOT NULL,
   `active` int(11) NOT NULL DEFAULT '1',
   `safe` tinyint(1) NOT NULL,
@@ -11140,7 +11150,7 @@ CREATE TABLE `oc_customer` (
   `feature_store_start` date NOT NULL,
   `feature_store_end` date NOT NULL,
   `delivery_type` int(11) NOT NULL,
-  `allow_products` enum('0','1') NOT NULL DEFAULT '0',
+  `allow_products` enum('0','1') NOT NULL DEFAULT '1',
   `allow_cart` enum('0','1') NOT NULL DEFAULT '0',
   `seller_qr` varchar(225) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
@@ -11150,8 +11160,8 @@ CREATE TABLE `oc_customer` (
 --
 
 INSERT INTO `oc_customer` (`customer_id`, `customer_group_id`, `store_id`, `language_id`, `firstname`, `lastname`, `email`, `telephone`, `fax`, `password`, `salt`, `cart`, `wishlist`, `newsletter`, `address_id`, `seller_group_id`, `seller_approved`, `seller_verified`, `seller_reject_reason`, `seller_changegroup`, `seller_date_added`, `referred_by`, `nickname`, `lat`, `lng`, `instagram`, `googleplus`, `twitter`, `facebook`, `website`, `description`, `image`, `owner_name`, `store_ll_num`, `store_mobile_num`, `store_email`, `address_1`, `address_2`, `city`, `postcode`, `country_id`, `zone_id`, `product_status`, `banner`, `tin`, `pan`, `seller_category`, `bankaccount_id`, `custom_field`, `ip`, `status`, `approved`, `active`, `safe`, `token`, `code`, `date_added`, `seller_counter`, `feature_store_amount`, `feature_store_start`, `feature_store_end`, `delivery_type`, `allow_products`, `allow_cart`, `seller_qr`) VALUES
-(1, 1, 0, 1, 'Magesh', 'K', 'mgshk.1507@gmail.com', '9791729266', '', '4faef3df15f481f5932b6237730e133374620c7c', 'LqwdUnqS7', NULL, NULL, 0, 1, 1, 1, '1', '', 0, '2017-09-21 23:10:10', '7896541230', 'Test Store', '12.993825900000001', ' 80.1919199', NULL, NULL, NULL, NULL, NULL, '                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            									 									                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             ', '', '', '', '9791729266', 'mgshk.1507@gmail.com', 'Siva Nagar', 'Vandipalayam Main Road', 'Pondicherry', '607004', 99, 1503, NULL, '', '', '', '[]', 0, '', '::1', 1, 1, 1, 0, '', '', '2017-09-16 22:59:03', 0, 0, '0000-00-00', '0000-00-00', 2, '0', '0', 'view/image/qr_images/buyonear.in_1'),
-(2, 1, 0, 1, 'Rave', 'R ', '1507@gmail.com', '8939615673', '', '9efa6f7b51852b7a7f8c98d17e3175d4a9193667', 'K2c2X9Zjc', NULL, NULL, 0, 2, 1, 1, '1', '', 0, '2017-09-28 07:27:06', '', 'Test Rave', '13.0826802', ' 80.27071840000008', NULL, NULL, NULL, NULL, NULL, '									 									 ', '', '', '', '8939615673', '1507@gmail.com', '', NULL, '', '', 0, 0, NULL, '', '', '', '[]', 0, '', '::1', 1, 1, 1, 0, '', '', '2017-09-27 23:03:43', 0, 0, '0000-00-00', '0000-00-00', 1, '0', '0', 'view/image/qr_images/buyonear.in_2');
+(2, 1, 0, 1, 'Rave', 'R ', '1507@gmail.com', '8939615673', '', '9efa6f7b51852b7a7f8c98d17e3175d4a9193667', 'K2c2X9Zjc', NULL, NULL, 0, 2, 1, 1, '1', '', 0, '2017-10-05 21:31:42', '', 'Test Rave', '13.0826802', ' 80.27071840000008', NULL, NULL, NULL, NULL, NULL, '									 									 ', '', '', '04142-236828', '8939615673', '1507@gmail.com', '5, Siva Nagar', '', 'Cuddalore', '607004', 99, 1503, NULL, 'catalog/seller_images/2/kids-p4.jpg', '', '', '[{\"category\":\"27\",\"sub_categories\":[\"28\"]},{\"category\":\"2\",\"sub_categories\":[\"6\"]}]', 0, '', '::1', '1', 1, 1, 0, '', '', '2017-09-27 23:03:43', 6, 0, '0000-00-00', '0000-00-00', 1, '1', '0', 'view/image/qr_images/buyonear.in_2'),
+(5, 1, 0, 1, 'Magesh', 'K', 'mgshk.1507@gmail.com', '9791729266', '', '179ea65f6997f99ebb11f478d3e3321069cd8856', 'tQzu5kaOZ', NULL, NULL, 0, 5, 1, 0, '0', '', 0, '0000-00-00 00:00:00', NULL, NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', '', '', 'Siva Nagar', '', 'Cuddaloree', '607004', 99, 1489, NULL, NULL, '', '', '', 0, '', '::1', '1', 1, 1, 0, '', '', '2017-10-08 14:11:24', 0, 0, '0000-00-00', '0000-00-00', 0, '1', '0', NULL);
 
 -- --------------------------------------------------------
 
@@ -11204,7 +11214,30 @@ INSERT INTO `oc_customer_activity` (`customer_activity_id`, `customer_id`, `key`
 (29, 2, 'advertise_add', '{\"customer_id\":\"2\",\"name\":\"Rave R \"}', '::1', '2017-09-28 07:41:12'),
 (30, 1, 'login', '{\"customer_id\":\"1\",\"name\":\"Magesh K\"}', '::1', '2017-09-28 07:58:44'),
 (31, 1, 'login', '{\"customer_id\":\"1\",\"name\":\"Magesh K\"}', '::1', '2017-09-30 19:09:50'),
-(32, 1, 'login', '{\"customer_id\":\"1\",\"name\":\"Magesh K\"}', '::1', '2017-10-02 11:03:41');
+(32, 1, 'login', '{\"customer_id\":\"1\",\"name\":\"Magesh K\"}', '::1', '2017-10-02 11:03:41'),
+(33, 2, 'login', '{\"customer_id\":\"2\",\"name\":\"Rave R \"}', '::1', '2017-10-02 15:03:27'),
+(34, 1, 'login', '{\"customer_id\":\"1\",\"name\":\"Magesh K\"}', '::1', '2017-10-04 21:55:46'),
+(35, 1, 'advertise_add', '{\"customer_id\":\"1\",\"name\":\"Magesh K\"}', '::1', '2017-10-04 21:57:04'),
+(36, 2, 'login', '{\"customer_id\":\"2\",\"name\":\"Rave R \"}', '::1', '2017-10-05 20:51:14'),
+(37, 1, 'login', '{\"customer_id\":\"1\",\"name\":\"Magesh K\"}', '::1', '2017-10-05 21:34:19'),
+(38, 2, 'login', '{\"customer_id\":\"2\",\"name\":\"Rave R \"}', '::1', '2017-10-05 21:56:42'),
+(39, 2, 'login', '{\"customer_id\":\"2\",\"name\":\"Rave R \"}', '::1', '2017-10-07 22:55:00'),
+(40, 2, 'login', '{\"customer_id\":\"2\",\"name\":\"Rave R \"}', '::1', '2017-10-07 23:02:13'),
+(41, 3, 'login', '{\"customer_id\":\"3\",\"name\":\" \"}', '::1', '2017-10-08 10:38:20'),
+(42, 4, 'login', '{\"customer_id\":\"4\",\"name\":\"Magesh K\"}', '::1', '2017-10-08 11:51:54'),
+(43, 4, 'login', '{\"customer_id\":\"4\",\"name\":\"Magesh K\"}', '::1', '2017-10-08 12:10:45'),
+(44, 2, 'login', '{\"customer_id\":\"2\",\"name\":\"Rave R \"}', '::1', '2017-10-08 12:10:58'),
+(45, 2, 'advertise_add', '{\"customer_id\":\"2\",\"name\":\"Rave R \"}', '::1', '2017-10-08 12:11:49'),
+(46, 2, 'advertise_edit', '{\"customer_id\":\"2\",\"name\":\"Rave R \"}', '::1', '2017-10-08 12:16:44'),
+(47, 2, 'login', '{\"customer_id\":\"2\",\"name\":\"Rave R \"}', '::1', '2017-10-08 13:50:41'),
+(48, 5, 'login', '{\"customer_id\":\"5\",\"name\":\"Magesh K\"}', '::1', '2017-10-08 14:12:39'),
+(49, 5, 'login', '{\"customer_id\":\"5\",\"name\":\"Magesh K\"}', '::1', '2017-10-08 15:58:51'),
+(50, 5, 'login', '{\"customer_id\":\"5\",\"name\":\"Magesh K\"}', '::1', '2017-10-08 21:45:24'),
+(51, 5, 'login', '{\"customer_id\":\"5\",\"name\":\"Magesh K\"}', '::1', '2017-10-08 21:45:50'),
+(52, 2, 'login', '{\"customer_id\":\"2\",\"name\":\"Rave R \"}', '::1', '2017-10-08 21:48:44'),
+(53, 2, 'login', '{\"customer_id\":\"2\",\"name\":\"Rave R \"}', '::1', '2017-10-09 21:15:06'),
+(54, 5, 'login', '{\"customer_id\":\"5\",\"name\":\"Magesh K\"}', '::1', '2017-10-10 20:56:16'),
+(55, 2, 'login', '{\"customer_id\":\"2\",\"name\":\"Rave R \"}', '::1', '2017-10-10 23:31:39');
 
 -- --------------------------------------------------------
 
@@ -11272,7 +11305,27 @@ INSERT INTO `oc_customer_history` (`customer_history_id`, `customer_id`, `commen
 (5, 2, 'Your Request Is Verified ', '2017-09-28 07:27:05'),
 (6, 2, 'Your Request Is Accepted ', '2017-09-28 07:27:09'),
 (7, 2, 'Your Request Is Accepted ', '2017-09-28 07:27:11'),
-(8, 2, 'Your Request Is Accepted ', '2017-09-28 07:27:27');
+(8, 2, 'Your Request Is Accepted ', '2017-09-28 07:27:27'),
+(9, 2, 'Your Request Is Accepted ', '2017-10-05 21:31:35'),
+(10, 2, 'Your Request Is Verified ', '2017-10-05 21:31:40'),
+(11, 2, 'Your Request Is Accepted ', '2017-10-05 21:32:02'),
+(12, 2, 'Your Request Is Accepted ', '2017-10-05 21:32:14'),
+(13, 1, 'Your Seller Acount Is Disapproved', '2017-10-05 21:41:57'),
+(14, 1, 'Your Request Is Accepted ', '2017-10-05 21:42:38'),
+(15, 1, 'Your Request Is Accepted ', '2017-10-05 21:59:44'),
+(16, 1, 'Your Request Is Accepted ', '2017-10-05 22:01:01'),
+(17, 1, 'Your Request Is Accepted ', '2017-10-05 22:02:36'),
+(18, 1, 'Your Request Is Accepted ', '2017-10-05 22:03:12'),
+(19, 1, 'Your Request Is Accepted ', '2017-10-05 22:03:44'),
+(20, 1, 'Your Request Is Accepted ', '2017-10-05 22:03:51'),
+(21, 1, 'Your Request Is Accepted ', '2017-10-05 22:04:31'),
+(22, 1, 'Your Request Is Accepted ', '2017-10-05 22:08:48'),
+(23, 1, 'Your Request Is Accepted ', '2017-10-05 22:09:15'),
+(24, 1, 'Your Request Is Accepted ', '2017-10-05 22:11:26'),
+(25, 1, 'Your Request Is Accepted ', '2017-10-05 22:12:21'),
+(26, 1, 'Your Request Is Accepted ', '2017-10-05 22:12:58'),
+(27, 1, 'Your Seller Acount Is Disapproved', '2017-10-05 22:15:16'),
+(28, 1, 'Your Request Is Accepted ', '2017-10-05 22:15:21');
 
 -- --------------------------------------------------------
 
@@ -11293,7 +11346,10 @@ CREATE TABLE `oc_customer_ip` (
 
 INSERT INTO `oc_customer_ip` (`customer_ip_id`, `customer_id`, `ip`, `date_added`) VALUES
 (1, 1, '::1', '2017-09-16 23:00:03'),
-(2, 2, '::1', '2017-09-27 23:25:35');
+(2, 2, '::1', '2017-09-27 23:25:35'),
+(3, 3, '::1', '2017-10-08 10:38:20'),
+(4, 4, '::1', '2017-10-08 11:51:54'),
+(5, 5, '::1', '2017-10-08 14:12:39');
 
 -- --------------------------------------------------------
 
@@ -11329,7 +11385,7 @@ CREATE TABLE `oc_customer_online` (
 --
 
 INSERT INTO `oc_customer_online` (`ip`, `customer_id`, `url`, `referer`, `date_added`) VALUES
-('::1', 1, 'http://localhost/bon/index.php?route=account/address/edit&amp;address_id=1', 'http://localhost/bon/index.php?route=sellerprofile/sellerprofile&amp;tab_section=profile', '2017-10-02 10:24:58');
+('::1', 2, 'http://localhost/bon/index.php?route=sellerprofile/sellerprofile/selleradvertiseexpense&amp;seller_id=2', 'http://localhost/bon/index.php?route=sellerprofile/sellerprofile&amp;tab_section=profile', '2017-10-10 20:13:31');
 
 -- --------------------------------------------------------
 
@@ -13081,7 +13137,10 @@ CREATE TABLE `oc_seller_transaction` (
 INSERT INTO `oc_seller_transaction` (`seller_transaction_id`, `customer_id`, `order_id`, `description`, `amount`, `date_added`) VALUES
 (1, 1, 0, 'Subscription To [ Free ]', '0.0000', '2017-09-16 23:09:14'),
 (2, 1, 0, 'Subscription To [ Free ]', '0.0000', '2017-09-21 23:10:09'),
-(3, 2, 0, 'Subscription To [ Free ]', '0.0000', '2017-09-28 07:27:05');
+(3, 2, 0, 'Subscription To [ Free ]', '0.0000', '2017-09-28 07:27:05'),
+(4, 2, 0, 'Subscription To [ Free ]', '0.0000', '2017-10-05 21:31:40'),
+(5, 1, 0, 'Subscription To [ Free ]', '0.0000', '2017-10-05 22:12:59'),
+(6, 1, 0, 'Subscription To [ Free ]', '0.0000', '2017-10-05 22:15:21');
 
 -- --------------------------------------------------------
 
@@ -13472,7 +13531,9 @@ INSERT INTO `oc_store_offers` (`advertise_id`, `seller_id`, `offer_title`, `offe
 (5, 1, 'Test Advert', 'catalog/seller_images/1/Advertise/1505661709_advertise.jpg', 'image/catalog/seller_images/1/Desert.jpg', '', '', 0, NULL, NULL, NULL, NULL, '', 1, '2017-09-17 20:49:44', '2017-09-17 21:13:02', 'deleted', '0', '0000-00-00', '0000-00-00', NULL, 0, 'no'),
 (6, 1, 'Edit Test 1', 'catalog/seller_images/1/Advertise/1505662630_advertise.jpg', 'image/catalog/seller_images/1/Desert.jpg', '', '', 0, NULL, NULL, NULL, NULL, '', 1, '2017-09-17 20:54:29', '2017-09-17 21:13:06', 'deleted', '0', '0000-00-00', '0000-00-00', NULL, 0, 'no'),
 (7, 1, 'Edit Test 1', 'catalog/seller_images/1/Advertise/1505920438_advertise.jpg', 'catalog/seller_images/1/Chrysanthemum.jpg', '', '', 4, 0, '', '', 'kanchipuram', '', 1, '2017-09-20 20:43:58', '2017-10-02 11:11:34', 'approved', '0', '2017-10-02', '2017-10-07', NULL, 500000, 'no'),
-(8, 2, 'Edit Test 1', 'catalog/seller_images/2/Advertise/1506564672_advertise.jpg', 'catalog/seller_images/2/Koala.jpg', '', '', 2, 0, 'india', '', '', '', 1, '2017-09-28 07:41:12', '2017-09-28 07:59:10', 'approved', '0', '2017-09-29', '2017-10-01', NULL, 3001, 'no');
+(8, 2, 'Edit Test 1', 'catalog/seller_images/2/Advertise/1506564672_advertise.jpg', 'catalog/seller_images/2/Koala.jpg', '', '', 2, 0, 'india', '', '', '', 1, '2017-09-28 07:41:12', '2017-09-28 07:59:10', 'approved', '0', '2017-09-29', '2017-10-01', NULL, 3001, 'no'),
+(9, 1, 'Edit Test 1', 'catalog/seller_images/1/Advertise/1507134424_advertise.jpg', 'catalog/seller_images/1/Chrysanthemum.jpg', '', '', 0, NULL, NULL, NULL, NULL, '', 1, '2017-10-04 21:57:04', '2017-10-04 21:57:24', 'approved', '0', '0000-00-00', '0000-00-00', NULL, 0, 'no'),
+(10, 2, 'sdfsdf', 'catalog/seller_images/2/Advertise/1507445204_advertise.jpg', 'catalog/seller_images/2/Hydrangeas.jpg', '', '', 0, NULL, NULL, NULL, NULL, '', 1, '2017-10-08 12:11:49', '2017-10-08 14:06:25', 'approved', '0', '0000-00-00', '0000-00-00', NULL, 0, 'no');
 
 -- --------------------------------------------------------
 
@@ -13536,6 +13597,13 @@ CREATE TABLE `oc_store_timing` (
   `saturday` text COLLATE utf8_estonian_ci NOT NULL,
   `sunday` text COLLATE utf8_estonian_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_estonian_ci;
+
+--
+-- Dumping data for table `oc_store_timing`
+--
+
+INSERT INTO `oc_store_timing` (`timing_id`, `uid`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`, `sunday`) VALUES
+(2, 5, 'a:4:{s:3:\"day\";s:6:\"monday\";s:6:\"status\";s:7:\"holiday\";s:4:\"from\";a:1:{i:0;s:8:\"11:15 PM\";}s:2:\"to\";a:1:{i:0;s:8:\"11:15 PM\";}}', 'a:4:{s:3:\"day\";s:7:\"tuesday\";s:6:\"status\";s:5:\"close\";s:4:\"from\";a:1:{i:0;s:8:\"11:15 PM\";}s:2:\"to\";a:1:{i:0;s:8:\"11:15 PM\";}}', 'a:4:{s:3:\"day\";s:9:\"wednesday\";s:6:\"status\";s:5:\"close\";s:4:\"from\";a:1:{i:0;s:8:\"11:15 PM\";}s:2:\"to\";a:1:{i:0;s:8:\"11:15 PM\";}}', 'a:4:{s:3:\"day\";s:8:\"thursday\";s:6:\"status\";s:5:\"close\";s:4:\"from\";a:1:{i:0;s:8:\"11:15 PM\";}s:2:\"to\";a:1:{i:0;s:8:\"11:15 PM\";}}', 'a:4:{s:3:\"day\";s:6:\"friday\";s:6:\"status\";s:5:\"close\";s:4:\"from\";a:1:{i:0;s:8:\"11:15 PM\";}s:2:\"to\";a:1:{i:0;s:8:\"11:15 PM\";}}', 'a:4:{s:3:\"day\";s:8:\"saturday\";s:6:\"status\";s:5:\"close\";s:4:\"from\";a:1:{i:0;s:8:\"11:15 PM\";}s:2:\"to\";a:1:{i:0;s:8:\"11:15 PM\";}}', 'a:4:{s:3:\"day\";s:6:\"sunday\";s:6:\"status\";s:5:\"close\";s:4:\"from\";a:1:{i:0;s:8:\"11:15 PM\";}s:2:\"to\";a:1:{i:0;s:8:\"11:15 PM\";}}');
 
 -- --------------------------------------------------------
 
@@ -15885,7 +15953,9 @@ INSERT INTO `oc_user_activity` (`user_activity_id`, `user_id`, `activity_id`, `k
 (44, 1, 1, 'ad_approved', '::1', '2017-09-17 15:27:34'),
 (45, 1, 2, 'ad_approved', '::1', '2017-09-17 19:36:04'),
 (46, 1, 7, 'ad_approved', '::1', '2017-09-20 20:44:47'),
-(47, 1, 8, 'ad_approved', '::1', '2017-09-28 07:44:34');
+(47, 1, 8, 'ad_approved', '::1', '2017-09-28 07:44:34'),
+(48, 1, 9, 'ad_approved', '::1', '2017-10-04 21:57:24'),
+(49, 1, 10, 'ad_approved', '::1', '2017-10-08 14:06:25');
 
 -- --------------------------------------------------------
 
@@ -21282,7 +21352,7 @@ ALTER TABLE `oc_zone_to_geo_zone`
 -- AUTO_INCREMENT for table `oc_address`
 --
 ALTER TABLE `oc_address`
-  MODIFY `address_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `address_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `oc_affiliate`
 --
@@ -21402,12 +21472,12 @@ ALTER TABLE `oc_currency`
 -- AUTO_INCREMENT for table `oc_customer`
 --
 ALTER TABLE `oc_customer`
-  MODIFY `customer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `customer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `oc_customer_activity`
 --
 ALTER TABLE `oc_customer_activity`
-  MODIFY `customer_activity_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `customer_activity_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
 --
 -- AUTO_INCREMENT for table `oc_customer_group`
 --
@@ -21417,12 +21487,12 @@ ALTER TABLE `oc_customer_group`
 -- AUTO_INCREMENT for table `oc_customer_history`
 --
 ALTER TABLE `oc_customer_history`
-  MODIFY `customer_history_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `customer_history_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 --
 -- AUTO_INCREMENT for table `oc_customer_ip`
 --
 ALTER TABLE `oc_customer_ip`
-  MODIFY `customer_ip_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `customer_ip_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `oc_customer_login`
 --
@@ -21722,7 +21792,7 @@ ALTER TABLE `oc_seller_shipping`
 -- AUTO_INCREMENT for table `oc_seller_transaction`
 --
 ALTER TABLE `oc_seller_transaction`
-  MODIFY `seller_transaction_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `seller_transaction_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `oc_setting`
 --
@@ -21757,7 +21827,7 @@ ALTER TABLE `oc_store_image`
 -- AUTO_INCREMENT for table `oc_store_offers`
 --
 ALTER TABLE `oc_store_offers`
-  MODIFY `advertise_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `advertise_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `oc_store_referred`
 --
@@ -21767,12 +21837,12 @@ ALTER TABLE `oc_store_referred`
 -- AUTO_INCREMENT for table `oc_store_timing`
 --
 ALTER TABLE `oc_store_timing`
-  MODIFY `timing_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `timing_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `oc_user_activity`
 --
 ALTER TABLE `oc_user_activity`
-  MODIFY `user_activity_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
+  MODIFY `user_activity_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
