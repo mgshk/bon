@@ -339,7 +339,7 @@
 						<!--<div class="row">-->
 						<div id="logo">
 							<?php if ($logo) { ?>
-							<a href="<?php echo $home; ?>"><img style="height: 39px;" src="image/bon-logo-header-res.jpg<?php //echo $logo; ?>" title="<?php echo $name; ?>" alt="<?php echo $name; ?>" class="img-responsive" /></a>
+							<a href="<?php echo $home; ?>"><img style="height: 39px;" src="image/bon-logo-header-res.png<?php //echo $logo; ?>" title="<?php echo $name; ?>" alt="<?php echo $name; ?>" class="img-responsive" /></a>
 							<?php } else { ?>
 							<h1>
 								<a href="<?php echo $home; ?>">
