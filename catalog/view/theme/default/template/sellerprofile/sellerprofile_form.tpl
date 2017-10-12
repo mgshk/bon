@@ -1,4 +1,4 @@
-Referred by<?php echo $header; ?>
+<?php echo $header; ?>
 <div class="container-fluid mainn-topp-ress">
   <?php if ($success) { ?>
   <div class="alert alert-success"><i class="fa fa-check-circle"></i>
@@ -1157,32 +1157,32 @@ Referred by<?php echo $header; ?>
       	<div id="portalSuccessMsg" class="alert alert-success" style="display:none;"></div>
       	
         <div class="form-group">
-	  <label class="col-md-4 control-label" for="input-website"><?php echo $entry_website; ?></label>
-	  <div class="col-md-4">
+	  <label class="col-md-6 control-label" for="input-website"><?php echo $entry_website; ?></label>
+	  <div class="col-md-6">
             <input type="text" name="website" maxlength="500" value="<?php echo $website; ?>" placeholder="http://www.example.com" id="input-website" class="form-control" autocomplete="off" />
           </div>
 	</div>	
 	<div class="form-group">
-	  <label class="col-md-4 control-label" for="input-facebook"><?php echo $entry_facebook; ?></label>
-	  <div class="col-md-4">
+	  <label class="col-md-6 control-label" for="input-facebook"><?php echo $entry_facebook; ?></label>
+	  <div class="col-md-6">
             <input type="text" name="facebook" maxlength="500" value="<?php echo $facebook; ?>" placeholder="http://www.facebook.com/youraccount" id="input-facebook" class="form-control" autocomplete="off" />
           </div>
 	</div>
         <div class="form-group">
-	  <label class="col-md-4 control-label" for="input-twitter"><?php echo $entry_twitter; ?></label>
-	  <div class="col-md-4">
+	  <label class="col-md-6 control-label" for="input-twitter"><?php echo $entry_twitter; ?></label>
+	  <div class="col-md-6">
             <input type="text" name="twitter" maxlength="500" value="<?php echo $twitter; ?>" placeholder="http://twitter.com/youraccount" id="input-twitter" class="form-control" autocomplete="off" />
           </div>
 	</div>
         <div class="form-group">
-	  <label class="col-md-4 control-label" for="input-googleplus"><?php echo $entry_googleplus; ?></label>
-	  <div class="col-md-4">
+	  <label class="col-md-6 control-label" for="input-googleplus"><?php echo $entry_googleplus; ?></label>
+	  <div class="col-md-6">
             <input type="text" name="googleplus" maxlength="500" value="<?php echo $googleplus; ?>" placeholder="http://plus.google.com/youraccount" id="input-googleplus" class="form-control" autocomplete="off" />
           </div>
 	</div>
         <div class="form-group">
-	  <label class="col-md-4 control-label" for="input-instagram"><?php echo $entry_instagram; ?></label>
-	  <div class="col-md-4">
+	  <label class="col-md-6 control-label" for="input-instagram"><?php echo $entry_instagram; ?></label>
+	  <div class="col-md-6">
             <input type="text" name="instagram" maxlength="500" value="<?php echo $instagram; ?>" placeholder="http://www.instagram.com/youraccount" id="input-instagram" class="form-control" autocomplete="off" />
           </div>
 	</div>
@@ -1231,9 +1231,9 @@ Referred by<?php echo $header; ?>
         <h4 class="modal-title loc-share-title">Store/Entity additional images</h4>
       </div>
       <div class="modal-body timing-share-top">
-        <ul class="--bon-res-scrooll">
-          <li>- Images you upload here are closely monitored by our experts. If found not permissable to public, store/entity
-            might be banned from the listing after a warning.</li>
+        <ul>
+          <li style="text-align: left; font-size: 12px">Images you upload here are closely monitored by our experts. If found not permissable to public, your store/entity
+            will be banned from the listing without a warning.</li>
         </ul>
         <br/>
         <form action="" method="post" enctype="multipart/form-data" id="form-image" class="form-horizontal">
@@ -1289,9 +1289,17 @@ Referred by<?php echo $header; ?>
         <h4 class="modal-title loc-share-title">Store/Entity Categories</h4>
       </div>
       <div class="modal-body cat-top">
-        <ul class="--bon-res-scrooll">
-          <li>- Advertisement(s) you post will be filtered by buyers upon searching the main category you add here.</li>
-          <li>- Please be cautious in choosing main or sub category to keep your loyalty/credibility amongst buyers.</li>
+        <ul>
+          <table style="font-size: 12px;text-align: left">
+            <tr>
+              <td>1.&nbsp&nbsp</td>
+              <td>Advertisement(s) you post will be filtered by buyers upon searching the main category you add here.</td>
+            </tr>
+            <tr>
+              <td>2.&nbsp&nbsp</td>
+              <td>Please be cautious in choosing main or sub category to keep your loyalty/credibility amongst buyers.</td>
+            </tr>
+          </table>
         </ul>
         <br/>
         <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
@@ -1373,130 +1381,122 @@ Referred by<?php echo $header; ?>
 <link href="catalog/view/javascript/bootstrap-timepicker.css" rel="stylesheet" type="text/css" />
 <script src="catalog/view/javascript/bootstrap-timepicker.js"></script>
 <div class="modal fade" id="store_timings" role="dialog">
-  <div class="modal-dialog">
-    <!-- Modal content-->
-    <div class="modal-content loc-pop">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title loc-share-title">Hours of operation</h4>
-      </div>
-      <div class="modal-body store-timing-share-top">
-        <div id="store_success_timg"></div>
-        <form action="" method="post" enctype="multipart/form-data" id="store-timings" class="form-horizontal">
-          <div class="featured-detils">
-            <?php $days = array("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"); ?>
-            <?php $i = 0; foreach($days as $day) { 
+   <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content loc-pop">
+         <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title loc-share-title">Hours of operation</h4>
+         </div>
+         <div class="modal-body store-timing-share-top">
+	 <div id="store_success_timg"></div>
+            <form action="" method="post" enctype="multipart/form-data" id="store-timings" class="form-horizontal">
+               <div class="featured-detils">	       
+                  <?php $days = array("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"); ?>
+                  <?php $i = 0; foreach($days as $day) { 
                      $str_tmg = unserialize($store_timings[strtolower($day)]);
-         //echo "<pre>"; print_r($store_timings['monday']);
+		     //echo "<pre>"; print_r($store_timings['monday']);
                      if($str_tmg['status'] == "open") { ?>
-            <div class="row">
-              <div class="col-md-4">
-                <label><?php echo $day; ?></label>
-              </div>
-              <div class="col-md-4">
-                <?php $status = array("close", "open", "holiday", "leave"); ?>
-                <input type="hidden" name="<?php echo strtolower($day); ?>[day]" value="<?php echo strtolower($day); ?>">
-                <select name="<?php echo strtolower($day); ?>[status]" id="select-<?php echo strtolower($day); ?>" data-month="<?php echo strtolower($day).$i; ?>"
-                  data-id="<?php echo $i; ?>"> // onchange='check()'
+                  <div class="row">
+                     <div class="col-sm-2">
+                        <label><?php echo $day; ?></label>
+                     </div>
+                     <div class="col-sm-2">
+                        <?php $status = array("close", "open", "holiday", "leave"); ?>
+                        <input type="hidden" name="<?php echo strtolower($day); ?>[day]" value="<?php echo strtolower($day); ?>">
+                        <select name="<?php echo strtolower($day); ?>[status]" id="select-<?php echo strtolower($day); ?>" data-month="<?php echo strtolower($day).$i; ?>" data-id="<?php echo $i; ?>" > // onchange='check()'
                         <?php 
                            foreach ($status as $statu) {
-                             $selected = ($statu == $str_tmg['status']) ? "selected = selected" : "";
-                            echo "<option value=\"" . $statu . "\"".$selected.">" . strtoupper($statu) . "</option>";
+                           	 $selected = ($statu == $str_tmg['status']) ? "selected = selected" : "";
+                           	echo "<option value=\"" . $statu . "\"".$selected.">" . strtoupper($statu) . "</option>";
                            }
                            ?>
                         </select>
-              </div>
-              <div class="col-md-4">
-                <div class="select-<?php echo strtolower($day.$i); ?>" style="margin-bottom: 10px; display: inline-flex;">
-                  <?php if($str_tmg['from'][0] != '') { ?>
-                  <div class="input-group bootstrap-timepicker timepicker">
-                    <input id="timepicker1" name="<?php echo strtolower($day); ?>[from][]" type="text" value="<?php echo $str_tmg['from'][0]; ?>"
-                      class="form-control input-small timepicker1" readonly>
-                    <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
+                     </div>
+                     <div class="col-sm-6">
+                        <div class="select-<?php echo strtolower($day.$i); ?>" style ="margin-bottom: 10px; display: inline-flex;">
+                           <?php if($str_tmg['from'][0] != '') { ?>
+                           <div class="input-group bootstrap-timepicker timepicker">
+                              <input id="timepicker1" name="<?php echo strtolower($day); ?>[from][]" type="text" value="<?php echo $str_tmg['from'][0]; ?>" class="form-control input-small timepicker1" readonly>
+                              <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
+                           </div>
+                           <?php } ?>
+                           <?php if($str_tmg['to'][0] != '') { ?>
+                           <div class="input-group bootstrap-timepicker timepicker">
+                              <input id="timepicker1" name="<?php echo strtolower($day); ?>[to][]" type="text" value="<?php echo $str_tmg['to'][0]; ?>" class="form-control input-small timepicker1" readonly>
+                              <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
+                           </div>
+                           <?php } ?>
+                        </div>
+                        <?php if(isset($str_tmg['from'][1]) && $str_tmg['from'][1] != '') { ?>
+                        <div class="select-<?php echo strtolower($day.$i); ?> extras" style ="margin-bottom: 10px; display: inline-flex;">
+                           <div class="input-group bootstrap-timepicker timepicker">
+                              <input id="timepicker1" name="<?php echo strtolower($day); ?>[from][]" type="text" value="<?php echo $str_tmg['from'][1]; ?>" class="form-control input-small timepicker1" readonly>
+                              <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
+                           </div>
+                           <?php } ?>
+                           <?php if(isset($str_tmg['to'][1]) && $str_tmg['to'][1] != '') { ?>
+                           <div class="input-group bootstrap-timepicker timepicker">
+                              <input id="timepicker2" name="<?php echo strtolower($day); ?>[to][]" type="text" value="<?php echo $str_tmg['to'][1]; ?>" class="form-control input-small timepicker1" readonly>
+                              <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
+                           </div>
+                        </div>
+                        <?php } ?>
+                        <div class="second-time-<?php echo strtolower($day.$i); ?>">		  
+                        </div>
+                     </div>
+                     <?php if(count($str_tmg['from']) != 2) { ?>
+                     <div class="col-sm-2" id="add-<?php echo strtolower($day.$i); ?>" >
+                        <button type="button" class="addbtn" onclick="addbtnfnt(this);" id="<?php echo strtolower($day.$i); ?>">+</button>
+                     </div>
+                     <?php } else { ?>
+                     <div class="col-sm-2" id="add-<?php echo strtolower($day.$i); ?>" >
+                        <button type="button" class="removebtns" id="<?php echo strtolower($day.$i); ?>">-</button>
+                     </div>
+                     <?php } ?>
                   </div>
-                  <?php } ?>
-                  <?php if($str_tmg['to'][0] != '') { ?>
-                  <div class="input-group bootstrap-timepicker timepicker">
-                    <input id="timepicker1" name="<?php echo strtolower($day); ?>[to][]" type="text" value="<?php echo $str_tmg['to'][0]; ?>"
-                      class="form-control input-small timepicker1" readonly>
-                    <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
-                  </div>
-                  <?php } ?>
-                </div>
-                <?php if(isset($str_tmg['from'][1]) && $str_tmg['from'][1] != '') { ?>
-                <div class="select-<?php echo strtolower($day.$i); ?> extras" style="margin-bottom: 10px; display: inline-flex;">
-                  <div class="input-group bootstrap-timepicker timepicker">
-                    <input id="timepicker1" name="<?php echo strtolower($day); ?>[from][]" type="text" value="<?php echo $str_tmg['from'][1]; ?>"
-                      class="form-control input-small timepicker1" readonly>
-                    <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
-                  </div>
-                  <?php } ?>
-                  <?php if(isset($str_tmg['to'][1]) && $str_tmg['to'][1] != '') { ?>
-                  <div class="input-group bootstrap-timepicker timepicker">
-                    <input id="timepicker2" name="<?php echo strtolower($day); ?>[to][]" type="text" value="<?php echo $str_tmg['to'][1]; ?>"
-                      class="form-control input-small timepicker1" readonly>
-                    <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
-                  </div>
-                </div>
-                <?php } ?>
-                <div class="second-time-<?php echo strtolower($day.$i); ?>">
-                </div>
-              </div>
-              <?php if(count($str_tmg['from']) != 2) { ?>
-              <div class="col-md-4" id="add-<?php echo strtolower($day.$i); ?>">
-                <button type="button" class="addbtn" onclick="addbtnfnt(this);" id="<?php echo strtolower($day.$i); ?>">+</button>
-              </div>
-              <?php } else { ?>
-              <div class="col-md-4" id="add-<?php echo strtolower($day.$i); ?>">
-                <button type="button" class="removebtns" id="<?php echo strtolower($day.$i); ?>">-</button>
-              </div>
-              <?php } ?>
-            </div>
-            <?php } else { ?>
-            <div class="row">
-              <div class="col-md-4">
-                <label><?php echo $day; ?></label>
-              </div>
-              <div class="col-md-4">
-                <?php $status = array("close", "open", "holiday", "leave"); ?>
-                <input type="hidden" name="<?php echo strtolower($day); ?>[day]" value="<?php echo strtolower($day); ?>">
-                <select name="<?php echo strtolower($day); ?>[status]" id="select-<?php echo strtolower($day); ?>" data-month="<?php echo strtolower($day).$i; ?>"
-                  data-id="<?php echo $i; ?>"> // onchange='check()'
+                  <?php } else { ?>
+                  <div class="row">
+                     <div class="col-sm-2">
+                        <label><?php echo $day; ?></label>
+                     </div>
+                     <div class="col-sm-2">
+                        <?php $status = array("close", "open", "holiday", "leave"); ?>
+                        <input type="hidden" name="<?php echo strtolower($day); ?>[day]" value="<?php echo strtolower($day); ?>">
+                        <select name="<?php echo strtolower($day); ?>[status]" id="select-<?php echo strtolower($day); ?>" data-month="<?php echo strtolower($day).$i; ?>" data-id="<?php echo $i; ?>"> // onchange='check()'
                         <?php 
                            foreach ($status as $statu) {
-                             $selected = ($statu == $str_tmg['status']) ? "selected = selected" : "";
-                            echo "<option value=\"" . $statu . "\"".$selected.">" . strtoupper($statu) . "</option>";
+                           	 $selected = ($statu == $str_tmg['status']) ? "selected = selected" : "";
+                           	echo "<option value=\"" . $statu . "\"".$selected.">" . strtoupper($statu) . "</option>";
                            }
                            ?>
                         </select>
-              </div>
-              <div class="col-md-4">
-                <div class="select-<?php echo strtolower($day.$i); ?>" style="display:none; margin-bottom: 10px;">
-                  <div class="input-group bootstrap-timepicker timepicker">
-                    <input id="timepicker1" name="<?php echo strtolower($day); ?>[from][]" type="text" value="" class="form-control input-small timepicker1"
-                      readonly>
-                    <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
+                     </div>
+                     <div class="col-sm-6">
+                        <div class="select-<?php echo strtolower($day.$i); ?>" style="display:none; margin-bottom: 10px;">
+                           <div class="input-group bootstrap-timepicker timepicker">
+                              <input id="timepicker1" name="<?php echo strtolower($day); ?>[from][]" type="text" value="" class="form-control input-small timepicker1" readonly>
+                              <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
+                           </div>
+                           <div class="input-group bootstrap-timepicker timepicker">
+                              <input id="timepicker2" name="<?php echo strtolower($day); ?>[to][]" type="text" value="" class="form-control input-small timepicker1" readonly>
+                              <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
+                           </div>
+                        </div>
+                        <div class="second-time-<?php echo strtolower($day.$i); ?>">		  
+                        </div>
+                     </div>
+                     <div class="col-sm-2" id="add-<?php echo strtolower($day.$i); ?>" style="display:none;">
+                        <button type="button" class="addbtn" id="<?php echo strtolower($day.$i); ?>" onclick="addbtnfnt(this);">+</button>
+                     </div>
                   </div>
-                  <div class="input-group bootstrap-timepicker timepicker">
-                    <input id="timepicker2" name="<?php echo strtolower($day); ?>[to][]" type="text" value="" class="form-control input-small timepicker1"
-                      readonly>
-                    <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
-                  </div>
-                </div>
-                <div class="second-time-<?php echo strtolower($day.$i); ?>">
-                </div>
-              </div>
-              <div class="col-md-4" id="add-<?php echo strtolower($day.$i); ?>" style="display:none;">
-                <button type="button" class="addbtn" id="<?php echo strtolower($day.$i); ?>" onclick="addbtnfnt(this);">+</button>
-              </div>
-            </div>
-            <?php } $i++; } ?>
-          </div>
-          <button type="button" id="button-timing-save" data-loading-text="<?php echo $text_loading; ?>" class="btn btn-primary pull-right">Save</button>
-        </form>
+                  <?php } $i++; } ?>
+               </div>
+               <button type="button" id="button-timing-save" data-loading-text="<?php echo $text_loading; ?>" class="btn btn-primary pull-right">Save</button>
+            </form>
+         </div>
       </div>
-    </div>
-  </div>
+   </div>
 </div>
 <script>
     $(window).on('load',function(){
@@ -1588,40 +1588,44 @@ Referred by<?php echo $header; ?>
 
 </script>
 <script type="text/javascript">
-  function addbtnfnt(val) {
-    var addbtn_id = $(val).attr('id');
-    var ctr = $(".select-" + addbtn_id).find(".extra").length;
-    if (ctr < 1) {
-      var $ddl = $(".select-" + addbtn_id).clone();
-      $ddl.attr("id", "ddl" + ctr);
-      $(".second-time-" + addbtn_id).append($ddl);
-      $("#add-" + addbtn_id).html('<button type="button" class="removebtn" id="' + addbtn_id + '">-</button>');
-      $('.timepicker1').timepicker();
-    }
-  }
-
-  $('.col-md-4').delegate('.removebtn', 'click', function () {
-    var addbtn_id = $(this).attr('id');
-    $(".select-" + addbtn_id + ".extra").remove();
-    $("#add-" + addbtn_id).html('<button type="button" onclick="addbtnfnt(this);" class="addbtn" id="' + addbtn_id + '">+</button>');
-  });
-
-  $('.col-md-4').delegate('.removebtns', 'click', function () {
-    var addbtn_id = $(this).attr('id');
-    $(".select-" + addbtn_id + ".extras").remove();
-    $("#add-" + addbtn_id).html('<button type="button" onclick="addbtnfnt(this);" class="addbtn" id="' + addbtn_id + '">+</button>');
-  });
-
-  $('select#select-monday').on("change", function () {
-
-    var month = $(this).data('month');
-    $('#add-' + month).show();
-    if ($(this).val() == 'close' || $(this).val() == 'holiday' || $(this).val() == 'leave') {
-      $('#add-' + month).hide();
-    }
-  });
-
-
+   function addbtnfnt(val) {//alert(343);
+       var addbtn_id = $(val).attr('id');
+       var ctr = $(".select-"+addbtn_id).find(".extra").length;
+       if (ctr < 1) {
+           var $ddl = $(".select-"+addbtn_id).clone();
+           $ddl.attr("id", "ddl" + ctr);
+           $ddl.addClass("extra");	
+   	//$(".select-"+addbtn_id).append($ddl);
+   //alert(addbtn_id);
+   $(".second-time-"+addbtn_id).append($ddl);
+   	$("#add-"+addbtn_id).html('<button type="button" class="removebtn" id="'+addbtn_id+'">-</button>');
+   	 $('.timepicker1').timepicker();
+       } 
+     }
+    //});
+   
+    $('.col-sm-2').delegate('.removebtn', 'click', function() { 
+   	 var addbtn_id = $(this).attr('id');
+   	$(".select-"+addbtn_id+".extra").remove();	
+   	$("#add-"+addbtn_id).html('<button type="button" onclick="addbtnfnt(this);" class="addbtn" id="'+addbtn_id+'">+</button>');
+   });
+   
+   $('.col-sm-2').delegate('.removebtns', 'click', function() { //alert(233223);
+   	 var addbtn_id = $(this).attr('id');
+   	 //alert(".select-"+addbtn_id+" .extras");
+   	$(".select-"+addbtn_id+".extras").remove();	
+   	$("#add-"+addbtn_id).html('<button type="button" onclick="addbtnfnt(this);" class="addbtn" id="'+addbtn_id+'">+</button>');
+   });
+   
+   $('select#select-monday').on("change", function() { 
+   	
+   	var month = $(this).data('month'); 
+   	$('#add-'+month).show();
+   	if($(this).val() == 'close' || $(this).val() == 'holiday'  || $(this).val() == 'leave') { 
+   		$('#add-'+month).hide();
+   	}
+    });
+     
   $('.well').delegate('.fa-minus-circle', 'click', function () {
     $(this).parent().remove();
   });
