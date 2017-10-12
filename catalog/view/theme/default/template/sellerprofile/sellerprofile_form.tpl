@@ -1236,6 +1236,8 @@
             will be banned from the listing without a warning.</li>
         </ul>
         <br/>
+      	<div id="storeImagesErrorMsg" class="alert alert-danger" style="display:none;"></div>
+      	<div id="storeImagesSuccessMsg" class="alert alert-success" style="display:none;"></div>
         <form action="" method="post" enctype="multipart/form-data" id="form-image" class="form-horizontal">
           <div class="table-responsive">
             <table id="images" class="table table-striped table-bordered table-hover">
@@ -1301,6 +1303,8 @@
             </tr>
           </table>
         </ul>
+      	<div id="storeCatErrorMsg" class="alert alert-danger" style="display:none;"></div>
+      	<div id="storeCatSuccessMsg" class="alert alert-success" style="display:none;"></div>
         <br/>
         <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
           <div class="table-responsive">
@@ -1576,15 +1580,25 @@
       type: "POST",
       url: 'index.php?route=sellerprofile/sellerprofile/store_timings',
       data: $('#store-timings').serialize(),
-      success: function (data) {
-        $('#store_success_timg').html('');
-        if (data['success']) {
+        success: function(data) {
+          $('#store_success_timg').html('');
           $('#store_success_timg').html('<div class="alert alert-success"><i class="fa fa-check-circle"></i>' + data['success'] + '</div>');
-          $('#store_timings').scrollTop(0);
+
+          setTimeout(function() {
+            $('#store_timings').modal('toggle');
+            $('#store_success_timg').html('');
+          }, 3000);
         }
-      }
+      })
     });
-  });
+
+//      success: function (data) {
+//        $('#store_success_timg').html('');
+//        if (data['success']) {
+//          $('#store_success_timg').html('<div class="alert alert-success"><i class="fa fa-check-circle"></i>' + data['success'] + '</div>');
+//          $('#store_timings').scrollTop(0);
+//        }
+
 
 </script>
 <script type="text/javascript">
@@ -2408,17 +2422,36 @@
           beforeSend: function () {
             $('#button-image-save').button('loading');
           },
-          complete: function () {
-            $('#button-image-save').button('reset');
+          //complete: function () {
+          // $('#button-image-save').button('reset');
 
-            $('#button-image-save').addClass('btn-success');
-            $('#button-image-save').removeClass('btn-primary');
+          //  $('#button-image-save').addClass('btn-success');
+          //  $('#button-image-save').removeClass('btn-primary');
             //$("#store_images").removeClass('in');
             //$("#store_images").hide();   
-            $('#store_images').modal('toggle');
+          //  $('#store_images').modal('toggle');
 
-          },
-          success: function (json) {
+          //},
+        success: function(json) {
+          $('#storeImagesSuccessMsg').empty().hide();
+          
+          if (json['error']) {
+              $('#storeImagesSuccessMsg').html('<i class="fa fa-check-circle"></i> '+ json.success).show();
+          }
+
+          setTimeout(function() {
+            $('#store_images').modal('toggle');
+            $('#storeImagesSuccessMsg').empty().hide();
+          }, 3000);
+        },
+        error: function(xhr, ajaxOptions, thrownError) {
+          $('#storeImageErrorMsg').html('<i class="fa fa-times-circle"></i> '+xhr.responseText).show();
+  
+          setTimeout(function() {
+            $('#storeImageErrorMsg').empty().hide();
+          }, 3000);
+        }
+/*          success: function (json) {
             $('.alert').remove();
 
             if (json['error']) {
@@ -2429,6 +2462,7 @@
           error: function (xhr, ajaxOptions, thrownError) {
             alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
           }
+*/
         });
       } else {
         var modal = $('<div id="alert_pop_del_empty" class="modal fade alert_prof_del_close" tabindex="-1" role="dialog" aria-labelledby="myModalLabel3" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="first_conf"><div class="modal-body"><p>Please select atleast one image.</p></p></div><div class="modal-footer"><button class="btn" data-dismiss="modal" aria-hidden="true">ok</button></div></div></div></div></div>');

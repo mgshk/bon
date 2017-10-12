@@ -345,6 +345,13 @@ $(document).ready(function() {
             }).get();
 
             categories.push({'category' : value, 'sub_categories': sub_categories});
+	    
+            //$('#storeCatSuccessMsg').html('<i class="fa fa-check-circle"></i> '+ "Categories saved successfully.").show();
+
+	    //setTimeout(function() {
+	    //  $('#store_cat').modal('toggle');
+	    //  $('#storeCatMsg').empty().hide();
+	    //}, 3000);
          }
       });
 
@@ -355,9 +362,22 @@ $(document).ready(function() {
          data: {
             category: JSON.stringify(categories)
          },
-         success: function(data) {
+        success: function(data) {
+          $('#storeCatSuccessMsg').empty().hide();
+          $('#storeCatSuccessMsg').html('<i class="fa fa-check-circle"></i> '+ data['success']).show();
+	  $('#store_cat').scrollTop(0);
+	  
+          setTimeout(function() {
             $('#store_cat').modal('toggle');
-         }
+            $('#storeCatSuccessMsg').empty().hide();
+          }, 3000);
+        },
+        error: function(xhr, ajaxOptions, thrownError) {
+          $('#storeCatErrorMsg').html('<i class="fa fa-times-circle"></i> '+xhr.responseText).show();
+  
+          setTimeout(function() {
+            $('#storeCatErrorMsg').empty().hide();
+          }, 3000);         }
       });
 
       return false;
