@@ -276,6 +276,14 @@
                         <?php } else { ?>
                         <div class="alert alert-success"><i class="fa fa-check-circle"></i> Your store is verified. Got crowned (<img width="20" height="20" src="image/verified.png">), now you are leading the race to reach buyers.</div>
                         <?php } ?>
+                        <div >
+                          <?php if(!empty($seller_reject_reason)) { ?>
+                          <textarea name="seller_admin_msg" rows="2" placeholder="<?php echo $entry_description; ?>" id="admin_msg" class= "form-control" disabled>Admin message:&nbsp&nbsp&nbsp&nbsp<?php echo $seller_reject_reason; ?></textarea>
+                          <?php } else { ?>
+                          <textarea name="seller_admin_msg" rows="2" placeholder="<?php echo $entry_description; ?>" id="admin_msg" class= "form-control" disabled>Admin message:&nbsp&nbsp&nbsp&nbspWelcome to BoN age.</textarea>
+                          <?php } ?>
+                          </br>
+                        </div>
                         <div class="str--ftr-btn col-sm-12">
                           <div class="row" style="float: right;">
                             <?php if(strtotime($feature_store_end) > strtotime('now')) { ?>
@@ -456,10 +464,13 @@
                                              </ul>      
                                           </div>
                             </label>
-                            <div class="col-md-4">
+                            <div class="col-md-2">
                               <div id="map-search" class="map-sample">
                                 <img class="cursor img-responsive" id="search-btn_st" data-toggle="modal" data-target="#map_mod" src="image/gmap.jpg" />
                               </div>
+                            </div>
+                            <div class="col-md-4">
+                              <label style="font-style: italic">(Save the store/entity to update map changes you made.)</label>
                             </div>
                           </div>
                           <div class="form-group">
