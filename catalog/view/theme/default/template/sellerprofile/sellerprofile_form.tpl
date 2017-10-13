@@ -860,12 +860,12 @@
                                           </div>-->
                           <input type="hidden" class="form-control" name="lat" id="latitude_st" value="<?php echo $lat; ?>" />
                           <input type="hidden" class="form-control" name="lng" id="longitude_st" value="<?php echo $lng; ?>" />
-                                  <?php if(($entry_nickname == '' && $seller_approved == 0) || $seller_approved == 1) { ?>
+                          
+                                  <?php if((empty($nickname) && $seller_approved == 0) || $seller_approved == 1) { ?>
                                     <button type="button" id="button-profile-save" data-loading-text="<?php echo $text_loading; ?>" class="btn btn-primary pull-right"><?php echo $button_save; ?></button>
                                   <?php } else { ?>
                                     <button type="button" id="button-profile-save-disabled" data-loading-text="<?php echo $text_loading; ?>" class="btn pull-right" disabled><?php echo $button_save; ?></button>
                                     <label style="font-size: 13px;font-style: italic;font-weight: bold">Save option will be enabled after store/entity is approved by BoN admin.&nbsp&nbsp&nbsp</label>
-
                                   <?php } ?>
                                                            
                               </br>
