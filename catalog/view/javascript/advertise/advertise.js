@@ -33,7 +33,7 @@ $(document).ready(function() {
 						width: orgImageHeight,
 						height: orgImageHeight
 					},
-					enforceBoundary: true,
+					enforceBoundary: false,
 				});
 			$uploadCrop.croppie('bind', imgPath).then(function(){ 
 				$(".cr-boundary").css("width","1000px");
@@ -71,7 +71,7 @@ $(document).ready(function() {
 						width: orgImageHeight,
 						height: orgImageHeight
 					},
-					enforceBoundary: true,
+					enforceBoundary: false,
 				});
 			$uploadCrop.croppie('bind', imgPath).then(function(){ 
 				$(".cr-boundary").css("width","1000px");
