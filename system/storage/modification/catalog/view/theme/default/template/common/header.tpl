@@ -256,24 +256,24 @@
 							<ul class="list-inline">
 								<li>
 									<?php if ($logged && $login_type != 'buyer') { ?>
-									<a href="index.php?route=selleradvertise/advertise/add">Advertise &nbsp;&nbsp;&nbsp;|</a>
+									<a href="index.php?route=selleradvertise/advertise/add">Advertise &nbsp;&nbsp;|</a>
 									<?php } else { ?>
-									<a class="cursor" data-toggle="modal" data-target="#login_frc_seller">Advertise &nbsp;&nbsp;&nbsp;|</a>
+									<a class="cursor" data-toggle="modal" data-target="#login_frc_seller">Advertise &nbsp;&nbsp;|</a>
 									<?php } ?>
 								</li>
-								<li><a href="<?php echo HTTP_SERVER; ?>">Home &nbsp;&nbsp;&nbsp;|</a></li>
+								<li><a href="<?php echo HTTP_SERVER; ?>">Home &nbsp;&nbsp;|</a></li>
 								<?php if (!$logged) { ?>
-								<li><a class="cursor _bon--login">Login or Sign up<?php //echo $text_login; ?> &nbsp;&nbsp;&nbsp;|</a></li>
+								<li><a class="cursor _bon--login">Login or Sign up<?php //echo $text_login; ?> &nbsp;&nbsp;|</a></li>
 								<?php } ?>
 								<?php if ($logged) { ?>
 								<li class="dropdown">
 									<?php if($seller_info['firstname']) { ?>
 									<a href="<?php echo $seller_profile; ?>" title="<?php echo $text_seller_account; ?>" class="dropdown-toggle" data-toggle="dropdown">
 										<?php //echo $text_seller_account; ?>Hi,
-										<?php if (strlen($seller_info['firstname']) > 9){ echo substr($seller_info['firstname'], 0, 7) . '...';} else { echo $seller_info['firstname'];} ?> <span class="caret"></span> &nbsp;&nbsp;&nbsp;| </a>
+										<?php if (strlen($seller_info['firstname']) > 9){ echo substr($seller_info['firstname'], 0, 7) . '...';} else { echo $seller_info['firstname'];} ?> <span class="caret"></span> &nbsp;&nbsp;| </a>
 									<?php } else { ?>
 									<a href="<?php echo $seller_profile; ?>" title="<?php echo $text_seller_account; ?>" class="dropdown-toggle" data-toggle="dropdown">
-										<?php //echo $text_seller_account; ?>Hi, User <span class="caret"></span> &nbsp;&nbsp;&nbsp;| </a>
+										<?php //echo $text_seller_account; ?>Hi, User <span class="caret"></span> &nbsp;&nbsp;| </a>
 									<?php } ?>
 									<ul class="dropdown-menu dropdown-menu-right" style="background-color: gainsboro;">
 										<li><a href="<?php echo $seller_profile; ?>&tab_section=profile#content">My Profile</a></li>
@@ -321,14 +321,14 @@
 									</ul>
 								</li>
 								<?php } ?>
-								<li><a href="#" title="Contact Us" data-toggle="modal" data-target="#site_contact_main">Contact Us &nbsp;&nbsp;&nbsp;|</a></li>
+								<li><a href="#" title="Contact Us" data-toggle="modal" data-target="#site_contact_main">Contact Us &nbsp;&nbsp;|</a></li>
 								<li>
-									<div class="addthis_toolbox addthis_default_style" data-url="<?php echo HTTP_SERVER; ?>"><a class="atc_s addthis_button_compact">Share &nbsp;&nbsp;&nbsp;|<span></span></a></div>
+									<div class="addthis_toolbox addthis_default_style" data-url="<?php echo HTTP_SERVER; ?>"><a class="atc_s addthis_button_compact">Share &nbsp;&nbsp;|<span></span></a></div>
 									<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-515eeaf54693130e"></script>
 								</li>
 								<li><a class="cursor" data-toggle="modal" data-target="#site_feedback_main" title="Feedback">Feedback |</a></li>
-								<li><a href="index.php?route=common/faq" title="FAQ">FAQ &nbsp;&nbsp;&nbsp;|</a></li>
-								<li><a href="#" title="Help">Help</a></li>
+								<li><a href="index.php?route=common/faq" title="FAQ">FAQ &nbsp;&nbsp;|</a></li>
+								<li><a href="#">How to</a></li>
 							</ul>
 						</div>
 					</div>
@@ -384,9 +384,9 @@
 						<ul class="mob-menu">
 							<li>
 								<?php if ($logged && $login_type != 'buyer') { ?>
-								<a href="index.php?route=selleradvertise/advertise/add">Advertise &nbsp;&nbsp;&nbsp;</a>
+								<a href="index.php?route=selleradvertise/advertise/add">Advertise &nbsp;&nbsp;</a>
 								<?php } else { ?>
-								<a class="cursor" data-toggle="modal" data-target="#login_frc_seller">Advertise &nbsp;&nbsp;&nbsp;</a>
+								<a class="cursor" data-toggle="modal" data-target="#login_frc_seller">Advertise &nbsp;&nbsp;</a>
 								<?php } ?>
 							</li>
 							<li><a href="<?php echo HTTP_SERVER; ?>">Home</a></li>
@@ -453,8 +453,8 @@
 								<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-515eeaf54693130e"></script>
 							</li>
 							<li><a class="cursor" data-toggle="modal" data-target="#site_feedback_main" title="Feedback">Feedback</a></li>
-							<li><a href="#" title="FAQ">FAQ</a></li>
-							<li><a href="#" title="Help">Help</a></li>
+							<li><a href="index.php?route=common/faq" title="FAQ">FAQ</a></li>
+							<li><a href="#" >How to</a></li>
 						</ul>
 					</div>
 				</div>
@@ -1668,8 +1668,8 @@
 					<h4 class="modal-title loc-share-title">Contact us</h4>
 				</div>
 				<div class="modal-body contact-modal">
-					<p>If you are facing any issue or have a concern or want to leave a <a class="cursor" onclick="showFeedbackModal()" title="Feedback">Feedback</a>.</p>
-					<p>For anyother information or queries please send email to bononlineservices@buyonear.in. We will respond in 24 to 48
+					<p>If you are facing any issue or have a concern or want to leave a feedback. Use <a class="cursor" onclick="showFeedbackModal()" title="Feedback"><u>Feedback</u></a> menu.</p>
+					<p>For any other information or queries please send email to <u>bononlineservices@buyonear.in</u>. We will respond in 24 to 48
 						hours.</p>
 				</div>
 			</div>

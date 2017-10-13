@@ -163,7 +163,7 @@
 				<!-- Wrapper for slides -->
 				<div class="carousel-inner" role="listbox">
 					<div class="item active">
-						<img src="image/header-img.png" class="img-responsive" title="header-ad" alt="header-ad">
+						<img src="image/header-img.png" class="img-responsive"  alt="header-ad">
 						<div class="carousel-caption">
 							<h3>Tamil</h3>
 							<!--<a class="info" href="<?php echo $advertisement_na['offer_url']; ?>">link here</a>-->
