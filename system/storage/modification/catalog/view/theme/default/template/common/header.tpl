@@ -597,8 +597,9 @@
 				<div class="modal-body loc-share-top stt--rrpp">
 					<img src="image/bon_logo.jpg" class="img-responsive top-atou-lc" title="BoN" alt="BoN">
 					<div class="top-lc--mid">
-						<p class="left">Pioneer in buy (o) near!</p>
-						<p class="right">A new age is BoN!</p>
+					<!--	<p class="left">Pioneer in buy (o) near!</p>
+						<p class="right">A new age is BoN!</p>-->
+					<img src="image/weblaunch.gif" class="img-responsive top-atou-lc">
 					</div>
 					<button class="tet--nt btn" id="auto_detect" onclick="getLocation()">Auto detect my location</button>
 					<p class="bottom_10">OR</p>
