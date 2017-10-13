@@ -8,20 +8,39 @@ $(document).ready(function() {
 	if(advertise_id) {
 		$('.img-containers').empty();
 		
-		$uploadCrop = $('.img-containers').croppie({
-			url: advertise_image,
-		    enableExif: false,
-		    viewport: {
-		        width: $('.img-containers').width() - 10,
-		        height: 187
-		    },
-		    boundary: {
-		        width: $('.img-containers').width(),
-		        height: 200
-		    },
-		    enforceBoundary: true,
-		    zoom: 0
-		});
+		var img = new Image();
+		var orgImageHeight = 200;
+		var orgImageWidth = 1000;
+		var imgPath = advertise_image;
+		img.onload = function() {
+			orgImageHeight = this.height;
+			orgImageWidth = this.width;
+			if(orgImageWidth<=1000)
+				orgImageWidth = 1000;
+			if(orgImageHeight<=200)
+				orgImageWidth = 200
+
+			//alert(this.width + 'x' + this.height);
+
+			$uploadCrop = $('.img-containers').croppie({
+					url: imgPath,
+					enableExif: false,
+					viewport: {
+						width: 992,
+						height: 187
+					},
+					boundary: {
+						width: orgImageHeight,
+						height: orgImageHeight
+					},
+					enforceBoundary: true,
+				});
+			$uploadCrop.croppie('bind', imgPath).then(function(){ 
+				$(".cr-boundary").css("width","1000px");
+			});
+		}
+		
+		img.src = imgPath ;	
 	}
 
 	$('body').on('click', 'a.thumbnail', function(e) {
