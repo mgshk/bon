@@ -240,9 +240,9 @@ $_['refer_detail_updated'] = 'Referrer detail added';
 $_['error_nickname_req'] = 'Store/Entity Name should not be empty';
 $_['error_lat_req'] = 'Please choose map location';
 $_['error_lng_req'] = 'Please choose map location';
-$_['error_seller_address_req'] = 'Store/Entity Address should not be empty';
+$_['error_seller_address_req'] = 'Store/Entity address should not be empty';
 
-$_['error_address_1'] = 'Please fill address';
+$_['error_address_1'] = 'Please fill address 1';
 $_['error_city'] = 'Please fill city';
 $_['error_postcode'] = 'Please fill postcode';
 $_['error_country'] = 'Please select country';

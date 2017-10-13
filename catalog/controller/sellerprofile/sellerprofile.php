@@ -1397,7 +1397,7 @@ class Controllersellerprofilesellerprofile extends Controller
 		} elseif(!empty($this->request->post['store_mobile_num'])) {
 			$str_mob_filter = array_filter($this->request->post['store_mobile_num']);//print_r($str_mob_filter); die;
 			
-            foreach($str_mob_filter as $str_mb_num) {
+			foreach($str_mob_filter as $str_mb_num) {
 				if(strlen(trim($str_mb_num)) != 10) {
 					$json['error'] = $this->language->get('error_store_mobile_num');
 				}
@@ -1421,7 +1421,7 @@ class Controllersellerprofilesellerprofile extends Controller
 			}
 		}
 
-        if($this->request->post['nickname'] =='') {
+		if($this->request->post['nickname'] == '') {
 			$json['error'] = $this->language->get('error_nickname_req');
 		}
 
@@ -1433,17 +1433,20 @@ class Controllersellerprofilesellerprofile extends Controller
 			$json['error'] = $this->language->get('error_lng_req');
 		}
 
-        // else if($this->request->post['seller_address'] =='') {
-        //     $json['error'] = $this->language->get('error_seller_address_req');
-        // }
+		//else if($this->request->post['store_address_update'] == '') {
+		//	$json['error'] = $this->language->get('error_seller_address_req');
+		//}
+		// else if($this->request->post['seller_address'] =='') {
+		//     $json['error'] = $this->language->get('error_seller_address_req');
+		// }
 
 		else if($this->request->post['store_email'] == '') {
 			$json['error'] = "Please enter Store/Entity email";
 		}
 
-        else if(empty($seller_info['seller_category'])) {
-            $json['error'] = $this->language->get('error_store_category_empty');
-        }
+		else if(empty($seller_info['seller_category'])) {
+		    $json['error'] = $this->language->get('error_store_category_empty');
+		}
 
 		if(empty($json['error'])) {
 			$this->model_sellerprofile_sellerprofile->SellerProfileSave($this->request->post);

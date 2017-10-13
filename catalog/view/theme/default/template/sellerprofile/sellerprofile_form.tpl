@@ -352,7 +352,7 @@
                                              </ul>      
                                           </div> </label>
                             <div class="col-sm-8">
-                              <textarea style="white-space: normal;" name="seller_description" rows="4" placeholder="<?php echo $entry_description; ?>"
+                              <textarea style="white-space: normal;" name="seller_description" rows="4" maxlength="2000" placeholder="<?php echo $entry_description; ?>"
                                 id="input-description" class="form-control"><?php echo $seller_description; ?></textarea>
                             </div>
                           </div>
@@ -622,7 +622,7 @@
                                             <ul class="dropdown-menu badgemenu">
                                               <li>
                                                 Enter correct contact mobile number for buyers easy access. Entered mobile number will be used while sending posted advertisement
-                                                detail, buyers order detail, BoN offers etc.,
+                                                detail, buyers order detail, BoN offers etc.,</br></br>Default: User number
                                               </li>    
                                              </ul>      
                                           </div>
@@ -634,7 +634,7 @@
                                 <div class="col-md-4"></div>
                                 <?php } ?>
                                 <div class="col-sm-2">
-                                  <input type="text" name="store_mobile_num[]" placeholder="<?php echo $entry_store_mobile_num; ?>" value="<?php echo $store_mobile_nums; ?>"
+                                  <input type="text" name="store_mobile_num[]" maxlength="10" placeholder="<?php echo $entry_store_mobile_num; ?>" value="<?php echo $store_mobile_nums; ?>"
                                     id="input-store-num" class="form-control mat--lt" required/>
                                   <span class="input-group-btn">
                                                    </span>
@@ -661,14 +661,14 @@
                                             <ul class="dropdown-menu badgemenu">
                                               <li>
                                                 Enter valid email address. Entered email ID will be used while sending posted advertisement
-                                                detail, buyers order detal, BoN offers etc.,
+                                                detail, buyers order detal, BoN offers etc.,</br></br>Default: User email ID
                                               </li>    
                                              </ul>      
                                           </div>
                             </label>
                             <div class="col-md-4">
                               <input type="text" name="store_email" placeholder="<?php echo $entry_store_email; ?>" value="<?php echo $store_email; ?>"
-                                id="input-store-email" class="form-control" required/>
+                                id="input-store-email" maxlength="100" class="form-control" required/>
                               <span class="input-group-btn">
                                              </span>
                             </div>
@@ -799,7 +799,7 @@
                             </label>
                             <div class="col-md-4" style="padding-top: 7px;">
                               <input type="text" id="input-referred-by-val" name="referred_by" placeholder="<?php echo $entry_store_mobile_num; ?>" value="<?php echo $referred_by; ?>"
-                                id="input-referred-by" class="form-control" />
+                                id="input-referred-by" maxlength="10" class="form-control" />
                               <p>If you are a new referrer,<a class="cursor" data-toggle="modal" data-target="#store_referred"> click here</a></p>
                             </div>
                           </div>
@@ -2327,17 +2327,17 @@
              success: function (json) {
                 $('.store_msg_alert').remove();
                 if (json['error']) {
-                  //$('#image_pop_cls').prop('disabled', false);
+                  $('#image_pop_cls').prop('disabled', false);
 
-                  var modal = $('<div id="alert_pop" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel3" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="first_conf"><div class="modal-body"><p>'+"Successfully saved store/entity detail!"+'</p></p></div><div class="modal-footer"><button class="btn" data-dismiss="modal" aria-hidden="true" id="btnSaved" onClick="window.location.reload()">Ok</button></div></div></div></div></div>');
+                  //var modal = $('<div id="alert_pop" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel3" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="first_conf"><div class="modal-body"><p>'+"Successfully saved store/entity detail!"+'</p></p></div><div class="modal-footer"><button class="btn" data-dismiss="modal" aria-hidden="true" id="btnSaved" onClick="window.location.reload()">Ok</button></div></div></div></div></div>');
                   
-                  $('body').append(modal);
-                    modal.modal({
-                      show: true
-                    })
-                  //$('.agree_tt').attr('checked', false);
-                  //$('#content > .container-fluid').prepend('<div class="alert store_msg_alert alert-danger"><i class="fa fa-exclamation-circle"></i> ' + json['error'] + '</div>');
-                  //$('body, html').animate({ scrollTop: $('#content').offset().top }, 'slow');
+                  //$('body').append(modal);
+                  //  modal.modal({
+                  //    show: true
+                  //  })
+                  $('.agree_tt').attr('checked', false);
+                  $('#content > .container-fluid').prepend('<div class="alert store_msg_alert alert-danger"><i class="fa fa-exclamation-circle"></i> ' + json['error'] + '</div>');
+                  $('body, html').animate({ scrollTop: $('#content').offset().top }, 'slow');
                }
                else if (json['success']) {
                   var modal = $('<div id="alert_pop" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel3" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="first_conf"><div class="modal-body"><p>'+"Successfully saved store/entity detail!"+'</p></p></div><div class="modal-footer"><button class="btn" data-dismiss="modal" aria-hidden="true" id="btnSaved" onClick="window.location.reload()">Ok</button></div></div></div></div></div>');
