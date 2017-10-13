@@ -335,7 +335,7 @@
 				</div>
 				<div class="row sec-mob main-mob--res">
 					<?php if((isset($_GET['route']) && ($_GET['route'] != 'seller/seller/info' && $_GET['route'] != 'account/wishlist' && $_GET['route'] != 'checkout/checkout' && $_GET['route'] != 'checkout/cart')) || !isset($_GET['route'])) { ?>
-					<div class="col-xs-5">
+					<div class="col-xs-4">
 						<!--<div class="row">-->
 						<div id="logo">
 							<?php if ($logo) { ?>
