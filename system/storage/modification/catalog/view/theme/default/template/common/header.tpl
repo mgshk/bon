@@ -223,7 +223,7 @@
 			<div class="col-sm-2 fis-des mit--hd">
 				<div id="logo">
 					<?php if ($logo) { ?>
-					<a href="<?php echo $home; ?>"><img src="image/bon-logo-header-des.png<?php //echo $logo; ?>" title="<?php echo $name; ?>" alt="<?php echo $name; ?>" class="img-responsive" /></a>
+					<a href="<?php echo $home; ?>"><img src="image/bon-logo-header-des.png<?php //echo $logo; ?>" title="Search and shopping simplified online anywhere and everywhere" alt="<?php echo $name; ?>" class="img-responsive" /></a>
 					<?php } else { ?>
 					<h1>
 						<a href="<?php echo $home; ?>">
@@ -239,16 +239,16 @@
 					<div class="col-sm-2">
 						<?php if ($logged) { 
 										if($seller_info['nickname']) { ?>
-						<div class="frr--list cursor free_listBtn_logged">Free Listing</div>
+						<div class="frr--list cursor free_listBtn_logged" title="Sign-up and add your store in few minitues for public view.">Free Listing</div>
 						<?php } else { ?>
 						<div class="free--list-bon">
 							<a href="index.php?route=sellerprofile/sellerprofile&tab_section=store_detail#content">
-								<div class="frr--list cursor">Free Listing</div>
+								<div class="frr--list cursor" title="Sign-up and add your store in few minitues for public view.">Free Listing</div>
 							</a>
 						</div>
 						<?php } ?>
 						<?php } else { ?>
-						<div class="frr--list cursor free_listBtn">Free Listing</div>
+						<div class="frr--list cursor free_listBtn" title="Sign-up and add your store in few minitues for public view.">Free Listing</div>
 						<?php } ?>
 					</div>
 					<div class="col-sm-9">
@@ -461,7 +461,7 @@
 				<div class="row header-sec">
 					<?php if((isset($_GET['route']) && ($_GET['route'] == 'common/home' || $_GET['route'] == 'seller/seller')) || !isset($_GET['route'])) { ?>
 					<div class="col-sm-4 mit--hd">
-						<div class="header-heading">
+						<div class="header-heading" title="Choose your current or desired location to search advertisements and stores/entities.">
 							<div class="ui-icon-video" id="location-search">
 								<div class="new-text-top">
 									<input class="cursor" type="button" data-toggle="modal" onClick="showMyModalSetTitle(this.value)" placeholder="Current Location"
@@ -471,7 +471,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="col-sm-3 header-center-kms">
+					<div class="col-sm-3 header-center-kms" title="Set the range to find advertisements and stores/entities you are looking for around you.">
 						<strong>Range: <span id="spnStart"></span> to <span id="spnEnd"></span> Kilometers</strong>
 						<form method="post" action="">
 							<div class="col-sm-1" style="display: none;"></div>
@@ -497,16 +497,16 @@
 					<div class="col-sm-4 str--fv fis-des tttt">
 						<?php if($login_type == 'seller') { ?>
 						<div class="pull-left">
-							<a class="cursor free-list-top--bon" data-toggle="modal" data-target="#login_frc_buyer"> <span class="hidden-xs hidden-sm hidden-md">Favourites (0)</span></a>
+							<a class="cursor free-list-top--bon" data-toggle="modal" data-target="#login_frc_buyer"> <span class="hidden-xs hidden-sm hidden-md" title="Buyer: View your favourite store/entity list.">Favourites (0)</span></a>
 						</div>
 						<?php } else { ?>
 						<?php echo $store_favouries; ?>
 						<?php } ?>
 						<?php if(!$logged) { ?>
-						<a class="free-list-top--bon cursor _bon--login">Wish List (0)</a>
+						<a class="free-list-top--bon cursor _bon--login" title="Buyer: View and track your wished products from specific store/entity.">Wish List (0)</a>
 						<?php } else { ?>
 						<?php if($login_type == 'seller') { ?>
-						<a class="free-list-top--bon cursor" data-toggle="modal" data-target="#login_frc_buyer">Wish List (0)</a>
+						<a class="free-list-top--bon cursor" data-toggle="modal" data-target="#login_frc_buyer" title="Buyer: View and track your wished products from specific store/entity.">Wish List (0)</a>
 						<?php } else { ?>
 						<a class="free-list-top--bon" href="<?php echo $wishlist; ?>" id="wishlist-total" title="<?php echo $text_wishlist; ?>">
 							<?php echo $text_wishlist; ?>
@@ -516,7 +516,7 @@
 					<?php if($login_type == 'seller') { ?>
 					<div class="col-sm-1 mit--hd fis-des header_cart">
 						<div id="cart" class="btn-group btn-block">
-							<button class="btn btn-inverse btn-block btn-lg" data-toggle="modal" data-target="#login_frc_buyer"><span id="cart-total">0</span></button>
+							<button class="btn btn-inverse btn-block btn-lg" data-toggle="modal" data-target="#login_frc_buyer" title="View/Checkout products you added from stores/entities to your cart."><span id="cart-total">0</span></button>
 						</div>
 					</div>
 					<?php } else { ?>

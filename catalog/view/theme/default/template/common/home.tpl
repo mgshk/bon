@@ -187,7 +187,7 @@
 							<?php
 								$path = (isset($_GET['path']) && $_GET['path']) ? $_GET['path']: '';
 								?>
-								<div class="col-md-2 col-xs-2 allcategory_col">
+								<div class="col-md-2 col-xs-2 allcategory_col" title="Choose the category you want to filter from below advertisements or to search stores/entities around you.">
 									<select name="path" id="path" onchange="pathChange(this);">
 									<option value="">All Category</option>
 									<?php foreach ($categories as $category) { 
@@ -286,35 +286,35 @@
 					<ul class="_bon_ts1 fis-des">
 						<?php if ($logged && $login_type != 'buyer') { ?>
 						<a href="index.php?route=selleradvertise/advertise/add">
-							<li class="tas_bon" role="presentation">Post AD</li>
+							<li class="tas_bon" role="presentation" title="Seller: Post new advertisement of your store/entity.">Post AD</li>
 						</a>
 						<?php } else { ?>
 						<a class="cursor" data-toggle="modal" data-target="#login_frc_seller">
-							<li class="tas_bon" role="presentation">Post AD</li>
+							<li class="tas_bon" role="presentation" title="Seller: Post new advertisement of your store/entity.">Post AD</li>
 						</a>
 						<?php } ?>
 					</ul>
 					<ul class="nav nav-tabs _bon_ts _bon_ts_home" role="tablist">
 						<?php if($address_det[3] !='') {?>
-						<li id="adv_home" class="tas_bon active" role="presentation">
+						<li id="adv_home" class="tas_bon active" role="presentation" title="Advertisements published for the whole country from the address you set.">
 							<a href="#home" aria-controls="home" role="tab" data-toggle="tab">
 								<?php echo $address_det[3]; ?>
 							</a>
 						</li>
 						<?php } if($address_det[2] !='') {?>
-						<li id="adv_profile" class="tas_bon" role="presentation">
+						<li id="adv_profile" class="tas_bon" role="presentation" title="Advertisements pubished for the state from the address you set.">
 							<a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">
 								<?php echo $address_det[2]; ?>
 							</a>
 						</li>
 						<?php } if($address_det[1] !='') {?>
-						<li id="adv_messages" class="tas_bon" role="presentation">
+						<li id="adv_messages" class="tas_bon" role="presentation" title="Advertisements published for the city/district from the address you set.">
 							<a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">
 								<?php echo $address_det[1]; ?>
 							</a>
 						</li>
 						<?php } ?>
-						<li id="adv_settings" class="tas_bon" role="presentation"><a href="#settings" aria-controls="settings" id="setting_tab" role="tab" data-toggle="tab"><?php echo 'Nearby ';if(isset($_COOKIE['myCookiestart']) || isset($_COOKIE['myCookieend'])){echo '<span>('.$_COOKIE['myCookiestart']. '-' .$_COOKIE['myCookieend'].' km)</span>';} else {echo '<span>(0-3 km)</span>';}//$address_det[0]; ?></a></li>
+						<li id="adv_settings" class="tas_bon" role="presentation" title="Advertisements published within the range you set around you."><a href="#settings" aria-controls="settings" id="setting_tab" role="tab" data-toggle="tab"><?php echo 'Nearby ';if(isset($_COOKIE['myCookiestart']) || isset($_COOKIE['myCookieend'])){echo '<span>('.$_COOKIE['myCookiestart']. '-' .$_COOKIE['myCookieend'].' km)</span>';} else {echo '<span>(0-3 km)</span>';}//$address_det[0]; ?></a></li>
 					</ul>
 				</div>
 			</div>
