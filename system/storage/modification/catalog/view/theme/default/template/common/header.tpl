@@ -447,7 +447,7 @@
 								</ul>
 							</li>
 							<?php } ?>
-							<li><a href="#" title="Contact Us">Contact Us</a></li>
+							<li><a href="#" title="Contact Us" data-toggle="modal" data-target="#site_contact_main">Contact Us</a></li>
 							<li>
 								<div class="addthis_toolbox addthis_default_style" data-url="<?php echo HTTP_SERVER; ?>"><a class="atc_s addthis_button_compact">Share<span></span></a></div>
 								<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-515eeaf54693130e"></script>
@@ -456,7 +456,7 @@
 							<li><a href="index.php?route=common/faq" title="FAQ">FAQ</a></li>
 							<li><a href="#" >How to</a></li>
 						</ul>
-					</div>
+				</div>
 				</div>
 				<div class="row header-sec">
 					<?php if((isset($_GET['route']) && ($_GET['route'] == 'common/home' || $_GET['route'] == 'seller/seller')) || !isset($_GET['route'])) { ?>
@@ -1071,6 +1071,7 @@
 		</div>
 	</div>
 	<script>
+
 		$(document).ready(function () {
 
 			$(".free_listBtn_logged").click(function () {

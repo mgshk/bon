@@ -17,19 +17,32 @@
 
 	foreach ($add_array as $key) {
 	  if($key->types[0] == 'political') {
-		if($key->types[2] == 'sublocality_level_1') { $local = $key->long_name; }
+		if($key->types[2] == 'sublocality_level_1') {
+		    $local = $key->long_name; }
 	  }
 
 	  if($key->types[0] == 'administrative_area_level_2') {
-	    $city = $key->long_name;
+	    if(strlen($key->long_name) > 10) {
+		$city = substr($key->long_name,0,10)."...";
+	    } else {
+        	$city = $key->long_name;
+	    }
 	  }
 
 	  if($key->types[0] == 'administrative_area_level_1') {
-	    $state = $key->long_name;
+	    if(strlen($key->long_name) > 10) {
+		$state = substr($key->long_name,0,10)."...";
+	    } else {
+        	$state = $key->long_name;
+	    }
 	  }
 
 	  if($key->types[0] == 'country') {
-	    $country = $key->long_name;
+	    if(strlen($key->long_name) > 10) {
+		$country = substr($key->long_name,0,10)."...";
+	    } else {
+        	$country = $key->long_name;
+	    }
 	  }
 	}	
  ?>
@@ -148,14 +161,14 @@ if(adss)
 			   		<div class="row neet--ress-tep">
 						<div class="set--sel--bt">
 							<!-- <input type="hidden" id="banner_amnts" name="banner_amnts" value="<?php echo json_decode($basic_position_amount); ?>" /> -->
-						   	<input id="advetise_sp" name="advetise_sp" type="hidden" value="<?php echo $advetise['advertise_id']; ?>">
+						    <input id="advetise_sp" name="advetise_sp" type="hidden" value="<?php echo $advetise['advertise_id']; ?>">
 						    <input id="national" name="national" type="hidden" value="<?php echo strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', trim($country)))); ?>">
 						    <input id="state" name="state" type="hidden" value="<?php echo strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', trim($state)))); ?>">
 						    <input id="city" name="city" type="hidden" value="<?php echo strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', trim($city)))); ?>">
 						   
 						    <input type="radio" name="loc" id="home_top" data-advertise-id="<?php echo $advetise['advertise_id']; ?>" data-advertise-name="top_banner" data-cash-back="<?php echo $basic_price_cashback['top_banner']; ?>" value="1"/><label for="home_top">Home - Top banner</label><br/>
 
-						    <input type="radio" <?php if($country =='') { echo "disabled"; }?> name="loc" id="home_national" data-advertise-name="home_national" data-cash-back="<?php echo $basic_price_cashback['home_national']; ?>" value="2"/><label for="home_national">Home - National (<?php if($country !='') { echo $country; } else { echo "Cannot get country name from your store geo code.";}?>)</label><br/>
+						    <input type="radio" <?php if($country =='') { echo "disabled"; }?> name="loc" id="home_national" data-advertise-name="home_national" data-cash-back="<?php echo $basic_price_cashback['home_national']; ?>" value="2"/><label for="home_national">Home - Country (<?php if($country !='') { echo $country; } else { echo "Cannot get country name from your store geo code.";}?>)</label><br/>
 
 						    <input type="radio" <?php if($state =='') { echo "disabled"; }?> name="loc" id="home_state" data-advertise-name="home_state" data-cash-back="<?php echo $basic_price_cashback['home_state']; ?>" value="3"/><label for="home_state">Home - State (<?php if($state !='') { echo $state; } else { echo "Cannot get state name from your store geo code.";}?>)</label><br/>
 
@@ -166,8 +179,8 @@ if(adss)
 						    <input type="radio" name="loc" id="store_ad" data-advertise-name="store_ad" data-cash-back="0" value="6"/><label for="store_ad">In your Page - Free</label><br/>
 						</div>
 						<div class="rigth--stat">
-							<p id="show_basic_price" class="set--trp"><strong>Basic price: <span id="basic_price"></span> Rs</strong></p>
-							<p>You can also post your advertisement on the position you prefer after paying the price or above already been considered for the same position by another advertisement.</p>
+							<p id="show_basic_price" style="font-size: 16px;color: #FD6A00" class="set--trp"><strong>Basic price: <span id="basic_price"></span> Rs</strong></p>
+							<p style="font-size: 12px">You can also post your advertisement on the position you prefer after paying the price or above already been considered for the same position by another advertiser.</p>
 						</div>
 			   		</div>
 				
@@ -199,9 +212,9 @@ if(adss)
 						    <label>Leavel one above: </label><span class="text-green" id="max_price_add">0 </span> Rs -->
 
 						    <div id="validation_txt" style="display:none">
-							    <label>Price </label> (<span class="text-green" id="price_vaidation_txt"></span>)
+							    <label>Price :&nbsp;&nbsp;&nbsp;&nbsp;</label><span class="text-green" id="price_vaidation_txt" style="font-size: 12px;font-style: italic"></span>
 							</div>
-						    <input type="number" name="amount_val" id="amount_val" class="form-control" style="display: none;"/>
+						    <input type="number" name="amount_val" id="amount_val" class="form-control" style="display: none;" min="1" step="1" onkeypress="return event.charCode >= 48 && event.charCode <= 57"/>
 						    <input type="hidden" name="amount" id="actual_price"/>
 						    <input type="hidden" name="min_price" id="min_price" />
 							<input type="hidden" name="max_price" id="max_price" />
@@ -219,12 +232,13 @@ if(adss)
 							<div class="margin-ttep">
 								Number of days selected : <span class="display_total_2" id="display_total">0</span>
 							</div>
-							<div class="margin-ttep">Total price (no. of days x basic price) : <span class="display_amount_1" id="display_amount"> </span></div>
+							<div class="margin-ttep" style="color: #6194f9">Total price: <span class="display_amount_1" id="display_amount"> </span></div>
 						</div>
 					     
-						<button class="advertise-btn_live" type="button">Pay</button>
-						<span id="display_amount_1" style="display:none;"></span>
-						<button class="advertise-btn" type="button" onClick="this.form.reset();" data-dismiss="modal" aria-hidden="true">Cancel</button>
+						<!--<button class="advertise-btn_live_dis" type="button">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Next&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>-->
+						<span id="display_amount_1" style="display:none;font-size: 14px;color: #6194f9"></span>
+						<button class="advertise-btn_live" id="advertise-btn_lve" type="button">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Next&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>
+						<button class="advertise-btn" type="button" onClick="this.form.reset();" data-dismiss="modal" aria-hidden="true">&nbsp;&nbsp;&nbsp;Cancel&nbsp;&nbsp;&nbsp;</button>
 						<button class="advertise-btn reset" type="button" style="display:none;">Reset</button>
 						<span class="text-dangers" id="error_check"></span>
 					</div>
@@ -233,13 +247,22 @@ if(adss)
 	    </div>
 	    <div class="row">
 		    <div class="col-sm-12 nt--bt--bar">
-			    <div class="row">
+			    <div class="row" style="font-size: 12px">
 				    <span class="top--res-nll"><strong>Note: </strong></span>
-				    <ul>
-						<li>BoN incurs basic price to avoid flooding the space with free advertisements in the larger (buyer) audience area. </li>
-						<li>If you delete the advertisement from 'Live' or 'Yet to go live' after you pay, the amount will not be refunded.</li>
-						<li>Introductory offer is valid till 31st August 2017.</li>
-				    </ul>
+				    <table>
+					<tr>
+					    <td>1.&nbsp</td>
+					    <td>BoN incurs basic price to avoid flooding the space with free advertisements in the larger (buyer) audience area.</td>
+					</tr>
+					<tr>
+					    <td>2.&nbsp</td>
+					    <td>If you delete the advertisement from 'Live' or 'Yet to go live' after you pay, the amount will not be refunded.</td>
+					</tr>
+					<tr>
+					    <td>3.&nbsp</td>
+					    <td>Introductory offer is valid till November 30, 2017.</td>
+					</tr>
+				    </table>
 			     </div>
 		     </div>
 	     </div>
@@ -250,7 +273,7 @@ if(adss)
 
 <script type="text/javascript">
 	var bannerBasicPrice = [];
-
+//document.getElementById("advertise-btn_lve").bgcolor="#5ca0f9');
 	function getBannerBasicPrice() {
 		bannerBasicPrice = [];
 
@@ -331,11 +354,11 @@ if(adss)
     			var total_price = length * parseInt(bannerBasicPrice['top_banner']);
 
     			if (discount === 0) {
-    				discount_txt = total_price+' Rs (' +discount+'% discount)';
+    				discount_txt = total_price;
     				discount_price = total_price;
     			} else {
     				discount_price = (discount / 100) * total_price;
-    				discount_txt = '<del>'+total_price+' Rs</del> '+ discount_price + ' Rs (' +discount+'% discount)';
+    				discount_txt = '<span style="color: #ff0000"><del>'+total_price+' Rs</del></span> <span style="font-weight: bold">&nbsp;&nbsp'+ discount_price.toFixed(2) + ' Rs</span>&nbsp;&nbsp;&nbsp;(' +discount+'% discount)</br><span style="font-style: italic;color: #878787;font-size: 12px">(no. of days x basic price)</span>';
     			}
 
     			$('#display_amount').html(discount_txt);
@@ -343,8 +366,12 @@ if(adss)
 
     			if ($('#altField').multiDatesPicker('getDates').length > 0) {
     				$('.advertise-btn_live').attr('disabled', false);
+				//$('.advertise-btn_live').attr('hidden', false);
+				//$('.advertise-btn_live_dis').attr('hidden', true);
     			} else {
     				$('.advertise-btn_live').attr('disabled', true);
+				//$('.advertise-btn_live').attr('hidden', true);
+				//$('.advertise-btn_live_dis').attr('hidden', false);
     				$('#display_amount').empty();
     			}
     		}
@@ -358,6 +385,8 @@ if(adss)
 
 			$(".check_amount")[0].selectedIndex = $(".check_amount option").length - 1;
 			$('.advertise-btn_live').attr('disabled', false);
+			//$('.advertise-btn_live').attr('hidden', false);
+			//$('.advertise-btn_live_dis').attr('hidden', true);
 
 			return false;
 		});
@@ -380,6 +409,8 @@ if(adss)
 			$('.reset').trigger('click');
 			$('#actual_price').val(bannerBasicPrice[banner_name]);
 			$('.advertise-btn_live').attr('disabled', true);
+			//$('.advertise-btn_live').attr('hidden', true);
+			//$('.advertise-btn_live_dis').attr('hidden', false);
 
 			if(loc == 1) {
 				$('#home_top_hide').hide();
@@ -535,8 +566,12 @@ if(adss)
 
     		if (level == 'Basic price' && $('input:radio[name=loc]:checked').val() !== '1')
     			$('.advertise-btn_live').attr('disabled', false);
+			//$('.advertise-btn_live').attr('hidden', false);
+			//$('.advertise-btn_live_dis').attr('hidden', true);
     		else
     			$('.advertise-btn_live').attr('disabled', true);
+			//$('.advertise-btn_live').attr('hidden', true);
+			//$('.advertise-btn_live_dis').attr('hidden', false);
 
     		$.ajax({
 				url: 'index.php?route=sellerprofile/sellerprofile/advertiseAmountList',
@@ -557,23 +592,23 @@ if(adss)
 			    			min_price = bannerBasicPrice[banner_name];
 
 			    			if (price[0].replace(/\s/g, '') === '1') {
-			    				$('#price_vaidation_txt').text('Should be Greater than '+min_price+ ' Rs');
+			    				$('#price_vaidation_txt').text('(Should be Greater than '+min_price+ ' Rs)');
 			    			} else {
 			    				var selected_length = $('#position > option:checked').val();
 			    				max_price = json_result[parseInt(selected_length) - 2];
 
-			    				$('#price_vaidation_txt').text('Should be Between '+min_price+ ' Rs and ' + max_price + ' Rs');
+			    				$('#price_vaidation_txt').text('(Should be Between '+min_price+ ' Rs and ' + max_price + ' Rs)');
 			    			}
 
 			    		} else if ($('.check_amount').find(':selected').val() === '1') {
 			    			min_price = json_result[0];
-			    			$('#price_vaidation_txt').text('Should be Greater than '+min_price+ ' Rs');
+			    			$('#price_vaidation_txt').text('(Should be Greater than '+min_price+ ' Rs)');
 			    		} else {
 			    			var selected_length = $('#position > option:checked').length;
 			    			min_price = price[1].replace(/\s/g, '');
 		    				max_price = json_result[selected_length - 1];
 
-		    				$('#price_vaidation_txt').text('Should be Between '+min_price+ ' Rs and ' + max_price + ' Rs');
+		    				$('#price_vaidation_txt').text('(Should be Between '+min_price+ ' Rs and ' + max_price + ' Rs)');
 			    		}
 					} else {
 						$('#validation_txt').hide();
@@ -597,18 +632,26 @@ if(adss)
     			if (price[0].replace(/\s/g, '') === '1') {
     				if (parseInt(amount) > parseInt(bannerBasicPrice[banner_name])) {
     					$('.advertise-btn_live').attr('disabled', false);
+					//$('.advertise-btn_live').attr('hidden', false);
+					//$('.advertise-btn_live_dis').attr('hidden', true);
     					showPriceText = true;
     				} else {
     					$('.advertise-btn_live').attr('disabled', true);
+					//$('.advertise-btn_live').attr('hidden', true);
+					//$('.advertise-btn_live_dis').attr('hidden', false);
     					showPriceText = false;
     				}
     				
     			} else {
     				if (parseInt(amount) > parseInt(bannerBasicPrice[banner_name]) && parseInt(amount) < parseInt(max_price)) {
     					$('.advertise-btn_live').attr('disabled', false);
+					//$('.advertise-btn_live').attr('hidden', false);
+					//$('.advertise-btn_live_dis').attr('hidden', true);
     					showPriceText = true;
     				} else {
     					$('.advertise-btn_live').attr('disabled', true);
+					//$('.advertise-btn_live').attr('hidden', true);
+					//$('.advertise-btn_live_dis').attr('hidden', false);
     					showPriceText = false;
     				}
     			}
@@ -616,33 +659,45 @@ if(adss)
     		} else if ($('.check_amount').find(':selected').val() === '1') {
     			if (parseInt(amount) > parseInt(min_price)) {
 					$('.advertise-btn_live').attr('disabled', false);
+					//$('.advertise-btn_live').attr('hidden', false);
+					//$('.advertise-btn_live_dis').attr('hidden', true);
 					showPriceText = true;
 				} else {
 					$('.advertise-btn_live').attr('disabled', true);
+					//$('.advertise-btn_live').attr('hidden', true);
+					//$('.advertise-btn_live_dis').attr('hidden', false);
 					showPriceText = false;
 				}
     		} else {
     			if (parseInt(amount) > parseInt(min_price) && parseInt(amount) < parseInt(max_price)) {
 					$('.advertise-btn_live').attr('disabled', false);
+					//$('.advertise-btn_live').attr('hidden', false);
+					//$('.advertise-btn_live_dis').attr('hidden', true);
 					showPriceText = true;
 				} else {
 					$('.advertise-btn_live').attr('disabled', true);
+					//$('.advertise-btn_live').attr('hidden', true);
+					//$('.advertise-btn_live_dis').attr('hidden', false);
 					showPriceText = false;
 				}
     		}
 
-    		if ($('input[name="loc"]:checked').val() !== '5' && $('input[name="loc"]:checked').val() !== '6') {
+    		if ($('input[name="loc"]:checked').val() !== '6') {
     			if (showPriceText) {
 	    			var discount = $('input[name="loc"]:checked').data('cashBack');;
 	    			var discount_price = 0;
 	    			var discount_txt = '';
 
 	    			if (discount === 0) {
-	    				discount_txt = amount+' Rs (' +discount+'% discount)';
+	    				//discount_txt = amount+' Rs (' +discount+'% discount)';
+	    				//discount_price = amount;
+	    				discount_txt = amount+' Rs';
 	    				discount_price = amount;
+					
 	    			} else {
+				    
 	    				discount_price = (discount / 100) * parseInt(amount);
-	    				discount_txt = 'Offer price: <del>'+amount+' Rs</del> '+ discount_price + ' Rs (' +discount+'% discount)';
+	    				discount_txt = '</br><span style="font-weight: bold">OFFER PRICE:</span> Pay only <span style="color: #ff0000"><del>'+amount+' Rs</del></span> <span style="font-weight: bold"> &nbsp;&nbsp;'+ discount_price.toFixed(2) + ' Rs</span>&nbsp;&nbsp;&nbsp;(' +discount+'% discount)</br>';
 	    			}
 
 	    			$('#display_amount_1').html(discount_txt).show();
