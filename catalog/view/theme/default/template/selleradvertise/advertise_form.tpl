@@ -61,7 +61,18 @@
                         </div>
                      </div>
                      <div class="form-group">
-                        <label class="col-sm-2 control-label" for="input-image">Upload advertisement image: </label>
+                        <label class="col-sm-2 control-label" for="input-image">Upload advertisement image:
+			   <div class="pull-right">
+			      <a class="cursor" data-toggle="dropdown" aria-expanded="true">
+				<span class="bonbadge"><i class="fa-info" aria-hidden="true"></i></span>
+			      </a>                                            
+			      <ul class="dropdown-menu badgemenu">
+				<li>
+				  Upload image of size more than 1000 pixel width and 200 pixel height for better quality.</br></br>After uploading, crop your desired portion of the image.</br></br>Please be sure to check the quality and content of the image before you upload as this will appear for the public view.
+				</li>    
+			       </ul>      
+			    </div>
+			</label>
                         <span id="adv-size"></span>
                         <div class="col-sm-10">
                           <a href=""  style="display:none;" id="thumb-image" data-toggle="image" class="img-thumbnail"><img src="<?php echo $thumb; ?>" alt="" title="" data-placeholder="<?php echo $placeholder; ?>"/></a>

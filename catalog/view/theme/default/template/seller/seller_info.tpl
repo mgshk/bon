@@ -1485,7 +1485,7 @@
 				var str_lnk = 'index.php?route=seller/seller/info&seller_id=' + json['seller_id'] + '&path=&counter=1';
 				if (json['success']) {
 					if (json['advertise_id']) {
-						$('#ad_det_id').html('<h4><strong>' + json['nickname'] + '</strong></h4><h5><strong>Title: </strong>' + json['offer_title'] + '</h5><img src=\"image/' + img + '\" alt=\"' + json['offer_title'] + '\" class=\"img-thumbnail img-responsive\" /><p><strong>Description: </strong>' + json['offer_desc'] + '</p><p><strong>URL: </strong><a href=' + json['offer_url'] + '>' + json['offer_url'] + '</a></p>');
+						$('#ad_det_id').html('<h4><strong>' + json['nickname'] + '</strong></h4><h4><strong></strong>' + json['offer_title'] + '</h4><img src=\"image/' + img + '\" alt=\"' + json['offer_title'] + '\" class=\"img-thumbnail img-responsive\" /><p><strong></strong>' + json['offer_desc'] + '</p><p><strong></strong><a href=' + json['offer_url'] + '>' + json['offer_url'] + '</a></p>');
 					}
 					$('#ad_details').modal('toggle');
 

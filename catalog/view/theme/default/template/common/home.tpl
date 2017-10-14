@@ -683,7 +683,7 @@
 									var str_lnk = 'index.php?route=seller/seller/info&seller_id=' + json['seller_id'] + '&path=&counter=1';
 									if (json['success']) {
 										if (json['advertise_id']) {
-											$('#ad_det_id').html('<a href=\"' + str_lnk + '\"><h4><strong>' + json['nickname'] + '</strong></h4></a><h5><strong>Title: </strong>' + json['offer_title'] + '</h5><img src=\"image/' + img + '\" alt=\"' + json['offer_title'] + '\" class=\"img-thumbnail img-responsive\" /><p><strong>Description: </strong>' + json['offer_desc'] + '<p><strong>URL: </strong><a href=' + json['offer_url'] + '>' + json['offer_url'] + '</a></p><div class="view_desc_sl"><p>Terms & Conditions</p><p>- The advertisement provided by the "' + json['nickname'] + '" is true to best of their knowledge.</p><p>- BoN Online Services holds no responsibility of the advertisement information.</p></div>');
+											$('#ad_det_id').html('<a href=\"' + str_lnk + '\"><h4><strong>' + json['nickname'] + '</strong></h4></a><h4><strong></strong>' + json['offer_title'] + '</h4><img src=\"image/' + img + '\" alt=\"' + json['offer_title'] + '\" class=\"img-thumbnail img-responsive\" /><p><strong></strong>' + json['offer_desc'] + '<p><strong></strong><a href=' + json['offer_url'] + '>' + json['offer_url'] + '</a></p><div class="view_desc_sl"><p>Terms & Conditions</p><p>- The advertisement provided by the "' + json['nickname'] + '" is true to best of their knowledge.</p><p>- BoN Online Services holds no responsibility of the advertisement information.</p></div>');
 										}
 										$('#ad_details').modal('toggle');
 
