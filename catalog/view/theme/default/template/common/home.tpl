@@ -165,7 +165,7 @@
 					<div class="item active">
 						<img src="image/header-img.png" class="img-responsive"  alt="header-ad">
 						<div class="carousel-caption">
-							<h3>Tamil</h3>
+							<h3></h3>
 							<!--<a class="info" href="<?php echo $advertisement_na['offer_url']; ?>">link here</a>-->
 						</div>
 					</div>
@@ -396,7 +396,7 @@
 					<?php } } else { ?>
 					<div class="col-sm-12">
 						<div class="row">
-							<p>No Advertisement Yet...</p>
+							<h4 style="color: #00ACEC">Post your advertisement here, entire <u>country</u> is waiting...</h4>
 						</div>
 					</div>
 					<?php } ?>
@@ -477,7 +477,7 @@
 					<?php } } else { ?>
 					<div class="col-sm-12">
 						<div class="row">
-							<p>No Advertisement Yet...</p>
+							<h4 style="color: #00ACEC">Post your advertisement here, entire <u>state</u> is waiting...</h4>
 						</div>
 					</div>
 					<?php } ?>
@@ -558,7 +558,7 @@
 					<?php } } else { ?>
 					<div class="col-sm-12">
 						<div class="row">
-							<p>No Advertisement Yet...</p>
+							<h4 style="color: #00ACEC">Post your advertisement here, entire <u>city/district</u> is waiting...</h4>
 						</div>
 					</div>
 					<?php } ?>
@@ -639,7 +639,7 @@
 					<?php } } else { ?>
 					<div class="col-sm-12">
 						<div class="row">
-							<p>No Advertisement Yet...</p>
+							<h4 style="color: #00ACEC">Post your advertisement for <u>free</u> here and let the buyers nearby see instantly...</h4>
 						</div>
 					</div>
 					<?php } ?>
@@ -796,7 +796,18 @@
 				var str = $.trim(data);
 				if (str == 'no_record_found') {
 					$('#loader_page').hide();
-					$('#' + tab_id).append('<p>No Advertisement Yet...</p>');
+					if (tab_id == "home") {
+						$('#' + tab_id).append('<h4 style="color: #00ACEC">Post your advertisement here, entire <u>country</u> is waiting...</h4>');
+					}else if (tab_id == "profile"){
+						$('#' + tab_id).append('<h4 style="color: #00ACEC">Post your advertisement here, entire <u>state</u> is waiting...</h4>');
+					}else if (tab_id == "messages"){
+						$('#' + tab_id).append('<h4 style="color: #00ACEC">Post your advertisement here, entire <u>city/district</u> is waiting...</h4>');
+					}else if (tab_id == "settings"){
+						$('#' + tab_id).append('<h4 style="color: #00ACEC">Post your advertisement for <u>free</u> here and let the buyers nearby see instantly...</h4>');	
+					}else {
+						$('#' + tab_id).append('<h4 style="color: #00ACEC">No Advertisement Yet...</h4>');
+					}
+					
 					is_loading = true;
 					count = '';
 					tab_id = '';
