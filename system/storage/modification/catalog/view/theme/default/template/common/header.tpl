@@ -731,6 +731,7 @@
 							<form id="main-log-bon" class="form-horizontal" style="padding: 0px 15px;">
 								<ul class="_erroe-li">
 									<li><span id="zone-bon-error-login" class="text-dangers"></span></li>
+									<li><span id="reg-sucess" class="text-dangers"></span></li>
 								</ul>
 								<div class="_email-log-bon">
 									<input type="text" name="email" value="<?php echo $email; ?>" placeholder="Phone number" id="input-email" class="inputText"
@@ -895,54 +896,61 @@
 					<div class="row _top-sign-upd" style="display:none;">
 						<div class="col-md-8 _bonlg clear">
 							<h3>Personal Details</h3>
-							<form id="top-sign-last" class="form-horizontal" enctype="multipart/form-data" style="padding: 0px 15px;">
+							<form id="top-sign-last" class="form-horizontal" enctype="multipart/form-data" style="padding: 0px 15px;" autocomplete="off">
 								<input type="hidden" name="cus_d_up" id="cus_d_up" value="">
 								<div class="_email-log-bon">
-									<input type="text" name="firstname" value="" class="inputText" placeholder="First name" id="input-firstname" required/>
+									<input type="text" name="firstname" autocomplete=off value="" class="inputText" placeholder="First name" id="input-firstname" required/>
 								</div>
 								<ul class="_erroe-li">
 									<li><span id="fist-name-bon" class="text-dangers"></span></li>
 								</ul>
 								<div class="_passwrd-log-bon">
-									<input type="text" name="lastname" value="" placeholder="Last name" id="input-lastname" class="inputText" required/>
+									<input type="text" name="lastname" autocomplete=off value="" placeholder="Last name" id="input-lastname" class="inputText" required/>
 								</div>
 								<ul class="_erroe-li">
 									<li><span id="last-name-bon" class="text-dangers"></span></li>
 								</ul>
 								<div class="_again-passwrd-log-bon">
-									<input type="text" name="address_1" value="" placeholder="Address 1" id="input-address-1" class="inputText" required/>
+									<input type="text" name="address_1" autocomplete=off value="" placeholder="Address 1" id="input-address-1" class="inputText" required/>
 								</div>
 								<div class="_email-log-bon">
-									<input type="text" name="address_2" value="" class="inputText" placeholder="Address 2" id="address_2" required/>
+									<input type="text" name="address_2" autocomplete=off value="" class="inputText" placeholder="Address 2" id="address_2" required/>
 								</div>
 								<ul class="_erroe-li">
 									<li><span id="address_2-bon" class="text-dangers"></span></li>
 								</ul>
 								<div class="_email-log-bon">
-									<input type="text" name="city" value="" class="inputText" placeholder="City" id="input-city" required/>
+									<input type="text" name="city" autocomplete=off value="" class="inputText" placeholder="City" id="input-city" required/>
 								</div>
 								<ul class="_erroe-li">
 									<li><span id="city-bon" class="text-dangers"></span></li>
 								</ul>
 								<div class="_email-log-bon">
-									<input type="text" name="postcode" value="" class="inputText" placeholder="Postcode" id="input-postcode" required/>
+									<input type="text" name="postcode" autocomplete=off value="" class="inputText" placeholder="Postcode" id="input-postcode" required/>
 								</div>
 								<ul class="_erroe-li">
 									<li><span id="postcode-bon" class="text-dangers"></span></li>
 								</ul>
 								<div class="_email-log-bon">
-									<select name="country_id" id="input-country" class="form-control">
-                                        <option value=""><?php echo $text_select; ?></option>
-                                        <?php foreach ($countries as $country) { ?>
-                                        <option value="<?php echo $country['country_id']; ?>"><?php echo $country['name']; ?></option> 
-                                        <?php } ?>
-                                      </select>
+									<select name="country_id" id="input-country" autocomplete=off class="form-control">
+										<option value="">Select your country</option>
+										<?php foreach ($countries as $country) { ?>
+											<?php $selected = ($country['country_id'] == '99') ? "selected = selected" : ""; ?>
+											<option value="<?php echo $country['country_id']; ?>" <?php echo $selected; ?>><?php echo $country['name']; ?></option> 
+										<?php } ?>
+									</select>
 								</div>
 								<ul class="_erroe-li">
 									<li><span id="country-bon" class="text-dangers"></span></li>
 								</ul>
 								<div class="_email-log-bon">
-									<select name="zone_id" id="input-zone" class="form-control"></select>
+									<select name="zone_id" id="input-zone" autocomplete=off class="form-control">
+										<option value="">Select your state</option>
+										<?php foreach ($zone_data as $zone) { ?>
+											<!--<?php $selected = ($zone['zone_id'] == '1503') ? "selected = selected" : ""; ?>-->
+											<option value="<?php echo $zone['zone_id']; ?>" <?php echo $selected; ?>><?php echo $zone['name']; ?></option>
+										<?php } ?>
+									</select>
 								</div>
 								<ul class="_erroe-li">
 									<li><span id="zone-bon" class="text-dangers"></span></li>
@@ -1184,7 +1192,11 @@
 						$('#main-log-bon #input-email').focus();
 					}
 					if (json['success']) {
-						loacation();
+						if (document.getElementById('seller').checked) {
+							window.location.assign('<?php echo $seller_profile; ?>&tab_section=store_detail#content')
+						} else {
+							loacation();							
+						}
 						$('#_log-bon').modal('hide');
 					}
 
@@ -1275,6 +1287,8 @@
 			});
 		});
 		$('#updat-bon-det').on('click', function () {
+			$('#zone-bon-error-login').html('');
+			$('#reg-sucess').html('');
 			$.ajax({
 				url: 'index.php?route=common/header/new_login_update_two',
 				type: 'post',
@@ -1286,6 +1300,7 @@
 						$('#top-sign-last').trigger("reset");
 						$('#reg-sucess').html('<i class="fa fa-check" aria-hidden="true"></i><span>' + json['success']);
 						$("._top-sign-upd").hide();
+						//$('#reg-sucess').html('<i class="fa fa-times" aria-hidden="true"></i> ' + json['error']);
 						$("._top-log-in").show();
 					}
 					if (json['error_firstname']) {
