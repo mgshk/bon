@@ -876,7 +876,7 @@
                                     <button type="button" id="button-profile-save" data-loading-text="<?php echo $text_loading; ?>" class="btn btn-primary pull-right"><?php echo $button_save; ?></button>
                                   <?php } else { ?>
                                     <button type="button" id="button-profile-save-disabled" data-loading-text="<?php echo $text_loading; ?>" class="btn pull-right" disabled><?php echo $button_save; ?></button>
-                                    <label style="font-size: 13px;font-style: italic;font-weight: bold">Save option will be enabled after store/entity is approved by BoN admin.&nbsp&nbsp&nbsp</label>
+                                    <label style="font-size: 13px;font-style: italic;font-weight: bold;color: #FF4500">Save option will be enabled after store/entity is approved by BoN admin.&nbsp&nbsp&nbsp</label>
                                   <?php } ?>
                                                            
                               </br>
@@ -2294,7 +2294,12 @@
          ;
      }
 
-
+    //if ((convertToSlug("<?php echo $nickname; ?>) == "" && <?php echo $seller_approved; ?> == 0) || <?php echo $seller_approved; ?> == 1) {
+    //  $('.store_msg_alert').remove();
+    //  $('#content > .container-fluid').prepend('<div class="alert store_msg_alert alert-danger"><i class="fa fa-exclamation-circle"></i>Store/entity is not approved. Cannot save now.</div>');
+    //  $('body, html').animate({ scrollTop: $('#content').offset().top }, 'slow');
+    //}
+     
      if ($('input[name="agree_tt"]').is(':checked')) {
        var nickname = convertToSlug($('#input-nickname').val());
        var db_nickname = convertToSlug("<?php echo $nickname; ?>");
