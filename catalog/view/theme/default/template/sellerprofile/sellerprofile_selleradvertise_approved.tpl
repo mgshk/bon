@@ -312,7 +312,7 @@ if(adss)
 
 			for (var i=0; i<data.length; i++) {					
 								
-				var html_value = (parseInt(i) + parseInt(1))+ ':' + data[i];
+				var html_value = (parseInt(i) + parseInt(1))+ ':' + data[i].price + '-' + data[i].nickname;
 			    if(data.length != (parseInt(i) + parseInt(1))) {						
 					sel.append('<option value="' + (parseInt(i) + parseInt(1)) + '" >' + html_value + '</option>');
 			    } else {
@@ -528,7 +528,7 @@ if(adss)
 				}
 
 				for (var i = 0; i < data.length; i++) {						
-					var html_value = (parseInt(i) + parseInt(1))+ ':' + data[i];
+					var html_value = (parseInt(i) + parseInt(1))+ ':' + data[i].price + '-' + data[i].nickname;
 
 				    if (data.length != (parseInt(i) + parseInt(1))) {					
 						sel.append('<option value="' + (parseInt(i) + parseInt(1)) + '" >' + html_value + '</option>');
@@ -595,18 +595,18 @@ if(adss)
 			    				$('#price_vaidation_txt').text('(Should be Greater than '+min_price+ ' Rs)');
 			    			} else {
 			    				var selected_length = $('#position > option:checked').val();
-			    				max_price = json_result[parseInt(selected_length) - 2];
+			    				max_price = json_result[parseInt(selected_length) - 2].price;
 
 			    				$('#price_vaidation_txt').text('(Should be Between '+min_price+ ' Rs and ' + max_price + ' Rs)');
 			    			}
 
 			    		} else if ($('.check_amount').find(':selected').val() === '1') {
-			    			min_price = json_result[0];
+			    			min_price = json_result[0].price;
 			    			$('#price_vaidation_txt').text('(Should be Greater than '+min_price+ ' Rs)');
 			    		} else {
 			    			var selected_length = $('#position > option:checked').length;
 			    			min_price = price[1].replace(/\s/g, '');
-		    				max_price = json_result[selected_length - 1];
+		    				max_price = json_result[selected_length - 1].price;
 
 		    				$('#price_vaidation_txt').text('(Should be Between '+min_price+ ' Rs and ' + max_price + ' Rs)');
 			    		}

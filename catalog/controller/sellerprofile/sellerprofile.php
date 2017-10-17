@@ -3186,15 +3186,15 @@ class Controllersellerprofilesellerprofile extends Controller
 		
 		if(count($position_amt) > 0){
 			foreach($position_amt as $key => $position_a) {
-				$value_filter[] = $position_a['price'];
+				$value_filter[] = $position_a;
 			}
 			if(count($value_filter) > 0){				
 				$basic_position_amount = $this->model_selleradvertise_advertise->getStoreOfferBasicPrice(); //array('0'=>'500','1'=>'400','2'=>'300','3'=>'0');
 				//print_r($basic_position_amount);exit;
-				$position_amount = array_diff($value_filter, $basic_position_amount);
-				foreach($position_amount as $key => $position) {					
-					$json[] = $position;					
-				}
+				$position_amount[] = array_diff($value_filter[0], $basic_position_amount);
+				 foreach($position_amount as $position ) {	
+                     $json[] = $position;												
+				 }
 				$json = array_unique($json);
 			} 
 		}

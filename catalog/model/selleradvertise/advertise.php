@@ -674,15 +674,15 @@ class ModelselleradvertiseAdvertise extends Model
 			$query = $this->db->query($sql);
 			$lat_lan = $query->row;
 
-			$sql = "SELECT price,(3959 * acos( cos( radians(".$lat_lan['lat'].") ) * cos( radians( lat ) ) *  cos( radians( lng ) - radians(".$lat_lan['lng'].") ) + sin( radians(".$lat_lan['lat'].") ) * sin( radians( lat ) ) ) ) AS distance FROM ".DB_PREFIX."customer c LEFT JOIN ".DB_PREFIX."store_offers str ON(c.customer_id = str.seller_id) WHERE from_date = '".$from_date."' AND position = '".(int) $loc."' HAVING distance BETWEEN 0 AND ".$km." AND price != '0' order by price Desc";
+			$sql = "SELECT nickname, price,(3959 * acos( cos( radians(".$lat_lan['lat'].") ) * cos( radians( lat ) ) *  cos( radians( lng ) - radians(".$lat_lan['lng'].") ) + sin( radians(".$lat_lan['lat'].") ) * sin( radians( lat ) ) ) ) AS distance FROM ".DB_PREFIX."customer c LEFT JOIN ".DB_PREFIX."store_offers str ON(c.customer_id = str.seller_id) WHERE from_date = '".$from_date."' AND position = '".(int) $loc."' HAVING distance BETWEEN 0 AND ".$km." AND price != '0' order by price Desc";
 
 			$query = $this->db->query($sql);
 			$distance_level = $query->rows;
 			foreach($distance_level as $distance_lev) {
-				$correct_level1[]['price'] = $distance_lev['price'];
+				$correct_level1[] = $distance_lev;               
 			}
 
-			$sql1 = "SELECT price FROM ".DB_PREFIX."store_offers WHERE from_date = '".$from_date."' AND position = '".(int) $loc."' AND seller_id = ".$this->customer->getID()." AND price != '0' order by price Desc";
+			$sql1 = "SELECT c.nickname, str.price FROM ".DB_PREFIX."customer c INNER JOIN ".DB_PREFIX."store_offers str ON(c.customer_id = str.seller_id) WHERE str.from_date = '".$from_date."' AND str.position = '".(int) $loc."' AND str.seller_id = ".$this->customer->getID()." AND str.price != '0' order by str.price Desc";
 
 			$query1 = $this->db->query($sql1);
 			$correct_level2 = $query1->rows;
@@ -692,10 +692,12 @@ class ModelselleradvertiseAdvertise extends Model
 			} else {
 				$correct_level = $correct_level2;
 			}
+           
 		} else {
-			$sql = "SELECT price FROM ".DB_PREFIX."store_offers 
-                WHERE from_date = '".$from_date."' AND position = '".(int) $loc."' 
-                order by price Desc";
+			$sql = "SELECT c.nickname, str.price FROM ".DB_PREFIX."customer c 
+                INNER JOIN ".DB_PREFIX."store_offers str ON(c.customer_id = str.seller_id)
+                WHERE str.from_date = '".$from_date."' AND str.position = '".(int) $loc."' 
+                order by str.price Desc";
                 
 			$query = $this->db->query($sql);
 			$correct_level = $query->rows;
