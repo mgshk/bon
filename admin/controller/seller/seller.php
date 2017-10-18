@@ -544,7 +544,7 @@ class ControllerSellerseller extends Controller
 		//print_r($this->request->get['reason']); die;
         if ($sellers && $this->validatedisapprove()) {
             $disapprove_comment = $this->language->get('disapprove_comment');
-            $this->model_seller_seller->addHistory($this->request->get['seller_id'], $disapprove_comment);
+            $this->model_seller_seller->addHistory($this->request->get['seller_id'], $disapprove_comment . $this->request->get['reason']);
             $this->model_seller_seller->disapprove($this->request->get['seller_id'],$this->request->get['reason']);
 
             $this->session->data['success'] = $this->language->get('text_success');
@@ -597,7 +597,78 @@ class ControllerSellerseller extends Controller
         $this->getList();
     }
 
-	public function disverify()
+    public function send_message()
+    {
+        $this->load->language('seller/seller');
+
+        $this->document->setTitle($this->language->get('heading_title'));
+
+        $this->load->model('seller/seller');
+
+        $sellers = array();
+
+        if (isset($this->request->post['selected'])) {
+            $sellers = $this->request->post['selected'];
+        } elseif (isset($this->request->get['seller_id'])) {
+            $sellers[] = $this->request->get['seller_id'];
+        }
+		//print_r($this->request->get['reason']); die;
+        if ($sellers && $this->validatedisapprove()) {
+            $new_message = $this->language->get('new_message') . $this->request->get['reason'];
+            $this->model_seller_seller->addHistory($this->request->get['seller_id'], $new_message);
+            $this->model_seller_seller->sendMessage($this->request->get['seller_id'],$this->request->get['reason']);
+
+            $this->session->data['success'] = $this->language->get('text_success');
+
+            $url = '';
+
+            if (isset($this->request->get['filter_name'])) {
+                $url .= '&filter_name='.urlencode(html_entity_decode($this->request->get['filter_name'], ENT_QUOTES, 'UTF-8'));
+            }
+
+            if (isset($this->request->get['filter_email'])) {
+                $url .= '&filter_email='.urlencode(html_entity_decode($this->request->get['filter_email'], ENT_QUOTES, 'UTF-8'));
+            }
+
+            if (isset($this->request->get['filter_seller_group_id'])) {
+                $url .= '&filter_seller_group_id='.$this->request->get['filter_seller_group_id'];
+            }
+
+            if (isset($this->request->get['filter_status'])) {
+                $url .= '&filter_status='.$this->request->get['filter_status'];
+            }
+
+            if (isset($this->request->get['filter_seller_disapproved'])) {
+                $url .= '&filter_seller_disapproved='.$this->request->get['filter_seller_disapproved'];
+            }
+
+            if (isset($this->request->get['filter_ip'])) {
+                $url .= '&filter_ip='.$this->request->get['filter_ip'];
+            }
+
+            if (isset($this->request->get['filter_date_added'])) {
+                $url .= '&filter_date_added='.$this->request->get['filter_date_added'];
+            }
+
+            if (isset($this->request->get['sort'])) {
+                $url .= '&sort='.$this->request->get['sort'];
+            }
+
+            if (isset($this->request->get['order'])) {
+                $url .= '&order='.$this->request->get['order'];
+            }
+
+            if (isset($this->request->get['page'])) {
+                $url .= '&page='.$this->request->get['page'];
+            }
+
+            $this->response->redirect($this->url->link('seller/seller', 'token='.$this->session->data['token'].$url, 'SSL'));
+        }
+
+        $this->getList();
+    }
+    
+    public function disverify()
     {
         $this->load->language('seller/seller');
 
@@ -865,6 +936,9 @@ class ControllerSellerseller extends Controller
 
         $data['button_approve'] = $this->language->get('button_approve');
         $data['button_disapprove'] = $this->language->get('button_disapprove');
+        $data['button_verify'] = $this->language->get('button_verify');
+        $data['button_disverify'] = $this->language->get('button_disverify');
+        $data['button_sendadmmsg'] = $this->language->get('button_sendadmmsg');
         $data['button_add'] = $this->language->get('button_add');
         $data['button_edit'] = $this->language->get('button_edit');
         $data['button_delete'] = $this->language->get('button_delete');

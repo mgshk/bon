@@ -17,6 +17,7 @@ $_['text_amount'] = 'Amount';
 $_['text_add_ban_ip'] = 'Add Ban IP';
 $_['text_remove_ban_ip'] = 'Remove Ban IP';
 $_['text_login'] = 'Login into Store';
+$_['send_message'] = 'New message';
 
 // Column
 
@@ -108,17 +109,17 @@ $_['entry_company_id'] = 'Bank Account ';
 
 $_['comment'] = 'Your Request Is Under Review ';
 
-$_['approve_comment'] = 'Your Request Is Accepted ';
+$_['approve_comment'] = 'Store/Entity is approved';
 
-$_['verify_comment'] = 'Your Request Is Verified ';
+$_['disapprove_comment'] = 'Store/Entity is disapproved - ';
 
-$_['disverify_comment'] = 'Your Seller Acount Is Disapproved';
+$_['verify_comment'] = 'Store/Entity is verified ';
 
-$_['approve_ad_comment'] = 'Your Request Ad Is Accepted ';
+$_['disverify_comment'] = 'Store/Entity is disverified';
 
-$_['disapprove_comment'] = 'Your Seller Acount Is Disapproved';
+$_['approve_ad_comment'] = 'AD is approved';
 
-$_['disapprove_ad_comment'] = 'Your Ad Is Rejected';
+$_['disapprove_ad_comment'] = 'Ad is rejected - ';
 
 $_['subscription_expire_comment'] = 'Your seller account subscription expires in %s days';
 
@@ -163,4 +164,5 @@ $_['column_email'] = 'Email';
 $_['column_feedback'] = 'Feedback';
 $_['column_date_added'] = 'Date Added';
 $_['column_feedback'] = 'Feed back';
+$_['new_message'] = 'New message - ';
 

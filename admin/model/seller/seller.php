@@ -408,6 +408,14 @@ class ModelSellerseller extends Model
         }
     }
 
+    public function sendMessage($seller_id, $reason)
+    {
+        $seller_info = $this->getseller($seller_id);
+
+        if ($seller_info) {
+            $this->db->query('UPDATE '.DB_PREFIX."customer SET seller_reject_reason = '".$reason."' WHERE customer_id = '".(int) $seller_id."'");
+        }
+    }
 
 	public function disverify($seller_id)
     {

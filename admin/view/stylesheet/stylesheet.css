@@ -644,3 +644,15 @@ input[type="checkbox"]:checked::after, .checkbox input[type="checkbox"]:checked:
 #filemanager .fa-folder.fa-5x {
 	font-size: 10.5em;
 }
+.colFilterName {
+	font-size: 12px
+}
+.colFilterField {
+	font-size: 12px
+}
+.colHeader {
+	font-size: 12px
+}
+.colDetail {
+	font-size: 12px
+}

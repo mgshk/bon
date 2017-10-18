@@ -113,18 +113,18 @@
             <table class="table table-bordered table-hover">
               <thead>
                 <tr>
-                  <td style="width: 1px;" class="text-center"><input type="checkbox" onclick="$('input[name*=\'selected\']').prop('checked', this.checked);" /></td>
-                  <td class="text-left"><?php if ($sort == 'name') { ?>
+                  <td style="width: 1px;" class="text-center colHeader"><input type="checkbox" onclick="$('input[name*=\'selected\']').prop('checked', this.checked);" /></td>
+                  <td class="text-left colHeader"><?php if ($sort == 'name') { ?>
                     <a href="<?php echo $sort_name; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_name; ?></a>
                     <?php } else { ?>
                     <a href="<?php echo $sort_name; ?>"><?php echo $column_name; ?></a>
                     <?php } ?></td>
-                  <td class="text-left"><?php if ($sort == 'c.email') { ?>
+                  <td class="text-left colHeader"><?php if ($sort == 'c.email') { ?>
                     <a href="<?php echo $sort_email; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_email; ?></a>
                     <?php } else { ?>
                     <a href="<?php echo $sort_email; ?>"><?php echo $column_email; ?></a>
                     <?php } ?></td>
-                  <td class="text-left"><?php if ($sort == 'seller_group') { ?>
+                  <!--<td class="text-left colHeader"><?php if ($sort == 'seller_group') { ?>
                     <a href="<?php echo $sort_seller_group; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_seller_group; ?></a>
                     <?php } else { ?>
                     <a href="<?php echo $sort_seller_group; ?>"><?php echo $column_seller_group; ?></a>
@@ -134,75 +134,72 @@
                     <?php } else { ?>
                     <a href="<?php echo $sort_seller_product; ?>"><?php echo $column_quantity; ?></a>
                     <?php } ?></td>
-                  <td class="text-left"><?php if ($sort == 'c.status') { ?>
+                  <td class="text-left colHeader"><?php if ($sort == 'c.status') { ?>
                     <a href="<?php echo $sort_status; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_status; ?></a>
                     <?php } else { ?>
                     <a href="<?php echo $sort_status; ?>"><?php echo $column_status; ?></a>
                     <?php } ?></td>
-                  <td class="text-left"><?php if ($sort == 'c.ip') { ?>
+                  <td class="text-left colHeader"><?php if ($sort == 'c.ip') { ?>
                     <a href="<?php echo $sort_ip; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_ip; ?></a>
                     <?php } else { ?>
                     <a href="<?php echo $sort_ip; ?>"><?php echo $column_ip; ?></a>
                     <?php } ?></td>
-                  <td class="text-left"><?php if ($sort == 'c.date_added') { ?>
+                  -->
+                  <td class="text-left colHeader"><?php if ($sort == 'c.date_added') { ?>
                     <a href="<?php echo $sort_date_added; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_date_added; ?></a>
                     <?php } else { ?>
                     <a href="<?php echo $sort_date_added; ?>"><?php echo $column_date_added; ?></a>
                     <?php } ?></td>
-                  <td class="text-right"><?php echo $column_action; ?></td>
+                  <td class="text-right colHeader"><?php echo $column_action; ?></td>
                 </tr>
               </thead>
               <tbody>
                 <?php if ($sellers) { ?>
                 <?php foreach ($sellers as $seller) { ?>
                 <tr>
-                  <td class="text-center"><?php if (in_array($seller['seller_id'], $selected)) { ?>
+                  <td class="text-center colDetail"><?php if (in_array($seller['seller_id'], $selected)) { ?>
                     <input type="checkbox" name="selected[]" value="<?php echo $seller['seller_id']; ?>" checked="checked" />
                     <?php } else { ?>
                     <input type="checkbox" name="selected[]" value="<?php echo $seller['seller_id']; ?>" />
                     <?php } ?></td>
-                  <td class="text-left"><?php echo $seller['name']; ?></td>
-                  <td class="text-left"><?php echo $seller['email']; ?></td>
-                  <td class="text-left"><?php echo $seller['seller_group']; ?></td>
-                  <td class="text-left"><?php echo $seller['seller_product']; ?></td>
-                  <td class="text-left"><?php echo $seller['seller_approved_text']; ?></td>
-                  <td class="text-left"><?php echo $seller['ip']; ?></td>
-                  <td class="text-left"><?php echo $seller['date_added']; ?></td>
-                  <td class="text-right">
-
-					    <?php if ($seller['seller_changegroup'] && $seller['seller_changegroup_id']!=$seller['seller_group_id']) { ; ?>
-                    <a href="<?php echo $seller['upgrade_sellergroup']; ?>" data-toggle="tooltip" title="" class="btn btn-success"><?php echo $button_upgrade_sellergroup; ?><?php echo $seller['seller_changegroup']; ?></a>
-
+                  <td class="text-left colDetail"><?php echo $seller['name']; ?></td>
+                  <td class="text-left colDetail"><?php echo $seller['email']; ?></td>
+                  <!--<td class="text-left colDetail"><?php echo $seller['seller_group']; ?></td>
+                  <td class="text-left colDetail"><?php echo $seller['seller_product']; ?></td>
+                  <td class="text-left colDetail"><?php echo $seller['seller_approved_text']; ?></td>
+                  <td class="text-left colDetail"><?php echo $seller['ip']; ?></td>
+                  -->
+                  <td class="text-left colDetail"><?php echo $seller['date_added']; ?></td>
+                  <td class="text-right colDetail">
+                    <?php if ($seller['seller_changegroup'] && $seller['seller_changegroup_id']!=$seller['seller_group_id']) { ; ?>
+                      <a href="<?php echo $seller['upgrade_sellergroup']; ?>" data-toggle="tooltip" title="" class="btn btn-success"><?php echo $button_upgrade_sellergroup; ?><?php echo $seller['seller_changegroup']; ?></a>
                     <?php } ?>
-
-
-					  <?php if (!$seller['seller_approved']) { ; ?>
-                    <a href="<?php echo $seller['approve']; ?>" data-toggle="tooltip" title="<?php echo $button_approve; ?>" class="btn btn-success"><i class="fa fa-thumbs-o-up"></i></a>
+                    <?php if (!$seller['seller_approved']) { ; ?>
+                      <a href="<?php echo $seller['approve']; ?>" data-toggle="tooltip" title="<?php echo $button_approve; ?>" class="btn btn-success"><i class="fa fa-thumbs-o-up"></i></a>
                     <?php } else { ?>
                       <a style="cursor: pointer;" data-toggle="modal" data-target="#store_reject_reson_<?php echo $seller['seller_id']; ?>" data-toggle="tooltip" title="<?php echo $button_disapprove; ?>" class="btn btn-danger"><i class="fa fa-thumbs-o-down"></i></a>
                     <?php } ?>
-
-					<?php if (!$seller['seller_verified']) { ; ?>
-                    <a href="<?php echo $seller['verify']; ?>" class="btn btn-success"><i class="fa fa-check"></i></a>
+                    <?php if (!$seller['seller_verified']) { ; ?>
+                      <a href="<?php echo $seller['verify']; ?>" class="btn btn-success"><i class="fa fa-check"></i></a>
                     <?php } else { ?>
                       <a href="<?php echo $seller['disverify']; ?>" class="btn btn-danger"><i class="fa fa-times"></i></a>
                     <?php } ?>
-
-
                     <div class="btn-group" data-toggle="tooltip" title="<?php echo $text_login; ?>">
                       <button type="button" data-toggle="dropdown" class="btn btn-info dropdown-toggle"><i class="fa fa-lock"></i></button>
                       <ul class="dropdown-menu pull-right">
                         <li><a href="index.php?route=seller/seller/login&token=<?php echo $token; ?>&seller_id=<?php echo $seller['seller_id']; ?>&store_id=0" target="_blank"><?php echo $text_default; ?></a></li>
                         <?php foreach ($stores as $store) { ?>
-                        <li><a href="index.php?route=seller/seller/login&token=<?php echo $token; ?>&seller_id=<?php echo $seller['seller_id']; ?>&store_id=<?php echo $store['store_id']; ?>" target="_blank"><?php echo $store['name']; ?></a></li>
+                          <li><a href="index.php?route=seller/seller/login&token=<?php echo $token; ?>&seller_id=<?php echo $seller['seller_id']; ?>&store_id=<?php echo $store['store_id']; ?>" target="_blank"><?php echo $store['name']; ?></a></li>
                         <?php } ?>
                       </ul>
                     </div>
                     <a href="<?php echo $seller['edit']; ?>" data-toggle="tooltip" title="<?php echo $button_edit; ?>" class="btn btn-primary"><i class="fa fa-pencil"></i>
                       <?php if ($seller['seller_category']) {
-                                               echo $text_seller_category_approve;
-                                            } ?>
-                    </a></td>
+                        echo $text_seller_category_approve;
+                      } ?>
+                    </a>
+                    <a style="cursor: pointer;" data-toggle="modal" data-target="#send_admin_message_<?php echo $seller['seller_id']; ?>" data-toggle="tooltip" title="<?php echo $button_sendadmmsg; ?>" class="btn btn-primary"><i class="fa fa-commenting-o"></i></a>
+                  </td>
                 </tr>
                 <?php } ?>
                 <?php } else { ?>
@@ -222,28 +219,47 @@
     </div>
   </div>
   <?php if ($sellers) { ?>
-  <?php foreach ($sellers as $seller) { ?>
-  <div class="modal fade" id="store_reject_reson_<?php echo $seller['seller_id']; ?>" role="dialog">
- <div class="modal-dialog">
-    <!-- Modal content-->
-    <div class="modal-content loc-pop">
-       <div class="modal-header">
-	  <button type="button" class="close" data-dismiss="modal">&times;</button>
-	  <h4 class="modal-title loc-share-title">Please Enter reason to Reject</h4>
-       </div>
-       <div class="modal-body timing-share-top">
-       <form action="" method="post" enctype="multipart/form-data" id="store_reject" class="form-horizontal">
-	   <input type="hidden" id="disapprove_reson_<?php echo $seller['seller_id']; ?>" value="<?php echo $seller['disapprove']; ?>">
-	<textarea class="form-control store_reject_res" name="store_reject_res" id="store_reject_res_<?php echo $seller['seller_id']; ?>" ></textarea>
-	<span id="error_reason"></span>
-	<a id="<?php echo $seller['seller_id']; ?>" data-toggle="tooltip" title="<?php echo $button_disapprove; ?>" class="btn btn-danger button_rej"><i class="fa fa-thumbs-o-down"></i></a>
-     </form>
+    <?php foreach ($sellers as $seller) { ?>
+      <div class="modal fade" id="store_reject_reson_<?php echo $seller['seller_id']; ?>" role="dialog">
+        <div class="modal-dialog">
+          <!-- Modal content-->
+          <div class="modal-content loc-pop">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title loc-share-title">Please Enter reason to Reject</h4>
             </div>
-       </div>
-    </div>
- </div>
- <?php } ?>
- <?php } ?>
+            <div class="modal-body timing-share-top">
+              <form action="" method="post" enctype="multipart/form-data" id="store_reject" class="form-horizontal">
+                <input type="hidden" id="disapprove_reson_<?php echo $seller['seller_id']; ?>" value="<?php echo $seller['disapprove']; ?>">
+                <textarea class="form-control store_reject_res" name="store_reject_res" id="store_reject_res_<?php echo $seller['seller_id']; ?>" ></textarea>
+                <span id="error_reason"></span>
+                <a id="<?php echo $seller['seller_id']; ?>" data-toggle="tooltip" title="<?php echo $button_disapprove; ?>" class="btn btn-danger button_rej"><i class="fa fa-thumbs-o-down"></i></a>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal fade" id="send_admin_message_<?php echo $seller['seller_id']; ?>" role="dialog">
+        <div class="modal-dialog">
+          <!-- Modal content-->
+          <div class="modal-content loc-pop">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title loc-share-title">New message to store</h4>
+            </div>
+            <div class="modal-body timing-share-top">
+              <form action="" method="post" enctype="multipart/form-data" id="new_admin_msg" class="form-horizontal">
+                <input id="send_adm_msg_<?php echo $seller['seller_id']; ?>" value="<?php echo $seller['disapprove']; ?>">
+                <textarea class="form-control" name="new_admin_message" id="new_admin_message_<?php echo $seller['seller_id']; ?>" ></textarea>
+                <span id="newAdminMsg"></span>
+                <a id="<?php echo $seller['seller_id']; ?>" data-toggle="tooltip" title="<?php echo $button_sendadmmsg; ?>" class="btn btn-primary button_send"><i class="fa fa-paper-plane-o"></i></a>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    <?php } ?>
+  <?php } ?>
  <script>
 $('.button_rej').on('click', function() {
 	var seller_id = $(this).attr('id');
@@ -255,6 +271,18 @@ $('.button_rej').on('click', function() {
 	} else {
 		//alert(disapprove+'&reason='+reason);
 		window.location.href=disapprove+'&reason='+reason;
+	}	
+});
+$('.button_send').on('click', function() {
+	var seller_id = $(this).attr('id');
+	var msg = $('#new_admin_message_'+seller_id).val();
+	var sendAdmMsg = $('#send_adm_msg_'+seller_id).val();
+	if(msg == ''){
+		//$('#error_reason').val("Please enter reason to reject");
+		alert("Please enter reason to reject");
+	} else {
+		//alert(disapprove+'&reason='+reason);
+		window.location.href=sendAdmMsg+'&reason='+msg;
 	}	
 });
 </script>
