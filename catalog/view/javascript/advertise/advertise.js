@@ -108,40 +108,91 @@ $(document).ready(function() {
 		return false;
 	});
 
-	$(document).on('click', '#save', function(){
-		if ($('input[name="agree_tt"]').is(':checked')) {
-			if($('input#offer_title').val() != '') {
-				$('input#status').val('draft');
-				$("form").submit(function(){
-				});
-			} else {
-				$('.alert').remove();
-				$('#content > .container-fluid').prepend('<div class="alert alert-danger"><i class="fa fa-exclamation-circle"></i> Title must be greater than 3 and less than 255 characters!</div>');	
-				$('body, html').animate({scrollTop:$('#content').offset().top}, 'slow');
-			}
-		} else {
-			$('.alert').remove();
-			$('#content > .container-fluid').prepend('<div class="alert alert-danger"><i class="fa fa-exclamation-circle"></i> Please agree to the terms and conditions mentioned and then save.</div>');	
-			$('body, html').animate({scrollTop:$('#content').offset().top}, 'slow');
-		}
+	$(document).on('click', '#save', function() {
+		e.preventDefault();
+
+   		try {
+
+   			var title = $('#offer_title').val();
+   			var terms = $('input[name="agree_tt"]').is(':checked');
+
+   			if ($.trim(title) === '' || title.length < 2 || title.length > 255)
+   				throw '<div class="alert alert-danger"><i class="fa fa-exclamation-circle"></i> Title must be greater than 3 and less than 255 characters!</div>';
+
+   			if (terms === false)
+   				throw '<div class="alert alert-danger"><i class="fa fa-exclamation-circle"></i> Please agree to the terms and conditions mentioned and then save.</div>';
+
+   			$("#form-advertise").submit();
+
+   		} catch (e) {
+   			$('#validate_msg').empty().html(e).show();
+
+   			$('body, html').animate({scrollTop:$('#content').offset().top}, 'slow');
+
+   			setTimeout(function() {
+   				$('#validate_msg').hide();
+   			}, 3000);
+   		}
+
+   		return false;
+		// if ($('input[name="agree_tt"]').is(':checked')) {
+		// 	if($('input#offer_title').val() != '') {
+		// 		$('input#status').val('draft');
+		// 		$("#form-advertise").submit();
+		// 	} else {
+		// 		$('.alert').remove();
+		// 		$('#content > .container-fluid').prepend('<div class="alert alert-danger"><i class="fa fa-exclamation-circle"></i> Title must be greater than 3 and less than 255 characters!</div>');	
+		// 		$('body, html').animate({scrollTop:$('#content').offset().top}, 'slow');
+		// 	}
+		// } else {
+		// 	$('.alert').remove();
+		// 	$('#content > .container-fluid').prepend('<div class="alert alert-danger"><i class="fa fa-exclamation-circle"></i> Please agree to the terms and conditions mentioned and then save.</div>');	
+		// 	$('body, html').animate({scrollTop:$('#content').offset().top}, 'slow');
+		// }
    	});
 
-   	$(document).on('click', '#submitt', function() {	
-		if ($('input[name="agree_tt"]').is(':checked')) {
-			if($('input#offer_title').val() != ''){
-				$('input#status').val('submitted');
-				$("form").submit(function(){
-				});
-			} else {
-				$('.alert').remove();
-				$('#content > .container-fluid').prepend('<div class="alert alert-danger"><i class="fa fa-exclamation-circle"></i> Title must be greater than 3 and less than 255 characters!</div>');	
-				$('body, html').animate({scrollTop:$('#content').offset().top}, 'slow');
-			}
-		} else {
-			$('.alert').remove();
-			$('#content > .container-fluid').prepend('<div class="alert alert-danger"><i class="fa fa-exclamation-circle"></i>Please agree to the terms and conditions mentioned and then save.</div>');	
-			$('body, html').animate({scrollTop:$('#content').offset().top}, 'slow');
-		}
+   	$(document).on('click', '#submitt', function(e) {
+   		e.preventDefault();
+
+   		try {
+
+   			var title = $('#offer_title').val();
+   			var terms = $('input[name="agree_tt"]').is(':checked');
+
+   			if ($.trim(title) === '' || title.length < 2 || title.length > 255)
+   				throw '<div class="alert alert-danger"><i class="fa fa-exclamation-circle"></i> Title must be greater than 3 and less than 255 characters!</div>';
+
+   			if (terms === false)
+   				throw '<div class="alert alert-danger"><i class="fa fa-exclamation-circle"></i> Please agree to the terms and conditions mentioned and then save.</div>';
+
+   			$("#form-advertise").submit();
+
+   		} catch (e) {
+   			$('#validate_msg').empty().html(e).show();
+
+   			$('body, html').animate({scrollTop:$('#content').offset().top}, 'slow');
+
+   			setTimeout(function() {
+   				$('#validate_msg').hide();
+   			}, 3000);
+   		}
+
+   		return false;
+
+		// if ($('input[name="agree_tt"]').is(':checked')) {
+		// 	if($('input#offer_title').val() != ''){
+		// 		$('input#status').val('submitted');
+		// 		$("#form-advertise").submit();
+		// 	} else {
+		// 		$('.alert').remove();
+		// 		$('#content > .container-fluid').prepend('<div class="alert alert-danger"><i class="fa fa-exclamation-circle"></i> Title must be greater than 3 and less than 255 characters!</div>');	
+		// 		$('body, html').animate({scrollTop:$('#content').offset().top}, 'slow');
+		// 	}
+		// } else {
+		// 	$('.alert').remove();
+		// 	$('#content > .container-fluid').prepend('<div class="alert alert-danger"><i class="fa fa-exclamation-circle"></i>Please agree to the terms and conditions mentioned and then save.</div>');	
+		// 	$('body, html').animate({scrollTop:$('#content').offset().top}, 'slow');
+		// }
    	});
 
    	$('#button-image').on('click', function() {
