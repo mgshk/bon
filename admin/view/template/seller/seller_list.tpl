@@ -2,9 +2,9 @@
 <div id="content">
   <div class="page-header">
     <div class="container-fluid">
-      <div class="pull-right"><a href="<?php echo $insert; ?>" data-toggle="tooltip" title="<?php echo $button_add; ?>" class="btn btn-primary"><i class="fa fa-plus"></i></a>
+      <!--<div class="pull-right"><a href="<?php echo $insert; ?>" data-toggle="tooltip" title="<?php echo $button_add; ?>" class="btn btn-primary"><i class="fa fa-plus"></i></a>
         <button type="button" data-toggle="tooltip" title="<?php echo $button_delete; ?>" class="btn btn-danger" onclick="confirm('<?php echo $text_confirm; ?>') ? $('#form-seller').submit() : false;"><i class="fa fa-trash-o"></i></button>
-      </div>
+      </div>-->
       <h1><?php echo $heading_title; ?></h1>
       <ul class="breadcrumb">
         <?php foreach ($breadcrumbs as $breadcrumb) { ?>
@@ -36,12 +36,53 @@
                 <label class="control-label" for="input-name"><?php echo $entry_name; ?></label>
                 <input type="text" name="filter_name" value="<?php echo $filter_name; ?>" placeholder="<?php echo $entry_name; ?>" id="input-name" class="form-control" />
               </div>
+            </div>
+            <div class="col-sm-3">
               <div class="form-group">
-                <label class="control-label" for="input-email"><?php echo $entry_email; ?></label>
-                <input type="text" name="filter_email" value="<?php echo $filter_email; ?>" placeholder="<?php echo $entry_email; ?>" id="input-email" class="form-control" />
+                <label class="control-label" for="input-seller_approved"><?php echo $entry_seller_approved; ?></label>
+                <select name="filter_seller_approved" id="input-seller_approved" class="form-control">
+                  <option value="*"></option>
+                  
+                  <?php if ($filter_seller_approved) { ?>
+                    <option value="1" selected="selected"><?php echo $text_yes; ?></option>
+                  <?php } else { ?>
+                    <option value="1"><?php echo $text_yes; ?></option>
+                  <?php } ?>
+                  
+                  <?php if (($filter_seller_approved !== null) && !$filter_seller_approved) { ?>
+                    <option value="0" selected="selected"><?php echo $text_no; ?></option>
+                  <?php } else { ?>
+                    <option value="0"><?php echo $text_no; ?></option>
+                  <?php } ?>
+                
+                </select>
               </div>
             </div>
             <div class="col-sm-3">
+              <div class="form-group">
+                <label class="control-label" for="input-seller_verified"><?php echo $entry_seller_verified; ?></label>
+                <select name="filter_seller_verified" id="input-seller_verified" class="form-control">
+                  <option value="*"></option>
+                  
+                  <?php if ($filter_seller_verified) { ?>
+                    <option value="1" selected="selected"><?php echo $text_yes; ?></option>
+                  <?php } else { ?>
+                    <option value="1"><?php echo $text_yes; ?></option>
+                  <?php } ?>
+                  
+                  <?php if (($filter_seller_verified !== null) && !$filter_seller_verified) { ?>
+                    <option value="0" selected="selected"><?php echo $text_no; ?></option>
+                  <?php } else { ?>
+                    <option value="0"><?php echo $text_no; ?></option>
+                  <?php } ?>
+                
+                </select>
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <button type="button" id="button-filter" class="btn btn-primary pull-right"><i class="fa fa-search"></i> <?php echo $button_filter; ?></button>
+            </div>
+            <div hidden class="col-sm-3">
               <div class="form-group">
                 <label class="control-label" for="input-seller-group"><?php echo $entry_seller_group; ?></label>
                 <select name="filter_seller_group_id" id="input-seller-group" class="form-control">
@@ -72,31 +113,15 @@
                   <?php } ?>
                 </select>
               </div>
-            </div>
-            <div class="col-sm-3">
-              <div class="form-group">
-                <label class="control-label" for="input-seller_approved"><?php echo $entry_seller_approved; ?></label>
-                <select name="filter_seller_approved" id="input-seller_approved" class="form-control">
-                  <option value="*"></option>
-                  <?php if ($filter_seller_approved) { ?>
-                  <option value="1" selected="selected"><?php echo $text_yes; ?></option>
-                  <?php } else { ?>
-                  <option value="1"><?php echo $text_yes; ?></option>
-                  <?php } ?>
-                  <?php if (($filter_seller_approved !== null) && !$filter_seller_approved) { ?>
-                  <option value="0" selected="selected"><?php echo $text_no; ?></option>
-                  <?php } else { ?>
-                  <option value="0"><?php echo $text_no; ?></option>
-                  <?php } ?>
-                </select>
+              <div hidden class="form-group">
+                <label class="control-label" for="input-email"><?php echo $entry_email; ?></label>
+                <input type="text" name="filter_email" value="<?php echo $filter_email; ?>" placeholder="<?php echo $entry_email; ?>" id="input-email" class="form-control" />
               </div>
-              <div class="form-group">
+              <div hidden class="form-group">
                 <label class="control-label" for="input-ip"><?php echo $entry_ip; ?></label>
                 <input type="text" name="filter_ip" value="<?php echo $filter_ip; ?>" placeholder="<?php echo $entry_ip; ?>" id="input-ip" class="form-control" />
               </div>
-            </div>
-            <div class="col-sm-3">
-              <div class="form-group">
+              <div hidden class="form-group">
                 <label class="control-label" for="input-date-added"><?php echo $entry_date_added; ?></label>
                 <div class="input-group date">
                   <input type="text" name="filter_date_added" value="<?php echo $filter_date_added; ?>" placeholder="<?php echo $entry_date_added; ?>" data-date-format="YYYY-MM-DD" id="input-date-added" class="form-control" />
@@ -104,7 +129,6 @@
                   <button type="button" class="btn btn-default"><i class="fa fa-calendar"></i></button>
                   </span></div>
               </div>
-              <button type="button" id="button-filter" class="btn btn-primary pull-right"><i class="fa fa-search"></i> <?php echo $button_filter; ?></button>
             </div>
           </div>
         </div>
@@ -114,17 +138,17 @@
               <thead>
                 <tr>
                   <td style="width: 1px;" class="text-center colHeader"><input type="checkbox" onclick="$('input[name*=\'selected\']').prop('checked', this.checked);" /></td>
-                  <td class="text-left colHeader"><?php if ($sort == 'name') { ?>
+                  <td class="text-left colHeader"><?php if ($sort == 'c.nickname') { ?>
                     <a href="<?php echo $sort_name; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_name; ?></a>
                     <?php } else { ?>
                     <a href="<?php echo $sort_name; ?>"><?php echo $column_name; ?></a>
                     <?php } ?></td>
-                  <td class="text-left colHeader"><?php if ($sort == 'c.email') { ?>
+                  <!--<td class="text-left colHeader"><?php if ($sort == 'c.email') { ?>
                     <a href="<?php echo $sort_email; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_email; ?></a>
                     <?php } else { ?>
                     <a href="<?php echo $sort_email; ?>"><?php echo $column_email; ?></a>
                     <?php } ?></td>
-                  <!--<td class="text-left colHeader"><?php if ($sort == 'seller_group') { ?>
+                  <td class="text-left colHeader"><?php if ($sort == 'seller_group') { ?>
                     <a href="<?php echo $sort_seller_group; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_seller_group; ?></a>
                     <?php } else { ?>
                     <a href="<?php echo $sort_seller_group; ?>"><?php echo $column_seller_group; ?></a>
@@ -163,8 +187,8 @@
                     <input type="checkbox" name="selected[]" value="<?php echo $seller['seller_id']; ?>" />
                     <?php } ?></td>
                   <td class="text-left colDetail"><?php echo $seller['name']; ?></td>
-                  <td class="text-left colDetail"><?php echo $seller['email']; ?></td>
-                  <!--<td class="text-left colDetail"><?php echo $seller['seller_group']; ?></td>
+                  <!--<td class="text-left colDetail"><?php echo $seller['email']; ?></td>
+                  <td class="text-left colDetail"><?php echo $seller['seller_group']; ?></td>
                   <td class="text-left colDetail"><?php echo $seller['seller_product']; ?></td>
                   <td class="text-left colDetail"><?php echo $seller['seller_approved_text']; ?></td>
                   <td class="text-left colDetail"><?php echo $seller['ip']; ?></td>
@@ -249,7 +273,7 @@
             </div>
             <div class="modal-body timing-share-top">
               <form action="" method="post" enctype="multipart/form-data" id="new_admin_msg" class="form-horizontal">
-                <input id="send_adm_msg_<?php echo $seller['seller_id']; ?>" value="<?php echo $seller['disapprove']; ?>">
+                <input type="hidden" id="send_adm_msg_<?php echo $seller['seller_id']; ?>" value="<?php echo $seller['sendAdminMsg']; ?>">
                 <textarea class="form-control" name="new_admin_message" id="new_admin_message_<?php echo $seller['seller_id']; ?>" ></textarea>
                 <span id="newAdminMsg"></span>
                 <a id="<?php echo $seller['seller_id']; ?>" data-toggle="tooltip" title="<?php echo $button_sendadmmsg; ?>" class="btn btn-primary button_send"><i class="fa fa-paper-plane-o"></i></a>
@@ -318,6 +342,12 @@ $('#button-filter').on('click', function() {
 
 	if (filter_seller_approved != '*') {
 		url += '&filter_seller_approved=' + encodeURIComponent(filter_seller_approved);
+	}
+
+	var filter_seller_verified = $('select[name=\'filter_seller_verified\']').val();
+
+	if (filter_seller_verified != '*') {
+		url += '&filter_seller_verified=' + encodeURIComponent(filter_seller_verified);
 	}
 
 	var filter_ip = $('input[name=\'filter_ip\']').val();

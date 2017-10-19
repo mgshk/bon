@@ -127,7 +127,8 @@ class ModelSellerseller extends Model
 
     public function getsellers($data = array())
     {
-        $sql = "SELECT *, CONCAT(c.firstname, ' ', c.lastname) AS name, cgd.name AS seller_group, c.seller_group_id AS seller_group_id
+        //$sql = "SELECT *, CONCAT(c.firstname, ' ', c.lastname) AS name, cgd.name AS seller_group, c.seller_group_id AS seller_group_id
+        $sql = "SELECT *, c.nickname AS name, cgd.name AS seller_group, c.seller_group_id AS seller_group_id
         FROM ".DB_PREFIX.'customer c
         LEFT JOIN '.DB_PREFIX.'seller_group_description cgd
         ON (c.seller_group_id = cgd.seller_group_id)
@@ -176,6 +177,10 @@ class ModelSellerseller extends Model
             $implode[] = "c.seller_approved = '".(int) $data['filter_seller_approved']."'";
         }
 
+        if (isset($data['filter_seller_verified']) && $data['filter_seller_verified'] !== null) {
+            $implode[] = "c.seller_verified = '".(int) $data['filter_seller_verified']."'";
+        }
+
         if (!empty($data['filter_date_added'])) {
             $implode[] = "DATE(c.seller_date_added) = DATE('".$this->db->escape($data['filter_date_added'])."')";
         }
@@ -186,12 +191,13 @@ class ModelSellerseller extends Model
 
 
         $sort_data = array(
-            'name',
+            'c.nickname',
             'c.email',
             'seller_group',
             'pts.seller_id',
             'c.status',
             'c.seller_approved',
+            'c.seller_verified',
             'c.ip',
             'c.seller_date_added',
         );
@@ -199,7 +205,7 @@ class ModelSellerseller extends Model
         if (isset($data['sort']) && in_array($data['sort'], $sort_data)) {
             $sql .= ' ORDER BY '.$data['sort'];
         } else {
-            $sql .= ' ORDER BY name';
+            $sql .= ' ORDER BY c.nickname';
         }
 
         if (isset($data['order']) && ($data['order'] == 'DESC')) {

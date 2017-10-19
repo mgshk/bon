@@ -771,6 +771,12 @@ class ControllerSellerseller extends Controller
             $filter_seller_approved = null;
         }
 
+        if (isset($this->request->get['filter_seller_verified'])) {
+            $filter_seller_verified = $this->request->get['filter_seller_verified'];
+        } else {
+            $filter_seller_verified = null;
+        }
+
         if (isset($this->request->get['filter_ip'])) {
             $filter_ip = $this->request->get['filter_ip'];
         } else {
@@ -786,7 +792,7 @@ class ControllerSellerseller extends Controller
         if (isset($this->request->get['sort'])) {
             $sort = $this->request->get['sort'];
         } else {
-            $sort = 'name';
+            $sort = 'c.nickname';
         }
 
         if (isset($this->request->get['order'])) {
@@ -821,6 +827,10 @@ class ControllerSellerseller extends Controller
 
         if (isset($this->request->get['filter_seller_approved'])) {
             $url .= '&filter_seller_approved='.$this->request->get['filter_seller_approved'];
+        }
+
+        if (isset($this->request->get['filter_seller_verified'])) {
+            $url .= '&filter_seller_verified='.$this->request->get['filter_seller_verified'];
         }
 
         if (isset($this->request->get['filter_ip'])) {
@@ -866,6 +876,7 @@ class ControllerSellerseller extends Controller
             'filter_seller_group_id' => $filter_seller_group_id,
             'filter_status' => $filter_status,
             'filter_seller_approved' => $filter_seller_approved,
+            'filter_seller_verified' => $filter_seller_verified,
             'filter_date_added' => $filter_date_added,
             'filter_ip' => $filter_ip,
             'sort' => $sort,
@@ -889,17 +900,20 @@ class ControllerSellerseller extends Controller
                 'seller_changegroup' => $result['seller_group_upgrade'],
                 'seller_changegroup_id' => $result['seller_changegroup'],
                 'seller_approved_text' => ($result['seller_approved'] ? $this->language->get('text_enabled') : $this->language->get('text_disabled')),
+                'seller_verified_text' => ($result['seller_verified'] ? $this->language->get('text_enabled') : $this->language->get('text_disabled')),
                 'seller_approved' => $result['seller_approved'],
-				'seller_verified' => $result['seller_verified'],
+		'seller_verified' => $result['seller_verified'],
                 'seller_category' => $this->model_seller_seller->getsellecategory($result['customer_id']),
                 'ip' => $result['ip'],
-                'date_added' => date($this->language->get('date_format_short'), strtotime($result['seller_date_added'])),
+                //'date_added' => date($this->language->get('date_format_short'), strtotime($result['seller_date_added'])),
+                'date_added' => $result['seller_date_added'],
                 'edit' => $this->url->link('seller/seller/edit', 'token='.$this->session->data['token'].'&seller_id='.$result['customer_id'].$url, 'SSL'),
                 'approve' => $this->url->link('seller/seller/approve', 'token='.$this->session->data['token'].'&seller_id='.$result['customer_id'].$url, 'SSL'),
-				'verify' => $this->url->link('seller/seller/verify', 'token='.$this->session->data['token'].'&seller_id='.$result['customer_id'].$url, 'SSL'),
+		'verify' => $this->url->link('seller/seller/verify', 'token='.$this->session->data['token'].'&seller_id='.$result['customer_id'].$url, 'SSL'),
                 'upgrade_sellergroup' => $this->url->link('seller/seller/upgrade_sellergroup', 'token='.$this->session->data['token'].'&seller_id='.$result['customer_id'].$url, 'SSL'),
                 'disapprove' => $this->url->link('seller/seller/disapprove', 'token='.$this->session->data['token'].'&seller_id='.$result['customer_id'].$url, 'SSL'),
-				'disverify' => $this->url->link('seller/seller/disverify', 'token='.$this->session->data['token'].'&seller_id='.$result['customer_id'].$url, 'SSL'),
+		'sendAdminMsg' => $this->url->link('seller/seller/send_message', 'token='.$this->session->data['token'].'&seller_id='.$result['customer_id'].$url, 'SSL'),
+		'disverify' => $this->url->link('seller/seller/disverify', 'token='.$this->session->data['token'].'&seller_id='.$result['customer_id'].$url, 'SSL'),
             );
         }
 
@@ -922,6 +936,7 @@ class ControllerSellerseller extends Controller
         $data['column_quantity'] = $this->language->get('column_quantity');
         $data['column_status'] = $this->language->get('column_status');
         $data['column_seller_approved'] = $this->language->get('column_seller_approved');
+        $data['column_seller_verified'] = $this->language->get('column_seller_verified');
         $data['column_ip'] = $this->language->get('column_ip');
         $data['column_date_added'] = $this->language->get('column_date_added');
         $data['column_action'] = $this->language->get('column_action');
@@ -931,6 +946,7 @@ class ControllerSellerseller extends Controller
         $data['entry_seller_group'] = $this->language->get('entry_seller_group');
         $data['entry_status'] = $this->language->get('entry_status');
         $data['entry_seller_approved'] = $this->language->get('entry_seller_approved');
+        $data['entry_seller_verified'] = $this->language->get('entry_seller_verified');
         $data['entry_ip'] = $this->language->get('entry_ip');
         $data['entry_date_added'] = $this->language->get('entry_date_added');
 
@@ -989,6 +1005,10 @@ class ControllerSellerseller extends Controller
             $url .= '&filter_seller_approved='.$this->request->get['filter_seller_approved'];
         }
 
+        if (isset($this->request->get['filter_seller_verified'])) {
+            $url .= '&filter_seller_verified='.$this->request->get['filter_seller_verified'];
+        }
+
         if (isset($this->request->get['filter_ip'])) {
             $url .= '&filter_ip='.$this->request->get['filter_ip'];
         }
@@ -1007,7 +1027,7 @@ class ControllerSellerseller extends Controller
             $url .= '&page='.$this->request->get['page'];
         }
 
-        $data['sort_name'] = $this->url->link('seller/seller', 'token='.$this->session->data['token'].'&sort=name'.$url, 'SSL');
+        $data['sort_name'] = $this->url->link('seller/seller', 'token='.$this->session->data['token'].'&sort=c.nickname'.$url, 'SSL');
         $data['sort_email'] = $this->url->link('seller/seller', 'token='.$this->session->data['token'].'&sort=c.email'.$url, 'SSL');
         $data['sort_seller_group'] = $this->url->link('seller/seller', 'token='.$this->session->data['token'].'&sort=seller_group'.$url, 'SSL');
         $data['sort_status'] = $this->url->link('seller/seller', 'token='.$this->session->data['token'].'&sort=c.seller_approved'.$url, 'SSL');
@@ -1035,6 +1055,10 @@ class ControllerSellerseller extends Controller
 
         if (isset($this->request->get['filter_seller_approved'])) {
             $url .= '&filter_seller_approved='.$this->request->get['filter_seller_approved'];
+        }
+
+        if (isset($this->request->get['filter_seller_verified'])) {
+            $url .= '&filter_seller_verified='.$this->request->get['filter_seller_verified'];
         }
 
         if (isset($this->request->get['filter_ip'])) {
@@ -1068,6 +1092,7 @@ class ControllerSellerseller extends Controller
         $data['filter_seller_group_id'] = $filter_seller_group_id;
         $data['filter_status'] = $filter_status;
         $data['filter_seller_approved'] = $filter_seller_approved;
+        $data['filter_seller_verified'] = $filter_seller_verified;
         $data['filter_ip'] = $filter_ip;
         $data['filter_date_added'] = $filter_date_added;
 
@@ -1150,7 +1175,7 @@ class ControllerSellerseller extends Controller
         if (isset($this->request->get['sort'])) {
             $sort = $this->request->get['sort'];
         } else {
-            $sort = 'name';
+            $sort = 'c.nickname';
         }
 
         if (isset($this->request->get['order'])) {
@@ -1368,7 +1393,7 @@ class ControllerSellerseller extends Controller
             $url .= '&page='.$this->request->get['page'];
         }
 
-        $data['sort_name'] = $this->url->link('seller/seller/add', 'token='.$this->session->data['token'].'&sort=name'.$url, 'SSL');
+        $data['sort_name'] = $this->url->link('seller/seller/add', 'token='.$this->session->data['token'].'&sort=c.nickname'.$url, 'SSL');
         $data['sort_email'] = $this->url->link('seller/seller/add', 'token='.$this->session->data['token'].'&sort=c.email'.$url, 'SSL');
         $data['sort_customer_group'] = $this->url->link('seller/seller/add', 'token='.$this->session->data['token'].'&sort=customer_group'.$url, 'SSL');
         $data['sort_seller_group'] = $this->url->link('seller/seller/add', 'token='.$this->session->data['token'].'&sort=sg.seller_group'.$url, 'SSL');

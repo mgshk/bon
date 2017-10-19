@@ -246,10 +246,10 @@ class ControllerAccountLogin extends Controller {
 			//print_r($customer_info);
 			if($customer_info) {
 				if (!$this->customer->login($customer_info['email'], $this->request->post['password'], $this->request->post['login_type'])) {
-					$json['error'] = "User ID or Password is invalid.";
+					$json['error'] = "User ID and/or Password is invalid.";
 				}
 			} else {
-				$json['error'] = "User ID or Password is invalid.";
+				$json['error'] = "User ID and/or Password is invalid.";
 			}
 		}else{
 			$json['error'] = "Please enter phone num and passsword!";

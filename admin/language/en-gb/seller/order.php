@@ -4,7 +4,7 @@ $_['heading_title'] = 'Orders';
 
 // Text
 $_['text_seller_name'] = 'Name:';
-$_['text_seller_info'] = 'Seller Info';
+$_['text_seller_info'] = 'Store/Entity Info';
 $_['text_list'] = 'Order List';
 $_['text_add'] = 'Add Order';
 $_['text_edit'] = 'Edit Order';
@@ -12,10 +12,10 @@ $_['text_order_detail'] = 'Order Details';
 $_['text_order_id'] = 'Order ID:';
 $_['text_invoice_no'] = 'Invoice No.:';
 $_['text_invoice_date'] = 'Invoice Date:';
-$_['text_store_name'] = 'Store Name:';
-$_['text_store_url'] = 'Store Url:';
+$_['text_store_name'] = 'Store/Entity Name:';
+$_['text_store_url'] = 'Store/Entity Url:';
 $_['text_seller'] = 'seller:';
-$_['text_seller_group'] = 'seller Group:';
+$_['text_seller_group'] = 'Store/Entity Group:';
 $_['text_email'] = 'E-Mail:';
 $_['text_telephone'] = 'Telephone:';
 $_['text_fax'] = 'Fax:';
@@ -123,21 +123,21 @@ $_['text_picklist'] = 'Dispatch note';
 $_['text_sellerhistory'] = 'Seller Order History';
 $_['text_history'] = 'Order History';
 
-$_['text_customer_detail'] = 'Seller Details';
+$_['text_customer_detail'] = 'Store/Entity Details';
 $_['text_option'] = 'Options';
 $_['text_order'] = 'Order (#%s)';
 $_['text_payment_address'] = 'Payment Address';
 $_['text_shipping_address'] = 'Shipping Adress';
 
 $_['tab_history'] = 'History';
-$_['tab_sellerhistory'] = 'Seller History';
+$_['tab_sellerhistory'] = 'Store/Entity History';
 $_['tab_additional'] = 'Additional';
 
 $_['entry_override'] = 'Override';
 $_['text_history_add'] = 'Add Order History';
-$_['text_sellerhistory_add'] = 'Add Seller Order History';
-$_['text_store'] = 'Store';
-$_['text_customer'] = 'Seller';
+$_['text_sellerhistory_add'] = 'Add store/entity order history';
+$_['text_store'] = 'Store/Entity';
+$_['text_customer'] = 'Store/Entity';
 $_['help_override'] = 'If the customers order is being blocked from changing the order status due to a anti-fraud extension enable override.';
 
 // Column
