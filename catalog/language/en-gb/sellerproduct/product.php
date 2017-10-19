@@ -179,3 +179,4 @@ $_['text_telephone'] = 'Telephone :';
 $_['text_seller_add_product'] = 'Seller Add New Product';
 $_['button_request_approval'] = 'Request Approval';
 $_['text_pending'] = 'Pending...';
+$_['button_save'] = 'Save';

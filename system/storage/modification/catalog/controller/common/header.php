@@ -496,7 +496,7 @@ $data['isseller'] = $this->customer->isSeller();
 
 			//$this->response->redirect($this->url->link('account/success'));
 			if($customer_id != ''){
-				$json['success'] = 'Successfully Registered.';
+				$json['success'] = 'New user registration completed successfully.';
 			}
 		}
 		//return $this->load->view('common/header', $data);
