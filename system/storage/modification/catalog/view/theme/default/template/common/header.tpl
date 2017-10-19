@@ -725,38 +725,27 @@
 					<button type="button" class="close _bongl" data-dismiss="modal">&times;</button>
 					<div class="row _top-log-in">
 						<div class="col-md-8 _bonlg clear">
-							<?php $email = '';$password = ''; ?>
 							<h3>Login</h3>
-							<!-- <form action="index.php?route=account/login" method="post" id="main-log" class="form-horizontal" style="padding: 0px 15px;"> -->
 							<form id="main-log-bon" class="form-horizontal" style="padding: 0px 15px;">
 								<ul class="_erroe-li">
 									<li><span id="zone-bon-error-login" class="text-dangers"></span></li>
 									<li><span id="reg-sucess" class="text-dangers"></span></li>
 								</ul>
 								<div class="_email-log-bon">
-									<input type="text" name="email" value="<?php echo $email; ?>" placeholder="Phone number" id="input-email" class="inputText"
-									 required/>
+									<input type="text" name="email" value="" placeholder="Phone number" id="input-email" class="inputText" autocomplete="off" required/>
 								</div>
-								<ul class="_erroe-li">
-									<!--<li><span id="log-sucess" class="text-dangers"></span></li>
-													<li><span id="log-failure" class="text-dangers"></span></li>-->
-								</ul>
 								<div class="_passwrd-log-bon">
-									<input type="password" name="password" value="<?php echo $password; ?>" placeholder="Password" id="input-password" class="inputText"
-									 required/>
-									<!--<img src="image/catalog/logo.jpg" style="width:50px; height:50px;" onmouseover="mouseoverPass();" onmouseout="mouseoutPass();" />-->
+									<input type="password" name="password" value="" placeholder="Password" id="input-password" class="inputText" required/>
 								</div>
 								<div class="_passwrd-log-bon _login_type-log-bon">
 									<span>										
-												<input checked type="radio" name="login_type" id="buyer" value="buyer"> 
-												<label for="buyer">Buyer</label>
-												</span>
+										<input checked type="radio" name="login_type" id="buyer" value="buyer"> 
+										<label for="buyer">Buyer</label>
+									</span>
 									<span style="float:right;">
-												<input type="radio" name="login_type" id="seller" value="seller"> 
-												<label for="seller">Seller</label>
-												</span>
-									<!--<span><input type="radio" name="gender" value="user"> Buyer</span>
-													<span style="float:right;"><input type="radio" name="gender" value="seller"> Seller</span>-->
+										<input type="radio" name="login_type" id="seller" value="seller"> 
+										<label for="seller">Seller</label>
+									</span>
 								</div>
 								<div class="_log-btn-btm" style="position: static;">
 									<button class="advertise-btn _btn-fin" id="log-btn-main-bon" type="button">Login</button>
@@ -782,19 +771,18 @@
 							<form id="sig_top_hd" class="form-horizontal" style="padding: 0px 15px;">
 								<div class="_state-log-bon">
 									<select name="zone_select" id="zone_select">
-													<option value="">Select your State</option>
-													<?php foreach ($zone_data as $zone) { ?>
-													<?php $selected = ($zone['zone_id'] == '1503') ? "selected = selected" : ""; ?>
-													<option value="<?php echo $zone['zone_id']; ?>" <?php echo $selected; ?>><?php echo $zone['name']; ?></option>
-													<?php } ?>
-												</select>
+										<option value="">Select your State</option>
+										<?php foreach ($zone_data as $zone) { ?>
+										<?php $selected = ($zone['zone_id'] == '1503') ? "selected = selected" : ""; ?>
+										<option value="<?php echo $zone['zone_id']; ?>" <?php echo $selected; ?>><?php echo $zone['name']; ?></option>
+										<?php } ?>
+									</select>
 								</div>
 								<ul class="_erroe-li">
 									<li><span id="zone-bon-error" class="text-dangers"></span></li>
 								</ul>
 								<div class="_email-log-bon">
-									<input type="tel" name="telephone" value="" class="inputText cal-exp" placeholder="Enter the phone number" id="input-telephone"
-									 required/>
+									<input type="tel" autocomplete="off" name="telephone" value="" class="inputText cal-exp" placeholder="Enter the phone number" id="input-telephone" required/>
 								</div>
 								<div id="LoadingImage" style="display: none"><img src="image/loader-sms.gif" class="img-responsive" /></div>
 								<ul class="_erroe-li">
@@ -830,10 +818,10 @@
 									<input type="tel" name="zone_select" value="" class="inputText" id="zone_select_ret" required disabled/>
 								</div>
 								<div class="_email-log-bon" disabled>
-									<input type="tel" name="telephone" value="" class="inputText" id="input-telephone_ret" required disabled/>
+									<input type="tel" name="telephone" value="" class="inputText" id="input-telephone_ret" autocomplete="off" required disabled/>
 								</div>
 								<div class="_email-log-bon">
-									<input type="tel" name="otp" value="" maxlength="6" class="inputText" id="otp" placeholder="Enter the OTP sent to above mobile number"
+									<input type="tel" autocomplete="off" name="otp" value="" maxlength="6" class="inputText" id="otp" placeholder="Enter the OTP sent to above mobile number"
 									 required/>
 								</div>
 								<ul class="_erroe-li">
@@ -841,7 +829,7 @@
 								</ul>
 								<div class="_email-log-bon">
 									<input style="border: none;border-bottom: 1px solid #e0e0e0; " type="email" name="email" value="" class="inputText" id="input-email-otp"
-									 placeholder="Email ID" required disabled/>
+									 placeholder="Email ID" required disabled autocomplete="off"/>
 								</div>
 								<ul class="_erroe-li">
 									<li><span id="email-error" class="text-dangers"></span></li>
@@ -862,17 +850,17 @@
 								</ul>
 								<div class="_state-log-bon">
 									<select name="security_select" id="security_select" disabled required>
-													<option value="">Select your Security Quesion</option>
-													<?php foreach($security_question_data as $sec_ques) { ?>
-													<option value="<?php echo $sec_ques['q_id']; ?>"><?php echo $sec_ques['q_name']; ?></option>
-													<?php } ?>		 
-												</select>
+										<option value="">Select your Security Quesion</option>
+										<?php foreach($security_question_data as $sec_ques) { ?>
+										<option value="<?php echo $sec_ques['q_id']; ?>"><?php echo $sec_ques['q_name']; ?></option>
+										<?php } ?>
+									</select>
 								</div>
 								<ul class="_erroe-li">
 									<li><span id="security_select_alt" class="text-dangers"></span></li>
 								</ul>
 								<div class="_again-passwrd-log-bon security_answer" style="display:none">
-									<input type="text" name="security_answer" value="" id="security_answer" placeholder="Please enter the security answer" class="inputText"
+									<input type="text" autocomplete="off" name="security_answer" value="" id="security_answer" placeholder="Please enter the security answer" class="inputText"
 									 required/>
 								</div>
 								<ul class="_erroe-li">
@@ -899,40 +887,41 @@
 							<form id="top-sign-last" class="form-horizontal" enctype="multipart/form-data" style="padding: 0px 15px;" autocomplete="off">
 								<input type="hidden" name="cus_d_up" id="cus_d_up" value="">
 								<div class="_email-log-bon">
-									<input type="text" name="firstname" autocomplete=off value="" class="inputText" placeholder="First name" id="input-firstname" required/>
+									<input type="text" name="firstname" autocomplete="off" value="" class="inputText" placeholder="First name" id="input-firstname" required/>
 								</div>
 								<ul class="_erroe-li">
 									<li><span id="fist-name-bon" class="text-dangers"></span></li>
 								</ul>
 								<div class="_passwrd-log-bon">
-									<input type="text" name="lastname" autocomplete=off value="" placeholder="Last name" id="input-lastname" class="inputText" required/>
+									<input type="text" name="lastname" autocomplete="off" value="" placeholder="Last name" id="input-lastname" class="inputText" required/>
 								</div>
 								<ul class="_erroe-li">
 									<li><span id="last-name-bon" class="text-dangers"></span></li>
 								</ul>
 								<div class="_again-passwrd-log-bon">
-									<input type="text" name="address_1" autocomplete=off value="" placeholder="Address 1" id="input-address-1" class="inputText" required/>
+									<input type="text" name="address_1" autocomplete="off" value="" placeholder="Address 1" id="input-address-1" class="inputText" required/>
 								</div>
 								<div class="_email-log-bon">
-									<input type="text" name="address_2" autocomplete=off value="" class="inputText" placeholder="Address 2" id="address_2" required/>
+									<input type="text" name="address_2" autocomplete="off" value="" class="inputText" placeholder="Address 2" id="address_2" required/>
 								</div>
 								<ul class="_erroe-li">
 									<li><span id="address_2-bon" class="text-dangers"></span></li>
 								</ul>
 								<div class="_email-log-bon">
-									<input type="text" name="city" autocomplete=off value="" class="inputText" placeholder="City" id="input-city" required/>
+									<input type="text" name="city" autocomplete="off" value="" class="inputText" placeholder="City" id="input-city" required/>
 								</div>
 								<ul class="_erroe-li">
 									<li><span id="city-bon" class="text-dangers"></span></li>
 								</ul>
 								<div class="_email-log-bon">
-									<input type="text" name="postcode" autocomplete=off value="" class="inputText" placeholder="Postcode" id="input-postcode" required/>
+									<input type="text" name="postcode" autocomplete="off" value="" class="inputText" placeholder="Postcode" id="input-postcode" required/>
 								</div>
 								<ul class="_erroe-li">
 									<li><span id="postcode-bon" class="text-dangers"></span></li>
 								</ul>
 								<div class="_email-log-bon">
-									<select name="country_id" id="input-country" autocomplete=off class="form-control">
+									<input type="hidden" name="country_id" value="99" />
+									<select name="header_country_id" id="header_country_id" class="form-control" disabled>
 										<option value="">Select your country</option>
 										<?php foreach ($countries as $country) { ?>
 											<?php $selected = ($country['country_id'] == '99') ? "selected = selected" : ""; ?>
@@ -944,13 +933,7 @@
 									<li><span id="country-bon" class="text-dangers"></span></li>
 								</ul>
 								<div class="_email-log-bon">
-									<select name="zone_id" id="input-zone" autocomplete=off class="form-control">
-										<option value="">Select your state</option>
-										<?php foreach ($zone_data as $zone) { ?>
-											<!--<?php $selected = ($zone['zone_id'] == '1503') ? "selected = selected" : ""; ?>-->
-											<option value="<?php echo $zone['zone_id']; ?>" <?php echo $selected; ?>><?php echo $zone['name']; ?></option>
-										<?php } ?>
-									</select>
+									<select name="zone_id" id="header_zone_id" class="form-control"></select>
 								</div>
 								<ul class="_erroe-li">
 									<li><span id="zone-bon" class="text-dangers"></span></li>
@@ -978,7 +961,7 @@
 							<h3>Forgot Password</h3>
 							<form id="forget-log-type" class="form-horizontal" style="padding: 0px 15px;">
 								<div class="_email-log-bon">
-									<input type="text" name="forgt-phn" value="" placeholder="Enter the phone number" id="forgt-phn" class="inputText" required/>
+									<input type="text" name="forgt-phn" value="" placeholder="Enter the phone number" id="forgt-phn" class="inputText" autocomplete="off" required/>
 								</div>
 								<div id="LoadingImage1" style="display: none"><img src="image/loader-sms.gif" class="img-responsive" /></div>
 								<ul class="_erroe-li">
@@ -1006,11 +989,11 @@
 								<input type="hidden" name="forgt-phn-sec" id="forgt-phn-sec" value="">
 								<input type="hidden" name="otp-sec" id="otp-sec" value="0">
 								<div class="_email-log-bon">
-									<input type="text" name="forgt-phn" value="" placeholder="Enter the phone number" id="forgt-phn-sec_nw" class="inputText"
+									<input type="text" autocomplete="off" name="forgt-phn" value="" placeholder="Enter the phone number" id="forgt-phn-sec_nw" class="inputText"
 									 required disabled/>
 								</div>
 								<div class="_passwrd-log-bon">
-									<input type="text" name="forgt-phn-otp" value="" maxlength="6" placeholder="Enter the OTP sent to above mobile number" id="forgt-phn-otp"
+									<input type="text" autocomplete="off" name="forgt-phn-otp" value="" maxlength="6" placeholder="Enter the OTP sent to above mobile number" id="forgt-phn-otp"
 									 class="inputText" required/>
 								</div>
 								<ul class="_erroe-li">
@@ -1018,10 +1001,10 @@
 								</ul>
 								<div id="qus_ans">
 									<div class="_state-log-bon">
-										<input type="text" name="security_question_sec" value="" id="security_question_sec" class="inputText" required disabled/>
+										<input type="text" autocomplete="off" name="security_question_sec" value="" id="security_question_sec" class="inputText" required disabled/>
 									</div>
 									<div class="_again-passwrd-log-bon security_answer">
-										<input type="text" name="security_answer_sec" value="" id="security_answer_sec" placeholder="Please enter the security answer"
+										<input type="text" autocomplete="off" name="security_answer_sec" value="" id="security_answer_sec" placeholder="Please enter the security answer"
 										 class="inputText" required/>
 									</div>
 									<ul class="_erroe-li">
@@ -1286,35 +1269,7 @@
 				}
 			});
 		});
-		$('#updat-bon-det').on('click', function () {
-			$('#zone-bon-error-login').html('');
-			$('#reg-sucess').html('');
-			$.ajax({
-				url: 'index.php?route=common/header/new_login_update_two',
-				type: 'post',
-				dataType: 'json',
-				data: $("#top-sign-last").serialize(),
-				success: function (json) {
-					if (json['success']) {
-						$('#_top-sign-otp').trigger("reset");
-						$('#top-sign-last').trigger("reset");
-						$('#reg-sucess').html('<i class="fa fa-check" aria-hidden="true"></i><span>' + json['success']);
-						$("._top-sign-upd").hide();
-						//$('#reg-sucess').html('<i class="fa fa-times" aria-hidden="true"></i> ' + json['error']);
-						$("._top-log-in").show();
-					}
-					if (json['error_firstname']) {
-						$('#fist-name-bon').html('<i class="fa fa-times" aria-hidden="true"></i><span>' + json['error_firstname']);
-					}
-					if (json['lastname']) {
-						$('#last-name-bon').html('<i class="fa fa-times" aria-hidden="true"></i><span>' + json['lastname']);
-					}
-					if (json['error_address_1']) {
-						$('#address-bon').html('<i class="fa fa-times" aria-hidden="true"></i><span>' + json['error_address_1']);
-					}
-				}
-			});
-		});
+		
 		$('#forget-btn-main-bon-type').on('click', function () {
 			$('.text-dangers').html('');
 			$("#LoadingImage1").show();

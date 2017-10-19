@@ -10,6 +10,7 @@ class ControllerAffiliateRegister extends Controller {
 		$this->load->language('affiliate/register');
 
 		$this->document->setTitle($this->language->get('heading_title'));
+		$this->document->addScript('catalog/view/javascript/common/register.js');
 
 		$this->load->model('affiliate/affiliate');
 

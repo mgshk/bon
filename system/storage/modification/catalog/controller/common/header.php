@@ -511,23 +511,23 @@ $data['isseller'] = $this->customer->isSeller();
 			$json['error_address_1'] = $this->error['address_1'];
 		}
 
-		if (isset($this->request->post['firstname'])) {
-			$data['firstname'] = $this->request->post['firstname'];
-		} else {
-			$data['firstname'] = '';
-		}
+		// if (isset($this->request->post['firstname'])) {
+		// 	$data['firstname'] = $this->request->post['firstname'];
+		// } else {
+		// 	$data['firstname'] = '';
+		// }
 
-		if (isset($this->request->post['lastname'])) {
-			$data['lastname'] = $this->request->post['lastname'];
-		} else {
-			$data['lastname'] = '';
-		}
+		// if (isset($this->request->post['lastname'])) {
+		// 	$data['lastname'] = $this->request->post['lastname'];
+		// } else {
+		// 	$data['lastname'] = '';
+		// }
 
-		if (isset($this->request->post['address_1'])) {
-			$data['address_1'] = $this->request->post['address_1'];
-		} else {
-			$data['address_1'] = '';
-		}
+		// if (isset($this->request->post['address_1'])) {
+		// 	$data['address_1'] = $this->request->post['address_1'];
+		// } else {
+		// 	$data['address_1'] = '';
+		// }
 
 		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
