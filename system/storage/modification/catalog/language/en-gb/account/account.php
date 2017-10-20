@@ -3,13 +3,13 @@
 $_['heading_title']      = 'My Account';
 
 // Text
-$_['text_seller']                      = 'Seller';
-$_['text_sellerprofile']                      = 'My Profile';
-$_['text_bankaccount']                      = 'My Bank Account';
-$_['text_sellershipping']                      = 'My Shipping Methods';
-$_['text_sellerorder']                      = 'My Products Orders';
-$_['text_sellerproduct']                      = 'My Products';
-$_['text_sellerdownload']                      = 'My Downloads';
+$_['text_seller']        = 'Store/Entity';
+$_['text_sellerprofile'] = 'My Profile';
+$_['text_bankaccount']   = 'My Bank Account';
+$_['text_sellershipping']= 'My Shipping Methods';
+$_['text_sellerorder']   = 'My Products Orders';
+$_['text_sellerproduct'] = 'My Products';
+$_['text_sellerdownload']= 'My Downloads';
 $_['text_account']       = 'Account';
 $_['text_my_account']    = 'My Account';
 $_['text_my_orders']     = 'My Orders';

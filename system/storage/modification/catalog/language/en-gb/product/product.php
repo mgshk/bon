@@ -1,6 +1,6 @@
 <?php
 // Text
-$_['text_seller']                      = 'Seller :';
+$_['text_seller']                      = 'Store/Entity :';
 $_['text_seller_date_of_create']                      = 'Registration Date : ';
 $_['text_seller_number_of_product']                      = 'Number Of Products : ';
 $_['text_search']              = 'Search';

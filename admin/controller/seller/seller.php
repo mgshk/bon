@@ -1033,7 +1033,7 @@ class ControllerSellerseller extends Controller
         $data['sort_status'] = $this->url->link('seller/seller', 'token='.$this->session->data['token'].'&sort=c.seller_approved'.$url, 'SSL');
         $data['sort_ip'] = $this->url->link('seller/seller', 'token='.$this->session->data['token'].'&sort=c.ip'.$url, 'SSL');
         $data['sort_seller_product'] = $this->url->link('seller/seller', 'token='.$this->session->data['token'].'&sort=pts.seller_id'.$url, 'SSL');
-        $data['sort_date_added'] = $this->url->link('seller/seller', 'token='.$this->session->data['token'].'&sort=c.date_added'.$url, 'SSL');
+        $data['sort_date_added'] = $this->url->link('seller/seller', 'token='.$this->session->data['token'].'&sort=c.seller_date_added'.$url, 'SSL');
 
         $url = '';
 
@@ -2414,7 +2414,8 @@ class ControllerSellerseller extends Controller
         $this->load->model('seller/seller');
 
         if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validateHistory()) {
-            $this->model_seller_seller->addHistory($this->request->get['seller_id'], $this->request->post['comment']);
+            $this->model_seller_seller->addHistory($this->request->get['seller_id'], $this->language->get('new_message') . $this->request->post['comment']);
+            $this->model_seller_seller->sendMessage($this->request->get['seller_id'],$this->request->post['comment']);
 
             $data['success'] = $this->language->get('text_success');
         } else {

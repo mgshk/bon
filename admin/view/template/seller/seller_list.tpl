@@ -169,7 +169,7 @@
                     <a href="<?php echo $sort_ip; ?>"><?php echo $column_ip; ?></a>
                     <?php } ?></td>
                   -->
-                  <td class="text-left colHeader"><?php if ($sort == 'c.date_added') { ?>
+                  <td class="text-left colHeader"><?php if ($sort == 'c.seller_date_added') { ?>
                     <a href="<?php echo $sort_date_added; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_date_added; ?></a>
                     <?php } else { ?>
                     <a href="<?php echo $sort_date_added; ?>"><?php echo $column_date_added; ?></a>
