@@ -129,6 +129,7 @@ $(document).ready(function() {
    			if (terms === false)
    				throw '<div class="alert alert-danger"><i class="fa fa-exclamation-circle"></i> Please agree to the terms and conditions mentioned and then save.</div>';
 
+   			$('input#status').val('draft');
    			$("#form-advertise").submit();
 
    		} catch (e) {
@@ -179,6 +180,7 @@ $(document).ready(function() {
    			if (terms === false)
    				throw '<div class="alert alert-danger"><i class="fa fa-exclamation-circle"></i> Please agree to the terms and conditions mentioned and then save.</div>';
 
+   			$('input#status').val('submitted');
    			$("#form-advertise").submit();
 
    		} catch (e) {

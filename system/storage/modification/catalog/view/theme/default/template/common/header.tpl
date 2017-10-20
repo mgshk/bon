@@ -886,6 +886,7 @@
 							<h3>Personal Details</h3>
 							<form id="top-sign-last" class="form-horizontal" enctype="multipart/form-data" style="padding: 0px 15px;" autocomplete="off">
 								<input type="hidden" name="cus_d_up" id="cus_d_up" value="">
+								<input type="hidden" name="login_type" id="login_type" />
 								<div class="_email-log-bon">
 									<input type="text" name="firstname" autocomplete="off" value="" class="inputText" placeholder="First name" id="input-firstname" required/>
 								</div>
@@ -1059,31 +1060,6 @@
 		</div>
 	</div>
 	<script>
-
-		$(document).ready(function () {
-
-			$(".free_listBtn_logged").click(function () {
-				$('#_log-bon').modal('show');
-				$("._top-log-in").hide();
-				$("._alreary_logged").show();
-				$('._sig_log').show().css('height', '100px');
-			});
-			$(".free_listBtn").click(function () {
-				$('#_log-bon').modal('show');
-				$("._top-log-in").hide();
-				$("._top-sign-in").show();
-			});
-			$("._bon--login").click(function () {
-
-				$('#_log-bon').modal({
-					backdrop: 'static',
-					keyboard: false
-				})
-				$('#_log-bon').modal('show');
-				//$("._top-sign-in").hide();
-				//$("._top-log-in").show();
-			});
-		});
 		$(document).ready(function () {
 			$("._sgn-sec").click(function () {
 				$("._top-log-in").hide();

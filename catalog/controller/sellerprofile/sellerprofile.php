@@ -1668,7 +1668,6 @@ class Controllersellerprofilesellerprofile extends Controller
         $this->load->model('tool/image');
         $this->load->model('selleradvertise/advertise');
 
-
         $results = $this->model_selleradvertise_advertise->getAdvertisesSubmitted(($page - 1) * 10, 10);
 
         foreach ($results as $result) {

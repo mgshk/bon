@@ -82,6 +82,10 @@ $(document).ready(function() {
             $('#reg-sucess').html('<i class="fa fa-check" aria-hidden="true"></i><span>' + json['success']);
             $("._top-sign-upd").hide();
             $("._top-log-in").show();
+
+            if (json['login_type'] === 'seller') {
+              $('input:radio[id=seller]').prop('checked', true);
+            }
           }
 
           if (json['error_firstname']) {
@@ -103,5 +107,31 @@ $(document).ready(function() {
 
         }
       });
+  });
+
+  $(".free_listBtn_logged").click(function () {
+    $('#_log-bon').modal('show');
+    $("._top-log-in").hide();
+    $("._alreary_logged").show();
+    $('._sig_log').show().css('height', '100px');
+  });
+
+  $(".free_listBtn").click(function () {
+    $('#_log-bon').modal('show');
+    $("._top-log-in").hide();
+
+    $('#login_type').val('seller');
+
+    $("._top-sign-in").show();
+  });
+  
+  $("._bon--login").click(function () {
+
+    $('#_log-bon').modal({
+      backdrop: 'static',
+      keyboard: false
+    });
+
+    $('#_log-bon').modal('show');
   });
 });

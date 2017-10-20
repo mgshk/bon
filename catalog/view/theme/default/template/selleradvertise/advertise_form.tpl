@@ -63,17 +63,17 @@
                      </div>
                      <div class="form-group required">
                         <label class="col-md-4 control-label" for="input-image">Upload advertisement image and crop:
-			   <div class="pull-right">
-			      <a class="cursor" data-toggle="dropdown" aria-expanded="true">
-				      <span class="bonbadge"><i class="fa-info" aria-hidden="true"></i></span>
-			      </a>                                            
-			      <ul class="dropdown-menu badgemenu">
-				<li>
-				  Upload image of size more than 1000 pixel width and 200 pixel height for better quality.</br></br>After uploading, crop your desired portion of the image.</br></br>Please be sure to check the quality and content of the image before you upload as this will appear for the public view.
-				</li>    
-			       </ul>      
-			    </div>
-			</label>
+                  			   <div class="pull-right">
+                  			      <a class="cursor" data-toggle="dropdown" aria-expanded="true">
+                  				      <span class="bonbadge"><i class="fa-info" aria-hidden="true"></i></span>
+                  			      </a>                                            
+                  			      <ul class="dropdown-menu badgemenu">
+                        				<li>
+                        				  Upload image of size more than 1000 pixel width and 200 pixel height for better quality.</br></br>After uploading, crop your desired portion of the image.</br></br>Please be sure to check the quality and content of the image before you upload as this will appear for the public view.
+                        				</li>    
+                  			       </ul>
+                  			    </div>
+                  			</label>
                         <span id="adv-size"></span>
                         <div class="col-md-4">
                           <a href=""  style="display:none;" id="thumb-image" data-toggle="image" class="img-thumbnail"><img src="<?php echo $thumb; ?>" alt="" title="" data-placeholder="<?php echo $placeholder; ?>"/></a>
@@ -84,29 +84,10 @@
                      </div>
 
                      <div class="form-group">
-                        <!--<label class="col-sm-3 control-label"></label>-->
                         <div class="col-sm-9 rel">
                           <div id="img-containers" class="img-containers"></div>
-
-                          <!-- <div class="crr-img-bttt"><button class="crr-img-bt" type="button" id="getCropped"><i class="fa fa-crop"></i> Crop</button></div>
-
-                          <div class="btn-group btn-group-crop cropedimg">                                 
-                             <span style="margin-bottom:10px;">Please ensure cropped image is of better quality before submitting.</span>
-                              <div id="croppedImage">
-                                <img class="img-responsive" src="image/bg-empty1.png" alt="Temp">
-                             </div>
-                              <div class="extra-preview extra-preview-sm"></div>
-                             <input type="hidden" name="image_crop" value="" id="image_crop" class="form-control" />
-                          </div> -->
-
                         </div>
                      </div>
-		                
-                     <!-- <div style="width: 50%;">
-                        <div style="width: 300px;">
-                           <div id="img-containers" class="img-containers"></div>
-                        </div>
-                     </div> -->
                      
                      <div>
                         <div class="form-group row <?php if(empty($advertise_id_edit)) { echo 'hide'; } ?>" id="cropping-panel">

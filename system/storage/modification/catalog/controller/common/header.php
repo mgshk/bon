@@ -487,19 +487,20 @@ $data['isseller'] = $this->customer->isSeller();
 		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validate_upadte_two()) {
 			$customer_id = $this->updateCustomerTwo($this->request->post);
 
-			// Clear any previous login attempts for unregistered accounts.
-			//$this->model_account_customer->deleteLoginAttempts($this->request->post['email']);
-
-			//$this->customer->login($this->request->post['email'], $this->request->post['password']);
-
 			unset($this->session->data['guest']);
 
-			//$this->response->redirect($this->url->link('account/success'));
-			if($customer_id != ''){
-				$json['success'] = 'New user registration completed successfully.';
+			if($customer_id != '') {
+				if(utf8_strlen(trim($this->request->post['login_type'])) === '') {
+					$json['success'] = 'New user registration completed successfully.';
+					$json['login_type'] = 'buyer';
+				}
+				else {
+					$json['success'] = 'Registration completed successfully, login as seller and update store/entity detail.';
+					$json['login_type'] = 'seller';
+				}
 			}
 		}
-		//return $this->load->view('common/header', $data);
+
 		if (isset($this->error['firstname'])) {
 			$json['error_firstname'] = $this->error['firstname'];
 		}
@@ -510,24 +511,6 @@ $data['isseller'] = $this->customer->isSeller();
 		if (isset($this->error['address_1'])) {
 			$json['error_address_1'] = $this->error['address_1'];
 		}
-
-		// if (isset($this->request->post['firstname'])) {
-		// 	$data['firstname'] = $this->request->post['firstname'];
-		// } else {
-		// 	$data['firstname'] = '';
-		// }
-
-		// if (isset($this->request->post['lastname'])) {
-		// 	$data['lastname'] = $this->request->post['lastname'];
-		// } else {
-		// 	$data['lastname'] = '';
-		// }
-
-		// if (isset($this->request->post['address_1'])) {
-		// 	$data['address_1'] = $this->request->post['address_1'];
-		// } else {
-		// 	$data['address_1'] = '';
-		// }
 
 		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));

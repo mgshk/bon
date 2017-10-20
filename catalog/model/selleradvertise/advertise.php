@@ -428,7 +428,9 @@ class ModelselleradvertiseAdvertise extends Model
         if ($limit < 1) {
             $limit = 10;
         }
-        $sql = "SELECT * FROM ".DB_PREFIX."store_offers WHERE seller_id = '".(int) $this->customer->getID()."' AND status = 'submitted' AND status != 'deleted' ORDER BY advertise_id";
+
+        $sql = "SELECT * FROM ".DB_PREFIX."store_offers WHERE seller_id = '".(int) $this->customer->getID()."' 
+            AND status = 'submitted' AND status != 'deleted' ORDER BY advertise_id";
 
         $sql .= ' LIMIT '.(int) $start.','.(int) $limit;
         $query = $this->db->query($sql);
