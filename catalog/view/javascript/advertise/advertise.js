@@ -108,16 +108,23 @@ $(document).ready(function() {
 		return false;
 	});
 
-	$(document).on('click', '#save', function() {
+	$(document).on('click', '#save', function(e) {
 		e.preventDefault();
 
    		try {
 
    			var title = $('#offer_title').val();
    			var terms = $('input[name="agree_tt"]').is(':checked');
+   			var cropped_result = $('#image_crop').val();
 
    			if ($.trim(title) === '' || title.length < 2 || title.length > 255)
    				throw '<div class="alert alert-danger"><i class="fa fa-exclamation-circle"></i> Title must be greater than 3 and less than 255 characters!</div>';
+
+   			if ($('#img-containers').find('div').length === 0)
+   				throw '<div class="alert alert-danger"><i class="fa fa-exclamation-circle"></i> Please upload advertisement image and crop desired portion for public view</div>';
+   			
+   			if (cropped_result === '')
+   				throw '<div class="alert alert-danger"><i class="fa fa-exclamation-circle"></i> Crop the image and confrm the public view</div>';
 
    			if (terms === false)
    				throw '<div class="alert alert-danger"><i class="fa fa-exclamation-circle"></i> Please agree to the terms and conditions mentioned and then save.</div>';
@@ -158,9 +165,16 @@ $(document).ready(function() {
 
    			var title = $('#offer_title').val();
    			var terms = $('input[name="agree_tt"]').is(':checked');
+   			var cropped_result = $('#image_crop').val();
 
    			if ($.trim(title) === '' || title.length < 2 || title.length > 255)
    				throw '<div class="alert alert-danger"><i class="fa fa-exclamation-circle"></i> Title must be greater than 3 and less than 255 characters!</div>';
+
+   			if ($('#img-containers').find('div').length === 0)
+   				throw '<div class="alert alert-danger"><i class="fa fa-exclamation-circle"></i> Please upload advertisement image and crop desired portion for public view</div>';
+
+   			if (cropped_result === '')
+   				throw '<div class="alert alert-danger"><i class="fa fa-exclamation-circle"></i> Crop the image and confrm the public view</div>';
 
    			if (terms === false)
    				throw '<div class="alert alert-danger"><i class="fa fa-exclamation-circle"></i> Please agree to the terms and conditions mentioned and then save.</div>';
