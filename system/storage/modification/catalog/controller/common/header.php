@@ -548,7 +548,7 @@ $data['isseller'] = $this->customer->isSeller();
 			$this->error['address_1'] = $this->language->get('error_address_1');
 		}
 
-		if ((utf8_strlen(trim($this->request->post['city'])) < 2) || (utf8_strlen(trim($this->request->post['city'])) > 128)) {
+		if ((utf8_strlen(trim($this->request->post['city_id'])) < 2) || (utf8_strlen(trim($this->request->post['city_id'])) > 128)) {
 			$this->error['city'] = $this->language->get('error_city');
 		}
 
@@ -572,13 +572,15 @@ $data['isseller'] = $this->customer->isSeller();
 		$this->db->query("UPDATE " . DB_PREFIX . "address 
 			SET customer_id = '" . (int)$this->request->post['cus_d_up'] . "', firstname = '" . $this->db->escape($data['firstname']) . "', 
 			lastname = '" . $this->db->escape($data['lastname']) . "', address_1 = '" . $this->db->escape($data['address_1']) . "',
-			address_2 = '" . $this->db->escape($data['address_2']) . "', city = '" . $this->db->escape($data['city']) . "', 
+			address_2 = '" . $this->db->escape($data['address_2']) . "', city = '" . $this->db->escape($data['city_id']) . "', 
 			postcode = '" . $this->db->escape($data['postcode']) . "', country_id = '" . (int)$data['country_id'] . "', 
 			zone_id = '" . (int)$data['zone_id'] . "' WHERE customer_id = '" . (int)$this->request->post['cus_d_up'] . "'");
 
 		$this->db->query("UPDATE " . DB_PREFIX . "customer SET firstname = '" . $this->db->escape($data['firstname']) . "', 
-			lastname = '" . $this->db->escape($data['lastname']) . "' 
-			WHERE customer_id = '" . (int)$this->request->post['cus_d_up'] . "'");
+			lastname = '" . $this->db->escape($data['lastname']) . "', address_1 = '" . $this->db->escape($data['address_1']) . "',
+			address_2 = '" . $this->db->escape($data['address_2']) . "', city = '" . $this->db->escape($data['city_id']) . "', 
+			postcode = '" . $this->db->escape($data['postcode']) . "', country_id = '" . (int)$data['country_id'] . "', 
+			zone_id = '" . (int)$data['zone_id'] . "' WHERE customer_id = '" . (int)$this->request->post['cus_d_up'] . "'");
 
 		$customer_id = $this->request->post['cus_d_up'];
 		return $customer_id;

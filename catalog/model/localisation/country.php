@@ -19,4 +19,11 @@ class ModelLocalisationCountry extends Model {
 
 		return $country_data;
 	}
+
+	public function getCities($city_name) {
+		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "cities WHERE city_state = '".$city_name."' AND status = '1' 
+			ORDER BY city_name ASC");
+
+		return $query->rows;
+	}
 }

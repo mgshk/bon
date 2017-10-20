@@ -22,7 +22,6 @@ class Controllersellerprofilesellerprofile extends Controller
         $this->load->model('tool/image');
         $this->load->model('selleradvertise/advertise');
         $this->load->model('localisation/country');
-        $this->load->model('account/address');
         $this->load->model('localisation/zone');
 
         $this->load->language('sellerprofile/sellerprofile');
@@ -138,13 +137,13 @@ class Controllersellerprofilesellerprofile extends Controller
 		$data['tab_profile_details'] = $this->language->get('tab_profile_details');
         $data['tab_ip'] = $this->language->get('tab_ip');
         $data['terms_of_service_1'] = $this->language->get('terms_of_service_1');
-	$data['terms_of_service_2'] = $this->language->get('terms_of_service_2');
+	    $data['terms_of_service_2'] = $this->language->get('terms_of_service_2');
         $data['terms_of_service_3'] = $this->language->get('terms_of_service_3');
-	$data['terms_of_service_4'] = $this->language->get('terms_of_service_4');
-	$data['terms_of_service_5'] = $this->language->get('terms_of_service_5');
-	$data['terms_of_service_6'] = $this->language->get('terms_of_service_6');
-	$data['terms_of_service_7'] = $this->language->get('terms_of_service_7');
-	$data['terms_of_service_8'] = $this->language->get('terms_of_service_8');
+    	$data['terms_of_service_4'] = $this->language->get('terms_of_service_4');
+    	$data['terms_of_service_5'] = $this->language->get('terms_of_service_5');
+    	$data['terms_of_service_6'] = $this->language->get('terms_of_service_6');
+    	$data['terms_of_service_7'] = $this->language->get('terms_of_service_7');
+    	$data['terms_of_service_8'] = $this->language->get('terms_of_service_8');
 
         if ($this->config->get('config_seller_agree_id')) {
             $this->load->model('catalog/information');
@@ -208,25 +207,13 @@ class Controllersellerprofilesellerprofile extends Controller
 
         $store_address = array();
         //Store Address
-        $address_info = $this->model_account_address->getAddress($seller_info['address_id']);
+        $data['address_1'] = $seller_info['address_1'];
+        $data['address_2'] = $seller_info['address_2'];
+        $data['city'] = $seller_info['city'];
+        $data['country_id'] = $seller_info['country_id'];
 
-        if ($seller_info['address_1']) {
-            $data['address_1'] = $seller_info['address_1'];
-            $data['address_2'] = $seller_info['address_2'];
-            $data['city'] = $seller_info['city'];
-            $data['country_id'] = $seller_info['country_id'];
-
-            $data['postcode'] = $seller_info['postcode'];
-            $data['zone_id'] = $seller_info['zone_id'];
-        } else {
-            $data['address_1'] = $address_info['address_1'];
-            $data['address_2'] = $address_info['address_2'];
-            $data['city'] = $address_info['city'];
-            $data['country_id'] = $address_info['country_id'];
-
-            $data['postcode'] = $address_info['postcode'];
-            $data['zone_id'] = $address_info['zone_id'];
-        }
+        $data['postcode'] = $seller_info['postcode'];
+        $data['zone_id'] = $seller_info['zone_id'];
 
         $data['countries'] = $this->model_localisation_country->getCountries();
         $country_info = $this->model_localisation_country->getCountry($data['country_id']);

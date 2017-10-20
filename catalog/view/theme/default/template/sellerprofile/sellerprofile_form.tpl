@@ -389,22 +389,10 @@
                                     </div>
                                   </div>
                                   <div class="form-group required">
-                                    <label class="col-md-4 control-label" for="store-city"><?php echo $entry_city; ?></label>
-                                    <div class="col-md-4">
-                                      <input type="text" maxlength="100" name="city" value="<?php echo $city; ?>" placeholder="<?php echo $entry_city; ?>" id="store-city" class="form-control" autocomplete="off" />
-                                    </div>
-                                  </div>
-                                  <div class="form-group required">
-                                    <label class="col-md-4 control-label" for="store-postcode"><?php echo $entry_postcode; ?></label>
-                                    <div class="col-md-4">
-                                      <input type="text" name="postcode" maxlength="10" value="<?php echo $postcode; ?>" placeholder="<?php echo $entry_postcode; ?>" id="store-postcode" class="form-control" autocomplete="off" />
-                                    </div>
-                                  </div>
-                                  <div class="form-group required">
                                     <label class="col-md-4 control-label" for="store-country"><?php echo $entry_country; ?></label>
                                     <div class="col-md-4">
                                       <input type="hidden" id="hidden_store_countryId" name="hidden_store_countryId" value="<?php echo $country_id; ?>" />
-                                      <select name="store_country_id" id="store-country" class="form-control">
+                                      <select name="store_country_id" id="store-country" class="form-control" disabled>
                                         <option value="0"><?php echo $text_select; ?></option>
                                         <?php foreach ($countries as $country) { ?>
                                         <?php if ($country['country_id'] == $country_id) { ?>
@@ -420,7 +408,20 @@
                                     <label class="col-md-4 control-label" for="store-zone"><?php echo $entry_zone; ?></label>
                                     <div class="col-md-4">
                                       <input type="hidden" id="hidden_zone_id" name="hidden_zone_id" value="<?php echo $zone_id; ?>" />
-                                      <select name="store_zone" id="store-zone" class="form-control"></select>
+                                      <select name="store_zone" id="store_zone" class="form-control"></select>
+                                    </div>
+                                  </div>
+                                  <div class="form-group required">
+                                    <label class="col-md-4 control-label" for="store-city"><?php echo $entry_city; ?></label>
+                                    <div class="col-md-4">
+                                      <input type="hidden" id="hidden_store_city" name="hidden_store_city" value="<?php echo $city; ?>" />
+                                      <select name="city" id="store_city" class="form-control"></select>
+                                    </div>
+                                  </div>
+                                  <div class="form-group required">
+                                    <label class="col-md-4 control-label" for="store-postcode"><?php echo $entry_postcode; ?></label>
+                                    <div class="col-md-4">
+                                      <input type="text" name="postcode" maxlength="10" value="<?php echo $postcode; ?>" placeholder="<?php echo $entry_postcode; ?>" id="store-postcode" class="form-control" autocomplete="off" />
                                     </div>
                                   </div>
                                 </div>

@@ -50,27 +50,27 @@ class ControllerAccountAccount extends Controller {
 		$data['text_recurring'] = $this->language->get('text_recurring');
 
 		$data['edit'] = $this->url->link('account/edit', '', true);
-$data['text_seller'] = $this->language->get('text_seller');
-$data['text_sellerprofile'] = $this->language->get('text_sellerprofile');
-$data['sellerprofile'] = $this->url->link('sellerprofile/sellerprofile', '', 'SSL');
+		$data['text_seller'] = $this->language->get('text_seller');
+		$data['text_sellerprofile'] = $this->language->get('text_sellerprofile');
+		$data['sellerprofile'] = $this->url->link('sellerprofile/sellerprofile', '', 'SSL');
 
-$data['text_bankaccount'] = $this->language->get('text_bankaccount');
-$data['bankaccount'] = $this->url->link('bankaccount/bankaccount', '', '');
+		$data['text_bankaccount'] = $this->language->get('text_bankaccount');
+		$data['bankaccount'] = $this->url->link('bankaccount/bankaccount', '', '');
 
-$data['text_sellerproduct'] = $this->language->get('text_sellerproduct');
-$data['sellerproduct'] = $this->url->link('sellerproduct/product', '', '');
+		$data['text_sellerproduct'] = $this->language->get('text_sellerproduct');
+		$data['sellerproduct'] = $this->url->link('sellerproduct/product', '', '');
 
-$data['text_sellershipping'] = $this->language->get('text_sellershipping');
-$data['sellershipping'] = $this->url->link('extension/shipping', '', '');
+		$data['text_sellershipping'] = $this->language->get('text_sellershipping');
+		$data['sellershipping'] = $this->url->link('extension/shipping', '', '');
 
-$data['text_sellerproduct'] = $this->language->get('text_sellerproduct');
-$data['sellerproduct'] = $this->url->link('sellerproduct/product', '', '');
+		$data['text_sellerproduct'] = $this->language->get('text_sellerproduct');
+		$data['sellerproduct'] = $this->url->link('sellerproduct/product', '', '');
 
-$data['text_sellerorder'] = $this->language->get('text_sellerorder');
-$data['sellerorder'] = $this->url->link('order/order', '', '');
+		$data['text_sellerorder'] = $this->language->get('text_sellerorder');
+		$data['sellerorder'] = $this->url->link('order/order', '', '');
 
-$data['text_sellerdownload'] = $this->language->get('text_sellerdownload');
-$data['sellerdownload'] = $this->url->link('sellerproduct/download', '', '');
+		$data['text_sellerdownload'] = $this->language->get('text_sellerdownload');
+		$data['sellerdownload'] = $this->url->link('sellerproduct/download', '', '');
 		$data['password'] = $this->url->link('account/password', '', true);
 		$data['address'] = $this->url->link('account/address', '', true);
 		
@@ -136,6 +136,26 @@ $data['sellerdownload'] = $this->url->link('sellerproduct/download', '', '');
 				'zone'              => $this->model_localisation_zone->getZonesByCountryId($this->request->get['country_id']),
 				'status'            => $country_info['status']
 			);
+		}
+
+		$this->response->addHeader('Content-Type: application/json');
+		$this->response->setOutput(json_encode($json));
+	}
+
+	public function getCities() {
+		$json = array();
+
+		$this->load->model('localisation/country');
+
+		$city_info = $this->model_localisation_country->getCities($this->request->get['city']);
+
+		if ($city_info) {
+			foreach ($city_info as $city) {
+				$json[] = [
+					'city_id'   => $city['city_id'],
+					'city_name' => $city['city_name']
+				];
+			}	
 		}
 
 		$this->response->addHeader('Content-Type: application/json');

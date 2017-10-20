@@ -1,10 +1,5 @@
 <?php echo $header; ?>
 <div class="container-fluid">
-  <!--<ul class="breadcrumb">
-    <?php foreach ($breadcrumbs as $breadcrumb) { ?>
-    <li><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a></li>
-    <?php } ?>
-  </ul>-->
   <div class="row"><?php echo $column_left; ?>
     <?php if ($column_left && $column_right) { ?>
     <?php $class = 'col-sm-6'; ?>
@@ -18,34 +13,10 @@
       <h2><?php echo $text_edit_address; ?></h2><br/>
       <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" class="form-horizontal">
         <fieldset>
-          <!--<div class="form-group required">
-            <label class="col-sm-2 control-label" for="input-firstname"><?php echo $entry_firstname; ?></label>
-            <div class="col-sm-10">
-              <input type="text" name="firstname" value="<?php echo $firstname; ?>" placeholder="<?php echo $entry_firstname; ?>" id="input-firstname" class="form-control" />
-              <?php if ($error_firstname) { ?>
-              <div class="text-danger"><?php echo $error_firstname; ?></div>
-              <?php } ?>
-            </div>
-          </div>
-          <div class="form-group required">
-            <label class="col-sm-2 control-label" for="input-lastname"><?php echo $entry_lastname; ?></label>
-            <div class="col-sm-10">
-              <input type="text" name="lastname" value="<?php echo $lastname; ?>" placeholder="<?php echo $entry_lastname; ?>" id="input-lastname" class="form-control" />
-              <?php if ($error_lastname) { ?>
-              <div class="text-danger"><?php echo $error_lastname; ?></div>
-              <?php } ?>
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="col-sm-2 control-label" for="input-company"><?php echo $entry_company; ?></label>
-            <div class="col-sm-10">
-              <input type="text" name="company" value="<?php echo $company; ?>" placeholder="<?php echo $entry_company; ?>" id="input-company" class="form-control" />
-            </div>
-          </div>-->
           <div class="form-group required">
             <label class="col-sm-2 control-label" for="input-address-1"><?php echo $entry_address_1; ?></label>
             <div class="col-sm-10">
-              <input type="text" maxlength="150" name="address_1" value="<?php echo $address_1; ?>" placeholder="<?php echo $entry_address_1; ?>" id="input-address-1" class="form-control" autocomplete="off" />
+              <input type="text" maxlength="150" name="address_1" value="<?php echo $address_1; ?>" placeholder="<?php echo $entry_address_1; ?>" id="address-address-1" class="form-control" autocomplete="off" />
               <?php if ($error_address_1) { ?>
               <div class="text-danger"><?php echo $error_address_1; ?></div>
               <?php } ?>
@@ -54,32 +25,14 @@
           <div class="form-group">
             <label class="col-sm-2 control-label" for="input-address-2"><?php echo $entry_address_2; ?></label>
             <div class="col-sm-10">
-              <input type="text" maxlength="150" name="address_2" value="<?php echo $address_2; ?>" placeholder="<?php echo $entry_address_2; ?>" id="input-address-2" class="form-control" autocomplete="off" />
-            </div>
-          </div>
-          <div class="form-group required">
-            <label class="col-sm-2 control-label" for="input-city"><?php echo $entry_city; ?></label>
-            <div class="col-sm-10">
-              <input type="text" maxlength="100" name="city" value="<?php echo $city; ?>" placeholder="<?php echo $entry_city; ?>" id="input-city" class="form-control" autocomplete="off" />
-              <?php if ($error_city) { ?>
-              <div class="text-danger"><?php echo $error_city; ?></div>
-              <?php } ?>
-            </div>
-          </div>
-	        <div class="form-group required">
-            <label class="col-sm-2 control-label" for="input-postcode"><?php echo $entry_postcode; ?></label>
-            <div class="col-sm-10">
-              <input type="text" maxlength="10" name="postcode" value="<?php echo $postcode; ?>" placeholder="<?php echo $entry_postcode; ?>" id="input-postcode" class="form-control" autocomplete="off" />
-              <?php if ($error_postcode) { ?>
-              <div class="text-danger"><?php echo $error_postcode; ?></div>
-              <?php } ?>
+              <input type="text" maxlength="150" name="address_2" value="<?php echo $address_2; ?>" placeholder="<?php echo $entry_address_2; ?>" id="address-address-2" class="form-control" autocomplete="off" />
             </div>
           </div>
           <div class="form-group required">
             <label class="col-sm-2 control-label" for="input-country"><?php echo $entry_country; ?></label>
             <div class="col-sm-10">
               <input type="hidden" id="hidden_address_countryId" name="hidden_address_countryId" value="<?php echo $country_id; ?>" />
-              <select name="country_id" id="input-country" class="form-control">
+              <select name="country_id" id="address_country" class="form-control" disabled>
                 <option value="0"><?php echo $text_select; ?></option>
                 <?php foreach ($countries as $country) { ?>
                 <?php if ($country['country_id'] == $country_id) { ?>
@@ -98,10 +51,30 @@
             <label class="col-sm-2 control-label" for="input-zone"><?php echo $entry_zone; ?></label>
             <div class="col-sm-10">
               <input type="hidden" name="hidden_address_zoneId" id="hidden_address_zoneId" value="<?php echo $zone_id; ?>" />
-              <select name="zone_id" id="input-zone" class="form-control">
+              <select name="zone_id" id="address_zone" class="form-control">
               </select>
               <?php if ($error_zone) { ?>
               <div class="text-danger"><?php echo $error_zone; ?></div>
+              <?php } ?>
+            </div>
+          </div>
+          <div class="form-group required">
+            <label class="col-sm-2 control-label" for="input-city"><?php echo $entry_city; ?></label>
+            <div class="col-sm-10">
+              <!-- <input type="text" maxlength="100" name="city" value="<?php echo $city; ?>" placeholder="<?php echo $entry_city; ?>" id="address-city" class="form-control" autocomplete="off" /> -->
+              <input type="hidden" id="hidden_address_city" name="hidden_address_city" value="<?php echo $city; ?>" />
+              <select name="city" id="address_city" class="form-control"></select>
+              <?php if ($error_city) { ?>
+                <div class="text-danger"><?php echo $error_city; ?></div>
+              <?php } ?>
+            </div>
+          </div>
+          <div class="form-group required">
+            <label class="col-sm-2 control-label" for="input-postcode"><?php echo $entry_postcode; ?></label>
+            <div class="col-sm-10">
+              <input type="text" maxlength="10" name="postcode" value="<?php echo $postcode; ?>" placeholder="<?php echo $entry_postcode; ?>" id="address-postcode" class="form-control" autocomplete="off" />
+              <?php if ($error_postcode) { ?>
+              <div class="text-danger"><?php echo $error_postcode; ?></div>
               <?php } ?>
             </div>
           </div>
@@ -418,49 +391,5 @@ $('.datetime').datetimepicker({
 $('.time').datetimepicker({
 	pickDate: false
 });
-//--></script>
-<script type="text/javascript"><!--
-$('select[name=\'country_id\']').on('change', function() {
-	$.ajax({
-		url: 'index.php?route=account/account/country&country_id=' + this.value,
-		dataType: 'json',
-		beforeSend: function() {
-			$('select[name=\'country_id\']').after(' <i class="fa fa-circle-o-notch fa-spin"></i>');
-		},
-		complete: function() {
-			$('.fa-spin').remove();
-		},
-		success: function(json) {
-			//if (json['postcode_required'] == '1') {
-				//$('input[name=\'postcode\']').parent().parent().addClass('required');
-			//} else {
-				//$('input[name=\'postcode\']').parent().parent().removeClass('required');
-			//}
-
-			html = '<option value=""><?php echo $text_select; ?></option>';
-
-			if (json['zone'] && json['zone'] != '') {
-				for (i = 0; i < json['zone'].length; i++) {
-					html += '<option value="' + json['zone'][i]['zone_id'] + '"';
-
-					if (json['zone'][i]['zone_id'] == '<?php echo $zone_id; ?>') {
-						html += ' selected="selected"';
-			  		}
-
-			  		html += '>' + json['zone'][i]['name'] + '</option>';
-				}
-			} else {
-				html += '<option value="0" selected="selected"><?php echo $text_none; ?></option>';
-			}
-
-			$('select[name=\'zone_id\']').html(html);
-		},
-		error: function(xhr, ajaxOptions, thrownError) {
-			alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-		}
-	});
-});
-
-$('select[name=\'country_id\']').trigger('change');
 //--></script>
 <?php echo $footer; ?>

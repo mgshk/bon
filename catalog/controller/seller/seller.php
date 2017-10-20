@@ -83,23 +83,13 @@ class Controllersellerseller extends Controller
 			//$seller_add = $this->model_seller_seller->getsellers_address($result['address_id']);
 
 			$seller_info = $this->model_sellerprofile_sellerprofile->getseller($result['customer_id']);
-			$address_info = $this->model_account_address->getAddress($seller_info['address_id']);
 
-			if ($seller_info['address_1']) {
-	            $address_1 = $seller_info['address_1'];
-	            $address_2 = $seller_info['address_2'];
-	            $city = $seller_info['city'];
-	            $postcode = $seller_info['postcode'];
-	            $country_id = $seller_info['country_id'];
-	            $zone_id = $seller_info['zone_id'];
-	        } else {
-	            $address_1 = $address_info['address_1'];
-	            $address_2 = $address_info['address_2'];
-	            $city = $address_info['city'];
-	            $postcode = $address_info['postcode'];
-	            $country_id = $address_info['country_id'];
-	            $zone_id = $address_info['zone_id'];
-	        }
+			$address_1 = $seller_info['address_1'];
+            $address_2 = $seller_info['address_2'];
+            $city = $seller_info['city'];
+            $postcode = $seller_info['postcode'];
+            $country_id = $seller_info['country_id'];
+            $zone_id = $seller_info['zone_id'];
 
 			$store_address[] = $address_1;
 	        $store_address[] = $address_2;
@@ -248,23 +238,13 @@ class Controllersellerseller extends Controller
 			//$seller_add = $this->model_seller_seller->getsellers_address($result['address_id']);
 
 			$seller_info = $this->model_sellerprofile_sellerprofile->getseller($result['customer_id']);
-			$address_info = $this->model_account_address->getAddress($seller_info['address_id']);
 
-			if ($seller_info['address_1']) {
-	            $address_1 = $seller_info['address_1'];
-	            $address_2 = $seller_info['address_2'];
-	            $city = $seller_info['city'];
-	            $postcode = $seller_info['postcode'];
-	            $country_id = $seller_info['country_id'];
-	            $zone_id = $seller_info['zone_id'];
-	        } else {
-	            $address_1 = $address_info['address_1'];
-	            $address_2 = $address_info['address_2'];
-	            $city = $address_info['city'];
-	            $postcode = $address_info['postcode'];
-	            $country_id = $address_info['country_id'];
-	            $zone_id = $address_info['zone_id'];
-	        }
+			$address_1 = $seller_info['address_1'];
+            $address_2 = $seller_info['address_2'];
+            $city = $seller_info['city'];
+            $postcode = $seller_info['postcode'];
+            $country_id = $seller_info['country_id'];
+            $zone_id = $seller_info['zone_id'];
 
 			$store_address[] = $address_1;
 	        $store_address[] = $address_2;
@@ -660,41 +640,25 @@ class Controllersellerseller extends Controller
 		$data['image_resize'] = $this->model_tool_image;
 		$data['advertisement_store'] = $this->model_seller_seller->getAdvertisesFrontStore(6, $seller_id, $limit, $count);
  
-		//echo "<pre>"; print_r($data['advertisement_store']); die;
-
-		//$seller_add = $this->model_seller_seller->getsellers_address($seller_info['address_id']);
-
 		$store_address_details = $this->model_sellerprofile_sellerprofile->getseller($seller_id);
-		$address_info = $this->model_account_address->getAddress($seller_info['address_id']);
 
-		if ($store_address_details['address_1']) {
-            $address_1 = $store_address_details['address_1'];
-            $address_2 = $store_address_details['address_2'];
-            $city = $store_address_details['city'];
-            $postcode = $store_address_details['postcode'];
-        } else {
-            $address_1 = $address_info['address_1'];
-            $address_2 = $address_info['address_2'];
-            $city = $address_info['city'];
-            $postcode = $address_info['postcode'];
-        }
+		$address_1 = $seller_info['address_1'];
+        $address_2 = $seller_info['address_2'];
+        $city = $seller_info['city'];
+        $postcode = $seller_info['postcode'];
+        $country_id = $seller_info['country_id'];
+        $zone_id = $seller_info['zone_id'];
 
         $store_address = array();
 
 		$store_address[] = $address_1;
         $store_address[] = $address_2;
         $store_address[] = $city;
-        $store_address[] = $address_info['zone'];
-        $store_address[] = $address_info['country'];
+        $store_address[] = $zone_id;
+        $store_address[] = $country_id;
         $store_address[] = $postcode;
 
     	$data['seller_address'] = implode(array_filter($store_address), ", ");
-
-		// if(!empty($seller_add)) {
-		// 	$data['seller_address'] = $seller_add[0]['address_1'].' '.$seller_add[0]['address_2'].' '.$seller_add[0]['city'].' '.$seller_add[0]['postcode'];
-		// } else {
-		// 	$data['seller_address'] = '';
-		// }
 
 		if($seller_info['delivery_type'] == 1) {
 			$data['delivery_type'] = "Cash on home delivery";

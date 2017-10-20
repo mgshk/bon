@@ -2,12 +2,6 @@ function getZones(val) {
   $.ajax({
       url: 'index.php?route=account/account/country&country_id=' + val,
       dataType: 'json',
-      beforeSend: function() {
-        $('select[name=\'register_country_id\']').after(' <i class="fa fa-circle-o-notch fa-spin"></i>');
-      },
-      complete: function() {
-        $('.fa-spin').remove();
-      },
       success: function(json) {
         var html = '<option value="0"> --- Please Select --- </option>';
 
@@ -24,6 +18,33 @@ function getZones(val) {
         }
 
         $('#header_zone_id').html(html);
+
+        setTimeout(function() {
+          $('#header_zone_id').trigger('change');
+        }, 500);
+      },
+      error: function(xhr, ajaxOptions, thrownError) {
+        alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+      }
+  });
+
+  return false;
+}
+
+function getCities(val) {
+  $.ajax({
+      url: 'index.php?route=account/account/getCities&city=' + val,
+      dataType: 'json',
+      success: function(cities) {
+        var html = '<option value="0"> --- Please Select --- </option>';
+
+        for (i = 0; i < cities.length; i++) {
+          html += '<option value="' + cities[i]['city_name'] + '"';
+
+          html += '>' + cities[i]['city_name'] + '</option>';
+        }
+
+        $('#header_city_id').html(html);
       },
       error: function(xhr, ajaxOptions, thrownError) {
         alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
@@ -36,6 +57,10 @@ function getZones(val) {
 $(document).ready(function() {
   $(document).on('change', '#header_country_id', function() {
     getZones($(this).val());
+  });
+
+  $(document).on('change', '#header_zone_id', function() {
+    getCities($(this).find('option:selected').text());
   });
 
   $('#header_country_id').trigger('change');

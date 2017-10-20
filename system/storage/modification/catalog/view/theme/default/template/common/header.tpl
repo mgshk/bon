@@ -908,18 +908,6 @@
 									<li><span id="address_2-bon" class="text-dangers"></span></li>
 								</ul>
 								<div class="_email-log-bon">
-									<input type="text" name="city" autocomplete="off" value="" class="inputText" placeholder="City" id="input-city" required/>
-								</div>
-								<ul class="_erroe-li">
-									<li><span id="city-bon" class="text-dangers"></span></li>
-								</ul>
-								<div class="_email-log-bon">
-									<input type="text" name="postcode" autocomplete="off" value="" class="inputText" placeholder="Postcode" id="input-postcode" required/>
-								</div>
-								<ul class="_erroe-li">
-									<li><span id="postcode-bon" class="text-dangers"></span></li>
-								</ul>
-								<div class="_email-log-bon">
 									<input type="hidden" name="country_id" value="99" />
 									<select name="header_country_id" id="header_country_id" class="form-control" disabled>
 										<option value="">Select your country</option>
@@ -938,9 +926,18 @@
 								<ul class="_erroe-li">
 									<li><span id="zone-bon" class="text-dangers"></span></li>
 								</ul>
-								<!-- <ul class="_erroe-li">
-									<li><span id="address-bon" class="text-dangers"></span></li>
-								</ul> -->
+								<div class="_email-log-bon">
+									<select name="city_id" id="header_city_id" class="form-control"></select>
+								</div>
+								<ul class="_erroe-li">
+									<li><span id="city-bon" class="text-dangers"></span></li>
+								</ul>
+								<div class="_email-log-bon">
+									<input type="text" name="postcode" autocomplete="off" value="" class="inputText" placeholder="Postcode" id="input-postcode" required/>
+								</div>
+								<ul class="_erroe-li">
+									<li><span id="postcode-bon" class="text-dangers"></span></li>
+								</ul>
 								<div class="_log-btn-btm" style="position: static;">
 									<button class="advertise-btn _btn-fin" id="updat-bon-det" type="button">Submit</button>
 								</div>

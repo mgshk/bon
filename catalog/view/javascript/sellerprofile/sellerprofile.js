@@ -80,7 +80,38 @@ function getStoreZones(val) {
           }
         }
 
-        $('select[name=\'store_zone\']').html(html);
+        $('#store_zone').html(html);
+
+        setTimeout(function() {
+          $('#store_zone').trigger('change');
+        }, 500);
+      },
+      error: function(xhr, ajaxOptions, thrownError) {
+        alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+      }
+  });
+
+  return false;
+}
+
+function getStoreCities(val) {
+  $.ajax({
+      url: 'index.php?route=account/account/getCities&city=' + val,
+      dataType: 'json',
+      success: function(cities) {
+        var html = '<option value="0"> --- Please Select --- </option>';
+
+        for (i = 0; i < cities.length; i++) {
+          html += '<option value="' + cities[i]['city_name'] + '"';
+
+          if (cities[i]['city_name'] == $('#hidden_store_city').val()) {
+            html += ' selected="selected"';
+          }
+
+          html += '>' + cities[i]['city_name'] + '</option>';
+        }
+
+        $('#store_city').html(html);
       },
       error: function(xhr, ajaxOptions, thrownError) {
         alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
@@ -96,7 +127,7 @@ function storeAddress() {
 
     var address1 = $('#store-address-1').val();
     var address2 = $('#store-address-2').val();
-    var city = $('#store-city').val();
+    var city = $('#store_city').val();
     var postcode = $('#store-postcode').val();
     var country_name = $('#store_address select[name=\'store_country_id\'] option:selected').text();
     var country_id = $('#store_address select[name=\'store_country_id\'] option:selected').val();
@@ -253,6 +284,12 @@ $(document).ready(function() {
 
   $(document).on('change', 'select[name=\'store_country_id\']', function() {
     getStoreZones($(this).val());
+
+    return false;
+  });
+
+  $(document).on('change', '#store_zone', function() {
+    getStoreCities($(this).find('option:selected').text());
 
     return false;
   });
