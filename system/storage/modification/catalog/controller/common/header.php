@@ -460,10 +460,10 @@ $data['isseller'] = $this->customer->isSeller();
 		if ($this->request->post['confirm'] != $this->request->post['password']) {
 			$this->error['confirm'] = $this->language->get('error_confirm');
 		}
-		if ($this->request->post['security_select'] == '') {
+		if ($this->request->post['security_select'] == '0') {
 			$this->error['security_select'] = $this->language->get('security_select_error');
 		}
-		if (($this->request->post['security_answer'] == '') && ($this->request->post['security_select'] != '')) {
+		if (($this->request->post['security_answer'] == '') && ($this->request->post['security_select'] != '0')) {
 			$this->error['security_answer'] = $this->language->get('security_answer_error');
 		}
 		return !$this->error;

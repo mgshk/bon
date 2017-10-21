@@ -727,15 +727,13 @@
 						<div class="col-md-8 _bonlg clear">
 							<h3>Login</h3>
 							<form id="main-log-bon" class="form-horizontal" style="padding: 0px 15px;">
-								<ul class="_erroe-li">
-									<li><span id="zone-bon-error-login" class="text-dangers"></span></li>
-									<li><span id="reg-sucess" class="text-dangers"></span></li>
-								</ul>
+								<div id="loginErrorMsg" class="alert alert-danger" style="display:none;"></div>
+								<div id="reg-sucess" class="alert alert-success" style="display:none;"></div>
 								<div class="_email-log-bon">
-									<input type="text" name="email" value="" placeholder="Phone number" id="input-email" class="inputText" autocomplete="off" required/>
+									<input type="text" name="email" value="" placeholder="Phone number" id="input-email" class="inputText" autocomplete="off" maxlength="10" required/>
 								</div>
 								<div class="_passwrd-log-bon">
-									<input type="password" name="password" value="" placeholder="Password" id="input-password" class="inputText" required/>
+									<input type="password" name="password" value="" placeholder="Password" id="input-password" class="inputText" maxlength="20" required/>
 								</div>
 								<div class="_passwrd-log-bon _login_type-log-bon">
 									<span>										
@@ -769,6 +767,7 @@
 						<div class="col-md-8 _bonlg clear">
 							<h3>Sign Up</h3>
 							<form id="sig_top_hd" class="form-horizontal" style="padding: 0px 15px;">
+								<div id="errorTopMsg" class="alert alert-danger" style="display:none;"></div>
 								<div class="_state-log-bon">
 									<select name="zone_select" id="zone_select">
 										<option value="">Select your State</option>
@@ -782,12 +781,9 @@
 									<li><span id="zone-bon-error" class="text-dangers"></span></li>
 								</ul>
 								<div class="_email-log-bon">
-									<input type="tel" autocomplete="off" name="telephone" value="" class="inputText cal-exp" placeholder="Enter the phone number" id="input-telephone" required/>
+									<input type="tel" autocomplete="off" name="telephone" value="" class="inputText cal-exp" placeholder="Enter the phone number" id="input-telephone" maxlength="10" required/>
 								</div>
 								<div id="LoadingImage" style="display: none"><img src="image/loader-sms.gif" class="img-responsive" /></div>
-								<ul class="_erroe-li">
-									<li><span id="top-line-star" class="text-dangers"></span></li>
-								</ul>
 								<div class="_log-btn-btm" style="position: static;">
 									<button class="advertise-btn _btn-fin" id="sign-up-bon-top" type="button">Continue</button>
 								</div>
@@ -797,7 +793,6 @@
 							</div>
 							<div class="errors">
 								<ul class="_erroe-li">
-									<li><span id="top-line-star" class="text-dangers"></span></li>
 									<li><span id="zone-bon-error" class="text-dangers"></span></li>
 								</ul>
 							</div>
@@ -813,6 +808,7 @@
 						<div class="col-md-8 _bonlg clear">
 							<h3>Sign Up</h3>
 							<form id="_top-sign-otp" class="form-horizontal" style="padding: 0px 15px;">
+								<div id="top-line-star-otp" class="alert alert-danger" style="display:none;"></div>
 								<input type="hidden" name="cus_prof" id="cus_prof" value="">
 								<div class="_state-log-bon" disabled>
 									<input type="tel" name="zone_select" value="" class="inputText" id="zone_select_ret" required disabled/>
@@ -824,48 +820,30 @@
 									<input type="tel" autocomplete="off" name="otp" value="" maxlength="6" class="inputText" id="otp" placeholder="Enter the OTP sent to above mobile number"
 									 required/>
 								</div>
-								<ul class="_erroe-li">
-									<li><span id="top-line-star-otp" class="text-dangers"></span></li>
-								</ul>
 								<div class="_email-log-bon">
-									<input style="border: none;border-bottom: 1px solid #e0e0e0; " type="email" name="email" value="" class="inputText" id="input-email-otp"
+									<input style="border: none;border-bottom: 1px solid #e0e0e0; " type="email" name="email" value="" class="inputText" id="input-email-otp" maxlength="96" 
 									 placeholder="Email ID" required disabled autocomplete="off"/>
 								</div>
-								<ul class="_erroe-li">
-									<li><span id="email-error" class="text-dangers"></span></li>
-								</ul>
 								<div class="_passwrd-log-bon">
-									<input type="password" name="password" value="" id="input-password-otp" placeholder="Enter password" class="inputText" required
+									<input type="password" maxlength="20" name="password" value="" id="input-password-otp" placeholder="Enter password" class="inputText" required
 									 disabled/>
 								</div>
-								<ul class="_erroe-li">
-									<li><span id="norm-pas" class="text-dangers"></span></li>
-								</ul>
 								<div class="_again-passwrd-log-bon">
-									<input type="password" name="confirm" value="" id="input-confirm-otp" placeholder="Re-Enter password" class="inputText" required
+									<input type="password" maxlength="20" name="confirm" value="" id="input-confirm-otp" placeholder="Re-Enter password" class="inputText" required
 									 disabled/>
 								</div>
-								<ul class="_erroe-li">
-									<li><span id="conf-pas" class="text-dangers"></span></li>
-								</ul>
 								<div class="_state-log-bon">
 									<select name="security_select" id="security_select" disabled required>
-										<option value="">Select your Security Quesion</option>
+										<option value="0">Select your Security Quesion</option>
 										<?php foreach($security_question_data as $sec_ques) { ?>
 										<option value="<?php echo $sec_ques['q_id']; ?>"><?php echo $sec_ques['q_name']; ?></option>
 										<?php } ?>
 									</select>
 								</div>
-								<ul class="_erroe-li">
-									<li><span id="security_select_alt" class="text-dangers"></span></li>
-								</ul>
 								<div class="_again-passwrd-log-bon security_answer" style="display:none">
-									<input type="text" autocomplete="off" name="security_answer" value="" id="security_answer" placeholder="Please enter the security answer" class="inputText"
+									<input type="text" autocomplete="off" name="security_answer" value="" id="security_answer" placeholder="Please enter the security answer" class="inputText" maxlength="250"
 									 required/>
 								</div>
-								<ul class="_erroe-li">
-									<li><span id="security_answer_alt" class="text-dangers"></span></li>
-								</ul>
 								<div class="_log-btn-btm" style="position: static;">
 									<button class="advertise-btn _btn-fin" id="sign-up-bon-top-prof" type="button" disabled>Signup</button>
 								</div>
@@ -885,29 +863,22 @@
 						<div class="col-md-8 _bonlg clear">
 							<h3>Personal Details</h3>
 							<form id="top-sign-last" class="form-horizontal" enctype="multipart/form-data" style="padding: 0px 15px;" autocomplete="off">
+								<div id="signUpErrorMsg" class="alert alert-danger" style="display:none;"></div>
+                                <div id="signUpSuccessMsg" class="alert alert-success" style="display:none;"></div>
 								<input type="hidden" name="cus_d_up" id="cus_d_up" value="">
 								<input type="hidden" name="login_type" id="login_type" />
 								<div class="_email-log-bon">
 									<input type="text" name="firstname" autocomplete="off" value="" class="inputText" placeholder="First name" id="input-firstname" required/>
 								</div>
-								<ul class="_erroe-li">
-									<li><span id="fist-name-bon" class="text-dangers"></span></li>
-								</ul>
 								<div class="_passwrd-log-bon">
 									<input type="text" name="lastname" autocomplete="off" value="" placeholder="Last name" id="input-lastname" class="inputText" required/>
 								</div>
-								<ul class="_erroe-li">
-									<li><span id="last-name-bon" class="text-dangers"></span></li>
-								</ul>
 								<div class="_again-passwrd-log-bon">
 									<input type="text" name="address_1" autocomplete="off" value="" placeholder="Address 1" id="input-address-1" class="inputText" required/>
 								</div>
 								<div class="_email-log-bon">
 									<input type="text" name="address_2" autocomplete="off" value="" class="inputText" placeholder="Address 2" id="address_2" required/>
 								</div>
-								<ul class="_erroe-li">
-									<li><span id="address_2-bon" class="text-dangers"></span></li>
-								</ul>
 								<div class="_email-log-bon">
 									<input type="hidden" name="country_id" value="99" />
 									<select name="header_country_id" id="header_country_id" class="form-control" disabled>
@@ -918,27 +889,15 @@
 										<?php } ?>
 									</select>
 								</div>
-								<ul class="_erroe-li">
-									<li><span id="country-bon" class="text-dangers"></span></li>
-								</ul>
 								<div class="_email-log-bon">
 									<select name="zone_id" id="header_zone_id" class="form-control"></select>
 								</div>
-								<ul class="_erroe-li">
-									<li><span id="zone-bon" class="text-dangers"></span></li>
-								</ul>
 								<div class="_email-log-bon">
 									<select name="city_id" id="header_city_id" class="form-control"></select>
 								</div>
-								<ul class="_erroe-li">
-									<li><span id="city-bon" class="text-dangers"></span></li>
-								</ul>
 								<div class="_email-log-bon">
 									<input type="text" name="postcode" autocomplete="off" value="" class="inputText" placeholder="Postcode" id="input-postcode" required/>
 								</div>
-								<ul class="_erroe-li">
-									<li><span id="postcode-bon" class="text-dangers"></span></li>
-								</ul>
 								<div class="_log-btn-btm" style="position: static;">
 									<button class="advertise-btn _btn-fin" id="updat-bon-det" type="button">Submit</button>
 								</div>
@@ -1088,35 +1047,7 @@
 				$("._top-sign-upd").hide();
 				$("._top-log-in").show();
 			});
-			$("input#otp").keyup(function () {
-				var lgt = $('#otp').val().length;
-				if (lgt == 6) {
-					$('#top-line-star-otp').html('');
-					$.ajax({
-						url: 'index.php?route=common/header/code_check',
-						type: 'post',
-						dataType: 'json',
-						data: $("#_top-sign-otp").serialize(),
-						success: function (json) {
-							if (json['success']) {//alert("fgggs");
-								$("#input-email-otp").removeAttr('disabled');
-								$("#input-password-otp").removeAttr('disabled');
-								$("#input-confirm-otp").removeAttr('disabled');
-								$("#security_select").removeAttr('disabled');
-								$("#sign-up-bon-top-prof").removeAttr('disabled');
-							}
-							if (json['error_warning']) {
-								$('#top-line-star-otp').html('<i class="fa fa-times" aria-hidden="true"></i> ' + json['error_warning']);
-							}
-						}
-					});
-
-					//$("#input-email-otp").removeAttr('disabled');
-					//$("#input-password-otp").removeAttr('disabled');
-					//$("#input-confirm-otp").removeAttr('disabled');
-					//$("#sign-up-bon-top-prof").removeAttr('disabled');
-				};
-			});
+			
 			$("#frgt-pass").click(function () {
 				$("._top-log-in").hide();
 				$("._forget-bon").show();
@@ -1127,121 +1058,9 @@
 			});
 		});
 
-		//Login pop with mobile num
-		$('#main-log-bon input').on('keydown', function (e) {
-			if (e.keyCode == 13) {
-				$('#log-btn-main-bon').trigger('click');
-			}
-		});
-		$('#log-btn-main-bon').click(function () {
-			$('#zone-bon-error-login').html('');
-			$.ajax({
-				url: 'index.php?route=account/login/login',
-				type: 'post',
-				dataType: 'json',
-				data: $("#main-log-bon").serialize(),
-				success: function (json) {
-					//$('#modal-quicksignup .form-group').removeClass('has-error');								
-
-					if (json['error']) {
-						$('#zone-bon-error-login').html('<i class="fa fa-times" aria-hidden="true"></i> ' + json['error']);
-						$('#main-log-bon #input-email').focus();
-					}
-					if (json['success']) {
-						if (document.getElementById('seller').checked) {
-							window.location.assign('<?php echo $seller_profile; ?>&tab_section=store_detail#content')
-						} else {
-							loacation();							
-						}
-						$('#_log-bon').modal('hide');
-					}
-
-				}
-			});
-		});
-
 		function loacation() {
 			location.reload();
 		}
-
-		$('#sign-up-bon-top').on('click', function () {
-			$('#top-line-star').html('');
-			$("#LoadingImage").show();
-			$.ajax({
-				url: 'index.php?route=common/header/new_login',
-				type: 'post',
-				dataType: 'json',
-				data: $("#sig_top_hd").serialize(),
-				success: function (json) {
-					if (json['success']) {
-						$("#LoadingImage").hide();
-						$('#cus_prof').val(json['success']);
-						var zon_id = json['zone_select'];
-						if (zon_id == 1503) {
-							$('#zone_select_ret').val('Tamil nadu');
-						} else if (zon_id == 1499) {
-							$('#zone_select_ret').val('Puducherry');
-						}
-						$('#input-telephone_ret').val(json['telephone']);
-						$("._top-sign-in").hide();
-						$("._top-sign-otp").show();
-					}
-					if (json['error_warning']) {
-						$("#LoadingImage").hide();
-						$('#top-line-star').html('<i class="fa fa-times" aria-hidden="true"></i> ' + json['error_warning']);
-					}
-					if (json['error_telephone']) {
-						$("#LoadingImage").hide();
-						$('#top-line-star').html('<i class="fa fa-times" aria-hidden="true"></i> ' + json['error_telephone']);
-					}
-					if (json['telephone_number']) {
-						$("#LoadingImage").hide();
-						$('#top-line-star').html('<i class="fa fa-times" aria-hidden="true"></i> ' + json['telephone_number']);
-					}
-				}
-			});
-		});
-		$('#sign-up-bon-top-prof').on('click', function () {
-			$('#email-error').html('');
-			$('#norm-pas').html('');
-			$('#conf-pas').html('');
-			$('#security_select_alt').html('');
-			$('#security_answer_alt').html('');
-			$.ajax({
-				url: 'index.php?route=common/header/new_login_update',
-				type: 'post',
-				dataType: 'json',
-				data: $("#_top-sign-otp").serialize(),
-				success: function (json) {
-					if (json['success']) {
-						$('#cus_d_up').val(json['success']);
-						$("._top-sign-otp").hide();
-						$("._top-sign-upd").show()
-					}
-					if (json['error_email_empty']) {
-						$('#email-error').html('<i class="fa fa-times" aria-hidden="true"></i>' + json['error_email']);
-					}
-					if (json['error_email']) {
-						$('#email-error').html('<i class="fa fa-times" aria-hidden="true"></i>' + json['error_email']);
-					}
-					if (json['error_warning']) {
-						$('#email-error').html('<i class="fa fa-times" aria-hidden="true"></i><span>' + json['error_warning']);
-					}
-					if (json['error_password']) {
-						$('#norm-pas').html('<i class="fa fa-times" aria-hidden="true"></i><span>' + json['error_password']);
-					}
-					if (json['error_confirm']) {
-						$('#conf-pas').html('<i class="fa fa-times" aria-hidden="true"></i><span>' + json['error_confirm']);
-					}
-					if (json['security_select']) {
-						$('#security_select_alt').html('<i class="fa fa-times" aria-hidden="true"></i><span>' + json['security_select']);
-					}
-					if (json['security_answer']) {
-						$('#security_answer_alt').html('<i class="fa fa-times" aria-hidden="true"></i><span>' + json['security_answer']);
-					}
-				}
-			});
-		});
 		
 		$('#forget-btn-main-bon-type').on('click', function () {
 			$('.text-dangers').html('');

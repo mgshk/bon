@@ -238,7 +238,7 @@ class ControllerAccountLogin extends Controller {
 		
 		if ($this->customer->isLogged()) {
 			$json['islogged'] = true;
-		}else if($this->request->post['email'] != '') {
+		} else if ($this->request->post['email'] != '') {
 			$customer_info = $this->model_account_customer->getCustomerByPhone($this->request->post['email']);
 			if ($customer_info && !$customer_info['approved']) {
 				$json['error'] = "Your account not approved";
@@ -251,7 +251,7 @@ class ControllerAccountLogin extends Controller {
 			} else {
 				$json['error'] = "User ID and/or Password is invalid.";
 			}
-		}else{
+		} else {
 			$json['error'] = "Please enter phone num and passsword!";
 		}
 		
