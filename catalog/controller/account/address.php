@@ -77,9 +77,7 @@ class ControllerAccountAddress extends Controller {
 		$this->load->model('account/address');		
 		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validateForm()) {//print_r("12343"); die;
 			$res = $this->model_account_address->editAddress($this->request->get['address_id'], $this->request->post);
-			if($res) {
-print_r($this->request->post); die;
-			}
+
 			// Default Shipping Address
 			if (isset($this->session->data['shipping_address']['address_id']) && ($this->request->get['address_id'] == $this->session->data['shipping_address']['address_id'])) {
 				$this->session->data['shipping_address'] = $this->model_account_address->getAddress($this->request->get['address_id']);
@@ -503,13 +501,13 @@ print_r($this->request->post); die;
 			$this->error['city'] = $this->language->get('error_city');
 		}
 
-		if ($this->request->post['country_id'] == '' || !is_numeric($this->request->post['country_id'])) {
+		if ($this->request->post['hidden_address_countryId'] == '' || !is_numeric($this->request->post['hidden_address_countryId'])) {
 			$this->error['country'] = $this->language->get('error_country');
 		}
 
 		$this->load->model('localisation/country');
 
-		$country_info = $this->model_localisation_country->getCountry($this->request->post['country_id']);
+		$country_info = $this->model_localisation_country->getCountry($this->request->post['hidden_address_countryId']);
 
 		if ($country_info && $country_info['postcode_required'] && (utf8_strlen(trim($this->request->post['postcode'])) < 2 || utf8_strlen(trim($this->request->post['postcode'])) > 10)) {
 			$this->error['postcode'] = $this->language->get('error_postcode');
