@@ -113,7 +113,7 @@ $(document).ready(function() {
             if (json['success']) {
               $('#_top-sign-otp').trigger("reset");
               $('#top-sign-last').trigger("reset");
-              $('#reg-sucess').html('<i class="fa fa-check" aria-hidden="true"></i><span>' + json['success']);
+              $('#reg-sucess').html('<i class="fa fa-check" aria-hidden="true"></i><span>' + json['success']).show();
               $("._top-sign-upd").hide();
               $("._top-log-in").show();
 
@@ -216,9 +216,6 @@ $(document).ready(function() {
 
         if ($.trim(telephone) === '' || telephone.length !== 10)
           throw "Mobile Number must be 10 characters!";
-
-        if (!isNumeric(telephone))
-          throw "Mobile Number must be Only Numeric!";
 
         $("#LoadingImage").show();
 
