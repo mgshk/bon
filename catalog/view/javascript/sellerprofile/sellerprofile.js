@@ -310,8 +310,37 @@ $(document).ready(function() {
     return false;
  
   });
+
+  var termsRead = document.getElementById('terms_read');
+  var termsReadOk = document.getElementById('btnTermsReadOk');
+  termsRead.onchange = function() {
+    termsReadOk.disabled = !this.checked;
+  };
   
-  //$('select[name=\'store_country_id\']').trigger('change');
+  $(window).on('load', function() {
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    var c = [];
+
+    for(var i = 0; i < ca.length; i++) {
+        c.push(ca[i]);
+    }
+
+    if (c.indexOf(' termsPopup=true') < 0) {
+      $('#terms_of_use').modal({backdrop: 'static', keyboard: false});
+    }  
+  });
+
+  $('#btnTermsReadOk').on('click', function () {
+    document.getElementById('terms_read').checked = false;
+    document.getElementById('btnTermsReadOk').disabled = true;
+
+    var d = new Date();
+    d.setTime(d.getTime() + (24*60*60*1000));
+    var expires = "expires="+ d.toUTCString();
+    document.cookie = "termsPopup=true;" + expires + ";path=/";
+    $('#terms_of_use').modal('hide');
+  });
 
   $("body").on("click", "#addBtnCategories", function() {
     var ctr = $("#cats tbody").find(".extra").length;

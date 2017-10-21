@@ -77,7 +77,7 @@
               <div class="modal-footer">
                 <input type="checkbox" name="read_terms" id="terms_read" value="1"/>
                 <label for="terms_read">I read and will abide the terms strictly.&nbsp&nbsp&nbsp</label>
-                <button type="button" class="btn btn-primary" data-dismiss="modal" id="btnTermsReadOk" disabled>Ok</button>
+                <button type="button" class="btn btn-primary" id="btnTermsReadOk" disabled>Ok</button>
               </div>
             </div>
           </div>
@@ -1515,16 +1515,6 @@
    </div>
 </div>
 <script>
-    $(window).on('load',function(){
-     $('#terms_of_use').modal({backdrop: 'static', keyboard: false});
-    });
-    
-  var termsRead = document.getElementById('terms_read');
-  var termsReadOk = document.getElementById('btnTermsReadOk');
-  termsRead.onchange = function() {
-    termsReadOk.disabled = !this.checked;
-  };
-
   var fixmeTop = $('.fixme').offset().top;
   $(window).scroll(function () {
     var currentScroll = $(window).scrollTop();
@@ -1580,12 +1570,6 @@
     }
 
   });
-  
-  //$('#btnTermsReadOk').on('click', function () {
-    //document.getElementById('terms_read').checked = false;
-    //document.getElementById('terms_of_use').modal('hide');
-    //document.getElementById('btnTermsReadOk').disabled = true;
-  //});
 
   $('#button-timing-save').on('click', function (e) {
     $.ajax({
