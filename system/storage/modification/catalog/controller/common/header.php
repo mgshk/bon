@@ -490,7 +490,7 @@ $data['isseller'] = $this->customer->isSeller();
 			unset($this->session->data['guest']);
 
 			if($customer_id != '') {
-				if(utf8_strlen(trim($this->request->post['login_type'])) === '') {
+				if(trim($this->request->post['login_type']) === '') {
 					$json['success'] = 'New user registration completed successfully.';
 					$json['login_type'] = 'buyer';
 				}
