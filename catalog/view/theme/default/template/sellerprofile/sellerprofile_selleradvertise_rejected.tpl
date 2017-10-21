@@ -1,35 +1,32 @@
 
 <div class="col-sm-12">
-<p><i class="fa fa-trash-o"></i> - Move to trash</p>
-<p><i class="fa fa-pencil"></i> - Edit</p>
-<p><i class="fa fa-reply"></i> - Rejected reason</p>
-<br>
+	<p><i class="fa fa-trash-o"></i> - Move to trash</p>
+	<p><i class="fa fa-pencil"></i> - Edit</p>
+	<p><i class="fa fa-reply"></i> - Rejected reason</p>
+	<br>
 </div>
 <div class="col-sm-12">
-         <?php if (!empty($advetises)) { ?>
-         <?php foreach ($advetises as $advetise) { ?>
-            <div class="col-sm-9">
-               <div class="row">
-                  <div class="hovereffect">
-		  <?php if ($advetise['image']) { ?>
-		       <img src="<?php echo $advetise['image']; ?>" alt="<?php echo $advetise['offer_title']; ?>" class="img-thumbnail img-responsive" />
-		       <?php } else { ?>
-		       <span class="img-thumbnail list"><i class="fa fa-camera fa-2x"></i></span>
-		       <?php } ?>
-                     <div class="overlay adv--ress">
-		     <input id="ads_id" type="hidden" value="<?php echo $advetise['advertise_id']; ?>">
-                        <h2><?php echo $advetise['offer_title']; ?></h2>
-                        <a class="info" data-toggle="modal" data-target="#myModalad_rejected_<?php echo $advetise['advertise_id']; ?>" ><i class="fa fa-reply"></i></a>
-			<a class="info" href="<?php echo $advetise['edit']; ?>"><i class="fa fa-pencil"></i></a>
-			<a class="info" id="ads_delete_rejected<?php echo $advetise['advertise_id']; ?>"><i class="fa fa-trash-o"></a>
-                     </div>
-                  </div>
-               </div>
-            </div>
-	    <div class="col-sm-3"></div>
-         <?php } ?>
-         <?php } else { ?><?php echo $text_no_results; ?>
-         <?php } ?>
+    <?php if (!empty($advetises)) { ?>
+    <?php foreach ($advetises as $advetise) { ?>
+    	<div class="col-sm-9">
+           <div class="row">
+             <div class="hovereffect">
+	  		<?php if ($advetise['image']) { ?>
+	       		<img src="<?php echo $advetise['image']; ?>" alt="<?php echo $advetise['offer_title']; ?>" class="img-thumbnail img-responsive" />
+	       <?php } else { ?>
+	       		<span class="img-thumbnail list"><i class="fa fa-camera fa-2x"></i></span>
+	       <?php } ?>
+                <div class="overlay adv--ress">
+		     		<input id="ads_id" type="hidden" value="<?php echo $advetise['advertise_id']; ?>">
+					<a class="info" data-toggle="modal" data-target="#myModalad_rejected_<?php echo $advetise['advertise_id']; ?>" ><i class="fa fa-reply"></i></a>
+					<a class="info" href="<?php echo $advetise['edit']; ?>"><i class="fa fa-pencil"></i></a>
+					<a class="info" id="ads_delete_rejected<?php echo $advetise['advertise_id']; ?>"><i class="fa fa-trash-o"></i></a>
+                </div>
+              </div>
+           </div>
+        </div>
+    	<div class="col-sm-3"></div>
+    <?php } } else { ?><?php echo $text_no_results; } ?>
 </div>	
 <div class="row">
    <div class="col-sm-6 text-left"><?php echo $pagination; ?></div>
@@ -45,16 +42,12 @@
 		  <!-- <h4 class="modal-title loc-share-title">Advertise Details</h4> -->
 	   </div>
 	   <div class="modal-body loc-share-top">
-	   <h3><?php echo $advetise['offer_title']; ?></h3>
-		  <?php if ($advetise['image_tumb']) { ?>
-		       <img src="<?php echo $advetise['image_tumb']; ?>" alt="<?php echo $advetise['offer_title']; ?>" class="img-thumbnail img-responsive" />
-		       <?php } else { ?>
-		       <span class="img-thumbnail list"><i class="fa fa-camera fa-2x"></i></span>
-		       <?php } ?>
-		      <p><?php echo $advetise['offer_desc']; ?></p>
-		      <p><?php echo $advetise['offer_link']; ?></p>
-		      <p><strong>Reason:</strong><span style="color:red"><?php echo $advetise['remarks']; ?></span></p>
-		      <p>Please make corrections and re-submit again...</p>
+	   		<h3><?php echo $advetise['offer_title']; ?></h3>
+		  	<img src="image/<?php echo $advetise['offer_image_original']; ?>" alt="<?php echo $advetise['offer_title']; ?>" class="img-thumbnail img-responsive" />
+		    <p><?php echo $advetise['offer_desc']; ?></p>
+		    <p><a href="<?php echo $advetise['offer_link']; ?>"><?php echo $advetise['offer_link']; ?></a>FV</p>
+		    <p><strong>Reason:</strong><span style="color:red"><?php echo $advetise['remarks']; ?></span></p>
+		    <p>Please make corrections and re-submit again...</p>
 	   </div>
 	</div>
  </div>

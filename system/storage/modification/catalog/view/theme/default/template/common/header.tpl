@@ -250,6 +250,7 @@
 						<?php } else { ?>
 						<div class="frr--list cursor free_listBtn" title="Sign-up and add your store in few minitues for public view.">Free Listing</div>
 						<?php } ?>
+						<input type="hidden" name="seller_profile" id="seller_profile" value="<?php echo $seller_profile; ?>" />
 					</div>
 					<div class="col-sm-9">
 						<div id="top-links" class="nav pull-right">

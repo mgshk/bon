@@ -46,39 +46,34 @@
 	  }
 	}	
  ?>
-<!--<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/base/jquery-ui.css" type="text/css" media="all">-->
-  <!--<script type="text/javascript" src="catalog/view/javascript/jquery-ui.multidatespicker.js"></script>-->
 <div class="col-sm-12">
-<p><i class="fa fa-trash-o"></i> - Move to trash</p>
-<p><i class="fa fa-play"></i> - Move to live</p>
-<p><i class="fa fa-arrows-alt"></i> - Open</p>
-<br>
+	<p><i class="fa fa-trash-o"></i> - Move to trash</p>
+	<p><i class="fa fa-play"></i> - Move to live</p>
+	<p><i class="fa fa-arrows-alt"></i> - Open</p>
+	<br>
 </div>
 <div class="col-sm-12">
-         <?php if (!empty($advetises)) { ?>
-         <?php foreach ($advetises as $advetise) { ?>
-            <div class="col-sm-9">
-               <div class="row">
-                 <div class="hovereffect">
-		  		<?php if ($advetise['image']) { ?>
-		       		<img src="<?php echo $advetise['image']; ?>" alt="<?php echo $advetise['offer_title']; ?>" class="img-thumbnail img-responsive" />
-		       <?php } else { ?>
-		       		<span class="img-thumbnail list"><i class="fa fa-camera fa-2x"></i></span>
-		       <?php } ?>
-                    <div class="overlay adv--ress">
-			     		<input id="ads_id" type="hidden" value="<?php echo $advetise['advertise_id']; ?>">
-						<a class="info" data-toggle="modal" data-target="#myModalad_approved_<?php echo $advetise['advertise_id']; ?>" ><i class="fa fa-arrows-alt"></i></a>
-						<a class="info advertise_live_details" data-target='#myModal_adv' data-toggle='modal' data-id="<?php echo $advetise['advertise_id']; ?>"><i class="fa fa-play"></i></a>
-						<a class="info" id="ads_delete_approved<?php echo $advetise['advertise_id']; ?>"><i class="fa fa-trash-o"></i></a>
-                    </div>
-                  </div>
-               </div>
-            </div>
-	    	<div class="col-sm-3"></div>
-         <?php } 
-     	} else { 
-     		echo $text_no_results; 
-     	} ?>
+    <?php if (!empty($advetises)) { ?>
+    <?php foreach ($advetises as $advetise) { ?>
+        <div class="col-sm-9">
+           <div class="row">
+             <div class="hovereffect">
+	  		<?php if ($advetise['image']) { ?>
+	       		<img src="<?php echo $advetise['image']; ?>" alt="<?php echo $advetise['offer_title']; ?>" class="img-thumbnail img-responsive" />
+	       <?php } else { ?>
+	       		<span class="img-thumbnail list"><i class="fa fa-camera fa-2x"></i></span>
+	       <?php } ?>
+                <div class="overlay adv--ress">
+		     		<input id="ads_id" type="hidden" value="<?php echo $advetise['advertise_id']; ?>">
+					<a class="info" data-toggle="modal" data-target="#myModalad_approved_<?php echo $advetise['advertise_id']; ?>" ><i class="fa fa-arrows-alt"></i></a>
+					<a class="info advertise_live_details" data-target='#myModal_adv' data-toggle='modal' data-id="<?php echo $advetise['advertise_id']; ?>"><i class="fa fa-play"></i></a>
+					<a class="info" id="ads_delete_approved<?php echo $advetise['advertise_id']; ?>"><i class="fa fa-trash-o"></i></a>
+                </div>
+              </div>
+           </div>
+        </div>
+    	<div class="col-sm-3"></div>
+     <?php } } else { echo $text_no_results; } ?>
 </div>	
 <div class="row">
    <div class="col-sm-6 text-left"><?php echo $pagination; ?></div>
@@ -94,10 +89,10 @@
 		  <!-- <h4 class="modal-title loc-share-title">Advertise Details</h4> -->
 	   </div>
 	   <div class="modal-body loc-share-topps">
-		   <h4><strong></strong><?php echo $advetise['offer_title']; ?></h4>
+		   <h4><?php echo $advetise['offer_title']; ?></h4>
 		   <img src="image/<?php echo $advetise['offer_image_original']; ?>" alt="<?php echo $advetise['offer_title']; ?>" class="img-thumbnail img-responsive" />
-		   <p><strong></strong><?php echo $advetise['offer_desc']; ?></p>
-		   <p><strong></strong><a href="<?php echo $advetise['offer_link']; ?>"><?php echo $advetise['offer_link']; ?></a></p>
+		   <p><?php echo $advetise['offer_desc']; ?></p>
+		   <p><a href="<?php echo $advetise['offer_link']; ?>"><?php echo $advetise['offer_link']; ?></a></p>
 	   </div>
 	</div>
  </div>

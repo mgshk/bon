@@ -1912,8 +1912,6 @@
      $('#pre_loaderr').hide();
    });
 
-</script>
-<script type="text/javascript">
   $('.approved').on('click', function () {
     $('#pre_loaderr').show();
     $('#sellerapproved').delegate('.pagination a', 'click', function (e) {
@@ -1926,8 +1924,6 @@
     $('#pre_loaderr').hide();
   });
 
-</script>
-<script type="text/javascript">
   $('.rejected').on('click', function () {
     $('#pre_loaderr').show();
     $('#sellerrejected').delegate('.pagination a', 'click', function (e) {
