@@ -190,7 +190,8 @@ $(document).ready(function() {
 
           if (json['success']) {
             if (document.getElementById('seller').checked) {
-              window.location.assign('<?php echo $seller_profile; ?>&tab_section=store_detail#content')
+              var seller_profile = $('#seller_profile').val();
+              window.location.assign(seller_profile+'&tab_section=store_detail#content')
             } else {
               loacation();              
             }
