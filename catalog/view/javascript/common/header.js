@@ -69,6 +69,9 @@ $(document).ready(function() {
 
       try {
 
+        $('#signUpErrorMsg').empty().hide();
+        $('#reg-sucess').empty().hide();
+
         var firstname = $('#input-firstname').val();
         var lastname = $('#input-lastname').val();
         var address_1 = $('#input-address-1').val();
@@ -137,7 +140,7 @@ $(document).ready(function() {
             setTimeout(function() {
               $('#signUpErrorMsg').empty().hide();
               $('#reg-sucess').empty().hide();
-            }, 3000);
+            }, 6000);
 
           }
         });
@@ -163,6 +166,8 @@ $(document).ready(function() {
   $('#log-btn-main-bon').click(function () {
 
     try {
+
+      $('#loginErrorMsg').empty().hide();
 
       var username = $('#input-email').val();
       var password = $('#input-password').val();
@@ -211,6 +216,8 @@ $(document).ready(function() {
   $('#sign-up-bon-top').on('click', function () {
 
       try {
+
+        $('#errorTopMsg').empty().hide();
 
         var telephone = $('#input-telephone').val();
 
@@ -274,6 +281,8 @@ $(document).ready(function() {
   $("input#otp").keyup(function () {
       var lgt = $('#otp').val().length;
 
+      $('#top-line-star-otp').empty().hide();
+
       if (lgt == 6) {
         $('#top-line-star-otp').empty().hide();
 
@@ -306,6 +315,8 @@ $(document).ready(function() {
   $('#sign-up-bon-top-prof').on('click', function () {
     
     try {
+
+      $('#top-line-star-otp').empty().hide();
 
       var email = $("#input-email-otp").val();
       var password = $("#input-password-otp").val();
@@ -386,6 +397,155 @@ $(document).ready(function() {
     }
 
     return false;
+  });
+
+  $('#forget-btn-main-bon-type').on('click', function () {
+
+      try {
+
+        $('#forgt-phn-failure').empty().hide();
+        var telephone = $('#forgt-phn').val();
+
+        if ($.trim(telephone) === '' || telephone.length !== 10)
+          throw "Mobile Number must be 10 characters!";
+
+        $("#LoadingImage1").show();
+
+        $.ajax({
+          url: 'index.php?route=common/header/forgot_pass_log',
+          type: 'post',
+          dataType: 'json',
+          data: $("#forget-log-type").serialize(),
+          success: function (json) {
+            $("#LoadingImage1").hide();
+
+            if (json['success']) {
+              $('#forgt-phn-sec').val(json['success']);
+              $('#forgt-phn-sec_nw').val(json['success']);
+              $('#security_question_sec').val(json['q_name']);
+              $("._forget-bon").hide();
+              $("._forget-bon-sec").show();
+              $("#qus_ans").hide();
+            }
+
+            if (json['forgt-phn-failure']) {
+              $('#forgt-phn-failure').html('<i class="fa fa-times" aria-hidden="true"></i><span>' + json['forgt-phn-failure']).show();
+            }
+
+            setTimeout(function() {
+              $('#forgt-phn-failure').empty().hide();
+            }, 3000);
+          }
+        });
+      } catch (e) {
+        $('#forgt-phn-failure').html('<i class="fa fa-times-circle"></i> '+ e).show();
+
+        setTimeout(function() {
+          $('#forgt-phn-failure').empty().hide();
+        }, 3000);
+      }
+
+      return false;
+  });
+
+  $('#forget-btn-main-bon-sec').on('click', function () {
+      try {
+        $('#frgt_otp_error').empty().hide();
+        var otp = $("#forgt-phn-otp").val();
+        var security_ans = $("#security_answer_sec").val();
+
+        if ($.trim(otp) === '')
+          throw "Forgot password OTP not empty!";
+
+        if ($.trim(security_ans) === '')
+          throw "Please enter security answer";
+
+        $.ajax({
+          url: 'index.php?route=common/header/forgot_pass_sec',
+          type: 'post',
+          dataType: 'json',
+          data: $("#forget-log-sec").serialize(),
+          success: function (json) {
+            if (json['success']) {
+              $('#cus_ids').val(json['success']);
+              $("._forget-bon-sec").hide();
+              $("._forget-bon-pass").show();
+            }
+
+            if (json['security_answer_sec']) {
+              $('#frgt_otp_error').html('<i class="fa fa-times-circle"></i> '+ json['security_answer_sec']).show();
+            }
+
+            if (json['sec_otp_sec']) {
+              $('#frgt_otp_error').html('<i class="fa fa-times-circle"></i> '+ json['sec_otp_sec']).show();
+            }
+
+            setTimeout(function() {
+              $('#frgt_otp_error').empty().hide();
+            }, 3000);
+          }
+        });
+      } catch (e) {
+        $('#frgt_otp_error').html('<i class="fa fa-times-circle"></i> '+ e).show();
+
+        setTimeout(function() {
+          $('#frgt_otp_error').empty().hide();
+        }, 3000);
+      }
+
+      return false;
+  });
+
+  $('#forget-btn-main-bon-pass').on('click', function () {
+      try {
+        $('#forgt-phn-pass-fail').empty().hide();
+        var password = $("#forgt-pass").val();
+        var confirm_password = $("#forgt-pass-re").val();
+
+        if ($.trim(password) === '')
+          throw "Password must be between 4 and 20 characters!";
+
+        if ($.trim(confirm_password) === '')
+          throw "Password confirmation does not match password!";
+
+        if ($.trim(password) === '' !== $.trim(confirm_password) === '')
+          throw "Password confirmation does not match password!";
+
+        $.ajax({
+          url: 'index.php?route=common/header/forgot_pass_change',
+          type: 'post',
+          dataType: 'json',
+          data: $("#forget-log-pass").serialize(),
+          success: function (json) {
+            if (json['success']) {
+              $('#reg-sucess').html('<i class="fa fa-check" aria-hidden="true"></i><span>' + json['success']);
+              $("._forget-bon-pass").hide();
+              $("._top-log-in").show();
+            }
+
+            if (json['error_password']) {
+              $('#forgt-phn-pass-fail').html('<i class="fa fa-times-circle"></i> '+ json['error_password']).show();
+            }
+
+            if (json['error_confirm']) {
+              $('#forgt-phn-pass-fail').html('<i class="fa fa-times-circle"></i> '+ json['error_confirm']).show();
+            }
+
+            setTimeout(function() {
+              $('#forgt-phn-pass-fail').empty().hide();
+            }, 3000);
+          }
+        });
+
+      } catch (e) {
+        $('#forgt-phn-pass-fail').html('<i class="fa fa-times-circle"></i> '+ e).show();
+
+        setTimeout(function() {
+          $('#forgt-phn-pass-fail').empty().hide();
+        }, 3000);
+      }
+
+      return false;
   });
 
   $(".free_listBtn_logged").click(function () {

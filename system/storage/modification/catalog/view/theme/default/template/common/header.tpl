@@ -917,13 +917,11 @@
 						<div class="col-md-8 _bonlg clear">
 							<h3>Forgot Password</h3>
 							<form id="forget-log-type" class="form-horizontal" style="padding: 0px 15px;">
+								<div id="forgt-phn-failure" class="alert alert-danger" style="display:none;"></div>
 								<div class="_email-log-bon">
 									<input type="text" name="forgt-phn" value="" placeholder="Enter the phone number" id="forgt-phn" class="inputText" autocomplete="off" required/>
 								</div>
 								<div id="LoadingImage1" style="display: none"><img src="image/loader-sms.gif" class="img-responsive" /></div>
-								<ul class="_erroe-li">
-									<li><span id="forgt-phn-failure" class="text-dangers"></span></li>
-								</ul>
 								<div class="_log-btn-btm" style="position: static;">
 									<button class="advertise-btn _btn-fin" id="forget-btn-main-bon-type" type="button">Continue</button>
 								</div>
@@ -943,30 +941,22 @@
 						<div class="col-md-8 _bonlg clear">
 							<h3>Forgot Password</h3>
 							<form id="forget-log-sec" class="form-horizontal" style="padding: 0px 15px;">
+								<div id="frgt_otp_error" class="alert alert-danger" style="display:none;"></div>
 								<input type="hidden" name="forgt-phn-sec" id="forgt-phn-sec" value="">
 								<input type="hidden" name="otp-sec" id="otp-sec" value="0">
 								<div class="_email-log-bon">
-									<input type="text" autocomplete="off" name="forgt-phn" value="" placeholder="Enter the phone number" id="forgt-phn-sec_nw" class="inputText"
-									 required disabled/>
+									<input type="text" maxlength="10" autocomplete="off" name="forgt-phn" value="" placeholder="Enter the phone number" id="forgt-phn-sec_nw" class="inputText" required disabled/>
 								</div>
 								<div class="_passwrd-log-bon">
-									<input type="text" autocomplete="off" name="forgt-phn-otp" value="" maxlength="6" placeholder="Enter the OTP sent to above mobile number" id="forgt-phn-otp"
-									 class="inputText" required/>
+									<input type="text" autocomplete="off" name="forgt-phn-otp" value="" maxlength="6" placeholder="Enter the OTP sent to above mobile number" id="forgt-phn-otp" class="inputText" required/>
 								</div>
-								<ul class="_erroe-li">
-									<li><span id="sec_otp_sec" class="text-dangers"></span></li>
-								</ul>
 								<div id="qus_ans">
 									<div class="_state-log-bon">
 										<input type="text" autocomplete="off" name="security_question_sec" value="" id="security_question_sec" class="inputText" required disabled/>
 									</div>
 									<div class="_again-passwrd-log-bon security_answer">
-										<input type="text" autocomplete="off" name="security_answer_sec" value="" id="security_answer_sec" placeholder="Please enter the security answer"
-										 class="inputText" required/>
+										<input type="text" autocomplete="off" name="security_answer_sec" value="" id="security_answer_sec" placeholder="Please enter the security answer" class="inputText" required/>
 									</div>
-									<ul class="_erroe-li">
-										<li><span id="security_answer_sec-er" class="text-dangers"></span></li>
-									</ul>
 								</div>
 								<div class="_log-btn-btm" style="position: static;">
 									<button class="advertise-btn _btn-fin" id="forget-btn-main-bon-sec" type="button">Continue</button>
@@ -984,19 +974,14 @@
 						<div class="col-md-8 _bonlg clear">
 							<h3>Forgot Password</h3>
 							<form id="forget-log-pass" class="form-horizontal" style="padding: 0px 15px;">
+								<div id="forgt-phn-pass-fail" class="alert alert-danger" style="display:none;"></div>
 								<input type="hidden" name="cus_ids" id="cus_ids" value="">
 								<div class="_email-log-bon">
 									<input type="text" name="password" value="" placeholder="Enter new password" id="forgt-pass" class="inputText" required/>
 								</div>
-								<ul class="_erroe-li">
-									<li><span id="forgt-phn-pass-fail" class="text-dangers"></span></li>
-								</ul>
 								<div class="_passwrd-log-bon">
 									<input type="text" name="confirm" value="" placeholder="Re-Enter new password" id="forgt-pass-re" class="inputText" required/>
 								</div>
-								<ul class="_erroe-li">
-									<li><span id="forgt-phn-pass-re-fail" class="text-dangers"></span></li>
-								</ul>
 								<div class="_log-btn-btm" style="position: static;">
 									<button class="advertise-btn _btn-fin" id="forget-btn-main-bon-pass" type="button">Submit</button>
 								</div>
@@ -1061,32 +1046,7 @@
 		function loacation() {
 			location.reload();
 		}
-		
-		$('#forget-btn-main-bon-type').on('click', function () {
-			$('.text-dangers').html('');
-			$("#LoadingImage1").show();
-			$.ajax({
-				url: 'index.php?route=common/header/forgot_pass_log',
-				type: 'post',
-				dataType: 'json',
-				data: $("#forget-log-type").serialize(),
-				success: function (json) {
-					if (json['success']) {
-						$("#LoadingImage1").hide();
-						$('#forgt-phn-sec').val(json['success']);
-						$('#forgt-phn-sec_nw').val(json['success']);
-						$('#security_question_sec').val(json['q_name']);
-						$("._forget-bon").hide();
-						$("._forget-bon-sec").show();
-						$("#qus_ans").hide();
-					}
-					if (json['forgt-phn-failure']) {
-						$("#LoadingImage1").hide();
-						$('#forgt-phn-failure').html('<i class="fa fa-times" aria-hidden="true"></i><span>' + json['forgt-phn-failure']);
-					}
-				}
-			});
-		});
+
 		$(document).ready(function () {
 			$("input#forgt-phn-otp").keyup(function () {
 				var lgt = $('#forgt-phn-otp').val().length;
@@ -1111,53 +1071,6 @@
 				};
 			});
 		});
-		$('#forget-btn-main-bon-sec').on('click', function () {
-			$('.text-dangers').html('');
-			$.ajax({
-				url: 'index.php?route=common/header/forgot_pass_sec',
-				type: 'post',
-				dataType: 'json',
-				data: $("#forget-log-sec").serialize(),
-				success: function (json) {
-					if (json['success']) {
-						$('#cus_ids').val(json['success']);
-						$("._forget-bon-sec").hide();
-						$("._forget-bon-pass").show();
-					}
-					if (json['security_answer_sec']) {
-						$('#security_answer_sec-er').html('<i class="fa fa-times" aria-hidden="true"></i><span>' + json['security_answer_sec']);
-					}
-					if (json['sec_otp_sec']) {
-						$('#sec_otp_sec').html('<i class="fa fa-times" aria-hidden="true"></i><span>' + json['sec_otp_sec']);
-					}
-				}
-			});
-		});
-
-		$('#forget-btn-main-bon-pass').on('click', function () {
-			$('.text-dangers').html('');
-			$.ajax({
-				url: 'index.php?route=common/header/forgot_pass_change',
-				type: 'post',
-				dataType: 'json',
-				data: $("#forget-log-pass").serialize(),
-				success: function (json) {
-					if (json['success']) {
-						$('#reg-sucess').html('<i class="fa fa-check" aria-hidden="true"></i><span>' + json['success']);
-						$("._forget-bon-pass").hide();
-						$("._top-log-in").show();
-					}
-					if (json['error_password']) {
-						$('#forgt-phn-pass-fail').html('<i class="fa fa-times" aria-hidden="true"></i><span>' + json['error_password']);
-					}
-					if (json['error_confirm']) {
-						$('#forgt-phn-pass-re-fail').html('<i class="fa fa-times" aria-hidden="true"></i><span>' + json['error_confirm']);
-					}
-				}
-			});
-		});
-
-
 
 		function setCookiePosition(button) {
 			if (button == 'ok') {
