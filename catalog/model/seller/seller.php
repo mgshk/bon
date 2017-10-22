@@ -169,7 +169,7 @@ class Modelsellerseller extends Model
 				LEFT JOIN ".DB_PREFIX."category_to_seller cs ON(c.customer_id = cs.seller_id)";
 
 			if($category_id == '' && $search_val == '' && $by_search_val != '') {
-				$sql .= " WHERE c.status = 1 AND c.seller_approved = 1 AND c.active = 1";
+				$sql .= " WHERE c.status = '1' AND c.seller_approved = 1 AND c.active = 1";
 			} elseif($category_id != '' && $search_val == '' && $by_search_val != '') {
 				$sql .= " WHERE cs.category_id = ".$category_id." AND cs.status = 1";
 			} elseif($category_id != '' && $search_val != '' && $by_search_val == 1) {
@@ -194,7 +194,7 @@ class Modelsellerseller extends Model
 			if($category_id == '' && $search_val == '' && $by_search_val != '') {
 				$sql .= " GROUP BY c.customer_id HAVING distance BETWEEN ".$start_km." AND ".$end_km;
 			} else {
-				$sql .= " AND c.status = 1 AND c.seller_approved = 1 AND c.active = 1 GROUP BY c.customer_id HAVING distance BETWEEN ".$start_km." AND ".$end_km;
+				$sql .= " AND c.status = '1' AND c.seller_approved = 1 AND c.active = 1 GROUP BY c.customer_id HAVING distance BETWEEN ".$start_km." AND ".$end_km;
 			}
 
 			$sql .= " ORDER BY filtered DESC, distance ASC";
@@ -205,7 +205,7 @@ class Modelsellerseller extends Model
 				$sql .= " limit 0,".$limit;
 			}
 
-			
+			//echo $sql;
 			$query = $this->db->query($sql);
             $seller_data = $query->rows;
 
@@ -239,7 +239,7 @@ class Modelsellerseller extends Model
                 $sql = "SELECT *,cd.name, c.nickname, pd.name, ( 3959 * acos( cos( radians(".$latitude.") ) * cos( radians( lat ) ) *  cos( radians( lng ) - radians(".$longitude.") ) + sin( radians(".$latitude.") ) * sin( radians( lat ) ) ) ) AS distance FROM ".DB_PREFIX."customer c LEFT JOIN ".DB_PREFIX."category_to_seller cs ON(c.customer_id = cs.seller_id) LEFT JOIN ".DB_PREFIX."category_description cd ON(cs.category_id = cd.category_id) LEFT JOIN ".DB_PREFIX."product_to_seller ps ON(cs.seller_id = ps.seller_id) LEFT JOIN ".DB_PREFIX."product_description pd ON(ps.product_id = pd.product_id)";
 
 				
-				$sql .= " WHERE c.status = 1 AND c.seller_approved = 1 HAVING distance BETWEEN ".$start_km." AND ".$end_km." ORDER BY distance ASC";
+				$sql .= " WHERE c.status = '1' AND c.seller_approved = 1 HAVING distance BETWEEN ".$start_km." AND ".$end_km." ORDER BY distance ASC";
 
 				//echo "<pre>"; print_r($sql); die;
 				
