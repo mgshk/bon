@@ -707,7 +707,7 @@
 	var liArr = $.makeArray($('.nav-tabs li'));
 	var tabPaneArr = $.makeArray($('.tab-pane'));
 	var intervalTime = null;
-	var i = 0;
+	var intLevel = 0;
 
 	var mTimer = null;
 	var hTimer = null;
@@ -716,11 +716,11 @@
 	function changeTab() {
 		intervalTime = setInterval(function () {
 			$('.nav-tabs li, .tab-pane').removeClass('active');
-			$(liArr[i]).addClass('active');
-			$(tabPaneArr[i]).addClass('active');
-			i++;
-			if (i == 4)
-				i = 0;
+			$(liArr[intLevel]).addClass('active');
+			$(tabPaneArr[intLevel]).addClass('active');
+			intLevel++;
+			if (intLevel == 4)
+				intLevel = 0;
 		}, 5000);
 	}
 
