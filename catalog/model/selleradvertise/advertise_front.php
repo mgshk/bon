@@ -19,7 +19,7 @@ class ModelselleradvertiseAdvertiseFront extends Model
 
 		$sql .= " (SELECT AVG(rating) AS total FROM ".DB_PREFIX."sellerreview r1 WHERE r1.seller_id = st_of.seller_id AND r1.status = '1' GROUP BY r1.seller_id) AS rating FROM ".DB_PREFIX."store_offers st_of LEFT JOIN ".DB_PREFIX."customer cs ON (cs.customer_id = st_of.seller_id)";
 
-		$sql .= " WHERE CURDATE() >= st_of.from_date AND CURDATE() <= st_of.end_date  AND st_of.status = 'live' AND st_of.position = ".$position;
+		$sql .= " WHERE cs.seller_approved = 1 and CURDATE() >= st_of.from_date AND CURDATE() <= st_of.end_date  AND st_of.status = 'live' AND st_of.position = ".$position;
 		if($position == 2){
 			$sql .=" AND st_of.national = '".$country."'";
 		} elseif($position == 3) {
@@ -54,7 +54,7 @@ class ModelselleradvertiseAdvertiseFront extends Model
 
 	 public function getAdvertisesHomeTopBanner()
     {
-       $sql = "SELECT so.* FROM ".DB_PREFIX."store_offers so LEFT JOIN ".DB_PREFIX."home_top_banner_date htbd ON (so.advertise_id = htbd.store_offer_advertise_id) WHERE so.position = '1' and CURDATE() = htbd.date ORDER BY so.price DESC";
+       $sql = "SELECT so.* FROM ".DB_PREFIX."customer cs INNER JOIN ".DB_PREFIX."store_offers so ON (cs.customer_id = so.seller_id) LEFT JOIN ".DB_PREFIX."home_top_banner_date htbd ON (so.advertise_id = htbd.store_offer_advertise_id) WHERE cs.seller_approved = 1 and so.position = '1' and CURDATE() = htbd.date ORDER BY so.price DESC";
 
 		//print_r($sql); die;
 
@@ -91,7 +91,7 @@ class ModelselleradvertiseAdvertiseFront extends Model
 			$sql .= " (SELECT CASE WHEN c_t_s.category_id = ".$category_id." THEN 1 ELSE 0 END FROM ".DB_PREFIX."category_to_seller c_t_s WHERE c_t_s.seller_id = c.customer_id AND c_t_s.category_id = ".$category_id.") as filtered,";
 		}
 
-		$sql .= " (SELECT AVG(rating) AS total FROM ".DB_PREFIX."sellerreview r1 WHERE r1.seller_id = str.seller_id AND r1.status = '1' GROUP BY r1.seller_id) AS rating, ( 3959 * acos( cos( radians(".$latitude.") ) * cos( radians( lat ) ) *  cos( radians( lng ) - radians(".$longitude.") ) + sin( radians(".$latitude.") ) * sin( radians( lat ) ) ) ) AS distance FROM ".DB_PREFIX."customer c LEFT JOIN ".DB_PREFIX."store_offers str ON(c.customer_id = str.seller_id) WHERE  CURDATE() >= from_date AND CURDATE() <= end_date  AND str.status = 'live' AND position = ".$position." HAVING distance BETWEEN ".$start_km." AND ".$end_km." ORDER BY";
+		$sql .= " (SELECT AVG(rating) AS total FROM ".DB_PREFIX."sellerreview r1 WHERE r1.seller_id = str.seller_id AND r1.status = '1' GROUP BY r1.seller_id) AS rating, ( 3959 * acos( cos( radians(".$latitude.") ) * cos( radians( lat ) ) *  cos( radians( lng ) - radians(".$longitude.") ) + sin( radians(".$latitude.") ) * sin( radians( lat ) ) ) ) AS distance FROM ".DB_PREFIX."customer c LEFT JOIN ".DB_PREFIX."store_offers str ON(c.customer_id = str.seller_id) WHERE c.seller_approved = 1 and  CURDATE() >= from_date AND CURDATE() <= end_date  AND str.status = 'live' AND position = ".$position." HAVING distance BETWEEN ".$start_km." AND ".$end_km." ORDER BY";
 
 		
 		
