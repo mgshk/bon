@@ -192,9 +192,9 @@ if(adss)
 							    <label>Area Covered in Km</label>
 							    <select class="form-control area_km" name="km" id="km">							
 								<option value=""> --Select-- </option>
-								<?php for($i=1; $i<=20; $i++) { ?>
-									<option <?php if ($i == 3) { echo 'selected'; } ?> value="<?php echo $i; ?>" ><?php echo $i; ?></option>
-								<?php } ?>
+									<?php for($i=1; $i<=20; $i++) { ?>
+										<option <?php if ($i == 3) { echo 'selected'; } ?> value="<?php echo $i; ?>" ><?php echo $i; ?></option>
+									<?php } ?>
 							    </select>
 						    </span>
 						    <label>Position</label>
@@ -208,8 +208,8 @@ if(adss)
 
 						    <div id="validation_txt" style="display:none">
 							    <label>Price :&nbsp;&nbsp;&nbsp;&nbsp;</label><span class="text-green" id="price_vaidation_txt" style="font-size: 12px;font-style: italic"></span>
+							    <input type="number" name="amount_val" id="amount_val" class="form-control" min="1" step="1" onkeypress="return event.charCode >= 48 && event.charCode <= 57"/>
 							</div>
-						    <input type="number" name="amount_val" id="amount_val" class="form-control" style="display: none;" min="1" step="1" onkeypress="return event.charCode >= 48 && event.charCode <= 57"/>
 						    <input type="hidden" name="amount" id="actual_price"/>
 						    <input type="hidden" name="min_price" id="min_price" />
 							<input type="hidden" name="max_price" id="max_price" />
@@ -318,7 +318,7 @@ if(adss)
 			    }
 			}
 
-			$(".check_amount")[0].selectedIndex = $(".check_amount option").length - 1;
+			//$(".check_amount")[0].selectedIndex = $(".check_amount option").length - 1;
 
 		 }, "json");
 
@@ -375,7 +375,7 @@ if(adss)
 		$('.reset').on('click', function() {
 			//reset fields
 			$('#display_amount_1').empty();
-			$('#amount_val').hide();
+			//$('#amount_val').hide();
 			$('.check_amount').removeAttr('selected');
 
 			$(".check_amount")[0].selectedIndex = $(".check_amount option").length - 1;
@@ -416,8 +416,9 @@ if(adss)
 				$("select#km").val('');	
 			}
 
-			if (loc == 5) { 
-				$('.position_local_visible').show(); 
+			if (loc == 5) {
+				$('.area_km').val('3');
+				$('.position_local_visible').show();
 			}
 
 			if(loc == '6') {
@@ -443,9 +444,9 @@ if(adss)
 						dt2.datepicker('option', 'maxDate', startDate);
 						dt2.datepicker('option', 'minDate', minDate);
 
-						if (loc != '5') {
-							getAdvertiseAmountList(loc);
-						}
+						// if (loc != '5') {
+						// 	getAdvertiseAmountList(loc);
+						// }
 				    }
 				});
 
@@ -480,6 +481,7 @@ if(adss)
 				$('.position_amount_visible').hide();	
 			}
 
+			getAdvertiseAmountList(loc);
 			$('.check_amount').trigger('change');
 		});
 
@@ -559,14 +561,15 @@ if(adss)
     		var level = $(this).find(':selected').text();
     		var price = level.split(':');
 
-    		if (level == 'Basic price' && $('input:radio[name=loc]:checked').val() !== '1')
+    		if (level == 'Basic price' && $('input:radio[name=loc]:checked').val() !== '1') {
     			$('.advertise-btn_live').attr('disabled', false);
-			//$('.advertise-btn_live').attr('hidden', false);
-			//$('.advertise-btn_live_dis').attr('hidden', true);
-    		else
+				//$('.advertise-btn_live').attr('hidden', false);
+				//$('.advertise-btn_live_dis').attr('hidden', true);
+    		} else {
     			$('.advertise-btn_live').attr('disabled', true);
-			//$('.advertise-btn_live').attr('hidden', true);
-			//$('.advertise-btn_live_dis').attr('hidden', false);
+				//$('.advertise-btn_live').attr('hidden', true);
+				//$('.advertise-btn_live_dis').attr('hidden', false);
+    		}
 
     		$.ajax({
 				url: 'index.php?route=sellerprofile/sellerprofile/advertiseAmountList',
@@ -581,7 +584,7 @@ if(adss)
 
 					if (level !== 'Basic price') {
 						$('#validation_txt').show();
-						$('#amount_val').val('').show();
+						$('#amount_val').val('');
 
 						if (price[1] && price[1].replace(/\s/g, '') === 'New') {
 			    			min_price = bannerBasicPrice[banner_name];
