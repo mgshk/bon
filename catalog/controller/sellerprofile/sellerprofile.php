@@ -2474,7 +2474,8 @@ class Controllersellerprofilesellerprofile extends Controller
 		$delete_val = (isset($this->request->get['delete_val']) && ($this->request->get['delete_val'] != '')) ? $this->request->get['delete_val']: '';
 
 		$basic_position_amount = $this->model_selleradvertise_advertise->getStoreOfferBasicPrice();
-		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validate_move_live()) {			
+
+		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validate_move_live()) {	
 			if(($this->request->post['from_date'] != '') && ($this->request->post['end_date'] != '') && ($this->request->post['position'] != '')){
 				$amount = $this->request->post['amount'];
 				$from_date = $this->request->post['from_date'];
@@ -2482,44 +2483,63 @@ class Controllersellerprofilesellerprofile extends Controller
 				$loc = $this->request->post['loc'];
 				$ad_order = $this->request->post['position'];				
 				$basic_amount_loc = '';
-				if($loc == 2) { $basic_amount_loc = $basic_position_amount['home_national']; }
-				if($loc == 3) { $basic_amount_loc = $basic_position_amount['home_state']; }
-				if($loc == 4) { $basic_amount_loc = $basic_position_amount['home_city']; }
-				if($loc == 5) { $basic_amount_loc = $basic_position_amount['home_local']; }
+
+				if($loc == 2) { 
+                    $basic_amount_loc = $basic_position_amount['home_national']; 
+                }
+
+				if($loc == 3) { 
+                    $basic_amount_loc = $basic_position_amount['home_state']; 
+                }
+
+				if($loc == 4) {
+                    $basic_amount_loc = $basic_position_amount['home_city']; 
+                }
+
+				if($loc == 5) { 
+                    $basic_amount_loc = $basic_position_amount['home_local']; 
+                }
+
 				if($loc == '2' || $loc == '3' || $loc == '4' || $loc == '5') {		
 					$km = (isset($this->request->post['km']) && ($this->request->post['km'] != '')) ? $this->request->post['km']: '';
+
 					$position_amt = $this->model_selleradvertise_advertise->getPostionAmount($from_date, $end_date, $loc, $ad_order, $km);
 										
-					if(count($position_amt) > 0){ 
+					if(count($position_amt) > 0) { 
 						foreach($position_amt as $key => $position_a) {
 							$value_filter[] = $position_a['price'];
 						}
+
 						if(count($value_filter) > 0) {
-							//$basic_position_amount = array('0'=>'500','1'=>'400','2'=>'300','3'=>'200');
 							$position_amount = array_diff($value_filter, $basic_position_amount);
-						//print_r($position_amount);exit;
 							$position_amount = array_unique($position_amount);
 							$value = array();
+
 							if(count($position_amount) > 0) {
 								if(count($position_amount)+2 == $ad_order) {
 									if($loc == '2') {
 										$value[0] = $basic_position_amount['home_national'];
 										
-									}if($loc == '3') {
+									}
+                                    if($loc == '3') {
 										$value[0] = $basic_position_amount['home_state'];
 										
-									}if($loc == '4') {
+									}
+                                    if($loc == '4') {
 										$value[0] = $basic_position_amount['home_city'];
 										
-									}if($loc == '5') {
+									}
+                                    if($loc == '5') {
 										$value[0] = $basic_position_amount['home_local'];
 									}
 								}
+
 								foreach($position_amount as $key => $position) {					
 									if(count($position_amount) == 1) { 
 										if(($key+1) == $ad_order) {
 											$value[0] = $position;
 										}
+
 										if(count($position_amount)+1 == $ad_order) {
 											$value[0] = $position;
 											if($loc == '2') {

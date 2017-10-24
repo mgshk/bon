@@ -220,7 +220,7 @@ if(adss)
 						<div id="home_top_show" style="display:none;">
 							<div id="withAltField" class="box"></div>
 							<label>Select date</label>
-							<!-- <input id="altField" name="top_banner_date" class="top_banner_dates form-control" type="text" read/> -->
+							<input id="hiddenaltField" name="top_banner_date" class="top_banner_dates form-control" type="hidden" />
 							<div id="altField"></div>
 							<input type="hidden" name="dates_for_hide" id="hide_date" />
 							<span class="text-dangers" id="error_top_banner_date"> </span>			 
@@ -235,7 +235,8 @@ if(adss)
 						<button class="advertise-btn_live" id="advertise-btn_lve" type="button">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Next&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>
 						<button class="advertise-btn" type="button" onClick="this.form.reset();" data-dismiss="modal" aria-hidden="true">&nbsp;&nbsp;&nbsp;Cancel&nbsp;&nbsp;&nbsp;</button>
 						<button class="advertise-btn reset" type="button" style="display:none;">Reset</button>
-						<span class="text-dangers" id="error_check"></span>
+						<div id="error_check" class="alert alert-danger" style="display:none;"></div>
+                  		<div id="liveSuccessMsg" class="alert alert-success" style="display:none;"></div>
 					</div>
 			    </form>
 		    </div>
@@ -344,6 +345,8 @@ if(adss)
     			var discount = $('input[name="loc"]:checked').data('cashBack');
     			var length = parseInt($('#altField').multiDatesPicker('getDates').length);
 
+    			$('#hiddenaltField').val($('#altField').multiDatesPicker('getDates'));
+
     			$('#display_total').text(length);
 
     			var total_price = length * parseInt(bannerBasicPrice['top_banner']);
@@ -394,15 +397,14 @@ if(adss)
 
 			var dt1 = $('#datetimepicker_start_'+advertise_id);
 			var start_date = dt1.datepicker('getDate');
-
+			
 			$('#error_loc').html('');
-
 			$('#basic_price').text(bannerBasicPrice[banner_name]);
 			$('#show_basic_price').show();
 			$('.position_local_visible').hide();
-
+			$('.text-dangers').hide();
 			$('.reset').trigger('click');
-			$('#actual_price').val(bannerBasicPrice[banner_name]);
+
 			$('.advertise-btn_live').attr('disabled', true);
 			//$('.advertise-btn_live').attr('hidden', true);
 			//$('.advertise-btn_live_dis').attr('hidden', false);
@@ -547,11 +549,21 @@ if(adss)
 			var banner_name = $('input[name="loc"]:checked').data('advertiseName');
 
 			$('#basic_price').text(bannerBasicPrice[banner_name]);
-			$('#actual_price').val(bannerBasicPrice[banner_name]);
+
+			var discount = $('input[name="loc"]:checked').data('cashBack');
+
+			if (discount == 0) {
+				$('#actual_price').val(bannerBasicPrice[banner_name]);
+			} else {
+				var discount_price = (discount / 100) * parseInt(bannerBasicPrice[banner_name]);
+				$('#actual_price').val(discount_price);
+			}
 		}, 1000);
 
 		$('.check_amount').on('change', function() {
-			
+			$('.text-dangers').hide();
+			$('#display_amount_1').hide();
+
 			if (this.value.length === 0)
 			    return;
 
@@ -610,7 +622,13 @@ if(adss)
 			    		}
 					} else {
 						$('#validation_txt').hide();
-						$('#actual_price').val(bannerBasicPrice[banner_name]);
+						var discount = $('input[name="loc"]:checked').data('cashBack');
+						if (discount == 0) {
+							$('#actual_price').val(bannerBasicPrice[banner_name]);
+						} else {
+							var discount_price = (discount / 100) * parseInt(bannerBasicPrice[banner_name]);
+							$('#actual_price').val(discount_price);
+						}
 					}
 				}
 			});
@@ -702,7 +720,8 @@ if(adss)
 	    			$('#actual_price').val(discount_price);
 	    		} else {
 	    			$('#display_amount_1').empty().hide();
-	    			$('#actual_price').val(bannerBasicPrice[banner_name]);
+	    			discount_price = (discount / 100) * parseInt(bannerBasicPrice[banner_name]);
+	    			$('#actual_price').val(discount_price);
 	    		}
     		}
     	});
@@ -721,9 +740,20 @@ if(adss)
 			dataType: 'json',
 			data: $("#advertise_move_live").serialize(),
 			success: function(json) { 
-				if (json['success']) {				
-					$('#myModal_adv').append(json['confirmForm']);
-					$('#payu_form').submit();
+				if (json['success']) {
+					var loc = $('input[name="loc"]:checked').val();
+					if (loc === '6') {
+						$('#liveSuccessMsg').text('<i class="fa fa-check-circle"></i> '+ json['success']).show();
+
+						setTimeout(function() {
+							$('#liveSuccessMsg').empty().hide();
+							$('#myModal_adv').modal('hide');
+						}, 3000);
+					} else {
+						$('#myModal_adv').append(json['confirmForm']);
+						$('#payu_form').submit();
+					}	
+
 					return false;
 				}
 
@@ -750,28 +780,28 @@ if(adss)
 				}
 
 				if(json['advertise_location']) {
-					$('#error_loc').html('<i class="fa fa-times" aria-hidden="true"></i><span>'+json['advertise_location']);
+					$('#error_loc').html('<i class="fa fa-times" aria-hidden="true"></i><span>'+json['advertise_location']).show();
 				}
 
 				if(json['from_date']) {
-					$('#error_from_date').html('<i class="fa fa-times" aria-hidden="true"></i><span>'+json['from_date']);
+					$('#error_from_date').html('<i class="fa fa-times" aria-hidden="true"></i><span>'+json['from_date']).show();
 				}
 
 				if(json['end_date']) {
-					$('#error_end_date').html('<i class="fa fa-times" aria-hidden="true"></i><span>'+json['end_date']);
+					$('#error_end_date').html('<i class="fa fa-times" aria-hidden="true"></i><span>'+json['end_date']).show();
 				}
 
 				if(json['amount']) {
-					$('#error_amount').html('<i class="fa fa-times" aria-hidden="true"></i><span>'+json['amount']);
+					$('#error_amount').html('<i class="fa fa-times" aria-hidden="true"></i><span>'+json['amount']).show();
 				}
 
 				if(json['position']) {
-					$('#error_position').html('<i class="fa fa-times" aria-hidden="true"></i><span>'+json['position']);
+					$('#error_position').html('<i class="fa fa-times" aria-hidden="true"></i><span>'+json['position']).show();
 				}
 
 				if(loc == '1') { 
 					if(json['top_banner_date']) {
-						$('#error_top_banner_date').html('<i class="fa fa-times" aria-hidden="true"></i><span>'+json['top_banner_date']);
+						$('#error_top_banner_date').html('<i class="fa fa-times" aria-hidden="true"></i><span>'+json['top_banner_date']).show();
 					} 
 				}
 			}
