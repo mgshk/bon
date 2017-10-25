@@ -2053,8 +2053,6 @@ class Controllersellerprofilesellerprofile extends Controller
         $results = $this->model_selleradvertise_advertise->getAdvertisesLive(($page - 1) * 10, 10);
         $days_left = '';
 
-		//print_r($results); die;
-
         foreach ($results as $result) {
             if (is_file(DIR_IMAGE.$result['offer_image'])) {
                 $image = $this->model_tool_image->resize($result['offer_image'], 993, 182);
@@ -2107,6 +2105,7 @@ class Controllersellerprofilesellerprofile extends Controller
                 'status' => $result['status'],
 				'position' => $result['position'],
 				'price' => $result['price'],
+                'discount_price' => $result['discount_price'],
 				'km' => $result['km'],
 				'days_left' => $days_left,
 				'advertise_position' => $advertise_position,
