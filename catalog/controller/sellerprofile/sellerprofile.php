@@ -2051,6 +2051,7 @@ class Controllersellerprofilesellerprofile extends Controller
 
 
         $results = $this->model_selleradvertise_advertise->getAdvertisesLive(($page - 1) * 10, 10);
+        $days_left = '';
 
 		//print_r($results); die;
 
@@ -2083,19 +2084,17 @@ class Controllersellerprofilesellerprofile extends Controller
 			if($result['position'] != 1 && $result['position'] != 6){
 				//Convert to date
 				$datestr=$result['end_date'];//Your date
-				$date=strtotime($datestr);//Converted to a PHP date (a second count)
+				$date = strtotime($datestr);//Converted to a PHP date (a second count)
 
 				//Calculate difference
 				$diff=$date-time();//time returns current time in seconds
-				$days_left=floor($diff/(60*60*24));//seconds/minute*minutes/hour*hours/day)
+				$days_left = floor($diff/(60*60*24));//seconds/minute*minutes/hour*hours/day)
 				//$hours=round(($diff-$days*60*60*24)/(60*60));
 			}
 
 			if($result['position'] == 1) {
 				$days_left = $this->model_sellerprofile_sellerprofile->getHomeBanner_days($result['advertise_id']);
 			}
- 
-			//print_r($advertise_position); die;
             
             $data['advetises'][] = array(
                 'advertise_id' => $result['advertise_id'],
@@ -2138,7 +2137,7 @@ class Controllersellerprofilesellerprofile extends Controller
 
         $data['results'] = sprintf($this->language->get('text_pagination'), ($advertise_total) ? (($page - 1) * 10) + 1 : 0, ((($page - 1) * 10) > ($advertise_total - 10)) ? $advertise_total : ((($page - 1) * 10) + 10), $advertise_total, ceil($advertise_total / 10));
 
-            $this->response->setOutput($this->load->view('sellerprofile/sellerprofile_selleradvertise_live', $data));
+        $this->response->setOutput($this->load->view('sellerprofile/sellerprofile_selleradvertise_live', $data));
 
     }
 
