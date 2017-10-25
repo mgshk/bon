@@ -1,15 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.0
+-- version 4.6.5.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 16, 2017 at 05:40 PM
--- Server version: 10.1.25-MariaDB
--- PHP Version: 5.6.31
+-- Generation Time: Oct 25, 2017 at 05:38 PM
+-- Server version: 10.1.21-MariaDB
+-- PHP Version: 5.6.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -50,21 +48,7 @@ CREATE TABLE `oc_address` (
 --
 
 INSERT INTO `oc_address` (`address_id`, `customer_id`, `firstname`, `lastname`, `company`, `address_1`, `address_2`, `city`, `postcode`, `country_id`, `zone_id`, `custom_field`, `security_select`, `security_answer`) VALUES
-(1, 1, 'Magesh', 'K', '', 'Siva Nagar, Cuddalore', '', '', '', 99, 1503, '', 1, 'joseph'),
-(2, 2, 'Rave', 'R ', '', 'Test address', '', '', '', 99, 1503, '', 4, 'kadhal kanmani'),
-(3, 3, '', '', '', '', '', '', '', 99, 1503, '', 2, 'qwer'),
-(4, 4, 'Magesh', 'K', '', '5,Siva Nagar', 'Vandipalayam Road', 'Cuddalore', '607004', 99, 1503, '', 2, 'qwer'),
-(5, 5, 'Magesh', 'K', '', 'Siva Nagar, Cuddalore', '', 'Cuddalore', '607004', 99, 1503, '', 1, '1234'),
-(6, 6, '', '', '', '', '', '', '', 99, 1503, '', 1, 'sis'),
-(7, 7, '', '', '', '', '', '', '', 99, 1503, '', 1, 'sis'),
-(8, 8, '', '', '', '', '', '', '', 99, 1503, '', 1, 'sis'),
-(9, 9, '', '', '', '', '', '', '', 99, 1503, '', 1, 'sis'),
-(10, 10, '', '', '', '', '', '', '', 99, 1503, '', 1, 'sis'),
-(11, 11, '', '', '', '', '', '', '', 99, 1503, '', 1, 'sis'),
-(12, 12, '', '', '', '', '', '', '', 99, 1503, '', 1, 'sis'),
-(13, 13, '', '', '', '', '', '', '', 99, 1503, '', 1, 'sis'),
-(14, 14, '', '', '', '', '', '', '', 99, 1503, '', 1, 'sis'),
-(15, 15, '', '', '', '', '', '', '', 99, 1503, '', 0, '');
+(1, 1, 'Magesh', 'K', '', 'fsdfsdf', '', 'Cuddalore', '604700', 99, 1503, '', 1, 'qwert');
 
 -- --------------------------------------------------------
 
@@ -10659,8 +10643,7 @@ CREATE TABLE `oc_category_to_seller` (
 --
 
 INSERT INTO `oc_category_to_seller` (`category_id`, `seller_id`, `status`) VALUES
-(2, 2, 1),
-(27, 2, 1);
+(2, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -10673,13 +10656,6 @@ CREATE TABLE `oc_category_to_seller_group` (
   `seller_group_id` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
---
--- Dumping data for table `oc_category_to_seller_group`
---
-
-INSERT INTO `oc_category_to_seller_group` (`category_id`, `seller_group_id`) VALUES
-(2, 1);
-
 -- --------------------------------------------------------
 
 --
@@ -10690,37 +10666,6 @@ CREATE TABLE `oc_category_to_store` (
   `category_id` int(11) NOT NULL,
   `store_id` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `oc_category_to_store`
---
-
-INSERT INTO `oc_category_to_store` (`category_id`, `store_id`) VALUES
-(1, 0),
-(2, 0),
-(3, 0),
-(4, 0),
-(5, 0),
-(6, 0),
-(7, 0),
-(8, 0),
-(9, 0),
-(10, 0),
-(11, 0),
-(12, 0),
-(13, 0),
-(14, 0),
-(15, 0),
-(16, 0),
-(17, 0),
-(18, 0),
-(19, 0),
-(20, 0),
-(21, 0),
-(22, 0),
-(23, 0),
-(24, 0),
-(25, 0);
 
 -- --------------------------------------------------------
 
@@ -11720,10 +11665,10 @@ INSERT INTO `oc_cities` (`city_id`, `city_name`, `city_state`, `status`) VALUES
 (1004, 'Talcher', 'Orissa', 1),
 (1005, 'Titlagarh', 'Orissa', 1),
 (1006, 'Umarkote', 'Orissa', 1),
-(1007, 'Karaikal', 'Pondicherry', 1),
-(1008, 'Mahe', 'Pondicherry', 1),
-(1009, 'Pondicherry', 'Pondicherry', 1),
-(1010, 'Yanam', 'Pondicherry', 1),
+(1007, 'Karaikal', 'Puducherry', 1),
+(1008, 'Mahe', 'Puducherry', 1),
+(1009, 'Pondicherry', 'Puducherry', 1),
+(1010, 'Yanam', 'Puducherry', 1),
 (1011, 'Ahmedgarh', 'Punjab', 1),
 (1012, 'Amritsar', 'Punjab', 1),
 (1013, 'Barnala', 'Punjab', 1),
@@ -12692,9 +12637,9 @@ CREATE TABLE `oc_currency` (
 --
 
 INSERT INTO `oc_currency` (`currency_id`, `title`, `code`, `symbol_left`, `symbol_right`, `decimal_place`, `value`, `status`, `date_modified`) VALUES
-(1, 'Pound Sterling', 'GBP', '£', '', '2', 0.75209999, 1, '2017-10-16 02:25:16'),
-(2, 'US Dollar', 'USD', '$', '', '2', 1.00000000, 1, '2017-10-16 11:31:11'),
-(3, 'Euro', 'EUR', '', '€', '2', 0.84590000, 1, '2017-10-16 02:25:16');
+(1, 'Pound Sterling', 'GBP', '£', '', '2', 0.75809997, 1, '2017-10-20 18:57:43'),
+(2, 'US Dollar', 'USD', '$', '', '2', 1.00000000, 1, '2017-10-21 13:23:24'),
+(3, 'Euro', 'EUR', '', '€', '2', 0.84869999, 1, '2017-10-20 18:57:43');
 
 -- --------------------------------------------------------
 
@@ -12775,10 +12720,7 @@ CREATE TABLE `oc_customer` (
 --
 
 INSERT INTO `oc_customer` (`customer_id`, `customer_group_id`, `store_id`, `language_id`, `firstname`, `lastname`, `email`, `telephone`, `fax`, `password`, `salt`, `cart`, `wishlist`, `newsletter`, `address_id`, `seller_group_id`, `seller_approved`, `seller_verified`, `seller_reject_reason`, `seller_changegroup`, `seller_date_added`, `referred_by`, `nickname`, `lat`, `lng`, `instagram`, `googleplus`, `twitter`, `facebook`, `website`, `description`, `image`, `owner_name`, `store_ll_num`, `store_mobile_num`, `store_email`, `address_1`, `address_2`, `city`, `postcode`, `country_id`, `zone_id`, `product_status`, `banner`, `tin`, `pan`, `seller_category`, `bankaccount_id`, `custom_field`, `ip`, `status`, `approved`, `active`, `safe`, `token`, `code`, `date_added`, `seller_counter`, `feature_store_amount`, `feature_store_start`, `feature_store_end`, `delivery_type`, `allow_products`, `allow_cart`, `seller_qr`) VALUES
-(2, 1, 0, 1, 'Rave', 'R ', '1507@gmail.com', '8939615673', '', '15999367958eeb4f0f9997264204496758542df2', '54rKv7lqb', NULL, NULL, 0, 2, 1, 1, '', 'rr', 0, '2017-10-16 17:14:53', '-', 'sdfs', '12.924118329912382', ' 80.15055543613289', '22', '3', '4', '555', '6', 'sds', '', 'fmkkpo', '04142-236828', '8939615673', '1507@gmail.comff', '5, Siva Nagar', '', 'Cuddalore', '607004', 99, 1503, NULL, 'catalog/seller_images/2/BoN Member1.jpg', '14778', '752717', '[{\"category\":\"27\",\"sub_categories\":[\"28\",\"34\"]},{\"category\":\"2\",\"sub_categories\":[\"6\"]}]', 0, '', '::1', '1', 1, 1, 0, '', '438621', '2017-09-27 23:03:43', 6, 0, '0000-00-00', '0000-00-00', 3, '1', '0', 'view/image/qr_images/buyonear.in_2'),
-(5, 1, 0, 1, 'Magesh', 'K', 'mgshk.1507@gmail.com', '9791729266', '', '179ea65f6997f99ebb11f478d3e3321069cd8856', 'tQzu5kaOZ', NULL, NULL, 0, 5, 1, 0, '0', '', 0, '0000-00-00 00:00:00', NULL, NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', '', '', 'Siva Nagar', '', 'Cuddaloree', '607004', 99, 1489, NULL, NULL, '', '', '', 0, '', '::1', '1', 1, 1, 0, '', '', '2017-10-08 14:11:24', 0, 0, '0000-00-00', '0000-00-00', 0, '1', '0', NULL),
-(6, 1, 0, 1, '', '', 'ravee.raga@gmail.com', '9962061826', '', '1bf27d63adcf8e25a29411e42a6d73e6369b6609', 'gOeIeAPWV', NULL, NULL, 0, 6, 1, 0, '0', '', 0, '0000-00-00 00:00:00', NULL, NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', '', '', '', NULL, '', '', 0, 0, NULL, NULL, '', '', '', 0, '', '::1', '1', 1, 1, 0, '', '', '2017-10-11 11:08:14', 0, 0, '0000-00-00', '0000-00-00', 0, '1', '0', NULL),
-(15, 1, 0, 0, '', '', '', '8610738714', '', '', '', NULL, NULL, 0, 15, 1, 0, '0', '', 0, '0000-00-00 00:00:00', NULL, NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', '', '', '', NULL, '', '', 0, 0, NULL, NULL, '', '', '', 0, '', '::1', '0', 1, 1, 0, '', '877915', '2017-10-16 18:51:49', 0, 0, '0000-00-00', '0000-00-00', 0, '1', '0', NULL);
+(1, 1, 0, 1, 'Magesh', 'K', 'mgshk.1507@gmail.com', '9791729266', '', '611ef047ac364966e55c0b12c0ed56ada67fccb4', 'h5uTNZsc4', NULL, NULL, 0, 1, 1, 1, '1', '', 0, '2017-10-21 16:56:00', '-', 'Test Store', '11.742823366041616', ' 79.75933915805672', NULL, NULL, NULL, NULL, NULL, '', '', '', '', '9791729266', 'mgshk.1507@gmail.com', 'fsdfsdf', '', 'Cuddalore', '604700', 99, 1503, NULL, 'catalog/seller_images/1/taj image.jpg', '', '', '[{\"category\":\"2\",\"sub_categories\":[\"3\"]}]', 0, '', '::1', '1', 1, 1, 0, '', '218573', '2017-10-21 15:11:59', 0, 0, '0000-00-00', '0000-00-00', 1, '1', '0', 'view/image/qr_images/buyonear.in_1');
 
 -- --------------------------------------------------------
 
@@ -12800,98 +12742,22 @@ CREATE TABLE `oc_customer_activity` (
 --
 
 INSERT INTO `oc_customer_activity` (`customer_activity_id`, `customer_id`, `key`, `data`, `ip`, `date_added`) VALUES
-(1, 1, 'login', '{\"customer_id\":\"1\",\"name\":\"Magesh K\"}', '::1', '2017-09-16 23:00:03'),
-(2, 1, 'login', '{\"customer_id\":\"1\",\"name\":\"Magesh K\"}', '::1', '2017-09-16 23:51:00'),
-(3, 1, 'login', '{\"customer_id\":\"1\",\"name\":\"Magesh K\"}', '::1', '2017-09-16 23:58:49'),
-(4, 1, 'advertise_add', '{\"customer_id\":\"1\",\"name\":\"Magesh K\"}', '::1', '2017-09-17 15:26:18'),
-(5, 1, 'advertise_add', '{\"customer_id\":\"1\",\"name\":\"Magesh K\"}', '::1', '2017-09-17 19:33:48'),
-(6, 1, 'advertise_add', '{\"customer_id\":\"1\",\"name\":\"Magesh K\"}', '::1', '2017-09-17 19:38:52'),
-(7, 1, 'advertise_edit', '{\"customer_id\":\"1\",\"name\":\"Magesh K\"}', '::1', '2017-09-17 20:17:42'),
-(8, 1, 'advertise_add', '{\"customer_id\":\"1\",\"name\":\"Magesh K\"}', '::1', '2017-09-17 20:30:24'),
-(9, 1, 'advertise_edit', '{\"customer_id\":\"1\",\"name\":\"Magesh K\"}', '::1', '2017-09-17 20:30:51'),
-(10, 1, 'advertise_edit', '{\"customer_id\":\"1\",\"name\":\"Magesh K\"}', '::1', '2017-09-17 20:31:12'),
-(11, 1, 'advertise_edit', '{\"customer_id\":\"1\",\"name\":\"Magesh K\"}', '::1', '2017-09-17 20:31:42'),
-(12, 1, 'advertise_add', '{\"customer_id\":\"1\",\"name\":\"Magesh K\"}', '::1', '2017-09-17 20:49:44'),
-(13, 1, 'advertise_edit', '{\"customer_id\":\"1\",\"name\":\"Magesh K\"}', '::1', '2017-09-17 20:51:49'),
-(14, 1, 'advertise_add', '{\"customer_id\":\"1\",\"name\":\"Magesh K\"}', '::1', '2017-09-17 20:54:29'),
-(15, 1, 'advertise_edit', '{\"customer_id\":\"1\",\"name\":\"Magesh K\"}', '::1', '2017-09-17 21:00:41'),
-(16, 1, 'advertise_edit', '{\"customer_id\":\"1\",\"name\":\"Magesh K\"}', '::1', '2017-09-17 21:07:10'),
-(17, 1, 'login', '{\"customer_id\":\"1\",\"name\":\"Magesh K\"}', '::1', '2017-09-19 20:17:57'),
-(18, 1, 'login', '{\"customer_id\":\"1\",\"name\":\"Magesh K\"}', '::1', '2017-09-20 20:40:21'),
-(19, 1, 'advertise_add', '{\"customer_id\":\"1\",\"name\":\"Magesh K\"}', '::1', '2017-09-20 20:43:58'),
-(20, 1, 'login', '{\"customer_id\":\"1\",\"name\":\"Magesh K\"}', '::1', '2017-09-21 20:27:52'),
-(21, 1, 'login', '{\"customer_id\":\"1\",\"name\":\"Magesh K\"}', '::1', '2017-09-21 23:08:48'),
-(22, 1, 'login', '{\"customer_id\":\"1\",\"name\":\"Magesh K\"}', '::1', '2017-09-25 21:08:02'),
-(23, 1, 'login', '{\"customer_id\":\"1\",\"name\":\"Magesh K\"}', '::1', '2017-09-26 20:26:11'),
-(24, 1, 'login', '{\"customer_id\":\"1\",\"name\":\"Magesh K\"}', '::1', '2017-09-27 21:03:33'),
-(25, 2, 'login', '{\"customer_id\":\"2\",\"name\":\"Rave R \"}', '::1', '2017-09-27 23:25:35'),
-(26, 2, 'login', '{\"customer_id\":\"2\",\"name\":\"Rave R \"}', '::1', '2017-09-28 07:24:03'),
-(27, 2, 'login', '{\"customer_id\":\"2\",\"name\":\"Rave R \"}', '::1', '2017-09-28 07:32:23'),
-(28, 2, 'login', '{\"customer_id\":\"2\",\"name\":\"Rave R \"}', '::1', '2017-09-28 07:32:37'),
-(29, 2, 'advertise_add', '{\"customer_id\":\"2\",\"name\":\"Rave R \"}', '::1', '2017-09-28 07:41:12'),
-(30, 1, 'login', '{\"customer_id\":\"1\",\"name\":\"Magesh K\"}', '::1', '2017-09-28 07:58:44'),
-(31, 1, 'login', '{\"customer_id\":\"1\",\"name\":\"Magesh K\"}', '::1', '2017-09-30 19:09:50'),
-(32, 1, 'login', '{\"customer_id\":\"1\",\"name\":\"Magesh K\"}', '::1', '2017-10-02 11:03:41'),
-(33, 2, 'login', '{\"customer_id\":\"2\",\"name\":\"Rave R \"}', '::1', '2017-10-02 15:03:27'),
-(34, 1, 'login', '{\"customer_id\":\"1\",\"name\":\"Magesh K\"}', '::1', '2017-10-04 21:55:46'),
-(35, 1, 'advertise_add', '{\"customer_id\":\"1\",\"name\":\"Magesh K\"}', '::1', '2017-10-04 21:57:04'),
-(36, 2, 'login', '{\"customer_id\":\"2\",\"name\":\"Rave R \"}', '::1', '2017-10-05 20:51:14'),
-(37, 1, 'login', '{\"customer_id\":\"1\",\"name\":\"Magesh K\"}', '::1', '2017-10-05 21:34:19'),
-(38, 2, 'login', '{\"customer_id\":\"2\",\"name\":\"Rave R \"}', '::1', '2017-10-05 21:56:42'),
-(39, 2, 'login', '{\"customer_id\":\"2\",\"name\":\"Rave R \"}', '::1', '2017-10-07 22:55:00'),
-(40, 2, 'login', '{\"customer_id\":\"2\",\"name\":\"Rave R \"}', '::1', '2017-10-07 23:02:13'),
-(41, 3, 'login', '{\"customer_id\":\"3\",\"name\":\" \"}', '::1', '2017-10-08 10:38:20'),
-(42, 4, 'login', '{\"customer_id\":\"4\",\"name\":\"Magesh K\"}', '::1', '2017-10-08 11:51:54'),
-(43, 4, 'login', '{\"customer_id\":\"4\",\"name\":\"Magesh K\"}', '::1', '2017-10-08 12:10:45'),
-(44, 2, 'login', '{\"customer_id\":\"2\",\"name\":\"Rave R \"}', '::1', '2017-10-08 12:10:58'),
-(45, 2, 'advertise_add', '{\"customer_id\":\"2\",\"name\":\"Rave R \"}', '::1', '2017-10-08 12:11:49'),
-(46, 2, 'advertise_edit', '{\"customer_id\":\"2\",\"name\":\"Rave R \"}', '::1', '2017-10-08 12:16:44'),
-(47, 2, 'login', '{\"customer_id\":\"2\",\"name\":\"Rave R \"}', '::1', '2017-10-08 13:50:41'),
-(48, 5, 'login', '{\"customer_id\":\"5\",\"name\":\"Magesh K\"}', '::1', '2017-10-08 14:12:39'),
-(49, 5, 'login', '{\"customer_id\":\"5\",\"name\":\"Magesh K\"}', '::1', '2017-10-08 15:58:51'),
-(50, 5, 'login', '{\"customer_id\":\"5\",\"name\":\"Magesh K\"}', '::1', '2017-10-08 21:45:24'),
-(51, 5, 'login', '{\"customer_id\":\"5\",\"name\":\"Magesh K\"}', '::1', '2017-10-08 21:45:50'),
-(52, 2, 'login', '{\"customer_id\":\"2\",\"name\":\"Rave R \"}', '::1', '2017-10-08 21:48:44'),
-(53, 2, 'login', '{\"customer_id\":\"2\",\"name\":\"Rave R \"}', '::1', '2017-10-09 21:15:06'),
-(54, 5, 'login', '{\"customer_id\":\"5\",\"name\":\"Magesh K\"}', '::1', '2017-10-10 20:56:16'),
-(55, 2, 'login', '{\"customer_id\":\"2\",\"name\":\"Rave R \"}', '::1', '2017-10-10 23:31:39'),
-(56, 6, 'login', '{\"customer_id\":\"6\",\"name\":\" \"}', '::1', '2017-10-11 11:11:45'),
-(57, 2, 'login', '{\"customer_id\":\"2\",\"name\":\"Rave R \"}', '::1', '2017-10-11 12:47:09'),
-(58, 2, 'login', '{\"customer_id\":\"2\",\"name\":\"Rave R \"}', '::1', '2017-10-11 20:45:57'),
-(59, 2, 'advertise_add', '{\"customer_id\":\"2\",\"name\":\"Rave R \"}', '::1', '2017-10-11 22:53:43'),
-(60, 2, 'advertise_edit', '{\"customer_id\":\"2\",\"name\":\"Rave R \"}', '::1', '2017-10-11 22:54:29'),
-(61, 2, 'advertise_edit', '{\"customer_id\":\"2\",\"name\":\"Rave R \"}', '::1', '2017-10-11 23:03:47'),
-(62, 2, 'advertise_edit', '{\"customer_id\":\"2\",\"name\":\"Rave R \"}', '::1', '2017-10-11 23:09:11'),
-(63, 2, 'login', '{\"customer_id\":\"2\",\"name\":\"Rave R \"}', '::1', '2017-10-12 07:19:31'),
-(64, 2, 'login', '{\"customer_id\":\"2\",\"name\":\"Rave R \"}', '::1', '2017-10-12 08:16:21'),
-(65, 7, 'login', '{\"customer_id\":\"7\",\"name\":\" \"}', '::1', '2017-10-12 18:53:44'),
-(66, 2, 'login', '{\"customer_id\":\"2\",\"name\":\"Rave R \"}', '::1', '2017-10-12 23:38:12'),
-(67, 2, 'login', '{\"customer_id\":\"2\",\"name\":\"Rave R \"}', '::1', '2017-10-13 07:17:56'),
-(68, 2, 'login', '{\"customer_id\":\"2\",\"name\":\"Rave R \"}', '::1', '2017-10-13 07:18:19'),
-(69, 2, 'login', '{\"customer_id\":\"2\",\"name\":\"Rave R \"}', '::1', '2017-10-13 12:23:28'),
-(70, 2, 'advertise_add', '{\"customer_id\":\"2\",\"name\":\"Rave R \"}', '::1', '2017-10-13 13:44:08'),
-(71, 2, 'advertise_add', '{\"customer_id\":\"2\",\"name\":\"Rave R \"}', '::1', '2017-10-13 13:56:23'),
-(72, 2, 'login', '{\"customer_id\":\"2\",\"name\":\"Rave R \"}', '::1', '2017-10-13 16:00:40'),
-(73, 2, 'advertise_edit', '{\"customer_id\":\"2\",\"name\":\"Rave R \"}', '::1', '2017-10-13 16:40:39'),
-(74, 2, 'login', '{\"customer_id\":\"2\",\"name\":\"Rave R \"}', '::1', '2017-10-13 17:38:04'),
-(75, 2, 'login', '{\"customer_id\":\"2\",\"name\":\"Rave R \"}', '::1', '2017-10-14 06:53:56'),
-(76, 2, 'login', '{\"customer_id\":\"2\",\"name\":\"Rave R \"}', '::1', '2017-10-16 05:53:47'),
-(77, 2, 'login', '{\"customer_id\":\"2\",\"name\":\"Rave R \"}', '::1', '2017-10-16 06:49:24'),
-(78, 2, 'login', '{\"customer_id\":\"2\",\"name\":\"Rave R \"}', '::1', '2017-10-16 07:01:10'),
-(79, 2, 'login', '{\"customer_id\":\"2\",\"name\":\"Rave R \"}', '::1', '2017-10-16 07:02:13'),
-(80, 2, 'login', '{\"customer_id\":\"2\",\"name\":\"Rave R \"}', '::1', '2017-10-16 07:07:44'),
-(81, 2, 'login', '{\"customer_id\":\"2\",\"name\":\"Rave R \"}', '::1', '2017-10-16 07:12:37'),
-(82, 2, 'login', '{\"customer_id\":\"2\",\"name\":\"Rave R \"}', '::1', '2017-10-16 07:14:53'),
-(83, 2, 'login', '{\"customer_id\":\"2\",\"name\":\"Rave R \"}', '::1', '2017-10-16 07:15:34'),
-(84, 2, 'login', '{\"customer_id\":\"2\",\"name\":\"Rave R \"}', '::1', '2017-10-16 07:17:55'),
-(85, 2, 'login', '{\"customer_id\":\"2\",\"name\":\"Rave R \"}', '::1', '2017-10-16 07:27:20'),
-(86, 2, 'login', '{\"customer_id\":\"2\",\"name\":\"Rave R \"}', '::1', '2017-10-16 07:27:50'),
-(87, 2, 'login', '{\"customer_id\":\"2\",\"name\":\"Rave R \"}', '::1', '2017-10-16 08:51:44'),
-(88, 2, 'login', '{\"customer_id\":\"2\",\"name\":\"Rave R \"}', '::1', '2017-10-16 18:26:09'),
-(89, 2, 'password', '{\"customer_id\":\"2\",\"name\":\"Rave R \"}', '::1', '2017-10-16 18:27:23'),
-(90, 2, 'login', '{\"customer_id\":\"2\",\"name\":\"Rave R \"}', '::1', '2017-10-16 18:27:54'),
-(91, 2, 'login', '{\"customer_id\":\"2\",\"name\":\"Rave R \"}', '::1', '2017-10-16 19:36:38'),
-(92, 2, 'product_add', '{\"customer_id\":\"2\",\"name\":\"Rave R \"}', '::1', '2017-10-16 19:49:31');
+(1, 1, 'login', '{\"customer_id\":\"1\",\"name\":\"Magesh K\"}', '::1', '2017-10-21 00:06:53'),
+(2, 1, 'login', '{\"customer_id\":\"1\",\"name\":\"Magesh K\"}', '::1', '2017-10-21 00:28:25'),
+(3, 1, 'login', '{\"customer_id\":\"1\",\"name\":\"Magesh K\"}', '::1', '2017-10-21 00:29:07'),
+(4, 1, 'login', '{\"customer_id\":\"1\",\"name\":\"Magesh K\"}', '::1', '2017-10-21 12:18:24'),
+(5, 1, 'login', '{\"customer_id\":\"1\",\"name\":\"Magesh K\"}', '::1', '2017-10-21 12:21:09'),
+(6, 1, 'login', '{\"customer_id\":\"1\",\"name\":\"Magesh K\"}', '::1', '2017-10-21 12:25:37'),
+(7, 1, 'login', '{\"customer_id\":\"1\",\"name\":\"Magesh K\"}', '::1', '2017-10-21 15:06:26'),
+(8, 1, 'login', '{\"customer_id\":\"1\",\"name\":\"Magesh K\"}', '::1', '2017-10-21 15:06:43'),
+(9, 1, 'login', '{\"customer_id\":\"1\",\"name\":\"Magesh K\"}', '::1', '2017-10-21 15:43:52'),
+(10, 1, 'login', '{\"customer_id\":\"1\",\"name\":\"Magesh K\"}', '::1', '2017-10-21 15:44:23'),
+(11, 1, 'login', '{\"customer_id\":\"1\",\"name\":\"Magesh K\"}', '::1', '2017-10-21 15:52:58'),
+(12, 1, 'login', '{\"customer_id\":\"1\",\"name\":\"Magesh K\"}', '::1', '2017-10-21 15:59:45'),
+(13, 1, 'advertise_add', '{\"customer_id\":\"1\",\"name\":\"Magesh K\"}', '::1', '2017-10-21 16:56:32'),
+(14, 1, 'advertise_add', '{\"customer_id\":\"1\",\"name\":\"Magesh K\"}', '::1', '2017-10-21 16:57:14'),
+(15, 1, 'login', '{\"customer_id\":\"1\",\"name\":\"Magesh K\"}', '::1', '2017-10-24 21:44:24'),
+(16, 1, 'login', '{\"customer_id\":\"1\",\"name\":\"Magesh K\"}', '::1', '2017-10-25 18:05:40');
 
 -- --------------------------------------------------------
 
@@ -12952,60 +12818,8 @@ CREATE TABLE `oc_customer_history` (
 --
 
 INSERT INTO `oc_customer_history` (`customer_history_id`, `customer_id`, `comment`, `date_added`) VALUES
-(1, 1, 'Your Request Is Accepted ', '2017-09-16 23:09:14'),
-(2, 1, 'Your Request Is Verified ', '2017-09-21 23:10:09'),
-(3, 2, 'Your Request Is Accepted ', '2017-09-28 07:26:23'),
-(4, 2, 'Your Request Is Accepted ', '2017-09-28 07:26:39'),
-(5, 2, 'Your Request Is Verified ', '2017-09-28 07:27:05'),
-(6, 2, 'Your Request Is Accepted ', '2017-09-28 07:27:09'),
-(7, 2, 'Your Request Is Accepted ', '2017-09-28 07:27:11'),
-(8, 2, 'Your Request Is Accepted ', '2017-09-28 07:27:27'),
-(9, 2, 'Your Request Is Accepted ', '2017-10-05 21:31:35'),
-(10, 2, 'Your Request Is Verified ', '2017-10-05 21:31:40'),
-(11, 2, 'Your Request Is Accepted ', '2017-10-05 21:32:02'),
-(12, 2, 'Your Request Is Accepted ', '2017-10-05 21:32:14'),
-(13, 1, 'Your Seller Acount Is Disapproved', '2017-10-05 21:41:57'),
-(14, 1, 'Your Request Is Accepted ', '2017-10-05 21:42:38'),
-(15, 1, 'Your Request Is Accepted ', '2017-10-05 21:59:44'),
-(16, 1, 'Your Request Is Accepted ', '2017-10-05 22:01:01'),
-(17, 1, 'Your Request Is Accepted ', '2017-10-05 22:02:36'),
-(18, 1, 'Your Request Is Accepted ', '2017-10-05 22:03:12'),
-(19, 1, 'Your Request Is Accepted ', '2017-10-05 22:03:44'),
-(20, 1, 'Your Request Is Accepted ', '2017-10-05 22:03:51'),
-(21, 1, 'Your Request Is Accepted ', '2017-10-05 22:04:31'),
-(22, 1, 'Your Request Is Accepted ', '2017-10-05 22:08:48'),
-(23, 1, 'Your Request Is Accepted ', '2017-10-05 22:09:15'),
-(24, 1, 'Your Request Is Accepted ', '2017-10-05 22:11:26'),
-(25, 1, 'Your Request Is Accepted ', '2017-10-05 22:12:21'),
-(26, 1, 'Your Request Is Accepted ', '2017-10-05 22:12:58'),
-(27, 1, 'Your Seller Acount Is Disapproved', '2017-10-05 22:15:16'),
-(28, 1, 'Your Request Is Accepted ', '2017-10-05 22:15:21'),
-(29, 2, 'Your Request Is Accepted ', '2017-10-11 16:15:34'),
-(30, 2, 'Your Request Is Accepted ', '2017-10-11 16:33:01'),
-(31, 2, 'Your Request Is Accepted ', '2017-10-11 16:43:47'),
-(32, 2, 'Your Seller Acount Is Disapproved', '2017-10-11 16:47:18'),
-(33, 2, 'Your Request Is Accepted ', '2017-10-11 16:52:45'),
-(34, 2, 'Your Request Is Accepted ', '2017-10-11 17:15:00'),
-(35, 2, 'Your Request Is Accepted ', '2017-10-11 17:43:28'),
-(36, 2, 'Your Request Is Accepted ', '2017-10-11 17:51:35'),
-(37, 2, 'Your Request Is Accepted ', '2017-10-11 19:01:20'),
-(38, 2, 'Your Request Is Accepted ', '2017-10-11 21:11:05'),
-(39, 2, 'Your Request Is Accepted ', '2017-10-12 08:16:54'),
-(40, 2, 'Your Request Is Accepted ', '2017-10-12 09:27:28'),
-(41, 2, 'Your Request Is Accepted ', '2017-10-12 10:55:26'),
-(42, 2, 'Your Request Is Accepted ', '2017-10-12 10:56:12'),
-(43, 2, 'Your Seller Acount Is Disapproved', '2017-10-12 23:39:04'),
-(44, 2, 'Your Request Is Accepted ', '2017-10-13 07:19:37'),
-(45, 2, 'Your Request Is Accepted ', '2017-10-13 07:35:10'),
-(46, 2, 'Your Request Is Accepted ', '2017-10-13 07:35:52'),
-(47, 2, 'Your Request Is Accepted ', '2017-10-13 07:41:11'),
-(48, 2, 'Your Seller Acount Is Disapproved', '2017-10-13 07:46:46'),
-(49, 2, 'Your Request Is Accepted ', '2017-10-13 08:53:16'),
-(50, 2, 'Your Request Is Accepted ', '2017-10-13 09:05:27'),
-(51, 2, 'Your Seller Acount Is Disapproved', '2017-10-13 11:17:23'),
-(52, 2, 'Your Request Is Accepted ', '2017-10-13 11:38:13'),
-(53, 2, 'Your Seller Acount Is Disapproved', '2017-10-16 05:55:45'),
-(54, 2, 'Your Request Is Accepted ', '2017-10-16 17:14:52');
+(1, 1, 'Store/Entity is approved', '2017-10-21 16:55:42'),
+(2, 1, 'Store/Entity is verified ', '2017-10-21 16:55:59');
 
 -- --------------------------------------------------------
 
@@ -13025,13 +12839,7 @@ CREATE TABLE `oc_customer_ip` (
 --
 
 INSERT INTO `oc_customer_ip` (`customer_ip_id`, `customer_id`, `ip`, `date_added`) VALUES
-(1, 1, '::1', '2017-09-16 23:00:03'),
-(2, 2, '::1', '2017-09-27 23:25:35'),
-(3, 3, '::1', '2017-10-08 10:38:20'),
-(4, 4, '::1', '2017-10-08 11:51:54'),
-(5, 5, '::1', '2017-10-08 14:12:39'),
-(6, 6, '::1', '2017-10-11 11:11:52'),
-(7, 7, '::1', '2017-10-12 18:53:45');
+(1, 1, '::1', '2017-10-21 00:06:53');
 
 -- --------------------------------------------------------
 
@@ -13067,7 +12875,7 @@ CREATE TABLE `oc_customer_online` (
 --
 
 INSERT INTO `oc_customer_online` (`ip`, `customer_id`, `url`, `referer`, `date_added`) VALUES
-('::1', 2, 'http://localhost/bon/index.php?route=sellerproduct/product', 'http://localhost/bon/index.php?route=sellerproduct/product/add', '2017-10-16 16:19:32');
+('::1', 1, 'http://localhost/bon/index.php?route=sellerprofile/sellerprofile/selleradvertisewallet&amp;seller_id=1', 'http://localhost/bon/index.php?route=sellerprofile/sellerprofile&amp;tab_section=store_detail', '2017-10-25 17:31:29');
 
 -- --------------------------------------------------------
 
@@ -13424,6 +13232,14 @@ CREATE TABLE `oc_home_top_banner_date` (
   `store_offer_advertise_id` int(11) DEFAULT NULL,
   `date` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `oc_home_top_banner_date`
+--
+
+INSERT INTO `oc_home_top_banner_date` (`id`, `store_offer_advertise_id`, `date`) VALUES
+(19, 1, '2017-10-25'),
+(20, 1, '2017-10-26');
 
 -- --------------------------------------------------------
 
@@ -14050,7 +13866,45 @@ INSERT INTO `oc_order` (`order_id`, `invoice_no`, `invoice_prefix`, `store_id`, 
 (15, 0, 'INV-2013-00', 0, 'BoN', 'http://localhost/bon/', 2, 1, 'Rave', 'R ', '1507@gmail.com', '8939615673', '', '', 'Rave', 'R ', '', 'Test address', '', '', '', '', 99, '', 1503, '', '[]', '', 'payu', '', '', '', '', '', '', '', '', 0, '', 0, '', '[]', '', '', '', '3.5000', 0, 0, '0.0000', 0, '', 1, 2, 'USD', '1.00000000', '::1', '', 'Mozilla/5.0 (Windows NT 6.3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36', 'en-US,en;q=0.8', '2017-10-14 12:48:21', '2017-10-14 12:48:21'),
 (16, 0, 'INV-2013-00', 0, 'BoN', 'http://localhost/bon/', 2, 1, 'Rave', 'R ', '1507@gmail.com', '8939615673', '', '', 'Rave', 'R ', '', 'Test address', '', '', '', '', 99, '', 1503, '', '[]', '', 'payu', '', '', '', '', '', '', '', '', 0, '', 0, '', '[]', '', '', '', '0.0000', 0, 0, '0.0000', 0, '', 1, 2, 'USD', '1.00000000', '::1', '', 'Mozilla/5.0 (Windows NT 6.3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36', 'en-US,en;q=0.8', '2017-10-14 13:15:08', '2017-10-14 13:15:08'),
 (17, 0, 'INV-2013-00', 0, 'BoN', 'http://localhost/bon/', 2, 1, 'Rave', 'R ', '1507@gmail.com', '8939615673', '', '', 'Rave', 'R ', '', 'Test address', '', '', '', '', 99, '', 1503, '', '[]', '', 'payu', '', '', '', '', '', '', '', '', 0, '', 0, '', '[]', '', '', '', '0.0000', 0, 0, '0.0000', 0, '', 1, 2, 'USD', '1.00000000', '::1', '', 'Mozilla/5.0 (Windows NT 6.3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36', 'en-US,en;q=0.8', '2017-10-14 13:33:14', '2017-10-14 13:33:14'),
-(18, 0, 'INV-2013-00', 0, 'BoN', 'http://localhost/bon/', 2, 1, 'Rave', 'R ', '1507@gmail.com', '8939615673', '', '', 'Rave', 'R ', '', 'Test address', '', '', '', '', 99, '', 1503, '', '[]', '', 'payu', '', '', '', '', '', '', '', '', 0, '', 0, '', '[]', '', '', '', '0.0000', 0, 0, '0.0000', 0, '', 1, 2, 'USD', '1.00000000', '::1', '', 'Mozilla/5.0 (Windows NT 6.3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36', 'en-US,en;q=0.8', '2017-10-14 13:36:53', '2017-10-14 13:36:53');
+(18, 0, 'INV-2013-00', 0, 'BoN', 'http://localhost/bon/', 2, 1, 'Rave', 'R ', '1507@gmail.com', '8939615673', '', '', 'Rave', 'R ', '', 'Test address', '', '', '', '', 99, '', 1503, '', '[]', '', 'payu', '', '', '', '', '', '', '', '', 0, '', 0, '', '[]', '', '', '', '0.0000', 0, 0, '0.0000', 0, '', 1, 2, 'USD', '1.00000000', '::1', '', 'Mozilla/5.0 (Windows NT 6.3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36', 'en-US,en;q=0.8', '2017-10-14 13:36:53', '2017-10-14 13:36:53'),
+(19, 0, 'INV-2013-00', 0, 'BoN', 'http://localhost/bon/', 1, 1, 'Magesh', 'K', 'mgshk.1507@gmail.com', '9791729266', '', '', 'Magesh', 'K', '', 'fsdfsdf', '', 'Cuddalore', '604700', '', 99, '', 1503, '', '[]', '', 'payu', '', '', '', '', '', '', '', '', 0, '', 0, '', '[]', '', '', '', '0.5000', 0, 0, '0.0000', 0, '', 1, 2, 'USD', '1.00000000', '::1', '', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36', 'en-US,en;q=0.8', '2017-10-23 22:15:36', '2017-10-23 22:15:36'),
+(20, 0, 'INV-2013-00', 0, 'BoN', 'http://localhost/bon/', 1, 1, 'Magesh', 'K', 'mgshk.1507@gmail.com', '9791729266', '', '', 'Magesh', 'K', '', 'fsdfsdf', '', 'Cuddalore', '604700', '', 99, '', 1503, '', '[]', '', 'payu', '', '', '', '', '', '', '', '', 0, '', 0, '', '[]', '', '', '', '3000.0000', 0, 0, '0.0000', 0, '', 1, 2, 'USD', '1.00000000', '::1', '', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36', 'en-US,en;q=0.8', '2017-10-23 23:16:33', '2017-10-23 23:16:33'),
+(21, 0, 'INV-2013-00', 0, 'BoN', 'http://localhost/bon/', 1, 1, 'Magesh', 'K', 'mgshk.1507@gmail.com', '9791729266', '', '', 'Magesh', 'K', '', 'fsdfsdf', '', 'Cuddalore', '604700', '', 99, '', 1503, '', '[]', '', 'payu', '', '', '', '', '', '', '', '', 0, '', 0, '', '[]', '', '', '', '5000.0000', 0, 0, '0.0000', 0, '', 1, 2, 'USD', '1.00000000', '::1', '', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36', 'en-US,en;q=0.8', '2017-10-24 21:44:51', '2017-10-24 21:44:51'),
+(22, 0, 'INV-2013-00', 0, 'BoN', 'http://localhost/bon/', 1, 1, 'Magesh', 'K', 'mgshk.1507@gmail.com', '9791729266', '', '', 'Magesh', 'K', '', 'fsdfsdf', '', 'Cuddalore', '604700', '', 99, '', 1503, '', '[]', '', 'payu', '', '', '', '', '', '', '', '', 0, '', 0, '', '[]', '', '', '', '5000.0000', 0, 0, '0.0000', 0, '', 1, 2, 'USD', '1.00000000', '::1', '', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36', 'en-US,en;q=0.8', '2017-10-24 21:44:52', '2017-10-24 21:44:52'),
+(23, 0, 'INV-2013-00', 0, 'BoN', 'http://localhost/bon/', 1, 1, 'Magesh', 'K', 'mgshk.1507@gmail.com', '9791729266', '', '', 'Magesh', 'K', '', 'fsdfsdf', '', 'Cuddalore', '604700', '', 99, '', 1503, '', '[]', '', 'payu', '', '', '', '', '', '', '', '', 0, '', 0, '', '[]', '', '', '', '5000.0000', 0, 0, '0.0000', 0, '', 1, 2, 'USD', '1.00000000', '::1', '', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36', 'en-US,en;q=0.8', '2017-10-24 21:44:52', '2017-10-24 21:44:52'),
+(24, 0, 'INV-2013-00', 0, 'BoN', 'http://localhost/bon/', 1, 1, 'Magesh', 'K', 'mgshk.1507@gmail.com', '9791729266', '', '', 'Magesh', 'K', '', 'fsdfsdf', '', 'Cuddalore', '604700', '', 99, '', 1503, '', '[]', '', 'payu', '', '', '', '', '', '', '', '', 0, '', 0, '', '[]', '', '', '', '5000.0000', 0, 0, '0.0000', 0, '', 1, 2, 'USD', '1.00000000', '::1', '', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36', 'en-US,en;q=0.8', '2017-10-24 21:45:06', '2017-10-24 21:45:06'),
+(25, 0, 'INV-2013-00', 0, 'BoN', 'http://localhost/bon/', 1, 1, 'Magesh', 'K', 'mgshk.1507@gmail.com', '9791729266', '', '', 'Magesh', 'K', '', 'fsdfsdf', '', 'Cuddalore', '604700', '', 99, '', 1503, '', '[]', '', 'payu', '', '', '', '', '', '', '', '', 0, '', 0, '', '[]', '', '', '', '5000.0000', 0, 0, '0.0000', 0, '', 1, 2, 'USD', '1.00000000', '::1', '', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36', 'en-US,en;q=0.8', '2017-10-24 21:45:07', '2017-10-24 21:45:07'),
+(26, 0, 'INV-2013-00', 0, 'BoN', 'http://localhost/bon/', 1, 1, 'Magesh', 'K', 'mgshk.1507@gmail.com', '9791729266', '', '', 'Magesh', 'K', '', 'fsdfsdf', '', 'Cuddalore', '604700', '', 99, '', 1503, '', '[]', '', 'payu', '', '', '', '', '', '', '', '', 0, '', 0, '', '[]', '', '', '', '5000.0000', 0, 0, '0.0000', 0, '', 1, 2, 'USD', '1.00000000', '::1', '', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36', 'en-US,en;q=0.8', '2017-10-24 21:45:10', '2017-10-24 21:45:10'),
+(27, 0, 'INV-2013-00', 0, 'BoN', 'http://localhost/bon/', 1, 1, 'Magesh', 'K', 'mgshk.1507@gmail.com', '9791729266', '', '', 'Magesh', 'K', '', 'fsdfsdf', '', 'Cuddalore', '604700', '', 99, '', 1503, '', '[]', '', 'payu', '', '', '', '', '', '', '', '', 0, '', 0, '', '[]', '', '', '', '7500.0000', 0, 0, '0.0000', 0, '', 1, 2, 'USD', '1.00000000', '::1', '', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36', 'en-US,en;q=0.8', '2017-10-24 21:52:50', '2017-10-24 21:52:50'),
+(28, 0, 'INV-2013-00', 0, 'BoN', 'http://localhost/bon/', 1, 1, 'Magesh', 'K', 'mgshk.1507@gmail.com', '9791729266', '', '', 'Magesh', 'K', '', 'fsdfsdf', '', 'Cuddalore', '604700', '', 99, '', 1503, '', '[]', '', 'payu', '', '', '', '', '', '', '', '', 0, '', 0, '', '[]', '', '', '', '0.0000', 0, 0, '0.0000', 0, '', 1, 2, 'USD', '1.00000000', '::1', '', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36', 'en-US,en;q=0.8', '2017-10-24 21:53:11', '2017-10-24 21:53:11'),
+(29, 0, 'INV-2013-00', 0, 'BoN', 'http://localhost/bon/', 1, 1, 'Magesh', 'K', 'mgshk.1507@gmail.com', '9791729266', '', '', 'Magesh', 'K', '', 'fsdfsdf', '', 'Cuddalore', '604700', '', 99, '', 1503, '', '[]', '', 'payu', '', '', '', '', '', '', '', '', 0, '', 0, '', '[]', '', '', '', '0.0000', 0, 0, '0.0000', 0, '', 1, 2, 'USD', '1.00000000', '::1', '', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36', 'en-US,en;q=0.8', '2017-10-24 22:01:42', '2017-10-24 22:01:42'),
+(30, 0, 'INV-2013-00', 0, 'BoN', 'http://localhost/bon/', 1, 1, 'Magesh', 'K', 'mgshk.1507@gmail.com', '9791729266', '', '', 'Magesh', 'K', '', 'fsdfsdf', '', 'Cuddalore', '604700', '', 99, '', 1503, '', '[]', '', 'payu', '', '', '', '', '', '', '', '', 0, '', 0, '', '[]', '', '', '', '0.0000', 0, 0, '0.0000', 0, '', 1, 2, 'USD', '1.00000000', '::1', '', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36', 'en-US,en;q=0.8', '2017-10-24 22:13:08', '2017-10-24 22:13:08'),
+(31, 0, 'INV-2013-00', 0, 'BoN', 'http://localhost/bon/', 1, 1, 'Magesh', 'K', 'mgshk.1507@gmail.com', '9791729266', '', '', 'Magesh', 'K', '', 'fsdfsdf', '', 'Cuddalore', '604700', '', 99, '', 1503, '', '[]', '', 'payu', '', '', '', '', '', '', '', '', 0, '', 0, '', '[]', '', '', '', '500.5000', 0, 0, '0.0000', 0, '', 1, 2, 'USD', '1.00000000', '::1', '', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36', 'en-US,en;q=0.8', '2017-10-24 22:20:17', '2017-10-24 22:20:17'),
+(32, 0, 'INV-2013-00', 0, 'BoN', 'http://localhost/bon/', 1, 1, 'Magesh', 'K', 'mgshk.1507@gmail.com', '9791729266', '', '', 'Magesh', 'K', '', 'fsdfsdf', '', 'Cuddalore', '604700', '', 99, '', 1503, '', '[]', '', 'payu', '', '', '', '', '', '', '', '', 0, '', 0, '', '[]', '', '', '', '500.5000', 0, 0, '0.0000', 0, '', 1, 2, 'USD', '1.00000000', '::1', '', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36', 'en-US,en;q=0.8', '2017-10-24 22:37:37', '2017-10-24 22:37:37'),
+(33, 0, 'INV-2013-00', 0, 'BoN', 'http://localhost/bon/', 1, 1, 'Magesh', 'K', 'mgshk.1507@gmail.com', '9791729266', '', '', 'Magesh', 'K', '', 'fsdfsdf', '', 'Cuddalore', '604700', '', 99, '', 1503, '', '[]', '', 'payu', '', '', '', '', '', '', '', '', 0, '', 0, '', '[]', '', '', '', '500.5000', 0, 0, '0.0000', 0, '', 1, 2, 'USD', '1.00000000', '::1', '', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36', 'en-US,en;q=0.8', '2017-10-24 22:37:40', '2017-10-24 22:37:40'),
+(34, 0, 'INV-2013-00', 0, 'BoN', 'http://localhost/bon/', 1, 1, 'Magesh', 'K', 'mgshk.1507@gmail.com', '9791729266', '', '', 'Magesh', 'K', '', 'fsdfsdf', '', 'Cuddalore', '604700', '', 99, '', 1503, '', '[]', '', 'payu', '', '', '', '', '', '', '', '', 0, '', 0, '', '[]', '', '', '', '0.0000', 0, 0, '0.0000', 0, '', 1, 2, 'USD', '1.00000000', '::1', '', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36', 'en-US,en;q=0.8', '2017-10-24 22:44:51', '2017-10-24 22:44:51'),
+(35, 0, 'INV-2013-00', 0, 'BoN', 'http://localhost/bon/', 1, 1, 'Magesh', 'K', 'mgshk.1507@gmail.com', '9791729266', '', '', 'Magesh', 'K', '', 'fsdfsdf', '', 'Cuddalore', '604700', '', 99, '', 1503, '', '[]', '', 'payu', '', '', '', '', '', '', '', '', 0, '', 0, '', '[]', '', '', '', '0.0000', 0, 0, '0.0000', 0, '', 1, 2, 'USD', '1.00000000', '::1', '', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36', 'en-US,en;q=0.8', '2017-10-25 18:15:22', '2017-10-25 18:15:22'),
+(36, 0, 'INV-2013-00', 0, 'BoN', 'http://localhost/bon/', 1, 1, 'Magesh', 'K', 'mgshk.1507@gmail.com', '9791729266', '', '', 'Magesh', 'K', '', 'fsdfsdf', '', 'Cuddalore', '604700', '', 99, '', 1503, '', '[]', '', 'payu', '', '', '', '', '', '', '', '', 0, '', 0, '', '[]', '', '', '', '0.0000', 0, 0, '0.0000', 0, '', 1, 2, 'USD', '1.00000000', '::1', '', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36', 'en-US,en;q=0.8', '2017-10-25 18:16:13', '2017-10-25 18:16:13'),
+(37, 0, 'INV-2013-00', 0, 'BoN', 'http://localhost/bon/', 1, 1, 'Magesh', 'K', 'mgshk.1507@gmail.com', '9791729266', '', '', 'Magesh', 'K', '', 'fsdfsdf', '', 'Cuddalore', '604700', '', 99, '', 1503, '', '[]', '', 'payu', '', '', '', '', '', '', '', '', 0, '', 0, '', '[]', '', '', '', '0.0000', 0, 0, '0.0000', 0, '', 1, 2, 'USD', '1.00000000', '::1', '', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36', 'en-US,en;q=0.8', '2017-10-25 18:25:56', '2017-10-25 18:25:56'),
+(38, 0, 'INV-2013-00', 0, 'BoN', 'http://localhost/bon/', 1, 1, 'Magesh', 'K', 'mgshk.1507@gmail.com', '9791729266', '', '', 'Magesh', 'K', '', 'fsdfsdf', '', 'Cuddalore', '604700', '', 99, '', 1503, '', '[]', '', 'payu', '', '', '', '', '', '', '', '', 0, '', 0, '', '[]', '', '', '', '0.0000', 0, 0, '0.0000', 0, '', 1, 2, 'USD', '1.00000000', '::1', '', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36', 'en-US,en;q=0.8', '2017-10-25 18:27:32', '2017-10-25 18:27:32'),
+(39, 0, 'INV-2013-00', 0, 'BoN', 'http://localhost/bon/', 1, 1, 'Magesh', 'K', 'mgshk.1507@gmail.com', '9791729266', '', '', 'Magesh', 'K', '', 'fsdfsdf', '', 'Cuddalore', '604700', '', 99, '', 1503, '', '[]', '', 'payu', '', '', '', '', '', '', '', '', 0, '', 0, '', '[]', '', '', '', '5000.0000', 0, 0, '0.0000', 0, '', 1, 2, 'USD', '1.00000000', '::1', '', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36', 'en-US,en;q=0.8', '2017-10-25 19:11:50', '2017-10-25 19:11:50'),
+(40, 0, 'INV-2013-00', 0, 'BoN', 'http://localhost/bon/', 1, 1, 'Magesh', 'K', 'mgshk.1507@gmail.com', '9791729266', '', '', 'Magesh', 'K', '', 'fsdfsdf', '', 'Cuddalore', '604700', '', 99, '', 1503, '', '[]', '', 'payu', '', '', '', '', '', '', '', '', 0, '', 0, '', '[]', '', '', '', '5000.0000', 0, 0, '0.0000', 0, '', 1, 2, 'USD', '1.00000000', '::1', '', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36', 'en-US,en;q=0.8', '2017-10-25 19:50:18', '2017-10-25 19:50:18'),
+(41, 0, 'INV-2013-00', 0, 'BoN', 'http://localhost/bon/', 1, 1, 'Magesh', 'K', 'mgshk.1507@gmail.com', '9791729266', '', '', 'Magesh', 'K', '', 'fsdfsdf', '', 'Cuddalore', '604700', '', 99, '', 1503, '', '[]', '', 'payu', '', '', '', '', '', '', '', '', 0, '', 0, '', '[]', '', '', '', '5000.0000', 0, 0, '0.0000', 0, '', 1, 2, 'USD', '1.00000000', '::1', '', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36', 'en-US,en;q=0.8', '2017-10-25 19:52:07', '2017-10-25 19:52:07'),
+(42, 0, 'INV-2013-00', 0, 'BoN', 'http://localhost/bon/', 1, 1, 'Magesh', 'K', 'mgshk.1507@gmail.com', '9791729266', '', '', 'Magesh', 'K', '', 'fsdfsdf', '', 'Cuddalore', '604700', '', 99, '', 1503, '', '[]', '', 'payu', '', '', '', '', '', '', '', '', 0, '', 0, '', '[]', '', '', '', '7500.0000', 0, 0, '0.0000', 0, '', 1, 2, 'USD', '1.00000000', '::1', '', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36', 'en-US,en;q=0.8', '2017-10-25 20:11:42', '2017-10-25 20:11:42'),
+(43, 0, 'INV-2013-00', 0, 'BoN', 'http://localhost/bon/', 1, 1, 'Magesh', 'K', 'mgshk.1507@gmail.com', '9791729266', '', '', 'Magesh', 'K', '', 'fsdfsdf', '', 'Cuddalore', '604700', '', 99, '', 1503, '', '[]', '', 'payu', '', '', '', '', '', '', '', '', 0, '', 0, '', '[]', '', '', '', '0.0000', 0, 0, '0.0000', 0, '', 1, 2, 'USD', '1.00000000', '::1', '', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36', 'en-US,en;q=0.8', '2017-10-25 20:16:32', '2017-10-25 20:16:32'),
+(44, 0, 'INV-2013-00', 0, 'BoN', 'http://localhost/bon/', 1, 1, 'Magesh', 'K', 'mgshk.1507@gmail.com', '9791729266', '', '', 'Magesh', 'K', '', 'fsdfsdf', '', 'Cuddalore', '604700', '', 99, '', 1503, '', '[]', '', 'payu', '', '', '', '', '', '', '', '', 0, '', 0, '', '[]', '', '', '', '2500.0000', 0, 0, '0.0000', 0, '', 1, 2, 'USD', '1.00000000', '::1', '', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36', 'en-US,en;q=0.8', '2017-10-25 20:33:48', '2017-10-25 20:33:48'),
+(45, 0, 'INV-2013-00', 0, 'BoN', 'http://localhost/bon/', 1, 1, 'Magesh', 'K', 'mgshk.1507@gmail.com', '9791729266', '', '', 'Magesh', 'K', '', 'fsdfsdf', '', 'Cuddalore', '604700', '', 99, '', 1503, '', '[]', '', 'payu', '', '', '', '', '', '', '', '', 0, '', 0, '', '[]', '', '', '', '1500.5000', 0, 0, '0.0000', 0, '', 1, 2, 'USD', '1.00000000', '::1', '', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36', 'en-US,en;q=0.8', '2017-10-25 20:39:47', '2017-10-25 20:39:47'),
+(46, 0, 'INV-2013-00', 0, 'BoN', 'http://localhost/bon/', 1, 1, 'Magesh', 'K', 'mgshk.1507@gmail.com', '9791729266', '', '', 'Magesh', 'K', '', 'fsdfsdf', '', 'Cuddalore', '604700', '', 99, '', 1503, '', '[]', '', 'payu', '', '', '', '', '', '', '', '', 0, '', 0, '', '[]', '', '', '', '1500.5000', 0, 0, '0.0000', 0, '', 1, 2, 'USD', '1.00000000', '::1', '', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36', 'en-US,en;q=0.8', '2017-10-25 20:39:57', '2017-10-25 20:39:57'),
+(47, 0, 'INV-2013-00', 0, 'BoN', 'http://localhost/bon/', 1, 1, 'Magesh', 'K', 'mgshk.1507@gmail.com', '9791729266', '', '', 'Magesh', 'K', '', 'fsdfsdf', '', 'Cuddalore', '604700', '', 99, '', 1503, '', '[]', '', 'payu', '', '', '', '', '', '', '', '', 0, '', 0, '', '[]', '', '', '', '5000.0000', 0, 0, '0.0000', 0, '', 1, 2, 'USD', '1.00000000', '::1', '', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36', 'en-US,en;q=0.8', '2017-10-25 20:45:41', '2017-10-25 20:45:41'),
+(48, 0, 'INV-2013-00', 0, 'BoN', 'http://localhost/bon/', 1, 1, 'Magesh', 'K', 'mgshk.1507@gmail.com', '9791729266', '', '', 'Magesh', 'K', '', 'fsdfsdf', '', 'Cuddalore', '604700', '', 99, '', 1503, '', '[]', '', 'payu', '', '', '', '', '', '', '', '', 0, '', 0, '', '[]', '', '', '', '5000.0000', 0, 0, '0.0000', 0, '', 1, 2, 'USD', '1.00000000', '::1', '', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36', 'en-US,en;q=0.8', '2017-10-25 20:46:24', '2017-10-25 20:46:24'),
+(49, 0, 'INV-2013-00', 0, 'BoN', 'http://localhost/bon/', 1, 1, 'Magesh', 'K', 'mgshk.1507@gmail.com', '9791729266', '', '', 'Magesh', 'K', '', 'fsdfsdf', '', 'Cuddalore', '604700', '', 99, '', 1503, '', '[]', '', 'payu', '', '', '', '', '', '', '', '', 0, '', 0, '', '[]', '', '', '', '1500.5000', 0, 0, '0.0000', 0, '', 1, 2, 'USD', '1.00000000', '::1', '', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36', 'en-US,en;q=0.8', '2017-10-25 20:49:00', '2017-10-25 20:49:00'),
+(50, 0, 'INV-2013-00', 0, 'BoN', 'http://localhost/bon/', 1, 1, 'Magesh', 'K', 'mgshk.1507@gmail.com', '9791729266', '', '', 'Magesh', 'K', '', 'fsdfsdf', '', 'Cuddalore', '604700', '', 99, '', 1503, '', '[]', '', 'payu', '', '', '', '', '', '', '', '', 0, '', 0, '', '[]', '', '', '', '1500.5000', 0, 0, '0.0000', 0, '', 1, 2, 'USD', '1.00000000', '::1', '', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36', 'en-US,en;q=0.8', '2017-10-25 20:52:48', '2017-10-25 20:52:48'),
+(51, 0, 'INV-2013-00', 0, 'BoN', 'http://localhost/bon/', 1, 1, 'Magesh', 'K', 'mgshk.1507@gmail.com', '9791729266', '', '', 'Magesh', 'K', '', 'fsdfsdf', '', 'Cuddalore', '604700', '', 99, '', 1503, '', '[]', '', 'payu', '', '', '', '', '', '', '', '', 0, '', 0, '', '[]', '', '', '', '1500.5000', 0, 0, '0.0000', 0, '', 1, 2, 'USD', '1.00000000', '::1', '', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36', 'en-US,en;q=0.8', '2017-10-25 20:54:06', '2017-10-25 20:54:06'),
+(52, 0, 'INV-2013-00', 0, 'BoN', 'http://localhost/bon/', 1, 1, 'Magesh', 'K', 'mgshk.1507@gmail.com', '9791729266', '', '', 'Magesh', 'K', '', 'fsdfsdf', '', 'Cuddalore', '604700', '', 99, '', 1503, '', '[]', '', 'payu', '', '', '', '', '', '', '', '', 0, '', 0, '', '[]', '', '', '', '1500.5000', 0, 0, '0.0000', 0, '', 1, 2, 'USD', '1.00000000', '::1', '', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36', 'en-US,en;q=0.8', '2017-10-25 20:55:55', '2017-10-25 20:55:55'),
+(53, 0, 'INV-2013-00', 0, 'BoN', 'http://localhost/bon/', 1, 1, 'Magesh', 'K', 'mgshk.1507@gmail.com', '9791729266', '', '', 'Magesh', 'K', '', 'fsdfsdf', '', 'Cuddalore', '604700', '', 99, '', 1503, '', '[]', '', 'payu', '', '', '', '', '', '', '', '', 0, '', 0, '', '[]', '', '', '', '1000.0000', 0, 0, '0.0000', 0, '', 1, 2, 'USD', '1.00000000', '::1', '', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36', 'en-US,en;q=0.8', '2017-10-25 20:57:47', '2017-10-25 20:57:47'),
+(54, 0, 'INV-2013-00', 0, 'BoN', 'http://localhost/bon/', 1, 1, 'Magesh', 'K', 'mgshk.1507@gmail.com', '9791729266', '', '', 'Magesh', 'K', '', 'fsdfsdf', '', 'Cuddalore', '604700', '', 99, '', 1503, '', '[]', '', 'payu', '', '', '', '', '', '', '', '', 0, '', 0, '', '[]', '', '', '', '1000.0000', 0, 0, '0.0000', 0, '', 1, 2, 'USD', '1.00000000', '::1', '', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36', 'en-US,en;q=0.8', '2017-10-25 21:00:28', '2017-10-25 21:00:28'),
+(55, 0, 'INV-2013-00', 0, 'BoN', 'http://localhost/bon/', 1, 1, 'Magesh', 'K', 'mgshk.1507@gmail.com', '9791729266', '', '', 'Magesh', 'K', '', 'fsdfsdf', '', 'Cuddalore', '604700', '', 99, '', 1503, '', '[]', '', 'payu', '', '', '', '', '', '', '', '', 0, '', 0, '', '[]', '', '', '', '0.0000', 0, 0, '0.0000', 0, '', 1, 2, 'USD', '1.00000000', '::1', '', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36', 'en-US,en;q=0.8', '2017-10-25 21:00:47', '2017-10-25 21:00:47'),
+(56, 0, 'INV-2013-00', 0, 'BoN', 'http://localhost/bon/', 1, 1, 'Magesh', 'K', 'mgshk.1507@gmail.com', '9791729266', '', '', 'Magesh', 'K', '', 'fsdfsdf', '', 'Cuddalore', '604700', '', 99, '', 1503, '', '[]', '', 'payu', '', '', '', '', '', '', '', '', 0, '', 0, '', '[]', '', '', '', '500.0000', 0, 0, '0.0000', 0, '', 1, 2, 'USD', '1.00000000', '::1', '', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36', 'en-US,en;q=0.8', '2017-10-25 21:03:49', '2017-10-25 21:03:49');
 
 -- --------------------------------------------------------
 
@@ -14146,7 +14000,45 @@ INSERT INTO `oc_order_product` (`order_product_id`, `order_id`, `product_id`, `n
 (15, 15, 12, 'Home - Nearby', '', 0, '3.5000', 0, '', '', '3.5000', '0.0000', 0),
 (16, 16, 12, 'Home - Nearby', '', 0, '0.0000', 0, '', '', '0.0000', '0.0000', 0),
 (17, 17, 12, 'Home - Nearby', '', 0, '0.0000', 0, '', '', '0.0000', '0.0000', 0),
-(18, 18, 12, 'Home - Nearby', '', 0, '0.0000', 0, '', '', '0.0000', '0.0000', 0);
+(18, 18, 12, 'Home - Nearby', '', 0, '0.0000', 0, '', '', '0.0000', '0.0000', 0),
+(19, 19, 1, 'Home - Nearby', '', 0, '0.5000', 0, '', '', '0.5000', '0.0000', 0),
+(20, 20, 1, 'Home - National (India)10%', '', 0, '3000.0000', 0, '', '', '3000.0000', '0.0000', 0),
+(21, 21, 1, 'Home - Top banner', '', 0, '5000.0000', 0, '', '', '5000.0000', '0.0000', 0),
+(22, 22, 1, 'Home - Top banner', '', 0, '5000.0000', 0, '', '', '5000.0000', '0.0000', 0),
+(23, 23, 1, 'Home - Top banner', '', 0, '5000.0000', 0, '', '', '5000.0000', '0.0000', 0),
+(24, 24, 1, 'Home - Top banner', '', 0, '5000.0000', 0, '', '', '5000.0000', '0.0000', 0),
+(25, 25, 1, 'Home - Top banner', '', 0, '5000.0000', 0, '', '', '5000.0000', '0.0000', 0),
+(26, 26, 1, 'Home - Top banner', '', 0, '5000.0000', 0, '', '', '5000.0000', '0.0000', 0),
+(27, 27, 1, 'Home - Top banner', '', 0, '7500.0000', 0, '', '', '7500.0000', '0.0000', 0),
+(28, 28, 1, 'free', '', 0, '0.0000', 0, '', '', '0.0000', '0.0000', 0),
+(29, 29, 1, 'free', '', 0, '0.0000', 0, '', '', '0.0000', '0.0000', 0),
+(30, 30, 1, 'free', '', 0, '0.0000', 0, '', '', '0.0000', '0.0000', 0),
+(31, 31, 1, 'Home - City (Chennai)', '', 0, '500.5000', 0, '', '', '500.5000', '0.0000', 0),
+(32, 32, 1, 'Home - City (Chennai)', '', 0, '500.5000', 0, '', '', '500.5000', '0.0000', 0),
+(33, 33, 1, 'Home - City (Chennai)', '', 0, '500.5000', 0, '', '', '500.5000', '0.0000', 0),
+(34, 34, 1, 'Home - Nearby', '', 0, '0.0000', 0, '', '', '0.0000', '0.0000', 0),
+(35, 35, 1, 'free', '', 0, '0.0000', 0, '', '', '0.0000', '0.0000', 0),
+(36, 36, 1, 'free', '', 0, '0.0000', 0, '', '', '0.0000', '0.0000', 0),
+(37, 37, 1, 'free', '', 0, '0.0000', 0, '', '', '0.0000', '0.0000', 0),
+(38, 38, 1, 'free', '', 0, '0.0000', 0, '', '', '0.0000', '0.0000', 0),
+(39, 39, 1, 'Home - Top banner', '', 0, '5000.0000', 0, '', '', '5000.0000', '0.0000', 0),
+(40, 40, 1, 'Home - Top banner', '', 0, '5000.0000', 0, '', '', '5000.0000', '0.0000', 0),
+(41, 41, 1, 'Home - Top banner', '', 0, '5000.0000', 0, '', '', '5000.0000', '0.0000', 0),
+(42, 42, 1, 'Home - Top banner', '', 0, '7500.0000', 0, '', '', '7500.0000', '0.0000', 0),
+(43, 43, 1, 'free', '', 0, '0.0000', 0, '', '', '0.0000', '0.0000', 0),
+(44, 44, 1, 'Home - Top banner', '', 0, '2500.0000', 0, '', '', '2500.0000', '0.0000', 0),
+(45, 45, 1, 'Home - National (India)10%', '', 0, '1500.5000', 0, '', '', '1500.5000', '0.0000', 0),
+(46, 46, 1, 'Home - National (India)10%', '', 0, '1500.5000', 0, '', '', '1500.5000', '0.0000', 0),
+(47, 47, 1, 'Home - Top banner', '', 0, '5000.0000', 0, '', '', '5000.0000', '0.0000', 0),
+(48, 48, 1, 'Home - Top banner', '', 0, '5000.0000', 0, '', '', '5000.0000', '0.0000', 0),
+(49, 49, 1, 'Home - National (India)10%', '', 0, '1500.5000', 0, '', '', '1500.5000', '0.0000', 0),
+(50, 50, 1, 'Home - National (India)10%', '', 0, '1500.5000', 0, '', '', '1500.5000', '0.0000', 0),
+(51, 51, 1, 'Home - National (India)10%', '', 0, '1500.5000', 0, '', '', '1500.5000', '0.0000', 0),
+(52, 52, 1, 'Home - National (India)10%', '', 0, '1500.5000', 0, '', '', '1500.5000', '0.0000', 0),
+(53, 53, 1, 'Home - State (Tamil Nadu)', '', 0, '1000.0000', 0, '', '', '1000.0000', '0.0000', 0),
+(54, 54, 1, 'Home - State (Tamil Nadu)', '', 0, '1000.0000', 0, '', '', '1000.0000', '0.0000', 0),
+(55, 55, 1, 'Home - Nearby', '', 0, '0.0000', 0, '', '', '0.0000', '0.0000', 0),
+(56, 56, 1, 'Home - City (Chennai)', '', 0, '500.0000', 0, '', '', '500.0000', '0.0000', 0);
 
 -- --------------------------------------------------------
 
@@ -14321,7 +14213,8 @@ CREATE TABLE `oc_product` (
 --
 
 INSERT INTO `oc_product` (`product_id`, `model`, `sku`, `upc`, `ean`, `jan`, `isbn`, `mpn`, `location`, `quantity`, `stock_status_id`, `image`, `manufacturer_id`, `shipping`, `price`, `discount_price`, `discount_type`, `special_price`, `points`, `tax_class_id`, `date_available`, `weight`, `weight_class_id`, `length`, `width`, `height`, `length_class_id`, `subtract`, `minimum`, `sort_order`, `status`, `viewed`, `date_added`, `date_modified`) VALUES
-(1, '', '', '', '', '', '', '', '', 1, 0, '', 0, 0, '0.0000', '0', 'rs', '0.0000', 0, 0, '0000-00-00', '0.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 1, 0, 0, 0, 0, 0, '2017-10-16 19:49:31', '0000-00-00 00:00:00');
+(1, '', '', '', '', '', '', '', '', 1, 0, '', 0, 0, '0.0000', '0', 'rs', '0.0000', 0, 0, '0000-00-00', '0.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 1, 0, 0, 0, 0, 0, '2017-10-16 19:49:31', '0000-00-00 00:00:00'),
+(2, '', '', '', '', '', '', '', '', 1, 0, '', 0, 0, '1000.0000', '50', 'rs', '950.0000', 0, 0, '0000-00-00', '0.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 1, 0, 0, 0, 1, 0, '2017-10-20 22:50:50', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -14358,7 +14251,8 @@ CREATE TABLE `oc_product_description` (
 --
 
 INSERT INTO `oc_product_description` (`product_id`, `language_id`, `name`, `description`, `tag`, `meta_title`, `meta_description`, `meta_keyword`) VALUES
-(1, 1, 'y423', '&lt;p&gt;yy&lt;/p&gt;', '', '', '', '');
+(1, 1, 'y423', '&lt;p&gt;yy&lt;/p&gt;', '', '', '', ''),
+(2, 1, 'Test Product', '', '', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -14517,7 +14411,8 @@ CREATE TABLE `oc_product_to_category` (
 --
 
 INSERT INTO `oc_product_to_category` (`product_id`, `category_id`) VALUES
-(1, 27);
+(1, 27),
+(2, 2);
 
 -- --------------------------------------------------------
 
@@ -14558,7 +14453,8 @@ CREATE TABLE `oc_product_to_seller` (
 --
 
 INSERT INTO `oc_product_to_seller` (`product_id`, `seller_id`) VALUES
-(1, 2);
+(1, 2),
+(2, 1);
 
 -- --------------------------------------------------------
 
@@ -14576,7 +14472,8 @@ CREATE TABLE `oc_product_to_store` (
 --
 
 INSERT INTO `oc_product_to_store` (`product_id`, `store_id`) VALUES
-(1, 0);
+(1, 0),
+(2, 0);
 
 -- --------------------------------------------------------
 
@@ -14890,7 +14787,11 @@ INSERT INTO `oc_seller_transaction` (`seller_transaction_id`, `customer_id`, `or
 (24, 2, 0, 'Subscription To [ Free ]', '0.0000', '2017-10-13 08:53:16'),
 (25, 2, 0, 'Subscription To [ Free ]', '0.0000', '2017-10-13 09:05:27'),
 (26, 2, 0, 'Subscription To [ Free ]', '0.0000', '2017-10-13 11:38:13'),
-(27, 2, 0, 'Subscription To [ Free ]', '0.0000', '2017-10-16 17:14:52');
+(27, 2, 0, 'Subscription To [ Free ]', '0.0000', '2017-10-16 17:14:52'),
+(28, 1, 0, 'Subscription to [ Free ]', '0.0000', '2017-10-20 22:30:25'),
+(29, 1, 0, 'Subscription to [ Free ]', '0.0000', '2017-10-20 22:30:31'),
+(30, 1, 0, 'Subscription to [ Free ]', '0.0000', '2017-10-21 16:55:42'),
+(31, 1, 0, 'Subscription to [ Free ]', '0.0000', '2017-10-21 16:55:59');
 
 -- --------------------------------------------------------
 
@@ -15251,13 +15152,6 @@ CREATE TABLE `oc_store_image` (
   `sort_order` int(3) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_estonian_ci;
 
---
--- Dumping data for table `oc_store_image`
---
-
-INSERT INTO `oc_store_image` (`image_id`, `seller_id`, `image`, `sort_order`) VALUES
-(12, 2, 'catalog/seller_images/2/Before upload.jpg', 0);
-
 -- --------------------------------------------------------
 
 --
@@ -15287,6 +15181,7 @@ CREATE TABLE `oc_store_offers` (
   `end_date` date NOT NULL,
   `top_banner_date` varchar(255) COLLATE utf8_estonian_ci DEFAULT NULL,
   `price` int(11) NOT NULL,
+  `discount_price` float NOT NULL,
   `mail_sent` enum('yes','no') COLLATE utf8_estonian_ci NOT NULL DEFAULT 'no'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_estonian_ci;
 
@@ -15294,20 +15189,9 @@ CREATE TABLE `oc_store_offers` (
 -- Dumping data for table `oc_store_offers`
 --
 
-INSERT INTO `oc_store_offers` (`advertise_id`, `seller_id`, `offer_title`, `offer_image`, `offer_image_original`, `offer_desc`, `offer_url`, `position`, `km`, `national`, `state`, `city`, `remarks`, `sort_order`, `date_added`, `date_modified`, `status`, `paid`, `from_date`, `end_date`, `top_banner_date`, `price`, `mail_sent`) VALUES
-(1, 1, 'nmbmbn', 'catalog/seller_images/1/Advertise/1505642178_advertise.jpg', 'catalog/seller_images/1/taj image.jpg', '', '', 0, NULL, NULL, NULL, NULL, '', 1, '2017-09-17 15:26:18', '2017-09-17 20:49:00', 'deleted', '0', '0000-00-00', '0000-00-00', NULL, 0, 'no'),
-(2, 1, 'Test Advert', 'catalog/seller_images/1/Advertise/1505657028_advertise.jpg', 'catalog/seller_images/1/Desert.jpg', '', '', 0, NULL, NULL, NULL, NULL, '', 1, '2017-09-17 19:33:48', '2017-09-17 20:48:54', 'deleted', '0', '0000-00-00', '0000-00-00', NULL, 0, 'no'),
-(3, 1, 'Edit Test 1', 'catalog/seller_images/1/Advertise/1505659662_advertise.jpg', 'image/catalog/seller_images/1/taj image.jpg', '', '', 0, NULL, NULL, NULL, NULL, '', 1, '2017-09-17 19:38:52', '2017-09-17 20:31:02', 'deleted', '0', '0000-00-00', '0000-00-00', NULL, 0, 'no'),
-(4, 1, 'Test Advert 1', 'catalog/seller_images/1/Advertise/1505660502_advertise.jpg', 'image/catalog/seller_images/1/Chrysanthemum.jpg', '', '', 0, NULL, NULL, NULL, NULL, '', 1, '2017-09-17 20:30:24', '2017-09-17 20:48:47', 'deleted', '0', '0000-00-00', '0000-00-00', NULL, 0, 'no'),
-(5, 1, 'Test Advert', 'catalog/seller_images/1/Advertise/1505661709_advertise.jpg', 'image/catalog/seller_images/1/Desert.jpg', '', '', 0, NULL, NULL, NULL, NULL, '', 1, '2017-09-17 20:49:44', '2017-09-17 21:13:02', 'deleted', '0', '0000-00-00', '0000-00-00', NULL, 0, 'no'),
-(6, 1, 'Edit Test 1', 'catalog/seller_images/1/Advertise/1505662630_advertise.jpg', 'image/catalog/seller_images/1/Desert.jpg', '', '', 0, NULL, NULL, NULL, NULL, '', 1, '2017-09-17 20:54:29', '2017-09-17 21:13:06', 'deleted', '0', '0000-00-00', '0000-00-00', NULL, 0, 'no'),
-(7, 1, 'Edit Test 1', 'catalog/seller_images/1/Advertise/1505920438_advertise.jpg', 'catalog/seller_images/1/Chrysanthemum.jpg', '', '', 4, 0, '', '', 'kanchipuram', '', 1, '2017-09-20 20:43:58', '2017-10-02 11:11:34', 'approved', '0', '2017-10-02', '2017-10-07', NULL, 500000, 'no'),
-(8, 2, 'Edit Test 1', 'catalog/seller_images/2/Advertise/1506564672_advertise.jpg', 'catalog/seller_images/2/Koala.jpg', '', '', 2, 0, 'india', '', '', '', 1, '2017-09-28 07:41:12', '2017-09-28 07:59:10', 'approved', '0', '2017-09-29', '2017-10-01', NULL, 3001, 'no'),
-(9, 1, 'Edit Test 1', 'catalog/seller_images/1/Advertise/1507134424_advertise.jpg', 'catalog/seller_images/1/Chrysanthemum.jpg', '', '', 0, NULL, NULL, NULL, NULL, '', 1, '2017-10-04 21:57:04', '2017-10-04 21:57:24', 'approved', '0', '0000-00-00', '0000-00-00', NULL, 0, 'no'),
-(10, 2, 'sdfsdf', 'catalog/seller_images/2/Advertise/1507445204_advertise.jpg', 'catalog/seller_images/2/Hydrangeas.jpg', '', '', 0, NULL, NULL, NULL, NULL, '', 1, '2017-10-08 12:11:49', '2017-10-08 14:06:25', 'approved', '0', '0000-00-00', '0000-00-00', NULL, 0, 'no'),
-(11, 2, 'test', 'catalog/seller_images/2/Advertise/1507743551_advertise.jpg', 'catalog/seller_images/2/Before upload.jpg', '', '', 0, NULL, NULL, NULL, NULL, '', 1, '2017-10-11 22:53:43', '2017-10-11 23:09:11', 'draft', '0', '0000-00-00', '0000-00-00', NULL, 0, 'no'),
-(12, 2, 'test', 'catalog/seller_images/2/Advertise/1507893039_advertise.jpg', 'catalog/seller_images/2/Before upload.jpg', '', '', 5, 0, '', '', '', '', 1, '2017-10-13 13:44:08', '2017-10-14 13:33:14', 'approved', '0', '2017-10-14', '2017-10-19', NULL, 0, 'no'),
-(13, 2, 'test', 'catalog/seller_images/2/Advertise/1507883182_advertise.jpg', 'catalog/seller_images/2/no_person_img..png', '', '', 0, NULL, NULL, NULL, NULL, '', 1, '2017-10-13 13:56:22', '0000-00-00 00:00:00', 'draft', '0', '0000-00-00', '0000-00-00', NULL, 0, 'no');
+INSERT INTO `oc_store_offers` (`advertise_id`, `seller_id`, `offer_title`, `offer_image`, `offer_image_original`, `offer_desc`, `offer_url`, `position`, `km`, `national`, `state`, `city`, `remarks`, `sort_order`, `date_added`, `date_modified`, `status`, `paid`, `from_date`, `end_date`, `top_banner_date`, `price`, `discount_price`, `mail_sent`) VALUES
+(1, 1, 'Test Ad', 'catalog/seller_images/1/Advertise/1508585192_advertise.jpg', 'catalog/seller_images/1/taj image.jpg', '', '', 4, 0, 'india', 'tamil-nadu', 'cuddalore', '', 1, '2017-10-21 16:56:32', '2017-10-25 21:03:49', 'approved', '0', '2017-10-25', '2017-10-30', NULL, 1000, 500, 'no'),
+(2, 1, 'Res ', 'catalog/seller_images/1/Advertise/1508585234_advertise.jpg', 'catalog/seller_images/1/taj image.jpg', '', '', 0, NULL, NULL, NULL, NULL, 'duplicate', 1, '2017-10-21 16:57:14', '2017-10-21 16:57:35', 'rejected', '0', '0000-00-00', '0000-00-00', NULL, 0, 0, 'no');
 
 -- --------------------------------------------------------
 
@@ -17731,7 +17615,9 @@ INSERT INTO `oc_user_activity` (`user_activity_id`, `user_id`, `activity_id`, `k
 (47, 1, 8, 'ad_approved', '::1', '2017-09-28 07:44:34'),
 (48, 1, 9, 'ad_approved', '::1', '2017-10-04 21:57:24'),
 (49, 1, 10, 'ad_approved', '::1', '2017-10-08 14:06:25'),
-(50, 1, 12, 'ad_approved', '::1', '2017-10-13 16:45:43');
+(50, 1, 12, 'ad_approved', '::1', '2017-10-13 16:45:43'),
+(51, 1, 1, 'ad_approved', '::1', '2017-10-21 16:56:51'),
+(52, 1, 2, 'ad_rejected', '::1', '2017-10-21 16:57:35');
 
 -- --------------------------------------------------------
 
@@ -23134,7 +23020,7 @@ ALTER TABLE `oc_zone_to_geo_zone`
 -- AUTO_INCREMENT for table `oc_address`
 --
 ALTER TABLE `oc_address`
-  MODIFY `address_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `address_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `oc_affiliate`
 --
@@ -23259,12 +23145,12 @@ ALTER TABLE `oc_currency`
 -- AUTO_INCREMENT for table `oc_customer`
 --
 ALTER TABLE `oc_customer`
-  MODIFY `customer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `customer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `oc_customer_activity`
 --
 ALTER TABLE `oc_customer_activity`
-  MODIFY `customer_activity_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=93;
+  MODIFY `customer_activity_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 --
 -- AUTO_INCREMENT for table `oc_customer_group`
 --
@@ -23274,12 +23160,12 @@ ALTER TABLE `oc_customer_group`
 -- AUTO_INCREMENT for table `oc_customer_history`
 --
 ALTER TABLE `oc_customer_history`
-  MODIFY `customer_history_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
+  MODIFY `customer_history_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `oc_customer_ip`
 --
 ALTER TABLE `oc_customer_ip`
-  MODIFY `customer_ip_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `customer_ip_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `oc_customer_login`
 --
@@ -23354,7 +23240,7 @@ ALTER TABLE `oc_geo_zone`
 -- AUTO_INCREMENT for table `oc_home_top_banner_date`
 --
 ALTER TABLE `oc_home_top_banner_date`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 --
 -- AUTO_INCREMENT for table `oc_information`
 --
@@ -23429,7 +23315,7 @@ ALTER TABLE `oc_option_value`
 -- AUTO_INCREMENT for table `oc_order`
 --
 ALTER TABLE `oc_order`
-  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
 --
 -- AUTO_INCREMENT for table `oc_order_custom_field`
 --
@@ -23449,7 +23335,7 @@ ALTER TABLE `oc_order_option`
 -- AUTO_INCREMENT for table `oc_order_product`
 --
 ALTER TABLE `oc_order_product`
-  MODIFY `order_product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `order_product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
 --
 -- AUTO_INCREMENT for table `oc_order_recurring`
 --
@@ -23489,7 +23375,7 @@ ALTER TABLE `oc_order_voucher`
 -- AUTO_INCREMENT for table `oc_product`
 --
 ALTER TABLE `oc_product`
-  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `oc_product_discount`
 --
@@ -23579,7 +23465,7 @@ ALTER TABLE `oc_seller_shipping`
 -- AUTO_INCREMENT for table `oc_seller_transaction`
 --
 ALTER TABLE `oc_seller_transaction`
-  MODIFY `seller_transaction_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `seller_transaction_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 --
 -- AUTO_INCREMENT for table `oc_setting`
 --
@@ -23609,12 +23495,12 @@ ALTER TABLE `oc_store_feedback`
 -- AUTO_INCREMENT for table `oc_store_image`
 --
 ALTER TABLE `oc_store_image`
-  MODIFY `image_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `image_id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `oc_store_offers`
 --
 ALTER TABLE `oc_store_offers`
-  MODIFY `advertise_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `advertise_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `oc_store_referred`
 --
@@ -23629,8 +23515,7 @@ ALTER TABLE `oc_store_timing`
 -- AUTO_INCREMENT for table `oc_user_activity`
 --
 ALTER TABLE `oc_user_activity`
-  MODIFY `user_activity_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;COMMIT;
-
+  MODIFY `user_activity_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
