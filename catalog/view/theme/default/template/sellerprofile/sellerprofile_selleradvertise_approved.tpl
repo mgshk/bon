@@ -180,12 +180,9 @@ if(adss)
 			   		</div>
 				
 			   		<div class="row main-sec--res">
-				   		<span class="text-dangers" id="error_loc"> </span>
 						<div id="home_top_hide">
 						   <label>From </label><input type="text" readonly class="form-control" name="from_date" id='datetimepicker_start_<?php echo $advetise['advertise_id']; ?>'/>
-						   <span class="text-dangers" id="error_from_date"> </span>
 						   <label>To </label><input type="text" readonly class="form-control check_span" name="end_date" id='datetimepicker_end_<?php echo $advetise['advertise_id']; ?>'/>
-						   <span class="text-dangers" id="error_end_date"></span>
 						</div>
 					    <span class="position_amount_visible">
 						    <span class="position_local_visible">
@@ -202,35 +199,24 @@ if(adss)
 								<option> ---- </option>				
 							</select>
 
-						    <span class="text-dangers" id="error_position"></span>
-						    <!-- <label>Price - Current Level: </label><span class="text-green" id="min_price_add">0 </span> Rs    
-						    <label>Leavel one above: </label><span class="text-green" id="max_price_add">0 </span> Rs -->
-
 						    <div id="validation_txt" style="display:none">
 							    <label>Price :&nbsp;&nbsp;&nbsp;&nbsp;</label><span class="text-green" id="price_vaidation_txt" style="font-size: 12px;font-style: italic"></span>
 							    <input type="number" name="amount_val" id="amount_val" class="form-control" min="1" step="1" onkeypress="return event.charCode >= 48 && event.charCode <= 57"/>
 							</div>
 						    <input type="hidden" name="amount" id="actual_price"/>
-						    <input type="hidden" name="min_price" id="min_price" />
-							<input type="hidden" name="max_price" id="max_price" />
-
-						    <span class="text-dangers" id="error_amount"></span>
 					    </span>
 					  
 						<div id="home_top_show" style="display:none;">
 							<div id="withAltField" class="box"></div>
 							<label>Select date</label>
 							<input id="hiddenaltField" name="top_banner_date" class="top_banner_dates form-control" type="hidden" />
-							<div id="altField"></div>
-							<input type="hidden" name="dates_for_hide" id="hide_date" />
-							<span class="text-dangers" id="error_top_banner_date"> </span>			 
+							<div id="altField"></div>		 
 							<div class="margin-ttep">
 								Number of days selected : <span class="display_total_2" id="display_total">0</span>
 							</div>
 							<div class="margin-ttep" style="color: #6194f9">Total price: <span class="display_amount_1" id="display_amount"> </span></div>
 						</div>
-					     
-						<!--<button class="advertise-btn_live_dis" type="button">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Next&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>-->
+
 						<span id="display_amount_1" style="display:none;font-size: 14px;color: #6194f9"></span>
 						<button class="advertise-btn_live" id="advertise-btn_lve" type="button">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Next&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>
 						<button class="advertise-btn" type="button" onClick="this.form.reset();" data-dismiss="modal" aria-hidden="true">&nbsp;&nbsp;&nbsp;Cancel&nbsp;&nbsp;&nbsp;</button>
@@ -400,9 +386,9 @@ if(adss)
 			
 			$('#error_loc').html('');
 			$('#basic_price').text(bannerBasicPrice[banner_name]);
+			$('#amount_val').val(bannerBasicPrice[banner_name]);
 			$('#show_basic_price').show();
 			$('.position_local_visible').hide();
-			$('.text-dangers').hide();
 			$('.reset').trigger('click');
 
 			$('.advertise-btn_live').attr('disabled', true);
@@ -547,21 +533,12 @@ if(adss)
 
 		setTimeout(function() {
 			var banner_name = $('input[name="loc"]:checked').data('advertiseName');
-
 			$('#basic_price').text(bannerBasicPrice[banner_name]);
-
-			var discount = $('input[name="loc"]:checked').data('cashBack');
-
-			if (discount == 0) {
-				$('#actual_price').val(bannerBasicPrice[banner_name]);
-			} else {
-				var discount_price = (discount / 100) * parseInt(bannerBasicPrice[banner_name]);
-				$('#actual_price').val(discount_price);
-			}
+			$('#amount_val').val(bannerBasicPrice[banner_name]);
+			discount_txt(bannerBasicPrice[banner_name]);
 		}, 1000);
 
 		$('.check_amount').on('change', function() {
-			$('.text-dangers').hide();
 			$('#display_amount_1').hide();
 
 			if (this.value.length === 0)
@@ -622,13 +599,14 @@ if(adss)
 			    		}
 					} else {
 						$('#validation_txt').hide();
-						var discount = $('input[name="loc"]:checked').data('cashBack');
-						if (discount == 0) {
-							$('#actual_price').val(bannerBasicPrice[banner_name]);
-						} else {
-							var discount_price = (discount / 100) * parseInt(bannerBasicPrice[banner_name]);
-							$('#actual_price').val(discount_price);
-						}
+						discount_txt (bannerBasicPrice[banner_name]);
+						// var discount = $('input[name="loc"]:checked').data('cashBack');
+						// if (discount == 0) {
+						// 	$('#actual_price').val(bannerBasicPrice[banner_name]);
+						// } else {
+						// 	var discount_price = (discount / 100) * parseInt(bannerBasicPrice[banner_name]);
+						// 	$('#actual_price').val(discount_price);
+						// }
 					}
 				}
 			});
@@ -698,31 +676,10 @@ if(adss)
 				}
     		}
 
-    		if ($('input[name="loc"]:checked').val() !== '6') {
-    			if (showPriceText) {
-	    			var discount = $('input[name="loc"]:checked').data('cashBack');;
-	    			var discount_price = 0;
-	    			var discount_txt = '';
-
-	    			if (discount === 0) {
-	    				//discount_txt = amount+' Rs (' +discount+'% discount)';
-	    				//discount_price = amount;
-	    				discount_txt = amount+' Rs';
-	    				discount_price = amount;
-					
-	    			} else {
-				    
-	    				discount_price = (discount / 100) * parseInt(amount);
-	    				discount_txt = '</br><span style="font-weight: bold">OFFER PRICE:</span> Pay only <span style="color: #ff0000"><del>'+amount+' Rs</del></span> <span style="font-weight: bold"> &nbsp;&nbsp;'+ discount_price.toFixed(2) + ' Rs</span>&nbsp;&nbsp;&nbsp;(' +discount+'% discount)</br>';
-	    			}
-
-	    			$('#display_amount_1').html(discount_txt).show();
-	    			$('#actual_price').val(discount_price);
-	    		} else {
-	    			$('#display_amount_1').empty().hide();
-	    			discount_price = (discount / 100) * parseInt(bannerBasicPrice[banner_name]);
-	    			$('#actual_price').val(discount_price);
-	    		}
+    		if (showPriceText) {
+    			discount_txt(amount);
+    		} else {
+    			$('#display_amount_1').empty().hide();
     		}
     	});
     });
@@ -730,9 +687,49 @@ if(adss)
 	var modetrue = false;
 	var delete_val = '0';
 
+	function discount_txt (amount) {
+		if ($('input[name="loc"]:checked').val() === '1')
+			return;
+
+		var discount = $('input[name="loc"]:checked').data('cashBack');;
+		var discount_price = 0;
+		var discount_txt = '';
+
+		if (amount == '0') {
+			discount_txt = '</br><span style="font-weight: bold">OFFER PRICE:</span> FREE</br>';
+		} else {
+			if (discount === 0) {
+				discount_txt = '</br><span style="font-weight: bold">OFFER PRICE:</span> Pay only <span style="font-weight: bold"> &nbsp;&nbsp;'+ amount.toFixed(2) + ' Rs</span></br>';
+			} else {	    
+				discount_price = (discount / 100) * parseInt(amount);
+				discount_txt = '</br><span style="font-weight: bold">OFFER PRICE:</span> Pay only <span style="color: #ff0000"><del>'+amount+' Rs</del></span> <span style="font-weight: bold"> &nbsp;&nbsp;'+ discount_price.toFixed(2) + ' Rs</span>&nbsp;&nbsp;&nbsp;(' +discount+'% discount)</br>';
+			}
+		}
+
+		$('#display_amount_1').html(discount_txt).show();
+		$('#actual_price').val(discount_price);
+
+		// if (discount === 0) {
+		// 	//discount_txt = amount+' Rs (' +discount+'% discount)';
+		// 	//discount_price = amount;
+		// 	//discount_txt = amount + ' Rs';
+		// 	discount_price = amount;
+
+		// 	if (amount === 0) {
+		// 		discount_txt = '</br><span style="font-weight: bold">OFFER PRICE:</span> FREE</br>';
+		// 	}
+		// 	else {
+		// 		discount_txt = '</br><span style="font-weight: bold">OFFER PRICE:</span> Pay only <span style="color: #ff0000"><del>'+amount+' Rs</del></span> <span style="font-weight: bold"> &nbsp;&nbsp;'+ discount_price.toFixed(2) + ' Rs</span>&nbsp;&nbsp;&nbsp;(' +discount+'% discount)</br>';
+		// 	}		
+		// } else {
+	    
+		// 	discount_price = (discount / 100) * parseInt(amount);
+		// 	discount_txt = '</br><span style="font-weight: bold">OFFER PRICE:</span> Pay only <span style="color: #ff0000"><del>'+amount+' Rs</del></span> <span style="font-weight: bold"> &nbsp;&nbsp;'+ discount_price.toFixed(2) + ' Rs</span>&nbsp;&nbsp;&nbsp;(' +discount+'% discount)</br>';
+		// }
+	}
+
 	$('.advertise-btn_live').on('click', function(e) {
 		$('#error_amount').html('');
-		$('.text-dangers').html('');
 
 		$.ajax({
 			url: 'index.php?route=sellerprofile/sellerprofile/move_live&delete_val='+delete_val,
@@ -742,8 +739,10 @@ if(adss)
 			success: function(json) { 
 				if (json['success']) {
 					var loc = $('input[name="loc"]:checked').val();
-					if (loc === '6') {
-						$('#liveSuccessMsg').text('<i class="fa fa-check-circle"></i> '+ json['success']).show();
+					var amount = $('#actual_price').val();
+
+					if (loc === '6' || amount == '0') {
+						$('#liveSuccessMsg').html('<i class="fa fa-check-circle"></i> '+ json['success']).show();
 
 						setTimeout(function() {
 							$('#liveSuccessMsg').empty().hide();
@@ -752,58 +751,56 @@ if(adss)
 					} else {
 						$('#myModal_adv').append(json['confirmForm']);
 						$('#payu_form').submit();
-					}	
-
-					return false;
+					}
 				}
 
-				if(json['free_check'] == 1) {
-					if(loc == '5') {
-						if(modetrue == false) {
-							e.preventDefault();
+				// if(json['free_check'] == 1) {
+				// 	if(loc == '5') {
+				// 		if(modetrue == false) {
+				// 			e.preventDefault();
 
-							var modal = $('<div id="myModalfree" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel3" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button><h3 id="myModalLabel3">Confirmation</h3></div><div class="modal-body"><p>Only one free Ad is allowed in "Home - Local" tab.</p><p>Do you want to removed old and post this Ad?</p></p></div><div class="modal-footer"><button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button><button class="btn-primary btn" id="SubForm">Yes</button></div></div></div></div>');			
+				// 			var modal = $('<div id="myModalfree" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel3" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button><h3 id="myModalLabel3">Confirmation</h3></div><div class="modal-body"><p>Only one free Ad is allowed in "Home - Local" tab.</p><p>Do you want to removed old and post this Ad?</p></p></div><div class="modal-footer"><button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button><button class="btn-primary btn" id="SubForm">Yes</button></div></div></div></div>');			
 							
-							$('body').append(modal);
-								modal.modal({
-								show: true
-							})
+				// 			$('body').append(modal);
+				// 				modal.modal({
+				// 				show: true
+				// 			})
 						
-							.one('click', '#SubForm', function (e) {
-								modetrue = true;
-								delete_val = 1;
-								$('#myModalfree').modal('hide');					
-								$('.advertise-btn_live').click();
-							})
-						}
-					} 
-				}
+				// 			.one('click', '#SubForm', function (e) {
+				// 				modetrue = true;
+				// 				delete_val = 1;
+				// 				$('#myModalfree').modal('hide');					
+				// 				$('.advertise-btn_live').click();
+				// 			})
+				// 		}
+				// 	} 
+				// }
 
-				if(json['advertise_location']) {
-					$('#error_loc').html('<i class="fa fa-times" aria-hidden="true"></i><span>'+json['advertise_location']).show();
-				}
+				// if(json['advertise_location']) {
+				// 	$('#error_loc').html('<i class="fa fa-times" aria-hidden="true"></i><span>'+json['advertise_location']).show();
+				// }
 
-				if(json['from_date']) {
-					$('#error_from_date').html('<i class="fa fa-times" aria-hidden="true"></i><span>'+json['from_date']).show();
-				}
+				// if(json['from_date']) {
+				// 	$('#error_from_date').html('<i class="fa fa-times" aria-hidden="true"></i><span>'+json['from_date']).show();
+				// }
 
-				if(json['end_date']) {
-					$('#error_end_date').html('<i class="fa fa-times" aria-hidden="true"></i><span>'+json['end_date']).show();
-				}
+				// if(json['end_date']) {
+				// 	$('#error_end_date').html('<i class="fa fa-times" aria-hidden="true"></i><span>'+json['end_date']).show();
+				// }
 
-				if(json['amount']) {
-					$('#error_amount').html('<i class="fa fa-times" aria-hidden="true"></i><span>'+json['amount']).show();
-				}
+				// if(json['amount']) {
+				// 	$('#error_amount').html('<i class="fa fa-times" aria-hidden="true"></i><span>'+json['amount']).show();
+				// }
 
-				if(json['position']) {
-					$('#error_position').html('<i class="fa fa-times" aria-hidden="true"></i><span>'+json['position']).show();
-				}
+				// if(json['position']) {
+				// 	$('#error_position').html('<i class="fa fa-times" aria-hidden="true"></i><span>'+json['position']).show();
+				// }
 
-				if(loc == '1') { 
-					if(json['top_banner_date']) {
-						$('#error_top_banner_date').html('<i class="fa fa-times" aria-hidden="true"></i><span>'+json['top_banner_date']).show();
-					} 
-				}
+				// if(loc == '1') { 
+				// 	if(json['top_banner_date']) {
+				// 		$('#error_top_banner_date').html('<i class="fa fa-times" aria-hidden="true"></i><span>'+json['top_banner_date']).show();
+				// 	} 
+				// }
 			}
 		});
 

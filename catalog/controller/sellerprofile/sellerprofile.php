@@ -2460,289 +2460,327 @@ class Controllersellerprofilesellerprofile extends Controller
         $this->response->setOutput(json_encode($json));
 	}
 
-	public function move_live()
-    {
-		$json = array();
+    public function move_live() {
+        $json = array();
+        $this->load->language('selleradvertise/advertise');
+        $this->load->model('selleradvertise/advertise');
 
-		$this->load->language('selleradvertise/advertise');
-		$this->load->model('selleradvertise/advertise');
+        if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validate_move_live()) {
+
+            $data['top_banner_date'] = $this->request->post['top_banner_date'];
+            $data['advetise_sp'] = $this->request->post['advetise_sp'];
+            $data['loc'] = $this->request->post['loc'];
+            $data['price'] = $this->request->post['amount_val'];
+            $data['discount_price'] = $this->request->post['amount'];
+            $data['from_date'] = $this->request->post['from_date'];
+            $data['end_date'] = $this->request->post['end_date'];
+
+            $_SESSION['confirm']['amount'] = $this->request->post['amount'];
+            $_SESSION['confirm']['name'] = $this->getAdName($this->request->post['loc']);
+            $_SESSION['confirm']['product_id'] = $this->request->post['advetise_sp'];
+
+            if ($this->request->post['loc'] == '1') {
+                $this->model_selleradvertise_advertise->adBannerToLive($data);
+                $json['confirmForm'] = $this->load->controller('checkout/confirm/adConfirm');
+            } else if ($this->request->post['loc'] == '2' || $this->request->post['loc'] == '3' || $this->request->post['loc'] == '4' || $this->request->post['loc'] == '5') {
+                $data['km'] = (isset($this->request->post['km']) && ($this->request->post['km'] != '')) ? $this->request->post['km']: '';
+                $this->model_selleradvertise_advertise->adBannersToLive($data);
+                $json['confirmForm'] = $this->load->controller('checkout/confirm/adConfirm');
+            } else if ($this->request->post['loc'] == '6') {
+                $this->model_selleradvertise_advertise->adPageToLive($data);
+            }
+
+            unset($_SESSION['confirm']);
+            $json['success'] = $this->language->get('success_to_live');
+        }
+        
+        $this->response->addHeader('Content-Type: application/json');
+        $this->response->setOutput(json_encode($json));
+    }
+
+	// public function move_live()
+ //    {
+	// 	$json = array();
+
+	// 	$this->load->language('selleradvertise/advertise');
+	// 	$this->load->model('selleradvertise/advertise');
 		
-		if(!isset($this->request->post['loc'])) {
-			$this->request->post['loc'] = '';
-			//print_r($this->request->post['loc']);die;			
-		}		
-		$delete_val = (isset($this->request->get['delete_val']) && ($this->request->get['delete_val'] != '')) ? $this->request->get['delete_val']: '';
+	// 	if(!isset($this->request->post['loc'])) {
+	// 		$this->request->post['loc'] = '';
+	// 		//print_r($this->request->post['loc']);die;			
+	// 	}		
+	// 	$delete_val = (isset($this->request->get['delete_val']) && ($this->request->get['delete_val'] != '')) ? $this->request->get['delete_val']: '';
 
-		$basic_position_amount = $this->model_selleradvertise_advertise->getStoreOfferBasicPrice();
+	// 	$basic_position_amount = $this->model_selleradvertise_advertise->getStoreOfferBasicPrice();
 
-		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validate_move_live()) {	
-			if(($this->request->post['from_date'] != '') && ($this->request->post['end_date'] != '') && ($this->request->post['position'] != '')){
-				$amount = $this->request->post['amount'];
-				$from_date = $this->request->post['from_date'];
-				$end_date = $this->request->post['end_date'];
-				$loc = $this->request->post['loc'];
-				$ad_order = $this->request->post['position'];				
-				$basic_amount_loc = '';
+	// 	if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validate_move_live()) {	
+	// 		if(($this->request->post['from_date'] != '') && ($this->request->post['end_date'] != '') && ($this->request->post['position'] != '')){
+	// 			$amount = $this->request->post['amount'];
+	// 			$from_date = $this->request->post['from_date'];
+	// 			$end_date = $this->request->post['end_date'];
+	// 			$loc = $this->request->post['loc'];
+	// 			$ad_order = $this->request->post['position'];				
+	// 			$basic_amount_loc = '';
 
-				if($loc == 2) { 
-                    $basic_amount_loc = $basic_position_amount['home_national']; 
-                }
+	// 			if($loc == 2) { 
+ //                    $basic_amount_loc = $basic_position_amount['home_national']; 
+ //                }
 
-				if($loc == 3) { 
-                    $basic_amount_loc = $basic_position_amount['home_state']; 
-                }
+	// 			if($loc == 3) { 
+ //                    $basic_amount_loc = $basic_position_amount['home_state']; 
+ //                }
 
-				if($loc == 4) {
-                    $basic_amount_loc = $basic_position_amount['home_city']; 
-                }
+	// 			if($loc == 4) {
+ //                    $basic_amount_loc = $basic_position_amount['home_city']; 
+ //                }
 
-				if($loc == 5) { 
-                    $basic_amount_loc = $basic_position_amount['home_local']; 
-                }
+	// 			if($loc == 5) { 
+ //                    $basic_amount_loc = $basic_position_amount['home_local']; 
+ //                }
 
-				if($loc == '2' || $loc == '3' || $loc == '4' || $loc == '5') {		
-					$km = (isset($this->request->post['km']) && ($this->request->post['km'] != '')) ? $this->request->post['km']: '';
+	// 			if($loc == '2' || $loc == '3' || $loc == '4' || $loc == '5') {		
+	// 				$km = (isset($this->request->post['km']) && ($this->request->post['km'] != '')) ? $this->request->post['km']: '';
 
-					$position_amt = $this->model_selleradvertise_advertise->getPostionAmount($from_date, $end_date, $loc, $ad_order, $km);
+	// 				$position_amt = $this->model_selleradvertise_advertise->getPostionAmount($from_date, $end_date, $loc, $ad_order, $km);
 										
-					if(count($position_amt) > 0) { 
-						foreach($position_amt as $key => $position_a) {
-							$value_filter[] = $position_a['price'];
-						}
+	// 				if(count($position_amt) > 0) { 
+	// 					foreach($position_amt as $key => $position_a) {
+	// 						$value_filter[] = $position_a['price'];
+	// 					}
 
-						if(count($value_filter) > 0) {
-							$position_amount = array_diff($value_filter, $basic_position_amount);
-							$position_amount = array_unique($position_amount);
-							$value = array();
+	// 					if(count($value_filter) > 0) {
+	// 						$position_amount = array_diff($value_filter, $basic_position_amount);
+	// 						$position_amount = array_unique($position_amount);
+	// 						$value = array();
 
-							if(count($position_amount) > 0) {
-								if(count($position_amount)+2 == $ad_order) {
-									if($loc == '2') {
-										$value[0] = $basic_position_amount['home_national'];
+	// 						if(count($position_amount) > 0) {
+	// 							if(count($position_amount)+2 == $ad_order) {
+	// 								if($loc == '2') {
+	// 									$value[0] = $basic_position_amount['home_national'];
 										
-									}
-                                    if($loc == '3') {
-										$value[0] = $basic_position_amount['home_state'];
+	// 								}
+ //                                    if($loc == '3') {
+	// 									$value[0] = $basic_position_amount['home_state'];
 										
-									}
-                                    if($loc == '4') {
-										$value[0] = $basic_position_amount['home_city'];
+	// 								}
+ //                                    if($loc == '4') {
+	// 									$value[0] = $basic_position_amount['home_city'];
 										
-									}
-                                    if($loc == '5') {
-										$value[0] = $basic_position_amount['home_local'];
-									}
-								}
+	// 								}
+ //                                    if($loc == '5') {
+	// 									$value[0] = $basic_position_amount['home_local'];
+	// 								}
+	// 							}
 
-								foreach($position_amount as $key => $position) {					
-									if(count($position_amount) == 1) { 
-										if(($key+1) == $ad_order) {
-											$value[0] = $position;
-										}
+	// 							foreach($position_amount as $key => $position) {					
+	// 								if(count($position_amount) == 1) { 
+	// 									if(($key+1) == $ad_order) {
+	// 										$value[0] = $position;
+	// 									}
 
-										if(count($position_amount)+1 == $ad_order) {
-											$value[0] = $position;
-											if($loc == '2') {
-												$value[1] = $basic_position_amount['home_national'];
+	// 									if(count($position_amount)+1 == $ad_order) {
+	// 										$value[0] = $position;
+	// 										if($loc == '2') {
+	// 											$value[1] = $basic_position_amount['home_national'];
 												
-											}if($loc == '3') {
-												$value[1] = $basic_position_amount['home_state'];
+	// 										}if($loc == '3') {
+	// 											$value[1] = $basic_position_amount['home_state'];
 												
-											}if($loc == '4') {
-												$value[1] = $basic_position_amount['home_city'];
+	// 										}if($loc == '4') {
+	// 											$value[1] = $basic_position_amount['home_city'];
 												
-											}if($loc == '5') {
-												$value[1] = $basic_position_amount['home_local'];
-											}
-										}
-									} else {										
-										if(count($position_amount)+1 == $ad_order) {
-											$value[0] = $position;
-											if($loc == '2') {
-												$value[1] = $basic_position_amount['home_national'];
+	// 										}if($loc == '5') {
+	// 											$value[1] = $basic_position_amount['home_local'];
+	// 										}
+	// 									}
+	// 								} else {										
+	// 									if(count($position_amount)+1 == $ad_order) {
+	// 										$value[0] = $position;
+	// 										if($loc == '2') {
+	// 											$value[1] = $basic_position_amount['home_national'];
 												
-											}if($loc == '3') {
-												$value[1] = $basic_position_amount['home_state'];
+	// 										}if($loc == '3') {
+	// 											$value[1] = $basic_position_amount['home_state'];
 												
-											}if($loc == '4') {
-												$value[1] = $basic_position_amount['home_city'];
+	// 										}if($loc == '4') {
+	// 											$value[1] = $basic_position_amount['home_city'];
 												
-											}if($loc == '5') {
-												$value[1] = $basic_position_amount['home_local'];
-											}
-										} else {
-											if($key+1 == $ad_order && $ad_order == 1) { 
-												$value[0] = $position; break;
-											} else {
-												if($key+2 == $ad_order) {  
-													$value[0] = $position;
-												}
-												if($key+1 == $ad_order) {
-													$value[1] = $position;
-												}
-											}
-										}
-									}													
-								}
-							}
-						}
+	// 										}if($loc == '5') {
+	// 											$value[1] = $basic_position_amount['home_local'];
+	// 										}
+	// 									} else {
+	// 										if($key+1 == $ad_order && $ad_order == 1) { 
+	// 											$value[0] = $position; break;
+	// 										} else {
+	// 											if($key+2 == $ad_order) {  
+	// 												$value[0] = $position;
+	// 											}
+	// 											if($key+1 == $ad_order) {
+	// 												$value[1] = $position;
+	// 											}
+	// 										}
+	// 									}
+	// 								}													
+	// 							}
+	// 						}
+	// 					}
 								
-						if($value > 0 && !empty($value)) {
-							if(count($value) == 1) {									
-								if($amount > $value['0']) {  
-									$check = $this->model_selleradvertise_advertise->adToLive($this->request->post, $delete_val);
-									if($check == 1 && $amount == 0) {
-										$json['free_check'] = 1;
-									} else {
-										$json['success'] = $this->language->get('success_to_live');
-									}	
-								} else {
-									if($amount == $basic_amount_loc) {							
-										$check = $this->model_selleradvertise_advertise->adToLive($this->request->post, $delete_val);
-										if($check == 1 && $amount == 0) {
-											$json['free_check'] = 1;
-										} else {
-											$json['success'] = $this->language->get('success_to_live');
-										}	
-									} else {
-										$this->error['amount'] = $this->language->get('position_amount_max');
-										$json['amount'] = "Price should be above ".$value['0']. " Rs.";
-									}
-								}
-							} else { 
-								if($amount == $basic_amount_loc) {							
-										$check = $this->model_selleradvertise_advertise->adToLive($this->request->post, $delete_val);
-										if($check == 1 && $amount == 0) {
-											$json['free_check'] = 1;
-										} else {
-											$json['success'] = $this->language->get('success_to_live');
-										}									
-								} else {
-									if(($amount > $value['1']) && ($amount < $value['0']) && ($ad_order != (count($position_amt)+1))) { 
-										$check = $this->model_selleradvertise_advertise->adToLive($this->request->post, $delete_val);
-										if($check == 1 && $amount == 0) {
-											$json['free_check'] = 1;
-										} else {
-											$json['success'] = $this->language->get('success_to_live');
-										}									
-									} else {
-										//$this->error['position'] = $this->language->get('position_amount_min');
-										$json['amount'] = "Enter between ".$value['1']." to ".$value['0'];
-									}
-								}
+	// 					if($value > 0 && !empty($value)) {
+	// 						if(count($value) == 1) {									
+	// 							if($amount > $value['0']) {  
+	// 								$check = $this->model_selleradvertise_advertise->adToLive($this->request->post, $delete_val);
+	// 								if($check == 1 && $amount == 0) {
+	// 									$json['free_check'] = 1;
+	// 								} else {
+	// 									$json['success'] = $this->language->get('success_to_live');
+	// 								}	
+	// 							} else {
+	// 								if($amount == $basic_amount_loc) {							
+	// 									$check = $this->model_selleradvertise_advertise->adToLive($this->request->post, $delete_val);
+	// 									if($check == 1 && $amount == 0) {
+	// 										$json['free_check'] = 1;
+	// 									} else {
+	// 										$json['success'] = $this->language->get('success_to_live');
+	// 									}	
+	// 								} else {
+	// 									$this->error['amount'] = $this->language->get('position_amount_max');
+	// 									$json['amount'] = "Price should be above ".$value['0']. " Rs.";
+	// 								}
+	// 							}
+	// 						} else { 
+	// 							if($amount == $basic_amount_loc) {							
+	// 									$check = $this->model_selleradvertise_advertise->adToLive($this->request->post, $delete_val);
+	// 									if($check == 1 && $amount == 0) {
+	// 										$json['free_check'] = 1;
+	// 									} else {
+	// 										$json['success'] = $this->language->get('success_to_live');
+	// 									}									
+	// 							} else {
+	// 								if(($amount > $value['1']) && ($amount < $value['0']) && ($ad_order != (count($position_amt)+1))) { 
+	// 									$check = $this->model_selleradvertise_advertise->adToLive($this->request->post, $delete_val);
+	// 									if($check == 1 && $amount == 0) {
+	// 										$json['free_check'] = 1;
+	// 									} else {
+	// 										$json['success'] = $this->language->get('success_to_live');
+	// 									}									
+	// 								} else {
+	// 									//$this->error['position'] = $this->language->get('position_amount_min');
+	// 									$json['amount'] = "Enter between ".$value['1']." to ".$value['0'];
+	// 								}
+	// 							}
 								
-							} 				
-						} else {
-							if($amount == $basic_amount_loc) {							
-								$check = $this->model_selleradvertise_advertise->adToLive($this->request->post, $delete_val);
-								if($check == 1 && $amount == 0) {
-									$json['free_check'] = 1;
-								} else {
-									$json['success'] = $this->language->get('success_to_live');
-								}		
-							}
-						}
-					} else {
-						if($loc == '2') {
-							$value[0] = $basic_position_amount['home_national'];
+	// 						} 				
+	// 					} else {
+	// 						if($amount == $basic_amount_loc) {							
+	// 							$check = $this->model_selleradvertise_advertise->adToLive($this->request->post, $delete_val);
+	// 							if($check == 1 && $amount == 0) {
+	// 								$json['free_check'] = 1;
+	// 							} else {
+	// 								$json['success'] = $this->language->get('success_to_live');
+	// 							}		
+	// 						}
+	// 					}
+	// 				} else {
+	// 					if($loc == '2') {
+	// 						$value[0] = $basic_position_amount['home_national'];
 							
-						}if($loc == '3') {
-							$value[0] = $basic_position_amount['home_state'];
+	// 					}if($loc == '3') {
+	// 						$value[0] = $basic_position_amount['home_state'];
 							
-						}if($loc == '4') {
-							$value[0] = $basic_position_amount['home_city'];
+	// 					}if($loc == '4') {
+	// 						$value[0] = $basic_position_amount['home_city'];
 							
-						}if($loc == '5') {
-							$value[0] = $basic_position_amount['home_local'];
-						}
-						if($ad_order == 2) {
-							$check = $this->model_selleradvertise_advertise->adToLive($this->request->post, $delete_val);
-							if($check == 1 && $amount == 0) {
-								$json['free_check'] = 1;
-							} else {
-								$json['success'] = $this->language->get('success_to_live');
-							}	
-						} else {							
-							if($amount > $basic_amount_loc && $ad_order == '1') {
-								$check = $this->model_selleradvertise_advertise->adToLive($this->request->post, $delete_val);
-								if($check == 1 && $amount == 0) {
-									$json['free_check'] = 1;
-								} else {
-									$json['success'] = $this->language->get('success_to_live');
-								}								
-							} else {
-								$this->error['amount'] = $this->language->get('position_amount_max');
-								$json['amount'] = "Price should be above ".$value['0']. " Rs";
-							}
-						}
-					}
-				}
-			}
-			if($this->request->post['loc'] == '6') {
-				$this->model_selleradvertise_advertise->adToLive($this->request->post, $delete_val);				
-				$json['success'] = $this->language->get('success_to_live');
-			}
+	// 					}if($loc == '5') {
+	// 						$value[0] = $basic_position_amount['home_local'];
+	// 					}
+	// 					if($ad_order == 2) {
+	// 						$check = $this->model_selleradvertise_advertise->adToLive($this->request->post, $delete_val);
+	// 						if($check == 1 && $amount == 0) {
+	// 							$json['free_check'] = 1;
+	// 						} else {
+	// 							$json['success'] = $this->language->get('success_to_live');
+	// 						}	
+	// 					} else {							
+	// 						if($amount > $basic_amount_loc && $ad_order == '1') {
+	// 							$check = $this->model_selleradvertise_advertise->adToLive($this->request->post, $delete_val);
+	// 							if($check == 1 && $amount == 0) {
+	// 								$json['free_check'] = 1;
+	// 							} else {
+	// 								$json['success'] = $this->language->get('success_to_live');
+	// 							}								
+	// 						} else {
+	// 							$this->error['amount'] = $this->language->get('position_amount_max');
+	// 							$json['amount'] = "Price should be above ".$value['0']. " Rs";
+	// 						}
+	// 					}
+	// 				}
+	// 			}
+	// 		}
+	// 		if($this->request->post['loc'] == '6') {
+	// 			$this->model_selleradvertise_advertise->adToLive($this->request->post, $delete_val);				
+	// 			$json['success'] = $this->language->get('success_to_live');
+	// 		}
 		
-			if($this->request->post['loc'] == '1') {
-				$top_banner_date = $this->request->post['top_banner_date'];
-				if($top_banner_date != ''){	
-					$top_banner_date_arr = explode(",", $top_banner_date);			
-					foreach($top_banner_date_arr as $key => $top_banner_date) {
-						$data['top_banner_date'] = $top_banner_date;
-						$data['advetise_sp'] = $this->request->post['advetise_sp'];
-						$data['loc'] = $this->request->post['loc'];
-						$data['price'] = $default_home_top_advertise_amount = $basic_position_amount['top_banner'] * ($key +1);
-						$this->model_selleradvertise_advertise->adToLive($data);	
-					}				
-					$json['success'] = $this->language->get('success_to_live');
-				} else {
+	// 		if($this->request->post['loc'] == '1') {
+	// 			$top_banner_date = $this->request->post['top_banner_date'];
+	// 			if($top_banner_date != ''){	
+	// 				$top_banner_date_arr = explode(",", $top_banner_date);			
+	// 				foreach($top_banner_date_arr as $key => $top_banner_date) {
+	// 					$data['top_banner_date'] = $top_banner_date;
+	// 					$data['advetise_sp'] = $this->request->post['advetise_sp'];
+	// 					$data['loc'] = $this->request->post['loc'];
+	// 					$data['price'] = $default_home_top_advertise_amount = $basic_position_amount['top_banner'] * ($key +1);
+	// 					$this->model_selleradvertise_advertise->adToLive($data);	
+	// 				}				
+	// 				$json['success'] = $this->language->get('success_to_live');
+	// 			} else {
 					
-					if($this->request->post['position'] == ''){			
-						$this->error['position'] = $this->language->get('position');
-					}
-				}
-			}		
-		}		
+	// 				if($this->request->post['position'] == ''){			
+	// 					$this->error['position'] = $this->language->get('position');
+	// 				}
+	// 			}
+	// 		}		
+	// 	}		
 
-			if($this->request->post['loc'] == '6' || $this->request->post['loc'] == '2' || $this->request->post['loc'] == '3' || $this->request->post['loc'] == '4' || $this->request->post['loc'] == '5') {				
-				if (isset($this->error['from_date'])) {
-					$json['from_date'] = $this->error['from_date'];
-				} 
-				if (isset($this->error['end_date'])) {
-					$json['end_date'] = $this->error['end_date'];
-				} 
-			}
-			if($this->request->post['loc'] == '2' || $this->request->post['loc'] == '3' || $this->request->post['loc'] == '4' || $this->request->post['loc'] == '5') {
-				/*if (isset($this->error['amount'])) {
-					$json['amount'] = $this->language->get('amount');
-				} */
-				if (isset($this->error['position'])) {
-					$json['position'] = $this->error['position'];
-				}
-			}
+	// 		if($this->request->post['loc'] == '6' || $this->request->post['loc'] == '2' || $this->request->post['loc'] == '3' || $this->request->post['loc'] == '4' || $this->request->post['loc'] == '5') {				
+	// 			if (isset($this->error['from_date'])) {
+	// 				$json['from_date'] = $this->error['from_date'];
+	// 			} 
+	// 			if (isset($this->error['end_date'])) {
+	// 				$json['end_date'] = $this->error['end_date'];
+	// 			} 
+	// 		}
+	// 		if($this->request->post['loc'] == '2' || $this->request->post['loc'] == '3' || $this->request->post['loc'] == '4' || $this->request->post['loc'] == '5') {
+	// 			/*if (isset($this->error['amount'])) {
+	// 				$json['amount'] = $this->language->get('amount');
+	// 			} */
+	// 			if (isset($this->error['position'])) {
+	// 				$json['position'] = $this->error['position'];
+	// 			}
+	// 		}
 			
-			if($this->request->post['loc'] == '1') {
-				if (isset($this->error['top_banner_date'])) {
-					$json['top_banner_date'] = $this->error['top_banner_date'];
-				}
-			}
-			if (isset($this->error['advertise_location'])) {
-				$json['advertise_location'] = $this->error['advertise_location'];
-			}
+	// 		if($this->request->post['loc'] == '1') {
+	// 			if (isset($this->error['top_banner_date'])) {
+	// 				$json['top_banner_date'] = $this->error['top_banner_date'];
+	// 			}
+	// 		}
+	// 		if (isset($this->error['advertise_location'])) {
+	// 			$json['advertise_location'] = $this->error['advertise_location'];
+	// 		}
 		
-		$_SESSION['confirm']['amount'] = $this->request->post['amount'];
-		$_SESSION['confirm']['name'] = $this->getAdName($this->request->post['loc']);
-		$_SESSION['confirm']['product_id'] = $this->request->post['advetise_sp'];
-		$json['confirmForm'] = $this->load->controller('checkout/confirm/adConfirm');
-		unset($_SESSION['confirm']);
+	// 	$_SESSION['confirm']['amount'] = $this->request->post['amount'];
+	// 	$_SESSION['confirm']['name'] = $this->getAdName($this->request->post['loc']);
+	// 	$_SESSION['confirm']['product_id'] = $this->request->post['advetise_sp'];
+	// 	$json['confirmForm'] = $this->load->controller('checkout/confirm/adConfirm');
+	// 	unset($_SESSION['confirm']);
 		
-		if(!count($this->error) && !isset($json['success']))
-			$json['success'] = 'success';
+	// 	if(!count($this->error) && !isset($json['success']))
+	// 		$json['success'] = 'success';
 		
-		$this->response->addHeader('Content-Type: application/json');
-		$this->response->setOutput(json_encode($json));
+	// 	$this->response->addHeader('Content-Type: application/json');
+	// 	$this->response->setOutput(json_encode($json));
 		
-	}
+	// }
 
 	public function top_banner_date_check() {
 		$json = array();

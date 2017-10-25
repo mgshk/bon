@@ -581,7 +581,17 @@ class ModelselleradvertiseAdvertise extends Model
         if ($limit < 1) {
             $limit = 10;
         }
-        $sql = "SELECT advertise_id, seller_id, offer_title, offer_image, offer_desc, offer_url, position, price, sort_order, status, end_date, km, offer_image_original FROM ".DB_PREFIX."store_offers so WHERE so.seller_id = '".(int) $this->customer->getID()."' AND CURDATE() >= so.from_date AND CURDATE() <= so.end_date AND so.status = 'live' AND so.status != 'deleted' UNION SELECT advertise_id, seller_id, offer_title, offer_image, offer_desc, offer_url, position, price, sort_order, status , end_date, km, offer_image_original FROM ".DB_PREFIX."store_offers soi LEFT JOIN ".DB_PREFIX."home_top_banner_date htbd ON (soi.advertise_id = htbd.store_offer_advertise_id) WHERE soi.seller_id = '".(int) $this->customer->getID()."' AND soi.status = 'live' AND soi.status != 'deleted' AND soi.position = '1' AND CURDATE() = htbd.date ORDER BY advertise_id";
+        $sql = "SELECT advertise_id, seller_id, offer_title, offer_image, offer_desc, offer_url, position, 
+            price, sort_order, status, end_date, km, offer_image_original 
+            FROM ".DB_PREFIX."store_offers so WHERE so.seller_id = '".(int) $this->customer->getID()."' 
+            AND CURDATE() >= so.from_date AND CURDATE() <= so.end_date AND so.status = 'live' AND so.status != 'deleted' 
+            UNION 
+            SELECT advertise_id, seller_id, offer_title, offer_image, offer_desc, offer_url, position, price, sort_order, status , 
+            end_date, km, offer_image_original 
+            FROM ".DB_PREFIX."store_offers soi 
+            LEFT JOIN ".DB_PREFIX."home_top_banner_date htbd ON (soi.advertise_id = htbd.store_offer_advertise_id) 
+            WHERE soi.seller_id = '".(int) $this->customer->getID()."' AND soi.status = 'live' AND soi.status != 'deleted' 
+            AND soi.position = '1' AND CURDATE() = htbd.date ORDER BY advertise_id";
 
 		//print_r($sql);
 
@@ -717,60 +727,110 @@ class ModelselleradvertiseAdvertise extends Model
 		
 	}
 
-	public function adToLive($data, $delete_free='')
-	{
-		if($data['loc'] == 2){
-			$data['state'] = '';
-			$data['city'] = '';
-		}if($data['loc'] == 3){
-			$data['national'] = '';
-			$data['city'] = '';
-		}if($data['loc'] == 4){
-			$data['national'] = '';
-			$data['state'] = '';
-		}if($data['loc'] == 5){
-			$data['national'] = '';
-			$data['state'] = '';
-			$data['city'] = '';
-		}
+    public function adBannerToLive($data) {
+        $this->db->query('UPDATE '.DB_PREFIX."store_offers SET position = '".(int) $data['loc']."', 
+            price = '".$data['price']."', date_modified = NOW() 
+            WHERE advertise_id = '".(int) $data['advetise_sp']."' AND seller_id = '".$this->customer->getID()."'");
 
-		if(isset($data['amount']) && $data['amount'] != ''){
-				$sql1 = "SELECT * FROM ".DB_PREFIX."store_offers WHERE position = '".(int) $data['loc']."' And status = 'live' And seller_id = '".$this->customer->getID()."' AND advertise_id != '".(int) $data['advetise_sp']."' AND price = '0' order by price Desc";
-				$query = $this->db->query($sql1);
-				$free_position_arr = $query->rows;
-				//print_r($free_position_arr);exit;
-				if(count($free_position_arr) > 0 && !empty($free_position_arr)) {
-					if($delete_free == 1) {
-						foreach($free_position_arr as $free_position) {
-							$this->db->query('UPDATE '.DB_PREFIX."store_offers SET status = 'deleted' WHERE advertise_id = '".(int) $free_position['advertise_id']."'");        
+        $top_banner_dates = explode(",", $data['top_banner_date']);
 
-							//$this->cache->delete('advertise');
-						}
-						$this->db->query('UPDATE '.DB_PREFIX."store_offers SET position = '".(int) $data['loc']."', from_date = '".$data['from_date']."', end_date = '".$data['end_date']."', price = '".$data['amount']."', km = '".$data['km']."' , national = '".$data['national']."' , state = '".$data['state']."' , city = '".$data['city']."' ,date_modified = NOW() WHERE advertise_id = '".(int) $data['advetise_sp']."' AND seller_id = '".$this->customer->getID()."'");
-					} else {
-						if($delete_free == 0) {
-							$this->db->query('UPDATE '.DB_PREFIX."store_offers SET position = '".(int) $data['loc']."', from_date = '".$data['from_date']."', end_date = '".$data['end_date']."', price = '".$data['amount']."', km = '".$data['km']."' , national = '".$data['national']."' , state = '".$data['state']."' , city = '".$data['city']."',date_modified = NOW() WHERE advertise_id = '".(int) $data['advetise_sp']."' AND seller_id = '".$this->customer->getID()."'");
-						} else {
-							return 1;
-						}
-					}
-				} else {
-					$this->db->query('UPDATE '.DB_PREFIX."store_offers SET position = '".(int) $data['loc']."', from_date = '".$data['from_date']."', end_date = '".$data['end_date']."', price = '".$data['amount']."', km = '".$data['km']."' , national = '".$data['national']."' , state = '".$data['state']."' , city = '".$data['city']."', date_modified = NOW() WHERE advertise_id = '".(int) $data['advetise_sp']."' AND seller_id = '".$this->customer->getID()."'");
-				}
-		} else{ 
-			
-			if(isset($data['top_banner_date']) && $data['top_banner_date'] != '') {
-				$this->db->query('UPDATE '.DB_PREFIX."store_offers SET position = '".(int) $data['loc']."', price = '".$data['price']."',date_modified = NOW() WHERE advertise_id = '".(int) $data['advetise_sp']."' AND seller_id = '".$this->customer->getID()."'");
+        $this->db->query('DELETE FROM '.DB_PREFIX.'home_top_banner_date WHERE store_offer_advertise_id = '.(int) $data['advetise_sp']);
 
-				$this->db->query('INSERT INTO '.DB_PREFIX."home_top_banner_date SET store_offer_advertise_id = '".(int) $data['advetise_sp']."', date = '".$data['top_banner_date']."'");		       
+        foreach($top_banner_dates as $top_banner_date) {
+            $dateFormat = date("Y-m-d", strtotime($top_banner_date));
 
-				$top_banner_advertise_id = $this->db->getLastId();
-			} else {				
-					$this->db->query('UPDATE '.DB_PREFIX."store_offers SET position = '".(int) $data['loc']."', from_date = '".$data['from_date']."', end_date = '".$data['end_date']."', date_modified = NOW() WHERE advertise_id = '".(int) $data['advetise_sp']."' AND seller_id = '".$this->customer->getID()."'");					
+            $this->db->query('INSERT INTO '.DB_PREFIX."home_top_banner_date 
+                SET store_offer_advertise_id = '".(int) $data['advetise_sp']."', date = '".$dateFormat."'");
+        }
+    }
+
+    public function adPageToLive($data) {
+        $this->db->query('UPDATE '.DB_PREFIX."store_offers SET position = '".(int) $data['loc']."', 
+            price = '".$data['price']."', date_modified = NOW() 
+            WHERE advertise_id = '".(int) $data['advetise_sp']."' AND seller_id = '".$this->customer->getID()."'");
+    }
+
+    public function adBannersToLive($data) {
+        $this->db->query('UPDATE '.DB_PREFIX."store_offers SET position = '".(int) $data['loc']."', 
+            from_date = '".$data['from_date']."', end_date = '".$data['end_date']."', km = '".$data['km']."', 
+            price = '".$data['price']."', discount_price = '".$data['discount_price']."', date_modified = NOW() 
+            WHERE advertise_id = '".(int) $data['advetise_sp']."' AND seller_id = '".$this->customer->getID()."'");
+    }
+
+	// public function adToLive($data, $delete_free = '')
+	// {
+	// 	if($data['loc'] == 2){
+	// 		$data['state'] = '';
+	// 		$data['city'] = '';
+	// 	}if($data['loc'] == 3){
+	// 		$data['national'] = '';
+	// 		$data['city'] = '';
+	// 	}if($data['loc'] == 4){
+	// 		$data['national'] = '';
+	// 		$data['state'] = '';
+	// 	}if($data['loc'] == 5){
+	// 		$data['national'] = '';
+	// 		$data['state'] = '';
+	// 		$data['city'] = '';
+	// 	}
+
+	// 	if(isset($data['amount']) && $data['amount'] != 0) {
+	// 			$sql1 = "SELECT * FROM ".DB_PREFIX."store_offers 
+ //                    WHERE position = '".(int) $data['loc']."' And status = 'live' And seller_id = '".$this->customer->getID()."' 
+ //                    AND advertise_id != '".(int) $data['advetise_sp']."' AND price = '0' order by price Desc";
 				
-			}
-		}
-	}
+ //                $query = $this->db->query($sql1);
+	// 			$free_position_arr = $query->rows;
+
+	// 			if(count($free_position_arr) > 0 && !empty($free_position_arr)) {
+	// 				if($delete_free == 1) {
+	// 					foreach($free_position_arr as $free_position) {
+	// 						$this->db->query('UPDATE '.DB_PREFIX."store_offers 
+ //                                SET status = 'deleted' WHERE advertise_id = '".(int) $free_position['advertise_id']."'");
+	// 					}
+
+	// 					$this->db->query('UPDATE '.DB_PREFIX."store_offers SET position = '".(int) $data['loc']."', 
+ //                            from_date = '".$data['from_date']."', end_date = '".$data['end_date']."', 
+ //                            price = '".$data['amount']."', km = '".$data['km']."' , national = '".$data['national']."' , 
+ //                            state = '".$data['state']."' , city = '".$data['city']."' ,date_modified = NOW() 
+ //                            WHERE advertise_id = '".(int) $data['advetise_sp']."' AND seller_id = '".$this->customer->getID()."'");
+	// 				} else {
+	// 					if($delete_free == 0) {
+	// 						$this->db->query('UPDATE '.DB_PREFIX."store_offers SET position = '".(int) $data['loc']."', 
+ //                                from_date = '".$data['from_date']."', end_date = '".$data['end_date']."', 
+ //                                price = '".$data['amount']."', km = '".$data['km']."' , national = '".$data['national']."' , 
+ //                                state = '".$data['state']."' , city = '".$data['city']."',date_modified = NOW() 
+ //                                WHERE advertise_id = '".(int) $data['advetise_sp']."' 
+ //                                AND seller_id = '".$this->customer->getID()."'");
+	// 					} else {
+	// 						return 1;
+	// 					}
+	// 				}
+	// 			} else {
+	// 				$this->db->query('UPDATE '.DB_PREFIX."store_offers SET position = '".(int) $data['loc']."', 
+ //                        from_date = '".$data['from_date']."', end_date = '".$data['end_date']."', price = '".$data['amount']."', 
+ //                        km = '".$data['km']."' , national = '".$data['national']."' , state = '".$data['state']."' , 
+ //                        city = '".$data['city']."', date_modified = NOW() 
+ //                        WHERE advertise_id = '".(int) $data['advetise_sp']."' AND seller_id = '".$this->customer->getID()."'");
+	// 			}
+	// 	} else {	
+	// 		if(isset($data['top_banner_date']) && $data['top_banner_date'] != '') {
+	// 			$this->db->query('UPDATE '.DB_PREFIX."store_offers SET position = '".(int) $data['loc']."', 
+ //                    price = '".$data['price']."', date_modified = NOW() 
+ //                    WHERE advertise_id = '".(int) $data['advetise_sp']."' AND seller_id = '".$this->customer->getID()."'");
+
+	// 			$this->db->query('INSERT INTO '.DB_PREFIX."home_top_banner_date 
+ //                    SET store_offer_advertise_id = '".(int) $data['advetise_sp']."', date = '".$data['top_banner_date']."'");		       
+
+	// 			$top_banner_advertise_id = $this->db->getLastId();
+	// 		} else {				
+	// 			$this->db->query('UPDATE '.DB_PREFIX."store_offers SET position = '".(int) $data['loc']."', 
+ //                    from_date = '".$data['from_date']."', end_date = '".$data['end_date']."', date_modified = NOW() 
+ //                    WHERE advertise_id = '".(int) $data['advetise_sp']."' AND seller_id = '".$this->customer->getID()."'");					
+				
+	// 		}
+	// 	}
+	// }
 
 
 	public function copyAdvertisment($advertise_id)
