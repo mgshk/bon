@@ -746,7 +746,7 @@ class ModelselleradvertiseAdvertise extends Model
 
     public function adPageToLive($data) {
         $this->db->query('UPDATE '.DB_PREFIX."store_offers SET position = '".(int) $data['loc']."', 
-            price = '".$data['price']."', date_modified = NOW() 
+            price = '".$data['price']."', status = 'live', date_modified = NOW() 
             WHERE advertise_id = '".(int) $data['advetise_sp']."' AND seller_id = '".$this->customer->getID()."'");
     }
 
