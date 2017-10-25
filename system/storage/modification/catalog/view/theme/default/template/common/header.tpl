@@ -37,9 +37,6 @@
 	<link rel="stylesheet" href="catalog/view/javascript/mega-menu/style.css">
 	<!-- Resource style -->
 	<!--End Mega Menu-->
-	<link rel="stylesheet" href="catalog/view/javascript/slide-menu.css">
-	<link rel="stylesheet" href="catalog/view/javascript/preview.css">
-	<script src="catalog/view/javascript/slide-menu.js"></script>
 	<!-- -->
 	<link href="catalog/view/javascript/chosen/chosen.css" rel="stylesheet" media="screen" />
 	<script src="catalog/view/javascript/chosen/chosen.jquery.js" type="text/javascript"></script>
@@ -354,13 +351,7 @@
 						</div>
 						<!--</div>-->
 					</div>
-					<div class="slide-menu" id="test-menu-left">
-  <div class="controls">
-    <button type="button" class="btn slide-menu-control" data-action="close">Close</button>
-  </div>
-  <p>You aren't limited to classical navigation menus.</p>
-  <p>In fact you can put anything you like in the menu</p>
-</div>
+					
 <button type="button" class="btn slide-menu-control" data-target="test-menu-left" data-action="toggle">Toggle Menu</button>
 					<div class="col-xs-4">
 						<?php if ($logged) { 
@@ -1311,24 +1302,6 @@
 			obj.type = "password";
 		}
 
-		$(document).ready(function () {
-
-                var menuLeft = $('#test-menu-left').slideMenu({
-                    position: 'left',
-                    submenuLinkAfter: ' >',
-                    backLinkBefore: '< '
-                });
-
-                var menuRight = $('#test-menu-right').slideMenu({
-                    submenuLinkAfter: ' ⇒',
-                    backLinkBefore: '⇐ '
-                });
-
-                if ($(window).width() > 767) {
-                    menuRight.open(false);
-                }
-
-            });
 	</script>
 
 	<!-- feedback modal -->
