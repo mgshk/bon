@@ -792,6 +792,8 @@ position: relative;bottom: 20px;}
 /*#img-containers .cr-viewport{height: 290px !important;}
 #croppedImage img{height: 30px;width: 70%;display: block;margin: auto;margin-top: 5px;}*/
 .rel{position: relative;}
+.walet{margin-top: 20px;}
+.walet p{margin-bottom: 20px;}
 /* my css ends */
 
 @media (min-width: 1200px) {

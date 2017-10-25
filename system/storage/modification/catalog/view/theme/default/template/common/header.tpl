@@ -37,6 +37,9 @@
 	<link rel="stylesheet" href="catalog/view/javascript/mega-menu/style.css">
 	<!-- Resource style -->
 	<!--End Mega Menu-->
+	<link rel="stylesheet" href="catalog/view/javascript/slide-menu.css">
+	<link rel="stylesheet" href="catalog/view/javascript/preview.css">
+	<script src="catalog/view/javascript/slide-menu.js"></script>
 	<!-- -->
 	<link href="catalog/view/javascript/chosen/chosen.css" rel="stylesheet" media="screen" />
 	<script src="catalog/view/javascript/chosen/chosen.jquery.js" type="text/javascript"></script>
@@ -340,7 +343,7 @@
 						<!--<div class="row">-->
 						<div id="logo">
 							<?php if ($logo) { ?>
-							<a href="<?php echo $home; ?>"><img style="height: 39px;" src="image/bon-logo-header-res.png<?php //echo $logo; ?>" title="<?php echo $name; ?>" alt="<?php echo $name; ?>" class="img-responsive" /></a>
+							<a href="<?php echo $home; ?>"><img src="image/bon-logo-header-des.png<?php //echo $logo; ?>" title="Search and shopping simplified online anywhere and everywhere" alt="<?php echo $name; ?>" class="img-responsive" /></a>
 							<?php } else { ?>
 							<h1>
 								<a href="<?php echo $home; ?>">
@@ -351,6 +354,14 @@
 						</div>
 						<!--</div>-->
 					</div>
+					<div class="slide-menu" id="test-menu-left">
+  <div class="controls">
+    <button type="button" class="btn slide-menu-control" data-action="close">Close</button>
+  </div>
+  <p>You aren't limited to classical navigation menus.</p>
+  <p>In fact you can put anything you like in the menu</p>
+</div>
+<button type="button" class="btn slide-menu-control" data-target="test-menu-left" data-action="toggle">Toggle Menu</button>
 					<div class="col-xs-4">
 						<?php if ($logged) { 
 										if($seller_info['nickname']) { ?>
@@ -1299,6 +1310,25 @@
 			var obj = document.getElementById('input-password');
 			obj.type = "password";
 		}
+
+		$(document).ready(function () {
+
+                var menuLeft = $('#test-menu-left').slideMenu({
+                    position: 'left',
+                    submenuLinkAfter: ' >',
+                    backLinkBefore: '< '
+                });
+
+                var menuRight = $('#test-menu-right').slideMenu({
+                    submenuLinkAfter: ' ⇒',
+                    backLinkBefore: '⇐ '
+                });
+
+                if ($(window).width() > 767) {
+                    menuRight.open(false);
+                }
+
+            });
 	</script>
 
 	<!-- feedback modal -->
