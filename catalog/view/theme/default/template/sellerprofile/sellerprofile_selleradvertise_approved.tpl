@@ -100,158 +100,153 @@
 <?php } ?>
 <?php } ?>
 <?php if (!empty($advetises)) { ?>
- <?php foreach ($advetises as $advetise) { ?>
-<script>
-$('#ads_delete_approved<?php echo $advetise['advertise_id']; ?>').on('click', function() {
-//e.preventDefault();							
-//var href = $(this).attr('href');
-var modal = $('<div id="myModal_<?php echo $advetise['advertise_id']; ?>" class="modal alert_prof_del_close_can fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel3" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button><h3 id="myModalLabel3">Confirmation</h3></div><div class="modal-body"><p>Are you sure you want to move this to trash..</p></p></div><div class="modal-footer"><button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button><button class="btn-primary btn cancels">Yes</button></div></div></div></div>');			
+	<?php foreach ($advetises as $advetise) { ?>
+		<script>
+			$('#ads_delete_approved<?php echo $advetise['advertise_id']; ?>').on('click', function() {
+				var modal = $('<div id="myModal_<?php echo $advetise['advertise_id']; ?>" class="modal alert_prof_del_close_can fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel3" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button><h3 id="myModalLabel3">Confirmation</h3></div><div class="modal-body"><p>Are you sure you want to move this to trash..</p></p></div><div class="modal-footer"><button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button><button class="btn-primary btn cancels">Yes</button></div></div></div></div>');			
 
-$('body').append(modal);
-	modal.modal({
-	show: true
-})
-$('.cancels').on('click', function(e) {
-var adss = <?php echo $advetise['advertise_id']; ?>;
-if(adss)
-	 {
-	 $.ajax({
-		url: 'index.php?route=sellerprofile/sellerprofile/trash&func=approved&advertise_id='+adss,
-		type: 'post',
-		dataType: 'json',
-		success: function(json) {
-			if (json['success']) {
-				
-				//window.location="index.php?route=sellerprofile/sellerprofile&tab_section=store";
-				$('.alert_prof_del_close_can').modal('hide');
-				$('#sellerapproved').load('index.php?route=sellerprofile/sellerprofile/selleradvertiseapproved&seller_id=<?php echo $seller_id; ?>');
-				$('#sellerapprovedcount').html(json['count']);
-				$('#sellertrashcount').html(json['trash_count']);
-				
-			}
-			if(json['error_warning']) {
-				$('#top-line-star').html('<i class="fa fa-times" aria-hidden="true"></i> ' + json['error_warning']);
-			}
-		}
-	 });
-	 }
- });
-  });
-</script>
-<?php } ?>
-<?php } ?>
+				$('body').append(modal);
+				modal.modal({
+					show: true
+				});
 
-<div class="modal fade" id="myModal_adv" role="dialog">
- <div class="modal-dialog">
-	<div class="modal-content loc-pop">
-		<div class="modal-body adv--nve-lve">
-		<div class="row">
-			<div class="main-tss-mg">
-				<img class="img-responsive" src="image/advertise_image_top.jpg">
+				$('.cancels').on('click', function(e) {
+					var adss = <?php echo $advetise['advertise_id']; ?>;
+					if(adss) {
+						$.ajax({
+						url: 'index.php?route=sellerprofile/sellerprofile/trash&func=approved&advertise_id='+adss,
+						type: 'post',
+						dataType: 'json',
+						success: function(json) {
+							if (json['success']) {
+								$('.alert_prof_del_close_can').modal('hide');
+								$('#sellerapproved').load('index.php?route=sellerprofile/sellerprofile/selleradvertiseapproved&seller_id=<?php echo $seller_id; ?>');
+								$('#sellerapprovedcount').html(json['count']);
+								$('#sellertrashcount').html(json['trash_count']);
+							}
+							if(json['error_warning']) {
+									$('#top-line-star').html('<i class="fa fa-times" aria-hidden="true"></i> ' + json['error_warning']);
+								}
+							}
+						});
+					}
+				});
+			});
+		</script>
+	<?php } ?>
+
+	<div class="modal fade" id="myModal_adv" role="dialog">
+	 <div class="modal-dialog">
+		<div class="modal-content loc-pop">
+			<div class="modal-body adv--nve-lve">
+			<div class="row">
+				<div class="main-tss-mg">
+					<img class="img-responsive" src="image/advertise_image_top.jpg">
+				</div>
 			</div>
-		</div>
-	   	<div class="row">
-		   	<div class="col-sm-12">	   
-			   	<form method="post" id="advertise_move_live" class="form-horizontal">
-			   		<div class="row neet--ress-tep">
-						<div class="set--sel--bt">
-							<!-- <input type="hidden" id="banner_amnts" name="banner_amnts" value="<?php echo json_decode($basic_position_amount); ?>" /> -->
-						    <input id="advetise_sp" name="advetise_sp" type="hidden" value="<?php echo $advetise['advertise_id']; ?>">
-						    <input id="national" name="national" type="hidden" value="<?php echo strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', trim($country)))); ?>">
-						    <input id="state" name="state" type="hidden" value="<?php echo strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', trim($state)))); ?>">
-						    <input id="city" name="city" type="hidden" value="<?php echo strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', trim($city)))); ?>">
-						   
-						    <input type="radio" name="loc" id="home_top" data-advertise-id="<?php echo $advetise['advertise_id']; ?>" data-advertise-name="top_banner" data-cash-back="<?php echo $basic_price_cashback['top_banner']; ?>" value="1"/><label for="home_top">Home - Top banner</label><br/>
+		   	<div class="row">
+			   	<div class="col-sm-12">	   
+				   	<form method="post" id="advertise_move_live" class="form-horizontal">
+				   		<div class="row neet--ress-tep">
+							<div class="set--sel--bt">
+								<!-- <input type="hidden" id="banner_amnts" name="banner_amnts" value="<?php echo json_decode($basic_position_amount); ?>" /> -->
+							    <input id="advetise_sp" name="advetise_sp" type="hidden" value="<?php echo $advetise['advertise_id']; ?>">
+							    <input id="national" name="national" type="hidden" value="<?php echo strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', trim($country)))); ?>">
+							    <input id="state" name="state" type="hidden" value="<?php echo strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', trim($state)))); ?>">
+							    <input id="city" name="city" type="hidden" value="<?php echo strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', trim($city)))); ?>">
+							   
+							    <input type="radio" name="loc" id="home_top" data-advertise-id="<?php echo $advetise['advertise_id']; ?>" data-advertise-name="top_banner" data-cash-back="<?php echo $basic_price_cashback['top_banner']; ?>" value="1"/><label for="home_top">Home - Top banner</label><br/>
 
-						    <input type="radio" <?php if($country =='') { echo "disabled"; }?> name="loc" id="home_national" data-advertise-name="home_national" data-cash-back="<?php echo $basic_price_cashback['home_national']; ?>" value="2"/><label for="home_national">Home - Country (<?php if($country !='') { echo $country; } else { echo "Cannot get country name from your store geo code.";}?>)</label><br/>
+							    <input type="radio" <?php if($country =='') { echo "disabled"; }?> name="loc" id="home_national" data-advertise-name="home_national" data-cash-back="<?php echo $basic_price_cashback['home_national']; ?>" value="2"/><label for="home_national">Home - Country (<?php if($country !='') { echo $country; } else { echo "Cannot get country name from your store geo code.";}?>)</label><br/>
 
-						    <input type="radio" <?php if($state =='') { echo "disabled"; }?> name="loc" id="home_state" data-advertise-name="home_state" data-cash-back="<?php echo $basic_price_cashback['home_state']; ?>" value="3"/><label for="home_state">Home - State (<?php if($state !='') { echo $state; } else { echo "Cannot get state name from your store geo code.";}?>)</label><br/>
+							    <input type="radio" <?php if($state =='') { echo "disabled"; }?> name="loc" id="home_state" data-advertise-name="home_state" data-cash-back="<?php echo $basic_price_cashback['home_state']; ?>" value="3"/><label for="home_state">Home - State (<?php if($state !='') { echo $state; } else { echo "Cannot get state name from your store geo code.";}?>)</label><br/>
 
-						    <input type="radio" <?php if($city =='') { echo "disabled"; }?> name="loc" id="home_city" data-advertise-name="home_city" data-cash-back="<?php echo $basic_price_cashback['home_city']; ?>" value="4"/><label for="home_city">Home - City (<?php if($city !='') { echo $city; } else { echo "Cannot get city name from your store geo code.";}?>)</label><br/>
+							    <input type="radio" <?php if($city =='') { echo "disabled"; }?> name="loc" id="home_city" data-advertise-name="home_city" data-cash-back="<?php echo $basic_price_cashback['home_city']; ?>" value="4"/><label for="home_city">Home - City (<?php if($city !='') { echo $city; } else { echo "Cannot get city name from your store geo code.";}?>)</label><br/>
 
-						    <input type="radio" name="loc" id="home_local" checked data-advertise-name="home_local" data-cash-back="<?php echo $basic_price_cashback['home_local']; ?>" value="5"/><label for="home_local">Home - Nearby</label><br/>
+							    <input type="radio" name="loc" id="home_local" checked data-advertise-name="home_local" data-cash-back="<?php echo $basic_price_cashback['home_local']; ?>" value="5"/><label for="home_local">Home - Nearby</label><br/>
 
-						    <input type="radio" name="loc" id="store_ad" data-advertise-name="store_ad" data-cash-back="0" value="6"/><label for="store_ad">In your Page - Free</label><br/>
-						</div>
-						<div class="rigth--stat">
-							<p id="show_basic_price" style="font-size: 16px;color: #FD6A00" class="set--trp"><strong>Basic price: <span id="basic_price"></span> Rs</strong></p>
-							<p style="font-size: 12px">You can also post your advertisement on the position you prefer after paying the price or above already been considered for the same position by another advertiser.</p>
-						</div>
-			   		</div>
-				
-			   		<div class="row main-sec--res">
-						<div id="home_top_hide">
-						   <label>From </label><input type="text" readonly class="form-control" name="from_date" id='datetimepicker_start_<?php echo $advetise['advertise_id']; ?>'/>
-						   <label>To </label><input type="text" readonly class="form-control check_span" name="end_date" id='datetimepicker_end_<?php echo $advetise['advertise_id']; ?>'/>
-						</div>
-					    <span class="position_amount_visible">
-						    <span class="position_local_visible">
-							    <label>Area Covered in Km</label>
-							    <select class="form-control area_km" name="km" id="km">							
-								<option value=""> --Select-- </option>
-									<?php for($i=1; $i<=20; $i++) { ?>
-										<option <?php if ($i == 3) { echo 'selected'; } ?> value="<?php echo $i; ?>" ><?php echo $i; ?></option>
-									<?php } ?>
-							    </select>
+							    <input type="radio" name="loc" id="store_ad" data-advertise-name="store_ad" data-cash-back="0" value="6"/><label for="store_ad">In your Page - Free</label><br/>
+							</div>
+							<div class="rigth--stat">
+								<p id="show_basic_price" style="font-size: 16px;color: #FD6A00" class="set--trp"><strong>Basic price: <span id="basic_price"></span> Rs</strong></p>
+								<p style="font-size: 12px">You can also post your advertisement on the position you prefer after paying the price or above already been considered for the same position by another advertiser.</p>
+							</div>
+				   		</div>
+					
+				   		<div class="row main-sec--res">
+							<div id="home_top_hide">
+							   <label>From </label><input type="text" readonly class="form-control" name="from_date" id='datetimepicker_start_<?php echo $advetise['advertise_id']; ?>'/>
+							   <label>To </label><input type="text" readonly class="form-control check_span" name="end_date" id='datetimepicker_end_<?php echo $advetise['advertise_id']; ?>'/>
+							</div>
+						    <span class="position_amount_visible">
+							    <span class="position_local_visible">
+								    <label>Area Covered in Km</label>
+								    <select class="form-control area_km" name="km" id="km">							
+									<option value=""> --Select-- </option>
+										<?php for($i=1; $i<=20; $i++) { ?>
+											<option <?php if ($i == 3) { echo 'selected'; } ?> value="<?php echo $i; ?>" ><?php echo $i; ?></option>
+										<?php } ?>
+								    </select>
+							    </span>
+							    <label>Position</label>
+								<select class="form-control check_amount" name="position" id="position">							
+									<option> ---- </option>				
+								</select>
+
+							    <div id="validation_txt" style="display:none">
+								    <label>Price :&nbsp;&nbsp;&nbsp;&nbsp;</label><span class="text-green" id="price_vaidation_txt" style="font-size: 12px;font-style: italic"></span>
+								    <input type="number" name="amount_val" id="amount_val" class="form-control" min="1" step="1" onkeypress="return event.charCode >= 48 && event.charCode <= 57"/>
+								</div>
+							    <input type="hidden" name="amount" id="actual_price"/>
 						    </span>
-						    <label>Position</label>
-							<select class="form-control check_amount" name="position" id="position">							
-								<option> ---- </option>				
-							</select>
+						  
+							<div id="home_top_show" style="display:none;">
+								<div id="withAltField" class="box"></div>
+								<label>Select date</label>
+								<input id="hiddenaltField" name="top_banner_date" class="top_banner_dates form-control" type="hidden" />
+								<div id="altField"></div>		 
+								<div class="margin-ttep">
+									Number of days selected : <span class="display_total_2" id="display_total">0</span>
+								</div>
+								<div class="margin-ttep" style="color: #6194f9">Total price: <span class="display_amount_1" id="display_amount"> </span></div>
+							</div>
 
-						    <div id="validation_txt" style="display:none">
-							    <label>Price :&nbsp;&nbsp;&nbsp;&nbsp;</label><span class="text-green" id="price_vaidation_txt" style="font-size: 12px;font-style: italic"></span>
-							    <input type="number" name="amount_val" id="amount_val" class="form-control" min="1" step="1" onkeypress="return event.charCode >= 48 && event.charCode <= 57"/>
-							</div>
-						    <input type="hidden" name="amount" id="actual_price"/>
-					    </span>
-					  
-						<div id="home_top_show" style="display:none;">
-							<div id="withAltField" class="box"></div>
-							<label>Select date</label>
-							<input id="hiddenaltField" name="top_banner_date" class="top_banner_dates form-control" type="hidden" />
-							<div id="altField"></div>		 
-							<div class="margin-ttep">
-								Number of days selected : <span class="display_total_2" id="display_total">0</span>
-							</div>
-							<div class="margin-ttep" style="color: #6194f9">Total price: <span class="display_amount_1" id="display_amount"> </span></div>
+							<span id="display_amount_1" style="display:none;font-size: 14px;color: #6194f9"></span>
+							<button class="advertise-btn_live" id="advertise-btn_lve" type="button">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Next&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>
+							<button class="advertise-btn" type="button" onClick="this.form.reset();" data-dismiss="modal" aria-hidden="true">&nbsp;&nbsp;&nbsp;Cancel&nbsp;&nbsp;&nbsp;</button>
+							<button class="advertise-btn reset" type="button" style="display:none;">Reset</button>
+							<div id="error_check" class="alert alert-danger" style="display:none;"></div>
+	                  		<div id="liveSuccessMsg" class="alert alert-success" style="display:none;"></div>
 						</div>
-
-						<span id="display_amount_1" style="display:none;font-size: 14px;color: #6194f9"></span>
-						<button class="advertise-btn_live" id="advertise-btn_lve" type="button">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Next&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>
-						<button class="advertise-btn" type="button" onClick="this.form.reset();" data-dismiss="modal" aria-hidden="true">&nbsp;&nbsp;&nbsp;Cancel&nbsp;&nbsp;&nbsp;</button>
-						<button class="advertise-btn reset" type="button" style="display:none;">Reset</button>
-						<div id="error_check" class="alert alert-danger" style="display:none;"></div>
-                  		<div id="liveSuccessMsg" class="alert alert-success" style="display:none;"></div>
-					</div>
-			    </form>
+				    </form>
+			    </div>
 		    </div>
-	    </div>
-	    <div class="row">
-		    <div class="col-sm-12 nt--bt--bar">
-			    <div class="row" style="font-size: 12px">
-				    <span class="top--res-nll"><strong>Note: </strong></span>
-				    <table>
-					<tr>
-					    <td>1.&nbsp</td>
-					    <td>BoN incurs basic price to avoid flooding the space with free advertisements in the larger (buyer) audience area.</td>
-					</tr>
-					<tr>
-					    <td>2.&nbsp</td>
-					    <td>If you delete the advertisement from 'Live' or 'Yet to go live' after you pay, the amount will not be refunded.</td>
-					</tr>
-					<tr>
-					    <td>3.&nbsp</td>
-					    <td>Introductory offer is valid till November 30, 2017.</td>
-					</tr>
-				    </table>
+		    <div class="row">
+			    <div class="col-sm-12 nt--bt--bar">
+				    <div class="row" style="font-size: 12px">
+					    <span class="top--res-nll"><strong>Note: </strong></span>
+					    <table>
+						<tr>
+						    <td>1.&nbsp</td>
+						    <td>BoN incurs basic price to avoid flooding the space with free advertisements in the larger (buyer) audience area.</td>
+						</tr>
+						<tr>
+						    <td>2.&nbsp</td>
+						    <td>If you delete the advertisement from 'Live' or 'Yet to go live' after you pay, the amount will not be refunded.</td>
+						</tr>
+						<tr>
+						    <td>3.&nbsp</td>
+						    <td>Introductory offer is valid till November 30, 2017.</td>
+						</tr>
+					    </table>
+				     </div>
 			     </div>
 		     </div>
-	     </div>
-	   </div>
+		   </div>
+		</div>
+	 </div>
 	</div>
- </div>
-</div>
+<?php } ?>
 
 <script type="text/javascript">
 	var bannerBasicPrice = [];
@@ -524,8 +519,6 @@ if(adss)
 						sel.append("<option selected value='" + (parseInt(i) + parseInt(3)) + "' >Basic price</option>");
 				   }
 				}
-
-				$('.reset').trigger('click');
 			 }, "json");	
 		});
 
@@ -599,7 +592,7 @@ if(adss)
 			    		}
 					} else {
 						$('#validation_txt').hide();
-						discount_txt (bannerBasicPrice[banner_name]);
+						discount_txt(bannerBasicPrice[banner_name]);
 						// var discount = $('input[name="loc"]:checked').data('cashBack');
 						// if (discount == 0) {
 						// 	$('#actual_price').val(bannerBasicPrice[banner_name]);
@@ -732,7 +725,7 @@ if(adss)
 		$('#error_amount').html('');
 
 		$.ajax({
-			url: 'index.php?route=sellerprofile/sellerprofile/move_live&delete_val='+delete_val,
+			url: 'index.php?route=sellerprofile/sellerprofile/move_live',
 			type: 'post',
 			dataType: 'json',
 			data: $("#advertise_move_live").serialize(),
@@ -743,10 +736,14 @@ if(adss)
 
 					if (loc === '6' || amount == '0') {
 						$('#liveSuccessMsg').html('<i class="fa fa-check-circle"></i> '+ json['success']).show();
-
+					
 						setTimeout(function() {
 							$('#liveSuccessMsg').empty().hide();
 							$('#myModal_adv').modal('hide');
+							$('#sellerapproved').load('index.php?route=sellerprofile/sellerprofile/selleradvertiseapproved&seller_id=<?php echo $seller_id; ?>');
+
+							$('#sellerapprovedcount').html(json['approved_count']);
+							$('#sellerlivecount').html(json['live_count']);
 						}, 3000);
 					} else {
 						$('#myModal_adv').append(json['confirmForm']);

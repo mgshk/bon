@@ -1767,7 +1767,6 @@ class Controllersellerprofilesellerprofile extends Controller
         $this->load->model('tool/image');
         $this->load->model('selleradvertise/advertise');
 
-
         $results = $this->model_selleradvertise_advertise->getAdvertisesApproved(($page - 1) * 10, 10);
 
         foreach ($results as $result) {
@@ -1794,7 +1793,7 @@ class Controllersellerprofilesellerprofile extends Controller
                 'offer_link' => $result['offer_url'],
                 'status' => $result['status'],
 				'offer_image_original' => $result['offer_image_original'],
-        );
+            );
         }
 
 		$data['seller_id'] = $this->request->get['seller_id'];
@@ -1811,7 +1810,7 @@ class Controllersellerprofilesellerprofile extends Controller
 
         $data['results'] = sprintf($this->language->get('text_pagination'), ($advertise_total) ? (($page - 1) * 10) + 1 : 0, ((($page - 1) * 10) > ($advertise_total - 10)) ? $advertise_total : ((($page - 1) * 10) + 10), $advertise_total, ceil($advertise_total / 10));
 
-            $this->response->setOutput($this->load->view('sellerprofile/sellerprofile_selleradvertise_approved', $data));
+        $this->response->setOutput($this->load->view('sellerprofile/sellerprofile_selleradvertise_approved', $data));
 
     }
 	public function sellerAdvertiserejected()
@@ -2105,7 +2104,6 @@ class Controllersellerprofilesellerprofile extends Controller
                 'status' => $result['status'],
 				'position' => $result['position'],
 				'price' => $result['price'],
-                'discount_price' => $result['discount_price'],
 				'km' => $result['km'],
 				'days_left' => $days_left,
 				'advertise_position' => $advertise_position,
@@ -2489,6 +2487,15 @@ class Controllersellerprofilesellerprofile extends Controller
             }
 
             unset($_SESSION['confirm']);
+            $json['approved_count'] = $this->model_selleradvertise_advertise->getTotalAdvertisesApproved();
+
+            $ad = $this->model_selleradvertise_advertise->getTotalAdvertisesLive();
+
+            foreach($ad as $ads) {
+                $adv[] = $ads['total'];
+            }       
+
+            $json['live_count'] = array_sum($adv);
             $json['success'] = $this->language->get('success_to_live');
         }
         

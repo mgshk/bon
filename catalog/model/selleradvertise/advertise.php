@@ -602,7 +602,14 @@ class ModelselleradvertiseAdvertise extends Model
     }
 	public function getTotalAdvertisesLive($data = array())
     {
-		$sql = "SELECT COUNT(DISTINCT advertise_id) AS total FROM ".DB_PREFIX."store_offers so WHERE so.seller_id = '".(int) $this->customer->getID()."' AND CURDATE() >= so.from_date AND CURDATE() <= so.end_date AND so.status = 'live' AND so.status != 'deleted' UNION SELECT COUNT(DISTINCT advertise_id) AS total FROM ".DB_PREFIX."store_offers soi LEFT JOIN ".DB_PREFIX."home_top_banner_date htbd ON (soi.advertise_id = htbd.store_offer_advertise_id) WHERE soi.seller_id = '".(int) $this->customer->getID()."' AND soi.status = 'live' AND soi.status != 'deleted' AND soi.position = '1' AND CURDATE() = htbd.date";
+		$sql = "SELECT COUNT(DISTINCT advertise_id) AS total FROM ".DB_PREFIX."store_offers so 
+            WHERE so.seller_id = '".(int) $this->customer->getID()."' 
+            AND CURDATE() >= so.from_date AND CURDATE() <= so.end_date AND so.status = 'live' AND so.status != 'deleted' 
+            UNION 
+            SELECT COUNT(DISTINCT advertise_id) AS total FROM ".DB_PREFIX."store_offers soi 
+            LEFT JOIN ".DB_PREFIX."home_top_banner_date htbd ON (soi.advertise_id = htbd.store_offer_advertise_id) 
+            WHERE soi.seller_id = '".(int) $this->customer->getID()."' AND soi.status = 'live' AND soi.status != 'deleted' 
+            AND soi.position = '1' AND CURDATE() = htbd.date";
 
 		//print_r($sql);
 
@@ -751,10 +758,15 @@ class ModelselleradvertiseAdvertise extends Model
     }
 
     public function adBannersToLive($data) {
+        $status = '';
+        if ($data['discount_price'] == 0) {
+            $status = ", status = 'live'";
+        }
+
         $this->db->query('UPDATE '.DB_PREFIX."store_offers SET position = '".(int) $data['loc']."', 
             from_date = '".$data['from_date']."', end_date = '".$data['end_date']."', km = '".$data['km']."', 
-            price = '".$data['price']."', discount_price = '".$data['discount_price']."', date_modified = NOW() 
-            WHERE advertise_id = '".(int) $data['advetise_sp']."' AND seller_id = '".$this->customer->getID()."'");
+            price = '".$data['price']."', discount_price = '".$data['discount_price']."', date_modified = NOW()
+            ".$status." WHERE advertise_id = '".(int) $data['advetise_sp']."' AND seller_id = '".$this->customer->getID()."'");
     }
 
 	// public function adToLive($data, $delete_free = '')
