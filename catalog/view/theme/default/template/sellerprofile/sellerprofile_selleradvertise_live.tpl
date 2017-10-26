@@ -60,7 +60,7 @@
 		   <h4><strong></strong><?php echo $advetise['offer_title']; ?></h4>
 		   <img src="image/<?php echo $advetise['offer_image_original']; ?>" alt="<?php echo $advetise['offer_title']; ?>" class="img-thumbnail img-responsive" />
 		   <p><strong></strong><?php echo $advetise['offer_desc']; ?></p>
-		   <p><strong></strong><a href="<?php echo $advetise['offer_link']; ?>"><?php echo $advetise['offer_link']; ?></a></p>
+		   <p><strong></strong><a href="<?php echo $advetise['offer_link']; ?>" target="_blank"><?php echo $advetise['offer_link']; ?></a></p>
 	   </div>
 	</div>
  </div>

@@ -1590,7 +1590,7 @@ class Controllersellerprofilesellerprofile extends Controller
 				$image_tumb = $this->model_tool_image->resize('no_image.png', 993, 182);
 			}
 
-
+            $parsed = parse_url($result['offer_url']);
             
             $data['advetises'][] = array(
                 'advertise_id' => $result['advertise_id'],
@@ -1599,7 +1599,7 @@ class Controllersellerprofilesellerprofile extends Controller
 				'offer_desc' => $result['offer_desc'],
                 'offer_title' => $result['offer_title'],
                 'sort_order' => $result['sort_order'],
-                'offer_link' => $result['offer_url'],
+                'offer_link' => empty($parsed['scheme']) ? 'http://'.$result['offer_url'] : $result['offer_url'],
                 'status' => $result['status'],
 				'edit' => $this->url->link('selleradvertise/advertise/edit', ''.'&advertise_id='.$result['advertise_id'], 'SSL'),
 				'offer_image_original' => $result['offer_image_original'],
@@ -1683,6 +1683,7 @@ class Controllersellerprofilesellerprofile extends Controller
 				$image_tumb = $this->model_tool_image->resize('no_image.png', 993, 182);
 			}
 
+            $parsed = parse_url($result['offer_url']);
             
             $data['advetises'][] = array(
                 'advertise_id' => $result['advertise_id'],
@@ -1691,7 +1692,7 @@ class Controllersellerprofilesellerprofile extends Controller
 				'offer_desc' => $result['offer_desc'],
                 'offer_title' => $result['offer_title'],
                 'sort_order' => $result['sort_order'],
-                'offer_link' => $result['offer_url'],
+                'offer_link' => empty($parsed['scheme']) ? 'http://'.$result['offer_url'] : $result['offer_url'],
                 'status' => $result['status'],
 				'edit' => $this->url->link('selleradvertise/advertise/edit', ''.'&act=submitted&advertise_id='.$result['advertise_id'], 'SSL'),
 				'offer_image_original' => $result['offer_image_original'],
@@ -1782,6 +1783,7 @@ class Controllersellerprofilesellerprofile extends Controller
 				$image_tumb = $this->model_tool_image->resize('no_image.png', 993, 182);
 			}
 
+            $parsed = parse_url($result['offer_url']);
             
             $data['advetises'][] = array(
                 'advertise_id' => $result['advertise_id'],
@@ -1790,7 +1792,7 @@ class Controllersellerprofilesellerprofile extends Controller
 				'offer_desc' => $result['offer_desc'],
                 'offer_title' => $result['offer_title'],
                 'sort_order' => $result['sort_order'],
-                'offer_link' => $result['offer_url'],
+                'offer_link' => empty($parsed['scheme']) ? 'http://'.$result['offer_url'] : $result['offer_url'],
                 'status' => $result['status'],
 				'offer_image_original' => $result['offer_image_original'],
             );
@@ -1873,7 +1875,8 @@ class Controllersellerprofilesellerprofile extends Controller
 				$image_tumb = $this->model_tool_image->resize('no_image.png', 993, 182);
 			}
 
-            
+            $parsed = parse_url($result['offer_url']);
+
             $data['advetises'][] = array(
                 'advertise_id' => $result['advertise_id'],
                 'image' => $image,
@@ -1882,7 +1885,7 @@ class Controllersellerprofilesellerprofile extends Controller
 				'remarks' => $result['remarks'],
                 'offer_title' => $result['offer_title'],
                 'sort_order' => $result['sort_order'],
-                'offer_link' => $result['offer_url'],
+                'offer_link' => empty($parsed['scheme']) ? 'http://'.$result['offer_url'] : $result['offer_url'],
                 'status' => $result['status'],
 				'edit' => $this->url->link('selleradvertise/advertise/edit', ''.'&advertise_id='.$result['advertise_id'], 'SSL'),
 				'offer_image_original' => $result['offer_image_original'],
@@ -1969,7 +1972,8 @@ class Controllersellerprofilesellerprofile extends Controller
 					$image_tumb = $this->model_tool_image->resize('no_image.png', 993, 182);
 				}
 
-				
+				$parsed = parse_url($result['offer_url']);
+
 				$data['advetises'][] = array(
 					'advertise_id' => $result['advertise_id'],
 					'image' => $image,
@@ -1978,7 +1982,7 @@ class Controllersellerprofilesellerprofile extends Controller
 					'remarks' => $result['remarks'],
 					'offer_title' => $result['offer_title'],
 					'sort_order' => $result['sort_order'],
-					'offer_link' => $result['offer_url'],
+					'offer_link' => empty($parsed['scheme']) ? 'http://'.$result['offer_url'] : $result['offer_url'],
 					'status' => $result['status'],
 					'edit' => $this->url->link('selleradvertise/advertise/edit', ''.'&advertise_id='.$result['advertise_id'], 'SSL'),
 					'offer_image_original' => $result['offer_image_original'],
@@ -2092,6 +2096,8 @@ class Controllersellerprofilesellerprofile extends Controller
 			if($result['position'] == 1) {
 				$days_left = $this->model_sellerprofile_sellerprofile->getHomeBanner_days($result['advertise_id']);
 			}
+
+            $parsed = parse_url($result['offer_url']);
             
             $data['advetises'][] = array(
                 'advertise_id' => $result['advertise_id'],
@@ -2100,7 +2106,7 @@ class Controllersellerprofilesellerprofile extends Controller
 				'offer_desc' => $result['offer_desc'],
                 'offer_title' => $result['offer_title'],
                 'sort_order' => $result['sort_order'],
-                'offer_link' => $result['offer_url'],
+                'offer_link' => empty($parsed['scheme']) ? 'http://'.$result['offer_url'] : $result['offer_url'],
                 'status' => $result['status'],
 				'position' => $result['position'],
 				'price' => $result['price'],
@@ -2204,7 +2210,7 @@ class Controllersellerprofilesellerprofile extends Controller
 				$image_tumb = $this->model_tool_image->resize('no_image.png', 993, 182);
 			}
 
-
+            $parsed = parse_url($result['offer_url']);
             
             $data['advetises'][] = array(
                 'advertise_id' => $result['advertise_id'],
@@ -2213,7 +2219,7 @@ class Controllersellerprofilesellerprofile extends Controller
 				'offer_desc' => $result['offer_desc'],
                 'offer_title' => $result['offer_title'],
                 'sort_order' => $result['sort_order'],
-                'offer_link' => $result['offer_url'],
+                'offer_link' => empty($parsed['scheme']) ? 'http://'.$result['offer_url'] : $result['offer_url'],
                 'status' => $result['status'],
 				'copy' => $this->url->link('sellerprofile/sellerprofile/copy', ''.'&advertise_id='.$result['advertise_id'].$url, 'SSL'),
 				'offer_image_original' => $result['offer_image_original'],
@@ -2298,7 +2304,7 @@ class Controllersellerprofilesellerprofile extends Controller
 				$image_tumb = $this->model_tool_image->resize('no_image.png', 993, 182);
 			}
 
-
+            $parsed = parse_url($result['offer_url']);
             
             $data['advetises'][] = array(
                 'advertise_id' => $result['advertise_id'],
@@ -2307,7 +2313,7 @@ class Controllersellerprofilesellerprofile extends Controller
 				'offer_desc' => $result['offer_desc'],
                 'offer_title' => $result['offer_title'],
                 'sort_order' => $result['sort_order'],
-                'offer_link' => $result['offer_url'],
+                'offer_link' => empty($parsed['scheme']) ? 'http://'.$result['offer_url'] : $result['offer_url'],
                 'status' => $result['status'],
 				'offer_image_original' => $result['offer_image_original'],
         );
