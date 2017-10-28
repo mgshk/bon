@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.5.2
+-- version 4.7.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 25, 2017 at 05:38 PM
--- Server version: 10.1.21-MariaDB
--- PHP Version: 5.6.30
+-- Generation Time: Oct 28, 2017 at 06:19 PM
+-- Server version: 10.1.25-MariaDB
+-- PHP Version: 5.6.31
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -48,7 +50,8 @@ CREATE TABLE `oc_address` (
 --
 
 INSERT INTO `oc_address` (`address_id`, `customer_id`, `firstname`, `lastname`, `company`, `address_1`, `address_2`, `city`, `postcode`, `country_id`, `zone_id`, `custom_field`, `security_select`, `security_answer`) VALUES
-(1, 1, 'Magesh', 'K', '', 'fsdfsdf', '', 'Cuddalore', '604700', 99, 1503, '', 1, 'qwert');
+(1, 1, 'Magesh', 'K', '', 'fsdfsdf', '', 'Cuddalore', '604700', 99, 1503, '', 1, 'qwert'),
+(2, 2, '', '', '', '', '', '', '', 99, 1503, '', 1, 'sis');
 
 -- --------------------------------------------------------
 
@@ -10643,7 +10646,8 @@ CREATE TABLE `oc_category_to_seller` (
 --
 
 INSERT INTO `oc_category_to_seller` (`category_id`, `seller_id`, `status`) VALUES
-(2, 1, 1);
+(2, 1, 1),
+(26, 2, 1);
 
 -- --------------------------------------------------------
 
@@ -12720,7 +12724,8 @@ CREATE TABLE `oc_customer` (
 --
 
 INSERT INTO `oc_customer` (`customer_id`, `customer_group_id`, `store_id`, `language_id`, `firstname`, `lastname`, `email`, `telephone`, `fax`, `password`, `salt`, `cart`, `wishlist`, `newsletter`, `address_id`, `seller_group_id`, `seller_approved`, `seller_verified`, `seller_reject_reason`, `seller_changegroup`, `seller_date_added`, `referred_by`, `nickname`, `lat`, `lng`, `instagram`, `googleplus`, `twitter`, `facebook`, `website`, `description`, `image`, `owner_name`, `store_ll_num`, `store_mobile_num`, `store_email`, `address_1`, `address_2`, `city`, `postcode`, `country_id`, `zone_id`, `product_status`, `banner`, `tin`, `pan`, `seller_category`, `bankaccount_id`, `custom_field`, `ip`, `status`, `approved`, `active`, `safe`, `token`, `code`, `date_added`, `seller_counter`, `feature_store_amount`, `feature_store_start`, `feature_store_end`, `delivery_type`, `allow_products`, `allow_cart`, `seller_qr`) VALUES
-(1, 1, 0, 1, 'Magesh', 'K', 'mgshk.1507@gmail.com', '9791729266', '', '611ef047ac364966e55c0b12c0ed56ada67fccb4', 'h5uTNZsc4', NULL, NULL, 0, 1, 1, 1, '1', '', 0, '2017-10-21 16:56:00', '-', 'Test Store', '11.742823366041616', ' 79.75933915805672', NULL, NULL, NULL, NULL, NULL, '', '', '', '', '9791729266', 'mgshk.1507@gmail.com', 'fsdfsdf', '', 'Cuddalore', '604700', 99, 1503, NULL, 'catalog/seller_images/1/taj image.jpg', '', '', '[{\"category\":\"2\",\"sub_categories\":[\"3\"]}]', 0, '', '::1', '1', 1, 1, 0, '', '218573', '2017-10-21 15:11:59', 0, 0, '0000-00-00', '0000-00-00', 1, '1', '0', 'view/image/qr_images/buyonear.in_1');
+(1, 1, 0, 1, 'Magesh', 'K', 'mgshk.1507@gmail.com', '9791729266', '', '611ef047ac364966e55c0b12c0ed56ada67fccb4', 'h5uTNZsc4', NULL, NULL, 0, 1, 1, 1, '1', '', 0, '2017-10-21 16:56:00', '-', 'Test Store', '11.742823366041616', ' 79.75933915805672', NULL, NULL, NULL, NULL, NULL, '', '', '', '', '9791729266', 'mgshk.1507@gmail.com', 'fsdfsdf', '', 'Cuddalore', '604700', 99, 1503, NULL, 'catalog/seller_images/1/taj image.jpg', '', '', '[{\"category\":\"2\",\"sub_categories\":[\"3\"]}]', 0, '', '::1', '1', 1, 1, 0, '', '218573', '2017-10-21 15:11:59', 0, 0, '0000-00-00', '0000-00-00', 1, '1', '0', 'view/image/qr_images/buyonear.in_1'),
+(2, 1, 0, 1, '', '', 'sadeesh.btech@gmail.com', '8939615692', '', '95f58487e4c79a107d5ccace2b233e4631d13b8e', 'QDuzfhVjQ', NULL, NULL, 0, 2, 1, 1, '', '', 0, '2017-10-28 20:45:19', '-', 'Sadeesh\'s Store', '12.8997241', ' 80.1420571', NULL, NULL, NULL, NULL, NULL, '', '', '', '', '8939615692', 'sadeesh.btech@gmail.com', 'Ruby', '', 'Chennai', '600073', 99, 1503, NULL, '', '', '', '[{\"category\":\"26\",\"sub_categories\":[]}]', 0, '', '::1', '1', 1, 1, 0, '', '', '2017-10-28 20:22:40', 0, 0, '0000-00-00', '0000-00-00', 1, '1', '0', 'view/image/qr_images/buyonear.in_2');
 
 -- --------------------------------------------------------
 
@@ -12757,7 +12762,10 @@ INSERT INTO `oc_customer_activity` (`customer_activity_id`, `customer_id`, `key`
 (13, 1, 'advertise_add', '{\"customer_id\":\"1\",\"name\":\"Magesh K\"}', '::1', '2017-10-21 16:56:32'),
 (14, 1, 'advertise_add', '{\"customer_id\":\"1\",\"name\":\"Magesh K\"}', '::1', '2017-10-21 16:57:14'),
 (15, 1, 'login', '{\"customer_id\":\"1\",\"name\":\"Magesh K\"}', '::1', '2017-10-24 21:44:24'),
-(16, 1, 'login', '{\"customer_id\":\"1\",\"name\":\"Magesh K\"}', '::1', '2017-10-25 18:05:40');
+(16, 1, 'login', '{\"customer_id\":\"1\",\"name\":\"Magesh K\"}', '::1', '2017-10-25 18:05:40'),
+(17, 2, 'login', '{\"customer_id\":\"2\",\"name\":\" \"}', '::1', '2017-10-28 20:24:04'),
+(18, 2, 'login', '{\"customer_id\":\"2\",\"name\":\" \"}', '::1', '2017-10-28 20:24:50'),
+(19, 2, 'advertise_add', '{\"customer_id\":\"2\",\"name\":\" \"}', '::1', '2017-10-28 20:46:35');
 
 -- --------------------------------------------------------
 
@@ -12819,7 +12827,8 @@ CREATE TABLE `oc_customer_history` (
 
 INSERT INTO `oc_customer_history` (`customer_history_id`, `customer_id`, `comment`, `date_added`) VALUES
 (1, 1, 'Store/Entity is approved', '2017-10-21 16:55:42'),
-(2, 1, 'Store/Entity is verified ', '2017-10-21 16:55:59');
+(2, 1, 'Store/Entity is verified ', '2017-10-21 16:55:59'),
+(3, 2, 'Store/Entity is approved', '2017-10-28 20:45:18');
 
 -- --------------------------------------------------------
 
@@ -12839,7 +12848,8 @@ CREATE TABLE `oc_customer_ip` (
 --
 
 INSERT INTO `oc_customer_ip` (`customer_ip_id`, `customer_id`, `ip`, `date_added`) VALUES
-(1, 1, '::1', '2017-10-21 00:06:53');
+(1, 1, '::1', '2017-10-21 00:06:53'),
+(2, 2, '::1', '2017-10-28 20:24:04');
 
 -- --------------------------------------------------------
 
@@ -12875,7 +12885,7 @@ CREATE TABLE `oc_customer_online` (
 --
 
 INSERT INTO `oc_customer_online` (`ip`, `customer_id`, `url`, `referer`, `date_added`) VALUES
-('::1', 1, 'http://localhost/bon/index.php?route=sellerprofile/sellerprofile/selleradvertisewallet&amp;seller_id=1', 'http://localhost/bon/index.php?route=sellerprofile/sellerprofile&amp;tab_section=store_detail', '2017-10-25 17:31:29');
+('::1', 2, 'http://localhost/projects/bon/index.php?route=sellerprofile/sellerprofile/selleradvertisewallet&amp;seller_id=2', 'http://localhost/projects/bon/index.php?route=sellerprofile/sellerprofile&amp;tab_section=store_detail', '2017-10-28 18:16:49');
 
 -- --------------------------------------------------------
 
@@ -13148,7 +13158,7 @@ INSERT INTO `oc_extension` (`extension_id`, `type`, `code`) VALUES
 (27, 'dashboard', 'customer'),
 (28, 'dashboard', 'chart'),
 (29, 'analytics', 'google_analytics'),
-(31, 'payment', 'payu');
+(33, 'payment', 'pumcp');
 
 -- --------------------------------------------------------
 
@@ -13904,7 +13914,18 @@ INSERT INTO `oc_order` (`order_id`, `invoice_no`, `invoice_prefix`, `store_id`, 
 (53, 0, 'INV-2013-00', 0, 'BoN', 'http://localhost/bon/', 1, 1, 'Magesh', 'K', 'mgshk.1507@gmail.com', '9791729266', '', '', 'Magesh', 'K', '', 'fsdfsdf', '', 'Cuddalore', '604700', '', 99, '', 1503, '', '[]', '', 'payu', '', '', '', '', '', '', '', '', 0, '', 0, '', '[]', '', '', '', '1000.0000', 0, 0, '0.0000', 0, '', 1, 2, 'USD', '1.00000000', '::1', '', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36', 'en-US,en;q=0.8', '2017-10-25 20:57:47', '2017-10-25 20:57:47'),
 (54, 0, 'INV-2013-00', 0, 'BoN', 'http://localhost/bon/', 1, 1, 'Magesh', 'K', 'mgshk.1507@gmail.com', '9791729266', '', '', 'Magesh', 'K', '', 'fsdfsdf', '', 'Cuddalore', '604700', '', 99, '', 1503, '', '[]', '', 'payu', '', '', '', '', '', '', '', '', 0, '', 0, '', '[]', '', '', '', '1000.0000', 0, 0, '0.0000', 0, '', 1, 2, 'USD', '1.00000000', '::1', '', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36', 'en-US,en;q=0.8', '2017-10-25 21:00:28', '2017-10-25 21:00:28'),
 (55, 0, 'INV-2013-00', 0, 'BoN', 'http://localhost/bon/', 1, 1, 'Magesh', 'K', 'mgshk.1507@gmail.com', '9791729266', '', '', 'Magesh', 'K', '', 'fsdfsdf', '', 'Cuddalore', '604700', '', 99, '', 1503, '', '[]', '', 'payu', '', '', '', '', '', '', '', '', 0, '', 0, '', '[]', '', '', '', '0.0000', 0, 0, '0.0000', 0, '', 1, 2, 'USD', '1.00000000', '::1', '', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36', 'en-US,en;q=0.8', '2017-10-25 21:00:47', '2017-10-25 21:00:47'),
-(56, 0, 'INV-2013-00', 0, 'BoN', 'http://localhost/bon/', 1, 1, 'Magesh', 'K', 'mgshk.1507@gmail.com', '9791729266', '', '', 'Magesh', 'K', '', 'fsdfsdf', '', 'Cuddalore', '604700', '', 99, '', 1503, '', '[]', '', 'payu', '', '', '', '', '', '', '', '', 0, '', 0, '', '[]', '', '', '', '500.0000', 0, 0, '0.0000', 0, '', 1, 2, 'USD', '1.00000000', '::1', '', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36', 'en-US,en;q=0.8', '2017-10-25 21:03:49', '2017-10-25 21:03:49');
+(56, 0, 'INV-2013-00', 0, 'BoN', 'http://localhost/bon/', 1, 1, 'Magesh', 'K', 'mgshk.1507@gmail.com', '9791729266', '', '', 'Magesh', 'K', '', 'fsdfsdf', '', 'Cuddalore', '604700', '', 99, '', 1503, '', '[]', '', 'payu', '', '', '', '', '', '', '', '', 0, '', 0, '', '[]', '', '', '', '500.0000', 0, 0, '0.0000', 0, '', 1, 2, 'USD', '1.00000000', '::1', '', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36', 'en-US,en;q=0.8', '2017-10-25 21:03:49', '2017-10-25 21:03:49'),
+(57, 0, 'INV-2013-00', 0, 'BoN', 'http://localhost/projects/bon/', 2, 1, '', '', 'sadeesh.btech@gmail.com', '8939615692', '', '', '', '', '', '', '', '', '', '', 99, '', 1503, '', '[]', '', 'payu', '', '', '', '', '', '', '', '', 0, '', 0, '', '[]', '', '', '', '1500.0000', 0, 0, '0.0000', 0, '', 1, 2, 'USD', '1.00000000', '::1', '', 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36', 'en-US,en;q=0.8', '2017-10-28 20:47:36', '2017-10-28 20:47:36'),
+(58, 0, 'INV-2013-00', 0, 'BoN', 'http://localhost/projects/bon/', 2, 1, '', '', 'sadeesh.btech@gmail.com', '8939615692', '', '', '', '', '', '', '', '', '', '', 99, '', 1503, '', '[]', '', 'payu', '', '', '', '', '', '', '', '', 0, '', 0, '', '[]', '', '', '', '1500.0000', 0, 0, '0.0000', 0, '', 1, 2, 'USD', '1.00000000', '::1', '', 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36', 'en-US,en;q=0.8', '2017-10-28 20:47:51', '2017-10-28 20:47:51'),
+(59, 0, 'INV-2013-00', 0, 'BoN', 'http://localhost/projects/bon/', 2, 1, '', '', 'sadeesh.btech@gmail.com', '8939615692', '', '', '', '', '', '', '', '', '', '', 99, '', 1503, '', '[]', '', 'payu', '', '', '', '', '', '', '', '', 0, '', 0, '', '[]', '', '', '', '1500.0000', 0, 0, '0.0000', 0, '', 1, 2, 'USD', '1.00000000', '::1', '', 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36', 'en-US,en;q=0.8', '2017-10-28 20:49:36', '2017-10-28 20:49:36'),
+(60, 0, 'INV-2013-00', 0, 'BoN', 'http://localhost/projects/bon/', 2, 1, '', '', 'sadeesh.btech@gmail.com', '8939615692', '', '', '', '', '', '', '', '', '', '', 99, '', 1503, '', '[]', 'PayUMoney', 'pumcp', '', '', '', '', '', '', '', '', 0, '', 0, '', '[]', '', '', '', '1500.0000', 0, 0, '0.0000', 0, '', 1, 2, 'USD', '1.00000000', '::1', '', 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36', 'en-US,en;q=0.8', '2017-10-28 20:56:55', '2017-10-28 20:56:55'),
+(61, 0, 'INV-2013-00', 0, 'BoN', 'http://localhost/projects/bon/', 2, 1, '', '', 'sadeesh.btech@gmail.com', '8939615692', '', '', '', '', '', '', '', '', '', '', 99, '', 1503, '', '[]', 'PayUMoney', 'pumcp', '', '', '', '', '', '', '', '', 0, '', 0, '', '[]', '', '', '', '1500.0000', 0, 0, '0.0000', 0, '', 1, 2, 'USD', '1.00000000', '::1', '', 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36', 'en-US,en;q=0.8', '2017-10-28 20:57:21', '2017-10-28 20:57:21'),
+(62, 0, 'INV-2013-00', 0, 'BoN', 'http://localhost/projects/bon/', 2, 1, '', '', 'sadeesh.btech@gmail.com', '8939615692', '', '', '', '', '', '', '', '', '', '', 99, '', 1503, '', '[]', 'PayUMoney', 'pumcp', '', '', '', '', '', '', '', '', 0, '', 0, '', '[]', '', '', '', '1500.0000', 0, 0, '0.0000', 0, '', 1, 2, 'USD', '1.00000000', '::1', '', 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36', 'en-US,en;q=0.8', '2017-10-28 20:58:08', '2017-10-28 20:58:08'),
+(63, 0, 'INV-2013-00', 0, 'BoN', 'http://localhost/projects/bon/', 2, 1, '', '', 'sadeesh.btech@gmail.com', '8939615692', '', '', '', '', '', '', '', '', '', '', 99, '', 1503, '', '[]', 'PayUMoney', 'pumcp', '', '', '', '', '', '', '', '', 0, '', 0, '', '[]', '', '', '', '1500.0000', 0, 0, '0.0000', 0, '', 1, 2, 'USD', '1.00000000', '::1', '', 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36', 'en-US,en;q=0.8', '2017-10-28 21:04:32', '2017-10-28 21:04:32'),
+(64, 0, 'INV-2013-00', 0, 'BoN', 'http://localhost/projects/bon/', 2, 1, '', '', 'sadeesh.btech@gmail.com', '8939615692', '', '', '', '', '', '', '', '', '', '', 99, '', 1503, '', '[]', 'PayUMoney', 'pumcp', '', '', '', '', '', '', '', '', 0, '', 0, '', '[]', '', '', '', '1500.0000', 0, 0, '0.0000', 0, '', 1, 2, 'USD', '1.00000000', '::1', '', 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36', 'en-US,en;q=0.8', '2017-10-28 21:06:38', '2017-10-28 21:06:38'),
+(65, 0, 'INV-2013-00', 0, 'BoN', 'http://localhost/projects/bon/', 2, 1, '', '', 'sadeesh.btech@gmail.com', '8939615692', '', '', '', '', '', '', '', '', '', '', 99, '', 1503, '', '[]', 'PayUMoney', 'pumcp', '', '', '', '', '', '', '', '', 0, '', 0, '', '[]', '', '', '', '1000.5000', 0, 0, '0.0000', 0, '', 1, 2, 'USD', '1.00000000', '::1', '', 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36', 'en-US,en;q=0.8', '2017-10-28 21:24:31', '2017-10-28 21:24:31'),
+(66, 0, 'INV-2013-00', 0, 'BoN', 'http://localhost/projects/bon/', 2, 1, '', '', 'sadeesh.btech@gmail.com', '8939615692', '', '', '', '', '', '', '', '', '', '', 99, '', 1503, '', '[]', 'PayUMoney', 'pumcp', '', '', '', '', '', '', '', '', 0, '', 0, '', '[]', '', '', '', '1001.5000', 0, 0, '0.0000', 0, '', 1, 2, 'USD', '1.00000000', '::1', '', 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36', 'en-US,en;q=0.8', '2017-10-28 21:31:07', '2017-10-28 21:31:07'),
+(67, 0, 'INV-2013-00', 0, 'BoN', 'http://localhost/projects/bon/', 2, 1, '', '', 'sadeesh.btech@gmail.com', '8939615692', '', '', '', '', '', '', '', '', '', '', 99, '', 1503, '', '[]', 'PayUMoney', 'pumcp', '', '', '', '', '', '', '', '', 0, '', 0, '', '[]', '', '', '', '1.0000', 0, 0, '0.0000', 0, '', 1, 2, 'USD', '1.00000000', '::1', '', 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36', 'en-US,en;q=0.8', '2017-10-28 21:47:13', '2017-10-28 21:47:13');
 
 -- --------------------------------------------------------
 
@@ -14038,7 +14059,18 @@ INSERT INTO `oc_order_product` (`order_product_id`, `order_id`, `product_id`, `n
 (53, 53, 1, 'Home - State (Tamil Nadu)', '', 0, '1000.0000', 0, '', '', '1000.0000', '0.0000', 0),
 (54, 54, 1, 'Home - State (Tamil Nadu)', '', 0, '1000.0000', 0, '', '', '1000.0000', '0.0000', 0),
 (55, 55, 1, 'Home - Nearby', '', 0, '0.0000', 0, '', '', '0.0000', '0.0000', 0),
-(56, 56, 1, 'Home - City (Chennai)', '', 0, '500.0000', 0, '', '', '500.0000', '0.0000', 0);
+(56, 56, 1, 'Home - City (Chennai)', '', 0, '500.0000', 0, '', '', '500.0000', '0.0000', 0),
+(57, 57, 3, 'Home - National (India)10%', '', 0, '1500.0000', 0, '', '', '1500.0000', '0.0000', 0),
+(58, 58, 3, 'Home - National (India)10%', '', 0, '1500.0000', 0, '', '', '1500.0000', '0.0000', 0),
+(59, 59, 3, 'Home - National (India)10%', '', 0, '1500.0000', 0, '', '', '1500.0000', '0.0000', 0),
+(60, 60, 3, 'Home - National (India)10%', '', 0, '1500.0000', 0, '', '', '1500.0000', '0.0000', 0),
+(61, 61, 3, 'Home - National (India)10%', '', 0, '1500.0000', 0, '', '', '1500.0000', '0.0000', 0),
+(62, 62, 3, 'Home - National (India)10%', '', 0, '1500.0000', 0, '', '', '1500.0000', '0.0000', 0),
+(63, 63, 3, 'Home - National (India)10%', '', 0, '1500.0000', 0, '', '', '1500.0000', '0.0000', 0),
+(64, 64, 3, 'Home - National (India)10%', '', 0, '1500.0000', 0, '', '', '1500.0000', '0.0000', 0),
+(65, 65, 3, 'Home - State (Tamil Nadu)', '', 0, '1000.5000', 0, '', '', '1000.5000', '0.0000', 0),
+(66, 66, 3, 'Home - State (Tamil Nadu)', '', 0, '1001.5000', 0, '', '', '1001.5000', '0.0000', 0),
+(67, 67, 3, 'Home - Nearby', '', 0, '1.0000', 0, '', '', '1.0000', '0.0000', 0);
 
 -- --------------------------------------------------------
 
@@ -14791,7 +14823,8 @@ INSERT INTO `oc_seller_transaction` (`seller_transaction_id`, `customer_id`, `or
 (28, 1, 0, 'Subscription to [ Free ]', '0.0000', '2017-10-20 22:30:25'),
 (29, 1, 0, 'Subscription to [ Free ]', '0.0000', '2017-10-20 22:30:31'),
 (30, 1, 0, 'Subscription to [ Free ]', '0.0000', '2017-10-21 16:55:42'),
-(31, 1, 0, 'Subscription to [ Free ]', '0.0000', '2017-10-21 16:55:59');
+(31, 1, 0, 'Subscription to [ Free ]', '0.0000', '2017-10-21 16:55:59'),
+(32, 2, 0, 'Subscription to [ Free ]', '0.0000', '2017-10-28 20:45:18');
 
 -- --------------------------------------------------------
 
@@ -15025,14 +15058,10 @@ INSERT INTO `oc_setting` (`setting_id`, `store_id`, `code`, `key`, `value`, `ser
 (2916, 0, 'config', 'config_language', 'en-gb', 0),
 (2915, 0, 'config', 'config_zone_id', '1503', 0),
 (2914, 0, 'config', 'config_country_id', '99', 0),
-(3058, 0, 'payu', 'payu_sort_order', '', 0),
-(3057, 0, 'payu', 'payu_status', '1', 0),
-(3056, 0, 'payu', 'payu_geo_zone_id', '0', 0),
-(3055, 0, 'payu', 'payu_order_status_id', '5', 0),
-(3054, 0, 'payu', 'payu_total', '', 0),
-(3053, 0, 'payu', 'payu_test', 'demo', 0),
-(3052, 0, 'payu', 'payu_salt', 'eCwWELxi', 0),
-(3051, 0, 'payu', 'payu_merchant', 'gtKFFx', 0),
+(3084, 0, 'pumcp', 'pumcp_geo_zone_id', '0', 0),
+(3083, 0, 'pumcp', 'pumcp_module', 'Production', 0),
+(3082, 0, 'pumcp', 'pumcp_route_citrus', '50', 0),
+(3081, 0, 'pumcp', 'pumcp_route_payu', '50', 0),
 (2913, 0, 'config', 'config_comment', '', 0),
 (2910, 0, 'config', 'config_fax', '', 0),
 (2911, 0, 'config', 'config_image', 'catalog/logo-new.png', 0),
@@ -15057,7 +15086,16 @@ INSERT INTO `oc_setting` (`setting_id`, `store_id`, `code`, `key`, `value`, `ser
 (3059, 0, 'sms', 'sms_user', 'bononline', 0),
 (3060, 0, 'sms', 'sms_pass', 'bhash999', 0),
 (3061, 0, 'sms', 'sms_sender_ads', 'BONADS', 0),
-(3062, 0, 'sms', 'sms_sender_lne', 'BONLNE', 0);
+(3062, 0, 'sms', 'sms_sender_lne', 'BONLNE', 0),
+(3085, 0, 'pumcp', 'pumcp_currency', 'INR', 0),
+(3080, 0, 'pumcp', 'pumcp_citrus_secret_key', '', 0),
+(3079, 0, 'pumcp', 'pumcp_citrus_access_key', '', 0),
+(3078, 0, 'pumcp', 'pumcp_citrus_vanityurl', '', 0),
+(3077, 0, 'pumcp', 'pumcp_payu_salt', 'e5iIg1jwi8', 0),
+(3076, 0, 'pumcp', 'pumcp_payu_merchant', 'rjQUPktU', 0),
+(3086, 0, 'pumcp', 'pumcp_total', '', 0),
+(3087, 0, 'pumcp', 'pumcp_status', '1', 0),
+(3088, 0, 'pumcp', 'pumcp_sort_order', '', 0);
 
 -- --------------------------------------------------------
 
@@ -15191,7 +15229,8 @@ CREATE TABLE `oc_store_offers` (
 
 INSERT INTO `oc_store_offers` (`advertise_id`, `seller_id`, `offer_title`, `offer_image`, `offer_image_original`, `offer_desc`, `offer_url`, `position`, `km`, `national`, `state`, `city`, `remarks`, `sort_order`, `date_added`, `date_modified`, `status`, `paid`, `from_date`, `end_date`, `top_banner_date`, `price`, `discount_price`, `mail_sent`) VALUES
 (1, 1, 'Test Ad', 'catalog/seller_images/1/Advertise/1508585192_advertise.jpg', 'catalog/seller_images/1/taj image.jpg', '', '', 4, 0, 'india', 'tamil-nadu', 'cuddalore', '', 1, '2017-10-21 16:56:32', '2017-10-25 21:03:49', 'approved', '0', '2017-10-25', '2017-10-30', NULL, 1000, 500, 'no'),
-(2, 1, 'Res ', 'catalog/seller_images/1/Advertise/1508585234_advertise.jpg', 'catalog/seller_images/1/taj image.jpg', '', '', 0, NULL, NULL, NULL, NULL, 'duplicate', 1, '2017-10-21 16:57:14', '2017-10-21 16:57:35', 'rejected', '0', '0000-00-00', '0000-00-00', NULL, 0, 0, 'no');
+(2, 1, 'Res ', 'catalog/seller_images/1/Advertise/1508585234_advertise.jpg', 'catalog/seller_images/1/taj image.jpg', '', '', 0, NULL, NULL, NULL, NULL, 'duplicate', 1, '2017-10-21 16:57:14', '2017-10-21 16:57:35', 'rejected', '0', '0000-00-00', '0000-00-00', NULL, 0, 0, 'no'),
+(3, 2, 'Add1', 'catalog/seller_images/2/Advertise/1509203795_advertise.jpg', 'catalog/seller_images/2/Score.png', '', '', 5, 3, NULL, NULL, NULL, '', 1, '2017-10-28 20:46:35', '2017-10-28 21:47:13', 'approved', '0', '2017-10-28', '2017-11-02', NULL, 2, 1, 'no');
 
 -- --------------------------------------------------------
 
@@ -17617,7 +17656,8 @@ INSERT INTO `oc_user_activity` (`user_activity_id`, `user_id`, `activity_id`, `k
 (49, 1, 10, 'ad_approved', '::1', '2017-10-08 14:06:25'),
 (50, 1, 12, 'ad_approved', '::1', '2017-10-13 16:45:43'),
 (51, 1, 1, 'ad_approved', '::1', '2017-10-21 16:56:51'),
-(52, 1, 2, 'ad_rejected', '::1', '2017-10-21 16:57:35');
+(52, 1, 2, 'ad_rejected', '::1', '2017-10-21 16:57:35'),
+(53, 1, 3, 'ad_approved', '::1', '2017-10-28 20:47:07');
 
 -- --------------------------------------------------------
 
@@ -17636,7 +17676,7 @@ CREATE TABLE `oc_user_group` (
 --
 
 INSERT INTO `oc_user_group` (`user_group_id`, `name`, `permission`) VALUES
-(1, 'Administrator', '{\"access\":[\"badge\\/badge\",\"bank\\/bank\",\"catalog\\/attribute\",\"catalog\\/attribute_group\",\"catalog\\/category\",\"catalog\\/category.php\",\"catalog\\/download\",\"catalog\\/filter\",\"catalog\\/information\",\"catalog\\/manufacturer\",\"catalog\\/option\",\"catalog\\/product\",\"catalog\\/recurring\",\"catalog\\/review\",\"common\\/column_left\",\"common\\/column_left.php\",\"common\\/filemanager\",\"common\\/filemanager.php\",\"customer\\/custom_field\",\"customer\\/customer\",\"customer\\/customer_group\",\"design\\/banner\",\"design\\/language\",\"design\\/layout\",\"design\\/menu\",\"design\\/theme\",\"design\\/translation\",\"event\\/compatibility\",\"event\\/theme\",\"extension\\/analytics\\/google_analytics\",\"extension\\/captcha\\/basic_captcha\",\"extension\\/captcha\\/google_captcha\",\"extension\\/dashboard\\/activity\",\"extension\\/dashboard\\/chart\",\"extension\\/dashboard\\/customer\",\"extension\\/dashboard\\/map\",\"extension\\/dashboard\\/online\",\"extension\\/dashboard\\/order\",\"extension\\/dashboard\\/recent\",\"extension\\/dashboard\\/sale\",\"extension\\/event\",\"extension\\/extension\",\"extension\\/extension\\/analytics\",\"extension\\/extension\\/captcha\",\"extension\\/extension\\/dashboard\",\"extension\\/extension\\/feed\",\"extension\\/extension\\/fraud\",\"extension\\/extension\\/module\",\"extension\\/extension\\/payment\",\"extension\\/extension\\/shipping\",\"extension\\/extension\\/theme\",\"extension\\/extension\\/total\",\"extension\\/feed\\/google_base\",\"extension\\/feed\\/google_sitemap\",\"extension\\/feed\\/openbaypro\",\"extension\\/fraud\\/fraudlabspro\",\"extension\\/fraud\\/ip\",\"extension\\/fraud\\/maxmind\",\"extension\\/installer\",\"extension\\/modification\",\"extension\\/module\\/account\",\"extension\\/module\\/affiliate\",\"extension\\/module\\/amazon_login\",\"extension\\/module\\/amazon_pay\",\"extension\\/module\\/banner\",\"extension\\/module\\/bestseller\",\"extension\\/module\\/carousel\",\"extension\\/module\\/category\",\"extension\\/module\\/divido_calculator\",\"extension\\/module\\/ebay_listing\",\"extension\\/module\\/featured\",\"extension\\/module\\/filter\",\"extension\\/module\\/google_hangouts\",\"extension\\/module\\/html\",\"extension\\/module\\/information\",\"extension\\/module\\/klarna_checkout_module\",\"extension\\/module\\/latest\",\"extension\\/module\\/laybuy_layout\",\"extension\\/module\\/pilibaba_button\",\"extension\\/module\\/pp_button\",\"extension\\/module\\/pp_login\",\"extension\\/module\\/sagepay_direct_cards\",\"extension\\/module\\/sagepay_server_cards\",\"extension\\/module\\/slideshow\",\"extension\\/module\\/special\",\"extension\\/module\\/store\",\"extension\\/openbay\",\"extension\\/openbay\\/amazon\",\"extension\\/openbay\\/amazon_listing\",\"extension\\/openbay\\/amazon_product\",\"extension\\/openbay\\/amazonus\",\"extension\\/openbay\\/amazonus_listing\",\"extension\\/openbay\\/amazonus_product\",\"extension\\/openbay\\/ebay\",\"extension\\/openbay\\/ebay_profile\",\"extension\\/openbay\\/ebay_template\",\"extension\\/openbay\\/etsy\",\"extension\\/openbay\\/etsy_product\",\"extension\\/openbay\\/etsy_shipping\",\"extension\\/openbay\\/etsy_shop\",\"extension\\/openbay\\/fba\",\"extension\\/payment\\/amazon_login_pay\",\"extension\\/payment\\/authorizenet_aim\",\"extension\\/payment\\/authorizenet_sim\",\"extension\\/payment\\/bank_transfer\",\"extension\\/payment\\/bluepay_hosted\",\"extension\\/payment\\/bluepay_redirect\",\"extension\\/payment\\/cardconnect\",\"extension\\/payment\\/cardinity\",\"extension\\/payment\\/cheque\",\"extension\\/payment\\/cod\",\"extension\\/payment\\/divido\",\"extension\\/payment\\/eway\",\"extension\\/payment\\/firstdata\",\"extension\\/payment\\/firstdata_remote\",\"extension\\/payment\\/free_checkout\",\"extension\\/payment\\/g2apay\",\"extension\\/payment\\/globalpay\",\"extension\\/payment\\/globalpay_remote\",\"extension\\/payment\\/klarna_account\",\"extension\\/payment\\/klarna_checkout\",\"extension\\/payment\\/klarna_invoice\",\"extension\\/payment\\/laybuy\",\"extension\\/payment\\/liqpay\",\"extension\\/payment\\/nochex\",\"extension\\/payment\\/paymate\",\"extension\\/payment\\/paypoint\",\"extension\\/payment\\/payu\",\"extension\\/payment\\/payza\",\"extension\\/payment\\/perpetual_payments\",\"extension\\/payment\\/pilibaba\",\"extension\\/payment\\/pp_express\",\"extension\\/payment\\/pp_payflow\",\"extension\\/payment\\/pp_payflow_iframe\",\"extension\\/payment\\/pp_pro\",\"extension\\/payment\\/pp_pro_iframe\",\"extension\\/payment\\/pp_standard\",\"extension\\/payment\\/realex\",\"extension\\/payment\\/realex_remote\",\"extension\\/payment\\/sagepay_direct\",\"extension\\/payment\\/sagepay_server\",\"extension\\/payment\\/sagepay_us\",\"extension\\/payment\\/securetrading_pp\",\"extension\\/payment\\/securetrading_ws\",\"extension\\/payment\\/skrill\",\"extension\\/payment\\/twocheckout\",\"extension\\/payment\\/web_payment_software\",\"extension\\/payment\\/worldpay\",\"extension\\/shipping\\/auspost\",\"extension\\/shipping\\/citylink\",\"extension\\/shipping\\/fedex\",\"extension\\/shipping\\/flat\",\"extension\\/shipping\\/free\",\"extension\\/shipping\\/item\",\"extension\\/shipping\\/parcelforce_48\",\"extension\\/shipping\\/pickup\",\"extension\\/shipping\\/royal_mail\",\"extension\\/shipping\\/ups\",\"extension\\/shipping\\/usps\",\"extension\\/shipping\\/weight\",\"extension\\/store\",\"extension\\/theme\\/theme_default\",\"extension\\/total\\/coupon\",\"extension\\/total\\/credit\",\"extension\\/total\\/handling\",\"extension\\/total\\/klarna_fee\",\"extension\\/total\\/low_order_fee\",\"extension\\/total\\/reward\",\"extension\\/total\\/shipping\",\"extension\\/total\\/sub_total\",\"extension\\/total\\/tax\",\"extension\\/total\\/total\",\"extension\\/total\\/voucher\",\"localisation\\/country\",\"localisation\\/currency\",\"localisation\\/geo_zone\",\"localisation\\/language\",\"localisation\\/length_class\",\"localisation\\/location\",\"localisation\\/order_status\",\"localisation\\/return_action\",\"localisation\\/return_reason\",\"localisation\\/return_status\",\"localisation\\/stock_status\",\"localisation\\/tax_class\",\"localisation\\/tax_rate\",\"localisation\\/weight_class\",\"localisation\\/zone\",\"marketing\\/affiliate\",\"marketing\\/contact\",\"marketing\\/coupon\",\"marketing\\/marketing\",\"report\\/affiliate\",\"report\\/affiliate_activity\",\"report\\/affiliate_login\",\"report\\/customer_activity\",\"report\\/customer_credit\",\"report\\/customer_login\",\"report\\/customer_online\",\"report\\/customer_order\",\"report\\/customer_reward\",\"report\\/customer_search\",\"report\\/marketing\",\"report\\/product_purchased\",\"report\\/product_viewed\",\"report\\/sale_coupon\",\"report\\/sale_order\",\"report\\/sale_return\",\"report\\/sale_shipping\",\"report\\/sale_tax\",\"sale\\/order\",\"sale\\/recurring\",\"sale\\/return\",\"sale\\/voucher\",\"sale\\/voucher_theme\",\"seller\\/order\",\"seller\\/product\",\"seller\\/seller\",\"seller\\/seller.php\",\"seller\\/seller_group\",\"seller\\/setting\",\"selleradvertise\\/selleradvertise\",\"selleradvertise\\/selleradvertise.php\",\"sellerreview\\/sellerreview\",\"setting\\/setting\",\"setting\\/store\",\"sitefeedback\\/sitefeedback\",\"sitefeedback\\/sitefeedback.php\",\"startup\\/compatibility\",\"startup\\/error\",\"startup\\/event\",\"startup\\/login\",\"startup\\/permission\",\"startup\\/router\",\"startup\\/sass\",\"startup\\/startup\",\"tool\\/backup\",\"tool\\/export_import\",\"tool\\/log\",\"tool\\/upload\",\"user\\/api\",\"user\\/user\",\"user\\/user_permission\",\"extension\\/total\\/sub_total\"],\"modify\":[\"badge\\/badge\",\"bank\\/bank\",\"catalog\\/attribute\",\"catalog\\/attribute_group\",\"catalog\\/category\",\"catalog\\/category.php\",\"catalog\\/download\",\"catalog\\/filter\",\"catalog\\/information\",\"catalog\\/manufacturer\",\"catalog\\/option\",\"catalog\\/product\",\"catalog\\/recurring\",\"catalog\\/review\",\"common\\/column_left\",\"common\\/column_left.php\",\"common\\/filemanager\",\"common\\/filemanager.php\",\"customer\\/custom_field\",\"customer\\/customer\",\"customer\\/customer_group\",\"design\\/banner\",\"design\\/language\",\"design\\/layout\",\"design\\/menu\",\"design\\/theme\",\"design\\/translation\",\"event\\/compatibility\",\"event\\/theme\",\"extension\\/analytics\\/google_analytics\",\"extension\\/captcha\\/basic_captcha\",\"extension\\/captcha\\/google_captcha\",\"extension\\/dashboard\\/activity\",\"extension\\/dashboard\\/chart\",\"extension\\/dashboard\\/customer\",\"extension\\/dashboard\\/map\",\"extension\\/dashboard\\/online\",\"extension\\/dashboard\\/order\",\"extension\\/dashboard\\/recent\",\"extension\\/dashboard\\/sale\",\"extension\\/event\",\"extension\\/extension\",\"extension\\/extension\\/analytics\",\"extension\\/extension\\/captcha\",\"extension\\/extension\\/dashboard\",\"extension\\/extension\\/feed\",\"extension\\/extension\\/fraud\",\"extension\\/extension\\/module\",\"extension\\/extension\\/payment\",\"extension\\/extension\\/shipping\",\"extension\\/extension\\/theme\",\"extension\\/extension\\/total\",\"extension\\/feed\\/google_base\",\"extension\\/feed\\/google_sitemap\",\"extension\\/feed\\/openbaypro\",\"extension\\/fraud\\/fraudlabspro\",\"extension\\/fraud\\/ip\",\"extension\\/fraud\\/maxmind\",\"extension\\/installer\",\"extension\\/modification\",\"extension\\/module\\/account\",\"extension\\/module\\/affiliate\",\"extension\\/module\\/amazon_login\",\"extension\\/module\\/amazon_pay\",\"extension\\/module\\/banner\",\"extension\\/module\\/bestseller\",\"extension\\/module\\/carousel\",\"extension\\/module\\/category\",\"extension\\/module\\/divido_calculator\",\"extension\\/module\\/ebay_listing\",\"extension\\/module\\/featured\",\"extension\\/module\\/filter\",\"extension\\/module\\/google_hangouts\",\"extension\\/module\\/html\",\"extension\\/module\\/information\",\"extension\\/module\\/klarna_checkout_module\",\"extension\\/module\\/latest\",\"extension\\/module\\/laybuy_layout\",\"extension\\/module\\/pilibaba_button\",\"extension\\/module\\/pp_button\",\"extension\\/module\\/pp_login\",\"extension\\/module\\/sagepay_direct_cards\",\"extension\\/module\\/sagepay_server_cards\",\"extension\\/module\\/slideshow\",\"extension\\/module\\/special\",\"extension\\/module\\/store\",\"extension\\/openbay\",\"extension\\/openbay\\/amazon\",\"extension\\/openbay\\/amazon_listing\",\"extension\\/openbay\\/amazon_product\",\"extension\\/openbay\\/amazonus\",\"extension\\/openbay\\/amazonus_listing\",\"extension\\/openbay\\/amazonus_product\",\"extension\\/openbay\\/ebay\",\"extension\\/openbay\\/ebay_profile\",\"extension\\/openbay\\/ebay_template\",\"extension\\/openbay\\/etsy\",\"extension\\/openbay\\/etsy_product\",\"extension\\/openbay\\/etsy_shipping\",\"extension\\/openbay\\/etsy_shop\",\"extension\\/openbay\\/fba\",\"extension\\/payment\\/amazon_login_pay\",\"extension\\/payment\\/authorizenet_aim\",\"extension\\/payment\\/authorizenet_sim\",\"extension\\/payment\\/bank_transfer\",\"extension\\/payment\\/bluepay_hosted\",\"extension\\/payment\\/bluepay_redirect\",\"extension\\/payment\\/cardconnect\",\"extension\\/payment\\/cardinity\",\"extension\\/payment\\/cheque\",\"extension\\/payment\\/cod\",\"extension\\/payment\\/divido\",\"extension\\/payment\\/eway\",\"extension\\/payment\\/firstdata\",\"extension\\/payment\\/firstdata_remote\",\"extension\\/payment\\/free_checkout\",\"extension\\/payment\\/g2apay\",\"extension\\/payment\\/globalpay\",\"extension\\/payment\\/globalpay_remote\",\"extension\\/payment\\/klarna_account\",\"extension\\/payment\\/klarna_checkout\",\"extension\\/payment\\/klarna_invoice\",\"extension\\/payment\\/laybuy\",\"extension\\/payment\\/liqpay\",\"extension\\/payment\\/nochex\",\"extension\\/payment\\/paymate\",\"extension\\/payment\\/paypoint\",\"extension\\/payment\\/payu\",\"extension\\/payment\\/payza\",\"extension\\/payment\\/perpetual_payments\",\"extension\\/payment\\/pilibaba\",\"extension\\/payment\\/pp_express\",\"extension\\/payment\\/pp_payflow\",\"extension\\/payment\\/pp_payflow_iframe\",\"extension\\/payment\\/pp_pro\",\"extension\\/payment\\/pp_pro_iframe\",\"extension\\/payment\\/pp_standard\",\"extension\\/payment\\/realex\",\"extension\\/payment\\/realex_remote\",\"extension\\/payment\\/sagepay_direct\",\"extension\\/payment\\/sagepay_server\",\"extension\\/payment\\/sagepay_us\",\"extension\\/payment\\/securetrading_pp\",\"extension\\/payment\\/securetrading_ws\",\"extension\\/payment\\/skrill\",\"extension\\/payment\\/twocheckout\",\"extension\\/payment\\/web_payment_software\",\"extension\\/payment\\/worldpay\",\"extension\\/shipping\\/auspost\",\"extension\\/shipping\\/citylink\",\"extension\\/shipping\\/fedex\",\"extension\\/shipping\\/flat\",\"extension\\/shipping\\/free\",\"extension\\/shipping\\/item\",\"extension\\/shipping\\/parcelforce_48\",\"extension\\/shipping\\/pickup\",\"extension\\/shipping\\/royal_mail\",\"extension\\/shipping\\/ups\",\"extension\\/shipping\\/usps\",\"extension\\/shipping\\/weight\",\"extension\\/store\",\"extension\\/theme\\/theme_default\",\"extension\\/total\\/coupon\",\"extension\\/total\\/credit\",\"extension\\/total\\/handling\",\"extension\\/total\\/klarna_fee\",\"extension\\/total\\/low_order_fee\",\"extension\\/total\\/reward\",\"extension\\/total\\/shipping\",\"extension\\/total\\/sub_total\",\"extension\\/total\\/tax\",\"extension\\/total\\/total\",\"extension\\/total\\/voucher\",\"localisation\\/country\",\"localisation\\/currency\",\"localisation\\/geo_zone\",\"localisation\\/language\",\"localisation\\/length_class\",\"localisation\\/location\",\"localisation\\/order_status\",\"localisation\\/return_action\",\"localisation\\/return_reason\",\"localisation\\/return_status\",\"localisation\\/stock_status\",\"localisation\\/tax_class\",\"localisation\\/tax_rate\",\"localisation\\/weight_class\",\"localisation\\/zone\",\"marketing\\/affiliate\",\"marketing\\/contact\",\"marketing\\/coupon\",\"marketing\\/marketing\",\"report\\/affiliate\",\"report\\/affiliate_activity\",\"report\\/affiliate_login\",\"report\\/customer_activity\",\"report\\/customer_credit\",\"report\\/customer_login\",\"report\\/customer_online\",\"report\\/customer_order\",\"report\\/customer_reward\",\"report\\/customer_search\",\"report\\/marketing\",\"report\\/product_purchased\",\"report\\/product_viewed\",\"report\\/sale_coupon\",\"report\\/sale_order\",\"report\\/sale_return\",\"report\\/sale_shipping\",\"report\\/sale_tax\",\"sale\\/order\",\"sale\\/recurring\",\"sale\\/return\",\"sale\\/voucher\",\"sale\\/voucher_theme\",\"seller\\/order\",\"seller\\/product\",\"seller\\/seller\",\"seller\\/seller.php\",\"seller\\/seller_group\",\"seller\\/setting\",\"selleradvertise\\/selleradvertise\",\"selleradvertise\\/selleradvertise.php\",\"sellerreview\\/sellerreview\",\"setting\\/setting\",\"setting\\/store\",\"sitefeedback\\/sitefeedback\",\"sitefeedback\\/sitefeedback.php\",\"startup\\/compatibility\",\"startup\\/error\",\"startup\\/event\",\"startup\\/login\",\"startup\\/permission\",\"startup\\/router\",\"startup\\/sass\",\"startup\\/startup\",\"tool\\/backup\",\"tool\\/export_import\",\"tool\\/log\",\"tool\\/upload\",\"user\\/api\",\"user\\/user\",\"user\\/user_permission\",\"extension\\/total\\/sub_total\"]}'),
+(1, 'Administrator', '{\"access\":[\"badge\\/badge\",\"bank\\/bank\",\"catalog\\/attribute\",\"catalog\\/attribute_group\",\"catalog\\/category\",\"catalog\\/category.php\",\"catalog\\/download\",\"catalog\\/filter\",\"catalog\\/information\",\"catalog\\/manufacturer\",\"catalog\\/option\",\"catalog\\/product\",\"catalog\\/recurring\",\"catalog\\/review\",\"common\\/column_left\",\"common\\/column_left.php\",\"common\\/filemanager\",\"common\\/filemanager.php\",\"customer\\/custom_field\",\"customer\\/customer\",\"customer\\/customer_group\",\"design\\/banner\",\"design\\/language\",\"design\\/layout\",\"design\\/menu\",\"design\\/theme\",\"design\\/translation\",\"event\\/compatibility\",\"event\\/theme\",\"extension\\/analytics\\/google_analytics\",\"extension\\/captcha\\/basic_captcha\",\"extension\\/captcha\\/google_captcha\",\"extension\\/dashboard\\/activity\",\"extension\\/dashboard\\/chart\",\"extension\\/dashboard\\/customer\",\"extension\\/dashboard\\/map\",\"extension\\/dashboard\\/online\",\"extension\\/dashboard\\/order\",\"extension\\/dashboard\\/recent\",\"extension\\/dashboard\\/sale\",\"extension\\/event\",\"extension\\/extension\",\"extension\\/extension\\/analytics\",\"extension\\/extension\\/captcha\",\"extension\\/extension\\/dashboard\",\"extension\\/extension\\/feed\",\"extension\\/extension\\/fraud\",\"extension\\/extension\\/module\",\"extension\\/extension\\/payment\",\"extension\\/extension\\/shipping\",\"extension\\/extension\\/theme\",\"extension\\/extension\\/total\",\"extension\\/feed\\/google_base\",\"extension\\/feed\\/google_sitemap\",\"extension\\/feed\\/openbaypro\",\"extension\\/fraud\\/fraudlabspro\",\"extension\\/fraud\\/ip\",\"extension\\/fraud\\/maxmind\",\"extension\\/installer\",\"extension\\/modification\",\"extension\\/module\\/account\",\"extension\\/module\\/affiliate\",\"extension\\/module\\/amazon_login\",\"extension\\/module\\/amazon_pay\",\"extension\\/module\\/banner\",\"extension\\/module\\/bestseller\",\"extension\\/module\\/carousel\",\"extension\\/module\\/category\",\"extension\\/module\\/divido_calculator\",\"extension\\/module\\/ebay_listing\",\"extension\\/module\\/featured\",\"extension\\/module\\/filter\",\"extension\\/module\\/google_hangouts\",\"extension\\/module\\/html\",\"extension\\/module\\/information\",\"extension\\/module\\/klarna_checkout_module\",\"extension\\/module\\/latest\",\"extension\\/module\\/laybuy_layout\",\"extension\\/module\\/pilibaba_button\",\"extension\\/module\\/pp_button\",\"extension\\/module\\/pp_login\",\"extension\\/module\\/sagepay_direct_cards\",\"extension\\/module\\/sagepay_server_cards\",\"extension\\/module\\/slideshow\",\"extension\\/module\\/special\",\"extension\\/module\\/store\",\"extension\\/openbay\",\"extension\\/openbay\\/amazon\",\"extension\\/openbay\\/amazon_listing\",\"extension\\/openbay\\/amazon_product\",\"extension\\/openbay\\/amazonus\",\"extension\\/openbay\\/amazonus_listing\",\"extension\\/openbay\\/amazonus_product\",\"extension\\/openbay\\/ebay\",\"extension\\/openbay\\/ebay_profile\",\"extension\\/openbay\\/ebay_template\",\"extension\\/openbay\\/etsy\",\"extension\\/openbay\\/etsy_product\",\"extension\\/openbay\\/etsy_shipping\",\"extension\\/openbay\\/etsy_shop\",\"extension\\/openbay\\/fba\",\"extension\\/payment\\/amazon_login_pay\",\"extension\\/payment\\/authorizenet_aim\",\"extension\\/payment\\/authorizenet_sim\",\"extension\\/payment\\/bank_transfer\",\"extension\\/payment\\/bluepay_hosted\",\"extension\\/payment\\/bluepay_redirect\",\"extension\\/payment\\/cardconnect\",\"extension\\/payment\\/cardinity\",\"extension\\/payment\\/cheque\",\"extension\\/payment\\/cod\",\"extension\\/payment\\/divido\",\"extension\\/payment\\/eway\",\"extension\\/payment\\/firstdata\",\"extension\\/payment\\/firstdata_remote\",\"extension\\/payment\\/free_checkout\",\"extension\\/payment\\/g2apay\",\"extension\\/payment\\/globalpay\",\"extension\\/payment\\/globalpay_remote\",\"extension\\/payment\\/klarna_account\",\"extension\\/payment\\/klarna_checkout\",\"extension\\/payment\\/klarna_invoice\",\"extension\\/payment\\/laybuy\",\"extension\\/payment\\/liqpay\",\"extension\\/payment\\/nochex\",\"extension\\/payment\\/paymate\",\"extension\\/payment\\/paypoint\",\"extension\\/payment\\/payu\",\"extension\\/payment\\/payza\",\"extension\\/payment\\/perpetual_payments\",\"extension\\/payment\\/pilibaba\",\"extension\\/payment\\/pp_express\",\"extension\\/payment\\/pp_payflow\",\"extension\\/payment\\/pp_payflow_iframe\",\"extension\\/payment\\/pp_pro\",\"extension\\/payment\\/pp_pro_iframe\",\"extension\\/payment\\/pp_standard\",\"extension\\/payment\\/realex\",\"extension\\/payment\\/realex_remote\",\"extension\\/payment\\/sagepay_direct\",\"extension\\/payment\\/sagepay_server\",\"extension\\/payment\\/sagepay_us\",\"extension\\/payment\\/securetrading_pp\",\"extension\\/payment\\/securetrading_ws\",\"extension\\/payment\\/skrill\",\"extension\\/payment\\/twocheckout\",\"extension\\/payment\\/web_payment_software\",\"extension\\/payment\\/worldpay\",\"extension\\/shipping\\/auspost\",\"extension\\/shipping\\/citylink\",\"extension\\/shipping\\/fedex\",\"extension\\/shipping\\/flat\",\"extension\\/shipping\\/free\",\"extension\\/shipping\\/item\",\"extension\\/shipping\\/parcelforce_48\",\"extension\\/shipping\\/pickup\",\"extension\\/shipping\\/royal_mail\",\"extension\\/shipping\\/ups\",\"extension\\/shipping\\/usps\",\"extension\\/shipping\\/weight\",\"extension\\/store\",\"extension\\/theme\\/theme_default\",\"extension\\/total\\/coupon\",\"extension\\/total\\/credit\",\"extension\\/total\\/handling\",\"extension\\/total\\/klarna_fee\",\"extension\\/total\\/low_order_fee\",\"extension\\/total\\/reward\",\"extension\\/total\\/shipping\",\"extension\\/total\\/sub_total\",\"extension\\/total\\/tax\",\"extension\\/total\\/total\",\"extension\\/total\\/voucher\",\"localisation\\/country\",\"localisation\\/currency\",\"localisation\\/geo_zone\",\"localisation\\/language\",\"localisation\\/length_class\",\"localisation\\/location\",\"localisation\\/order_status\",\"localisation\\/return_action\",\"localisation\\/return_reason\",\"localisation\\/return_status\",\"localisation\\/stock_status\",\"localisation\\/tax_class\",\"localisation\\/tax_rate\",\"localisation\\/weight_class\",\"localisation\\/zone\",\"marketing\\/affiliate\",\"marketing\\/contact\",\"marketing\\/coupon\",\"marketing\\/marketing\",\"report\\/affiliate\",\"report\\/affiliate_activity\",\"report\\/affiliate_login\",\"report\\/customer_activity\",\"report\\/customer_credit\",\"report\\/customer_login\",\"report\\/customer_online\",\"report\\/customer_order\",\"report\\/customer_reward\",\"report\\/customer_search\",\"report\\/marketing\",\"report\\/product_purchased\",\"report\\/product_viewed\",\"report\\/sale_coupon\",\"report\\/sale_order\",\"report\\/sale_return\",\"report\\/sale_shipping\",\"report\\/sale_tax\",\"sale\\/order\",\"sale\\/recurring\",\"sale\\/return\",\"sale\\/voucher\",\"sale\\/voucher_theme\",\"seller\\/order\",\"seller\\/product\",\"seller\\/seller\",\"seller\\/seller.php\",\"seller\\/seller_group\",\"seller\\/setting\",\"selleradvertise\\/selleradvertise\",\"selleradvertise\\/selleradvertise.php\",\"sellerreview\\/sellerreview\",\"setting\\/setting\",\"setting\\/store\",\"sitefeedback\\/sitefeedback\",\"sitefeedback\\/sitefeedback.php\",\"startup\\/compatibility\",\"startup\\/error\",\"startup\\/event\",\"startup\\/login\",\"startup\\/permission\",\"startup\\/router\",\"startup\\/sass\",\"startup\\/startup\",\"tool\\/backup\",\"tool\\/export_import\",\"tool\\/log\",\"tool\\/upload\",\"user\\/api\",\"user\\/user\",\"user\\/user_permission\",\"extension\\/total\\/sub_total\",\"extension\\/payment\\/pumcp\"],\"modify\":[\"badge\\/badge\",\"bank\\/bank\",\"catalog\\/attribute\",\"catalog\\/attribute_group\",\"catalog\\/category\",\"catalog\\/category.php\",\"catalog\\/download\",\"catalog\\/filter\",\"catalog\\/information\",\"catalog\\/manufacturer\",\"catalog\\/option\",\"catalog\\/product\",\"catalog\\/recurring\",\"catalog\\/review\",\"common\\/column_left\",\"common\\/column_left.php\",\"common\\/filemanager\",\"common\\/filemanager.php\",\"customer\\/custom_field\",\"customer\\/customer\",\"customer\\/customer_group\",\"design\\/banner\",\"design\\/language\",\"design\\/layout\",\"design\\/menu\",\"design\\/theme\",\"design\\/translation\",\"event\\/compatibility\",\"event\\/theme\",\"extension\\/analytics\\/google_analytics\",\"extension\\/captcha\\/basic_captcha\",\"extension\\/captcha\\/google_captcha\",\"extension\\/dashboard\\/activity\",\"extension\\/dashboard\\/chart\",\"extension\\/dashboard\\/customer\",\"extension\\/dashboard\\/map\",\"extension\\/dashboard\\/online\",\"extension\\/dashboard\\/order\",\"extension\\/dashboard\\/recent\",\"extension\\/dashboard\\/sale\",\"extension\\/event\",\"extension\\/extension\",\"extension\\/extension\\/analytics\",\"extension\\/extension\\/captcha\",\"extension\\/extension\\/dashboard\",\"extension\\/extension\\/feed\",\"extension\\/extension\\/fraud\",\"extension\\/extension\\/module\",\"extension\\/extension\\/payment\",\"extension\\/extension\\/shipping\",\"extension\\/extension\\/theme\",\"extension\\/extension\\/total\",\"extension\\/feed\\/google_base\",\"extension\\/feed\\/google_sitemap\",\"extension\\/feed\\/openbaypro\",\"extension\\/fraud\\/fraudlabspro\",\"extension\\/fraud\\/ip\",\"extension\\/fraud\\/maxmind\",\"extension\\/installer\",\"extension\\/modification\",\"extension\\/module\\/account\",\"extension\\/module\\/affiliate\",\"extension\\/module\\/amazon_login\",\"extension\\/module\\/amazon_pay\",\"extension\\/module\\/banner\",\"extension\\/module\\/bestseller\",\"extension\\/module\\/carousel\",\"extension\\/module\\/category\",\"extension\\/module\\/divido_calculator\",\"extension\\/module\\/ebay_listing\",\"extension\\/module\\/featured\",\"extension\\/module\\/filter\",\"extension\\/module\\/google_hangouts\",\"extension\\/module\\/html\",\"extension\\/module\\/information\",\"extension\\/module\\/klarna_checkout_module\",\"extension\\/module\\/latest\",\"extension\\/module\\/laybuy_layout\",\"extension\\/module\\/pilibaba_button\",\"extension\\/module\\/pp_button\",\"extension\\/module\\/pp_login\",\"extension\\/module\\/sagepay_direct_cards\",\"extension\\/module\\/sagepay_server_cards\",\"extension\\/module\\/slideshow\",\"extension\\/module\\/special\",\"extension\\/module\\/store\",\"extension\\/openbay\",\"extension\\/openbay\\/amazon\",\"extension\\/openbay\\/amazon_listing\",\"extension\\/openbay\\/amazon_product\",\"extension\\/openbay\\/amazonus\",\"extension\\/openbay\\/amazonus_listing\",\"extension\\/openbay\\/amazonus_product\",\"extension\\/openbay\\/ebay\",\"extension\\/openbay\\/ebay_profile\",\"extension\\/openbay\\/ebay_template\",\"extension\\/openbay\\/etsy\",\"extension\\/openbay\\/etsy_product\",\"extension\\/openbay\\/etsy_shipping\",\"extension\\/openbay\\/etsy_shop\",\"extension\\/openbay\\/fba\",\"extension\\/payment\\/amazon_login_pay\",\"extension\\/payment\\/authorizenet_aim\",\"extension\\/payment\\/authorizenet_sim\",\"extension\\/payment\\/bank_transfer\",\"extension\\/payment\\/bluepay_hosted\",\"extension\\/payment\\/bluepay_redirect\",\"extension\\/payment\\/cardconnect\",\"extension\\/payment\\/cardinity\",\"extension\\/payment\\/cheque\",\"extension\\/payment\\/cod\",\"extension\\/payment\\/divido\",\"extension\\/payment\\/eway\",\"extension\\/payment\\/firstdata\",\"extension\\/payment\\/firstdata_remote\",\"extension\\/payment\\/free_checkout\",\"extension\\/payment\\/g2apay\",\"extension\\/payment\\/globalpay\",\"extension\\/payment\\/globalpay_remote\",\"extension\\/payment\\/klarna_account\",\"extension\\/payment\\/klarna_checkout\",\"extension\\/payment\\/klarna_invoice\",\"extension\\/payment\\/laybuy\",\"extension\\/payment\\/liqpay\",\"extension\\/payment\\/nochex\",\"extension\\/payment\\/paymate\",\"extension\\/payment\\/paypoint\",\"extension\\/payment\\/payu\",\"extension\\/payment\\/payza\",\"extension\\/payment\\/perpetual_payments\",\"extension\\/payment\\/pilibaba\",\"extension\\/payment\\/pp_express\",\"extension\\/payment\\/pp_payflow\",\"extension\\/payment\\/pp_payflow_iframe\",\"extension\\/payment\\/pp_pro\",\"extension\\/payment\\/pp_pro_iframe\",\"extension\\/payment\\/pp_standard\",\"extension\\/payment\\/realex\",\"extension\\/payment\\/realex_remote\",\"extension\\/payment\\/sagepay_direct\",\"extension\\/payment\\/sagepay_server\",\"extension\\/payment\\/sagepay_us\",\"extension\\/payment\\/securetrading_pp\",\"extension\\/payment\\/securetrading_ws\",\"extension\\/payment\\/skrill\",\"extension\\/payment\\/twocheckout\",\"extension\\/payment\\/web_payment_software\",\"extension\\/payment\\/worldpay\",\"extension\\/shipping\\/auspost\",\"extension\\/shipping\\/citylink\",\"extension\\/shipping\\/fedex\",\"extension\\/shipping\\/flat\",\"extension\\/shipping\\/free\",\"extension\\/shipping\\/item\",\"extension\\/shipping\\/parcelforce_48\",\"extension\\/shipping\\/pickup\",\"extension\\/shipping\\/royal_mail\",\"extension\\/shipping\\/ups\",\"extension\\/shipping\\/usps\",\"extension\\/shipping\\/weight\",\"extension\\/store\",\"extension\\/theme\\/theme_default\",\"extension\\/total\\/coupon\",\"extension\\/total\\/credit\",\"extension\\/total\\/handling\",\"extension\\/total\\/klarna_fee\",\"extension\\/total\\/low_order_fee\",\"extension\\/total\\/reward\",\"extension\\/total\\/shipping\",\"extension\\/total\\/sub_total\",\"extension\\/total\\/tax\",\"extension\\/total\\/total\",\"extension\\/total\\/voucher\",\"localisation\\/country\",\"localisation\\/currency\",\"localisation\\/geo_zone\",\"localisation\\/language\",\"localisation\\/length_class\",\"localisation\\/location\",\"localisation\\/order_status\",\"localisation\\/return_action\",\"localisation\\/return_reason\",\"localisation\\/return_status\",\"localisation\\/stock_status\",\"localisation\\/tax_class\",\"localisation\\/tax_rate\",\"localisation\\/weight_class\",\"localisation\\/zone\",\"marketing\\/affiliate\",\"marketing\\/contact\",\"marketing\\/coupon\",\"marketing\\/marketing\",\"report\\/affiliate\",\"report\\/affiliate_activity\",\"report\\/affiliate_login\",\"report\\/customer_activity\",\"report\\/customer_credit\",\"report\\/customer_login\",\"report\\/customer_online\",\"report\\/customer_order\",\"report\\/customer_reward\",\"report\\/customer_search\",\"report\\/marketing\",\"report\\/product_purchased\",\"report\\/product_viewed\",\"report\\/sale_coupon\",\"report\\/sale_order\",\"report\\/sale_return\",\"report\\/sale_shipping\",\"report\\/sale_tax\",\"sale\\/order\",\"sale\\/recurring\",\"sale\\/return\",\"sale\\/voucher\",\"sale\\/voucher_theme\",\"seller\\/order\",\"seller\\/product\",\"seller\\/seller\",\"seller\\/seller.php\",\"seller\\/seller_group\",\"seller\\/setting\",\"selleradvertise\\/selleradvertise\",\"selleradvertise\\/selleradvertise.php\",\"sellerreview\\/sellerreview\",\"setting\\/setting\",\"setting\\/store\",\"sitefeedback\\/sitefeedback\",\"sitefeedback\\/sitefeedback.php\",\"startup\\/compatibility\",\"startup\\/error\",\"startup\\/event\",\"startup\\/login\",\"startup\\/permission\",\"startup\\/router\",\"startup\\/sass\",\"startup\\/startup\",\"tool\\/backup\",\"tool\\/export_import\",\"tool\\/log\",\"tool\\/upload\",\"user\\/api\",\"user\\/user\",\"user\\/user_permission\",\"extension\\/total\\/sub_total\",\"extension\\/payment\\/pumcp\"]}'),
 (10, 'Demonstration', '');
 
 -- --------------------------------------------------------
@@ -23020,7 +23060,7 @@ ALTER TABLE `oc_zone_to_geo_zone`
 -- AUTO_INCREMENT for table `oc_address`
 --
 ALTER TABLE `oc_address`
-  MODIFY `address_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `address_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `oc_affiliate`
 --
@@ -23145,12 +23185,12 @@ ALTER TABLE `oc_currency`
 -- AUTO_INCREMENT for table `oc_customer`
 --
 ALTER TABLE `oc_customer`
-  MODIFY `customer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `customer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `oc_customer_activity`
 --
 ALTER TABLE `oc_customer_activity`
-  MODIFY `customer_activity_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `customer_activity_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 --
 -- AUTO_INCREMENT for table `oc_customer_group`
 --
@@ -23160,12 +23200,12 @@ ALTER TABLE `oc_customer_group`
 -- AUTO_INCREMENT for table `oc_customer_history`
 --
 ALTER TABLE `oc_customer_history`
-  MODIFY `customer_history_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `customer_history_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `oc_customer_ip`
 --
 ALTER TABLE `oc_customer_ip`
-  MODIFY `customer_ip_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `customer_ip_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `oc_customer_login`
 --
@@ -23220,7 +23260,7 @@ ALTER TABLE `oc_event`
 -- AUTO_INCREMENT for table `oc_extension`
 --
 ALTER TABLE `oc_extension`
-  MODIFY `extension_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `extension_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 --
 -- AUTO_INCREMENT for table `oc_filter`
 --
@@ -23315,7 +23355,7 @@ ALTER TABLE `oc_option_value`
 -- AUTO_INCREMENT for table `oc_order`
 --
 ALTER TABLE `oc_order`
-  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=68;
 --
 -- AUTO_INCREMENT for table `oc_order_custom_field`
 --
@@ -23335,7 +23375,7 @@ ALTER TABLE `oc_order_option`
 -- AUTO_INCREMENT for table `oc_order_product`
 --
 ALTER TABLE `oc_order_product`
-  MODIFY `order_product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
+  MODIFY `order_product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=68;
 --
 -- AUTO_INCREMENT for table `oc_order_recurring`
 --
@@ -23465,12 +23505,12 @@ ALTER TABLE `oc_seller_shipping`
 -- AUTO_INCREMENT for table `oc_seller_transaction`
 --
 ALTER TABLE `oc_seller_transaction`
-  MODIFY `seller_transaction_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `seller_transaction_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 --
 -- AUTO_INCREMENT for table `oc_setting`
 --
 ALTER TABLE `oc_setting`
-  MODIFY `setting_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3063;
+  MODIFY `setting_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3089;
 --
 -- AUTO_INCREMENT for table `oc_site_feedback`
 --
@@ -23500,7 +23540,7 @@ ALTER TABLE `oc_store_image`
 -- AUTO_INCREMENT for table `oc_store_offers`
 --
 ALTER TABLE `oc_store_offers`
-  MODIFY `advertise_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `advertise_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `oc_store_referred`
 --
@@ -23515,7 +23555,8 @@ ALTER TABLE `oc_store_timing`
 -- AUTO_INCREMENT for table `oc_user_activity`
 --
 ALTER TABLE `oc_user_activity`
-  MODIFY `user_activity_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+  MODIFY `user_activity_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;COMMIT;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
