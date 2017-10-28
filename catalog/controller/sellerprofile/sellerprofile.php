@@ -3243,15 +3243,19 @@ class Controllersellerprofilesellerprofile extends Controller
 			foreach($position_amt as $key => $position_a) {
 				$value_filter[] = $position_a;
 			}
-			if(count($value_filter) > 0){				
-				$basic_position_amount = $this->model_selleradvertise_advertise->getStoreOfferBasicPrice(); //array('0'=>'500','1'=>'400','2'=>'300','3'=>'0');
-				//print_r($basic_position_amount);exit;
-				$position_amount[] = array_diff($value_filter[0], $basic_position_amount);
-				 foreach($position_amount as $position ) {	
-                     $json[] = $position;												
-				 }
-				$json = array_unique($json);
-			} 
+			// if(count($value_filter) > 0){				
+			// 	$basic_position_amount = $this->model_selleradvertise_advertise->getStoreOfferBasicPrice(); //array('0'=>'500','1'=>'400','2'=>'300','3'=>'0');
+			// 	print_r($basic_position_amount);
+                
+			// 	$position_amount[] = array_diff($value_filter[0], $basic_position_amount);
+
+			// 	 foreach($position_amount as $position ) {
+            //          print_r($position);	
+            //          $json[] = $position;												
+			// 	 }
+			// 	//$json = array_unique($value_filter);
+			// } 
+            $json = $value_filter;
 		}
 
 		$this->response->addHeader('Content-Type: application/json');
