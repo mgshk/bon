@@ -253,7 +253,6 @@
 //document.getElementById("advertise-btn_lve").bgcolor="#5ca0f9');
 	function getBannerBasicPrice() {
 		bannerBasicPrice = [];
-
 		$.ajax({
 			url: 'index.php?route=sellerprofile/sellerprofile/getStoreOfferBasicPrice',
 			type: 'post',
@@ -264,6 +263,8 @@
 				$.each(resp, function(key, val) { 
 					bannerBasicPrice[key] = val; 
 				});
+
+				$('#basic_price').text(bannerBasicPrice["home_local"]);
 			}
 		});
 
@@ -275,7 +276,8 @@
 
 		$.post('index.php?route=sellerprofile/sellerprofile/advertiseAmountList', { 
 		  'loc' : loc, 
-		  'from_date' : $('#datetimepicker_start_'+advertise_id).val() 
+		  'from_date' : $('#datetimepicker_start_'+advertise_id).val(),
+		  'km': $('select[name=km]').val()
 		}, function(data) {
 			$('#loader').html('');
 			var sel = $("select#position");
@@ -289,7 +291,7 @@
 
 			for (var i=0; i<data.length; i++) {					
 								
-				var html_value = (parseInt(i) + parseInt(1))+ ':' + data[i].price + '-' + data[i].nickname;
+				var html_value = (parseInt(i) + parseInt(1))+ ' : ' + data[i].price + 'Rs - ' + data[i].nickname;
 			    if(data.length != (parseInt(i) + parseInt(1))) {						
 					sel.append('<option value="' + (parseInt(i) + parseInt(1)) + '" >' + html_value + '</option>');
 			    } else {
@@ -508,7 +510,7 @@
 				}
 
 				for (var i = 0; i < data.length; i++) {						
-					var html_value = (parseInt(i) + parseInt(1))+ ':' + data[i].price + '-' + data[i].nickname;
+					var html_value = (parseInt(i) + parseInt(1))+ ' : ' + data[i].price + 'Rs - ' + data[i].nickname;
 
 				    if (data.length != (parseInt(i) + parseInt(1))) {					
 						sel.append('<option value="' + (parseInt(i) + parseInt(1)) + '" >' + html_value + '</option>');
@@ -559,7 +561,8 @@
 				dataType: 'json',
 				data: {
 					loc: $('input:radio[name=loc]:checked').val(),
-					from_date: $('#datetimepicker_start_'+advertise_id).val()
+					from_date: $('#datetimepicker_start_'+advertise_id).val(),
+					km: $('select[name=km]').val()
 				},
 				success: function(json) {
 					json_result = json;
@@ -577,18 +580,19 @@
 			    				var selected_length = $('#position > option:checked').val();
 			    				max_price = json_result[parseInt(selected_length) - 2].price;
 
-			    				$('#price_vaidation_txt').text('(Should be Between '+min_price+ ' Rs and ' + max_price + ' Rs)');
+			    				$('#price_vaidation_txt').text('(Should be between '+min_price+ 'Rs and ' + max_price + 'Rs)');
 			    			}
 
 			    		} else if ($('.check_amount').find(':selected').val() === '1') {
 			    			min_price = json_result[0].price;
 			    			$('#price_vaidation_txt').text('(Should be Greater than '+min_price+ ' Rs)');
 			    		} else {
-			    			var selected_length = $('#position > option:checked').length;
+			    			var selected_length = $('#position > option:checked').val();
+							//alert(JSON.stringify(price));
 			    			min_price = price[1].replace(/\s/g, '');
-		    				max_price = json_result[selected_length - 1].price;
+		    				max_price = json_result[selected_length - 2].price;
 
-		    				$('#price_vaidation_txt').text('(Should be Between '+min_price+ ' Rs and ' + max_price + ' Rs)');
+		    				$('#price_vaidation_txt').text('(Should be between '+min_price.split('-')[0]+ ' and ' + max_price + 'Rs)');
 			    		}
 					} else {
 						$('#validation_txt').hide();
@@ -698,7 +702,10 @@
 				discount_txt = '</br><span style="font-weight: bold">OFFER PRICE:</span> Pay only <span style="color: #ff0000"><del>'+amount+' Rs</del></span> <span style="font-weight: bold"> &nbsp;&nbsp;'+ discount_price.toFixed(2) + ' Rs</span>&nbsp;&nbsp;&nbsp;(' +discount+'% discount)</br>';
 			}
 		}
-
+if ($('input[name="loc"]:checked').val() === '5')
+{
+discount_txt = discount_txt + '<span style="color: #ff0000"></span></br>';
+}
 		$('#display_amount_1').html(discount_txt).show();
 		$('#actual_price').val(discount_price);
 
