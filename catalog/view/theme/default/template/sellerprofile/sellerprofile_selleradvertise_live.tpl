@@ -30,7 +30,7 @@
 			<?php } elseif($advetise['position'] == 4) { ?>
 				In City tab, Pos:  <?php echo $advetise['advertise_position']; ?>, Price: <?php echo $advetise['price']; ?> Rs<?php echo $advetise['advertise_amt_pos']; ?>, Days left: <?php echo $advetise['days_left']; ?>
 			<?php } elseif($advetise['position'] == 5) { ?>
-				In Local tab, Pos:  <?php echo $advetise['advertise_position']; ?>, Price: <?php echo $advetise['price']; ?> Rs<?php echo $advetise['advertise_amt_pos']; ?>, Days left: <?php echo $advetise['days_left']; ?>, Area covered: <?php echo $advetise['km']; ?> kms
+				In Nearby tab, Pos:  <?php echo $advetise['advertise_position']; ?>, Price: <?php echo $advetise['price']; ?> Rs<?php echo $advetise['advertise_amt_pos']; ?>, Days left: <?php echo $advetise['days_left']; ?>, Area covered: <?php echo $advetise['km']; ?> kms
 			<?php } elseif($advetise['position'] == 6) { ?>
 				In Your Page
 			<?php } ?>

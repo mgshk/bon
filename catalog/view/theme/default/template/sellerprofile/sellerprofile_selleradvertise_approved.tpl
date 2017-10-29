@@ -702,10 +702,12 @@
 				discount_txt = '</br><span style="font-weight: bold">OFFER PRICE:</span> Pay only <span style="color: #ff0000"><del>'+amount+' Rs</del></span> <span style="font-weight: bold"> &nbsp;&nbsp;'+ discount_price.toFixed(2) + ' Rs</span>&nbsp;&nbsp;&nbsp;(' +discount+'% discount)</br>';
 			}
 		}
-if ($('input[name="loc"]:checked').val() === '5')
-{
-discount_txt = discount_txt + '<span style="color: #ff0000"></span></br>';
-}
+
+		if ($('input[name="loc"]:checked').val() === '5')
+		{
+		discount_txt = discount_txt + '<span style="color: #ff0000;font-size: 12px;">Please be aware that postion in Nearby tab might change due to coverage area of other advertisements.</span></br>';
+		}
+	
 		$('#display_amount_1').html(discount_txt).show();
 		$('#actual_price').val(discount_price);
 
