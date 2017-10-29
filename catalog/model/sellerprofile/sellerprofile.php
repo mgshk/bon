@@ -913,7 +913,7 @@ class Modelsellerprofilesellerprofile extends Model
 
 	public function getAdvertise_position($advertise_id, $position)
     {
-		$sql = "SELECT x.advertise_id, x.position FROM (SELECT advertise_id, @rownum := @rownum + 1 AS position FROM oc_store_offers JOIN (SELECT @rownum := 0) r WHERE CURDATE() >= from_date AND CURDATE() <= end_date AND position = '".(int) $position."' ORDER BY advertise_id DESC) x WHERE x.advertise_id = '".(int) $advertise_id."'";
+		$sql = "SELECT x.advertise_id, x.position-1 AS position FROM (SELECT advertise_id, @rownum := @rownum + 1 AS position FROM oc_store_offers JOIN (SELECT @rownum := 0) r WHERE CURDATE() >= from_date AND CURDATE() <= end_date AND position = '".(int) $position."' ORDER BY advertise_id DESC) x WHERE x.advertise_id = '".(int) $advertise_id."'";
 
 		//print_r($sql);
 

@@ -2070,12 +2070,14 @@ class Controllersellerprofilesellerprofile extends Controller
 			}
 
 			if($result['position'] != 1 && $result['position'] != 6){
-				if($result['price'] != 500){
+				if($result['price'] != 0){
 					$advertise_position = $this->model_sellerprofile_sellerprofile->getAdvertise_position($result['advertise_id'], $result['position']);
-					$advertise_amt_pos = "";
+					if($advertise_position == "0")
+                        $advertise_position = 1;
+                    $advertise_amt_pos = "";
 				} else {
 					$advertise_position = "Random";
-					$advertise_amt_pos = "(Basic Price)";
+					$advertise_amt_pos = "";
 				}
 			} else {
 				$advertise_position = "Random";
