@@ -24,13 +24,13 @@
 			<?php if($advetise['position'] == 1) { ?>
 				In Top Banner, Pos: <?php echo $advetise['advertise_position']; ?>, Price: <?php echo $advetise['price']; ?> Rs, Days left: <?php echo $advetise['days_left']; ?>
 			<?php } elseif($advetise['position'] == 2) { ?>
-				In National tab, Pos:  <?php echo $advetise['advertise_position']; ?>, Price: <?php echo $advetise['price']; ?> Rs<?php echo $advetise['advertise_amt_pos']; ?>, Days left: <?php echo $advetise['days_left']; ?>
+				In Country tab, Pos:  <?php echo $advetise['advertise_position']; ?>, Price: <?php echo $advetise['advertise_amt_pos']; ?>, Days left: <?php echo $advetise['days_left']; ?>
 			<?php } elseif($advetise['position'] == 3) { ?>
-				In State tab, Pos:  <?php echo $advetise['advertise_position']; ?>, Price: <?php echo $advetise['price']; ?> Rs<?php echo $advetise['advertise_amt_pos']; ?>, Days left: <?php echo $advetise['days_left']; ?>
+				In State tab, Pos:  <?php echo $advetise['advertise_position']; ?>, Price: <?php echo $advetise['advertise_amt_pos']; ?>, Days left: <?php echo $advetise['days_left']; ?>
 			<?php } elseif($advetise['position'] == 4) { ?>
-				In City tab, Pos:  <?php echo $advetise['advertise_position']; ?>, Price: <?php echo $advetise['price']; ?> Rs<?php echo $advetise['advertise_amt_pos']; ?>, Days left: <?php echo $advetise['days_left']; ?>
+				In City tab, Pos:  <?php echo $advetise['advertise_position']; ?>, Price: <?php echo $advetise['advertise_amt_pos']; ?>, Days left: <?php echo $advetise['days_left']; ?>
 			<?php } elseif($advetise['position'] == 5) { ?>
-				In Nearby tab, Pos:  <?php echo $advetise['advertise_position']; ?>, Price: <?php echo $advetise['price']; ?> Rs<?php echo $advetise['advertise_amt_pos']; ?>, Days left: <?php echo $advetise['days_left']; ?>, Area covered: <?php echo $advetise['km']; ?> kms
+				In Nearby tab, Pos:  <?php echo $advetise['advertise_position']; ?>, Price: <?php echo $advetise['advertise_amt_pos']; ?>, Days left: <?php echo $advetise['days_left']; ?>, Area covered: <?php echo $advetise['km']; ?> kms
 			<?php } elseif($advetise['position'] == 6) { ?>
 				In Your Page
 			<?php } ?>

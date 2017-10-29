@@ -2070,20 +2070,27 @@ class Controllersellerprofilesellerprofile extends Controller
 			}
 
 			if($result['position'] != 1 && $result['position'] != 6){
-				if($result['price'] != 0){
+				if($result['is_basic'] == 0){
 					$advertise_position = $this->model_sellerprofile_sellerprofile->getAdvertise_position($result['advertise_id'], $result['position']);
-					if($advertise_position == "0")
-                        $advertise_position = 1;
-                    $advertise_amt_pos = "";
+					//$advertise_amt_pos = "";
 				} else {
 					$advertise_position = "Random";
-					$advertise_amt_pos = "";
+					//$advertise_amt_pos = "";
 				}
 			} else {
 				$advertise_position = "Random";
-				$advertise_amt_pos = "";
+				//$advertise_amt_pos = "";
 			}
-
+            
+            if($result['is_basic'] == 1)
+            {
+                $advertise_amt_pos = "Basic (".$result['price']." Rs)";
+            }
+            else
+            {
+                $advertise_amt_pos = $result['price']." Rs";
+            }
+            
 			if($result['position'] != 1 && $result['position'] != 6){
 				//Convert to date
 				$datestr=$result['end_date'];//Your date
@@ -2478,6 +2485,16 @@ class Controllersellerprofilesellerprofile extends Controller
             $data['discount_price'] = $this->request->post['amount'];
             $data['from_date'] = $this->request->post['from_date'];
             $data['end_date'] = $this->request->post['end_date'];
+
+            if($this->request->post['selectedPosition'] == 'Basic price')
+            {
+                $data['is_basic'] = 1;
+            }
+            else
+            {
+                $data['is_basic'] = 0;
+            }
+            
 
             $_SESSION['confirm']['amount'] = $this->request->post['amount'];
             $_SESSION['confirm']['name'] = $this->getAdName($this->request->post['loc']);

@@ -758,6 +758,7 @@
 	$('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
 		var target = $(e.target).attr("href") // activated tab		
 		target = target.replace('#', '');
+		//alert(target);
 		tab_id = target;
 		id = $("#" + tab_id + " div:first-child").attr("id");
 		count = $("#" + tab_id + " div.advertise_count").length;

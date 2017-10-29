@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 28, 2017 at 06:19 PM
+-- Generation Time: Oct 29, 2017 at 10:41 AM
 -- Server version: 10.1.25-MariaDB
 -- PHP Version: 5.6.31
 
@@ -12765,7 +12765,24 @@ INSERT INTO `oc_customer_activity` (`customer_activity_id`, `customer_id`, `key`
 (16, 1, 'login', '{\"customer_id\":\"1\",\"name\":\"Magesh K\"}', '::1', '2017-10-25 18:05:40'),
 (17, 2, 'login', '{\"customer_id\":\"2\",\"name\":\" \"}', '::1', '2017-10-28 20:24:04'),
 (18, 2, 'login', '{\"customer_id\":\"2\",\"name\":\" \"}', '::1', '2017-10-28 20:24:50'),
-(19, 2, 'advertise_add', '{\"customer_id\":\"2\",\"name\":\" \"}', '::1', '2017-10-28 20:46:35');
+(19, 2, 'advertise_add', '{\"customer_id\":\"2\",\"name\":\" \"}', '::1', '2017-10-28 20:46:35'),
+(20, 2, 'order_account', '{\"customer_id\":\"2\",\"name\":\" \",\"order_id\":74}', '::1', '2017-10-28 22:15:20'),
+(21, 2, 'order_account', '{\"customer_id\":\"2\",\"name\":\" \",\"order_id\":75}', '::1', '2017-10-28 22:17:55'),
+(22, 2, 'order_account', '{\"customer_id\":\"2\",\"name\":\" \",\"order_id\":76}', '::1', '2017-10-28 22:26:34'),
+(23, 2, 'order_account', '{\"customer_id\":\"2\",\"name\":\" \",\"order_id\":77}', '::1', '2017-10-28 22:29:35'),
+(24, 2, 'order_account', '{\"customer_id\":\"2\",\"name\":\" \",\"order_id\":79}', '::1', '2017-10-28 22:35:19'),
+(25, 2, 'advertise_add', '{\"customer_id\":\"2\",\"name\":\" \"}', '::1', '2017-10-28 22:43:35'),
+(26, 2, 'order_account', '{\"customer_id\":\"2\",\"name\":\" \",\"order_id\":81}', '::1', '2017-10-28 23:03:20'),
+(27, 2, 'order_account', '{\"customer_id\":\"2\",\"name\":\" \",\"order_id\":82}', '::1', '2017-10-28 23:18:04'),
+(28, 2, 'order_account', '{\"customer_id\":\"2\",\"name\":\" \",\"order_id\":83}', '::1', '2017-10-28 23:49:45'),
+(29, 2, 'order_account', '{\"customer_id\":\"2\",\"name\":\" \",\"order_id\":85}', '::1', '2017-10-29 12:06:52'),
+(30, 2, 'advertise_add', '{\"customer_id\":\"2\",\"name\":\" \"}', '::1', '2017-10-29 13:01:05'),
+(31, 2, 'advertise_add', '{\"customer_id\":\"2\",\"name\":\" \"}', '::1', '2017-10-29 13:01:50'),
+(32, 2, 'order_account', '{\"customer_id\":\"2\",\"name\":\" \",\"order_id\":90}', '::1', '2017-10-29 13:06:21'),
+(33, 2, 'order_account', '{\"customer_id\":\"2\",\"name\":\" \",\"order_id\":91}', '::1', '2017-10-29 13:09:53'),
+(34, 2, 'order_account', '{\"customer_id\":\"2\",\"name\":\" \",\"order_id\":92}', '::1', '2017-10-29 13:12:48'),
+(35, 2, 'order_account', '{\"customer_id\":\"2\",\"name\":\" \",\"order_id\":93}', '::1', '2017-10-29 13:26:48'),
+(36, 2, 'order_account', '{\"customer_id\":\"2\",\"name\":\" \",\"order_id\":95}', '::1', '2017-10-30 14:11:27');
 
 -- --------------------------------------------------------
 
@@ -12885,7 +12902,7 @@ CREATE TABLE `oc_customer_online` (
 --
 
 INSERT INTO `oc_customer_online` (`ip`, `customer_id`, `url`, `referer`, `date_added`) VALUES
-('::1', 2, 'http://localhost/projects/bon/index.php?route=sellerprofile/sellerprofile/selleradvertisewallet&amp;seller_id=2', 'http://localhost/projects/bon/index.php?route=sellerprofile/sellerprofile&amp;tab_section=store_detail', '2017-10-28 18:16:49');
+('::1', 2, 'http://localhost/projects/bon/index.php?route=sellerprofile/sellerprofile/selleradvertiseexpense&amp;seller_id=2', 'http://localhost/projects/bon/index.php?route=sellerprofile/sellerprofile&amp;tab_section=store&amp;inner_store=approved', '2017-10-29 10:02:20');
 
 -- --------------------------------------------------------
 
@@ -13249,7 +13266,11 @@ CREATE TABLE `oc_home_top_banner_date` (
 
 INSERT INTO `oc_home_top_banner_date` (`id`, `store_offer_advertise_id`, `date`) VALUES
 (19, 1, '2017-10-25'),
-(20, 1, '2017-10-26');
+(20, 1, '2017-10-26'),
+(21, 17, '2017-10-30'),
+(22, 17, '2017-10-31'),
+(23, 19, '2017-10-30'),
+(24, 19, '2017-10-31');
 
 -- --------------------------------------------------------
 
@@ -13925,7 +13946,37 @@ INSERT INTO `oc_order` (`order_id`, `invoice_no`, `invoice_prefix`, `store_id`, 
 (64, 0, 'INV-2013-00', 0, 'BoN', 'http://localhost/projects/bon/', 2, 1, '', '', 'sadeesh.btech@gmail.com', '8939615692', '', '', '', '', '', '', '', '', '', '', 99, '', 1503, '', '[]', 'PayUMoney', 'pumcp', '', '', '', '', '', '', '', '', 0, '', 0, '', '[]', '', '', '', '1500.0000', 0, 0, '0.0000', 0, '', 1, 2, 'USD', '1.00000000', '::1', '', 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36', 'en-US,en;q=0.8', '2017-10-28 21:06:38', '2017-10-28 21:06:38'),
 (65, 0, 'INV-2013-00', 0, 'BoN', 'http://localhost/projects/bon/', 2, 1, '', '', 'sadeesh.btech@gmail.com', '8939615692', '', '', '', '', '', '', '', '', '', '', 99, '', 1503, '', '[]', 'PayUMoney', 'pumcp', '', '', '', '', '', '', '', '', 0, '', 0, '', '[]', '', '', '', '1000.5000', 0, 0, '0.0000', 0, '', 1, 2, 'USD', '1.00000000', '::1', '', 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36', 'en-US,en;q=0.8', '2017-10-28 21:24:31', '2017-10-28 21:24:31'),
 (66, 0, 'INV-2013-00', 0, 'BoN', 'http://localhost/projects/bon/', 2, 1, '', '', 'sadeesh.btech@gmail.com', '8939615692', '', '', '', '', '', '', '', '', '', '', 99, '', 1503, '', '[]', 'PayUMoney', 'pumcp', '', '', '', '', '', '', '', '', 0, '', 0, '', '[]', '', '', '', '1001.5000', 0, 0, '0.0000', 0, '', 1, 2, 'USD', '1.00000000', '::1', '', 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36', 'en-US,en;q=0.8', '2017-10-28 21:31:07', '2017-10-28 21:31:07'),
-(67, 0, 'INV-2013-00', 0, 'BoN', 'http://localhost/projects/bon/', 2, 1, '', '', 'sadeesh.btech@gmail.com', '8939615692', '', '', '', '', '', '', '', '', '', '', 99, '', 1503, '', '[]', 'PayUMoney', 'pumcp', '', '', '', '', '', '', '', '', 0, '', 0, '', '[]', '', '', '', '1.0000', 0, 0, '0.0000', 0, '', 1, 2, 'USD', '1.00000000', '::1', '', 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36', 'en-US,en;q=0.8', '2017-10-28 21:47:13', '2017-10-28 21:47:13');
+(67, 0, 'INV-2013-00', 0, 'BoN', 'http://localhost/projects/bon/', 2, 1, '', '', 'sadeesh.btech@gmail.com', '8939615692', '', '', '', '', '', '', '', '', '', '', 99, '', 1503, '', '[]', 'PayUMoney', 'pumcp', '', '', '', '', '', '', '', '', 0, '', 0, '', '[]', '', '', '', '1.0000', 0, 0, '0.0000', 0, '', 1, 2, 'USD', '1.00000000', '::1', '', 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36', 'en-US,en;q=0.8', '2017-10-28 21:47:13', '2017-10-28 21:47:13'),
+(68, 0, 'INV-2013-00', 0, 'BoN', 'http://localhost/projects/bon/', 2, 1, '', '', 'sadeesh.btech@gmail.com', '8939615692', '', '', '', '', '', '', '', '', '', '', 99, '', 1503, '', '[]', 'PayUMoney', 'pumcp', '', '', '', '', '', '', '', '', 0, '', 0, '', '[]', '', '', '', '1.5000', 0, 0, '0.0000', 0, '', 1, 2, 'USD', '1.00000000', '::1', '', 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36', 'en-US,en;q=0.8', '2017-10-28 21:54:49', '2017-10-28 21:54:49'),
+(69, 0, 'INV-2013-00', 0, 'BoN', 'http://localhost/projects/bon/', 2, 1, '', '', 'sadeesh.btech@gmail.com', '8939615692', '', '', '', '', '', '', '', '', '', '', 99, '', 1503, '', '[]', 'PayUMoney', 'pumcp', '', '', '', '', '', '', '', '', 0, '', 0, '', '[]', '', '', '', '2.0000', 0, 0, '0.0000', 0, '', 1, 2, 'USD', '1.00000000', '::1', '', 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36', 'en-US,en;q=0.8', '2017-10-28 21:55:18', '2017-10-28 21:55:18'),
+(70, 0, 'INV-2013-00', 0, 'BoN', 'http://localhost/projects/bon/', 2, 1, '', '', 'sadeesh.btech@gmail.com', '8939615692', '', '', '', '', '', '', '', '', '', '', 99, '', 1503, '', '[]', 'PayUMoney', 'pumcp', '', '', '', '', '', '', '', '', 0, '', 0, '', '[]', '', '', '', '3.0000', 0, 0, '0.0000', 0, '', 1, 2, 'USD', '1.00000000', '::1', '', 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36', 'en-US,en;q=0.8', '2017-10-28 21:56:05', '2017-10-28 21:56:05'),
+(71, 0, 'INV-2013-00', 0, 'BoN', 'http://localhost/projects/bon/', 2, 1, '', '', 'sadeesh.btech@gmail.com', '8939615692', '', '', '', '', '', '', '', '', '', '', 99, '', 1503, '', '[]', 'PayUMoney', 'pumcp', '', '', '', '', '', '', '', '', 0, '', 0, '', '[]', '', '', '', '500.0000', 0, 0, '0.0000', 0, '', 1, 2, 'USD', '1.00000000', '::1', '', 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36', 'en-US,en;q=0.8', '2017-10-28 21:56:43', '2017-10-28 21:56:43'),
+(72, 0, 'INV-2013-00', 0, 'BoN', 'http://localhost/projects/bon/', 2, 1, '', '', 'sadeesh.btech@gmail.com', '8939615692', '', '', '', '', '', '', '', '', '', '', 99, '', 1503, '', '[]', 'PayUMoney', 'pumcp', '', '', '', '', '', '', '', '', 0, '', 0, '', '[]', '', '', '', '500.0000', 0, 0, '0.0000', 0, '', 1, 2, 'USD', '1.00000000', '::1', '', 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36', 'en-US,en;q=0.8', '2017-10-28 21:57:54', '2017-10-28 21:57:54'),
+(73, 0, 'INV-2013-00', 0, 'BoN', 'http://localhost/projects/bon/', 2, 1, '', '', 'sadeesh.btech@gmail.com', '8939615692', '', '', '', '', '', '', '', '', '', '', 99, '', 1503, '', '[]', 'PayUMoney', 'pumcp', '', '', '', '', '', '', '', '', 0, '', 0, '', '[]', '', '', '', '1.0000', 0, 0, '0.0000', 0, '', 1, 2, 'USD', '1.00000000', '::1', '', 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36', 'en-US,en;q=0.8', '2017-10-28 22:09:11', '2017-10-28 22:09:11'),
+(74, 0, 'INV-2013-00', 0, 'BoN', 'http://localhost/projects/bon/', 2, 1, '', '', 'sadeesh.btech@gmail.com', '8939615692', '', '', '', '', '', '', '', '', '', '', 99, '', 1503, '', '[]', 'PayUMoney', 'pumcp', '', '', '', '', '', '', '', '', 0, '', 0, '', '[]', '', '', '', '2.0000', 0, 0, '0.0000', 0, '', 1, 2, 'USD', '1.00000000', '::1', '', 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36', 'en-US,en;q=0.8', '2017-10-28 22:14:05', '2017-10-28 22:15:17'),
+(75, 0, 'INV-2013-00', 0, 'BoN', 'http://localhost/projects/bon/', 2, 1, '', '', 'sadeesh.btech@gmail.com', '8939615692', '', '', '', '', '', '', '', '', '', '', 99, '', 1503, '', '[]', 'PayUMoney', 'pumcp', '', '', '', '', '', '', '', '', 0, '', 0, '', '[]', '', '', '', '2.0000', 0, 0, '0.0000', 0, '', 1, 2, 'USD', '1.00000000', '::1', '', 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36', 'en-US,en;q=0.8', '2017-10-28 22:16:53', '2017-10-28 22:17:52'),
+(76, 0, 'INV-2013-00', 0, 'BoN', 'http://localhost/projects/bon/', 2, 1, '', '', 'sadeesh.btech@gmail.com', '8939615692', '', '', '', '', '', '', '', '', '', '', 99, '', 1503, '', '[]', 'PayUMoney', 'pumcp', '', '', '', '', '', '', '', '', 0, '', 0, '', '[]', '', '', '', '4.0000', 0, 0, '0.0000', 0, '', 1, 2, 'USD', '1.00000000', '::1', '', 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36', 'en-US,en;q=0.8', '2017-10-28 22:25:29', '2017-10-28 22:26:31'),
+(77, 0, 'INV-2013-00', 0, 'BoN', 'http://localhost/projects/bon/', 2, 1, '', '', 'sadeesh.btech@gmail.com', '8939615692', '', '', '', '', '', '', '', '', '', '', 99, '', 1503, '', '[]', 'PayUMoney', 'pumcp', '', '', '', '', '', '', '', '', 0, '', 0, '', '[]', '', '', '', '50.0000', 0, 0, '0.0000', 0, '', 1, 2, 'USD', '1.00000000', '::1', '', 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36', 'en-US,en;q=0.8', '2017-10-28 22:28:27', '2017-10-28 22:29:32'),
+(78, 0, 'INV-2013-00', 0, 'BoN', 'http://localhost/projects/bon/', 2, 1, '', '', 'sadeesh.btech@gmail.com', '8939615692', '', '', '', '', '', '', '', '', '', '', 99, '', 1503, '', '[]', 'PayUMoney', 'pumcp', '', '', '', '', '', '', '', '', 0, '', 0, '', '[]', '', '', '', '62.5000', 0, 0, '0.0000', 0, '', 1, 2, 'USD', '1.00000000', '::1', '', 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36', 'en-US,en;q=0.8', '2017-10-28 22:31:56', '2017-10-28 22:31:56'),
+(79, 0, 'INV-2013-00', 0, 'BoN', 'http://localhost/projects/bon/', 2, 1, '', '', 'sadeesh.btech@gmail.com', '8939615692', '', '', '', '', '', '', '', '', '', '', 99, '', 1503, '', '[]', 'PayUMoney', 'pumcp', '', '', '', '', '', '', '', '', 0, '', 0, '', '[]', '', '', '', '62.0000', 0, 0, '0.0000', 0, '', 1, 2, 'USD', '1.00000000', '::1', '', 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36', 'en-US,en;q=0.8', '2017-10-28 22:32:50', '2017-10-28 22:35:16'),
+(80, 0, 'INV-2013-00', 0, 'BoN', 'http://localhost/projects/bon/', 2, 1, '', '', 'sadeesh.btech@gmail.com', '8939615692', '', '', '', '', '', '', '', '', '', '', 99, '', 1503, '', '[]', 'PayUMoney', 'pumcp', '', '', '', '', '', '', '', '', 0, '', 0, '', '[]', '', '', '', '2.0000', 0, 0, '0.0000', 0, '', 1, 2, 'USD', '1.00000000', '::1', '', 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36', 'en-US,en;q=0.8', '2017-10-28 22:44:27', '2017-10-28 22:44:27'),
+(81, 0, 'INV-2013-00', 0, 'BoN', 'http://localhost/projects/bon/', 2, 1, '', '', 'sadeesh.btech@gmail.com', '8939615692', '', '', '', '', '', '', '', '', '', '', 99, '', 1503, '', '[]', 'PayUMoney', 'pumcp', '', '', '', '', '', '', '', '', 0, '', 0, '', '[]', '', '', '', '2.0000', 0, 0, '0.0000', 0, '', 1, 2, 'USD', '1.00000000', '::1', '', 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36', 'en-US,en;q=0.8', '2017-10-28 23:01:48', '2017-10-28 23:03:17'),
+(82, 0, 'INV-2013-00', 0, 'BoN', 'http://localhost/projects/bon/', 2, 1, '', '', 'sadeesh.btech@gmail.com', '8939615692', '', '', '', '', '', '', '', '', '', '', 99, '', 1503, '', '[]', 'PayUMoney', 'pumcp', '', '', '', '', '', '', '', '', 0, '', 0, '', '[]', '', '', '', '4.0000', 0, 0, '0.0000', 0, '', 1, 2, 'USD', '1.00000000', '::1', '', 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36', 'en-US,en;q=0.8', '2017-10-28 23:16:41', '2017-10-28 23:18:00'),
+(83, 0, 'INV-2013-00', 0, 'BoN', 'http://localhost/projects/bon/', 2, 1, '', '', 'sadeesh.btech@gmail.com', '8939615692', '', '', '', '', '', '', '', '', '', '', 99, '', 1503, '', '[]', 'PayUMoney', 'pumcp', '', '', '', '', '', '', '', '', 0, '', 0, '', '[]', '', '', '', '1500.0000', 0, 0, '0.0000', 0, '', 1, 2, 'USD', '1.00000000', '::1', '', 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36', 'en-US,en;q=0.8', '2017-10-28 23:48:15', '2017-10-28 23:49:42'),
+(84, 0, 'INV-2013-00', 0, 'BoN', 'http://localhost/projects/bon/', 2, 1, '', '', 'sadeesh.btech@gmail.com', '8939615692', '', '', '', '', '', '', '', '', '', '', 99, '', 1503, '', '[]', 'PayUMoney', 'pumcp', '', '', '', '', '', '', '', '', 0, '', 0, '', '[]', '', '', '', '0.0000', 0, 0, '0.0000', 0, '', 1, 2, 'USD', '1.00000000', '::1', '', 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36', 'en-US,en;q=0.8', '2017-10-29 11:30:43', '2017-10-29 11:30:43'),
+(85, 0, 'INV-2013-00', 0, 'BoN', 'http://localhost/projects/bon/', 2, 1, '', '', 'sadeesh.btech@gmail.com', '8939615692', '', '', '', '', '', '', '', '', '', '', 99, '', 1503, '', '[]', 'PayUMoney', 'pumcp', '', '', '', '', '', '', '', '', 0, '', 0, '', '[]', '', '', '', '3000.0000', 0, 0, '0.0000', 0, '', 1, 2, 'USD', '1.00000000', '::1', '', 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36', 'en-US,en;q=0.8', '2017-10-29 12:04:44', '2017-10-29 12:06:49'),
+(86, 0, 'INV-2013-00', 0, 'BoN', 'http://localhost/projects/bon/', 2, 1, '', '', 'sadeesh.btech@gmail.com', '8939615692', '', '', '', '', '', '', '', '', '', '', 99, '', 1503, '', '[]', 'PayUMoney', 'pumcp', '', '', '', '', '', '', '', '', 0, '', 0, '', '[]', '', '', '', '0.0000', 0, 0, '0.0000', 0, '', 1, 2, 'USD', '1.00000000', '::1', '', 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36', 'en-US,en;q=0.8', '2017-10-29 12:56:10', '2017-10-29 12:56:10'),
+(87, 0, 'INV-2013-00', 0, 'BoN', 'http://localhost/projects/bon/', 2, 1, '', '', 'sadeesh.btech@gmail.com', '8939615692', '', '', '', '', '', '', '', '', '', '', 99, '', 1503, '', '[]', 'PayUMoney', 'pumcp', '', '', '', '', '', '', '', '', 0, '', 0, '', '[]', '', '', '', '0.0000', 0, 0, '0.0000', 0, '', 1, 2, 'USD', '1.00000000', '::1', '', 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36', 'en-US,en;q=0.8', '2017-10-29 12:57:18', '2017-10-29 12:57:18'),
+(88, 0, 'INV-2013-00', 0, 'BoN', 'http://localhost/projects/bon/', 2, 1, '', '', 'sadeesh.btech@gmail.com', '8939615692', '', '', '', '', '', '', '', '', '', '', 99, '', 1503, '', '[]', 'PayUMoney', 'pumcp', '', '', '', '', '', '', '', '', 0, '', 0, '', '[]', '', '', '', '0.0000', 0, 0, '0.0000', 0, '', 1, 2, 'USD', '1.00000000', '::1', '', 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36', 'en-US,en;q=0.8', '2017-10-29 13:02:58', '2017-10-29 13:02:58'),
+(89, 0, 'INV-2013-00', 0, 'BoN', 'http://localhost/projects/bon/', 2, 1, '', '', 'sadeesh.btech@gmail.com', '8939615692', '', '', '', '', '', '', '', '', '', '', 99, '', 1503, '', '[]', 'PayUMoney', 'pumcp', '', '', '', '', '', '', '', '', 0, '', 0, '', '[]', '', '', '', '0.5000', 0, 0, '0.0000', 0, '', 1, 2, 'USD', '1.00000000', '::1', '', 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36', 'en-US,en;q=0.8', '2017-10-29 13:03:56', '2017-10-29 13:03:56'),
+(90, 0, 'INV-2013-00', 0, 'BoN', 'http://localhost/projects/bon/', 2, 1, '', '', 'sadeesh.btech@gmail.com', '8939615692', '', '', '', '', '', '', '', '', '', '', 99, '', 1503, '', '[]', 'PayUMoney', 'pumcp', '', '', '', '', '', '', '', '', 0, '', 0, '', '[]', '', '', '', '2.0000', 0, 0, '0.0000', 0, '', 1, 2, 'USD', '1.00000000', '::1', '', 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36', 'en-US,en;q=0.8', '2017-10-29 13:04:18', '2017-10-29 13:06:17'),
+(91, 0, 'INV-2013-00', 0, 'BoN', 'http://localhost/projects/bon/', 2, 1, '', '', 'sadeesh.btech@gmail.com', '8939615692', '', '', '', '', '', '', '', '', '', '', 99, '', 1503, '', '[]', 'PayUMoney', 'pumcp', '', '', '', '', '', '', '', '', 0, '', 0, '', '[]', '', '', '', '1500.0000', 0, 0, '0.0000', 0, '', 1, 2, 'USD', '1.00000000', '::1', '', 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36', 'en-US,en;q=0.8', '2017-10-29 13:08:33', '2017-10-29 13:09:50'),
+(92, 0, 'INV-2013-00', 0, 'BoN', 'http://localhost/projects/bon/', 2, 1, '', '', 'sadeesh.btech@gmail.com', '8939615692', '', '', '', '', '', '', '', '', '', '', 99, '', 1503, '', '[]', 'PayUMoney', 'pumcp', '', '', '', '', '', '', '', '', 0, '', 0, '', '[]', '', '', '', '1501.0000', 0, 0, '0.0000', 0, '', 1, 2, 'USD', '1.00000000', '::1', '', 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36', 'en-US,en;q=0.8', '2017-10-29 13:10:54', '2017-10-29 13:12:45'),
+(93, 0, 'INV-2013-00', 0, 'BoN', 'http://localhost/projects/bon/', 2, 1, '', '', 'sadeesh.btech@gmail.com', '8939615692', '', '', '', '', '', '', '', '', '', '', 99, '', 1503, '', '[]', 'PayUMoney', 'pumcp', '', '', '', '', '', '', '', '', 0, '', 0, '', '[]', '', '', '', '5000.0000', 0, 0, '0.0000', 0, '', 1, 2, 'USD', '1.00000000', '::1', '', 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36', 'en-US,en;q=0.8', '2017-10-29 13:24:59', '2017-10-29 13:26:45');
+INSERT INTO `oc_order` (`order_id`, `invoice_no`, `invoice_prefix`, `store_id`, `store_name`, `store_url`, `customer_id`, `customer_group_id`, `firstname`, `lastname`, `email`, `telephone`, `fax`, `custom_field`, `payment_firstname`, `payment_lastname`, `payment_company`, `payment_address_1`, `payment_address_2`, `payment_city`, `payment_postcode`, `payment_country`, `payment_country_id`, `payment_zone`, `payment_zone_id`, `payment_address_format`, `payment_custom_field`, `payment_method`, `payment_code`, `shipping_firstname`, `shipping_lastname`, `shipping_company`, `shipping_address_1`, `shipping_address_2`, `shipping_city`, `shipping_postcode`, `shipping_country`, `shipping_country_id`, `shipping_zone`, `shipping_zone_id`, `shipping_address_format`, `shipping_custom_field`, `shipping_method`, `shipping_code`, `comment`, `total`, `order_status_id`, `affiliate_id`, `commission`, `marketing_id`, `tracking`, `language_id`, `currency_id`, `currency_code`, `currency_value`, `ip`, `forwarded_ip`, `user_agent`, `accept_language`, `date_added`, `date_modified`) VALUES
+(94, 0, 'INV-2013-00', 0, 'BoN', 'http://localhost/projects/bon/', 2, 1, '', '', 'sadeesh.btech@gmail.com', '8939615692', '', '', '', '', '', '', '', '', '', '', 99, '', 1503, '', '[]', 'PayUMoney', 'pumcp', '', '', '', '', '', '', '', '', 0, '', 0, '', '[]', '', '', '', '0.0000', 0, 0, '0.0000', 0, '', 1, 2, 'USD', '1.00000000', '::1', '', 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36', 'en-US,en;q=0.8', '2017-10-30 13:29:41', '2017-10-30 13:29:41'),
+(95, 0, 'INV-2013-00', 0, 'BoN', 'http://localhost/projects/bon/', 2, 1, '', '', 'sadeesh.btech@gmail.com', '8939615692', '', '', '', '', '', '', '', '', '', '', 99, '', 1503, '', '[]', 'PayUMoney', 'pumcp', '', '', '', '', '', '', '', '', 0, '', 0, '', '[]', '', '', '', '5000.0000', 0, 0, '0.0000', 0, '', 1, 2, 'USD', '1.00000000', '::1', '', 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36', 'en-US,en;q=0.8', '2017-10-30 14:10:15', '2017-10-30 14:11:24'),
+(96, 0, 'INV-2013-00', 0, 'BoN', 'http://localhost/projects/bon/', 2, 1, '', '', 'sadeesh.btech@gmail.com', '8939615692', '', '', '', '', '', '', '', '', '', '', 99, '', 1503, '', '[]', 'PayUMoney', 'pumcp', '', '', '', '', '', '', '', '', 0, '', 0, '', '[]', '', '', '', '1500.0000', 0, 0, '0.0000', 0, '', 1, 2, 'USD', '1.00000000', '::1', '', 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36', 'en-US,en;q=0.8', '2017-10-29 14:43:13', '2017-10-29 14:43:13');
 
 -- --------------------------------------------------------
 
@@ -13959,6 +14010,26 @@ CREATE TABLE `oc_order_history` (
   `seller_id` int(11) NOT NULL DEFAULT '0',
   `date_added` datetime NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `oc_order_history`
+--
+
+INSERT INTO `oc_order_history` (`order_history_id`, `order_id`, `order_status_id`, `notify`, `comment`, `seller_id`, `date_added`) VALUES
+(1, 74, 0, 0, 'orderId: 74\nTransaction Id: 403993715516794462\nmihpayid: 403993715516794462\nmode: CC\nstatus: success\nunmappedstatus: captured\nkey: rjQUPktU\ntxnid: 74\namount: 2.0\naddedon: 2017-10-28 22:15:09\nproductinfo: opencart products information\nfirstname: \nlastname: \naddress1: \naddress2: \ncity: \nstate: \ncountry: \nzipcode: \nemail: sadeesh.btech@gmail.com\nphone: 8939615692\nudf1: \nudf2: \nudf3: \nudf4: \nudf5: \nudf6: \nudf7: \nudf8: \nudf9: \nudf10: \nhash: 04779e370ad46638d05d69a0db82f37a18845d086b864daf6952129bd6f453cd60e8391b0fee11ae2f47bb5d5091aa0ce9af9310b5cf691b7fd6e37450efb89c\nfield1: 240939\nfield2: 585772\nfield3: 2055\nfield4: MC\nfield5: 603464532790\nfield6: 00\nfield7: 0\nfield8: 3DS\nfield9:  Verification of Secure Hash Failed: E700 -- Approved -- Transaction Successful -- Unable to be determined--E000\nPG_TYPE: AXISPG\nencryptedPaymentId: 5C49CF9DC62AE8BDC255DC347AB44C9F\nbank_ref_num: 240939\nbankcode: CC\nerror: E000\nerror_Message: No Error\nname_on_card: payu\ncardnum: 512345XXXXXX2346\ncardhash: This field is no longer supported in postback params.\namount_split: {&quot;PAYU&quot;:&quot;2.0&quot;}\npayuMoneyId: 1111436818\ndiscount: 0.00\nnet_amount_debit: 2\n', 0, '2017-10-28 22:15:17'),
+(2, 75, 0, 0, 'orderId: 75\nTransaction Id: 403993715516794465\nmihpayid: 403993715516794465\nmode: CC\nstatus: success\nunmappedstatus: captured\nkey: rjQUPktU\ntxnid: 75\namount: 2.0\naddedon: 2017-10-28 22:17:40\nproductinfo: opencart products information\nfirstname: \nlastname: \naddress1: \naddress2: \ncity: \nstate: \ncountry: \nzipcode: \nemail: sadeesh.btech@gmail.com\nphone: 8939615692\nudf1: \nudf2: \nudf3: \nudf4: \nudf5: \nudf6: \nudf7: \nudf8: \nudf9: \nudf10: \nhash: 5cdbfdede2f3351f81adb875938666aad8f87b368f6e106f12383e34f9ec63cf0dd6eed7c968fa07a86d3fc2f88b588f1f76d6420b774d3ecc81694e3c7c7b0e\nfield1: 516573\nfield2: 545195\nfield3: 2055\nfield4: MC\nfield5: 783801105367\nfield6: 00\nfield7: 0\nfield8: 3DS\nfield9:  Verification of Secure Hash Failed: E700 -- Approved -- Transaction Successful -- Unable to be determined--E000\nPG_TYPE: AXISPG\nencryptedPaymentId: F2617434BA751C7D6E5A154657B949AE\nbank_ref_num: 516573\nbankcode: CC\nerror: E000\nerror_Message: No Error\nname_on_card: payu\ncardnum: 512345XXXXXX2346\ncardhash: This field is no longer supported in postback params.\namount_split: {&quot;PAYU&quot;:&quot;2.0&quot;}\npayuMoneyId: 1111436819\ndiscount: 0.00\nnet_amount_debit: 2\n', 0, '2017-10-28 22:17:52'),
+(3, 76, 0, 0, 'orderId: 76\nTransaction Id: 403993715516794477\nmihpayid: 403993715516794477\nmode: CC\nstatus: success\nunmappedstatus: captured\nkey: rjQUPktU\ntxnid: 76\namount: 4.0\naddedon: 2017-10-28 22:26:20\nproductinfo: opencart products information\nfirstname: \nlastname: \naddress1: \naddress2: \ncity: \nstate: \ncountry: \nzipcode: \nemail: sadeesh.btech@gmail.com\nphone: 8939615692\nudf1: \nudf2: \nudf3: \nudf4: \nudf5: \nudf6: \nudf7: \nudf8: \nudf9: \nudf10: \nhash: e1db3dbaead27f65a7b7c578d57b133294635989a2b4f1f0e65304cdee0579d54acd1562fc9edfbe546dcd9645f2b5aee960f065b9d3f76585299ab838290cee\nfield1: 722220\nfield2: 546025\nfield3: 2055\nfield4: MC\nfield5: 604020802215\nfield6: 00\nfield7: 0\nfield8: 3DS\nfield9:  Verification of Secure Hash Failed: E700 -- Approved -- Transaction Successful -- Unable to be determined--E000\nPG_TYPE: AXISPG\nencryptedPaymentId: B68F67D001B575F27FD8E6D545740ED1\nbank_ref_num: 722220\nbankcode: CC\nerror: E000\nerror_Message: No Error\nname_on_card: payu\ncardnum: 512345XXXXXX2346\ncardhash: This field is no longer supported in postback params.\namount_split: {&quot;PAYU&quot;:&quot;4.0&quot;}\npayuMoneyId: 1111436822\ndiscount: 0.00\nnet_amount_debit: 4\n', 0, '2017-10-28 22:26:31'),
+(4, 77, 0, 0, 'orderId: 77\nTransaction Id: 403993715516794482\nmihpayid: 403993715516794482\nmode: CC\nstatus: success\nunmappedstatus: captured\nkey: rjQUPktU\ntxnid: 77\namount: 50.0\naddedon: 2017-10-28 22:29:15\nproductinfo: opencart products information\nfirstname: \nlastname: \naddress1: \naddress2: \ncity: \nstate: \ncountry: \nzipcode: \nemail: sadeesh.btech@gmail.com\nphone: 8939615692\nudf1: \nudf2: \nudf3: \nudf4: \nudf5: \nudf6: \nudf7: \nudf8: \nudf9: \nudf10: \nhash: dfc86371e46b81c8e325672178599b56d12b5c5d1f042756783ecfd4d2c92e9ccee63713756f5aef86af7892e8d56e9573afd5c1a87523bbaa5e59f76b4fecb4\nfield1: 872237\nfield2: 240034\nfield3: 2055\nfield4: MC\nfield5: 75420083638\nfield6: 00\nfield7: 0\nfield8: 3DS\nfield9:  Verification of Secure Hash Failed: E700 -- Approved -- Transaction Successful -- Unable to be determined--E000\nPG_TYPE: AXISPG\nencryptedPaymentId: 491D7FE6465CBD7F428D114734D74CB6\nbank_ref_num: 872237\nbankcode: CC\nerror: E000\nerror_Message: No Error\nname_on_card: payu\ncardnum: 512345XXXXXX2346\ncardhash: This field is no longer supported in postback params.\namount_split: {&quot;PAYU&quot;:&quot;50.0&quot;}\npayuMoneyId: 1111436823\ndiscount: 0.00\nnet_amount_debit: 50\n', 0, '2017-10-28 22:29:32'),
+(5, 79, 0, 0, 'orderId: 79\nTransaction Id: 403993715516794508\nmihpayid: 403993715516794508\nmode: CC\nstatus: success\nunmappedstatus: captured\nkey: rjQUPktU\ntxnid: 79\namount: 62.0\naddedon: 2017-10-28 22:34:47\nproductinfo: opencart products information\nfirstname: \nlastname: \naddress1: \naddress2: \ncity: \nstate: \ncountry: \nzipcode: \nemail: sadeesh.btech@gmail.com\nphone: 8939615692\nudf1: \nudf2: \nudf3: \nudf4: \nudf5: \nudf6: \nudf7: \nudf8: \nudf9: \nudf10: \nhash: 295c4c486e00263bab36fe31a25308276aad49a3908d306afaa9c1e63a79609ae4849f3b0bf565a434275b40d2b9aa30ed9be9a6226421f3739b217fdd2996cc\nfield1: 531239\nfield2: 419342\nfield3: 2055\nfield4: MC\nfield5: 513368714142\nfield6: 00\nfield7: 0\nfield8: 3DS\nfield9:  Verification of Secure Hash Failed: E700 -- Approved -- Transaction Successful -- Unable to be determined--E000\nPG_TYPE: AXISPG\nencryptedPaymentId: 75B52BB665AAC25FD75A5F07C0B8259F\nbank_ref_num: 531239\nbankcode: CC\nerror: E000\nerror_Message: No Error\nname_on_card: payu\ncardnum: 512345XXXXXX2346\ncardhash: This field is no longer supported in postback params.\namount_split: {&quot;PAYU&quot;:&quot;62.0&quot;}\npayuMoneyId: 1111436825\ndiscount: 0.00\nnet_amount_debit: 62\n', 0, '2017-10-28 22:35:16'),
+(6, 81, 0, 0, 'orderId: 81\nTransaction Id: 403993715516794538\nmihpayid: 403993715516794538\nmode: CC\nstatus: success\nunmappedstatus: captured\nkey: rjQUPktU\ntxnid: 81\namount: 2.0\naddedon: 2017-10-28 23:02:59\nproductinfo: opencart products information\nfirstname: \nlastname: \naddress1: \naddress2: \ncity: \nstate: \ncountry: \nzipcode: \nemail: sadeesh.btech@gmail.com\nphone: 8939615692\nudf1: \nudf2: \nudf3: \nudf4: \nudf5: \nudf6: \nudf7: \nudf8: \nudf9: \nudf10: \nhash: 8fe7d6079ec387b79e80808c9cd528a3a282ce8fbf36c31b4f24743cadd87c6768e9cb4a11bc7d0805ef78aa3885229acafaf272f55b02ab8835be34fa33f414\nfield1: 382899\nfield2: 765375\nfield3: 2055\nfield4: MC\nfield5: 413661295357\nfield6: 00\nfield7: 0\nfield8: 3DS\nfield9:  Verification of Secure Hash Failed: E700 -- Approved -- Transaction Successful -- Unable to be determined--E000\nPG_TYPE: AXISPG\nencryptedPaymentId: 46595B8DC97F7B5181A52D437803AD0D\nbank_ref_num: 382899\nbankcode: CC\nerror: E000\nerror_Message: No Error\nname_on_card: payu\ncardnum: 512345XXXXXX2346\ncardhash: This field is no longer supported in postback params.\namount_split: {&quot;PAYU&quot;:&quot;2.0&quot;}\npayuMoneyId: 1111436923\ndiscount: 0.00\nnet_amount_debit: 2\n', 0, '2017-10-28 23:03:17'),
+(7, 82, 0, 0, 'orderId: 82\nTransaction Id: 403993715516794552\nmihpayid: 403993715516794552\nmode: CC\nstatus: success\nunmappedstatus: captured\nkey: rjQUPktU\ntxnid: 82\namount: 4.0\naddedon: 2017-10-28 23:17:39\nproductinfo: opencart products information\nfirstname: \nlastname: \naddress1: \naddress2: \ncity: \nstate: \ncountry: \nzipcode: \nemail: sadeesh.btech@gmail.com\nphone: 8939615692\nudf1: \nudf2: \nudf3: \nudf4: \nudf5: \nudf6: \nudf7: \nudf8: \nudf9: \nudf10: \nhash: c69773c76ba9bffd3fd98f6ae8c7308c2813042804704771ffd8471c5837ec64357a0b6917b20cc072c007f161af6f1ad5c7503915342b3b6647c9e196800e75\nfield1: 892043\nfield2: 511398\nfield3: 2055\nfield4: MC\nfield5: 626724447174\nfield6: 00\nfield7: 0\nfield8: 3DS\nfield9:  Verification of Secure Hash Failed: E700 -- Approved -- Transaction Successful -- Unable to be determined--E000\nPG_TYPE: AXISPG\nencryptedPaymentId: 4D908836AEEB84304C9A98E193E06F79\nbank_ref_num: 892043\nbankcode: CC\nerror: E000\nerror_Message: No Error\nname_on_card: payu\ncardnum: 512345XXXXXX2346\ncardhash: This field is no longer supported in postback params.\namount_split: {&quot;PAYU&quot;:&quot;4.0&quot;}\npayuMoneyId: 1111436930\ndiscount: 0.00\nnet_amount_debit: 4\n', 0, '2017-10-28 23:18:00'),
+(8, 83, 0, 0, 'orderId: 83\nTransaction Id: 403993715516794570\nmihpayid: 403993715516794570\nmode: CC\nstatus: success\nunmappedstatus: captured\nkey: rjQUPktU\ntxnid: 83\namount: 1500.0\naddedon: 2017-10-28 23:49:22\nproductinfo: opencart products information\nfirstname: \nlastname: \naddress1: \naddress2: \ncity: \nstate: \ncountry: \nzipcode: \nemail: sadeesh.btech@gmail.com\nphone: 8939615692\nudf1: \nudf2: \nudf3: \nudf4: \nudf5: \nudf6: \nudf7: \nudf8: \nudf9: \nudf10: \nhash: baa04f6b4f203f0b71e922e7c1988da7b432db35346f9014fee425243021b63191b4a758afc2ca9a1bc774ed655f3d7f0e9fdc5051c22626b0eaabe347e7054b\nfield1: 870540\nfield2: 410486\nfield3: 2055\nfield4: MC\nfield5: 729207136626\nfield6: 00\nfield7: 0\nfield8: 3DS\nfield9:  Verification of Secure Hash Failed: E700 -- Approved -- Transaction Successful -- Unable to be determined--E000\nPG_TYPE: AXISPG\nencryptedPaymentId: 04D81AA3AE428C5D687775A1AA87E753\nbank_ref_num: 870540\nbankcode: CC\nerror: E000\nerror_Message: No Error\nname_on_card: payu\ncardnum: 512345XXXXXX2346\ncardhash: This field is no longer supported in postback params.\namount_split: {&quot;PAYU&quot;:&quot;1500.0&quot;}\npayuMoneyId: 1111436934\ndiscount: 0.00\nnet_amount_debit: 1500\n', 0, '2017-10-28 23:49:42'),
+(9, 85, 0, 0, 'orderId: 85\nTransaction Id: 403993715516794901\nmihpayid: 403993715516794901\nmode: CC\nstatus: success\nunmappedstatus: captured\nkey: rjQUPktU\ntxnid: 85\namount: 3000.0\naddedon: 2017-10-29 12:06:20\nproductinfo: opencart products information\nfirstname: \nlastname: \naddress1: \naddress2: \ncity: \nstate: \ncountry: \nzipcode: \nemail: sadeesh.btech@gmail.com\nphone: 8939615692\nudf1: \nudf2: \nudf3: \nudf4: \nudf5: \nudf6: \nudf7: \nudf8: \nudf9: \nudf10: \nhash: d4314a099aaf127b50c7a0a4a64401db051d189a1df6e9d952d5d601c2af628f5516f1ece32ea4e348ff07be480de6c484ec8c9ad38a0e37e2f481ce4e683be7\nfield1: 796056\nfield2: 421462\nfield3: 2056\nfield4: MC\nfield5: 718353549789\nfield6: 00\nfield7: 0\nfield8: 3DS\nfield9:  Verification of Secure Hash Failed: E700 -- Approved -- Transaction Successful -- Unable to be determined--E000\nPG_TYPE: AXISPG\nencryptedPaymentId: 4F9FF8F95EBD1F7E9B9984F8A1E2CB8E\nbank_ref_num: 796056\nbankcode: CC\nerror: E000\nerror_Message: No Error\nname_on_card: payu\ncardnum: 512345XXXXXX2346\ncardhash: This field is no longer supported in postback params.\namount_split: {&quot;PAYU&quot;:&quot;3000.0&quot;}\npayuMoneyId: 1111437056\ndiscount: 0.00\nnet_amount_debit: 3000\n', 0, '2017-10-29 12:06:49'),
+(10, 90, 0, 0, 'orderId: 90\nTransaction Id: 403993715516794964\nmihpayid: 403993715516794964\nmode: CC\nstatus: success\nunmappedstatus: captured\nkey: rjQUPktU\ntxnid: 90\namount: 2.0\naddedon: 2017-10-29 13:05:51\nproductinfo: opencart products information\nfirstname: \nlastname: \naddress1: \naddress2: \ncity: \nstate: \ncountry: \nzipcode: \nemail: sadeesh.btech@gmail.com\nphone: 8939615692\nudf1: \nudf2: \nudf3: \nudf4: \nudf5: \nudf6: \nudf7: \nudf8: \nudf9: \nudf10: \nhash: 56b2278a1f24030a2d3ce7dff1ca1064fea9047e64c9078c80200beaf0e10cb1752ef62a22f734d9f9393a848c36ccf95296c823ee1f4cee41c468dbe8de3a1d\nfield1: 890014\nfield2: 971065\nfield3: 2056\nfield4: MC\nfield5: 493741981808\nfield6: 00\nfield7: 0\nfield8: 3DS\nfield9:  Verification of Secure Hash Failed: E700 -- Approved -- Transaction Successful -- Unable to be determined--E000\nPG_TYPE: AXISPG\nencryptedPaymentId: E12BDC3D816841277D9684A237BF3D58\nbank_ref_num: 890014\nbankcode: CC\nerror: E000\nerror_Message: No Error\nname_on_card: payu\ncardnum: 512345XXXXXX2346\ncardhash: This field is no longer supported in postback params.\namount_split: {&quot;PAYU&quot;:&quot;2.0&quot;}\npayuMoneyId: 1111437071\ndiscount: 0.00\nnet_amount_debit: 2\n', 0, '2017-10-29 13:06:17'),
+(11, 91, 0, 0, 'orderId: 91\nTransaction Id: 403993715516794967\nmihpayid: 403993715516794967\nmode: CC\nstatus: success\nunmappedstatus: captured\nkey: rjQUPktU\ntxnid: 91\namount: 1500.0\naddedon: 2017-10-29 13:09:27\nproductinfo: opencart products information\nfirstname: \nlastname: \naddress1: \naddress2: \ncity: \nstate: \ncountry: \nzipcode: \nemail: sadeesh.btech@gmail.com\nphone: 8939615692\nudf1: \nudf2: \nudf3: \nudf4: \nudf5: \nudf6: \nudf7: \nudf8: \nudf9: \nudf10: \nhash: e03780389eaf7f8a4d4a2b230b19af2a307d969d8a09a7ed9d9b0042e52dc53bb3ff17d3e4d44fead1fac3f0b25dc109424d0a2056bf682096f4287cb72933b5\nfield1: 297859\nfield2: 433874\nfield3: 2056\nfield4: MC\nfield5: 547663874570\nfield6: 00\nfield7: 0\nfield8: 3DS\nfield9:  Verification of Secure Hash Failed: E700 -- Approved -- Transaction Successful -- Unable to be determined--E000\nPG_TYPE: AXISPG\nencryptedPaymentId: 40A5A9B08DC56449AD964C37BF657EF1\nbank_ref_num: 297859\nbankcode: CC\nerror: E000\nerror_Message: No Error\nname_on_card: payu\ncardnum: 512345XXXXXX2346\ncardhash: This field is no longer supported in postback params.\namount_split: {&quot;PAYU&quot;:&quot;1500.0&quot;}\npayuMoneyId: 1111437072\ndiscount: 0.00\nnet_amount_debit: 1500\n', 0, '2017-10-29 13:09:50'),
+(12, 92, 0, 0, 'orderId: 92\nTransaction Id: 403993715516794971\nmihpayid: 403993715516794971\nmode: CC\nstatus: success\nunmappedstatus: captured\nkey: rjQUPktU\ntxnid: 92\namount: 1501.0\naddedon: 2017-10-29 13:12:22\nproductinfo: opencart products information\nfirstname: \nlastname: \naddress1: \naddress2: \ncity: \nstate: \ncountry: \nzipcode: \nemail: sadeesh.btech@gmail.com\nphone: 8939615692\nudf1: \nudf2: \nudf3: \nudf4: \nudf5: \nudf6: \nudf7: \nudf8: \nudf9: \nudf10: \nhash: 8590cdb3732a86d97f69d2f08b323c90377e5b8309a88ec3ba9e94511ebb35f2561112b2dccc3a5aef600425069e801bcdc1277b52e5a6bdfe8b87674293a611\nfield1: 833526\nfield2: 280292\nfield3: 2056\nfield4: MC\nfield5: 383276702885\nfield6: 00\nfield7: 0\nfield8: 3DS\nfield9:  Verification of Secure Hash Failed: E700 -- Approved -- Transaction Successful -- Unable to be determined--E000\nPG_TYPE: AXISPG\nencryptedPaymentId: 9BF3FF1992FF097AD8B9292FE69A7CC0\nbank_ref_num: 833526\nbankcode: CC\nerror: E000\nerror_Message: No Error\nname_on_card: payu\ncardnum: 512345XXXXXX2346\ncardhash: This field is no longer supported in postback params.\namount_split: {&quot;PAYU&quot;:&quot;1501.0&quot;}\npayuMoneyId: 1111437073\ndiscount: 0.00\nnet_amount_debit: 1501\n', 0, '2017-10-29 13:12:45'),
+(13, 93, 0, 0, 'orderId: 93\nTransaction Id: 403993715516794984\nmihpayid: 403993715516794984\nmode: CC\nstatus: success\nunmappedstatus: captured\nkey: rjQUPktU\ntxnid: 93\namount: 5000.0\naddedon: 2017-10-29 13:25:57\nproductinfo: opencart products information\nfirstname: \nlastname: \naddress1: \naddress2: \ncity: \nstate: \ncountry: \nzipcode: \nemail: sadeesh.btech@gmail.com\nphone: 8939615692\nudf1: \nudf2: \nudf3: \nudf4: \nudf5: \nudf6: \nudf7: \nudf8: \nudf9: \nudf10: \nhash: 88b011b13a7fe2e25eaa248bbfdd245e4a1211e126aec8e217ceade568e1afb5ecac5eb1fc563e61f18460409917732c33201c5cf5b76f3e7640a687ec16fba7\nfield1: 662958\nfield2: 316899\nfield3: 2056\nfield4: MC\nfield5: 755709325028\nfield6: 00\nfield7: 0\nfield8: 3DS\nfield9:  Verification of Secure Hash Failed: E700 -- Approved -- Transaction Successful -- Unable to be determined--E000\nPG_TYPE: AXISPG\nencryptedPaymentId: 243722E04851AD12515AF886BBD685D5\nbank_ref_num: 662958\nbankcode: CC\nerror: E000\nerror_Message: No Error\nname_on_card: payu\ncardnum: 512345XXXXXX2346\ncardhash: This field is no longer supported in postback params.\namount_split: {&quot;PAYU&quot;:&quot;5000.0&quot;}\npayuMoneyId: 1111437084\ndiscount: 0.00\nnet_amount_debit: 5000\n', 0, '2017-10-29 13:26:45'),
+(14, 95, 0, 0, 'orderId: 95\nTransaction Id: 403993715516795027\nmihpayid: 403993715516795027\nmode: CC\nstatus: success\nunmappedstatus: captured\nkey: rjQUPktU\ntxnid: 95\namount: 5000.0\naddedon: 2017-10-29 14:11:03\nproductinfo: opencart products information\nfirstname: \nlastname: \naddress1: \naddress2: \ncity: \nstate: \ncountry: \nzipcode: \nemail: sadeesh.btech@gmail.com\nphone: 8939615692\nudf1: \nudf2: \nudf3: \nudf4: \nudf5: \nudf6: \nudf7: \nudf8: \nudf9: \nudf10: \nhash: a0159e3e8e10874b7fb4f8c91f3d3cbaca2213532bb07a93115d1a41937dcac692b2225d13fd4297429ca808130d1e9988ede94c2d1726f6abdb5d635fadeb82\nfield1: 439761\nfield2: 925662\nfield3: 2056\nfield4: MC\nfield5: 480773420210\nfield6: 00\nfield7: 0\nfield8: 3DS\nfield9:  Verification of Secure Hash Failed: E700 -- Approved -- Transaction Successful -- Unable to be determined--E000\nPG_TYPE: AXISPG\nencryptedPaymentId: A3741D1E67AF6C09452A6616AC9BA985\nbank_ref_num: 439761\nbankcode: CC\nerror: E000\nerror_Message: No Error\nname_on_card: payu\ncardnum: 512345XXXXXX2346\ncardhash: This field is no longer supported in postback params.\namount_split: {&quot;PAYU&quot;:&quot;5000.0&quot;}\npayuMoneyId: 1111437095\ndiscount: 0.00\nnet_amount_debit: 5000\n', 0, '2017-10-30 14:11:24');
 
 -- --------------------------------------------------------
 
@@ -14070,7 +14141,36 @@ INSERT INTO `oc_order_product` (`order_product_id`, `order_id`, `product_id`, `n
 (64, 64, 3, 'Home - National (India)10%', '', 0, '1500.0000', 0, '', '', '1500.0000', '0.0000', 0),
 (65, 65, 3, 'Home - State (Tamil Nadu)', '', 0, '1000.5000', 0, '', '', '1000.5000', '0.0000', 0),
 (66, 66, 3, 'Home - State (Tamil Nadu)', '', 0, '1001.5000', 0, '', '', '1001.5000', '0.0000', 0),
-(67, 67, 3, 'Home - Nearby', '', 0, '1.0000', 0, '', '', '1.0000', '0.0000', 0);
+(67, 67, 3, 'Home - Nearby', '', 0, '1.0000', 0, '', '', '1.0000', '0.0000', 0),
+(68, 68, 3, 'Home - Nearby', '', 0, '1.5000', 0, '', '', '1.5000', '0.0000', 0),
+(69, 69, 3, 'Home - Nearby', '', 0, '2.0000', 0, '', '', '2.0000', '0.0000', 0),
+(70, 70, 3, 'Home - Nearby', '', 0, '3.0000', 0, '', '', '3.0000', '0.0000', 0),
+(71, 71, 3, 'Home - Nearby', '', 0, '500.0000', 0, '', '', '500.0000', '0.0000', 0),
+(72, 72, 3, 'Home - City (Chennai)', '', 0, '500.0000', 0, '', '', '500.0000', '0.0000', 0),
+(73, 73, 3, 'Home - Nearby', '', 0, '1.0000', 0, '', '', '1.0000', '0.0000', 0),
+(74, 74, 3, 'Home - Nearby', '', 0, '2.0000', 0, '', '', '2.0000', '0.0000', 0),
+(75, 75, 3, 'Home - Nearby', '', 0, '2.0000', 0, '', '', '2.0000', '0.0000', 0),
+(76, 76, 3, 'Home - Nearby', '', 0, '4.0000', 0, '', '', '4.0000', '0.0000', 0),
+(77, 77, 3, 'Home - Nearby', '', 0, '50.0000', 0, '', '', '50.0000', '0.0000', 0),
+(78, 78, 3, 'Home - Nearby', '', 0, '62.5000', 0, '', '', '62.5000', '0.0000', 0),
+(79, 79, 3, 'Home - Nearby', '', 0, '62.0000', 0, '', '', '62.0000', '0.0000', 0),
+(80, 80, 4, 'Home - Nearby', '', 0, '2.0000', 0, '', '', '2.0000', '0.0000', 0),
+(81, 81, 5, 'Home - Nearby', '', 0, '2.0000', 0, '', '', '2.0000', '0.0000', 0),
+(82, 82, 6, 'Home - Nearby', '', 0, '4.0000', 0, '', '', '4.0000', '0.0000', 0),
+(83, 83, 7, 'Home - National (India)10%', '', 0, '1500.0000', 0, '', '', '1500.0000', '0.0000', 0),
+(84, 84, 8, 'Home - Nearby', '', 0, '0.0000', 0, '', '', '0.0000', '0.0000', 0),
+(85, 85, 9, 'Home - National (India)10%', '', 0, '3000.0000', 0, '', '', '3000.0000', '0.0000', 0),
+(86, 86, 10, 'Home - Nearby', '', 0, '0.0000', 0, '', '', '0.0000', '0.0000', 0),
+(87, 87, 11, 'Home - Nearby', '', 0, '0.0000', 0, '', '', '0.0000', '0.0000', 0),
+(88, 88, 13, 'Home - Nearby', '', 0, '0.0000', 0, '', '', '0.0000', '0.0000', 0),
+(89, 89, 14, 'Home - Nearby', '', 0, '0.5000', 0, '', '', '0.5000', '0.0000', 0),
+(90, 90, 14, 'Home - Nearby', '', 0, '2.0000', 0, '', '', '2.0000', '0.0000', 0),
+(91, 91, 15, 'Home - National (India)10%', '', 0, '1500.0000', 0, '', '', '1500.0000', '0.0000', 0),
+(92, 92, 16, 'Home - National (India)10%', '', 0, '1501.0000', 0, '', '', '1501.0000', '0.0000', 0),
+(93, 93, 17, 'Home - Top banner', '', 0, '5000.0000', 0, '', '', '5000.0000', '0.0000', 0),
+(94, 94, 18, 'Home - Nearby', '', 0, '0.0000', 0, '', '', '0.0000', '0.0000', 0),
+(95, 95, 19, 'Home - Top banner', '', 0, '5000.0000', 0, '', '', '5000.0000', '0.0000', 0),
+(96, 96, 20, 'Home - National (India)10%', '', 0, '1500.0000', 0, '', '', '1500.0000', '0.0000', 0);
 
 -- --------------------------------------------------------
 
@@ -14998,13 +15098,13 @@ INSERT INTO `oc_setting` (`setting_id`, `store_id`, `code`, `key`, `value`, `ser
 (2976, 0, 'config', 'config_seller_agree_id', '5', 0),
 (2975, 0, 'config', 'config_mail_alert_email', '', 0),
 (2974, 0, 'config', 'config_mail_alert', '[\"order\"]', 1),
-(2973, 0, 'config', 'config_mail_smtp_timeout', '5', 0),
-(2972, 0, 'config', 'config_mail_smtp_port', '25', 0),
-(2971, 0, 'config', 'config_mail_smtp_password', '', 0),
-(2970, 0, 'config', 'config_mail_smtp_username', '', 0),
-(2969, 0, 'config', 'config_mail_smtp_hostname', '', 0),
+(2973, 0, 'config', 'config_mail_smtp_timeout', '10', 0),
+(2972, 0, 'config', 'config_mail_smtp_port', '587', 0),
+(2971, 0, 'config', 'config_mail_smtp_password', 'sadsadsad', 0),
+(2970, 0, 'config', 'config_mail_smtp_username', 'sadeesh.btech@gmail.com', 0),
+(2969, 0, 'config', 'config_mail_smtp_hostname', 'smtp.gmail.com', 0),
 (2968, 0, 'config', 'config_mail_parameter', '', 0),
-(2967, 0, 'config', 'config_mail_protocol', 'mail', 0),
+(2967, 0, 'config', 'config_mail_protocol', 'SMTP', 0),
 (2966, 0, 'config', 'config_ftp_status', '0', 0),
 (2965, 0, 'config', 'config_ftp_root', '', 0),
 (2964, 0, 'config', 'config_ftp_password', '', 0),
@@ -15058,10 +15158,11 @@ INSERT INTO `oc_setting` (`setting_id`, `store_id`, `code`, `key`, `value`, `ser
 (2916, 0, 'config', 'config_language', 'en-gb', 0),
 (2915, 0, 'config', 'config_zone_id', '1503', 0),
 (2914, 0, 'config', 'config_country_id', '99', 0),
-(3084, 0, 'pumcp', 'pumcp_geo_zone_id', '0', 0),
-(3083, 0, 'pumcp', 'pumcp_module', 'Production', 0),
-(3082, 0, 'pumcp', 'pumcp_route_citrus', '50', 0),
-(3081, 0, 'pumcp', 'pumcp_route_payu', '50', 0),
+(3109, 0, 'pumcp', 'pumcp_module', 'Sandbox', 0),
+(3110, 0, 'pumcp', 'pumcp_geo_zone_id', '0', 0),
+(3111, 0, 'pumcp', 'pumcp_currency', 'INR', 0),
+(3112, 0, 'pumcp', 'pumcp_total', '', 0),
+(3113, 0, 'pumcp', 'pumcp_status', '1', 0),
 (2913, 0, 'config', 'config_comment', '', 0),
 (2910, 0, 'config', 'config_fax', '', 0),
 (2911, 0, 'config', 'config_image', 'catalog/logo-new.png', 0),
@@ -15087,15 +15188,14 @@ INSERT INTO `oc_setting` (`setting_id`, `store_id`, `code`, `key`, `value`, `ser
 (3060, 0, 'sms', 'sms_pass', 'bhash999', 0),
 (3061, 0, 'sms', 'sms_sender_ads', 'BONADS', 0),
 (3062, 0, 'sms', 'sms_sender_lne', 'BONLNE', 0),
-(3085, 0, 'pumcp', 'pumcp_currency', 'INR', 0),
-(3080, 0, 'pumcp', 'pumcp_citrus_secret_key', '', 0),
-(3079, 0, 'pumcp', 'pumcp_citrus_access_key', '', 0),
-(3078, 0, 'pumcp', 'pumcp_citrus_vanityurl', '', 0),
-(3077, 0, 'pumcp', 'pumcp_payu_salt', 'e5iIg1jwi8', 0),
-(3076, 0, 'pumcp', 'pumcp_payu_merchant', 'rjQUPktU', 0),
-(3086, 0, 'pumcp', 'pumcp_total', '', 0),
-(3087, 0, 'pumcp', 'pumcp_status', '1', 0),
-(3088, 0, 'pumcp', 'pumcp_sort_order', '', 0);
+(3114, 0, 'pumcp', 'pumcp_sort_order', '', 0),
+(3108, 0, 'pumcp', 'pumcp_route_citrus', '50', 0),
+(3107, 0, 'pumcp', 'pumcp_route_payu', '50', 0),
+(3106, 0, 'pumcp', 'pumcp_citrus_secret_key', '', 0),
+(3104, 0, 'pumcp', 'pumcp_citrus_vanityurl', '', 0),
+(3105, 0, 'pumcp', 'pumcp_citrus_access_key', '', 0),
+(3103, 0, 'pumcp', 'pumcp_payu_salt', 'e5iIg1jwi8', 0),
+(3102, 0, 'pumcp', 'pumcp_payu_merchant', 'rjQUPktU', 0);
 
 -- --------------------------------------------------------
 
@@ -15220,17 +15320,35 @@ CREATE TABLE `oc_store_offers` (
   `top_banner_date` varchar(255) COLLATE utf8_estonian_ci DEFAULT NULL,
   `price` int(11) NOT NULL,
   `discount_price` float NOT NULL,
-  `mail_sent` enum('yes','no') COLLATE utf8_estonian_ci NOT NULL DEFAULT 'no'
+  `mail_sent` enum('yes','no') COLLATE utf8_estonian_ci NOT NULL DEFAULT 'no',
+  `is_basic` int(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_estonian_ci;
 
 --
 -- Dumping data for table `oc_store_offers`
 --
 
-INSERT INTO `oc_store_offers` (`advertise_id`, `seller_id`, `offer_title`, `offer_image`, `offer_image_original`, `offer_desc`, `offer_url`, `position`, `km`, `national`, `state`, `city`, `remarks`, `sort_order`, `date_added`, `date_modified`, `status`, `paid`, `from_date`, `end_date`, `top_banner_date`, `price`, `discount_price`, `mail_sent`) VALUES
-(1, 1, 'Test Ad', 'catalog/seller_images/1/Advertise/1508585192_advertise.jpg', 'catalog/seller_images/1/taj image.jpg', '', '', 4, 0, 'india', 'tamil-nadu', 'cuddalore', '', 1, '2017-10-21 16:56:32', '2017-10-25 21:03:49', 'approved', '0', '2017-10-25', '2017-10-30', NULL, 1000, 500, 'no'),
-(2, 1, 'Res ', 'catalog/seller_images/1/Advertise/1508585234_advertise.jpg', 'catalog/seller_images/1/taj image.jpg', '', '', 0, NULL, NULL, NULL, NULL, 'duplicate', 1, '2017-10-21 16:57:14', '2017-10-21 16:57:35', 'rejected', '0', '0000-00-00', '0000-00-00', NULL, 0, 0, 'no'),
-(3, 2, 'Add1', 'catalog/seller_images/2/Advertise/1509203795_advertise.jpg', 'catalog/seller_images/2/Score.png', '', '', 5, 3, NULL, NULL, NULL, '', 1, '2017-10-28 20:46:35', '2017-10-28 21:47:13', 'approved', '0', '2017-10-28', '2017-11-02', NULL, 2, 1, 'no');
+INSERT INTO `oc_store_offers` (`advertise_id`, `seller_id`, `offer_title`, `offer_image`, `offer_image_original`, `offer_desc`, `offer_url`, `position`, `km`, `national`, `state`, `city`, `remarks`, `sort_order`, `date_added`, `date_modified`, `status`, `paid`, `from_date`, `end_date`, `top_banner_date`, `price`, `discount_price`, `mail_sent`, `is_basic`) VALUES
+(1, 1, 'Test Ad', 'catalog/seller_images/1/Advertise/1508585192_advertise.jpg', 'catalog/seller_images/1/taj image.jpg', '', '', 4, 0, 'india', 'tamil-nadu', 'cuddalore', '', 1, '2017-10-21 16:56:32', '2017-10-25 21:03:49', 'approved', '0', '2017-10-25', '2017-10-30', NULL, 1000, 500, 'no', 0),
+(2, 1, 'Res ', 'catalog/seller_images/1/Advertise/1508585234_advertise.jpg', 'catalog/seller_images/1/taj image.jpg', '', '', 0, NULL, NULL, NULL, NULL, 'duplicate', 1, '2017-10-21 16:57:14', '2017-10-21 16:57:35', 'rejected', '0', '0000-00-00', '0000-00-00', NULL, 0, 0, 'no', 0),
+(3, 2, 'Add1', 'catalog/seller_images/2/Advertise/1509203795_advertise.jpg', 'catalog/seller_images/2/Score.png', '', '', 5, 3, NULL, NULL, NULL, '', 1, '2017-10-28 20:46:35', '2017-10-28 22:36:31', 'deleted', '1', '2017-10-28', '2017-11-02', NULL, 62, 62, 'no', 0),
+(4, 2, 'Add2', 'catalog/seller_images/2/Advertise/1509210815_advertise.jpg', 'catalog/seller_images/2/Score.png', '', '', 5, 3, NULL, NULL, NULL, '', 1, '2017-10-28 22:43:35', '2017-10-29 12:57:49', 'deleted', '1', '2017-10-28', '2017-11-02', NULL, 2, 2, 'no', 0),
+(5, 2, 'Add2', 'catalog/seller_images/2/Advertise/1509210815_advertise.jpg', 'catalog/seller_images/2/Score.png', '', '', 5, 3, NULL, NULL, NULL, '', 1, '2017-10-28 23:01:05', '2017-10-29 12:57:53', 'deleted', '1', '2017-10-28', '2017-11-02', NULL, 2, 2, 'no', 0),
+(6, 2, 'Add2', 'catalog/seller_images/2/Advertise/1509210815_advertise.jpg', 'catalog/seller_images/2/Score.png', '', '', 5, 3, NULL, NULL, NULL, '', 1, '2017-10-28 23:15:55', '2017-10-29 12:57:58', 'deleted', '1', '2017-10-28', '2017-11-02', NULL, 4, 4, 'no', 0),
+(7, 2, 'Add2', 'catalog/seller_images/2/Advertise/1509210815_advertise.jpg', 'catalog/seller_images/2/Score.png', '', '', 2, 0, NULL, NULL, NULL, '', 1, '2017-10-28 23:21:04', '2017-10-29 12:58:01', 'deleted', '1', '2017-10-28', '2017-11-02', NULL, 3000, 1500, 'no', 0),
+(8, 2, 'Add2', 'catalog/seller_images/2/Advertise/1509210815_advertise.jpg', 'catalog/seller_images/2/Score.png', '', '', 5, 3, NULL, NULL, NULL, '', 1, '2017-10-28 23:50:25', '2017-10-29 12:58:04', 'deleted', '0', '2017-10-29', '2017-11-03', NULL, 0, 0, 'no', 0),
+(9, 2, 'Add2', 'catalog/seller_images/2/Advertise/1509210815_advertise.jpg', 'catalog/seller_images/2/Score.png', '', '', 2, 0, NULL, NULL, NULL, '', 1, '2017-10-29 11:44:10', '2017-10-29 12:58:07', 'deleted', '1', '2017-10-29', '2017-11-03', NULL, 6000, 3000, 'no', 0),
+(10, 2, 'Add2', 'catalog/seller_images/2/Advertise/1509210815_advertise.jpg', 'catalog/seller_images/2/Score.png', '', '', 5, 3, NULL, NULL, NULL, '', 1, '2017-10-29 12:25:53', '2017-10-29 12:58:10', 'deleted', '0', '2017-10-29', '2017-11-03', NULL, 3, 0, 'no', 1),
+(11, 2, 'Add2', 'catalog/seller_images/2/Advertise/1509210815_advertise.jpg', 'catalog/seller_images/2/Score.png', '', '', 5, 3, NULL, NULL, NULL, '', 1, '2017-10-29 12:57:07', '2017-10-29 12:58:13', 'deleted', '0', '2017-10-29', '2017-11-03', NULL, 0, 0, 'no', 1),
+(12, 2, 'sad1', 'catalog/seller_images/2/Advertise/1509262265_advertise.jpg', 'catalog/seller_images/2/CW.png', '', '', 0, NULL, NULL, NULL, NULL, '', 1, '2017-10-29 13:01:05', '0000-00-00 00:00:00', '', '0', '0000-00-00', '0000-00-00', NULL, 0, 0, 'no', 0),
+(13, 2, 'Sad1', 'catalog/seller_images/2/Advertise/1509262310_advertise.jpg', 'catalog/seller_images/2/CW.png', '', '', 5, 3, NULL, NULL, NULL, '', 1, '2017-10-29 13:01:50', '2017-10-29 13:02:58', 'live', '0', '2017-10-29', '2017-11-03', NULL, 0, 0, 'no', 1),
+(14, 2, 'Sad1', 'catalog/seller_images/2/Advertise/1509262310_advertise.jpg', 'catalog/seller_images/2/CW.png', '', '', 5, 3, NULL, NULL, NULL, '', 1, '2017-10-29 13:03:38', '2017-10-29 13:04:18', 'live', '1', '2017-10-29', '2017-11-03', NULL, 4, 2, 'no', 0),
+(15, 2, 'Sad1', 'catalog/seller_images/2/Advertise/1509262310_advertise.jpg', 'catalog/seller_images/2/CW.png', '', '', 2, 0, 'india', NULL, NULL, '', 1, '2017-10-29 13:07:44', '2017-10-29 13:08:33', 'live', '1', '2017-10-29', '2017-11-03', NULL, 3000, 1500, 'no', 1),
+(16, 2, 'Sad1', 'catalog/seller_images/2/Advertise/1509262310_advertise.jpg', 'catalog/seller_images/2/CW.png', '', '', 2, 0, 'india', NULL, NULL, '', 1, '2017-10-29 13:10:39', '2017-10-29 13:10:53', 'live', '1', '2017-10-29', '2017-11-03', NULL, 3002, 1501, 'no', 0),
+(17, 2, 'Sad1', 'catalog/seller_images/2/Advertise/1509262310_advertise.jpg', 'catalog/seller_images/2/CW.png', '', '', 1, NULL, NULL, NULL, NULL, '', 1, '2017-10-29 13:24:45', '2017-10-29 14:13:22', 'deleted', '1', '0000-00-00', '0000-00-00', NULL, 5000, 0, 'no', 0),
+(18, 2, 'Sad1', 'catalog/seller_images/2/Advertise/1509262310_advertise.jpg', 'catalog/seller_images/2/CW.png', '', '', 5, 3, NULL, NULL, NULL, '', 1, '2017-10-30 13:29:13', '2017-10-29 14:13:25', 'deleted', '0', '2017-10-31', '2017-11-05', NULL, 0, 0, 'no', 1),
+(19, 2, 'Sad1', 'catalog/seller_images/2/Advertise/1509262310_advertise.jpg', 'catalog/seller_images/2/CW.png', '', '', 1, NULL, NULL, NULL, NULL, '', 1, '2017-10-30 14:02:07', '2017-10-29 14:13:30', 'deleted', '1', '0000-00-00', '0000-00-00', NULL, 10000, 5000, 'no', 0),
+(20, 2, 'Sad1', 'catalog/seller_images/2/Advertise/1509262310_advertise.jpg', 'catalog/seller_images/2/CW.png', '', '', 2, 0, NULL, NULL, NULL, '', 1, '2017-10-29 14:32:17', '2017-10-29 14:43:13', 'approved', '0', '2017-10-29', '2017-11-03', NULL, 500, 1500, 'no', 0);
 
 -- --------------------------------------------------------
 
@@ -17657,7 +17775,9 @@ INSERT INTO `oc_user_activity` (`user_activity_id`, `user_id`, `activity_id`, `k
 (50, 1, 12, 'ad_approved', '::1', '2017-10-13 16:45:43'),
 (51, 1, 1, 'ad_approved', '::1', '2017-10-21 16:56:51'),
 (52, 1, 2, 'ad_rejected', '::1', '2017-10-21 16:57:35'),
-(53, 1, 3, 'ad_approved', '::1', '2017-10-28 20:47:07');
+(53, 1, 3, 'ad_approved', '::1', '2017-10-28 20:47:07'),
+(54, 1, 4, 'ad_approved', '::1', '2017-10-28 22:43:58'),
+(55, 1, 13, 'ad_approved', '::1', '2017-10-29 13:02:08');
 
 -- --------------------------------------------------------
 
@@ -23190,7 +23310,7 @@ ALTER TABLE `oc_customer`
 -- AUTO_INCREMENT for table `oc_customer_activity`
 --
 ALTER TABLE `oc_customer_activity`
-  MODIFY `customer_activity_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `customer_activity_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 --
 -- AUTO_INCREMENT for table `oc_customer_group`
 --
@@ -23280,7 +23400,7 @@ ALTER TABLE `oc_geo_zone`
 -- AUTO_INCREMENT for table `oc_home_top_banner_date`
 --
 ALTER TABLE `oc_home_top_banner_date`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 --
 -- AUTO_INCREMENT for table `oc_information`
 --
@@ -23355,7 +23475,7 @@ ALTER TABLE `oc_option_value`
 -- AUTO_INCREMENT for table `oc_order`
 --
 ALTER TABLE `oc_order`
-  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=68;
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=97;
 --
 -- AUTO_INCREMENT for table `oc_order_custom_field`
 --
@@ -23365,7 +23485,7 @@ ALTER TABLE `oc_order_custom_field`
 -- AUTO_INCREMENT for table `oc_order_history`
 --
 ALTER TABLE `oc_order_history`
-  MODIFY `order_history_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `order_history_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 --
 -- AUTO_INCREMENT for table `oc_order_option`
 --
@@ -23375,7 +23495,7 @@ ALTER TABLE `oc_order_option`
 -- AUTO_INCREMENT for table `oc_order_product`
 --
 ALTER TABLE `oc_order_product`
-  MODIFY `order_product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=68;
+  MODIFY `order_product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=97;
 --
 -- AUTO_INCREMENT for table `oc_order_recurring`
 --
@@ -23510,7 +23630,7 @@ ALTER TABLE `oc_seller_transaction`
 -- AUTO_INCREMENT for table `oc_setting`
 --
 ALTER TABLE `oc_setting`
-  MODIFY `setting_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3089;
+  MODIFY `setting_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3115;
 --
 -- AUTO_INCREMENT for table `oc_site_feedback`
 --
@@ -23540,7 +23660,7 @@ ALTER TABLE `oc_store_image`
 -- AUTO_INCREMENT for table `oc_store_offers`
 --
 ALTER TABLE `oc_store_offers`
-  MODIFY `advertise_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `advertise_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 --
 -- AUTO_INCREMENT for table `oc_store_referred`
 --
@@ -23555,7 +23675,7 @@ ALTER TABLE `oc_store_timing`
 -- AUTO_INCREMENT for table `oc_user_activity`
 --
 ALTER TABLE `oc_user_activity`
-  MODIFY `user_activity_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;COMMIT;
+  MODIFY `user_activity_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

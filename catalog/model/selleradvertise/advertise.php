@@ -512,10 +512,11 @@ class ModelselleradvertiseAdvertise extends Model
 		$query = $this->db->query($sql);
         $arry1 =  $query->rows;
 
-		$sql1 = "SELECT advertise_id FROM ".DB_PREFIX."store_offers so LEFT JOIN ".DB_PREFIX."home_top_banner_date htbd ON (so.advertise_id = htbd.store_offer_advertise_id) WHERE so.position = '1' and CURDATE() < htbd.date GROUP BY so.advertise_id ASC";
+		$sql1 = "SELECT advertise_id FROM ".DB_PREFIX."store_offers so LEFT JOIN ".DB_PREFIX."home_top_banner_date htbd ON (so.advertise_id = htbd.store_offer_advertise_id) WHERE so.position = '1' and CURDATE() < htbd.date 
+        AND advertise_id not in (select store_offer_advertise_id from ".DB_PREFIX."home_top_banner_date WHERE CURDATE() = date) GROUP BY so.advertise_id ASC";
 		$query1 = $this->db->query($sql1);
         $arry2 =  $query1->rows;
-
+//echo $sql1;
 		$result = array_merge($arry1, $arry2);
 
 		$rows = '';
@@ -545,7 +546,10 @@ class ModelselleradvertiseAdvertise extends Model
 		$query = $this->db->query($sql);
         $arry1 =  $query->rows;
 
-		$sql1 = "SELECT advertise_id FROM ".DB_PREFIX."store_offers so LEFT JOIN ".DB_PREFIX."home_top_banner_date htbd ON (so.advertise_id = htbd.store_offer_advertise_id) WHERE so.position = '1' and CURDATE() < htbd.date GROUP BY so.advertise_id ASC";
+		$sql1 = "SELECT advertise_id FROM ".DB_PREFIX."store_offers so LEFT JOIN ".DB_PREFIX."home_top_banner_date 
+        htbd ON (so.advertise_id = htbd.store_offer_advertise_id) WHERE so.position = '1' and CURDATE() < htbd.date 
+        AND advertise_id not in (select store_offer_advertise_id from ".DB_PREFIX."home_top_banner_date WHERE CURDATE() = date) 
+        GROUP BY so.advertise_id ASC";
 		$query1 = $this->db->query($sql1);
         $arry2 =  $query1->rows;
 
@@ -582,12 +586,12 @@ class ModelselleradvertiseAdvertise extends Model
             $limit = 10;
         }
         $sql = "SELECT advertise_id, seller_id, offer_title, offer_image, offer_desc, offer_url, position, 
-            price, sort_order, status, end_date, km, offer_image_original 
+            price, sort_order, status, end_date, km, offer_image_original, is_basic
             FROM ".DB_PREFIX."store_offers so WHERE so.seller_id = '".(int) $this->customer->getID()."' 
             AND CURDATE() >= so.from_date AND CURDATE() <= so.end_date AND so.status = 'live' AND so.status != 'deleted' 
             UNION 
             SELECT advertise_id, seller_id, offer_title, offer_image, offer_desc, offer_url, position, price, sort_order, status , 
-            end_date, km, offer_image_original 
+            end_date, km, offer_image_original, is_basic 
             FROM ".DB_PREFIX."store_offers soi 
             LEFT JOIN ".DB_PREFIX."home_top_banner_date htbd ON (soi.advertise_id = htbd.store_offer_advertise_id) 
             WHERE soi.seller_id = '".(int) $this->customer->getID()."' AND soi.status = 'live' AND soi.status != 'deleted' 
@@ -696,7 +700,7 @@ class ModelselleradvertiseAdvertise extends Model
 			$sql = "SELECT nickname, price,(3959 * acos( cos( radians(".$lat_lan['lat'].") ) * cos( radians( lat ) ) * 
              cos( radians( lng ) - radians(".$lat_lan['lng'].") ) + sin( radians(".$lat_lan['lat'].") ) * sin( radians( lat ) ) ) )
               AS distance FROM ".DB_PREFIX."customer c LEFT JOIN ".DB_PREFIX."store_offers str 
-              ON(c.customer_id = str.seller_id) WHERE '".$from_date."' BETWEEN from_date  AND end_date
+              ON(c.customer_id = str.seller_id) WHERE str.is_basic <> 1 AND '".$from_date."' BETWEEN from_date  AND end_date
               AND str.status = 'live' AND position = '".(int) $loc."' HAVING distance BETWEEN 0 AND ".$km." 
               AND price != '0' order by price Desc";
 
@@ -705,7 +709,7 @@ class ModelselleradvertiseAdvertise extends Model
 			foreach($distance_level as $distance_lev) {
 				$correct_level[] = $distance_lev;               
 			}
-//print_r($sql);
+
            // $correct_level = $correct_level1;
 			// $sql1 = "SELECT c.nickname, str.price FROM ".DB_PREFIX."customer c INNER JOIN ".DB_PREFIX."store_offers str ON(c.customer_id = str.seller_id) WHERE str.from_date = '".$from_date."' AND str.position = '".(int) $loc."' AND str.seller_id = ".$this->customer->getID()." AND str.status = 'live' AND str.price != '0' order by str.price Desc";
 
@@ -721,7 +725,7 @@ class ModelselleradvertiseAdvertise extends Model
 		} else {
 			$sql = "SELECT c.nickname, str.price FROM ".DB_PREFIX."customer c 
                 INNER JOIN ".DB_PREFIX."store_offers str ON(c.customer_id = str.seller_id)
-                WHERE str.status = 'live' AND  '".$from_date."' BETWEEN str.from_date AND str.end_date
+                WHERE str.is_basic <> 1 AND str.status = 'live' AND  '".$from_date."' BETWEEN str.from_date AND str.end_date
                 AND str.position = '".(int) $loc."' 
                 order by str.price Desc";
                 
@@ -742,12 +746,16 @@ class ModelselleradvertiseAdvertise extends Model
 	}
 
     public function adBannerToLive($data) {
-        $this->db->query('UPDATE '.DB_PREFIX."store_offers SET position = '".(int) $data['loc']."', 
-            price = '".$data['price']."', date_modified = NOW() 
-            WHERE advertise_id = '".(int) $data['advetise_sp']."' AND seller_id = '".$this->customer->getID()."'");
-
+        
         $top_banner_dates = explode(",", $data['top_banner_date']);
 
+        $this->db->query('UPDATE '.DB_PREFIX."store_offers SET position = '".(int) $data['loc']."', 
+            price = '".$data['price']*count($top_banner_dates)."',
+            discount_price = '".$data['discount_price']."', date_modified = NOW() 
+            WHERE advertise_id = '".(int) $data['advetise_sp']."' AND seller_id = '".$this->customer->getID()."'");
+
+        
+//print_r(count($top_banner_dates));die;
         $this->db->query('DELETE FROM '.DB_PREFIX.'home_top_banner_date WHERE store_offer_advertise_id = '.(int) $data['advetise_sp']);
 
         foreach($top_banner_dates as $top_banner_date) {
@@ -769,10 +777,10 @@ class ModelselleradvertiseAdvertise extends Model
         if ($data['discount_price'] == 0) {
             $status = ", status = 'live'";
         }
-
+        //print_r($data);die;
         $this->db->query('UPDATE '.DB_PREFIX."store_offers SET position = '".(int) $data['loc']."', 
             from_date = '".$data['from_date']."', end_date = '".$data['end_date']."', km = '".$data['km']."', 
-            price = '".$data['price']."', discount_price = '".$data['discount_price']."', date_modified = NOW()
+            price = '".$data['price']."', discount_price = '".$data['discount_price']."', date_modified = NOW(), is_basic = '".$data['is_basic']."'
             ".$status." WHERE advertise_id = '".(int) $data['advetise_sp']."' AND seller_id = '".$this->customer->getID()."'");
     }
 

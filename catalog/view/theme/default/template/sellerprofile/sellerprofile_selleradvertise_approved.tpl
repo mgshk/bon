@@ -192,7 +192,7 @@
 								<select class="form-control check_amount" name="position" id="position">							
 									<option> ---- </option>				
 								</select>
-
+								<input type="hidden" name="selectedPosition" id="selectedPosition"/>
 							    <div id="validation_txt" style="display:none">
 								    <label>Price :&nbsp;&nbsp;&nbsp;&nbsp;</label><span class="text-green" id="price_vaidation_txt" style="font-size: 12px;font-style: italic"></span>
 								    <input type="number" name="amount_val" id="amount_val" class="form-control" min="1" step="1" onkeypress="return event.charCode >= 48 && event.charCode <= 57"/>
@@ -521,6 +521,7 @@
 						sel.append("<option selected value='" + (parseInt(i) + parseInt(3)) + "' >Basic price</option>");
 				   }
 				}
+				$("#selectedPosition").val($("#position option:selected").text());
 			 }, "json");	
 		});
 
@@ -535,7 +536,7 @@
 
 		$('.check_amount').on('change', function() {
 			$('#display_amount_1').hide();
-
+            $("#selectedPosition").val($("#position option:selected").text());
 			if (this.value.length === 0)
 			    return;
 
