@@ -4,8 +4,13 @@
             <div class="col-sm-12 advertise_count" id="<?php echo $advertisement_na['advertise_id']; ?>" >
                <div class="row">
                   <div class="hovereffect fis-des">
-                     <img src="<?php echo $image_resize->resize($advertisement_na['offer_image'], 993, 182); ?>" class="img-responsive" title="<?php echo $advertisement_na['offer_title']; ?>" alt="<?php echo $advertisement_na['offer_title']; ?>">
-                     <div class="overlay">
+                    <?php if(file_exists("image/".$advertisement_na['offer_image'])){ ?>
+						<img src="<?php echo $image_resize->resize($advertisement_na['offer_image'], 993, 182); ?>" class="img-responsive" title="<?php echo $advertisement_na['offer_title']; ?>" alt="<?php echo $advertisement_na['offer_title']; ?>">
+					<?php } else { ?>
+						<img src="image/adv_default_image.jpg" class="img-responsive" title="<?php echo $advertisement_na['offer_title']; ?>"
+						alt="<?php echo $advertisement_na['offer_title']; ?>">
+					<?php } ?>
+					 <div class="overlay">
 			<div class="col-sm-12">
 				<div class="col-sm-9">
 					<h2 class="store_name">
@@ -77,8 +82,13 @@
             <div class="col-sm-12 advertise_count" id="<?php echo $advertisement_st['advertise_id']; ?>" >
                <div class="row">
                   <div class="hovereffect fis-des">
-                     <img src="<?php echo $image_resize->resize($advertisement_st['offer_image'], 993, 182); ?>" class="img-responsive" title="<?php echo $advertisement_st['offer_title']; ?>" alt="<?php echo $advertisement_st['offer_title']; ?>">
-                     <div class="overlay">
+                     <?php if(file_exists("image/".$advertisement_st['offer_image'])){ ?>
+						<img src="<?php echo $image_resize->resize($advertisement_st['offer_image'], 993, 182); ?>" class="img-responsive" title="<?php echo $advertisement_st['offer_title']; ?>" alt="<?php echo $advertisement_st['offer_title']; ?>">
+                     <?php } else { ?>
+						<img src="image/adv_default_image.jpg" class="img-responsive" title="<?php echo $advertisement_st['offer_title']; ?>"
+						alt="<?php echo $advertisement_st['offer_title']; ?>">
+					<?php } ?>
+					<div class="overlay">
 			<div class="col-sm-12">
 				<div class="col-sm-9">
 					<h2 class="store_name">
@@ -150,8 +160,13 @@
             <div class="col-sm-12 advertise_count" id="<?php echo $advertisement_ci['advertise_id']; ?>">
                <div class="row">
                   <div class="hovereffect fis-des">
-                     <img src="<?php echo $image_resize->resize($advertisement_ci['offer_image'], 993, 182); ?>" class="img-responsive" title="<?php echo $advertisement_ci['offer_title']; ?>" alt="<?php echo $advertisement_ci['offer_title']; ?>">
-                     <div class="overlay">
+                     <?php if(file_exists("image/".$advertisement_ci['offer_image'])){ ?>
+						<img src="<?php echo $image_resize->resize($advertisement_ci['offer_image'], 993, 182); ?>" class="img-responsive" title="<?php echo $advertisement_ci['offer_title']; ?>" alt="<?php echo $advertisement_ci['offer_title']; ?>">
+                     <?php } else { ?>
+						<img src="image/adv_default_image.jpg" class="img-responsive" title="<?php echo $advertisement_ci['offer_title']; ?>"
+						alt="<?php echo $advertisement_ci['offer_title']; ?>">
+					<?php } ?>
+					 <div class="overlay">
 			<div class="col-sm-12">
 				<div class="col-sm-9">
 					<h2 class="store_name">
@@ -224,8 +239,13 @@
             <div class="col-sm-12 advertise_count" id="<?php echo $advertisement_lo['advertise_id']; ?>" >
                <div class="row">
                   <div class="hovereffect fis-des">
-                     <img src="<?php echo $image_resize->resize($advertisement_lo['offer_image'], 993, 182); ?>" class="img-responsive" title="<?php echo $advertisement_lo['offer_title']; ?>" alt="<?php echo $advertisement_lo['offer_title']; ?>">
-                     <div class="overlay">
+                     <?php if(file_exists("image/".$advertisement_lo['offer_image'])){ ?>
+						<img src="<?php echo $image_resize->resize($advertisement_lo['offer_image'], 993, 182); ?>" class="img-responsive" title="<?php echo $advertisement_lo['offer_title']; ?>" alt="<?php echo $advertisement_lo['offer_title']; ?>">
+                     <?php } else { ?>
+						<img src="image/adv_default_image.jpg" class="img-responsive" title="<?php echo $advertisement_lo['offer_title']; ?>"
+						alt="<?php echo $advertisement_lo['offer_title']; ?>">
+					<?php } ?>
+					 <div class="overlay">
 			<div class="col-sm-12">
 				<div class="col-sm-9">
 					<h2 class="store_name">

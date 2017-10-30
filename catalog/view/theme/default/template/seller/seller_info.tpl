@@ -596,8 +596,13 @@
 						<div class="col-sm-12 advertise_count" style="margin-top: 10px;" id="<?php echo $advertisement_ste['advertise_id']; ?>">
 							<div class="row">
 								<div class="hovereffect fis-des">
-									<img src="<?php echo $image_resize->resize($advertisement_ste['offer_image'], 993, 182); ?>" class="img-responsive" title="<?php echo $advertisement_ste['offer_title']; ?>"
-									 alt="<?php echo $advertisement_ste['offer_title']; ?>">
+									<?php if(file_exists("image/".$advertisement_ste['offer_image'])){ ?>
+										<img src="<?php echo $image_resize->resize($advertisement_ste['offer_image'], 993, 182); ?>" class="img-responsive" title="<?php echo $advertisement_ste['offer_title']; ?>"
+									 	alt="<?php echo $advertisement_ste['offer_title']; ?>">
+									<?php } else { ?>
+										<img src="image/adv_default_image.jpg" class="img-responsive" title="<?php echo $advertisement_ste['offer_title']; ?>"
+										alt="<?php echo $advertisement_ste['offer_title']; ?>">
+									<?php } ?>
 									<div class="overlay">
 										<div class="col-sm-12">
 											<h2 class="advertise_title">
