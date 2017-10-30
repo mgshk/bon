@@ -174,6 +174,30 @@
 				   		</div>
 					
 				   		<div class="row main-sec--res">
+				   			<div class="row.neet--ress-tep">
+							   <img id = "img_goes_here" src="image/goes here - nearby.png" class="img_border_live img-responsive" alt=""> 
+							</div>
+							<script>
+								$(document).ready(function(){
+									$('#advertise_move_live  input[name=loc]').on('change', function() {
+										var imageSrc = "goes here - nearby";
+										if($('input[name=loc]:checked', '#advertise_move_live ')[0].id == "home_top")
+										   imageSrc = "goes_here_top_banner";
+										else if($('input[name=loc]:checked', '#advertise_move_live ')[0].id == "home_national")
+										   imageSrc = "goes_here_country";
+										else if($('input[name=loc]:checked', '#advertise_move_live ')[0].id == "home_state")
+										   imageSrc = "goes_here_state";
+										else if($('input[name=loc]:checked', '#advertise_move_live ')[0].id == "home_city")
+										   imageSrc = "goes_here_city";
+										else if($('input[name=loc]:checked', '#advertise_move_live ')[0].id == "home_local")
+										   imageSrc = "goes here - nearby";
+										else if($('input[name=loc]:checked', '#advertise_move_live ')[0].id == "store_ad")
+										   imageSrc = "goes_here_in_your_page";
+
+										$('#img_goes_here').attr('src',"image/" + imageSrc + ".png");
+									});
+								});
+							</script>
 							<div id="home_top_hide">
 							   <label>From </label><input type="text" readonly class="form-control" name="from_date" id='datetimepicker_start_<?php echo $advetise['advertise_id']; ?>'/>
 							   <label>To </label><input type="text" readonly class="form-control check_span" name="end_date" id='datetimepicker_end_<?php echo $advetise['advertise_id']; ?>'/>
