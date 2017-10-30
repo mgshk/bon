@@ -706,7 +706,7 @@
 
 		if ($('input[name="loc"]:checked').val() === '5')
 		{
-		discount_txt = discount_txt + '<span style="color: #ff0000;font-size: 12px;">Please be aware that postion in Nearby tab might change due to coverage area of other advertisements.</span></br>';
+		discount_txt = discount_txt + '<span style="color: #ff0000;font-size: 12px;">Please be aware that postion in Nearby tab for paid advertisement might change due to coverage area of other advertisements.</span></br>';
 		}
 	
 		$('#display_amount_1').html(discount_txt).show();
