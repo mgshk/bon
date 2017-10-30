@@ -751,11 +751,10 @@ class ModelselleradvertiseAdvertise extends Model
 
         $this->db->query('UPDATE '.DB_PREFIX."store_offers SET position = '".(int) $data['loc']."', 
             price = '".$data['price']*count($top_banner_dates)."',
-            discount_price = '".$data['discount_price']."', date_modified = NOW() 
+            discount_price = '".$data['discount_price']."', state = '".$data['state']."' , city = '".$data['city']."', 
+            national = '".$data['national']."', date_modified = NOW() 
             WHERE advertise_id = '".(int) $data['advetise_sp']."' AND seller_id = '".$this->customer->getID()."'");
 
-        
-//print_r(count($top_banner_dates));die;
         $this->db->query('DELETE FROM '.DB_PREFIX.'home_top_banner_date WHERE store_offer_advertise_id = '.(int) $data['advetise_sp']);
 
         foreach($top_banner_dates as $top_banner_date) {
@@ -766,10 +765,22 @@ class ModelselleradvertiseAdvertise extends Model
         }
     }
 
+    public function isFreeAdUsed() {
+        $sql = "SELECT COUNT(advertise_id) AS eligibility FROM ".DB_PREFIX."store_offers 
+            WHERE status = 'live' AND CURDATE() between from_date and end_date 
+            AND seller_id = ".$this->customer->getID();
+
+        $query = $this->db->query($sql);
+
+        return $query->row['eligibility'];
+    }
+
     public function adPageToLive($data) {
         $this->db->query('UPDATE '.DB_PREFIX."store_offers SET position = '".(int) $data['loc']."', 
-            price = '".$data['price']."', status = 'live', date_modified = NOW() 
-            WHERE advertise_id = '".(int) $data['advetise_sp']."' AND seller_id = '".$this->customer->getID()."'");
+            price = '".$data['price']."', status = 'live', state = '".$data['state']."' , city = '".$data['city']."', 
+            national = '".$data['national']."', from_date = '".$data['from_date']."', end_date = '".$data['end_date']."', 
+            date_modified = NOW() WHERE advertise_id = '".(int) $data['advetise_sp']."' 
+            AND seller_id = '".$this->customer->getID()."'");
     }
 
     public function adBannersToLive($data) {
@@ -777,11 +788,13 @@ class ModelselleradvertiseAdvertise extends Model
         if ($data['discount_price'] == 0) {
             $status = ", status = 'live'";
         }
-        //print_r($data);die;
+
         $this->db->query('UPDATE '.DB_PREFIX."store_offers SET position = '".(int) $data['loc']."', 
             from_date = '".$data['from_date']."', end_date = '".$data['end_date']."', km = '".$data['km']."', 
-            price = '".$data['price']."', discount_price = '".$data['discount_price']."', date_modified = NOW(), is_basic = '".$data['is_basic']."'
-            ".$status." WHERE advertise_id = '".(int) $data['advetise_sp']."' AND seller_id = '".$this->customer->getID()."'");
+            price = '".$data['price']."', discount_price = '".$data['discount_price']."', date_modified = NOW(), 
+            state = '".$data['state']."' , city = '".$data['city']."', 
+            national = '".$data['national']."', is_basic = '".$data['is_basic']."' ".$status." 
+            WHERE advertise_id = '".(int) $data['advetise_sp']."' AND seller_id = '".$this->customer->getID()."'");
     }
 
 	// public function adToLive($data, $delete_free = '')

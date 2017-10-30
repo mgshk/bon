@@ -2473,55 +2473,66 @@ class Controllersellerprofilesellerprofile extends Controller
 
     public function move_live() {
         $json = array();
-        $this->load->language('selleradvertise/advertise');
-        $this->load->model('selleradvertise/advertise');
 
-        if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validate_move_live()) {
+        try {
+            $this->load->language('selleradvertise/advertise');
+            $this->load->model('selleradvertise/advertise');
 
-            $data['top_banner_date'] = $this->request->post['top_banner_date'];
-            $data['advetise_sp'] = $this->request->post['advetise_sp'];
-            $data['loc'] = $this->request->post['loc'];
-            $data['price'] = $this->request->post['amount_val'];
-            $data['discount_price'] = $this->request->post['amount'];
-            $data['from_date'] = $this->request->post['from_date'];
-            $data['end_date'] = $this->request->post['end_date'];
+            if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validate_move_live()) {
 
-            if($this->request->post['selectedPosition'] == 'Basic price')
-            {
-                $data['is_basic'] = 1;
+                $data['top_banner_date'] = $this->request->post['top_banner_date'];
+                $data['advetise_sp'] = $this->request->post['advetise_sp'];
+                $data['loc'] = $this->request->post['loc'];
+                $data['price'] = $this->request->post['amount_val'];
+                $data['discount_price'] = $this->request->post['amount'];
+                $data['from_date'] = $this->request->post['from_date'];
+                $data['end_date'] = $this->request->post['end_date'];
+                $data['national'] = $this->request->post['national'];
+                $data['state'] = $this->request->post['state'];
+                $data['city'] = $this->request->post['city'];
+
+                if($this->request->post['selectedPosition'] == 'Basic price') {
+                    $data['is_basic'] = 1;
+                } else {
+                    $data['is_basic'] = 0;
+                }
+                
+
+                $_SESSION['confirm']['amount'] = $this->request->post['amount'];
+                $_SESSION['confirm']['name'] = $this->getAdName($this->request->post['loc']);
+                $_SESSION['confirm']['product_id'] = $this->request->post['advetise_sp'];
+
+                if ($this->request->post['loc'] == '1') {
+                    $this->model_selleradvertise_advertise->adBannerToLive($data);
+                    $json['confirmForm'] = $this->load->controller('checkout/confirm/adConfirm');
+                } else if ($this->request->post['loc'] == '2' || $this->request->post['loc'] == '3' || $this->request->post['loc'] == '4' || $this->request->post['loc'] == '5') {
+                    $data['km'] = (isset($this->request->post['km']) && ($this->request->post['km'] != '')) ? $this->request->post['km']: '';
+                    $this->model_selleradvertise_advertise->adBannersToLive($data);
+                    $json['confirmForm'] = $this->load->controller('checkout/confirm/adConfirm');
+                } else if ($this->request->post['loc'] == '6') {
+                    $check_eligibity = $this->model_selleradvertise_advertise->isFreeAdUsed();
+
+                    if ($check_eligibity > 0)
+                        throw new Exception($this->language->get('error_free_ad'));
+                        
+                    $this->model_selleradvertise_advertise->adPageToLive($data);
+                }
+
+                unset($_SESSION['confirm']);
+                $json['approved_count'] = $this->model_selleradvertise_advertise->getTotalAdvertisesApproved();
+
+                $ad = $this->model_selleradvertise_advertise->getTotalAdvertisesLive();
+
+                foreach($ad as $ads) {
+                    $adv[] = $ads['total'];
+                }       
+
+                $json['live_count'] = array_sum($adv);
+                $json['success'] = $this->language->get('success_to_live');
             }
-            else
-            {
-                $data['is_basic'] = 0;
-            }
-            
 
-            $_SESSION['confirm']['amount'] = $this->request->post['amount'];
-            $_SESSION['confirm']['name'] = $this->getAdName($this->request->post['loc']);
-            $_SESSION['confirm']['product_id'] = $this->request->post['advetise_sp'];
-
-            if ($this->request->post['loc'] == '1') {
-                $this->model_selleradvertise_advertise->adBannerToLive($data);
-                $json['confirmForm'] = $this->load->controller('checkout/confirm/adConfirm');
-            } else if ($this->request->post['loc'] == '2' || $this->request->post['loc'] == '3' || $this->request->post['loc'] == '4' || $this->request->post['loc'] == '5') {
-                $data['km'] = (isset($this->request->post['km']) && ($this->request->post['km'] != '')) ? $this->request->post['km']: '';
-                $this->model_selleradvertise_advertise->adBannersToLive($data);
-                $json['confirmForm'] = $this->load->controller('checkout/confirm/adConfirm');
-            } else if ($this->request->post['loc'] == '6') {
-                $this->model_selleradvertise_advertise->adPageToLive($data);
-            }
-
-            unset($_SESSION['confirm']);
-            $json['approved_count'] = $this->model_selleradvertise_advertise->getTotalAdvertisesApproved();
-
-            $ad = $this->model_selleradvertise_advertise->getTotalAdvertisesLive();
-
-            foreach($ad as $ads) {
-                $adv[] = $ads['total'];
-            }       
-
-            $json['live_count'] = array_sum($adv);
-            $json['success'] = $this->language->get('success_to_live');
+        } catch (Exception $e) {
+            $json['error'] = $e->getMessage();
         }
         
         $this->response->addHeader('Content-Type: application/json');
