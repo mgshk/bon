@@ -169,7 +169,14 @@ class ControllerCommonHome extends Controller {
 		//$data['image_resize'] = $this->model_tool_image;//->resize($data['advertisement_national']['offer_image'], 1324, 182);
 		//$data['advertisement_top_banner'] = $this->model_selleradvertise_advertise_front->getAdvertisesHomeTopBanner();
 		//$data['search_pst'] = $this->url->link('seller/seller');
-			
+
+		$data['logged'] = $this->customer->isLogged();
+		
+		if(isset($this->session->data['login_type'])){
+			$data['login_type'] = $this->session->data['login_type'];
+		} else {
+			$data['login_type'] = '';
+		}
 
 		$this->response->setOutput($this->load->view('common/home_load_more', $data));
 	}

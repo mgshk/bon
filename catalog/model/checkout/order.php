@@ -823,7 +823,7 @@ class ModelCheckoutOrder extends Model {
 	{
 	$query = $this->db->query("SELECT product_id, price FROM `" . DB_PREFIX . "order_product` WHERE order_id = '" . $orderId . "'");
 	$resultArr = $query->row;
-	$this->db->query("UPDATE `" . DB_PREFIX . "store_offers` set status='live', paid='1', price=".$resultArr['price']." WHERE advertise_id=".$resultArr['product_id']);
+	$this->db->query("UPDATE `" . DB_PREFIX . "store_offers` set status='live', paid='1' WHERE advertise_id=".$resultArr['product_id']);
 
 	}
 }

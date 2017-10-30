@@ -510,8 +510,8 @@ class ControllerCheckoutConfirm extends Controller
             $order_data['payment_address_format'] = '';
             $order_data['payment_custom_field'] = (isset($this->session->data['payment_address']['custom_field']) ? $this->session->data['payment_address']['custom_field'] : array());
            
-			$order_data['payment_method'] = '';
-			$order_data['payment_code'] = 'payu';       
+			$order_data['payment_method'] = 'PayUMoney';
+			$order_data['payment_code'] = 'pumcp';       
 
            
                 $order_data['shipping_firstname'] = '';
@@ -685,7 +685,7 @@ class ControllerCheckoutConfirm extends Controller
                 );
             } */
 
-            $data['payment'] = $this->load->controller('extension/payment/payu');
+            $data['payment'] = $this->load->controller('extension/payment/pumcp');
         
 
         

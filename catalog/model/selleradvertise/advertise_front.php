@@ -54,7 +54,9 @@ class ModelselleradvertiseAdvertiseFront extends Model
 
 	 public function getAdvertisesHomeTopBanner()
     {
-       $sql = "SELECT so.* FROM ".DB_PREFIX."customer cs INNER JOIN ".DB_PREFIX."store_offers so ON (cs.customer_id = so.seller_id) LEFT JOIN ".DB_PREFIX."home_top_banner_date htbd ON (so.advertise_id = htbd.store_offer_advertise_id) WHERE cs.seller_approved = 1 and so.position = '1' and CURDATE() = htbd.date ORDER BY so.price DESC";
+       $sql = "SELECT so.* FROM ".DB_PREFIX."customer cs INNER JOIN ".DB_PREFIX."store_offers so ON (cs.customer_id = so.seller_id) 
+	   LEFT JOIN ".DB_PREFIX."home_top_banner_date htbd ON (so.advertise_id = htbd.store_offer_advertise_id) 
+	   WHERE so.status = 'live' AND cs.seller_approved = 1 and so.position = '1' and CURDATE() = htbd.date ORDER BY so.price DESC";
 
 		//print_r($sql); die;
 

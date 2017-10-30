@@ -1590,7 +1590,7 @@ class Controllersellerprofilesellerprofile extends Controller
 				$image_tumb = $this->model_tool_image->resize('no_image.png', 993, 182);
 			}
 
-
+            $parsed = parse_url($result['offer_url']);
             
             $data['advetises'][] = array(
                 'advertise_id' => $result['advertise_id'],
@@ -1599,7 +1599,7 @@ class Controllersellerprofilesellerprofile extends Controller
 				'offer_desc' => $result['offer_desc'],
                 'offer_title' => $result['offer_title'],
                 'sort_order' => $result['sort_order'],
-                'offer_link' => $result['offer_url'],
+                'offer_link' => empty($parsed['scheme']) ? 'http://'.$result['offer_url'] : $result['offer_url'],
                 'status' => $result['status'],
 				'edit' => $this->url->link('selleradvertise/advertise/edit', ''.'&advertise_id='.$result['advertise_id'], 'SSL'),
 				'offer_image_original' => $result['offer_image_original'],
@@ -1683,6 +1683,7 @@ class Controllersellerprofilesellerprofile extends Controller
 				$image_tumb = $this->model_tool_image->resize('no_image.png', 993, 182);
 			}
 
+            $parsed = parse_url($result['offer_url']);
             
             $data['advetises'][] = array(
                 'advertise_id' => $result['advertise_id'],
@@ -1691,7 +1692,7 @@ class Controllersellerprofilesellerprofile extends Controller
 				'offer_desc' => $result['offer_desc'],
                 'offer_title' => $result['offer_title'],
                 'sort_order' => $result['sort_order'],
-                'offer_link' => $result['offer_url'],
+                'offer_link' => empty($parsed['scheme']) ? 'http://'.$result['offer_url'] : $result['offer_url'],
                 'status' => $result['status'],
 				'edit' => $this->url->link('selleradvertise/advertise/edit', ''.'&act=submitted&advertise_id='.$result['advertise_id'], 'SSL'),
 				'offer_image_original' => $result['offer_image_original'],
@@ -1767,7 +1768,6 @@ class Controllersellerprofilesellerprofile extends Controller
         $this->load->model('tool/image');
         $this->load->model('selleradvertise/advertise');
 
-
         $results = $this->model_selleradvertise_advertise->getAdvertisesApproved(($page - 1) * 10, 10);
 
         foreach ($results as $result) {
@@ -1783,6 +1783,7 @@ class Controllersellerprofilesellerprofile extends Controller
 				$image_tumb = $this->model_tool_image->resize('no_image.png', 993, 182);
 			}
 
+            $parsed = parse_url($result['offer_url']);
             
             $data['advetises'][] = array(
                 'advertise_id' => $result['advertise_id'],
@@ -1791,10 +1792,10 @@ class Controllersellerprofilesellerprofile extends Controller
 				'offer_desc' => $result['offer_desc'],
                 'offer_title' => $result['offer_title'],
                 'sort_order' => $result['sort_order'],
-                'offer_link' => $result['offer_url'],
+                'offer_link' => empty($parsed['scheme']) ? 'http://'.$result['offer_url'] : $result['offer_url'],
                 'status' => $result['status'],
 				'offer_image_original' => $result['offer_image_original'],
-        );
+            );
         }
 
 		$data['seller_id'] = $this->request->get['seller_id'];
@@ -1811,7 +1812,7 @@ class Controllersellerprofilesellerprofile extends Controller
 
         $data['results'] = sprintf($this->language->get('text_pagination'), ($advertise_total) ? (($page - 1) * 10) + 1 : 0, ((($page - 1) * 10) > ($advertise_total - 10)) ? $advertise_total : ((($page - 1) * 10) + 10), $advertise_total, ceil($advertise_total / 10));
 
-            $this->response->setOutput($this->load->view('sellerprofile/sellerprofile_selleradvertise_approved', $data));
+        $this->response->setOutput($this->load->view('sellerprofile/sellerprofile_selleradvertise_approved', $data));
 
     }
 	public function sellerAdvertiserejected()
@@ -1874,7 +1875,8 @@ class Controllersellerprofilesellerprofile extends Controller
 				$image_tumb = $this->model_tool_image->resize('no_image.png', 993, 182);
 			}
 
-            
+            $parsed = parse_url($result['offer_url']);
+
             $data['advetises'][] = array(
                 'advertise_id' => $result['advertise_id'],
                 'image' => $image,
@@ -1883,7 +1885,7 @@ class Controllersellerprofilesellerprofile extends Controller
 				'remarks' => $result['remarks'],
                 'offer_title' => $result['offer_title'],
                 'sort_order' => $result['sort_order'],
-                'offer_link' => $result['offer_url'],
+                'offer_link' => empty($parsed['scheme']) ? 'http://'.$result['offer_url'] : $result['offer_url'],
                 'status' => $result['status'],
 				'edit' => $this->url->link('selleradvertise/advertise/edit', ''.'&advertise_id='.$result['advertise_id'], 'SSL'),
 				'offer_image_original' => $result['offer_image_original'],
@@ -1970,7 +1972,8 @@ class Controllersellerprofilesellerprofile extends Controller
 					$image_tumb = $this->model_tool_image->resize('no_image.png', 993, 182);
 				}
 
-				
+				$parsed = parse_url($result['offer_url']);
+
 				$data['advetises'][] = array(
 					'advertise_id' => $result['advertise_id'],
 					'image' => $image,
@@ -1979,7 +1982,7 @@ class Controllersellerprofilesellerprofile extends Controller
 					'remarks' => $result['remarks'],
 					'offer_title' => $result['offer_title'],
 					'sort_order' => $result['sort_order'],
-					'offer_link' => $result['offer_url'],
+					'offer_link' => empty($parsed['scheme']) ? 'http://'.$result['offer_url'] : $result['offer_url'],
 					'status' => $result['status'],
 					'edit' => $this->url->link('selleradvertise/advertise/edit', ''.'&advertise_id='.$result['advertise_id'], 'SSL'),
 					'offer_image_original' => $result['offer_image_original'],
@@ -2067,18 +2070,27 @@ class Controllersellerprofilesellerprofile extends Controller
 			}
 
 			if($result['position'] != 1 && $result['position'] != 6){
-				if($result['price'] != 500){
+				if($result['is_basic'] == 0){
 					$advertise_position = $this->model_sellerprofile_sellerprofile->getAdvertise_position($result['advertise_id'], $result['position']);
-					$advertise_amt_pos = "";
+					//$advertise_amt_pos = "";
 				} else {
 					$advertise_position = "Random";
-					$advertise_amt_pos = "(Basic Price)";
+					//$advertise_amt_pos = "";
 				}
 			} else {
 				$advertise_position = "Random";
-				$advertise_amt_pos = "";
+				//$advertise_amt_pos = "";
 			}
-
+            
+            if($result['is_basic'] == 1)
+            {
+                $advertise_amt_pos = "Basic (".$result['price']." Rs)";
+            }
+            else
+            {
+                $advertise_amt_pos = $result['price']." Rs";
+            }
+            
 			if($result['position'] != 1 && $result['position'] != 6){
 				//Convert to date
 				$datestr=$result['end_date'];//Your date
@@ -2093,6 +2105,8 @@ class Controllersellerprofilesellerprofile extends Controller
 			if($result['position'] == 1) {
 				$days_left = $this->model_sellerprofile_sellerprofile->getHomeBanner_days($result['advertise_id']);
 			}
+
+            $parsed = parse_url($result['offer_url']);
             
             $data['advetises'][] = array(
                 'advertise_id' => $result['advertise_id'],
@@ -2101,11 +2115,10 @@ class Controllersellerprofilesellerprofile extends Controller
 				'offer_desc' => $result['offer_desc'],
                 'offer_title' => $result['offer_title'],
                 'sort_order' => $result['sort_order'],
-                'offer_link' => $result['offer_url'],
+                'offer_link' => empty($parsed['scheme']) ? 'http://'.$result['offer_url'] : $result['offer_url'],
                 'status' => $result['status'],
 				'position' => $result['position'],
 				'price' => $result['price'],
-                'discount_price' => $result['discount_price'],
 				'km' => $result['km'],
 				'days_left' => $days_left,
 				'advertise_position' => $advertise_position,
@@ -2206,7 +2219,7 @@ class Controllersellerprofilesellerprofile extends Controller
 				$image_tumb = $this->model_tool_image->resize('no_image.png', 993, 182);
 			}
 
-
+            $parsed = parse_url($result['offer_url']);
             
             $data['advetises'][] = array(
                 'advertise_id' => $result['advertise_id'],
@@ -2215,7 +2228,7 @@ class Controllersellerprofilesellerprofile extends Controller
 				'offer_desc' => $result['offer_desc'],
                 'offer_title' => $result['offer_title'],
                 'sort_order' => $result['sort_order'],
-                'offer_link' => $result['offer_url'],
+                'offer_link' => empty($parsed['scheme']) ? 'http://'.$result['offer_url'] : $result['offer_url'],
                 'status' => $result['status'],
 				'copy' => $this->url->link('sellerprofile/sellerprofile/copy', ''.'&advertise_id='.$result['advertise_id'].$url, 'SSL'),
 				'offer_image_original' => $result['offer_image_original'],
@@ -2300,7 +2313,7 @@ class Controllersellerprofilesellerprofile extends Controller
 				$image_tumb = $this->model_tool_image->resize('no_image.png', 993, 182);
 			}
 
-
+            $parsed = parse_url($result['offer_url']);
             
             $data['advetises'][] = array(
                 'advertise_id' => $result['advertise_id'],
@@ -2309,7 +2322,7 @@ class Controllersellerprofilesellerprofile extends Controller
 				'offer_desc' => $result['offer_desc'],
                 'offer_title' => $result['offer_title'],
                 'sort_order' => $result['sort_order'],
-                'offer_link' => $result['offer_url'],
+                'offer_link' => empty($parsed['scheme']) ? 'http://'.$result['offer_url'] : $result['offer_url'],
                 'status' => $result['status'],
 				'offer_image_original' => $result['offer_image_original'],
         );
@@ -2473,6 +2486,16 @@ class Controllersellerprofilesellerprofile extends Controller
             $data['from_date'] = $this->request->post['from_date'];
             $data['end_date'] = $this->request->post['end_date'];
 
+            if($this->request->post['selectedPosition'] == 'Basic price')
+            {
+                $data['is_basic'] = 1;
+            }
+            else
+            {
+                $data['is_basic'] = 0;
+            }
+            
+
             $_SESSION['confirm']['amount'] = $this->request->post['amount'];
             $_SESSION['confirm']['name'] = $this->getAdName($this->request->post['loc']);
             $_SESSION['confirm']['product_id'] = $this->request->post['advetise_sp'];
@@ -2489,6 +2512,15 @@ class Controllersellerprofilesellerprofile extends Controller
             }
 
             unset($_SESSION['confirm']);
+            $json['approved_count'] = $this->model_selleradvertise_advertise->getTotalAdvertisesApproved();
+
+            $ad = $this->model_selleradvertise_advertise->getTotalAdvertisesLive();
+
+            foreach($ad as $ads) {
+                $adv[] = $ads['total'];
+            }       
+
+            $json['live_count'] = array_sum($adv);
             $json['success'] = $this->language->get('success_to_live');
         }
         
@@ -3230,15 +3262,19 @@ class Controllersellerprofilesellerprofile extends Controller
 			foreach($position_amt as $key => $position_a) {
 				$value_filter[] = $position_a;
 			}
-			if(count($value_filter) > 0){				
-				$basic_position_amount = $this->model_selleradvertise_advertise->getStoreOfferBasicPrice(); //array('0'=>'500','1'=>'400','2'=>'300','3'=>'0');
-				//print_r($basic_position_amount);exit;
-				$position_amount[] = array_diff($value_filter[0], $basic_position_amount);
-				 foreach($position_amount as $position ) {	
-                     $json[] = $position;												
-				 }
-				$json = array_unique($json);
-			} 
+			// if(count($value_filter) > 0){				
+			// 	$basic_position_amount = $this->model_selleradvertise_advertise->getStoreOfferBasicPrice(); //array('0'=>'500','1'=>'400','2'=>'300','3'=>'0');
+			// 	print_r($basic_position_amount);
+                
+			// 	$position_amount[] = array_diff($value_filter[0], $basic_position_amount);
+
+			// 	 foreach($position_amount as $position ) {
+            //          print_r($position);	
+            //          $json[] = $position;												
+			// 	 }
+			// 	//$json = array_unique($value_filter);
+			// } 
+            $json = $value_filter;
 		}
 
 		$this->response->addHeader('Content-Type: application/json');

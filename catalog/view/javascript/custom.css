@@ -1534,3 +1534,8 @@ border: 0;}
 	padding-left: 10px;
 	background: #d8e4ec;
 }
+
+.img_border_live{ 
+	border-bottom: 1px solid #ccc;
+    border-top: 1px solid #ccc;
+}

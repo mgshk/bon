@@ -4,6 +4,7 @@
 <script type="text/javascript" src="catalog/view/javascript/jquery.slimscroll.js"></script>
 <script>
 	$(function () {
+		
 		var availableTags = <?php //echo $auto_search_home; ?>
 	  $("#search_val").autocomplete({
 				source: availableTags
@@ -120,8 +121,15 @@
 						?>
 						<div class="item <?php echo ($i == 0) ? 'active' : ''; ?>">
 							<div class="hovereffect fis-des">
-								<img src="<?php echo $image_resize->resize($advertisement_top['offer_image'], 993, 182); ?>" class="img-responsive" title="<?php echo $advertisement_top['offer_title']; ?>"
-								 alt="<?php echo $advertisement_top['offer_title']; ?>">
+							
+								<?php if(file_exists("image/".$advertisement_top['offer_image'])){ ?>
+									<img src="<?php echo $image_resize->resize($advertisement_top['offer_image'], 993, 182); ?>" class="img-responsive" title="<?php echo $advertisement_top['offer_title']; ?>"
+									alt="<?php echo $advertisement_top['offer_title']; ?>">
+								 <?php } else { echo $advertisement_top['offer_image'];?>
+									 
+									 <img src="image/adv_default_image.jpg" class="img-responsive" title="<?php echo $advertisement_top['offer_title']; ?>"
+									alt="<?php echo $advertisement_top['offer_title']; ?>">
+								 <?php } ?>
 								<div class="overlay">
 									<div class="carousel-caption">
 										<div class="col-sm-12">
@@ -321,328 +329,398 @@
 			<!-- Tab panes -->
 			<div class="tab-content home-tt-r">
 				<div role="tabpanel" class="tab-pane active" id="home">
-					<?php if(count($advertisement_national) > 0) {
-						foreach($advertisement_national as $advertisement_na) { ?>
-					<div class="col-sm-12 advertise_count" id="<?php echo $advertisement_na['advertise_id']; ?>">
-						<div class="row">
-							<div class="hovereffect fis-des">
-								<img src="<?php echo $image_resize->resize($advertisement_na['offer_image'], 993, 182); ?>" class="img-responsive" title="<?php echo $advertisement_na['offer_title']; ?>"
-								 alt="<?php echo $advertisement_na['offer_title']; ?>">
-								<div class="overlay">
-									<div class="col-sm-12">
-										<div class="col-sm-9">
-											<h2 class="store_name">
-												<?php echo $advertisement_na['nickname']; ?>
-											</h2>
-										</div>
-										<div class="col-sm-3">
-											<h2 class="store_rating">
-												<div>
-													<?php for ($i = 1; $i <= 5; $i++) { ?>
-													<?php if ($advertisement_na['rating'] < $i) { ?>
-													<div class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i></div>
-													<?php } else { ?>
-													<div class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></div>
-													<?php } ?>
-													<?php } ?>
-												</div>
-											</h2>
-										</div>
-									</div>
-									<div class="col-sm-12">
-										<h2 class="advertise_title">
-											<?php echo $advertisement_na['offer_title']; ?>
-										</h2>
-									</div>
-									<a class="info hmg--sel ne--str view-det-adv" href="index.php?route=seller/seller/info&seller_id=<?php echo $advertisement_na['seller_id']; ?>&path=&counter=1"><img src="image/store_front.png" class="img-responsive"></a>
-									<a class="info hmg--sel ne--opn view-det-adv cursor" data-id="<?php echo $advertisement_na['advertise_id']; ?>" onclick="viewDetAdv(this);"><i class="fa fa-arrows-alt"></i></a>
-								</div>
-								<?php if((isset($advertisement_na['filtered']) && $advertisement_na['filtered'] =='1') ? $advertisement_na['filtered'] : '') { ?>
-								<div class="col-sm-1 filtered_ads">
-									<?php echo "Filtered"; ?>
-								</div>
+					<div class="col-sm-12">
+							<div class="row">
+								<h4 style="color: #00ACEC">Post your advertisement here, entire 
+								<?php if ($logged && $login_type != 'buyer') { ?>
+									<a href="index.php?route=selleradvertise/advertise/add">
+										<u>country</u>
+									</a>
+								<?php }else{ ?>
+									<a class="cursor" data-toggle="modal" data-target="#login_frc_seller">
+										<u>country</u>
+									</a>
 								<?php } ?>
+								is waiting...</h4>
 							</div>
-							<div class="sec-mob">
-								<a class="info view-det-adv" data-id="<?php echo $advertisement_na['advertise_id']; ?>" onclick="viewDetAdv(this);">
-									<img src="<?php echo $image_resize->resize($advertisement_na['offer_image'], 993, 182); ?>" class="img-responsive" title="<?php echo $advertisement_na['offer_title']; ?>" alt="<?php echo $advertisement_na['offer_title']; ?>">
-									<div class="temp--mb">
-										<span style="float: left;">
-											<?php echo substr($advertisement_na['nickname'], 0, 20); ?>
-										</span>
-										<span class="sub-mb--st" style="float: right;">
-											<?php for ($i = 1; $i <= 5; $i++) { ?>
-											<?php if ($advertisement_na['rating'] < $i) { ?>
-											<div class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i></div>
-											<?php } else { ?>
-											<div class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></div>
-											<?php } ?>
-											<?php } ?>
-										</span>
+					</div>
+					<span id = "home_content">
+						<?php if(count($advertisement_national) > 0) {
+							foreach($advertisement_national as $advertisement_na) { ?>
+						<div class="col-sm-12 advertise_count" id="<?php echo $advertisement_na['advertise_id']; ?>">
+							<div class="row">
+								<div class="hovereffect fis-des">
+								<?php if(file_exists("image/".$advertisement_na['offer_image'])){ ?>
+									<img src="<?php echo $image_resize->resize($advertisement_na['offer_image'], 993, 182); ?>" class="img-responsive" title="<?php echo $advertisement_na['offer_title']; ?>"
+									alt="<?php echo $advertisement_na['offer_title']; ?>">
+								<?php } else { ?>
+									 <img src="image/adv_default_image.jpg" class="img-responsive" title="<?php echo $advertisement_na['offer_title']; ?>"
+									alt="<?php echo $advertisement_na['offer_title']; ?>">
+								 <?php } ?>
+									<div class="overlay">
+										<div class="col-sm-12">
+											<div class="col-sm-9">
+												<h2 class="store_name">
+													<?php echo $advertisement_na['nickname']; ?>
+												</h2>
+											</div>
+											<div class="col-sm-3">
+												<h2 class="store_rating">
+													<div>
+														<?php for ($i = 1; $i <= 5; $i++) { ?>
+														<?php if ($advertisement_na['rating'] < $i) { ?>
+														<div class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i></div>
+														<?php } else { ?>
+														<div class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></div>
+														<?php } ?>
+														<?php } ?>
+													</div>
+												</h2>
+											</div>
+										</div>
+										<div class="col-sm-12">
+											<h2 class="advertise_title">
+												<?php echo $advertisement_na['offer_title']; ?>
+											</h2>
+										</div>
+										<a class="info hmg--sel ne--str view-det-adv" href="index.php?route=seller/seller/info&seller_id=<?php echo $advertisement_na['seller_id']; ?>&path=&counter=1"><img src="image/store_front.png" class="img-responsive"></a>
+										<a class="info hmg--sel ne--opn view-det-adv cursor" data-id="<?php echo $advertisement_na['advertise_id']; ?>" onclick="viewDetAdv(this);"><i class="fa fa-arrows-alt"></i></a>
 									</div>
 									<?php if((isset($advertisement_na['filtered']) && $advertisement_na['filtered'] =='1') ? $advertisement_na['filtered'] : '') { ?>
 									<div class="col-sm-1 filtered_ads">
 										<?php echo "Filtered"; ?>
 									</div>
 									<?php } ?>
-								</a>
+								</div>
+								<div class="sec-mob">
+									<a class="info view-det-adv" data-id="<?php echo $advertisement_na['advertise_id']; ?>" onclick="viewDetAdv(this);">
+										<img src="<?php echo $image_resize->resize($advertisement_na['offer_image'], 993, 182); ?>" class="img-responsive" title="<?php echo $advertisement_na['offer_title']; ?>" alt="<?php echo $advertisement_na['offer_title']; ?>">
+										<div class="temp--mb">
+											<span style="float: left;">
+												<?php echo substr($advertisement_na['nickname'], 0, 20); ?>
+											</span>
+											<span class="sub-mb--st" style="float: right;">
+												<?php for ($i = 1; $i <= 5; $i++) { ?>
+												<?php if ($advertisement_na['rating'] < $i) { ?>
+												<div class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i></div>
+												<?php } else { ?>
+												<div class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></div>
+												<?php } ?>
+												<?php } ?>
+											</span>
+										</div>
+										<?php if((isset($advertisement_na['filtered']) && $advertisement_na['filtered'] =='1') ? $advertisement_na['filtered'] : '') { ?>
+										<div class="col-sm-1 filtered_ads">
+											<?php echo "Filtered"; ?>
+										</div>
+										<?php } ?>
+									</a>
+								</div>
 							</div>
 						</div>
-					</div>
-					<?php $count_na = count($advertisement_national); ?>
-					<script>
-						var national_adv_id = "<?php echo $advertisement_na['advertise_id']; ?>"; var count_na = "<?php echo $count_na; ?>";
-					</script>
-					<?php } } else { ?>
-					<div class="col-sm-12">
-						<div class="row">
-							<h4 style="color: #00ACEC">Post your advertisement here, entire <u>country</u> is waiting...</h4>
-						</div>
-					</div>
-					<?php } ?>
+						<?php $count_na = count($advertisement_national); ?>
+						<script>
+							var national_adv_id = "<?php echo $advertisement_na['advertise_id']; ?>"; var count_na = "<?php echo $count_na; ?>";
+						</script>
+						<?php } }  ?>
+						</span>
 				</div>
 				<div role="tabpanel" class="tab-pane" id="profile">
-					<?php if(count($advertisement_state) > 0) {
-						foreach($advertisement_state as $advertisement_st) { ?>
-					<div class="col-sm-12 advertise_count" id="<?php echo $advertisement_st['advertise_id']; ?>">
-						<div class="row">
-							<div class="hovereffect fis-des">
-								<img src="<?php echo $image_resize->resize($advertisement_st['offer_image'], 993, 182); ?>" class="img-responsive" title="<?php echo $advertisement_st['offer_title']; ?>"
-								 alt="<?php echo $advertisement_st['offer_title']; ?>">
-								<div class="overlay">
-									<div class="col-sm-12">
-										<div class="col-sm-9">
-											<h2 class="store_name">
-												<?php echo $advertisement_st['nickname']; ?>
-											</h2>
-										</div>
-										<div class="col-sm-3">
-											<h2 class="store_rating">
-												<div>
-													<?php for ($i = 1; $i <= 5; $i++) { ?>
-													<?php if ($advertisement_st['rating'] < $i) { ?>
-													<div class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i></div>
-													<?php } else { ?>
-													<div class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></div>
-													<?php } ?>
-													<?php } ?>
-												</div>
-											</h2>
-										</div>
-									</div>
-									<div class="col-sm-12">
-										<h2 class="advertise_title">
-											<?php echo $advertisement_st['offer_title']; ?>
-										</h2>
-									</div>
-									<a class="info hmg--sel ne--str view-det-adv" href="index.php?route=seller/seller/info&seller_id=<?php echo $advertisement_st['seller_id']; ?>&path=&counter=1"><img src="image/store_front.png" class="img-responsive"></a>
-									<a class="info hmg--sel ne--opn view-det-adv cursor" data-id="<?php echo $advertisement_st['advertise_id']; ?>" onclick="viewDetAdv(this);"><i class="fa fa-arrows-alt"></i></a>
-								</div>
-								<?php if((isset($advertisement_st['filtered']) && $advertisement_st['filtered'] =='1') ? $advertisement_st['filtered'] : '') { ?>
-								<div class="col-sm-1 filtered_ads">
-									<?php echo "Filtered"; ?>
-								</div>
+					<div class="col-sm-12">
+							<div class="row">
+								<h4 style="color: #00ACEC">Post your advertisement here, entire 
+								<?php if ($logged && $login_type != 'buyer') { ?>
+									<a href="index.php?route=selleradvertise/advertise/add">
+										<u>state</u>
+									</a>
+								<?php }else{ ?>
+									<a class="cursor" data-toggle="modal" data-target="#login_frc_seller">
+										<u>state</u>
+									</a>
 								<?php } ?>
+								is waiting...</h4>
 							</div>
-							<div class="sec-mob">
-								<a class="info view-det-adv" data-id="<?php echo $advertisement_st['advertise_id']; ?>" onclick="viewDetAdv(this);">
-									<img src="<?php echo $image_resize->resize($advertisement_st['offer_image'], 993, 182); ?>" class="img-responsive" title="<?php echo $advertisement_st['offer_title']; ?>" alt="<?php echo $advertisement_st['offer_title']; ?>">
-									<div class="temp--mb">
-										<span style="float: left;">
-											<?php echo substr($advertisement_st['nickname'], 0, 20); ?>
-										</span>
-										<span class="sub-mb--st" style="float: right;">
-											<?php for ($i = 1; $i <= 5; $i++) { ?>
-											<?php if ($advertisement_st['rating'] < $i) { ?>
-											<div class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i></div>
-											<?php } else { ?>
-											<div class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></div>
-											<?php } ?>
-											<?php } ?>
-										</span>
+					</div>
+					<span id = "profile_content">
+						<?php if(count($advertisement_state) > 0) {
+							foreach($advertisement_state as $advertisement_st) { ?>
+						<div class="col-sm-12 advertise_count" id="<?php echo $advertisement_st['advertise_id']; ?>">
+							<div class="row">
+								<div class="hovereffect fis-des">
+									<?php if(file_exists("image/".$advertisement_st['offer_image'])){ ?>
+										<img src="<?php echo $image_resize->resize($advertisement_st['offer_image'], 993, 182); ?>" class="img-responsive" title="<?php echo $advertisement_st['offer_title']; ?>"
+										alt="<?php echo $advertisement_st['offer_title']; ?>">
+									<?php } else { ?>
+										<img src="image/adv_default_image.jpg" class="img-responsive" title="<?php echo $advertisement_st['offer_title']; ?>"
+										alt="<?php echo $advertisement_st['offer_title']; ?>">
+									<?php } ?>
+									<div class="overlay">
+										<div class="col-sm-12">
+											<div class="col-sm-9">
+												<h2 class="store_name">
+													<?php echo $advertisement_st['nickname']; ?>
+												</h2>
+											</div>
+											<div class="col-sm-3">
+												<h2 class="store_rating">
+													<div>
+														<?php for ($i = 1; $i <= 5; $i++) { ?>
+														<?php if ($advertisement_st['rating'] < $i) { ?>
+														<div class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i></div>
+														<?php } else { ?>
+														<div class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></div>
+														<?php } ?>
+														<?php } ?>
+													</div>
+												</h2>
+											</div>
+										</div>
+										<div class="col-sm-12">
+											<h2 class="advertise_title">
+												<?php echo $advertisement_st['offer_title']; ?>
+											</h2>
+										</div>
+										<a class="info hmg--sel ne--str view-det-adv" href="index.php?route=seller/seller/info&seller_id=<?php echo $advertisement_st['seller_id']; ?>&path=&counter=1"><img src="image/store_front.png" class="img-responsive"></a>
+										<a class="info hmg--sel ne--opn view-det-adv cursor" data-id="<?php echo $advertisement_st['advertise_id']; ?>" onclick="viewDetAdv(this);"><i class="fa fa-arrows-alt"></i></a>
 									</div>
 									<?php if((isset($advertisement_st['filtered']) && $advertisement_st['filtered'] =='1') ? $advertisement_st['filtered'] : '') { ?>
 									<div class="col-sm-1 filtered_ads">
 										<?php echo "Filtered"; ?>
 									</div>
 									<?php } ?>
-								</a>
+								</div>
+								<div class="sec-mob">
+									<a class="info view-det-adv" data-id="<?php echo $advertisement_st['advertise_id']; ?>" onclick="viewDetAdv(this);">
+										<img src="<?php echo $image_resize->resize($advertisement_st['offer_image'], 993, 182); ?>" class="img-responsive" title="<?php echo $advertisement_st['offer_title']; ?>" alt="<?php echo $advertisement_st['offer_title']; ?>">
+										<div class="temp--mb">
+											<span style="float: left;">
+												<?php echo substr($advertisement_st['nickname'], 0, 20); ?>
+											</span>
+											<span class="sub-mb--st" style="float: right;">
+												<?php for ($i = 1; $i <= 5; $i++) { ?>
+												<?php if ($advertisement_st['rating'] < $i) { ?>
+												<div class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i></div>
+												<?php } else { ?>
+												<div class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></div>
+												<?php } ?>
+												<?php } ?>
+											</span>
+										</div>
+										<?php if((isset($advertisement_st['filtered']) && $advertisement_st['filtered'] =='1') ? $advertisement_st['filtered'] : '') { ?>
+										<div class="col-sm-1 filtered_ads">
+											<?php echo "Filtered"; ?>
+										</div>
+										<?php } ?>
+									</a>
+								</div>
 							</div>
 						</div>
-					</div>
-					<?php $count_st = count($advertisement_state); ?>
-					<script>
-						var state_adv_id = "<?php echo $advertisement_st['advertise_id']; ?>"; var count_st = "<?php echo $count_st; ?>";
-					</script>
-					<?php } } else { ?>
-					<div class="col-sm-12">
-						<div class="row">
-							<h4 style="color: #00ACEC">Post your advertisement here, entire <u>state</u> is waiting...</h4>
-						</div>
-					</div>
-					<?php } ?>
+						<?php $count_st = count($advertisement_state); ?>
+						<script>
+							var state_adv_id = "<?php echo $advertisement_st['advertise_id']; ?>"; var count_st = "<?php echo $count_st; ?>";
+						</script>
+						<?php } }  ?>
+					</span>
 				</div>
 				<div role="tabpanel" class="tab-pane" id="messages">
-					<?php if(count($advertisement_city) > 0) {
-						foreach($advertisement_city as $advertisement_ci) { ?>
-					<div class="col-sm-12 advertise_count" id="<?php echo $advertisement_ci['advertise_id']; ?>">
-						<div class="row">
-							<div class="hovereffect fis-des">
-								<img src="<?php echo $image_resize->resize($advertisement_ci['offer_image'], 993, 182); ?>" class="img-responsive" title="<?php echo $advertisement_ci['offer_title']; ?>"
-								 alt="<?php echo $advertisement_ci['offer_title']; ?>">
-								<div class="overlay">
-									<div class="col-sm-12">
-										<div class="col-sm-9">
-											<h2 class="store_name">
-												<?php echo $advertisement_ci['nickname']; ?>
-											</h2>
-										</div>
-										<div class="col-sm-3">
-											<h2 class="store_rating">
-												<div>
-													<?php for ($i = 1; $i <= 5; $i++) { ?>
-													<?php if ($advertisement_ci['rating'] < $i) { ?>
-													<div class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i></div>
-													<?php } else { ?>
-													<div class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></div>
-													<?php } ?>
-													<?php } ?>
-												</div>
-											</h2>
-										</div>
-									</div>
-									<div class="col-sm-12">
-										<h2 class="advertise_title">
-											<?php echo $advertisement_ci['offer_title']; ?>
-										</h2>
-									</div>
-									<a class="info hmg--sel ne--str view-det-adv" href="index.php?route=seller/seller/info&seller_id=<?php echo $advertisement_ci['seller_id']; ?>&path=&counter=1"><img src="image/store_front.png" class="img-responsive"></a>
-									<a class="info hmg--sel ne--opn view-det-adv cursor" data-id="<?php echo $advertisement_ci['advertise_id']; ?>" onclick="viewDetAdv(this);"><i class="fa fa-arrows-alt"></i></a>
-								</div>
-								<?php if((isset($advertisement_ci['filtered']) && $advertisement_ci['filtered'] =='1') ? $advertisement_ci['filtered'] : '') { ?>
-								<div class="col-sm-1 filtered_ads">
-									<?php echo "Filtered"; ?>
-								</div>
+					<div class="col-sm-12">
+							<div class="row">
+								<h4 style="color: #00ACEC">Post your advertisement here, entire 
+								<?php if ($logged && $login_type != 'buyer') { ?>
+									<a href="index.php?route=selleradvertise/advertise/add">
+										<u>city/district</u>
+									</a>
+								<?php }else{ ?>
+									<a class="cursor" data-toggle="modal" data-target="#login_frc_seller">
+										<u>city/district</u>
+									</a>
 								<?php } ?>
+								is waiting...</h4>
 							</div>
-							<div class="sec-mob">
-								<a class="info view-det-adv" data-id="<?php echo $advertisement_ci['advertise_id']; ?>" onclick="viewDetAdv(this);">
-									<img src="<?php echo $image_resize->resize($advertisement_ci['offer_image'], 993, 182); ?>" class="img-responsive" title="<?php echo $advertisement_ci['offer_title']; ?>" alt="<?php echo $advertisement_ci['offer_title']; ?>">
-									<div class="temp--mb">
-										<span style="float: left;">
-											<?php echo substr($advertisement_ci['nickname'], 0, 20); ?>
-										</span>
-										<span class="sub-mb--st" style="float: right;">
-											<?php for ($i = 1; $i <= 5; $i++) { ?>
-											<?php if ($advertisement_ci['rating'] < $i) { ?>
-											<div class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i></div>
-											<?php } else { ?>
-											<div class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></div>
-											<?php } ?>
-											<?php } ?>
-										</span>
+					</div>
+					<span id = "messages_content">
+						<?php if(count($advertisement_city) > 0) {
+							foreach($advertisement_city as $advertisement_ci) { ?>
+						<div class="col-sm-12 advertise_count" id="<?php echo $advertisement_ci['advertise_id']; ?>">
+							<div class="row">
+								<div class="hovereffect fis-des">
+									<?php if(file_exists("image/".$advertisement_ci['offer_image'])){ ?>
+										<img src="<?php echo $image_resize->resize($advertisement_ci['offer_image'], 993, 182); ?>" class="img-responsive" title="<?php echo $advertisement_ci['offer_title']; ?>"
+										alt="<?php echo $advertisement_ci['offer_title']; ?>">
+									<?php } else { ?>
+										<img src="image/adv_default_image.jpg" class="img-responsive" title="<?php echo $advertisement_ci['offer_title']; ?>"
+										alt="<?php echo $advertisement_ci['offer_title']; ?>">
+									<?php } ?>
+									<div class="overlay">
+										<div class="col-sm-12">
+											<div class="col-sm-9">
+												<h2 class="store_name">
+													<?php echo $advertisement_ci['nickname']; ?>
+												</h2>
+											</div>
+											<div class="col-sm-3">
+												<h2 class="store_rating">
+													<div>
+														<?php for ($i = 1; $i <= 5; $i++) { ?>
+														<?php if ($advertisement_ci['rating'] < $i) { ?>
+														<div class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i></div>
+														<?php } else { ?>
+														<div class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></div>
+														<?php } ?>
+														<?php } ?>
+													</div>
+												</h2>
+											</div>
+										</div>
+										<div class="col-sm-12">
+											<h2 class="advertise_title">
+												<?php echo $advertisement_ci['offer_title']; ?>
+											</h2>
+										</div>
+										<a class="info hmg--sel ne--str view-det-adv" href="index.php?route=seller/seller/info&seller_id=<?php echo $advertisement_ci['seller_id']; ?>&path=&counter=1"><img src="image/store_front.png" class="img-responsive"></a>
+										<a class="info hmg--sel ne--opn view-det-adv cursor" data-id="<?php echo $advertisement_ci['advertise_id']; ?>" onclick="viewDetAdv(this);"><i class="fa fa-arrows-alt"></i></a>
 									</div>
 									<?php if((isset($advertisement_ci['filtered']) && $advertisement_ci['filtered'] =='1') ? $advertisement_ci['filtered'] : '') { ?>
 									<div class="col-sm-1 filtered_ads">
 										<?php echo "Filtered"; ?>
 									</div>
 									<?php } ?>
-								</a>
+								</div>
+								<div class="sec-mob">
+									<a class="info view-det-adv" data-id="<?php echo $advertisement_ci['advertise_id']; ?>" onclick="viewDetAdv(this);">
+										<img src="<?php echo $image_resize->resize($advertisement_ci['offer_image'], 993, 182); ?>" class="img-responsive" title="<?php echo $advertisement_ci['offer_title']; ?>" alt="<?php echo $advertisement_ci['offer_title']; ?>">
+										<div class="temp--mb">
+											<span style="float: left;">
+												<?php echo substr($advertisement_ci['nickname'], 0, 20); ?>
+											</span>
+											<span class="sub-mb--st" style="float: right;">
+												<?php for ($i = 1; $i <= 5; $i++) { ?>
+												<?php if ($advertisement_ci['rating'] < $i) { ?>
+												<div class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i></div>
+												<?php } else { ?>
+												<div class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></div>
+												<?php } ?>
+												<?php } ?>
+											</span>
+										</div>
+										<?php if((isset($advertisement_ci['filtered']) && $advertisement_ci['filtered'] =='1') ? $advertisement_ci['filtered'] : '') { ?>
+										<div class="col-sm-1 filtered_ads">
+											<?php echo "Filtered"; ?>
+										</div>
+										<?php } ?>
+									</a>
+								</div>
 							</div>
-						</div>
-					</div>
-					<?php $count_ct = count($advertisement_city); ?>
-					<script>
-						var city_adv_id = "<?php echo $advertisement_ci['advertise_id']; ?>"; var count_ct = "<?php echo $count_ct; ?>";
-					</script>
-					<?php } } else { ?>
-					<div class="col-sm-12">
-						<div class="row">
-							<h4 style="color: #00ACEC">Post your advertisement here, entire <u>city/district</u> is waiting...</h4>
-						</div>
-					</div>
-					<?php } ?>
+							</div>
+							<?php $count_ct = count($advertisement_city); ?>
+							<script>
+								var city_adv_id = "<?php echo $advertisement_ci['advertise_id']; ?>"; var count_ct = "<?php echo $count_ct; ?>";
+							</script>
+							<?php } }  ?>
+						</span>
 				</div>
 				<div role="tabpanel" class="tab-pane" id="settings">
-					<?php if(count($advertisement_local) > 0 && !empty($advertisement_local)) {
-						foreach($advertisement_local as $advertisement_lo) { ?>
-					<div class="col-sm-12 advertise_count" id="<?php echo $advertisement_lo['advertise_id']; ?>">
-						<div class="row">
-							<div class="hovereffect fis-des">
-								<img src="<?php echo $image_resize->resize($advertisement_lo['offer_image'], 993, 182); ?>" class="img-responsive" title="<?php echo $advertisement_lo['offer_title']; ?>"
-								 alt="<?php echo $advertisement_lo['offer_title']; ?>">
-								<div class="overlay">
-									<div class="col-sm-12">
-										<div class="col-sm-9">
-											<h2 class="store_name">
-												<?php echo $advertisement_lo['nickname']; ?>
-											</h2>
-										</div>
-										<div class="col-sm-3">
-											<h2 class="store_rating">
-												<div>
-													<?php for ($i = 1; $i <= 5; $i++) { ?>
-													<?php if ($advertisement_lo['rating'] < $i) { ?>
-													<div class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i></div>
-													<?php } else { ?>
-													<div class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></div>
-													<?php } ?>
-													<?php } ?>
-												</div>
-											</h2>
-										</div>
-									</div>
-									<div class="col-sm-12">
-										<h2 class="advertise_title">
-											<?php echo $advertisement_lo['offer_title']; ?>
-										</h2>
-									</div>
-									<a class="info hmg--sel ne--str view-det-adv" href="index.php?route=seller/seller/info&seller_id=<?php echo $advertisement_lo['seller_id']; ?>&path=&counter=1"><img src="image/store_front.png" class="img-responsive"></a>
-									<a class="info hmg--sel ne--opn view-det-adv cursor" data-id="<?php echo $advertisement_lo['advertise_id']; ?>" onclick="viewDetAdv(this);"><i class="fa fa-arrows-alt"></i></a>
-								</div>
-								<?php if((isset($advertisement_lo['filtered']) && $advertisement_lo['filtered'] =='1') ? $advertisement_lo['filtered'] : '') { ?>
-								<div class="col-sm-1 filtered_ads">
-									<?php echo "Filtered"; ?>
-								</div>
+					<div class="col-sm-12">
+							<div class="row">
+								<h4 style="color: #00ACEC">Post your advertisement for 
+								<?php if ($logged && $login_type != 'buyer') { ?>
+									<a href="index.php?route=selleradvertise/advertise/add">
+										<u>free</u>
+									</a>
+								<?php }else{ ?>
+									<a class="cursor" data-toggle="modal" data-target="#login_frc_seller">
+										<u>free</u>
+									</a>
 								<?php } ?>
+								 here and let the buyers nearby see instantly...</h4>
 							</div>
-							<div class="sec-mob">
-								<a class="info view-det-adv" data-id="<?php echo $advertisement_lo['advertise_id']; ?>" onclick="viewDetAdv(this);">
-									<img src="<?php echo $image_resize->resize($advertisement_lo['offer_image'], 993, 182); ?>" class="img-responsive" title="<?php echo $advertisement_lo['offer_title']; ?>" alt="<?php echo $advertisement_lo['offer_title']; ?>">
-									<div class="temp--mb">
-										<span style="float: left;">
-											<?php echo substr($advertisement_lo['nickname'], 0, 20); ?>
-										</span>
-										<span class="sub-mb--st" style="float: right;">
-											<?php for ($i = 1; $i <= 5; $i++) { ?>
-											<?php if ($advertisement_lo['rating'] < $i) { ?>
-											<div class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i></div>
-											<?php } else { ?>
-											<div class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></div>
-											<?php } ?>
-											<?php } ?>
-										</span>
+					</div>
+					<span id = "settings_content">
+						<?php if(count($advertisement_local) > 0 && !empty($advertisement_local)) {
+							foreach($advertisement_local as $advertisement_lo) { ?>
+						<div class="col-sm-12 advertise_count" id="<?php echo $advertisement_lo['advertise_id']; ?>">
+							<div class="row">
+								<div class="hovereffect fis-des">
+									<?php if(file_exists("image/".$advertisement_lo['offer_image'])){ ?>
+										<img src="<?php echo $image_resize->resize($advertisement_lo['offer_image'], 993, 182); ?>" class="img-responsive" title="<?php echo $advertisement_lo['offer_title']; ?>"
+										alt="<?php echo $advertisement_lo['offer_title']; ?>">
+									<?php } else { ?>
+										<img src="image/adv_default_image.jpg" class="img-responsive" title="<?php echo $advertisement_lo['offer_title']; ?>"
+										alt="<?php echo $advertisement_lo['offer_title']; ?>">
+									<?php } ?>
+									<div class="overlay">
+										<div class="col-sm-12">
+											<div class="col-sm-9">
+												<h2 class="store_name">
+													<?php echo $advertisement_lo['nickname']; ?>
+												</h2>
+											</div>
+											<div class="col-sm-3">
+												<h2 class="store_rating">
+													<div>
+														<?php for ($i = 1; $i <= 5; $i++) { ?>
+														<?php if ($advertisement_lo['rating'] < $i) { ?>
+														<div class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i></div>
+														<?php } else { ?>
+														<div class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></div>
+														<?php } ?>
+														<?php } ?>
+													</div>
+												</h2>
+											</div>
+										</div>
+										<div class="col-sm-12">
+											<h2 class="advertise_title">
+												<?php echo $advertisement_lo['offer_title']; ?>
+											</h2>
+										</div>
+										<a class="info hmg--sel ne--str view-det-adv" href="index.php?route=seller/seller/info&seller_id=<?php echo $advertisement_lo['seller_id']; ?>&path=&counter=1"><img src="image/store_front.png" class="img-responsive"></a>
+										<a class="info hmg--sel ne--opn view-det-adv cursor" data-id="<?php echo $advertisement_lo['advertise_id']; ?>" onclick="viewDetAdv(this);"><i class="fa fa-arrows-alt"></i></a>
 									</div>
 									<?php if((isset($advertisement_lo['filtered']) && $advertisement_lo['filtered'] =='1') ? $advertisement_lo['filtered'] : '') { ?>
 									<div class="col-sm-1 filtered_ads">
 										<?php echo "Filtered"; ?>
 									</div>
 									<?php } ?>
-								</a>
+								</div>
+								<div class="sec-mob">
+									<a class="info view-det-adv" data-id="<?php echo $advertisement_lo['advertise_id']; ?>" onclick="viewDetAdv(this);">
+										<img src="<?php echo $image_resize->resize($advertisement_lo['offer_image'], 993, 182); ?>" class="img-responsive" title="<?php echo $advertisement_lo['offer_title']; ?>" alt="<?php echo $advertisement_lo['offer_title']; ?>">
+										<div class="temp--mb">
+											<span style="float: left;">
+												<?php echo substr($advertisement_lo['nickname'], 0, 20); ?>
+											</span>
+											<span class="sub-mb--st" style="float: right;">
+												<?php for ($i = 1; $i <= 5; $i++) { ?>
+												<?php if ($advertisement_lo['rating'] < $i) { ?>
+												<div class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i></div>
+												<?php } else { ?>
+												<div class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></div>
+												<?php } ?>
+												<?php } ?>
+											</span>
+										</div>
+										<?php if((isset($advertisement_lo['filtered']) && $advertisement_lo['filtered'] =='1') ? $advertisement_lo['filtered'] : '') { ?>
+										<div class="col-sm-1 filtered_ads">
+											<?php echo "Filtered"; ?>
+										</div>
+										<?php } ?>
+									</a>
+								</div>
 							</div>
-						</div>
-					</div>
-					<?php $count_lo = count($advertisement_local); ?>
-					<script>
-						var local_adv_id = "<?php echo $advertisement_lo['advertise_id']; ?>"; var count_lo = "<?php echo $count_lo; ?>";
-					</script>
-					<?php } } else { ?>
-					<div class="col-sm-12">
-						<div class="row">
-							<h4 style="color: #00ACEC">Post your advertisement for <u>free</u> here and let the buyers nearby see instantly...</h4>
-						</div>
-					</div>
-					<?php } ?>
+							</div>
+							<?php $count_lo = count($advertisement_local); ?>
+							<script>
+								var local_adv_id = "<?php echo $advertisement_lo['advertise_id']; ?>"; var count_lo = "<?php echo $count_lo; ?>";
+							</script>
+							<?php } } else { ?>
+							<div class="col-sm-12">
+								<div class="row">
+									<h4 style="color: #00ACEC">Post your advertisement for <u>free</u> here and let the buyers nearby see instantly...</h4>
+								</div>
+							</div>
+							<?php } ?>
+					</span>
 				</div>
 				<?php if( (isset($advertisement_national) && !empty($advertisement_national)) || (isset($advertisement_state) && !empty($advertisement_state)) || (isset($advertisement_city) && !empty($advertisement_city)) || (isset($advertisement_local) && !empty($advertisement_local))) { ?>
 				<p id="loader_page"><img src="catalog/view/theme/default/image/ajax_loader.gif"></p>
@@ -683,7 +761,7 @@
 									var str_lnk = 'index.php?route=seller/seller/info&seller_id=' + json['seller_id'] + '&path=&counter=1';
 									if (json['success']) {
 										if (json['advertise_id']) {
-											$('#ad_det_id').html('<a href=\"' + str_lnk + '\"><h4><strong>' + json['nickname'] + '</strong></h4></a><h4><strong></strong>' + json['offer_title'] + '</h4><img src=\"image/' + img + '\" alt=\"' + json['offer_title'] + '\" class=\"img-thumbnail img-responsive\" /><p><strong></strong>' + json['offer_desc'] + '<p><strong></strong><a href=' + json['offer_url'] + '>' + json['offer_url'] + '</a></p><div class="view_desc_sl"><p>Terms & Conditions</p><p>- The advertisement provided by the "' + json['nickname'] + '" is true to best of their knowledge.</p><p>- BoN Online Services holds no responsibility of the advertisement information.</p></div>');
+											$('#ad_det_id').html('<a href=\"' + str_lnk + '\"><h4><strong>' + json['nickname'] + '</strong></h4></a><h4><strong></strong>' + json['offer_title'] + '</h4><img src=\"image/' + img + '\" alt=\"' + json['offer_title'] + '\" class=\"img-thumbnail img-responsive\" onerror=\"this.onerror=null;this.src=\'image/adv_default_image.jpg\';\"/><p><strong></strong>' + json['offer_desc'] + '<p><strong></strong><a href=' + json['offer_url'] + '>' + json['offer_url'] + '</a></p><div class="view_desc_sl"><p>Terms & Conditions</p><p>- The advertisement provided by the "' + json['nickname'] + '" is true to best of their knowledge.</p><p>- BoN Online Services holds no responsibility of the advertisement information.</p></div>');
 										}
 										$('#ad_details').modal('toggle');
 
@@ -758,6 +836,7 @@
 	$('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
 		var target = $(e.target).attr("href") // activated tab		
 		target = target.replace('#', '');
+		//alert(target);
 		tab_id = target;
 		id = $("#" + tab_id + " div:first-child").attr("id");
 		count = $("#" + tab_id + " div.advertise_count").length;
@@ -792,21 +871,21 @@
 			url: "index.php?route=common/home/getLoadMore&path=" + path + "&tab_id=" + tab_id + "&id=" + id + "&count=" + count,
 			type: 'GET',
 			success: function (data) {
-				$('#' + tab_id).empty();
+				$('#' + tab_id + "_content").empty();
 				var str = $.trim(data);
 				if (str == 'no_record_found') {
-					$('#loader_page').hide();
-					if (tab_id == "home") {
-						$('#' + tab_id).append('<h4 style="color: #00ACEC">Post your advertisement here, entire <u>country</u> is waiting...</h4>');
-					}else if (tab_id == "profile"){
-						$('#' + tab_id).append('<h4 style="color: #00ACEC">Post your advertisement here, entire <u>state</u> is waiting...</h4>');
-					}else if (tab_id == "messages"){
-						$('#' + tab_id).append('<h4 style="color: #00ACEC">Post your advertisement here, entire <u>city/district</u> is waiting...</h4>');
-					}else if (tab_id == "settings"){
-						$('#' + tab_id).append('<h4 style="color: #00ACEC">Post your advertisement for <u>free</u> here and let the buyers nearby see instantly...</h4>');	
-					}else {
-						$('#' + tab_id).append('<h4 style="color: #00ACEC">No Advertisement Yet...</h4>');
-					}
+					// $('#loader_page').hide();
+					// if (tab_id == "home") {
+					// 	$('#' + tab_id).append('<h4 style="color: #00ACEC">Post your advertisement here, entire <u>country</u> is waiting...</h4>');
+					// }else if (tab_id == "profile"){
+					// 	$('#' + tab_id).append('<h4 style="color: #00ACEC">Post your advertisement here, entire <u>state</u> is waiting...</h4>');
+					// }else if (tab_id == "messages"){
+					// 	$('#' + tab_id).append('<h4 style="color: #00ACEC">Post your advertisement here, entire <u>city/district</u> is waiting...</h4>');
+					// }else if (tab_id == "settings"){
+					// 	$('#' + tab_id).append('<h4 style="color: #00ACEC">Post your advertisement for <u>free</u> here and let the buyers nearby see instantly...</h4>');	
+					// }else {
+					// 	$('#' + tab_id).append('<h4 style="color: #00ACEC">No Advertisement Yet...</h4>');
+					// }
 					
 					is_loading = true;
 					count = '';
@@ -814,7 +893,7 @@
 					id = '';
 				} else {
 					$('#loader_page').hide();
-					$('#' + tab_id).append(data);
+					$('#' + tab_id + "_content").append(data);
 					is_loading = false;
 				}
 			}
@@ -843,7 +922,7 @@
 									id = '';
 								} else {
 									$('#loader_page').hide();
-									$('#' + tab_id).append(data);
+									$('#' + tab_id + "_content").append(data);
 
 									is_loading = false;
 								}

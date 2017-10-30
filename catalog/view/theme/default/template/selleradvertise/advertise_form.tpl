@@ -74,10 +74,10 @@
                   			       </ul>
                   			    </div>
                   			</label>
-                        <span id="adv-size"></span>
                         <div class="col-md-4">
                           <a href=""  style="display:none;" id="thumb-image" data-toggle="image" class="img-thumbnail"><img src="<?php echo $thumb; ?>" alt="" title="" data-placeholder="<?php echo $placeholder; ?>"/></a>
                           <button type="button" id="button-image" class="btn btn-primary"><i class="fa fa-pencil"></i></button>
+                          <span id="adv-size" style="display:none;font-size: 12px"></span>
                           <input type="hidden" name="offer_image" value="<?php echo $offer_image_original; ?>" id="input-image" />
                           <input type="hidden" name="offer_image_original" value="image/<?php echo $offer_image_original; ?>" id="offer_image_original" />
                         </div>
@@ -96,7 +96,7 @@
                       			   <div class="crr-img-bttt"><button class="crr-img-bt" type="button" id="getCropped"><i class="fa fa-crop"></i> Crop</button></div>
                       			</div>
                             <div id="cropped_result" style="display:none;">
-                             <label class="col-sm-3 control-label" for="input-image">Cropped image: </label><span id="adv-size"></span>
+                             <label class="col-sm-3 control-label" for="input-image">Cropped image: </label><span id="adv-size" style="display:none;font-size: 12px"></span>
                              <div class="col-md-9 docs-buttons">
                                 <div class="btn-group btn-group-crop">
                             				 <span style="margin-bottom:10px;">Please ensure cropped image is of better quality before submitting.</span>

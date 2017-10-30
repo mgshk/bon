@@ -294,9 +294,9 @@ $(document).ready(function() {
 	$('select').on('change', function() {
        var top = this.value;
        if(top == 6){
-   	      $('#adv-size').html('Please Uplaod image size 230*1320');
+   	      $('#adv-size').html('Please uplaod image of size > 200ht * 1000wt');
        } else {
-          $('#adv-size').html('Please Uplaod image size 1320*230');
+          $('#adv-size').html('Please uplaod image of size > 1000wt * 200ht');
        }
    });
 });
