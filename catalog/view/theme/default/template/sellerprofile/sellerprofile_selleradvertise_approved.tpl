@@ -763,7 +763,7 @@
 			type: 'post',
 			dataType: 'json',
 			data: $("#advertise_move_live").serialize(),
-			success: function(json) { 
+			success: function(json) {
 				if (json['success']) {
 					var loc = $('input[name="loc"]:checked').val();
 					var amount = $('#actual_price').val();
@@ -783,6 +783,11 @@
 						$('#myModal_adv').append(json['confirmForm']);
 						$('#payu_form').submit();
 					}
+				} else {
+					$('#error_check').html('<i class="fa fa-exclamation-circle"></i> '+ json['error']).show();
+					setTimeout(function() {
+						$('#error_check').empty().hide();
+					}, 3000);
 				}
 
 				// if(json['free_check'] == 1) {
