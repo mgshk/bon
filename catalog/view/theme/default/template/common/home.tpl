@@ -713,13 +713,7 @@
 							<script>
 								var local_adv_id = "<?php echo $advertisement_lo['advertise_id']; ?>"; var count_lo = "<?php echo $count_lo; ?>";
 							</script>
-							<?php } } else { ?>
-							<div class="col-sm-12">
-								<div class="row">
-									<h4 style="color: #00ACEC">Post your advertisement for <u>free</u> here and let the buyers nearby see instantly...</h4>
-								</div>
-							</div>
-							<?php } ?>
+							<?php } }  ?>
 					</span>
 				</div>
 				<?php if( (isset($advertisement_national) && !empty($advertisement_national)) || (isset($advertisement_state) && !empty($advertisement_state)) || (isset($advertisement_city) && !empty($advertisement_city)) || (isset($advertisement_local) && !empty($advertisement_local))) { ?>

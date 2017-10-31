@@ -611,7 +611,7 @@ class ModelselleradvertiseAdvertise extends Model
             AND CURDATE() >= so.from_date AND CURDATE() <= so.end_date AND so.status = 'live' AND so.status != 'deleted' 
             UNION 
             SELECT COUNT(DISTINCT advertise_id) AS total FROM ".DB_PREFIX."store_offers soi 
-            LEFT JOIN ".DB_PREFIX."home_top_banner_date htbd ON (soi.advertise_id = htbd.store_offer_advertise_id) 
+            INNER JOIN ".DB_PREFIX."home_top_banner_date htbd ON (soi.advertise_id = htbd.store_offer_advertise_id) 
             WHERE soi.seller_id = '".(int) $this->customer->getID()."' AND soi.status = 'live' AND soi.status != 'deleted' 
             AND soi.position = '1' AND CURDATE() = htbd.date";
 
