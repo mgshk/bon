@@ -34,17 +34,29 @@ class Modelsellerseller extends Model
 
 	public function getAdvertisesFrontStore($position, $seller_id, $limit='', $adv_count='')
     {
-        $sql = "SELECT advertise_id, offer_title, offer_image, nickname, offer_url";
+        // $sql = "SELECT advertise_id, offer_title, offer_image, nickname, offer_url";
 
-		//$sql .= " (SELECT AVG(rating) AS total FROM ".DB_PREFIX."sellerreview r1 WHERE r1.seller_id = st_of.seller_id AND r1.status = '1' GROUP BY r1.seller_id) AS rating FROM ".DB_PREFIX."store_offers st_of LEFT JOIN ".DB_PREFIX."customer cs ON (cs.customer_id = st_of.seller_id)";
+		// //$sql .= " (SELECT AVG(rating) AS total FROM ".DB_PREFIX."sellerreview r1 WHERE r1.seller_id = st_of.seller_id AND r1.status = '1' GROUP BY r1.seller_id) AS rating FROM ".DB_PREFIX."store_offers st_of LEFT JOIN ".DB_PREFIX."customer cs ON (cs.customer_id = st_of.seller_id)";
 
-		$sql .= " FROM ".DB_PREFIX."store_offers st_of LEFT JOIN ".DB_PREFIX."customer cs ON (cs.customer_id = st_of.seller_id)";
+		// $sql .= " FROM ".DB_PREFIX."store_offers st_of LEFT JOIN ".DB_PREFIX."customer cs ON (cs.customer_id = st_of.seller_id)";
 
-		$sql .= " WHERE CURDATE() >= st_of.from_date AND CURDATE() <= st_of.end_date  AND st_of.status = 'live' AND st_of.position = ".$position." AND st_of.seller_id = ".$seller_id;
+		// $sql .= " WHERE CURDATE() >= st_of.from_date AND CURDATE() <= st_of.end_date  AND st_of.status = 'live' 
+        //   AND st_of.seller_id = ".$seller_id;
+        //  //AND st_of.position = ".$position.";
 
-		$sql .= " ORDER BY st_of.advertise_id DESC";
+		// $sql .= " ORDER BY st_of.price DESC, st_of.from_date DESC, st_of.advertise_id DESC";
 
-		//$sql .= " st_of.price DESC";
+		// //$sql .= " st_of.price DESC";
+
+        $sql = "SELECT st_of.advertise_id, st_of.offer_title, st_of.offer_image, cs.nickname, st_of.offer_url 
+                FROM ".DB_PREFIX."store_offers st_of 
+                LEFT JOIN ".DB_PREFIX."customer cs ON (cs.customer_id = st_of.seller_id) 
+                LEFT JOIN ".DB_PREFIX."home_top_banner_date htbd ON (htbd.store_offer_advertise_id = st_of.advertise_id) 
+                WHERE 
+                    ((CURDATE() >= st_of.from_date AND CURDATE() <= st_of.end_date) OR htbd.date = CURDATE()) 
+                    AND st_of.status = 'live' 
+                    AND st_of.seller_id = ".$seller_id." 
+                    ORDER BY htbd.date DESC, st_of.price DESC, st_of.from_date DESC, st_of.advertise_id DESC";
 
 		//print_r($sql); die;
 		if($adv_count !='') {
