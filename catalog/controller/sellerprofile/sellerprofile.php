@@ -2506,15 +2506,18 @@ class Controllersellerprofilesellerprofile extends Controller
                     $this->model_selleradvertise_advertise->adBannerToLive($data);
                     $json['confirmForm'] = $this->load->controller('checkout/confirm/adConfirm');
                 } else if ($this->request->post['loc'] == '2' || $this->request->post['loc'] == '3' || $this->request->post['loc'] == '4' || $this->request->post['loc'] == '5') {
+
+                    if ($this->request->post['loc'] == '5') {
+                        $check_eligibity = $this->model_selleradvertise_advertise->isFreeAdUsed();
+
+                        if ($check_eligibity > 0)
+                            throw new Exception($this->language->get('error_free_ad'));
+                    }
+
                     $data['km'] = (isset($this->request->post['km']) && ($this->request->post['km'] != '')) ? $this->request->post['km']: '';
                     $this->model_selleradvertise_advertise->adBannersToLive($data);
                     $json['confirmForm'] = $this->load->controller('checkout/confirm/adConfirm');
-                } else if ($this->request->post['loc'] == '6') {
-                    $check_eligibity = $this->model_selleradvertise_advertise->isFreeAdUsed();
-
-                    if ($check_eligibity > 0)
-                        throw new Exception($this->language->get('error_free_ad'));
-                        
+                } else if ($this->request->post['loc'] == '6') {                        
                     $this->model_selleradvertise_advertise->adPageToLive($data);
                 }
 
