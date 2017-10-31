@@ -1283,7 +1283,7 @@
 				$("#input-telephone").removeAttr('disabled');
 				$("#sign-up-bon-top").removeAttr('disabled');
 			} else {
-				$('#zone-bon-error').html('<i class="fa fa-times" aria-hidden="true"></i><span>Currently available in Tamilnadu and Pondicherry only. Will be launched in above place soon.</span>');
+				$('#zone-bon-error').html('<span style="font-size: 12px;font-weight:normal;color: #F56B6B">Currently available in Tamilnadu and Pondicherry only. Will be available in above place from 13th Nov, 2017.</span>');
 				$("#input-telephone").attr('disabled', 'disabled');
 				$("#sign-up-bon-top").attr('disabled', 'disabled');
 			}
