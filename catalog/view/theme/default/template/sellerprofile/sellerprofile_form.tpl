@@ -1960,7 +1960,9 @@
       $('#sellerlive').load(this.href);
     });
 
-    $('#sellerlive').load('index.php?route=sellerprofile/sellerprofile/selleradvertiselive&seller_id=<?php echo $seller_id; ?>');
+    $('#sellerlive').load('index.php?route=sellerprofile/sellerprofile/selleradvertiselive&seller_id=<?php echo $seller_id; ?>',function() {
+      $("#sellerlivecount").text($("#sellerlive .hovereffect").length);
+    });
     $('#pre_loaderr').hide();
   });
 
