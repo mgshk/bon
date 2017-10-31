@@ -46,7 +46,7 @@ class ControllersellerproductProduct extends Controller
         $this->load->model('sellerproduct/product');
 
         if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validateForm()) {
-			//echo "<pre>"; print_r($this->request->post); die;
+			
             $this->model_sellerproduct_product->addProduct($this->request->post);
 
             $this->session->data['success'] = $this->language->get('text_success');

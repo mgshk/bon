@@ -14,7 +14,21 @@ class ModelsellerproductProduct extends Model
       }
 
 
-        $this->db->query('INSERT INTO '.DB_PREFIX."product SET model = '".$this->db->escape($data['model'])."', sku = '".$this->db->escape($data['sku'])."', upc = '".$this->db->escape($data['upc'])."', ean = '".$this->db->escape($data['ean'])."', jan = '".$this->db->escape($data['jan'])."', isbn = '".$this->db->escape($data['isbn'])."', mpn = '".$this->db->escape($data['mpn'])."', location = '".$this->db->escape($data['location'])."', quantity = '".(int) $data['quantity']."', minimum = '".(int) $data['minimum']."', subtract = '".(int) $data['subtract']."', stock_status_id = '".(int) $data['stock_status_id']."', date_available = '".$this->db->escape($data['date_available'])."', manufacturer_id = '".(int) $data['manufacturer_id']."', shipping = '".(int) $data['shipping']."', price = '".(float) $data['price']."', discount_price = '".(float) $data['discount_price']."', special_price = '".(float) $data['special_price']."', discount_type = '".$data['discount_type']."', points = '".(int) $data['points']."', weight = '".(float) $data['weight']."', weight_class_id = '".(int) $data['weight_class_id']."', length = '".(float) $data['length']."', width = '".(float) $data['width']."', height = '".(float) $data['height']."', length_class_id = '".(int) $data['length_class_id']."', status = '".(int) $product_status."', tax_class_id = '".$this->db->escape($data['tax_class_id'])."', sort_order = '".(int) $data['sort_order']."', date_added = NOW()");
+        $this->db->query('INSERT INTO '.DB_PREFIX."product SET model = '".$this->db->escape($data['model'])."',
+                         quantity = '".(int) $data['quantity']."',
+                         subtract = '".(int) $data['subtract']."',
+                         price = '".(float) $data['price']."',
+                         discount_price = '".(float) $data['discount_price']."',
+                         special_price = '".(float) $data['special_price']."',
+                         discount_type = '".$data['discount_type']."',
+                         weight = '".(float) $data['weight']."',
+                         weight_class_id = '".(int) $data['weight_class_id']."',
+                         length = '".(float) $data['length']."',
+                         width = '".(float) $data['width']."',
+                         height = '".(float) $data['height']."',
+                         length_class_id = '".(int) $data['length_class_id']."',
+                         status = '".(int) $product_status."',
+                         date_added = NOW()");
 
         $product_id = $this->db->getLastId();
 
@@ -25,7 +39,10 @@ class ModelsellerproductProduct extends Model
         }
 
         foreach ($data['product_description'] as $language_id => $value) {
-            $this->db->query('INSERT INTO '.DB_PREFIX."product_description SET product_id = '".(int) $product_id."', language_id = '".(int) $language_id."', name = '".$this->db->escape($value['name'])."', description = '".$this->db->escape($value['description'])."', tag = '".$this->db->escape($value['tag'])."', meta_title = '".$this->db->escape($value['meta_title'])."', meta_description = '".$this->db->escape($value['meta_description'])."', meta_keyword = '".$this->db->escape($value['meta_keyword'])."'");
+            $this->db->query('INSERT INTO '.DB_PREFIX."product_description SET product_id = '".(int) $product_id."',
+                             language_id = '".(int) $language_id."',
+                             name = '".$this->db->escape($value['name'])."',
+                             description = '".$this->db->escape($value['description'])."'");
         }
 
         if (isset($data['product_store'])) {
@@ -174,7 +191,22 @@ if($this->config->get('config_seller_add_product_alert')){
 
 
 
-        $this->db->query('UPDATE '.DB_PREFIX."product SET model = '".$this->db->escape($data['model'])."', sku = '".$this->db->escape($data['sku'])."', upc = '".$this->db->escape($data['upc'])."', ean = '".$this->db->escape($data['ean'])."', jan = '".$this->db->escape($data['jan'])."', isbn = '".$this->db->escape($data['isbn'])."', mpn = '".$this->db->escape($data['mpn'])."', location = '".$this->db->escape($data['location'])."', quantity = '".(int) $data['quantity']."', minimum = '".(int) $data['minimum']."', subtract = '".(int) $data['subtract']."', stock_status_id = '".(int) $data['stock_status_id']."', date_available = '".$this->db->escape($data['date_available'])."', manufacturer_id = '".(int) $data['manufacturer_id']."', shipping = '".(int) $data['shipping']."', price = '".(float) $data['price']."', discount_price = '".(float) $data['discount_price']."', special_price = '".(float) $data['special_price']."', discount_type = '".$data['discount_type']."', points = '".(int) $data['points']."', weight = '".(float) $data['weight']."', weight_class_id = '".(int) $data['weight_class_id']."', length = '".(float) $data['length']."', width = '".(float) $data['width']."', height = '".(float) $data['height']."', length_class_id = '".(int) $data['length_class_id']."', status = '".(int) $product_status."', tax_class_id = '".$this->db->escape($data['tax_class_id'])."', sort_order = '".(int) $data['sort_order']."', date_modified = NOW() WHERE product_id = '".(int) $product_id."'");
+        $this->db->query('UPDATE '.DB_PREFIX."product SET model = '".$this->db->escape($data['model'])."',
+                         quantity = '".(int) $data['quantity']."',
+                         subtract = '".(int) $data['subtract']."',
+                         price = '".(float) $data['price']."',
+                         discount_price = '".(float) $data['discount_price']."',
+                         special_price = '".(float) $data['special_price']."',
+                         discount_type = '".$data['discount_type']."',
+                         weight = '".(float) $data['weight']."',
+                         weight_class_id = '".(int) $data['weight_class_id']."',
+                         length = '".(float) $data['length']."',
+                         width = '".(float) $data['width']."',
+                         height = '".(float) $data['height']."',
+                         length_class_id = '".(int) $data['length_class_id']."',
+                         status = '".(int) $product_status."',
+                         date_modified = NOW()
+                         WHERE product_id = '".(int) $product_id."'");
 
         if (isset($data['image'])) {
             $this->db->query('UPDATE '.DB_PREFIX."product SET image = '".$this->db->escape($data['image'])."' WHERE product_id = '".(int) $product_id."'");
@@ -183,7 +215,10 @@ if($this->config->get('config_seller_add_product_alert')){
         $this->db->query('DELETE FROM '.DB_PREFIX."product_description WHERE product_id = '".(int) $product_id."'");
 
         foreach ($data['product_description'] as $language_id => $value) {
-            $this->db->query('INSERT INTO '.DB_PREFIX."product_description SET product_id = '".(int) $product_id."', language_id = '".(int) $language_id."', name = '".$this->db->escape($value['name'])."', description = '".$this->db->escape($value['description'])."', tag = '".$this->db->escape($value['tag'])."', meta_title = '".$this->db->escape($value['meta_title'])."', meta_description = '".$this->db->escape($value['meta_description'])."', meta_keyword = '".$this->db->escape($value['meta_keyword'])."'");
+            $this->db->query('INSERT INTO '.DB_PREFIX."product_description SET product_id = '".(int) $product_id."',
+                             language_id = '".(int) $language_id."',
+                             name = '".$this->db->escape($value['name'])."',
+                             description = '".$this->db->escape($value['description'])."'");
         }
 
         $this->db->query('DELETE FROM '.DB_PREFIX."product_to_store WHERE product_id = '".(int) $product_id."'");
@@ -202,7 +237,10 @@ if($this->config->get('config_seller_add_product_alert')){
                     $this->db->query('DELETE FROM '.DB_PREFIX."product_attribute WHERE product_id = '".(int) $product_id."' AND attribute_id = '".(int) $product_attribute['attribute_id']."'");
 
                     foreach ($product_attribute['product_attribute_description'] as $language_id => $product_attribute_description) {
-                        $this->db->query('INSERT INTO '.DB_PREFIX."product_attribute SET product_id = '".(int) $product_id."', attribute_id = '".(int) $product_attribute['attribute_id']."', language_id = '".(int) $language_id."', text = '".$this->db->escape($product_attribute_description['text'])."'");
+                        $this->db->query('INSERT INTO '.DB_PREFIX."product_attribute SET product_id = '".(int) $product_id."',
+                                         attribute_id = '".(int) $product_attribute['attribute_id']."',
+                                         language_id = '".(int) $language_id."',
+                                         text = '".$this->db->escape($product_attribute_description['text'])."'");
                     }
                 }
             }
@@ -307,7 +345,7 @@ if($this->config->get('config_seller_add_product_alert')){
 
         $this->db->query('DELETE FROM '.DB_PREFIX."url_alias WHERE query = 'product_id=".(int) $product_id."'");
 
-        if ($data['keyword']) {
+        if (isset($data['keyword'])) { //$data['keyword']) {
             $this->db->query('INSERT INTO '.DB_PREFIX."url_alias SET query = 'product_id=".(int) $product_id."', keyword = '".$this->db->escape($data['keyword'])."'");
         }
 
@@ -1329,7 +1367,21 @@ if($this->config->get('config_seller_add_product_alert')){
     {
 
 
-        $this->db->query('INSERT INTO '.DB_PREFIX."product SET model = '".$this->db->escape($data['model'])."', sku = '".$this->db->escape($data['sku'])."', upc = '".$this->db->escape($data['upc'])."', ean = '".$this->db->escape($data['ean'])."', jan = '".$this->db->escape($data['jan'])."', isbn = '".$this->db->escape($data['isbn'])."', mpn = '".$this->db->escape($data['mpn'])."', location = '".$this->db->escape($data['location'])."', quantity = '".(int) $data['quantity']."', minimum = '".(int) $data['minimum']."', subtract = '".(int) $data['subtract']."', stock_status_id = '".(int) $data['stock_status_id']."', date_available = '".$this->db->escape($data['date_available'])."', manufacturer_id = '".(int) $data['manufacturer_id']."', shipping = '".(int) $data['shipping']."', price = '".(float) $data['price']."', points = '".(int) $data['points']."', weight = '".(float) $data['weight']."', weight_class_id = '".(int) $data['weight_class_id']."', length = '".(float) $data['length']."', width = '".(float) $data['width']."', height = '".(float) $data['height']."', length_class_id = '".(int) $data['length_class_id']."', status = '".(int) $data['status']."', tax_class_id = '".$this->db->escape($data['tax_class_id'])."', sort_order = '".(int) $data['sort_order']."', date_added = NOW()");
+        $this->db->query('INSERT INTO '.DB_PREFIX."product SET model = '".$this->db->escape($data['model'])."', 
+                         quantity = '".(int) $data['quantity']."',
+                         subtract = '".(int) $data['subtract']."',
+                         price = '".(float) $data['price']."',
+                         discount_price = '".(float) $data['discount_price']."',
+                         special_price = '".(float) $data['special_price']."',
+                         discount_type = '".$data['discount_type']."',
+                         weight = '".(float) $data['weight']."',
+                         weight_class_id = '".(int) $data['weight_class_id']."',
+                         length = '".(float) $data['length']."',
+                         width = '".(float) $data['width']."',
+                         height = '".(float) $data['height']."',
+                         length_class_id = '".(int) $data['length_class_id']."',
+                         status = '".(int) $data['status']."',
+                         date_added = NOW()");
 
         $product_id = $this->db->getLastId();
 
@@ -1340,7 +1392,10 @@ if($this->config->get('config_seller_add_product_alert')){
         }
 
         foreach ($data['product_description'] as $language_id => $value) {
-            $this->db->query('INSERT INTO '.DB_PREFIX."product_description SET product_id = '".(int) $product_id."', language_id = '".(int) $language_id."', name = '".$this->db->escape($value['name'])."', description = '".$this->db->escape($value['description'])."', tag = '".$this->db->escape($value['tag'])."', meta_title = '".$this->db->escape($value['meta_title'])."', meta_description = '".$this->db->escape($value['meta_description'])."', meta_keyword = '".$this->db->escape($value['meta_keyword'])."'");
+            $this->db->query('INSERT INTO '.DB_PREFIX."product_description SET product_id = '".(int) $product_id."',
+                             language_id = '".(int) $language_id."',
+                             name = '".$this->db->escape($value['name'])."',
+                             description = '".$this->db->escape($value['description'])."'");
         }
 
         if (isset($data['product_store'])) {
@@ -1436,9 +1491,11 @@ if($this->config->get('config_seller_add_product_alert')){
             }
         }
 
-        if (isset($data['keyword'])) {
-            $this->db->query('INSERT INTO '.DB_PREFIX."url_alias SET query = 'product_id=".(int) $product_id."', keyword = '".$this->db->escape($data['keyword'])."'");
-        }
+        //if (isset($data['keyword'])) {
+        //    //echo 'INSERT INTO '.DB_PREFIX."url_alias SET query = 'product_id=".(int) $product_id."', keyword = '".$this->db->escape($data['keyword'])."'";
+        //    exit;
+        //    $this->db->query('INSERT INTO '.DB_PREFIX."url_alias SET query = 'product_id=".(int) $product_id."', keyword = '".$this->db->escape($data['keyword'])."'");
+        //}
 
         if (isset($data['product_recurrings'])) {
             foreach ($data['product_recurrings'] as $recurring) {
