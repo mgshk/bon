@@ -1,25 +1,26 @@
 <?php
+define('ROOT_BON_FOLDER', 'bon/');
 // HTTP
-define('HTTP_SERVER', 'http://localhost/projects/2.3.0.2-compiled/admin/');
-define('HTTP_CATALOG', 'http://localhost/projects/2.3.0.2-compiled/');
+define('HTTP_SERVER', 'https://localhost/'.ROOT_BON_FOLDER.'admin/');
+define('HTTP_CATALOG', 'https://localhost/'.ROOT_BON_FOLDER);
 
 // HTTPS
-define('HTTPS_SERVER', 'http://localhost/projects/2.3.0.2-compiled/admin/');//http://192.168.0.25
-define('HTTPS_CATALOG', 'http://localhost/projects/2.3.0.2-compiled/');
+define('HTTPS_SERVER', 'https://localhost/'.ROOT_BON_FOLDER.'admin/');//http://192.168.0.25
+define('HTTPS_CATALOG', 'https://localhost/'.ROOT_BON_FOLDER);
 
 // DIR
-define('DIR_APPLICATION', 'E:/xampp/htdocs/projects/2.3.0.2-compiled/admin/');
-define('DIR_SYSTEM', 'E:/xampp/htdocs/projects/2.3.0.2-compiled/system/');
-define('DIR_IMAGE', 'E:/xampp/htdocs/projects/2.3.0.2-compiled/image/');
-define('DIR_LANGUAGE', 'E:/xampp/htdocs/projects/2.3.0.2-compiled/admin/language/');
-define('DIR_TEMPLATE', 'E:/xampp/htdocs/projects/2.3.0.2-compiled/admin/view/template/');
-define('DIR_CONFIG', 'E:/xampp/htdocs/projects/2.3.0.2-compiled/system/config/');
-define('DIR_CACHE', 'E:/xampp/htdocs/projects/2.3.0.2-compiled/system/storage/cache/');
-define('DIR_DOWNLOAD', 'E:/xampp/htdocs/projects/2.3.0.2-compiled/system/storage/download/');
-define('DIR_LOGS', 'E:/xampp/htdocs/projects/2.3.0.2-compiled/system/storage/logs/');
-define('DIR_MODIFICATION', 'E:/xampp/htdocs/projects/2.3.0.2-compiled/system/storage/modification/');
-define('DIR_UPLOAD', 'E:/xampp/htdocs/projects/2.3.0.2-compiled/system/storage/upload/');
-define('DIR_CATALOG', 'E:/xampp/htdocs/projects/2.3.0.2-compiled/catalog/');
+define('DIR_APPLICATION', $_SERVER['DOCUMENT_ROOT'].'/'.ROOT_BON_FOLDER.'admin/');
+define('DIR_SYSTEM', $_SERVER['DOCUMENT_ROOT'].'/'.ROOT_BON_FOLDER.'system/');
+define('DIR_IMAGE', $_SERVER['DOCUMENT_ROOT'].'/'.ROOT_BON_FOLDER.'image/');
+define('DIR_LANGUAGE', $_SERVER['DOCUMENT_ROOT'].'/'.ROOT_BON_FOLDER.'admin/language/');
+define('DIR_TEMPLATE', $_SERVER['DOCUMENT_ROOT'].'/'.ROOT_BON_FOLDER.'admin/view/template/');
+define('DIR_CONFIG', $_SERVER['DOCUMENT_ROOT'].'/'.ROOT_BON_FOLDER.'system/config/');
+define('DIR_CACHE', $_SERVER['DOCUMENT_ROOT'].'/'.ROOT_BON_FOLDER.'system/storage/cache/');
+define('DIR_DOWNLOAD', $_SERVER['DOCUMENT_ROOT'].'/'.ROOT_BON_FOLDER.'system/storage/download/');
+define('DIR_LOGS', $_SERVER['DOCUMENT_ROOT'].'/'.ROOT_BON_FOLDER.'system/storage/logs/');
+define('DIR_MODIFICATION', $_SERVER['DOCUMENT_ROOT'].'/'.ROOT_BON_FOLDER.'system/storage/modification/');
+define('DIR_UPLOAD', $_SERVER['DOCUMENT_ROOT'].'/'.ROOT_BON_FOLDER.'system/storage/upload/');
+define('DIR_CATALOG', $_SERVER['DOCUMENT_ROOT'].'/'.ROOT_BON_FOLDER.'catalog/');
 
 // DB
 define('DB_DRIVER', 'mysqli');
