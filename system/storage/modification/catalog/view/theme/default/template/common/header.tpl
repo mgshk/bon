@@ -352,7 +352,7 @@
 						<!--</div>-->
 					</div>
 					
-<button type="button" class="btn slide-menu-control" data-target="test-menu-left" data-action="toggle">Toggle Menu</button>
+<!--<button type="button" class="btn slide-menu-control" data-target="test-menu-left" data-action="toggle">Toggle Menu</button>-->
 					<div class="col-xs-4">
 						<?php if ($logged) { 
 										if($seller_info['nickname']) { ?>
