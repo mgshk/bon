@@ -260,9 +260,11 @@ class ControllerCheckoutCart extends Controller {
 
 			$this->response->setOutput($this->load->view('checkout/cart', $data));
 		} else {
+			$this->load->language('error/not_found');
+
 			$data['heading_title'] = $this->language->get('heading_title');
 
-			$data['text_error'] = $this->language->get('text_empty');
+			$data['text_error'] = $this->language->get('text_error');
 
 			$data['button_continue'] = $this->language->get('button_continue');
 
