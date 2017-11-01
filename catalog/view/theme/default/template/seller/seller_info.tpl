@@ -624,6 +624,10 @@
 							var adv_id = "<?php echo $advertisement_ste['advertise_id']; ?>"; var count_adv = "<?php echo $count_adv; ?>";
 						</script>
 						<?php } } else { ?>
+						<script>
+							var adv_id = "";
+							var count_adv = "";
+						</script>
 						<div class="col-sm-12">
 							<div class="row">
 								<p>No Advertisement Yet...</p>
@@ -765,7 +769,7 @@
 							<p>No Product Yet...</p>
 							<?php } ?>
 							<?php if( (isset($advertisement_store) && !empty($advertisement_store)) || (isset($products) && !empty($products))) { ?>
-							<p id="loader_page"><img src="catalog/view/theme/default/image/ajax_loader.gif"></p>
+							<p id="loader_page" style="display:none;"><img src="catalog/view/theme/default/image/ajax_loader.gif"></p>
 							<?php } ?>
 						</div>
 					</div>
@@ -1445,7 +1449,7 @@
 				if (is_loading == false) {
 					if ($(window).scrollTop() + $(window).height() >= $(document).height() - 300) {
 						is_loading = true;
-						$('#loader_page').show();
+						//$('#loader_page').show();
 						$.ajax({
 							url: "index.php?route=seller/seller/advertisement_store_info&count=" + count + "&seller_id=" + seller_id,
 							type: 'GET',
