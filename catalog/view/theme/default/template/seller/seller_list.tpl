@@ -251,7 +251,7 @@
             </div>-->
             <?php } }?>
             <?php if(isset($categories) && !empty($categories)) { ?>
-            <p id="loader_page"><img src="catalog/view/theme/default/image/ajax_loader.gif"></p>
+            <p id="loader_page" style="display:none;"><img src="catalog/view/theme/default/image/ajax_loader.gif"></p>
             <?php } ?>
          </div>
       </div>
@@ -358,7 +358,7 @@ if(cat_path != '0') {
             if (is_loading == false) { 					
                if($(window).scrollTop() + $(window).height() >= $(document).height() - 300) {
                	is_loading = true;
-               	$('#loader_page').show(); 
+               	//$('#loader_page').show(); 
                	$.ajax({
                	    url: "index.php?route=seller/seller/advertisement_seller_list&path="+path+"&searcha="+search+"&by_search="+by_search+"&count="+count,
                	    type: 'GET',				    

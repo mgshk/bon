@@ -717,7 +717,7 @@
 					</span>
 				</div>
 				<?php if( (isset($advertisement_national) && !empty($advertisement_national)) || (isset($advertisement_state) && !empty($advertisement_state)) || (isset($advertisement_city) && !empty($advertisement_city)) || (isset($advertisement_local) && !empty($advertisement_local))) { ?>
-				<p id="loader_page"><img src="catalog/view/theme/default/image/ajax_loader.gif"></p>
+				<p id="loader_page" style="display:none;"><img src="catalog/view/theme/default/image/ajax_loader.gif"></p>
 				<?php } ?>
 			</div>
 			<!--</div>-->
@@ -902,7 +902,7 @@
 				if (is_loading == false) {
 					if ($(window).scrollTop() + $(window).height() >= $(document).height() - 300) {
 						is_loading = true;
-						$('#loader_page').show();
+						//$('#loader_page').show();
 						$.ajax({
 							url: "index.php?route=common/home/getLoadMore&path=" + path + "&tab_id=" + tab_id + "&id=" + id + "&count=" + count,
 							type: 'GET',
