@@ -126,7 +126,8 @@ border-radius: 3px;
 	.adv--nve-lve{margin: 15px;}
 	.adv--nve-lve .form-horizontal {font-size: 14px;line-height: 1.5;margin: 15px 0;}
 	.adv--nve-lve label {margin-left: 10px;}
-	.advertise-btn_live {background: #00abeb none repeat scroll 0 0;border: 1px solid #00abeb; color: #fff; margin-top: 10px; padding: 5px; font-size: 13px;}	
+	.advertise-btn_live:disabled {background-color: gray;}
+	.advertise-btn_live {background: 	#00abeb none repeat scroll 0 0;border: 1px solid #00abeb; color: #fff; margin-top: 10px; padding: 5px; font-size: 13px;}	
 	.row.neet--ress-tep {border-bottom: 1px solid #ccc; border-top: 1px solid #ccc;}
 	.top--res-nll > strong {font-weight: bold; text-decoration: underline;}
 	.rigth--stat p{margin-top: 10px; margin-bottom: 10px;}
