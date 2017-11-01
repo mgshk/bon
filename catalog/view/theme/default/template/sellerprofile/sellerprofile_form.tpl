@@ -978,7 +978,7 @@
                       <p>
                         <p style="margin-left:20px;">- add yours as their favorites to get your AD's notification the moment you upload. It increases
                           your sales BEYOND IMAGINATION.</p>
-                        <p style="margin-left:20px;">- pay online for what they have purchased. GO CASHLESS.</p>
+                        <p style="margin-left:20px;">- pay online for what they have purchased. GO DIGITAL, GO CASHLESS.</p>
                 </div>
                 <div class="col-sm-12">
                   <div class="row">
