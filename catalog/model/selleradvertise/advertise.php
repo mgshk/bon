@@ -767,7 +767,7 @@ class ModelselleradvertiseAdvertise extends Model
 
     public function isFreeAdUsed() {
         $sql = "SELECT COUNT(advertise_id) AS eligibility FROM ".DB_PREFIX."store_offers 
-            WHERE position = 5 AND status = 'live' AND CURDATE() between from_date and end_date 
+            WHERE position = 5 AND status = 'live' AND CURDATE() between from_date and end_date and price = 0
             AND seller_id = ".$this->customer->getID();
 
         $query = $this->db->query($sql);
@@ -788,7 +788,7 @@ class ModelselleradvertiseAdvertise extends Model
         if ($data['discount_price'] == 0) {
             $status = ", status = 'live'";
         }
-
+           
         $this->db->query('UPDATE '.DB_PREFIX."store_offers SET position = '".(int) $data['loc']."', 
             from_date = '".$data['from_date']."', end_date = '".$data['end_date']."', km = '".$data['km']."', 
             price = '".$data['price']."', discount_price = '".$data['discount_price']."', date_modified = NOW(), 

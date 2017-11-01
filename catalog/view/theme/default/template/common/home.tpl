@@ -987,10 +987,10 @@
 	//alert(window_height);
 
 	var tab_height = parseInt(window_height) - parseInt(body_height);
-	$('.home-tt-r').slimscroll({ height: tab_height });
-	$('.home-tt-r .tab-pane').css({
-		height: tab_height
-	});
+	//$('.home-tt-r').slimscroll({ height: tab_height });
+	// $('.home-tt-r .tab-pane').css({
+	// 	height: tab_height
+	// });
 	//$('.home-tt-r .tab-pane').slimscroll();
 
 	//$('.home-tt-r .tab-pane').css('overflow-y', 'scroll');
