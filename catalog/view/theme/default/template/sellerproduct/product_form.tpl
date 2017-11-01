@@ -439,34 +439,34 @@ $('select#input-discount_type').on('change', function() {
 // 	}
 // });
 
-// // Category
-// $('input[name=\'category\']').autocomplete({
-// 	'source': function(request, response) {
-// 		$.ajax({
-// 			url: 'index.php?route=sellerproduct/product/category_autocomplete&filter_name=' +  encodeURIComponent(request),
-// 			dataType: 'json',
-// 			success: function(json) {
-// 				response($.map(json, function(item) {
-// 					return {
-// 						label: item['name'],
-// 						value: item['category_id']
-// 					}
-// 				}));
-// 			}
-// 		});
-// 	},
-// 	'select': function(item) {
-// 		$('input[name=\'category\']').val('');
+// Category
+$('input[name=\'category\']').autocomplete({
+	'source': function(request, response) {
+		$.ajax({
+			url: 'index.php?route=sellerproduct/product/category_autocomplete&filter_name=' +  encodeURIComponent(request),
+			dataType: 'json',
+			success: function(json) {
+				response($.map(json, function(item) {
+					return {
+						label: item['name'],
+						value: item['category_id']
+					}
+				}));
+			}
+		});
+	},
+	'select': function(item) {
+		$('input[name=\'category\']').val('');
 
-// 		$('#product-category' + item['value']).remove();
+		$('#product-category' + item['value']).remove();
 
-// 		$('#product-category').append('<div id="product-category' + item['value'] + '"><i class="fa fa-minus-circle"></i> ' + item['label'] + '<input type="hidden" name="product_category[]" value="' + item['value'] + '" /></div>');
-// 	}
-// });
+		$('#product-category').append('<div id="product-category' + item['value'] + '"><i class="fa fa-minus-circle"></i> ' + item['label'] + '<input type="hidden" name="product_category[]" value="' + item['value'] + '" /></div>');
+	}
+});
 
-// $('#product-category').delegate('.fa-minus-circle', 'click', function() {
-// 	$(this).parent().remove();
-// });
+$('#product-category').delegate('.fa-minus-circle', 'click', function() {
+	$(this).parent().remove();
+});
 
 // // Filter
 // $('input[name=\'filter\']').autocomplete({
@@ -830,19 +830,19 @@ $('select#input-discount_type').on('change', function() {
 // }
  </script>
    <script type="text/javascript">
-// var image_row = <?php echo $image_row; ?>;
+var image_row = <?php echo $image_row; ?>;
 
-// function addImage() {
-// 	html  = '<tr id="image-row' + image_row + '">';
-// 	html += '  <td class="text-left"><a href="" id="thumb-image' + image_row + '"data-toggle="image" class="img-thumbnail"><img src="<?php echo $placeholder; ?>" alt="" title="" data-placeholder="<?php echo $placeholder; ?>" /><input type="hidden" name="product_image[' + image_row + '][image]" value="" id="input-image' + image_row + '" /></td>';
-// 	html += '  <td class="text-right"><input type="text" name="product_image[' + image_row + '][sort_order]" value="" placeholder="<?php echo $entry_sort_order; ?>" class="form-control" /></td>';
-// 	html += '  <td class="text-left"><button type="button" onclick="$(\'#image-row' + image_row  + '\').remove();" data-toggle="tooltip" title="<?php echo $button_remove; ?>" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button></td>';
-// 	html += '</tr>';
+function addImage() {
+	html  = '<tr id="image-row' + image_row + '">';
+	html += '  <td class="text-left"><a href="" id="thumb-image' + image_row + '"data-toggle="image" class="img-thumbnail"><img src="<?php echo $placeholder; ?>" alt="" title="" data-placeholder="<?php echo $placeholder; ?>" /><input type="hidden" name="product_image[' + image_row + '][image]" value="" id="input-image' + image_row + '" /></td>';
+	html += '  <td class="text-right"><input type="text" name="product_image[' + image_row + '][sort_order]" value="" placeholder="<?php echo $entry_sort_order; ?>" class="form-control" /></td>';
+	html += '  <td class="text-left"><button type="button" onclick="$(\'#image-row' + image_row  + '\').remove();" data-toggle="tooltip" title="<?php echo $button_remove; ?>" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button></td>';
+	html += '</tr>';
 
-// 	$('#images tbody').append(html);
+	$('#images tbody').append(html);
 
-// 	image_row++;
-// }
+	image_row++;
+}
  </script>
    <script type="text/javascript">
 // var recurring_count = <?php echo $recurring_count; ?>;
@@ -888,85 +888,85 @@ $('select#input-discount_type').on('change', function() {
 // 	pickTime: true
 // });
  </script>
-   <script type="text/javascript"><!--
+   <script type="text/javascript">
 // $('#languagetab a:first').tab('show');
 // $('#option a:first').tab('show');
 </script>
    <script type="text/javascript">
-// 	// Override summernotes image manager
-// 	$('button[data-event=\'showImageDialog\']').attr('data-toggle', 'image').removeAttr('data-event');
+	// Override summernotes image manager
+	// $('button[data-event=\'showImageDialog\']').attr('data-toggle', 'image').removeAttr('data-event');
 
-// 	$(document).delegate('button[data-toggle=\'image\']', 'click', function() {
-// 		$('#modal-image').remove();
+	// $(document).delegate('button[data-toggle=\'image\']', 'click', function() {
+	// 	$('#modal-image').remove();
 
-// 		$.ajax({
-// 			url: 'index.php?route=sellerproduct/filemanager&token=' + getURLVar('token'),
-// 			dataType: 'html',
-// 			beforeSend: function() {
-// 				$('#button-image i').replaceWith('<i class="fa fa-circle-o-notch fa-spin"></i>');
-// 				$('#button-image').prop('disabled', true);
-// 			},
-// 			complete: function() {
-// 				$('#button-image i').replaceWith('<i class="fa fa-upload"></i>');
-// 				$('#button-image').prop('disabled', false);
-// 			},
-// 			success: function(html) {
-// 				$('body').append('<div id="modal-image" class="modal">' + html + '</div>');
+	// 	$.ajax({
+	// 		url: 'index.php?route=sellerproduct/filemanager&token=' + getURLVar('token'),
+	// 		dataType: 'html',
+	// 		beforeSend: function() {
+	// 			$('#button-image i').replaceWith('<i class="fa fa-circle-o-notch fa-spin"></i>');
+	// 			$('#button-image').prop('disabled', true);
+	// 		},
+	// 		complete: function() {
+	// 			$('#button-image i').replaceWith('<i class="fa fa-upload"></i>');
+	// 			$('#button-image').prop('disabled', false);
+	// 		},
+	// 		success: function(html) {
+	// 			$('body').append('<div id="modal-image" class="modal">' + html + '</div>');
 
-// 				$('#modal-image').modal('show');
-// 			}
-// 		});
-// 	});
+	// 			$('#modal-image').modal('show');
+	// 		}
+	// 	});
+	// });
 
-// 	// Image Manager
-// 	$(document).delegate('a[data-toggle=\'image\']', 'click', function(e) {
-// 		e.preventDefault();
+	// Image Manager
+	// $(document).delegate('a[data-toggle=\'image\']', 'click', function(e) {
+	// 	e.preventDefault();
 
-// 		var element = this;
+	// 	var element = this;
 
-// 		$(element).popover({
-// 			html: true,
-// 			placement: 'right',
-// 			trigger: 'manual',
-// 			content: function() {
-// 				return '<button type="button" id="button-image" class="btn btn-primary"><i class="fa fa-pencil"></i></button> <button type="button" id="button-clear" class="btn btn-danger"><i class="fa fa-trash-o"></i></button>';
-// 			}
-// 		});
+	// 	$(element).popover({
+	// 		html: true,
+	// 		placement: 'right',
+	// 		trigger: 'manual',
+	// 		content: function() {
+	// 			return '<button type="button" id="button-image" class="btn btn-primary"><i class="fa fa-pencil"></i></button> <button type="button" id="button-clear" class="btn btn-danger"><i class="fa fa-trash-o"></i></button>';
+	// 		}
+	// 	});
 
-// 		$(element).popover('toggle');
+	// 	$(element).popover('toggle');
 
-// 		$('#button-image').on('click', function() {
-// 			$('#modal-image').remove();
+	// 	$('#button-image').on('click', function() {
+	// 		$('#modal-image').remove();
 
-// 			$.ajax({
-// 				url: 'index.php?route=sellerproduct/filemanager&token=' + getURLVar('token') + '&target=' + $(element).parent().find('input').attr('id') + '&thumb=' + $(element).attr('id'),
-// 				dataType: 'html',
-// 				beforeSend: function() {
-// 					$('#button-image i').replaceWith('<i class="fa fa-circle-o-notch fa-spin"></i>');
-// 					$('#button-image').prop('disabled', true);
-// 				},
-// 				complete: function() {
-// 					$('#button-image i').replaceWith('<i class="fa fa-upload"></i>');
-// 					$('#button-image').prop('disabled', false);
-// 				},
-// 				success: function(html) {
-// 					$('body').append('<div id="modal-image" class="modal">' + html + '</div>');
+	// 		$.ajax({
+	// 			url: 'index.php?route=sellerproduct/filemanager&token=' + getURLVar('token') + '&target=' + $(element).parent().find('input').attr('id') + '&thumb=' + $(element).attr('id'),
+	// 			dataType: 'html',
+	// 			beforeSend: function() {
+	// 				$('#button-image i').replaceWith('<i class="fa fa-circle-o-notch fa-spin"></i>');
+	// 				$('#button-image').prop('disabled', true);
+	// 			},
+	// 			complete: function() {
+	// 				$('#button-image i').replaceWith('<i class="fa fa-upload"></i>');
+	// 				$('#button-image').prop('disabled', false);
+	// 			},
+	// 			success: function(html) {
+	// 				$('body').append('<div id="modal-image" class="modal">' + html + '</div>');
 
-// 					$('#modal-image').modal('show');
-// 				}
-// 			});
+	// 				$('#modal-image').modal('show');
+	// 			}
+	// 		});
 
-// 			$(element).popover('hide');
-// 		});
+	// 		$(element).popover('hide');
+	// 	});
 
-// 		$('#button-clear').on('click', function() {
-// 			$(element).find('img').attr('src', $(element).find('img').attr('data-placeholder'));
+	// 	$('#button-clear').on('click', function() {
+	// 		$(element).find('img').attr('src', $(element).find('img').attr('data-placeholder'));
 
-// 			$(element).parent().find('input').attr('value', '');
+	// 		$(element).parent().find('input').attr('value', '');
 
-// 			$(element).popover('hide');
-// 		});
-// 	});
+	// 		$(element).popover('hide');
+	// 	});
+	// });
  </script>
 </div></div>
 <?php echo $footer; ?>
