@@ -776,7 +776,7 @@ $('#product-category').delegate('.fa-minus-circle', 'click', function() {
 // 	option_value_row++;
 // }
  </script>
-   <script type="text/javascript"><!--
+   <script type="text/javascript">
 // var discount_row = <?php echo $discount_row; ?>;
 
 // function addDiscount() {
@@ -875,98 +875,98 @@ function addImage() {
 // }
  </script>
    <script type="text/javascript">
-// $('.date').datetimepicker({
-// 	pickTime: false
-// });
+$('.date').datetimepicker({
+	pickTime: false
+});
 
-// $('.time').datetimepicker({
-// 	pickDate: false
-// });
+$('.time').datetimepicker({
+	pickDate: false
+});
 
-// $('.datetime').datetimepicker({
-// 	pickDate: true,
-// 	pickTime: true
-// });
+$('.datetime').datetimepicker({
+	pickDate: true,
+	pickTime: true
+});
  </script>
    <script type="text/javascript">
-// $('#languagetab a:first').tab('show');
-// $('#option a:first').tab('show');
+$('#languagetab a:first').tab('show');
+$('#option a:first').tab('show');
 </script>
    <script type="text/javascript">
 	// Override summernotes image manager
-	// $('button[data-event=\'showImageDialog\']').attr('data-toggle', 'image').removeAttr('data-event');
+	$('button[data-event=\'showImageDialog\']').attr('data-toggle', 'image').removeAttr('data-event');
 
-	// $(document).delegate('button[data-toggle=\'image\']', 'click', function() {
-	// 	$('#modal-image').remove();
+	$(document).delegate('button[data-toggle=\'image\']', 'click', function() {
+		$('#modal-image').remove();
 
-	// 	$.ajax({
-	// 		url: 'index.php?route=sellerproduct/filemanager&token=' + getURLVar('token'),
-	// 		dataType: 'html',
-	// 		beforeSend: function() {
-	// 			$('#button-image i').replaceWith('<i class="fa fa-circle-o-notch fa-spin"></i>');
-	// 			$('#button-image').prop('disabled', true);
-	// 		},
-	// 		complete: function() {
-	// 			$('#button-image i').replaceWith('<i class="fa fa-upload"></i>');
-	// 			$('#button-image').prop('disabled', false);
-	// 		},
-	// 		success: function(html) {
-	// 			$('body').append('<div id="modal-image" class="modal">' + html + '</div>');
+		$.ajax({
+			url: 'index.php?route=sellerproduct/filemanager&token=' + getURLVar('token'),
+			dataType: 'html',
+			beforeSend: function() {
+				$('#button-image i').replaceWith('<i class="fa fa-circle-o-notch fa-spin"></i>');
+				$('#button-image').prop('disabled', true);
+			},
+			complete: function() {
+				$('#button-image i').replaceWith('<i class="fa fa-upload"></i>');
+				$('#button-image').prop('disabled', false);
+			},
+			success: function(html) {
+				$('body').append('<div id="modal-image" class="modal">' + html + '</div>');
 
-	// 			$('#modal-image').modal('show');
-	// 		}
-	// 	});
-	// });
+				$('#modal-image').modal('show');
+			}
+		});
+	});
 
-	// Image Manager
-	// $(document).delegate('a[data-toggle=\'image\']', 'click', function(e) {
-	// 	e.preventDefault();
+	//Image Manager
+	$(document).delegate('a[data-toggle=\'image\']', 'click', function(e) {
+		e.preventDefault();
 
-	// 	var element = this;
+		var element = this;
 
-	// 	$(element).popover({
-	// 		html: true,
-	// 		placement: 'right',
-	// 		trigger: 'manual',
-	// 		content: function() {
-	// 			return '<button type="button" id="button-image" class="btn btn-primary"><i class="fa fa-pencil"></i></button> <button type="button" id="button-clear" class="btn btn-danger"><i class="fa fa-trash-o"></i></button>';
-	// 		}
-	// 	});
+		$(element).popover({
+			html: true,
+			placement: 'right',
+			trigger: 'manual',
+			content: function() {
+				return '<button type="button" id="button-image" class="btn btn-primary"><i class="fa fa-pencil"></i></button> <button type="button" id="button-clear" class="btn btn-danger"><i class="fa fa-trash-o"></i></button>';
+			}
+		});
 
-	// 	$(element).popover('toggle');
+		$(element).popover('toggle');
 
-	// 	$('#button-image').on('click', function() {
-	// 		$('#modal-image').remove();
+		$('#button-image').on('click', function() {
+			$('#modal-image').remove();
 
-	// 		$.ajax({
-	// 			url: 'index.php?route=sellerproduct/filemanager&token=' + getURLVar('token') + '&target=' + $(element).parent().find('input').attr('id') + '&thumb=' + $(element).attr('id'),
-	// 			dataType: 'html',
-	// 			beforeSend: function() {
-	// 				$('#button-image i').replaceWith('<i class="fa fa-circle-o-notch fa-spin"></i>');
-	// 				$('#button-image').prop('disabled', true);
-	// 			},
-	// 			complete: function() {
-	// 				$('#button-image i').replaceWith('<i class="fa fa-upload"></i>');
-	// 				$('#button-image').prop('disabled', false);
-	// 			},
-	// 			success: function(html) {
-	// 				$('body').append('<div id="modal-image" class="modal">' + html + '</div>');
+			$.ajax({
+				url: 'index.php?route=sellerproduct/filemanager&token=' + getURLVar('token') + '&target=' + $(element).parent().find('input').attr('id') + '&thumb=' + $(element).attr('id'),
+				dataType: 'html',
+				beforeSend: function() {
+					$('#button-image i').replaceWith('<i class="fa fa-circle-o-notch fa-spin"></i>');
+					$('#button-image').prop('disabled', true);
+				},
+				complete: function() {
+					$('#button-image i').replaceWith('<i class="fa fa-upload"></i>');
+					$('#button-image').prop('disabled', false);
+				},
+				success: function(html) {
+					$('body').append('<div id="modal-image" class="modal">' + html + '</div>');
 
-	// 				$('#modal-image').modal('show');
-	// 			}
-	// 		});
+					$('#modal-image').modal('show');
+				}
+			});
 
-	// 		$(element).popover('hide');
-	// 	});
+			$(element).popover('hide');
+		});
 
-	// 	$('#button-clear').on('click', function() {
-	// 		$(element).find('img').attr('src', $(element).find('img').attr('data-placeholder'));
+		$('#button-clear').on('click', function() {
+			$(element).find('img').attr('src', $(element).find('img').attr('data-placeholder'));
 
-	// 		$(element).parent().find('input').attr('value', '');
+			$(element).parent().find('input').attr('value', '');
 
-	// 		$(element).popover('hide');
-	// 	});
-	// });
+			$(element).popover('hide');
+		});
+	});
  </script>
 </div></div>
 <?php echo $footer; ?>
