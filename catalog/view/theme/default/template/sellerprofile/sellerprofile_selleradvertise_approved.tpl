@@ -219,7 +219,7 @@
 								<input type="hidden" name="selectedPosition" id="selectedPosition"/>
 							    <div id="validation_txt" style="display:none">
 								    <label>Price :&nbsp;&nbsp;&nbsp;&nbsp;</label><span class="text-green" id="price_vaidation_txt" style="font-size: 12px;font-style: italic"></span>
-								    <input type="number" name="amount_val" id="amount_val" class="form-control" min="1" step="1" onkeypress="return event.charCode >= 48 && event.charCode <= 57"/>
+								    <input type="text" name="amount_val" id="amount_val" class="form-control" min="1" step="1" onkeypress="return event.charCode >= 48 && event.charCode <= 57"/>
 								</div>
 							    <input type="hidden" name="amount" id="actual_price"/>
 						    </span>
