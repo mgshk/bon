@@ -5,7 +5,7 @@ class ControllerCheckoutSuccess extends Controller {
 
 		if (isset($this->session->data['order_id'])) {
 			$this->cart->clear();
-
+			$data['order_id'] = $this->session->data['order_id'];
 			// Add to activity log
 			if ($this->config->get('config_customer_activity')) {
 				$this->load->model('account/activity');
@@ -72,6 +72,11 @@ class ControllerCheckoutSuccess extends Controller {
 			$data['text_message'] = sprintf($this->language->get('text_customer'), $this->url->link('account/account', '', true), $this->url->link('account/order', '', true), $this->url->link('account/download', '', true), $this->url->link('information/contact'));
 		} else {
 			$data['text_message'] = sprintf($this->language->get('text_guest'), $this->url->link('information/contact'));
+		}
+
+		if (isset($this->session->data['order_id'])){
+			$data['mihpayid'] = $this->session->data['mihpayid'];
+			unset($this->session->data['mihpayid']);
 		}
 
 		$data['button_continue'] = $this->language->get('button_continue');

@@ -241,6 +241,7 @@ class ControllerExtensionPaymentPumcp extends Controller {
 				$this->load->model('selleradvertise/advertise');
 				$phone_num = $order_info['telephone'];
 				$transaction_id = $this->request->post['mihpayid'];
+				$this->session->data['mihpayid'] = $transaction_id;
 				$sender_id = $this->config->get('sms_sender_ads');
 				$sms_type = "payment";
 				$this->model_selleradvertise_advertise->sendsms_payment($phone_num, $transaction_id, $sender_id, 'success', $sms_type);

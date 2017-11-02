@@ -280,7 +280,7 @@
                           <?php if(!empty($seller_reject_reason)) { ?>
                           <textarea name="seller_admin_msg" rows="2" placeholder="<?php echo $entry_description; ?>" id="admin_msg" class= "form-control" disabled>Admin message:&nbsp&nbsp&nbsp&nbsp<?php echo $seller_reject_reason; ?></textarea>
                           <?php } else { ?>
-                          <textarea name="seller_admin_msg" rows="2" placeholder="<?php echo $entry_description; ?>" id="admin_msg" class= "form-control" disabled>Admin message:&nbsp&nbsp&nbsp&nbspWelcome to BoN age. Go online and get your store/entity into buyers home around you. Go online and get your store/entity into buyers home around you.</textarea>
+                          <textarea name="seller_admin_msg" rows="2" placeholder="<?php echo $entry_description; ?>" id="admin_msg" class= "form-control" disabled>Admin message:&nbsp&nbsp&nbsp&nbspWelcome to BoN age. Go online and get your store/entity into buyers home around you.</textarea>
                           <?php } ?>
                           </br>
                         </div>
@@ -853,7 +853,7 @@
                             </div>
                             <div class="form-group">
                               <label class="col-sm-12 control-label" for="input-referred-by">
-                                             - Number of buyers added this to their favourites :
+                                             - Number of buyers added your store to their favourites :
                                              </label>
                               <div class="col-sm-9" style="margin-top: 5px;">
                                 <span class="referred-by"><?php echo $favourites_customer_count; ?> Buyer(s)</span>
