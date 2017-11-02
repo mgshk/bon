@@ -1,9 +1,9 @@
 <?php
 // Text
-$_['text_approve_subject'] = '%s - Your store/entity account has been activated!';
-$_['text_approve_welcome'] = 'Welcome and thank you for registering as seller at %s!';
-$_['text_approve_login'] = 'Your seller account has now been created and you can log in by using your user ID and password by visiting our website or at the following URL:';
-$_['text_approve_services'] = 'Upon logging in, you will be able to add products and reviewing your products orders.';
+$_['text_approve_subject'] = 'is approved and moved online!';
+$_['text_approve_welcome'] = 'Welcome to BoN age!';
+$_['text_approve_login'] = 'Your Store/Entity has now been approved.';
+$_['text_approve_services'] = 'Add and post advertisements for free and reach buyers instantly.';
 $_['text_approve_thanks'] = 'Thanks,';
 
 $_['text_transaction_subject'] = '%s - Account Credit';
@@ -19,9 +19,9 @@ $_['text_upgrade_login'] = 'Your seller account has now been upgraded and you ca
 $_['text_upgrade_services'] = 'Upon logging in, you will be able to add products and reviewing your products.';
 $_['text_upgrade_thanks'] = 'Thanks,';
 
-$_['text_disapprove_subject'] = '%s - Your Seller Account has been inactivated!';
+$_['text_disapprove_subject'] = 'is disapproved and removed!';
 
-$_['text_disapprove_login'] = 'Your store/entity account has now been disapproved and you can log in by using your user ID and password by visiting our website or at the following URL:';
+$_['text_disapprove_login'] = 'Your Store/Entity has now been disapproved for the below reason. Please do the neccessary changes to get approved again.';
 $_['text_disapprove_thanks'] = 'Thanks,';
 
 $_['text_add_seller_subject'] = '%s - Your store/entity account has been accepted!';

@@ -316,7 +316,7 @@ class ControllerSellerseller extends Controller
                 $seller_group_info = $this->model_seller_seller->getsellergroupIdBysellerId($this->request->get['seller_id']);
                 $transaction_approve_comment = sprintf($this->language->get('transaction_approve_comment'), $seller_group_info['name']);
                 $this->model_seller_seller->addHistory($this->request->get['seller_id'], $approve_comment);
-                $this->model_seller_seller->addTransaction($this->request->get['seller_id'], $transaction_approve_comment, $seller_group_info['subscription_price'] * -1);
+                //$this->model_seller_seller->addTransaction($this->request->get['seller_id'], $transaction_approve_comment, $seller_group_info['subscription_price'] * -1);
                 $this->model_seller_seller->approve($this->request->get['seller_id']);
             }
 

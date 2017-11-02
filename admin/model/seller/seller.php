@@ -285,9 +285,9 @@ class ModelSellerseller extends Model
                 $store_url = HTTP_CATALOG.'index.php?route=sellerprofile/sellerprofile';
             }
 
-            $message = sprintf($this->language->get('text_approve_welcome'), $store_name)."\n\n";
-            $message .= $this->language->get('text_approve_login')."\n";
-            $message .= $store_url."\n\n";
+            $message = "\n".$this->language->get('text_approve_welcome')."\n\n";
+            $message .= $this->language->get('text_approve_login')."\n\n";
+            //$message .= $store_url."\n\n";
             $message .= $this->language->get('text_approve_services')."\n\n";
             $message .= $this->language->get('text_approve_thanks')."\n";
             $message .= $store_name;
@@ -303,7 +303,7 @@ class ModelSellerseller extends Model
             $mail->setTo($seller_info['email']);
             $mail->setFrom($this->config->get('config_email'));
             $mail->setSender($store_name);
-            $mail->setSubject(sprintf($this->language->get('text_approve_subject'), $store_name));
+            $mail->setSubject($seller_info['nickname']." - ".$this->language->get('text_approve_subject'));
             $mail->setText(html_entity_decode($message, ENT_QUOTES, 'UTF-8'));
             $mail->send();
         }
@@ -391,8 +391,8 @@ class ModelSellerseller extends Model
                 $store_url = HTTP_CATALOG.'index.php?route=account/login';
             }
 
-            $message = $this->language->get('text_disapprove_login')."\n";
-            $message .= $store_url."\n\n";
+            $message = "\n".$this->language->get('text_disapprove_login')."\n\n";
+            $message .= "\"".$reason."\"\n\n";
 
             $message .= $this->language->get('text_disapprove_thanks')."\n";
             $message .= $store_name;
@@ -408,7 +408,7 @@ class ModelSellerseller extends Model
             $mail->setTo($seller_info['email']);
             $mail->setFrom($this->config->get('config_email'));
             $mail->setSender($store_name);
-            $mail->setSubject(sprintf($this->language->get('text_disapprove_subject'), $store_name));
+            $mail->setSubject($seller_info['nickname']." - ".$this->language->get('text_disapprove_subject'));
             $mail->setText(html_entity_decode($message, ENT_QUOTES, 'UTF-8'));
             $mail->send();
         }
@@ -579,6 +579,40 @@ class ModelSellerseller extends Model
         $query = $this->db->query('SELECT COUNT(*) AS total FROM '.DB_PREFIX."customer_history WHERE customer_id = '".(int) $seller_id."'");
 
         return $query->row['total'];
+    }
+
+    public function sendEmail($seller_id, $subject, $message)
+    {
+        $seller_info = $this->getseller($seller_id);
+        
+        if ($seller_info) {
+            //echo $seller_info['store_id'];
+            
+            $this->load->model('setting/store');
+            
+            $store_info = $this->model_setting_store->getStore($seller_info['store_id']);
+
+            if ($store_info) {
+                $store_name = $store_info['name'];
+            } else {
+                $store_name = $this->config->get('config_name');
+            }
+
+            $mail = new Mail();
+            $mail->protocol = $this->config->get('config_mail_protocol');
+            $mail->parameter = $this->config->get('config_mail_parameter');
+            $mail->smtp_hostname = $this->config->get('config_mail_smtp_hostname');
+            $mail->smtp_username = $this->config->get('config_mail_smtp_username');
+            $mail->smtp_password = html_entity_decode($this->config->get('config_mail_smtp_password'), ENT_QUOTES, 'UTF-8');
+            $mail->smtp_port = $this->config->get('config_mail_smtp_port');
+            $mail->smtp_timeout = $this->config->get('config_mail_smtp_timeout');
+            $mail->setTo($seller_info['email']);
+            $mail->setFrom($this->config->get('config_email'));
+            $mail->setSender($store_name);
+            $mail->setSubject($subject);
+            $mail->setText(html_entity_decode($message, ENT_QUOTES, 'UTF-8'));
+            $mail->send();
+        }
     }
 
     public function addTransaction($seller_id, $description = '', $amount = '', $order_id = 0)
