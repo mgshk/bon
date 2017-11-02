@@ -100,7 +100,7 @@ $(document).ready(function() {
           throw "Please select a city";
 
         if ($.trim(post_code) === '' || post_code.length < 2 || post_code.length > 10)
-          throw "Postcode must be between 2 and 10 characters!";
+          throw "Pincode must be 6 digits";
 
         $('#zone-bon-error-login').html('');
         $('#reg-sucess').html('');
