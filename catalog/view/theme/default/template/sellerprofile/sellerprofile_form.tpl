@@ -280,7 +280,7 @@
                           <?php if(!empty($seller_reject_reason)) { ?>
                           <textarea name="seller_admin_msg" rows="2" placeholder="<?php echo $entry_description; ?>" id="admin_msg" class= "form-control" disabled>Admin message:&nbsp&nbsp&nbsp&nbsp<?php echo $seller_reject_reason; ?></textarea>
                           <?php } else { ?>
-                          <textarea name="seller_admin_msg" rows="2" placeholder="<?php echo $entry_description; ?>" id="admin_msg" class= "form-control" disabled>Admin message:&nbsp&nbsp&nbsp&nbspWelcome to BoN age. Go online and get your store/entity into buyers home around you. Go online and get your store/entity into buyers home around you.</textarea>
+                          <textarea name="seller_admin_msg" rows="2" placeholder="<?php echo $entry_description; ?>" id="admin_msg" class= "form-control" disabled>Admin message:&nbsp&nbsp&nbsp&nbspWelcome to BoN age. Go online and get your store/entity into buyers home around you.</textarea>
                           <?php } ?>
                           </br>
                         </div>
