@@ -5,6 +5,15 @@ class ControllerCheckoutFailure extends Controller {
 
 		$this->document->setTitle($this->language->get('heading_title'));
 
+		if (isset($this->session->data['order_id'])){
+			$data['txnstatus']=$this->session->data['txnstatus'];
+			unset($this->session->data['txnstatus']);
+		} 
+		else
+		{
+			$data['txnstatus'] = 'failed';	
+		}
+		
 		$data['breadcrumbs'] = array();
 
 		$data['breadcrumbs'][] = array(

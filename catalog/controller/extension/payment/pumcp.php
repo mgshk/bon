@@ -230,6 +230,7 @@ class ControllerExtensionPaymentPumcp extends Controller {
 			 
 			 
 			 if (isset($this->request->post['status']) && $this->request->post['status'] == 'success') {
+				$this->session->data['txnstatus'] = "success";
 			 	$saltString     = $salt.'|'.$this->request->post['status'].'|'.$reverseKeyString;
 				$sentHashString = strtolower(hash('sha512', $saltString));
 			 	$responseHashString=$this->request->post['hash'];
@@ -275,6 +276,7 @@ class ControllerExtensionPaymentPumcp extends Controller {
 					}			 
 			 
 			 } else {
+				$this->session->data['txnstatus'] = "failed";
     			$data['continue'] = $this->url->link('checkout/failure');
 				$data['column_left'] = $this->load->controller('common/column_left');
 				$data['column_right'] = $this->load->controller('common/column_right');
