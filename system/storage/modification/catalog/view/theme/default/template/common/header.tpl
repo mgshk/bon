@@ -906,7 +906,7 @@
 								</div>
 							</form>
 							<div class="_log-btn-btm" style="position: static;padding: 0px 15px;">
-								<button class="advertise-btn _btn-fin _skip-prof" type="submit">Skip</button>
+								<button class="advertise-btn _btn-fin _skip-prof" type="submit" style="display: none">Skip</button>
 							</div>
 						</div>
 						<div class="col-md-4 clear">

@@ -289,7 +289,7 @@
                             <?php if(strtotime($feature_store_end) > strtotime('now')) { ?>
                             <button disabled type="button" class="btn btn-primary">Featured Store/Entity</button>
                             <?php } else { ?>
-                            <button type="button" style="cursor:pointer;" id="store_featured_dt" data-toggle="modal" data-target="#store_featured" class="btn btn-primary">Featured Store/Entity</button>
+                            <button type="button" style="cursor:pointer;display: none" id="store_featured_dt" data-toggle="modal" data-target="#store_featured" class="btn btn-primary">Featured Store/Entity</button>
                             <?php } ?>
                           </div>
                         </div>
@@ -828,7 +828,7 @@
                             </div>
                             <?php } else { ?>
                             <div class="form-group">
-                              <label class="col-sm-12 control-label" for="input-referred-by">
+                              <label class="col-sm-12 control-label" style="display:none" for="input-referred-by">
                                              - Not set as <span style="background: yellow;"> Featured </span>. Don't be one among the crowd, rise above from the rest.
                                              
                               </label>
