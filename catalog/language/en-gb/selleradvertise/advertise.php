@@ -198,6 +198,6 @@ $_['success_to_live']	 = 'Advertisement processed successfully...';
 $_['amount']			 = 'Pleace enter price';
 $_['position_amount_max']	= 'Pleace enter amount above basic price';
 $_['top_banner_date']	= 'Pleace select date';
-$_['error_free_ad'] = 'update error message in selleradvertise/advertise.php';
+$_['error_free_ad'] = 'Seller is allowed to post only one free advertisement in \'Nearby\'.';
 
 
