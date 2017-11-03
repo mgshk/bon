@@ -377,6 +377,28 @@ $(document).ready(function() {
 
 		$('#category_hidden_'+row+'').val(category_id);
 
+		var elem = '';
+
+        $.ajax({
+           url: 'index.php?route=sellerprofile/sellerprofile/sub_category_autocomplete&path_id=' + category_id +'&filter_name=',
+           dataType: 'json',
+           success: function(json) {
+              if(json.length > 0){
+                $('#sub_category_'+row).prop('disabled', false);
+                $('#sub_category_'+row).attr('placeholder','Type here');
+                $.map(json, function(item) {
+                  elem += "<li class=\"list-subcategory\" data-row="+row+" data-id="+item['category_id']+">"+item['name']+"</li>";
+                });
+              }
+              else
+              {
+                $('#sub_category_'+row).prop('disabled', true);
+                $('#sub_category_'+row).attr('placeholder','No Sub category to show');
+              }
+              $('.dropdown-submenu_'+ row).empty().html(elem).show();
+           }
+        });
+
 		return false;
 	});
 
