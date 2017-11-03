@@ -262,6 +262,18 @@
 						    <td>3.&nbsp</td>
 						    <td>Introductory offer is valid till November 30, 2017.</td>
 						</tr>
+						<tr>
+						    <td>4.&nbsp</td>
+						    <td>Discount will be applicable only for the price more or equal to 2 rupees.</td>
+						</tr>
+						<tr>
+						    <td>5.&nbsp</td>
+						    <td>Please be sure image(s) are not being used in the advertisements before deleting from your directory. It is permanent and BoN cannot revert your action.</td>
+						</tr>
+						<tr>
+						    <td>6.&nbsp</td>
+						    <td>Please be aware that postion in Nearby tab for paid advertisement might change due to coverage area of other advertisements.</td>
+						</tr>
 					    </table>
 				     </div>
 			     </div>

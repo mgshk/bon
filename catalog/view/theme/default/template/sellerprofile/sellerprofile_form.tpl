@@ -888,7 +888,7 @@
                 </div>
               </div>
               <div class="tab-pane <?php if($_GET['tab_section'] == 'product'){ echo 'active'; }?>" id="tab-sellerproduct">
-                <div class="--bon-res-scrooll">
+                <div>
                   <p>Products you upload here are closely monitored by our experts. If found not permissable to public, store/entity
                     will be banned from the listing without a warning.</p>
                   <br/>
@@ -972,7 +972,7 @@
                 </div>
               </div>
               <div class="tab-pane <?php if($_GET['tab_section'] == 'qr_code'){ echo 'active'; }?>" id="tab_qr_code">
-                <div class="col-sm-12 --bon-res-scrooll">
+                <div class="col-sm-12">
                   <p>Please download any or both images below having QR code of your store/entity and display them to your buyers.
                     <p>By scanning buyers can
                       <p>
