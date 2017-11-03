@@ -799,7 +799,7 @@
 					$('#error_check').html('<i class="fa fa-exclamation-circle"></i> '+ json['error']).show();
 					setTimeout(function() {
 						$('#error_check').empty().hide();
-					}, 3000);
+					}, 5000);
 				}
 
 				// if(json['free_check'] == 1) {
