@@ -392,7 +392,7 @@
                                     <label class="col-md-4 control-label" for="store-country"><?php echo $entry_country; ?></label>
                                     <div class="col-md-4">
                                       <input type="hidden" id="hidden_store_countryId" name="hidden_store_countryId" value="99" />
-                                      <select name="store_country_id" id="store-country" class="form-control" disabled>
+                                      <select name="store_country_id" id="store-country" class="form-control">
                                         <option value="0"><?php echo $text_select; ?></option>
                                         <?php foreach ($countries as $country) { ?>
                                         <?php if ($country['country_id'] == $country_id) { ?>
