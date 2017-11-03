@@ -154,7 +154,7 @@ class ControllerExtensionPaymentPumcp extends Controller {
 		$data['key'] = $this->config->get('pumcp_payu_merchant');
 		$data['salt'] = $this->config->get('pumcp_payu_salt');
 		$data['txnid'] = $txnid;
-		$data['amount'] = (int)$order_info['total'];
+		$data['amount'] = $order_info['total'];
 		$data['productinfo'] = 'opencart products information';
 		$data['firstname'] = $order_info['payment_firstname'];
 		$data['Lastname'] = $order_info['payment_lastname'];
@@ -173,7 +173,7 @@ class ControllerExtensionPaymentPumcp extends Controller {
       //$this->data['furl'] = $this->url->link('checkout/cart');//HTTP_SERVER.'/index.php?route=payment/payu/callback';
 		$data['curl'] = $this->url->link('extension/payment/pumcp/callback_payu');
 		$key          =  $this->config->get('pumcp_payu_merchant');
-		$amount       = (int)$order_info['total'];
+		$amount       = $order_info['total'];
 		$productInfo  = $data['productinfo'];
 	    $firstname    = $order_info['payment_firstname'];
 		$email        = $order_info['email'];

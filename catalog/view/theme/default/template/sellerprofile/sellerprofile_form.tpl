@@ -272,7 +272,7 @@
                         <div class="alert alert-success"><i class="fa fa-check-circle"></i> Your store/entity is approved. It is now live for public view.</div>
                         <?php } ?>
                         <?php if($seller_verified != 1) { ?>
-                        <div class="alert alert-danger"><i class="fa fa-times-circle"></i> Your store/entity verification is pending. Get crowned (<img width="20" height="20" src="image/verified.png">) and earn buyers trust by getting verified.</div>
+                        <div class="alert alert-danger"><i class="fa fa-times-circle"></i> Your store/entity verification is pending. Get crowned (<img width="20" height="20" src="image/verified.png">) and earn buyers trust.</div>
                         <?php } else { ?>
                         <div class="alert alert-success"><i class="fa fa-check-circle"></i> Your store is verified. Got crowned (<img width="20" height="20" src="image/verified.png">), now you are leading the race to reach buyers.</div>
                         <?php } ?>

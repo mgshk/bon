@@ -140,7 +140,7 @@ function storeAddress() {
     if ($.trim(city) === '' || city.length < 2 || city.length > 100)
       throw "Please fill City";
 
-    if ($.trim(postcode) === '' || postcode.length < 2 || postcode.length > 10)
+    if ($.trim(postcode) === '' || postcode.length != 6)
       throw "Please fill Postcode";
 
     if (country_id === '0')

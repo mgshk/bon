@@ -72,7 +72,7 @@
           <div class="form-group required">
             <label class="col-sm-2 control-label" for="input-postcode"><?php echo $entry_postcode; ?></label>
             <div class="col-sm-10">
-              <input type="text" maxlength="10" name="postcode" value="<?php echo $postcode; ?>" placeholder="<?php echo $entry_postcode; ?>" id="address-postcode" class="form-control" autocomplete="off" />
+              <input type="text" maxlength="6" name="postcode" value="<?php echo $postcode; ?>" placeholder="<?php echo $entry_postcode; ?>" id="address-postcode" class="form-control" autocomplete="off" />
               <?php if ($error_postcode) { ?>
               <div class="text-danger"><?php echo $error_postcode; ?></div>
               <?php } ?>
