@@ -1106,7 +1106,7 @@
       </div>
       <div class="modal-body reffer-str-top">
         <div id="val_ref_tt"></div>
-        <p>You get 20% of the first paid advertisement posted by the store/entity you refer.</p>
+        <p style="color:#b54a4a">You get 20% of the first paid advertisement posted by the store/entity you refer.</p>
         <br/>
         <form action="" method="post" enctype="multipart/form-data" id="store_referred_frm" class="">
           <div class="featured-detils">
@@ -1141,16 +1141,17 @@
                 <span class="pull-right"><input type="radio" name="account_type" id="current_account" value="current_account"><label for="current_account"> current account</label></span><br/>
               </div>
             </div>
-            <div class="det--ref" style="margin-bottom:10px;clear: both;">Above information including bank detail are true and correct to the best of my knowledge. If there is any issue
+            <div class="form-group" style="margin-bottom:10px;clear: both;">Above information including bank detail are true and correct to the best of my knowledge. If there is any issue
               or incorrect data provided by me, BoN is in no way will be held responsible.</div>
+            <div class="form-group"><strong>Note:</strong> BoN will not share your information including bank detail with anyone for any purpose.
+            </div>
             <div class="form-group">
               <input type="checkbox" name="terms" id="agree_bank" value="agree" style="margin-right: 5px;"><label for="agree"> I agree and would like to earn money.</label>
             </div>
             <div class="form-group">
-              <button type="button" data-dismiss="modal" class="btn btn-primary pull-left">Cancel</button>
-              <button type="button" id="button-refer-save" data-loading-text="<?php echo $text_loading; ?>" class="btn btn-primary pull-right">Save</button>
+              <button type="button" data-dismiss="modal" class="btn btn-primary pull-left">No, thanks</button>
+              <button type="button" id="button-refer-save" data-loading-text="<?php echo $text_loading; ?>" class="btn btn-primary pull-right">Yes, I like to earn!</button>
             </div>
-            <div class="det--ref" style="margin-bottom:20px;"><strong>Note:</strong> BoN will not share your information including bank detail with anyone for any purpose.</div>
           </div>
         </form>
       </div>

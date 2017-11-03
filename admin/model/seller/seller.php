@@ -301,7 +301,7 @@ class ModelSellerseller extends Model
             $mail->smtp_port = $this->config->get('config_mail_smtp_port');
             $mail->smtp_timeout = $this->config->get('config_mail_smtp_timeout');
             $mail->setTo($seller_info['email']);
-            $mail->setFrom($this->config->get('config_email'));
+            $mail->setFrom($this->config->get('config_email_noreply'));
             $mail->setSender($store_name);
             $mail->setSubject($seller_info['nickname']." - ".$this->language->get('text_approve_subject'));
             $mail->setText(html_entity_decode($message, ENT_QUOTES, 'UTF-8'));
@@ -406,7 +406,7 @@ class ModelSellerseller extends Model
             $mail->smtp_port = $this->config->get('config_mail_smtp_port');
             $mail->smtp_timeout = $this->config->get('config_mail_smtp_timeout');
             $mail->setTo($seller_info['email']);
-            $mail->setFrom($this->config->get('config_email'));
+            $mail->setFrom($this->config->get('config_email_noreply'));
             $mail->setSender($store_name);
             $mail->setSubject($seller_info['nickname']." - ".$this->language->get('text_disapprove_subject'));
             $mail->setText(html_entity_decode($message, ENT_QUOTES, 'UTF-8'));
