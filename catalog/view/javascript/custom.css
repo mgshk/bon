@@ -1358,7 +1358,9 @@ border: 0;}
 	.loc-share-top button {font-size: 14px;}
 	/*** ft sticky ***********/
 	.ft--ds-st{display: none;}
-    .ft--mb-st{display: block; position: relative; bottom: 0; width: 100%; background:#fff; color:#808080;padding:0px;z-index: 12;}
+    .ft--mb-st{display: block; position: fixed; bottom: 0; width: 100%; background:#fff; 
+    	color:#808080;padding:0px;z-index: 100;margin-top: 0;left: 0;}
+    body{padding-bottom: 61px;}
     .ft--mb-st ul{display: inline-flex; width: 100%;}
     .ft--mb-st i{font-size: 30px;}
     .ft--mb-st li .re--ft {

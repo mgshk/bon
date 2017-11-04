@@ -182,6 +182,13 @@
 			<?php }?>
 		</div>
 		<div class="col-sm-3">
+			<div class="video-tag">
+				<video width="300" height="196" controls autoplay>
+				  <source src="image/bon_english.mp4" type="video/mp4">
+				  <source src="image/bon_english.ogg" type="video/ogg">
+				  Your browser does not support HTML5 video.
+				</video>
+			</div>
 		</div>
 	</div>
 </div>
@@ -722,7 +729,15 @@
 			</div>
 			<!--</div>-->
 		</div>
-		<div class="col-sm-3"></div>
+		<div class="col-sm-3">
+			<div class="video-tag">
+				<video width="300" height="196" controls autoplay>
+				  <source src="image/seller_walkthrough.mp4" type="video/mp4">
+				  <source src="image/seller_walkthrough.ogg" type="video/ogg">
+				  Your browser does not support HTML5 video.
+				</video>
+			</div>
+		</div>
 	</div>
 </div>
 <div class="modal fade" id="ad_details" role="dialog">

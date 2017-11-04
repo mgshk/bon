@@ -687,6 +687,7 @@ h2.price {
 }
 
 /* my css starts */
+.video-tag{margin:10px 0 10px 0;}
 .sell-ret h3{text-overflow: ellipsis;overflow: hidden;}
 .nav-tabs > li > a{margin-right: 0 !important;}
 .nav-tabs > li.active > a, .nav-tabs > li.active > a:focus, .nav-tabs > li.active > a:hover{
