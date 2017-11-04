@@ -376,7 +376,7 @@
 
     			var total_price = length * parseInt(bannerBasicPrice['top_banner']);
 
-    			if (discount === 0) {
+    			if (discount <=1) {
     				discount_txt = total_price;
     				discount_price = total_price;
     			} else {
@@ -456,10 +456,10 @@
 			if(loc == '2' || loc == '3' || loc == '4' || loc == '5') {
 				$('#home_top_hide').show();
 				$('#home_top_show').hide();
-
+				
 				$('#datetimepicker_start_'+advertise_id).datepicker('destroy');
 				$('#datetimepicker_end_'+advertise_id).datepicker('destroy');
-
+                $('#datetimepicker_end_'+advertise_id).datepicker('option', 'minDate', 0);
 				$("#datetimepicker_start_"+advertise_id).datepicker({
 				    dateFormat: "yy-mm-dd",
 				    minDate: 0,
@@ -479,7 +479,7 @@
 
 				$('#datetimepicker_start_'+advertise_id).datepicker('setDate', 'today');
 
-				$('#datetimepicker_end_'+advertise_id).datepicker( { dateFormat: "yy-mm-dd" });
+				$('#datetimepicker_end_'+advertise_id).datepicker( { dateFormat: "yy-mm-dd", minDate: 0});
 				$('#datetimepicker_end_'+advertise_id).datepicker('setDate', '+5');
 
 				$('.position_amount_visible').show();			
@@ -487,7 +487,7 @@
 			} else {
 				$('#datetimepicker_start_'+advertise_id).datepicker('destroy');
 				$('#datetimepicker_end_'+advertise_id).datepicker('destroy');
-
+                $('#datetimepicker_end_'+advertise_id).datepicker('option', 'minDate', 0);
 				$("#datetimepicker_start_"+advertise_id).datepicker({
 				    dateFormat: "yy-mm-dd",
 				    minDate: 0,
@@ -502,7 +502,7 @@
 
 				$('#datetimepicker_start_'+advertise_id).datepicker('setDate', 'today');
 					
-				$('#datetimepicker_end_'+advertise_id).datepicker( { dateFormat: "yy-mm-dd" });
+				$('#datetimepicker_end_'+advertise_id).datepicker( { dateFormat: "yy-mm-dd",minDate: 0 });
 				$('#datetimepicker_end_'+advertise_id).datepicker('setDate', '+5');
 
 				$('.position_amount_visible').hide();	
@@ -526,7 +526,7 @@
 
 		$('#datetimepicker_start_'+advertise_id).datepicker('setDate', 'today');
 			
-		$('#datetimepicker_end_'+advertise_id).datepicker( { dateFormat: "yy-mm-dd" });
+		$('#datetimepicker_end_'+advertise_id).datepicker( { dateFormat: "yy-mm-dd" ,minDate: 0});
 		$('#datetimepicker_end_'+advertise_id).datepicker('setDate', '+5');
 
 		$('.area_km').on('change',function() {
@@ -734,15 +734,18 @@
 		var discount = $('input[name="loc"]:checked').data('cashBack');;
 		var discount_price = 0;
 		var discount_txt = '';
-
-		if (amount == '0') {
+		if(!amount) amount = 0;
+		if (amount == 0 ) {
 			discount_txt = '</br><span style="font-weight: bold">OFFER PRICE:</span> FREE</br>';
 		} else {
-			if(!amount) amount = 0;
+			if(parseInt(amount) <= 1) 
+				discount = 0;
+
 			if (discount === 0) {
-				discount_txt = '</br><span style="font-weight: bold">OFFER PRICE:</span> Pay only <span style="font-weight: bold"> &nbsp;&nbsp;'+ amount.toFixed(2) + ' Rs</span></br>';
+				discount_price = parseInt(amount);
+				discount_txt = '</br>Pay <span style="font-weight: bold"> &nbsp;&nbsp;'+ amount.toFixed(2) + ' Rs</span></br>';
 			} else {	    
-				discount_price = (discount / 100) * parseInt(amount);
+				discount_price = parseInt(amount) - (discount / 100) * parseInt(amount);
 				discount_txt = '</br><span style="font-weight: bold">OFFER PRICE:</span> Pay only <span style="color: #ff0000"><del>'+amount+' Rs</del></span> <span style="font-weight: bold"> &nbsp;&nbsp;'+ discount_price.toFixed(2) + ' Rs</span>&nbsp;&nbsp;&nbsp;(' +discount+'% discount)</br>';
 			}
 		}
@@ -790,7 +793,7 @@
 			success: function(json) {
 				if (json['success']) {
 					var loc = $('input[name="loc"]:checked').val();
-					var amount = $('#actual_price').val();
+					var amount = json['amount'];
 
 					if (loc === '6' || amount == '0') {
 						$('#liveSuccessMsg').html('<i class="fa fa-check-circle"></i> '+ json['success']).show();

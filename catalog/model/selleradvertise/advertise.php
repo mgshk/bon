@@ -913,6 +913,16 @@ class ModelselleradvertiseAdvertise extends Model
 		return $basic_price1; 
     }
 
+    public function getLocOfferCashBackPercent($id)
+	{
+        $query = $this->db->query("SELECT * FROM ".DB_PREFIX."store_offer_basic_price where id = ".$id);
+
+        //$query = $this->db->query($sql);
+		$basic_price = $query->rows;
+		
+		return $basic_price; 
+    }
+
 	public function getAdvertiseListMailNotSend()
 	{
 		//echo "544536"; die;

@@ -22,6 +22,7 @@
 	.alert {font-size: 12px;}
 	.mainn-topp-ress {margin-top:20px;}
 	.ui-state-highlight, .ui-widget-content .ui-state-highlight, .ui-widget-header .ui-state-highlight{border: 1px solid green !important; color: red;}
+	td.ui-state-highlight{background: blue !important;}
 	.prod--sell-spec-rew h3 {margin: 10px 0px;}
 	.--bon-res-scrooll {
 		overflow-x: scroll;
@@ -1041,7 +1042,7 @@ a.ui-button:active,
 .ui-icon-background,
 .ui-state-active .ui-icon-background {
 	border: #003eff;
-	background-color: #ffffff;
+	background-color: #003eff;
 }
 .ui-state-active a,
 .ui-state-active a:link,

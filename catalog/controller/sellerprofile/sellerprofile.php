@@ -2477,7 +2477,7 @@ class Controllersellerprofilesellerprofile extends Controller
         try {
             $this->load->language('selleradvertise/advertise');
             $this->load->model('selleradvertise/advertise');
-
+            
             if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validate_move_live()) {
 
                 $data['top_banner_date'] = $this->request->post['top_banner_date'];
@@ -2497,8 +2497,22 @@ class Controllersellerprofilesellerprofile extends Controller
                     $data['is_basic'] = 0;
                 }
                 
-
-                $_SESSION['confirm']['amount'] = $this->request->post['amount'];
+                $discountedAmount = $data['discount_price'];
+                if($data['price'] > 1){
+                    //For antihacking - start
+                    $discountPercent = $this->model_selleradvertise_advertise->getLocOfferCashBackPercent($data['loc']);
+                    $discountPercent = $discountPercent[0]['cash_back'];
+                    //print_r($discountPercent);
+                    $discountedAmount = $data['price'] - $data['price']*$discountPercent/100;
+                    
+                }
+                elseif($data['price'] == 1){
+                    $discountedAmount = 1;
+                }
+                $data['discount_price'] = $discountedAmount;
+                //print_r($discountedAmount);die;
+                //For antihacking - end
+                $_SESSION['confirm']['amount'] = $discountedAmount;
                 $_SESSION['confirm']['name'] = $this->getAdName($this->request->post['loc']);
                 $_SESSION['confirm']['product_id'] = $this->request->post['advetise_sp'];
 
@@ -2529,7 +2543,7 @@ class Controllersellerprofilesellerprofile extends Controller
                 foreach($ad as $ads) {
                     $adv[] = $ads['total'];
                 }       
-
+                $json['amount'] = $discountedAmount;
                 $json['live_count'] = array_sum($adv);
                 $json['success'] = $this->language->get('success_to_live');
             }
