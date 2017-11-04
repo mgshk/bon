@@ -12,7 +12,7 @@ class Controllersellerprofilesellerprofile extends Controller
             $this->response->redirect($this->url->link('common/home', '', 'SSL'));
         }
 
-        $this->document->addStyle('http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/base/jquery-ui.css');
+        $this->document->addStyle('//ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/base/jquery-ui.css');
         $this->document->addScript('catalog/view/javascript/jquery-ui.multidatespicker.js');
         $this->document->addScript('catalog/view/javascript/sellerprofile/sellerprofile.js');
 
