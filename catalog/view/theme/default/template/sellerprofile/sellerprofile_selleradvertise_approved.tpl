@@ -135,7 +135,7 @@
 		</script>
 	<?php } ?>
 
-	<div class="modal fade" id="myModal_adv" role="dialog">
+	<div class="modal fade" id="myModal_adv" role="dialog" data-backdrop="static" data-keyboard="false">
 	 <div class="modal-dialog">
 		<div class="modal-content loc-pop">
 			<div class="modal-body adv--nve-lve">
