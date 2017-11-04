@@ -1418,14 +1418,15 @@ border: 0;}
     position: relative;
     /* float: right; */
     padding: 12px 0px;
-    margin-top: 8px;
-    margin-right: 6px;
+    margin-top: 15px !important;
+    margin-right: 10px !important;
     /* margin-bottom: 8px; */
     background-color: transparent;
     background-image: none;
     border: 1px solid transparent;
     border-radius: 4px;
 	}
+	.mob-menu li a{font-size: 14px !important;}
 	.navbar-header .navbar-toggle {
 		border-color: #fff;
 	}
@@ -1468,7 +1469,7 @@ border: 0;}
 	#Accord {margin-top:20px;}
 	.sel-cat-home {margin-bottom: 2px; background: #fff;}
 	._home_tab--sel--main {width: 100%; display: inline;}
-	.navbar-collapse.in {height: 150px;}
+	.navbar-collapse.in {/*height: 150px;*/}
 	.mob-menu li {padding: 2px; font-size: 18px; color: #000 !important; line-height: 1.5;}
 	select#path {-moz-appearance: none; text-indent: 0.01px; text-overflow: '';}
 }
