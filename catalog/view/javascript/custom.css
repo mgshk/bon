@@ -107,7 +107,7 @@ border-radius: 3px;
 		font-size: 13px; 
 		border-right: 1px solid #ffffff;/*background: #cef0f5;*/
 		height: 34px;
-		background: #f1f1f1; 
+		background: rgba(76, 186, 255, 0.64); 
 		text-align: center;
 	}
 	._bon_ts1 .tas_bon {font-size: 16px; background: #0094fb; text-align: center;padding: 7px; color: #fff;

@@ -6,7 +6,10 @@ class ControllerCheckoutFailure extends Controller {
 		$this->document->setTitle($this->language->get('heading_title'));
 
 		if (isset($this->session->data['order_id'])){
+			$data['order_id'] = $this->session->data['order_id'];
 			$data['txnstatus']=$this->session->data['txnstatus'];
+			$this->load->model('checkout/order');	
+		    $data['order_info'] = $this->model_checkout_order->getOrder($this->session->data['order_id']);
 			unset($this->session->data['txnstatus']);
 		} 
 		else
@@ -40,10 +43,15 @@ class ControllerCheckoutFailure extends Controller {
 
 		$data['text_message'] = sprintf($this->language->get('text_message'), $this->url->link('information/contact'));
 
-		$data['button_continue'] = $this->language->get('button_continue');
+		$data['button_continue'] = $this->language->get('button_click_go_back');
 
-		$data['continue'] = $this->url->link('sellerprofile/sellerprofile&tab_section=store&inner_store=approved#content');
-
+		if(strpos($data['order_info']['comment'], 'Feature')===false){
+			$data['continue'] = $this->url->link('sellerprofile/sellerprofile&tab_section=store&inner_store=approved#content');
+		}
+		else
+		{
+			$data['continue'] = $this->url->link('sellerprofile/sellerprofile&tab_section=store_detail#content');
+		}
 		$data['column_left'] = $this->load->controller('common/column_left');
 		$data['column_right'] = $this->load->controller('common/column_right');
 		$data['content_top'] = $this->load->controller('common/content_top');

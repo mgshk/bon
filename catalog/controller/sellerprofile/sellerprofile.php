@@ -2507,7 +2507,7 @@ class Controllersellerprofilesellerprofile extends Controller
                     $json['confirmForm'] = $this->load->controller('checkout/confirm/adConfirm');
                 } else if ($this->request->post['loc'] == '2' || $this->request->post['loc'] == '3' || $this->request->post['loc'] == '4' || $this->request->post['loc'] == '5') {
 
-                    if ($this->request->post['loc'] == '5') {
+                    if ($this->request->post['loc'] == '5' && $data['price'] <= 0) {
                         $check_eligibity = $this->model_selleradvertise_advertise->isFreeAdUsed();
 
                         if ($check_eligibity > 0)
@@ -3204,7 +3204,12 @@ class Controllersellerprofilesellerprofile extends Controller
 			$from_date = date("Y-m-d");
 			$end_date  = date('Y-m-d', strtotime("+".$days." days"));
 			
-			$this->model_sellerprofile_sellerprofile->featureStore($amount, $from_date, $end_date);
+            $_SESSION['confirm']['amount'] = $amount;
+            $_SESSION['confirm']['name'] = $this->request->post['featured_period']." month Feature";
+            $_SESSION['confirm']['product_id'] = 0;
+            $data['confirmForm'] = $this->load->controller('checkout/confirm/adConfirm');
+
+			//$this->model_sellerprofile_sellerprofile->featureStore($amount, $from_date, $end_date);
 			$data['success'] = 'Your store moved to featured';
 		}
 		$json = $data;

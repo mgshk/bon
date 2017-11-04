@@ -1,12 +1,12 @@
 <?php
-define('ROOT_BON_FOLDER', 'bon/');
+define('ROOT_BON_FOLDER', 'projects/bon/');
 // HTTP
-define('HTTP_SERVER', 'https://localhost/'.ROOT_BON_FOLDER.'admin/');
-define('HTTP_CATALOG', 'https://localhost/'.ROOT_BON_FOLDER);
+define('HTTP_SERVER', 'http://localhost/'.ROOT_BON_FOLDER.'admin/');
+define('HTTP_CATALOG', 'http://localhost/'.ROOT_BON_FOLDER);
 
 // HTTPS
-define('HTTPS_SERVER', 'https://localhost/'.ROOT_BON_FOLDER.'admin/');//http://192.168.0.25
-define('HTTPS_CATALOG', 'https://localhost/'.ROOT_BON_FOLDER);
+define('HTTPS_SERVER', 'http://localhost/'.ROOT_BON_FOLDER.'admin/');//http://192.168.0.25
+define('HTTPS_CATALOG', 'http://localhost/'.ROOT_BON_FOLDER);
 
 // DIR
 define('DIR_APPLICATION', $_SERVER['DOCUMENT_ROOT'].'/'.ROOT_BON_FOLDER.'admin/');

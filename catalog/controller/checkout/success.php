@@ -4,6 +4,9 @@ class ControllerCheckoutSuccess extends Controller {
 		$this->load->language('checkout/success');
 
 		if (isset($this->session->data['order_id'])){
+			$this->load->model('checkout/order');	
+		    $data['order_info'] = $this->model_checkout_order->getOrder($this->session->data['order_id']);
+
 			$data['txnstatus']=$this->session->data['txnstatus'];
 			unset($this->session->data['txnstatus']);
 		} 
@@ -82,14 +85,33 @@ class ControllerCheckoutSuccess extends Controller {
 			$data['text_message'] = sprintf($this->language->get('text_guest'), $this->url->link('information/contact'));
 		}
 
-		if (isset($this->session->data['order_id'])){
+		if (isset($this->session->data['mihpayid'])){
 			$data['mihpayid'] = $this->session->data['mihpayid'];
 			unset($this->session->data['mihpayid']);
 		}
 
-		$data['button_continue'] = $this->language->get('button_continue');
+		$data['button_continue'] = $this->language->get('button_click_go_back');
 
-		$data['continue'] = $this->url->link('sellerprofile/sellerprofile&tab_section=store&inner_store=live#content');
+		if(strpos($data['order_info']['comment'], 'Feature')===false){
+			
+			$data['continue'] = $this->url->link('sellerprofile/sellerprofile&tab_section=store&inner_store=live#content');
+		}
+		else
+		{
+			//print_r($data['order_info']); 
+			if(strpos($data['order_info']['comment'], 'half')===false) {
+				$days   = 30;
+			} else {
+				$days   = 15;
+			}
+			$amount = $data['order_info']['total'];
+			$from_date = date("Y-m-d");
+			$end_date  = date('Y-m-d', strtotime("+".$days." days"));
+			$this->load->model('sellerprofile/sellerprofile');	
+
+			$this->model_sellerprofile_sellerprofile->featureStore($amount, $from_date, $end_date);
+			$data['continue'] = $this->url->link('sellerprofile/sellerprofile&tab_section=store_detail#content');
+		}
 
 		$data['column_left'] = $this->load->controller('common/column_left');
 		$data['column_right'] = $this->load->controller('common/column_right');

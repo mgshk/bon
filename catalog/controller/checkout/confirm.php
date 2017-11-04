@@ -549,7 +549,7 @@ class ControllerCheckoutConfirm extends Controller
 				'reward' => '',
 			);            
 
-            $order_data['comment'] = '';
+            $order_data['comment'] = $_SESSION['confirm']['name'];
             $order_data['total'] = $_SESSION['confirm']['amount'];
 
             

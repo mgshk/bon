@@ -289,7 +289,7 @@
                             <?php if(strtotime($feature_store_end) > strtotime('now')) { ?>
                             <button disabled type="button" class="btn btn-primary">Featured Store/Entity</button>
                             <?php } else { ?>
-                            <button type="button" style="cursor:pointer;display: none" id="store_featured_dt" data-toggle="modal" data-target="#store_featured" class="btn btn-primary">Featured Store/Entity</button>
+                            <button type="button" style="cursor:pointer;" id="store_featured_dt" data-toggle="modal" data-target="#store_featured" class="btn btn-primary">Featured Store/Entity</button>
                             <?php } ?>
                           </div>
                         </div>
@@ -828,7 +828,7 @@
                             </div>
                             <?php } else { ?>
                             <div class="form-group">
-                              <label class="col-sm-12 control-label" style="display:none" for="input-referred-by">
+                              <label class="col-sm-12 control-label"  for="input-referred-by">
                                              - Not set as <span style="background: yellow;"> Featured </span>. Don't be one among the crowd, rise above from the rest.
                                              
                               </label>
@@ -1224,9 +1224,9 @@
         <div class="row">
           <form action="" method="post" enctype="multipart/form-data" id="store-feature" class="form-horizontal">
             <div class="featured-detils">
-              <input type="radio" name="featured_period" if="half_per" value="half"><label for="half_per"> 15 days - Rs 399</label><br/>
-              <input type="radio" name="featured_period" if="full_per" value="full"><label for="full_per"> 30 days - Rs 699</label><br/>
-              <button id="button-feature-save" data-loading-text="<?php echo $text_loading; ?>" class="advertise-btn_live">Continue</button>
+              <input type="radio" name="featured_period" id="half_per" value="half"><label for="half_per"> 15 days - Rs 399</label><br/>
+              <input type="radio" name="featured_period" id="full_per" value="full" checked><label for="full_per"> 30 days - Rs 699</label><br/>
+              <input type="button" id="button-feature-save" data-loading-text="<?php echo $text_loading; ?>" class="advertise-btn_live" value="Continue" />
               <button class="advertise-btn" type="button" onclick="this.form.reset();" data-dismiss="modal" aria-hidden="true">Cancel</button>
             </div>
           </form>
@@ -1681,7 +1681,14 @@
       url: 'index.php?route=sellerprofile/sellerprofile/feature_store',
       data: $('#store-feature').serialize(),
       success: function (data) {
-        window.location.reload();
+        if (data['success']) {
+            $('#store_featured').append(data['confirmForm']);
+				    $('#payu_form').submit();
+        }
+        else
+        {
+         // window.location.reload();
+        }
       }
     });
   });
