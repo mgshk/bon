@@ -182,7 +182,7 @@
 			<?php }?>
 		</div>
 		<div class="col-sm-3">
-			<div class="video-tag">
+			<div class="video-tag hidden-xs">
 				<video width="300" height="196" controls autoplay>
 				  <source src="image/bon_english.mp4" type="video/mp4">
 				  <source src="image/bon_english.ogg" type="video/ogg">
@@ -730,7 +730,7 @@
 			<!--</div>-->
 		</div>
 		<div class="col-sm-3">
-			<div class="video-tag">
+			<div class="video-tag hidden-xs">
 				<video width="300" height="196" controls autoplay>
 				  <source src="image/seller_walkthrough.mp4" type="video/mp4">
 				  <source src="image/seller_walkthrough.ogg" type="video/ogg">

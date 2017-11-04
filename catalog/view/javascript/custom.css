@@ -105,14 +105,17 @@ border-radius: 3px;
 		margin-left: 2px;
 		width:40%; 
 		font-size: 13px; 
-		border-right: 1px solid #000000;/*background: #cef0f5;*/
+		border-right: 1px solid #ffffff;/*background: #cef0f5;*/
 		height: 34px;
 		background: #f1f1f1; 
 		text-align: center;
 	}
 	._bon_ts1 .tas_bon {font-size: 16px; background: #0094fb; text-align: center;padding: 7px; color: #fff;
 	border-radius: 4px 0 0 0;}
-	._bon_ts>li>a {padding: 8px 0px;color: #000;}
+	._bon_ts>li>a {padding: 8px 0px;color: #000;
+	white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;}
 	._bon_ts1>li>a {padding: 8px 0px; color: #000;}
 	._bon_ts>li.active>a {color: #000;}
 	._home_tab--sel--main{display: inline-flex; width: 100%;}
@@ -1431,7 +1434,7 @@ border: 0;}
 	.temp--mb .fa, h2 {font-size:10px;}
 	.temp--mb{margin-top: -40px; color: #fff; position: absolute; width: 100%;}
 	/********* new TAB style **********/
-	.seller--prof-pg .nav-tabs{display: inline-flex;width: 100%;overflow-x: scroll;}
+	.seller--prof-pg .nav-tabs{display: inline-flex;width: 100%;/*overflow-x: scroll;*/}
 	.filtered_ads{width: 100%;display: inline-flex;overflow-x: scroll; white-space: nowrap;font-size: 11px;}
 	.adv--ress h2{font-size: 11px;}
 	.adv--ress a.info {margin: 0px 10px 0;}
@@ -1474,7 +1477,13 @@ border: 0;}
 }
 
 @media (max-width:380px) {
-	.tas_bon a{font-size: 10px;}
+	.tas_bon a{font-size: 9px;}
+	._bon_ts .tas_bon{
+		border-right: 1px solid #ffffff !important;
+	}
+	._bon_ts>li>a{
+		height: 34px;
+	}
 	/***** Important Toogle button cahnge **********/
    .navbar-toggle {
     position: relative;
