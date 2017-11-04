@@ -272,7 +272,7 @@
 						</tr>
 						<tr>
 						    <td>6.&nbsp</td>
-						    <td>Please be aware that postion in Nearby tab for paid advertisement might change due to coverage area of other advertisements.</td>
+						    <td>Please be aware that postion in Nearby tab for paid advertisement might change due to coverage area of other advertisements or if you change your store/entity location.</td>
 						</tr>
 					    </table>
 				     </div>
@@ -740,16 +740,16 @@
 		} else {
 			if(!amount) amount = 0;
 			if (discount === 0) {
-				discount_txt = '</br><span style="font-weight: bold">OFFER PRICE:</span> 1Pay only <span style="font-weight: bold"> &nbsp;&nbsp;'+ amount.toFixed(2) + ' Rs</span></br>';
+				discount_txt = '</br><span style="font-weight: bold">OFFER PRICE:</span> Pay only <span style="font-weight: bold"> &nbsp;&nbsp;'+ amount.toFixed(2) + ' Rs</span></br>';
 			} else {	    
 				discount_price = (discount / 100) * parseInt(amount);
-				discount_txt = '</br><span style="font-weight: bold">OFFER PRICE:</span> 2Pay only <span style="color: #ff0000"><del>'+amount+' Rs</del></span> <span style="font-weight: bold"> &nbsp;&nbsp;'+ discount_price.toFixed(2) + ' Rs</span>&nbsp;&nbsp;&nbsp;(' +discount+'% discount)</br>';
+				discount_txt = '</br><span style="font-weight: bold">OFFER PRICE:</span> Pay only <span style="color: #ff0000"><del>'+amount+' Rs</del></span> <span style="font-weight: bold"> &nbsp;&nbsp;'+ discount_price.toFixed(2) + ' Rs</span>&nbsp;&nbsp;&nbsp;(' +discount+'% discount)</br>';
 			}
 		}
 
 		if ($('input[name="loc"]:checked').val() === '5')
 		{
-		discount_txt = discount_txt + '<span style="color: #ff0000;font-size: 12px;">Please be aware that postion in Nearby tab for paid advertisement might change due to coverage area of other advertisements.</span></br>';
+		discount_txt = discount_txt + '<span style="color: #ff0000;font-size: 12px;">Please be aware that postion in Nearby tab for paid advertisement might change due to coverage area of other advertisements or if you change your store/entity location.</span></br>';
 		}
 	
 		$('#display_amount_1').html(discount_txt).show();

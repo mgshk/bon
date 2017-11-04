@@ -558,6 +558,7 @@
 				var latlong = (latitude + ", " + longitude);
 				if ($('#map_mod').attr("target") == "sellerprofile") {
 					sessionStorage.setItem("myStoreAddress", latlong);
+					$.cookie('myCookie', latlong);
 					pageReload = false;
 				}
 				else {
