@@ -4,7 +4,7 @@
 <script type="text/javascript" src="catalog/view/javascript/jquery.slimscroll.js"></script>
 <script>
 	$(function () {
-		
+
 		var availableTags = <?php //echo $auto_search_home; ?>
 	  $("#search_val").autocomplete({
 				source: availableTags
@@ -121,15 +121,14 @@
 						?>
 						<div class="item <?php echo ($i == 0) ? 'active' : ''; ?>">
 							<div class="hovereffect fis-des">
-							
+
 								<?php if(file_exists("image/".$advertisement_top['offer_image'])){ ?>
-									<img src="<?php echo $image_resize->resize($advertisement_top['offer_image'], 993, 182); ?>" class="img-responsive" title="<?php echo $advertisement_top['offer_title']; ?>"
-									alt="<?php echo $advertisement_top['offer_title']; ?>">
-								 <?php } else { echo $advertisement_top['offer_image'];?>
-									 
-									 <img src="image/adv_default_image.jpg" class="img-responsive" title="<?php echo $advertisement_top['offer_title']; ?>"
-									alt="<?php echo $advertisement_top['offer_title']; ?>">
-								 <?php } ?>
+								<img src="<?php echo $image_resize->resize($advertisement_top['offer_image'], 993, 182); ?>" class="img-responsive" title="<?php echo $advertisement_top['offer_title']; ?>"
+								 alt="<?php echo $advertisement_top['offer_title']; ?>">
+								<?php } else { echo $advertisement_top['offer_image'];?>
+
+								<img src="image/adv_default_image.jpg" class="img-responsive" title="<?php echo $advertisement_top['offer_title']; ?>" alt="<?php echo $advertisement_top['offer_title']; ?>">
+								<?php } ?>
 								<div class="overlay">
 									<div class="carousel-caption">
 										<div class="col-sm-12">
@@ -171,7 +170,7 @@
 				<!-- Wrapper for slides -->
 				<div class="carousel-inner" role="listbox">
 					<div class="item active">
-						<img src="image/header-img.png" class="img-responsive"  alt="header-ad">
+						<img src="image/header-img.png" class="img-responsive" alt="header-ad">
 						<div class="carousel-caption">
 							<h3></h3>
 							<!--<a class="info" href="<?php echo $advertisement_na['offer_url']; ?>">link here</a>-->
@@ -182,11 +181,7 @@
 			<?php }?>
 		</div>
 		<div class="col-sm-3">
-			<div class="video-tag hidden-xs">
-			    <iframe width="300" height="196"
-				    src="https://www.youtube.com/embed/3lkR8tqc5rE">
-				</iframe> 
-			</div>
+			
 		</div>
 	</div>
 </div>
@@ -335,21 +330,20 @@
 			<div class="tab-content home-tt-r">
 				<div role="tabpanel" class="tab-pane active" id="home">
 					<div class="col-sm-12">
-							<div class="row">
-								<h4 style="color: #00ACEC">Post your advertisement here, entire 
+						<div class="row">
+							<h4 style="color: #00ACEC">Post your advertisement here, entire
 								<?php if ($logged && $login_type != 'buyer') { ?>
-									<a href="index.php?route=selleradvertise/advertise/add">
-										<u>country</u>
-									</a>
+								<a href="index.php?route=selleradvertise/advertise/add">
+									<u>country</u>
+								</a>
 								<?php }else{ ?>
-									<a class="cursor" data-toggle="modal" data-target="#login_frc_seller">
-										<u>country</u>
-									</a>
-								<?php } ?>
-								is waiting...</h4>
-							</div>
+								<a class="cursor" data-toggle="modal" data-target="#login_frc_seller">
+									<u>country</u>
+								</a>
+								<?php } ?> is waiting...</h4>
+						</div>
 					</div>
-					<span id = "home_content">
+					<span id="home_content">
 						<?php if(count($advertisement_national) > 0) {
 							foreach($advertisement_national as $advertisement_na) { ?>
 						<div class="col-sm-12 advertise_count" id="<?php echo $advertisement_na['advertise_id']; ?>">
@@ -404,7 +398,7 @@
 											<span style="float: left;">
 												<?php echo substr($advertisement_na['nickname'], 0, 20); ?>
 											</span>
-											<span class="sub-mb--st" style="float: right;">
+					<span class="sub-mb--st" style="float: right;">
 												<?php for ($i = 1; $i <= 5; $i++) { ?>
 												<?php if ($advertisement_na['rating'] < $i) { ?>
 												<div class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i></div>
@@ -413,40 +407,39 @@
 												<?php } ?>
 												<?php } ?>
 											</span>
-										</div>
-										<?php if((isset($advertisement_na['filtered']) && $advertisement_na['filtered'] =='1') ? $advertisement_na['filtered'] : '') { ?>
-										<div class="col-sm-1 filtered_ads">
-											<?php echo "Filtered"; ?>
-										</div>
-										<?php } ?>
-									</a>
-								</div>
-							</div>
-						</div>
-						<?php $count_na = count($advertisement_national); ?>
-						<script>
-							var national_adv_id = "<?php echo $advertisement_na['advertise_id']; ?>"; var count_na = "<?php echo $count_na; ?>";
-						</script>
-						<?php } }  ?>
-						</span>
 				</div>
-				<div role="tabpanel" class="tab-pane" id="profile">
-					<div class="col-sm-12">
-							<div class="row">
-								<h4 style="color: #00ACEC">Post your advertisement here, entire 
-								<?php if ($logged && $login_type != 'buyer') { ?>
-									<a href="index.php?route=selleradvertise/advertise/add">
-										<u>state</u>
-									</a>
-								<?php }else{ ?>
-									<a class="cursor" data-toggle="modal" data-target="#login_frc_seller">
-										<u>state</u>
-									</a>
-								<?php } ?>
-								is waiting...</h4>
-							</div>
-					</div>
-					<span id = "profile_content">
+				<?php if((isset($advertisement_na['filtered']) && $advertisement_na['filtered'] =='1') ? $advertisement_na['filtered'] : '') { ?>
+				<div class="col-sm-1 filtered_ads">
+					<?php echo "Filtered"; ?>
+				</div>
+				<?php } ?>
+				</a>
+			</div>
+		</div>
+	</div>
+	<?php $count_na = count($advertisement_national); ?>
+	<script>
+		var national_adv_id = "<?php echo $advertisement_na['advertise_id']; ?>"; var count_na = "<?php echo $count_na; ?>";
+	</script>
+	<?php } }  ?>
+	</span>
+</div>
+<div role="tabpanel" class="tab-pane" id="profile">
+	<div class="col-sm-12">
+		<div class="row">
+			<h4 style="color: #00ACEC">Post your advertisement here, entire
+				<?php if ($logged && $login_type != 'buyer') { ?>
+				<a href="index.php?route=selleradvertise/advertise/add">
+					<u>state</u>
+				</a>
+				<?php }else{ ?>
+				<a class="cursor" data-toggle="modal" data-target="#login_frc_seller">
+					<u>state</u>
+				</a>
+				<?php } ?> is waiting...</h4>
+		</div>
+	</div>
+	<span id="profile_content">
 						<?php if(count($advertisement_state) > 0) {
 							foreach($advertisement_state as $advertisement_st) { ?>
 						<div class="col-sm-12 advertise_count" id="<?php echo $advertisement_st['advertise_id']; ?>">
@@ -501,7 +494,7 @@
 											<span style="float: left;">
 												<?php echo substr($advertisement_st['nickname'], 0, 20); ?>
 											</span>
-											<span class="sub-mb--st" style="float: right;">
+	<span class="sub-mb--st" style="float: right;">
 												<?php for ($i = 1; $i <= 5; $i++) { ?>
 												<?php if ($advertisement_st['rating'] < $i) { ?>
 												<div class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i></div>
@@ -510,40 +503,39 @@
 												<?php } ?>
 												<?php } ?>
 											</span>
-										</div>
-										<?php if((isset($advertisement_st['filtered']) && $advertisement_st['filtered'] =='1') ? $advertisement_st['filtered'] : '') { ?>
-										<div class="col-sm-1 filtered_ads">
-											<?php echo "Filtered"; ?>
-										</div>
-										<?php } ?>
-									</a>
-								</div>
-							</div>
-						</div>
-						<?php $count_st = count($advertisement_state); ?>
-						<script>
-							var state_adv_id = "<?php echo $advertisement_st['advertise_id']; ?>"; var count_st = "<?php echo $count_st; ?>";
-						</script>
-						<?php } }  ?>
-					</span>
-				</div>
-				<div role="tabpanel" class="tab-pane" id="messages">
-					<div class="col-sm-12">
-							<div class="row">
-								<h4 style="color: #00ACEC">Post your advertisement here, entire 
-								<?php if ($logged && $login_type != 'buyer') { ?>
-									<a href="index.php?route=selleradvertise/advertise/add">
-										<u>city/district</u>
-									</a>
-								<?php }else{ ?>
-									<a class="cursor" data-toggle="modal" data-target="#login_frc_seller">
-										<u>city/district</u>
-									</a>
-								<?php } ?>
-								is waiting...</h4>
-							</div>
-					</div>
-					<span id = "messages_content">
+</div>
+<?php if((isset($advertisement_st['filtered']) && $advertisement_st['filtered'] =='1') ? $advertisement_st['filtered'] : '') { ?>
+<div class="col-sm-1 filtered_ads">
+	<?php echo "Filtered"; ?>
+</div>
+<?php } ?>
+</a>
+</div>
+</div>
+</div>
+<?php $count_st = count($advertisement_state); ?>
+<script>
+		var state_adv_id = "<?php echo $advertisement_st['advertise_id']; ?>"; var count_st = "<?php echo $count_st; ?>";
+</script>
+<?php } }  ?>
+</span>
+</div>
+<div role="tabpanel" class="tab-pane" id="messages">
+	<div class="col-sm-12">
+		<div class="row">
+			<h4 style="color: #00ACEC">Post your advertisement here, entire
+				<?php if ($logged && $login_type != 'buyer') { ?>
+				<a href="index.php?route=selleradvertise/advertise/add">
+					<u>city/district</u>
+				</a>
+				<?php }else{ ?>
+				<a class="cursor" data-toggle="modal" data-target="#login_frc_seller">
+					<u>city/district</u>
+				</a>
+				<?php } ?> is waiting...</h4>
+		</div>
+	</div>
+	<span id="messages_content">
 						<?php if(count($advertisement_city) > 0) {
 							foreach($advertisement_city as $advertisement_ci) { ?>
 						<div class="col-sm-12 advertise_count" id="<?php echo $advertisement_ci['advertise_id']; ?>">
@@ -598,7 +590,7 @@
 											<span style="float: left;">
 												<?php echo substr($advertisement_ci['nickname'], 0, 20); ?>
 											</span>
-											<span class="sub-mb--st" style="float: right;">
+	<span class="sub-mb--st" style="float: right;">
 												<?php for ($i = 1; $i <= 5; $i++) { ?>
 												<?php if ($advertisement_ci['rating'] < $i) { ?>
 												<div class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i></div>
@@ -607,40 +599,39 @@
 												<?php } ?>
 												<?php } ?>
 											</span>
-										</div>
-										<?php if((isset($advertisement_ci['filtered']) && $advertisement_ci['filtered'] =='1') ? $advertisement_ci['filtered'] : '') { ?>
-										<div class="col-sm-1 filtered_ads">
-											<?php echo "Filtered"; ?>
-										</div>
-										<?php } ?>
-									</a>
-								</div>
-							</div>
-							</div>
-							<?php $count_ct = count($advertisement_city); ?>
-							<script>
-								var city_adv_id = "<?php echo $advertisement_ci['advertise_id']; ?>"; var count_ct = "<?php echo $count_ct; ?>";
-							</script>
-							<?php } }  ?>
-						</span>
-				</div>
-				<div role="tabpanel" class="tab-pane" id="settings">
-					<div class="col-sm-12">
-							<div class="row">
-								<h4 style="color: #00ACEC">Post your advertisement for 
-								<?php if ($logged && $login_type != 'buyer') { ?>
-									<a href="index.php?route=selleradvertise/advertise/add">
-										<u>free</u>
-									</a>
-								<?php }else{ ?>
-									<a class="cursor" data-toggle="modal" data-target="#login_frc_seller">
-										<u>free</u>
-									</a>
-								<?php } ?>
-								 here and let the buyers nearby see instantly...</h4>
-							</div>
-					</div>
-					<span id = "settings_content">
+</div>
+<?php if((isset($advertisement_ci['filtered']) && $advertisement_ci['filtered'] =='1') ? $advertisement_ci['filtered'] : '') { ?>
+<div class="col-sm-1 filtered_ads">
+	<?php echo "Filtered"; ?>
+</div>
+<?php } ?>
+</a>
+</div>
+</div>
+</div>
+<?php $count_ct = count($advertisement_city); ?>
+<script>
+	var city_adv_id = "<?php echo $advertisement_ci['advertise_id']; ?>"; var count_ct = "<?php echo $count_ct; ?>";
+</script>
+<?php } }  ?>
+</span>
+</div>
+<div role="tabpanel" class="tab-pane" id="settings">
+	<div class="col-sm-12">
+		<div class="row">
+			<h4 style="color: #00ACEC">Post your advertisement for
+				<?php if ($logged && $login_type != 'buyer') { ?>
+				<a href="index.php?route=selleradvertise/advertise/add">
+					<u>free</u>
+				</a>
+				<?php }else{ ?>
+				<a class="cursor" data-toggle="modal" data-target="#login_frc_seller">
+					<u>free</u>
+				</a>
+				<?php } ?> here and let the buyers nearby see instantly...</h4>
+		</div>
+	</div>
+	<span id="settings_content">
 						<?php if(count($advertisement_local) > 0 && !empty($advertisement_local)) {
 							foreach($advertisement_local as $advertisement_lo) { ?>
 						<div class="col-sm-12 advertise_count" id="<?php echo $advertisement_lo['advertise_id']; ?>">
@@ -695,7 +686,7 @@
 											<span style="float: left;">
 												<?php echo substr($advertisement_lo['nickname'], 0, 20); ?>
 											</span>
-											<span class="sub-mb--st" style="float: right;">
+	<span class="sub-mb--st" style="float: right;">
 												<?php for ($i = 1; $i <= 5; $i++) { ?>
 												<?php if ($advertisement_lo['rating'] < $i) { ?>
 												<div class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i></div>
@@ -704,43 +695,58 @@
 												<?php } ?>
 												<?php } ?>
 											</span>
-										</div>
-										<?php if((isset($advertisement_lo['filtered']) && $advertisement_lo['filtered'] =='1') ? $advertisement_lo['filtered'] : '') { ?>
-										<div class="col-sm-1 filtered_ads">
-											<?php echo "Filtered"; ?>
-										</div>
-										<?php } ?>
-									</a>
-								</div>
-							</div>
-							</div>
-							<?php $count_lo = count($advertisement_local); ?>
-							<script>
-								var local_adv_id = "<?php echo $advertisement_lo['advertise_id']; ?>"; var count_lo = "<?php echo $count_lo; ?>";
-							</script>
-							<?php } }  ?>
-					</span>
-				</div>
-				<?php if( (isset($advertisement_national) && !empty($advertisement_national)) || (isset($advertisement_state) && !empty($advertisement_state)) || (isset($advertisement_city) && !empty($advertisement_city)) || (isset($advertisement_local) && !empty($advertisement_local))) { ?>
-				<p id="loader_page" style="display:none;"><img src="catalog/view/theme/default/image/ajax_loader.gif"></p>
-				<?php } ?>
-			</div>
-			<!--</div>-->
-		</div>
-		<div class="col-sm-3 videos">
-			<a href="#" onclick="showEnglish()">English</a>
-			<a href="#" onclick="showTamil()">Tamil</a>
-			<div class="video-tag hidden-xs" id="english_video">
-				<iframe width="300" height="196"
-				    src="https://www.youtube.com/embed/VRE2A1esNrU">
+</div>
+<?php if((isset($advertisement_lo['filtered']) && $advertisement_lo['filtered'] =='1') ? $advertisement_lo['filtered'] : '') { ?>
+<div class="col-sm-1 filtered_ads">
+	<?php echo "Filtered"; ?>
+</div>
+<?php } ?>
+</a>
+</div>
+</div>
+</div>
+<?php $count_lo = count($advertisement_local); ?>
+<script>
+	var local_adv_id = "<?php echo $advertisement_lo['advertise_id']; ?>"; var count_lo = "<?php echo $count_lo; ?>";
+</script>
+<?php } }  ?>
+</span>
+</div>
+<?php if( (isset($advertisement_national) && !empty($advertisement_national)) || (isset($advertisement_state) && !empty($advertisement_state)) || (isset($advertisement_city) && !empty($advertisement_city)) || (isset($advertisement_local) && !empty($advertisement_local))) { ?>
+<p id="loader_page" style="display:none;"><img src="catalog/view/theme/default/image/ajax_loader.gif"></p>
+<?php } ?>
+</div>
+<!--</div>-->
+</div>
+<div class="col-sm-3 videos hidden-xs">
+	<div class="hidden-xs">
+				<iframe width="100%" height="100%" src="https://www.youtube.com/embed/3lkR8tqc5rE" 
+				allowfullscreen="allowfullscreen"
+        		mozallowfullscreen="mozallowfullscreen" 
+        		msallowfullscreen="msallowfullscreen" 
+        		oallowfullscreen="oallowfullscreen" 
+        		webkitallowfullscreen="webkitallowfullscreen">
 				</iframe>
 			</div>
-			<div class="video-tag hidden-xs" id="tamil_video">
-				<iframe width="300" height="196"
-				    src="https://www.youtube.com/embed/VRE2A1esNrU">
-				</iframe>
-			</div>
-		</div>
+	<div class="hidden-xs" id="english_video">
+		<iframe width="100%" height="120%" src="https://www.youtube.com/embed/obrwo0jtKCQ"
+		allowfullscreen="allowfullscreen"
+        mozallowfullscreen="mozallowfullscreen" 
+        msallowfullscreen="msallowfullscreen" 
+        oallowfullscreen="oallowfullscreen" 
+        webkitallowfullscreen="webkitallowfullscreen">
+		</iframe>
+	</div>
+	<div class="hidden-xs" id="tamil_video">
+		<iframe width="100%" height="120%" src="https://www.youtube.com/embed/VRE2A1esNrU"
+		allowfullscreen="allowfullscreen"
+        mozallowfullscreen="mozallowfullscreen" 
+        msallowfullscreen="msallowfullscreen" 
+        oallowfullscreen="oallowfullscreen" 
+        webkitallowfullscreen="webkitallowfullscreen">
+		</iframe>
+	</div>
+</div>
 <div class="modal fade" id="ad_details" role="dialog">
 	<div class="modal-dialog">
 		<div class="modal-content loc-pop">
@@ -758,27 +764,27 @@
 
 </script>
 <script>
-						function viewDetAdv(val) {
-							//$('a.view-det-adv').on('click', function() {
-							var data_id = $(val).data('id');
-							$.ajax({
-								url: 'index.php?route=selleradvertise/advertise/get_single_advertise',
-								type: 'post',
-								dataType: 'json',
-								data: { data_id: data_id },
-								success: function (json) {
-									var img = json['offer_image_original'];
-									var str_lnk = 'index.php?route=seller/seller/info&seller_id=' + json['seller_id'] + '&path=&counter=1';
-									if (json['success']) {
-										if (json['advertise_id']) {
-											$('#ad_det_id').html('<a href=\"' + str_lnk + '\"><h4><strong>' + json['nickname'] + '</strong></h4></a><h4><strong></strong>' + json['offer_title'] + '</h4><img src=\"image/' + img + '\" alt=\"' + json['offer_title'] + '\" class=\"img-thumbnail img-responsive\" onerror=\"this.onerror=null;this.src=\'image/adv_default_image.jpg\';\"/><p><strong></strong>' + json['offer_desc'] + '<p><strong></strong><a href=' + json['offer_url'] + '>' + json['offer_url'] + '</a></p><div class="view_desc_sl"><p>Terms & Conditions</p><p>- The advertisement provided by the "' + json['nickname'] + '" is true to best of their knowledge.</p><p>- BoN Online Services holds no responsibility of the advertisement information.</p></div>');
-										}
-										$('#ad_details').modal('toggle');
+	function viewDetAdv(val) {
+		//$('a.view-det-adv').on('click', function() {
+		var data_id = $(val).data('id');
+		$.ajax({
+			url: 'index.php?route=selleradvertise/advertise/get_single_advertise',
+			type: 'post',
+			dataType: 'json',
+			data: { data_id: data_id },
+			success: function (json) {
+				var img = json['offer_image_original'];
+				var str_lnk = 'index.php?route=seller/seller/info&seller_id=' + json['seller_id'] + '&path=&counter=1';
+				if (json['success']) {
+					if (json['advertise_id']) {
+						$('#ad_det_id').html('<a href=\"' + str_lnk + '\"><h4><strong>' + json['nickname'] + '</strong></h4></a><h4><strong></strong>' + json['offer_title'] + '</h4><img src=\"image/' + img + '\" alt=\"' + json['offer_title'] + '\" class=\"img-thumbnail img-responsive\" onerror=\"this.onerror=null;this.src=\'image/adv_default_image.jpg\';\"/><p><strong></strong>' + json['offer_desc'] + '<p><strong></strong><a href=' + json['offer_url'] + '>' + json['offer_url'] + '</a></p><div class="view_desc_sl"><p>Terms & Conditions</p><p>- The advertisement provided by the "' + json['nickname'] + '" is true to best of their knowledge.</p><p>- BoN Online Services holds no responsibility of the advertisement information.</p></div>');
+					}
+					$('#ad_details').modal('toggle');
 
-									}
-								}
-							});
-						}
+				}
+			}
+		});
+	}
 	 //});
 
 </script>
@@ -896,7 +902,7 @@
 					// }else {
 					// 	$('#' + tab_id).append('<h4 style="color: #00ACEC">No Advertisement Yet...</h4>');
 					// }
-					
+
 					is_loading = true;
 					count = '';
 					tab_id = '';
@@ -1023,7 +1029,7 @@
 			$('.dropdowns-ss').css('background', 'url(image/all-categories.jpg) no-repeat scroll 0px 0px transparent')
 		}
 	});
-	
+
 
 	$(document).ready(function () {
 		$(".nav-tabs, .slimScrollDiv").hover(function () {
@@ -1035,19 +1041,20 @@
 			clearInterval(intervalTime);
 		});
 
-		$('#english_video').show();
-		$('#tamil_video').hide();
+		// $('#english_video').show();
+		// $('#tamil_video').hide();
 
-		function showEnglish(){
-			$('#english_video').show();
-			$('#tamil_video').hide();
-		}
-		function showTamil(){
-			$('#english_video').hide();
-			$('#tamil_video').show();
-		}
+
 
 	});
+	// function showEnglish() {
+	// 	$('#english_video').show();
+	// 	$('#tamil_video').hide();
+	// }
+	// function showTamil() {
+	// 	$('#english_video').hide();
+	// 	$('#tamil_video').show();
+	// }
 
 </script>
 <?php echo $footer; ?>
