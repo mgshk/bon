@@ -383,6 +383,7 @@ $(document).ready(function() {
            url: 'index.php?route=sellerprofile/sellerprofile/sub_category_autocomplete&path_id=' + category_id +'&filter_name=',
            dataType: 'json',
            success: function(json) {
+             $('#sub_category_'+row).attr('placeholder','All category');
               if(json.length > 0){
                 $('#sub_category_'+row).prop('disabled', false);
                 $('#sub_category_'+row).attr('placeholder','Type here');
@@ -393,7 +394,7 @@ $(document).ready(function() {
               else
               {
                 $('#sub_category_'+row).prop('disabled', true);
-                $('#sub_category_'+row).attr('placeholder','No Sub category to show');
+                
               }
               $('.dropdown-submenu_'+ row).empty().html(elem).show();
            }

@@ -1435,6 +1435,13 @@ class Controllersellerprofilesellerprofile extends Controller
 		    $json['error'] = $this->language->get('error_store_category_empty');
 		}
 
+        if ($this->request->post['referred_by'] != "") {
+            $refererinfo = $this->model_sellerprofile_sellerprofile->GetStoreReferrerNum($this->request->post['referred_by']);
+            if(!$refererinfo)
+             $json['error'] = $this->language->get('error_referer_details_empty');
+             
+        }
+
 		if(empty($json['error'])) {
 			$this->model_sellerprofile_sellerprofile->SellerProfileSave($this->request->post);
 			$json['success'] = $this->language->get('text_update_profile_success');
