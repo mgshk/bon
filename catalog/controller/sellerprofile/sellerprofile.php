@@ -3386,6 +3386,12 @@ class Controllersellerprofilesellerprofile extends Controller
 		} elseif( !preg_match("/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/i", $this->request->post['refer_email']) ) {
 			$json['error'] = $this->language->get('error_email');
 		}
+        //if ($this->request->post['referred_by'] != "") {
+            $refererinfo = $this->model_sellerprofile_sellerprofile->GetStoreReferrerNum($this->request->post['refer_mobile']);
+            if($refererinfo)
+             $json['error'] = "Referer details already exist for this mobile number.";
+             
+        //}
 
 		if(empty($json['error'])) {//echo "fdh"; die;
 			$ref_mobile = $this->model_sellerprofile_sellerprofile->StoreReferrer($this->request->post);
