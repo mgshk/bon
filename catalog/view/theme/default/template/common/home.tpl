@@ -181,13 +181,13 @@
 			</div>
 			<?php }?>
 		</div>
-		<!-- class="col-sm-3">
+		<div class="col-sm-3">
 			<div class="video-tag hidden-xs">
 			    <iframe width="300" height="196"
 				    src="https://www.youtube.com/embed/3lkR8tqc5rE">
 				</iframe> 
 			</div>
-		</div>-->
+		</div>
 	</div>
 </div>
 <div class="container-fluid" id="fix_height">
