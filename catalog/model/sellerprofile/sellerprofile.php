@@ -994,5 +994,15 @@ class Modelsellerprofilesellerprofile extends Model
 		//print_r($res);die;
 		return $res;		
 	}
+
+    public function GetStoreReferrerNum($mobile)
+    {
+        $seller_data = array();
+
+        $query = $this->db->query('SELECT refer_mobile FROM '.DB_PREFIX."store_referred WHERE refer_mobile = '".$mobile."'");
+		$res = $query->row;
+		//print_r($res);die;
+		return $res;		
+	}
 	
 }

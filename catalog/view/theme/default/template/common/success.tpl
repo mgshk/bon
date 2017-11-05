@@ -15,17 +15,17 @@
     <?php } ?>
     <div id="content" class="<?php echo $class; ?>"><?php echo $content_top; ?>
     <br/>
-
     <?php if($txnstatus == "success") { ?>
-            <h1>Thank You!! Your payment is successful!</h1> 
+            <h4>Thank You!! Your payment is successful! 
+              <br/>
             <br/>
-            <h3> Please make not of your transaction id and Order id for future reference.<h2><br/>
-            <h4>
-              <?php echo "Your transaction Id is:".$mihpayid; ?><br />
-              <?php echo "And your order Id is:".$order_id; ?><br />
+             Amount Paid: Rs <?php echo round($order_info['total'],2) ?> <br/><br/>
+             Please make not of your transaction id and Order id for future reference. <br/>
+             Your transaction Id is: <b><?php echo $mihpayid; ?></b><br />
+             And your order Id is: <b><?php echo $order_id; ?></b><br />
             </h4>
     <?php } else { ?>
-      <h1>Sorry!! Your payment is not successful!</h1> 
+      <h4>Sorry!! Your payment is not successful!</h4> 
       <br/>
       
     <?php } ?>

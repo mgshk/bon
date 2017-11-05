@@ -135,7 +135,7 @@
 		</script>
 	<?php } ?>
 
-	<div class="modal fade" id="myModal_adv" role="dialog">
+	<div class="modal fade" id="myModal_adv" role="dialog" data-backdrop="static" data-keyboard="false">
 	 <div class="modal-dialog">
 		<div class="modal-content loc-pop">
 			<div class="modal-body adv--nve-lve">
@@ -163,7 +163,7 @@
 
 							    <input type="radio" <?php if($city =='') { echo "disabled"; }?> name="loc" id="home_city" data-advertise-name="home_city" data-cash-back="<?php echo $basic_price_cashback['home_city']; ?>" value="4"/><label for="home_city">Home - City (<?php if($city !='') { echo $city; } else { echo "Cannot get city name from your store geo code.";}?>)</label><br/>
 
-							    <input type="radio" name="loc" id="home_local" checked data-advertise-name="home_local" data-cash-back="<?php echo $basic_price_cashback['home_local']; ?>" value="5"/><label for="home_local">Home - Nearby</label><br/>
+							    <input type="radio" name="loc" id="home_local" data-advertise-name="home_local" data-cash-back="<?php echo $basic_price_cashback['home_local']; ?>" value="5"/><label for="home_local">Home - Nearby</label><br/>
 
 							    <input type="radio" name="loc" id="store_ad" data-advertise-name="store_ad" data-cash-back="0" value="6"/><label for="store_ad">In your Page - Free</label><br/>
 							</div>
@@ -237,7 +237,7 @@
 
 							<span id="display_amount_1" style="display:none;font-size: 14px;color: #6194f9"></span>
 							<button class="advertise-btn_live" id="advertise-btn_lve" type="button">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Next&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>
-							<button class="advertise-btn" type="button" onClick="this.form.reset();" data-dismiss="modal" aria-hidden="true">&nbsp;&nbsp;&nbsp;Cancel&nbsp;&nbsp;&nbsp;</button>
+							<button class="advertise-btn" type="button" data-dismiss="modal" aria-hidden="true">&nbsp;&nbsp;&nbsp;Cancel&nbsp;&nbsp;&nbsp;</button>
 							<button class="advertise-btn reset" type="button" style="display:none;">Reset</button>
 							<div id="error_check" class="alert alert-danger" style="display:none;"></div>
 	                  		<div id="liveSuccessMsg" class="alert alert-success" style="display:none;"></div>
@@ -272,7 +272,7 @@
 						</tr>
 						<tr>
 						    <td>6.&nbsp</td>
-						    <td>Please be aware that postion in Nearby tab for paid advertisement might change due to coverage area of other advertisements.</td>
+						    <td>Please be aware that postion in Nearby tab for paid advertisement might change due to coverage area of other advertisements or if you change your store/entity location.</td>
 						</tr>
 					    </table>
 				     </div>
@@ -300,7 +300,13 @@
 					bannerBasicPrice[key] = val; 
 				});
 
-				$('#basic_price').text(bannerBasicPrice["home_local"]);
+
+				//$('#basic_price').text(bannerBasicPrice["home_local"]);
+
+				var banner_name = "home_local";
+				$('#basic_price').text(bannerBasicPrice[banner_name]);
+				$('#amount_val').val(bannerBasicPrice[banner_name]);
+				discount_txt(bannerBasicPrice[banner_name]);
 			}
 		});
 
@@ -370,7 +376,7 @@
 
     			var total_price = length * parseInt(bannerBasicPrice['top_banner']);
 
-    			if (discount === 0) {
+    			if (discount <=1) {
     				discount_txt = total_price;
     				discount_price = total_price;
     			} else {
@@ -407,7 +413,7 @@
 
 			return false;
 		});
-
+        $('#home_local').click();
 		$('input[name="loc"]').on('click', function() {
 			
 			var basic_amount_loc = '';
@@ -450,10 +456,10 @@
 			if(loc == '2' || loc == '3' || loc == '4' || loc == '5') {
 				$('#home_top_hide').show();
 				$('#home_top_show').hide();
-
+				
 				$('#datetimepicker_start_'+advertise_id).datepicker('destroy');
 				$('#datetimepicker_end_'+advertise_id).datepicker('destroy');
-
+                $('#datetimepicker_end_'+advertise_id).datepicker('option', 'minDate', 0);
 				$("#datetimepicker_start_"+advertise_id).datepicker({
 				    dateFormat: "yy-mm-dd",
 				    minDate: 0,
@@ -473,7 +479,7 @@
 
 				$('#datetimepicker_start_'+advertise_id).datepicker('setDate', 'today');
 
-				$('#datetimepicker_end_'+advertise_id).datepicker( { dateFormat: "yy-mm-dd" });
+				$('#datetimepicker_end_'+advertise_id).datepicker( { dateFormat: "yy-mm-dd", minDate: 0});
 				$('#datetimepicker_end_'+advertise_id).datepicker('setDate', '+5');
 
 				$('.position_amount_visible').show();			
@@ -481,7 +487,7 @@
 			} else {
 				$('#datetimepicker_start_'+advertise_id).datepicker('destroy');
 				$('#datetimepicker_end_'+advertise_id).datepicker('destroy');
-
+                $('#datetimepicker_end_'+advertise_id).datepicker('option', 'minDate', 0);
 				$("#datetimepicker_start_"+advertise_id).datepicker({
 				    dateFormat: "yy-mm-dd",
 				    minDate: 0,
@@ -496,7 +502,7 @@
 
 				$('#datetimepicker_start_'+advertise_id).datepicker('setDate', 'today');
 					
-				$('#datetimepicker_end_'+advertise_id).datepicker( { dateFormat: "yy-mm-dd" });
+				$('#datetimepicker_end_'+advertise_id).datepicker( { dateFormat: "yy-mm-dd",minDate: 0 });
 				$('#datetimepicker_end_'+advertise_id).datepicker('setDate', '+5');
 
 				$('.position_amount_visible').hide();	
@@ -520,7 +526,7 @@
 
 		$('#datetimepicker_start_'+advertise_id).datepicker('setDate', 'today');
 			
-		$('#datetimepicker_end_'+advertise_id).datepicker( { dateFormat: "yy-mm-dd" });
+		$('#datetimepicker_end_'+advertise_id).datepicker( { dateFormat: "yy-mm-dd" ,minDate: 0});
 		$('#datetimepicker_end_'+advertise_id).datepicker('setDate', '+5');
 
 		$('.area_km').on('change',function() {
@@ -728,21 +734,25 @@
 		var discount = $('input[name="loc"]:checked').data('cashBack');;
 		var discount_price = 0;
 		var discount_txt = '';
-
-		if (amount == '0') {
+		if(!amount) amount = 0;
+		if (amount == 0 ) {
 			discount_txt = '</br><span style="font-weight: bold">OFFER PRICE:</span> FREE</br>';
 		} else {
+			if(parseInt(amount) <= 1) 
+				discount = 0;
+
 			if (discount === 0) {
-				discount_txt = '</br><span style="font-weight: bold">OFFER PRICE:</span> Pay only <span style="font-weight: bold"> &nbsp;&nbsp;'+ amount.toFixed(2) + ' Rs</span></br>';
+				discount_price = parseInt(amount);
+				discount_txt = '</br>Pay <span style="font-weight: bold"> &nbsp;&nbsp;'+ amount.toFixed(2) + ' Rs</span></br>';
 			} else {	    
-				discount_price = (discount / 100) * parseInt(amount);
+				discount_price = parseInt(amount) - (discount / 100) * parseInt(amount);
 				discount_txt = '</br><span style="font-weight: bold">OFFER PRICE:</span> Pay only <span style="color: #ff0000"><del>'+amount+' Rs</del></span> <span style="font-weight: bold"> &nbsp;&nbsp;'+ discount_price.toFixed(2) + ' Rs</span>&nbsp;&nbsp;&nbsp;(' +discount+'% discount)</br>';
 			}
 		}
 
 		if ($('input[name="loc"]:checked').val() === '5')
 		{
-		discount_txt = discount_txt + '<span style="color: #ff0000;font-size: 12px;">Please be aware that postion in Nearby tab for paid advertisement might change due to coverage area of other advertisements.</span></br>';
+		discount_txt = discount_txt + '<span style="color: #ff0000;font-size: 12px;">Please be aware that postion in Nearby tab for paid advertisement might change due to coverage area of other advertisements or if you change your store/entity location.</span></br>';
 		}
 	
 		$('#display_amount_1').html(discount_txt).show();
@@ -766,7 +776,12 @@
 		// 	discount_txt = '</br><span style="font-weight: bold">OFFER PRICE:</span> Pay only <span style="color: #ff0000"><del>'+amount+' Rs</del></span> <span style="font-weight: bold"> &nbsp;&nbsp;'+ discount_price.toFixed(2) + ' Rs</span>&nbsp;&nbsp;&nbsp;(' +discount+'% discount)</br>';
 		// }
 	}
-
+	$('#myModal_adv').on('hidden.bs.modal', function () {
+		$('#advertise_move_live')[0].reset();
+		$('#home_local').click();	
+		$('#validation_txt').hide();
+	})
+    
 	$('.advertise-btn_live').on('click', function(e) {
 		$('#error_amount').html('');
 
@@ -778,7 +793,7 @@
 			success: function(json) {
 				if (json['success']) {
 					var loc = $('input[name="loc"]:checked').val();
-					var amount = $('#actual_price').val();
+					var amount = json['amount'];
 
 					if (loc === '6' || amount == '0') {
 						$('#liveSuccessMsg').html('<i class="fa fa-check-circle"></i> '+ json['success']).show();

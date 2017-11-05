@@ -12,7 +12,7 @@ class Controllersellerprofilesellerprofile extends Controller
             $this->response->redirect($this->url->link('common/home', '', 'SSL'));
         }
 
-        $this->document->addStyle('http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/base/jquery-ui.css');
+        $this->document->addStyle('//ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/base/jquery-ui.css');
         $this->document->addScript('catalog/view/javascript/jquery-ui.multidatespicker.js');
         $this->document->addScript('catalog/view/javascript/sellerprofile/sellerprofile.js');
 
@@ -1435,6 +1435,13 @@ class Controllersellerprofilesellerprofile extends Controller
 		    $json['error'] = $this->language->get('error_store_category_empty');
 		}
 
+        if ($this->request->post['referred_by'] != "") {
+            $refererinfo = $this->model_sellerprofile_sellerprofile->GetStoreReferrerNum($this->request->post['referred_by']);
+            if(!$refererinfo)
+             $json['error'] = $this->language->get('error_referer_details_empty');
+             
+        }
+
 		if(empty($json['error'])) {
 			$this->model_sellerprofile_sellerprofile->SellerProfileSave($this->request->post);
 			$json['success'] = $this->language->get('text_update_profile_success');
@@ -2477,7 +2484,7 @@ class Controllersellerprofilesellerprofile extends Controller
         try {
             $this->load->language('selleradvertise/advertise');
             $this->load->model('selleradvertise/advertise');
-
+            
             if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validate_move_live()) {
 
                 $data['top_banner_date'] = $this->request->post['top_banner_date'];
@@ -2497,8 +2504,22 @@ class Controllersellerprofilesellerprofile extends Controller
                     $data['is_basic'] = 0;
                 }
                 
-
-                $_SESSION['confirm']['amount'] = $this->request->post['amount'];
+                $discountedAmount = $data['discount_price'];
+                if($data['price'] > 1){
+                    //For antihacking - start
+                    $discountPercent = $this->model_selleradvertise_advertise->getLocOfferCashBackPercent($data['loc']);
+                    $discountPercent = $discountPercent[0]['cash_back'];
+                    //print_r($discountPercent);
+                    $discountedAmount = $data['price'] - $data['price']*$discountPercent/100;
+                    
+                }
+                elseif($data['price'] == 1){
+                    $discountedAmount = 1;
+                }
+                $data['discount_price'] = $discountedAmount;
+                //print_r($discountedAmount);die;
+                //For antihacking - end
+                $_SESSION['confirm']['amount'] = $discountedAmount;
                 $_SESSION['confirm']['name'] = $this->getAdName($this->request->post['loc']);
                 $_SESSION['confirm']['product_id'] = $this->request->post['advetise_sp'];
 
@@ -2507,7 +2528,7 @@ class Controllersellerprofilesellerprofile extends Controller
                     $json['confirmForm'] = $this->load->controller('checkout/confirm/adConfirm');
                 } else if ($this->request->post['loc'] == '2' || $this->request->post['loc'] == '3' || $this->request->post['loc'] == '4' || $this->request->post['loc'] == '5') {
 
-                    if ($this->request->post['loc'] == '5') {
+                    if ($this->request->post['loc'] == '5' && $data['price'] <= 0) {
                         $check_eligibity = $this->model_selleradvertise_advertise->isFreeAdUsed();
 
                         if ($check_eligibity > 0)
@@ -2529,7 +2550,7 @@ class Controllersellerprofilesellerprofile extends Controller
                 foreach($ad as $ads) {
                     $adv[] = $ads['total'];
                 }       
-
+                $json['amount'] = $discountedAmount;
                 $json['live_count'] = array_sum($adv);
                 $json['success'] = $this->language->get('success_to_live');
             }
@@ -3204,7 +3225,12 @@ class Controllersellerprofilesellerprofile extends Controller
 			$from_date = date("Y-m-d");
 			$end_date  = date('Y-m-d', strtotime("+".$days." days"));
 			
-			$this->model_sellerprofile_sellerprofile->featureStore($amount, $from_date, $end_date);
+            $_SESSION['confirm']['amount'] = $amount;
+            $_SESSION['confirm']['name'] = $this->request->post['featured_period']." month Feature";
+            $_SESSION['confirm']['product_id'] = 0;
+            $data['confirmForm'] = $this->load->controller('checkout/confirm/adConfirm');
+
+			//$this->model_sellerprofile_sellerprofile->featureStore($amount, $from_date, $end_date);
 			$data['success'] = 'Your store moved to featured';
 		}
 		$json = $data;

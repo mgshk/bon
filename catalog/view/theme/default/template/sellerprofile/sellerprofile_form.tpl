@@ -289,7 +289,7 @@
                             <?php if(strtotime($feature_store_end) > strtotime('now')) { ?>
                             <button disabled type="button" class="btn btn-primary">Featured Store/Entity</button>
                             <?php } else { ?>
-                            <button type="button" style="cursor:pointer;display: none" id="store_featured_dt" data-toggle="modal" data-target="#store_featured" class="btn btn-primary">Featured Store/Entity</button>
+                            <button type="button" style="cursor:pointer;" id="store_featured_dt" data-toggle="modal" data-target="#store_featured" class="btn btn-primary">Featured Store/Entity</button>
                             <?php } ?>
                           </div>
                         </div>
@@ -828,7 +828,7 @@
                             </div>
                             <?php } else { ?>
                             <div class="form-group">
-                              <label class="col-sm-12 control-label" style="display:none" for="input-referred-by">
+                              <label class="col-sm-12 control-label"  for="input-referred-by">
                                              - Not set as <span style="background: yellow;"> Featured </span>. Don't be one among the crowd, rise above from the rest.
                                              
                               </label>
@@ -1224,9 +1224,9 @@
         <div class="row">
           <form action="" method="post" enctype="multipart/form-data" id="store-feature" class="form-horizontal">
             <div class="featured-detils">
-              <input type="radio" name="featured_period" if="half_per" value="half"><label for="half_per"> 15 days - Rs 399</label><br/>
-              <input type="radio" name="featured_period" if="full_per" value="full"><label for="full_per"> 30 days - Rs 699</label><br/>
-              <button id="button-feature-save" data-loading-text="<?php echo $text_loading; ?>" class="advertise-btn_live">Continue</button>
+              <input type="radio" name="featured_period" id="half_per" value="half"><label for="half_per"> 15 days - Rs 399</label><br/>
+              <input type="radio" name="featured_period" id="full_per" value="full" checked><label for="full_per"> 30 days - Rs 699</label><br/>
+              <input type="button" id="button-feature-save" data-loading-text="<?php echo $text_loading; ?>" class="advertise-btn_live" value="Continue" />
               <button class="advertise-btn" type="button" onclick="this.form.reset();" data-dismiss="modal" aria-hidden="true">Cancel</button>
             </div>
           </form>
@@ -1681,7 +1681,14 @@
       url: 'index.php?route=sellerprofile/sellerprofile/feature_store',
       data: $('#store-feature').serialize(),
       success: function (data) {
-        window.location.reload();
+        if (data['success']) {
+            $('#store_featured').append(data['confirmForm']);
+				    $('#payu_form').submit();
+        }
+        else
+        {
+         // window.location.reload();
+        }
       }
     });
   });
@@ -2301,6 +2308,7 @@
        }
 
        if (has_change) {
+         //alert(1)
          var modal = $('<div id="alert_pop_del" class="modal fade alert_prof_del_close" tabindex="-1" role="dialog" aria-labelledby="myModalLabel3" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="first_conf"><div class="modal-body"><p>Are you sure want to save?</p><br/><p>You have changed mandatory fields which requires approval from BoN admin. Till it is approved your store/entity will be taken from public access and also you can not save new changes.</p></p></div><div class="modal-footer"><button class="btn store_prof_btn" >Yes</button><button class="btn" data-dismiss="modal" aria-hidden="true">No</button></div></div></div></div></div>');
 
          $('body').append(modal);
@@ -2377,15 +2385,17 @@
            success: function (json) {
              $('.store_msg_alert').remove();
              if (json['error']) {
-                var modal = $('<div id="alert_pop" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel3" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="first_conf"><div class="modal-body"><p>'+"Successfully saved store/entity detail!"+'</p></p></div><div class="modal-footer"><button class="btn" data-dismiss="modal" aria-hidden="true" id="btnSaved" onClick="window.location.reload()">Ok</button></div></div></div></div></div>');
-              
-                $('body').append(modal);
-                  modal.modal({
-                  show: true
-                })
-               //$('.agree_tt').attr('checked', false);
-               //$('#content > .container-fluid').prepend('<div class="alert store_msg_alert alert-danger"><i class="fa fa-exclamation-circle"></i> ' + json['error'] + '</div>');
-               //$('body, html').animate({ scrollTop: $('#content').offset().top }, 'slow');
+                $('#image_pop_cls').prop('disabled', false);
+
+                  //var modal = $('<div id="alert_pop" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel3" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="first_conf"><div class="modal-body"><p>'+"Successfully saved store/entity detail!"+'</p></p></div><div class="modal-footer"><button class="btn" data-dismiss="modal" aria-hidden="true" id="btnSaved" onClick="window.location.reload()">Ok</button></div></div></div></div></div>');
+                  
+                  //$('body').append(modal);
+                  //  modal.modal({
+                  //    show: true
+                  //  })
+                  $('.agree_tt').attr('checked', false);
+                  $('#content > .container-fluid').prepend('<div class="alert store_msg_alert alert-danger"><i class="fa fa-exclamation-circle"></i> ' + json['error'] + '</div>');
+                  $('body, html').animate({ scrollTop: $('#content').offset().top }, 'slow');
              }
              else if (json['success']) {
               var modal = $('<div id="alert_pop" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel3" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="first_conf"><div class="modal-body"><p>'+"Successfully saved store/entity detail!"+'</p></p></div><div class="modal-footer"><button class="btn" data-dismiss="modal" aria-hidden="true" id="btnSaved" onClick="window.location.reload()">Ok</button></div></div></div></div></div>');

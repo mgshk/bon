@@ -181,13 +181,13 @@
 			</div>
 			<?php }?>
 		</div>
-		<div class="col-sm-3">
+		<!-- class="col-sm-3">
 			<div class="video-tag hidden-xs">
 			    <iframe width="300" height="196"
 				    src="https://www.youtube.com/embed/3lkR8tqc5rE">
 				</iframe> 
 			</div>
-		</div>
+		</div>-->
 	</div>
 </div>
 <div class="container-fluid" id="fix_height">
@@ -741,8 +741,6 @@
 				</iframe>
 			</div>
 		</div>
-	</div>
-</div>
 <div class="modal fade" id="ad_details" role="dialog">
 	<div class="modal-dialog">
 		<div class="modal-content loc-pop">
