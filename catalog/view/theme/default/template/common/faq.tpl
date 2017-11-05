@@ -68,7 +68,7 @@
         <p>World is slowly (rather quickly) moving online. Business is not the same as how it was 10 or 20 years back. It will surely not be the same like how it is now sooner. So think online think BoN before it is too late. It is FREE.</p>
 		<p>It is the single place to complete your search and get the best you want near you or from the place you are looking for. It will not force you to believe the best is what it shows on the item you are interested. </p>
 		<p><span style="font-weight: bold">LET’S START SEARCHING FROM HERE</span> (from you) before we do with untrusted, unreliable and unknown sellers.</p>
-		<p>It is a centralized online exhibition. Where sellers meet buyers online, especially with lot many offers. The earlier you enrol, the more benefits you get.</p>
+		<p>It is a centralized online exhibition. Where sellers meet buyers online, especially with lot many offers. The earlier you enroll, the more benefits you get.</p>
 		<p><img src="image/faq1.png" class="img-responsive" style="margin: auto;" alt="FAQ"></p>
       </div>
     </div>
@@ -207,7 +207,7 @@
     <div id="collapseSeven" class="panel-collapse collapse">
       <div class="panel-body">
         <p>NO, it is for all types of businesses.</p>
-		<p>It is the best approach for all sellers, especially to new sellers or to whom who really means business. Sellers who go by their names might think twice before joining BoN at first but seeing buyers using BoN makes them realise names matter less. And Sellers who doesn't have much buyers using BoN in their area will make them buy with the price they set.</p>
+		<p>It is the best approach for all sellers, especially to new sellers or to whom who really means business. Sellers who go by their names might think twice before joining BoN at first but seeing buyers using BoN makes them realize names matter less. And Sellers who doesn't have much buyers using BoN in their area will make them buy with the price they set.</p>
       </div>
     </div>
   </div>
@@ -433,7 +433,7 @@
     <div id="collapseSeventeen" class="panel-collapse collapse">
       <div class="panel-body">
         <p>They are under development. It needs minor adjustments according to the usability and feedback by the users.</p>
-		<p>Once the design or approach is finalized after considering feedbacks by the users, will be released.</p>
+		<p>Once the design or approach is finalized after considering feedback by the users, will be released.</p>
       </div>
     </div>
   </div>
@@ -601,7 +601,7 @@
     <div class="panel-heading">
       <h4 class="panel-title" style="word-spacing: 5px;font-size: 10px">
         <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseFive5">
-          வடிக்கையாளராகிய நான் விற்பனையாளர் அம்சத்தை அல்லது விற்பனையாளராகிய நான் வாடிக்கையாளர் அம்சத்தை உபயோகப்படுத்த முடியுமா?
+          வாடிக்கையாளராகிய நான் விற்பனையாளர் அம்சத்தை அல்லது விற்பனையாளராகிய நான் வாடிக்கையாளர் அம்சத்தை உபயோகப்படுத்த முடியுமா?
         </a>
       </h4>
     </div>
