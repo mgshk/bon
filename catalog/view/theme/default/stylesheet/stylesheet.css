@@ -687,6 +687,8 @@ h2.price {
 }
 
 /* my css starts */
+.videos{text-align: center;}
+.videos a{text-decoration: underline;display: inline-block;margin: 0 20px;}
 .video-tag{margin:10px 0 10px 0;}
 .sell-ret h3{text-overflow: ellipsis;overflow: hidden;}
 .nav-tabs > li > a{margin-right: 0 !important;}

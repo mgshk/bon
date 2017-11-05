@@ -183,11 +183,9 @@
 		</div>
 		<div class="col-sm-3">
 			<div class="video-tag hidden-xs">
-				<video width="300" height="196" controls autoplay>
-				  <source src="image/bon_english.mp4" type="video/mp4">
-				  <source src="image/bon_english.ogg" type="video/ogg">
-				  Your browser does not support HTML5 video.
-				</video>
+			    <iframe width="300" height="196"
+				    src="https://www.youtube.com/embed/3lkR8tqc5rE">
+				</iframe> 
 			</div>
 		</div>
 	</div>
@@ -729,13 +727,18 @@
 			</div>
 			<!--</div>-->
 		</div>
-		<div class="col-sm-3">
-			<div class="video-tag hidden-xs">
-				<video width="300" height="196" controls autoplay>
-				  <source src="image/seller_walkthrough.mp4" type="video/mp4">
-				  <source src="image/seller_walkthrough.ogg" type="video/ogg">
-				  Your browser does not support HTML5 video.
-				</video>
+		<div class="col-sm-3 videos">
+			<a href="#" onclick="showEnglish()">English</a>
+			<a href="#" onclick="showTamil()">Tamil</a>
+			<div class="video-tag hidden-xs" id="english_video">
+				<iframe width="300" height="196"
+				    src="https://www.youtube.com/embed/VRE2A1esNrU">
+				</iframe>
+			</div>
+			<div class="video-tag hidden-xs" id="tamil_video">
+				<iframe width="300" height="196"
+				    src="https://www.youtube.com/embed/VRE2A1esNrU">
+				</iframe>
 			</div>
 		</div>
 	</div>
@@ -1033,6 +1036,18 @@
 		$(".nav-tabs, .slimScrollDiv").mousemove(function () {
 			clearInterval(intervalTime);
 		});
+
+		$('#english_video').show();
+		$('#tamil_video').hide();
+
+		function showEnglish(){
+			$('#english_video').show();
+			$('#tamil_video').hide();
+		}
+		function showTamil(){
+			$('#english_video').hide();
+			$('#tamil_video').show();
+		}
 
 	});
 
