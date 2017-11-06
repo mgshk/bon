@@ -20,7 +20,7 @@
               <br/>
             <br/>
              Amount Paid: Rs <?php echo round($order_info['total'],2) ?> <br/><br/>
-             Please make not of your transaction id and Order id for future reference. <br/>
+             Please make note of your transaction id and Order id for future reference. <br/>
              Your transaction Id is: <b><?php echo $mihpayid; ?></b><br />
              And your order Id is: <b><?php echo $order_id; ?></b><br />
             </h4>
