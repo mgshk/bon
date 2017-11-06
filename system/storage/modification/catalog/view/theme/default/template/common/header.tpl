@@ -144,7 +144,7 @@
 				//$("#endKilometer").val($("#slider-range").slider("values", 1));
 				$("#spnStart").text($("#slider-range").slider("values", 0));
 				$("#spnEnd").text($("#slider-range").slider("values", 1));
-				
+
 
 			}
 
@@ -329,7 +329,7 @@
 								</li>
 								<li><a class="cursor" data-toggle="modal" data-target="#site_feedback_main" title="Feedback">Feedback |</a></li>
 								<li><a href="index.php?route=common/faq" title="FAQ">FAQ &nbsp;&nbsp;|</a></li>
-								<li><a href="#">How to</a></li>
+								<li><a class="cursor" data-toggle="modal" data-target="#store_referred">Referer?</a></li>
 							</ul>
 						</div>
 					</div>
@@ -351,8 +351,8 @@
 						</div>
 						<!--</div>-->
 					</div>
-					
-<!--<button type="button" class="btn slide-menu-control" data-target="test-menu-left" data-action="toggle">Toggle Menu</button>-->
+
+					<!--<button type="button" class="btn slide-menu-control" data-target="test-menu-left" data-action="toggle">Toggle Menu</button>-->
 					<div class="col-xs-4">
 						<?php if ($logged) { 
 										if($seller_info['nickname']) { ?>
@@ -457,9 +457,9 @@
 							</li>
 							<li><a class="cursor" data-toggle="modal" data-target="#site_feedback_main" title="Feedback">Feedback</a></li>
 							<li><a href="index.php?route=common/faq" title="FAQ">FAQ</a></li>
-							<li><a href="#" >How to</a></li>
+							<li><a class="cursor" data-toggle="modal" data-target="#store_referred">Referer?</a></li>
 						</ul>
-				</div>
+					</div>
 				</div>
 				<div class="row header-sec">
 					<?php if((isset($_GET['route']) && ($_GET['route'] == 'common/home' || $_GET['route'] == 'seller/seller')) || !isset($_GET['route'])) { ?>
@@ -496,7 +496,7 @@
 					<div class="col-sm-7">
 					</div>
 					<?php } ?>
-					
+
 					<div class="col-sm-4 str--fv fis-des tttt">
 						<?php if($login_type == 'seller') { ?>
 						<div class="pull-left">
@@ -601,9 +601,9 @@
 				<div class="modal-body loc-share-top stt--rrpp">
 					<img src="image/bon_logo.jpg" class="img-responsive top-atou-lc" title="BoN" alt="BoN">
 					<div class="top-lc--mid">
-					<!--	<p class="left">Pioneer in buy (o) near!</p>
+						<!--	<p class="left">Pioneer in buy (o) near!</p>
 						<p class="right">A new age is BoN!</p>-->
-					<img src="image/weblaunch.gif" class="img-responsive top-atou-lc">
+						<img src="image/weblaunch.gif" class="img-responsive top-atou-lc">
 					</div>
 					<button class="tet--nt btn" id="auto_detect" onclick="getLocation()">Auto detect my location</button>
 					<p class="bottom_10">OR</p>
@@ -613,6 +613,68 @@
 				<!--<div class="modal-footer">
 								<button class="" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 								</div>-->
+			</div>
+		</div>
+	</div>
+	<div class="modal fade" id="store_referred" role="dialog">
+		<div class="modal-dialog">
+			<!-- Modal content-->
+			<div class="modal-content loc-pop">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title loc-share-title">New referrer form</h4>
+				</div>
+				<div class="modal-body reffer-str-top">
+					<div id="val_ref_tt"></div>
+					<p style="color:#b54a4a">You get 20% of the first paid advertisement posted by the store/entity you refer.</p>
+					<br/>
+					<form action="" method="post" enctype="multipart/form-data" id="store_referred_frm" class="">
+						<div class="featured-detils">
+							<div class="form-group">
+								<input name="refer_name" id="refer_name" value="" placeholder="Name" required="" type="text">
+							</div>
+							<div class="form-group">
+								<input name="refer_mobile" id="refer_mobile" value="" placeholder="Mobile Number" required="" type="text">
+							</div>
+							<div class="form-group">
+								<input name="refer_email" id="refer_email" value="" placeholder="Email" required="" type="email">
+							</div>
+							<div class="form-temp">Referrer bank detail:</div>
+							<div class="form-group">
+								<input name="bank_name" id="bank_name" value="" placeholder="Bank Name" required="" type="text">
+							</div>
+							<div class="form-group">
+								<input name="branch" id="branch" value="" placeholder="Branch" required="" type="text">
+							</div>
+							<div class="form-group">
+								<input name="account_holder_name" id="account_holder_name" value="" placeholder="Account holders name" required="" type="text">
+							</div>
+							<div class="form-group">
+								<input name="account_number" id="account_number" value="" placeholder="Account number" required="" type="text">
+							</div>
+							<div class="form-group">
+								<input name="ifsc" id="ifsc" value="" placeholder="IFSC" required="" type="text">
+							</div>
+							<div class="form-group">
+								<div class="main--res-redor">
+									<span class="pull-left"><input type="radio" checked name="account_type" id="salary_account" value="salary_account"><label for="salary_account"> savings account</label></span>
+									<span class="pull-right"><input type="radio" name="account_type" id="current_account" value="current_account"><label for="current_account"> current account</label></span><br/>
+								</div>
+							</div>
+							<div class="form-group" style="margin-bottom:10px;clear: both;">Above information including bank detail are true and correct to the best of my knowledge. If there is any issue or
+								incorrect data provided by me, BoN is in no way will be held responsible.</div>
+							<div class="form-group"><strong>Note:</strong> BoN will not share your information including bank detail with anyone for any purpose.
+							</div>
+							<div class="form-group">
+								<input type="checkbox" name="terms" id="agree_bank" value="agree" style="margin-right: 5px;"><label for="agree"> I agree and would like to earn money.</label>
+							</div>
+							<div class="form-group">
+								<button type="button" data-dismiss="modal" class="btn btn-primary pull-left">No, thanks</button>
+								<button type="button" id="button-refer-save" data-loading-text="<?php echo $text_loading; ?>" class="btn btn-primary pull-right">Yes, I like to earn!</button>
+							</div>
+						</div>
+					</form>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -734,10 +796,12 @@
 								<div id="loginErrorMsg" class="alert alert-danger" style="display:none;"></div>
 								<div id="reg-sucess" class="alert alert-success" style="display:none;"></div>
 								<div class="_email-log-bon">
-									<input type="text" name="email" value="" placeholder="Phone number" id="input-email" class="inputText" autocomplete="off" maxlength="10" required/>
+									<input type="text" name="email" value="" placeholder="Phone number" id="input-email" class="inputText" autocomplete="off"
+									 maxlength="10" required/>
 								</div>
 								<div class="_passwrd-log-bon">
-									<input type="password" name="password" value="" placeholder="Password" id="input-password" class="inputText" maxlength="20" required/>
+									<input type="password" name="password" value="" placeholder="Password" id="input-password" class="inputText" maxlength="20"
+									 required/>
 								</div>
 								<div class="_passwrd-log-bon _login_type-log-bon">
 									<span>										
@@ -785,7 +849,8 @@
 									<li><span id="zone-bon-error" class="text-dangers"></span></li>
 								</ul>
 								<div class="_email-log-bon">
-									<input type="tel" autocomplete="off" name="telephone" value="" class="inputText cal-exp" placeholder="Enter the phone number" id="input-telephone" maxlength="10" required/>
+									<input type="tel" autocomplete="off" name="telephone" value="" class="inputText cal-exp" placeholder="Enter the phone number"
+									 id="input-telephone" maxlength="10" required/>
 								</div>
 								<div id="LoadingImage" style="display: none"><img src="image/loader-sms.gif" class="img-responsive" /></div>
 								<div class="_log-btn-btm" style="position: static;">
@@ -825,16 +890,16 @@
 									 required/>
 								</div>
 								<div class="_email-log-bon">
-									<input style="border: none;border-bottom: 1px solid #e0e0e0; " type="email" name="email" value="" class="inputText" id="input-email-otp" maxlength="96" 
-									 placeholder="Email ID" required disabled autocomplete="off"/>
+									<input style="border: none;border-bottom: 1px solid #e0e0e0; " type="email" name="email" value="" class="inputText" id="input-email-otp"
+									 maxlength="96" placeholder="Email ID" required disabled autocomplete="off" />
 								</div>
 								<div class="_passwrd-log-bon">
-									<input type="password" maxlength="20" name="password" value="" id="input-password-otp" placeholder="Enter password" class="inputText" required
-									 disabled/>
+									<input type="password" maxlength="20" name="password" value="" id="input-password-otp" placeholder="Enter password" class="inputText"
+									 required disabled/>
 								</div>
 								<div class="_again-passwrd-log-bon">
-									<input type="password" maxlength="20" name="confirm" value="" id="input-confirm-otp" placeholder="Re-Enter password" class="inputText" required
-									 disabled/>
+									<input type="password" maxlength="20" name="confirm" value="" id="input-confirm-otp" placeholder="Re-Enter password" class="inputText"
+									 required disabled/>
 								</div>
 								<div class="_state-log-bon">
 									<select name="security_select" id="security_select" disabled required>
@@ -845,8 +910,8 @@
 									</select>
 								</div>
 								<div class="_again-passwrd-log-bon security_answer" style="display:none">
-									<input type="text" autocomplete="off" name="security_answer" value="" id="security_answer" placeholder="Please enter the security answer" class="inputText" maxlength="250"
-									 required/>
+									<input type="text" autocomplete="off" name="security_answer" value="" id="security_answer" placeholder="Please enter the security answer"
+									 class="inputText" maxlength="250" required/>
 								</div>
 								<div class="_log-btn-btm" style="position: static;">
 									<button class="advertise-btn _btn-fin" id="sign-up-bon-top-prof" type="button" disabled>Signup</button>
@@ -868,20 +933,24 @@
 							<h3>Personal Details</h3>
 							<form id="top-sign-last" class="form-horizontal" enctype="multipart/form-data" style="padding: 0px 15px;" autocomplete="off">
 								<div id="signUpErrorMsg" class="alert alert-danger" style="display:none;"></div>
-                                <div id="signUpSuccessMsg" class="alert alert-success" style="display:none;"></div>
+								<div id="signUpSuccessMsg" class="alert alert-success" style="display:none;"></div>
 								<input type="hidden" name="cus_d_up" id="cus_d_up" value="">
 								<input type="hidden" name="login_type" id="login_type" />
 								<div class="_email-log-bon">
-									<input type="text" name="firstname" autocomplete="off" value="" class="inputText" placeholder="First name" id="input-firstname" required/>
+									<input type="text" name="firstname" autocomplete="off" value="" class="inputText" placeholder="First name" id="input-firstname"
+									 required/>
 								</div>
 								<div class="_passwrd-log-bon">
-									<input type="text" name="lastname" autocomplete="off" value="" placeholder="Last name" id="input-lastname" class="inputText" required/>
+									<input type="text" name="lastname" autocomplete="off" value="" placeholder="Last name" id="input-lastname" class="inputText"
+									 required/>
 								</div>
 								<div class="_again-passwrd-log-bon">
-									<input type="text" name="address_1" autocomplete="off" value="" placeholder="Address 1" id="input-address-1" class="inputText" required/>
+									<input type="text" name="address_1" autocomplete="off" value="" placeholder="Address 1" id="input-address-1" class="inputText"
+									 required/>
 								</div>
 								<div class="_email-log-bon">
-									<input type="text" name="address_2" autocomplete="off" value="" class="inputText" placeholder="Address 2" id="address_2" required/>
+									<input type="text" name="address_2" autocomplete="off" value="" class="inputText" placeholder="Address 2" id="address_2"
+									 required/>
 								</div>
 								<div class="_email-log-bon">
 									<input type="hidden" name="country_id" value="99" />
@@ -900,7 +969,8 @@
 									<select name="city_id" id="header_city_id" class="form-control"></select>
 								</div>
 								<div class="_email-log-bon">
-									<input type="text" name="postcode" autocomplete="off" value="" class="inputText" placeholder="Postcode" id="input-postcode" required/>
+									<input type="text" name="postcode" autocomplete="off" value="" class="inputText" placeholder="Postcode" id="input-postcode"
+									 required/>
 								</div>
 								<div class="_log-btn-btm" style="position: static;">
 									<button class="advertise-btn _btn-fin" id="updat-bon-det" type="button">Submit</button>
@@ -923,7 +993,8 @@
 							<form id="forget-log-type" class="form-horizontal" style="padding: 0px 15px;">
 								<div id="forgt-phn-failure" class="alert alert-danger" style="display:none;"></div>
 								<div class="_email-log-bon">
-									<input type="text" name="forgt-phn" value="" placeholder="Enter the phone number" id="forgt-phn" class="inputText" autocomplete="off" required/>
+									<input type="text" name="forgt-phn" value="" placeholder="Enter the phone number" id="forgt-phn" class="inputText" autocomplete="off"
+									 required/>
 								</div>
 								<div id="LoadingImage1" style="display: none"><img src="image/loader-sms.gif" class="img-responsive" /></div>
 								<div class="_log-btn-btm" style="position: static;">
@@ -949,17 +1020,21 @@
 								<input type="hidden" name="forgt-phn-sec" id="forgt-phn-sec" value="">
 								<input type="hidden" name="otp-sec" id="otp-sec" value="0">
 								<div class="_email-log-bon">
-									<input type="text" maxlength="10" autocomplete="off" name="forgt-phn" value="" placeholder="Enter the phone number" id="forgt-phn-sec_nw" class="inputText" required disabled/>
+									<input type="text" maxlength="10" autocomplete="off" name="forgt-phn" value="" placeholder="Enter the phone number" id="forgt-phn-sec_nw"
+									 class="inputText" required disabled/>
 								</div>
 								<div class="_passwrd-log-bon">
-									<input type="text" autocomplete="off" name="forgt-phn-otp" value="" maxlength="6" placeholder="Enter the OTP sent to above mobile number" id="forgt-phn-otp" class="inputText" required/>
+									<input type="text" autocomplete="off" name="forgt-phn-otp" value="" maxlength="6" placeholder="Enter the OTP sent to above mobile number"
+									 id="forgt-phn-otp" class="inputText" required/>
 								</div>
 								<div id="qus_ans">
 									<div class="_state-log-bon">
-										<input type="text" autocomplete="off" name="security_question_sec" value="" id="security_question_sec" class="inputText" required disabled/>
+										<input type="text" autocomplete="off" name="security_question_sec" value="" id="security_question_sec" class="inputText"
+										 required disabled/>
 									</div>
 									<div class="_again-passwrd-log-bon security_answer">
-										<input type="text" autocomplete="off" name="security_answer_sec" value="" id="security_answer_sec" placeholder="Please enter the security answer" class="inputText" required/>
+										<input type="text" autocomplete="off" name="security_answer_sec" value="" id="security_answer_sec" placeholder="Please enter the security answer"
+										 class="inputText" required/>
 									</div>
 								</div>
 								<div class="_log-btn-btm" style="position: static;">
@@ -1009,6 +1084,42 @@
 	</div>
 	<script>
 		$(document).ready(function () {
+			$('#button-refer-save').on('click', function (e) {//alert(235);
+				if (document.getElementById('agree_bank').checked) {
+					agree_value = document.getElementById('agree_bank').value;
+					refer_mobile_val = document.getElementById('refer_mobile').value;
+					if (agree_value == 'agree') {
+						$.ajax({
+							type: "POST",
+							url: 'index.php?route=sellerprofile/sellerprofile/store_refer',
+							data: $('#store_referred_frm').serialize(),
+							success: function (json) {
+								$('#val_ref_tt').html('');
+								$('#val_ref_tt').html('<div class="alert alert-success"><i class="fa fa-check-circle"></i>Succesfully saved</div>');
+
+								if (json['success']) {
+									if (refer_mobile_val == json['success']) {
+										$('#input-referred-by-val').val('');
+										$('#input-referred-by-val').val(json['success']);
+										$('#store_referred').modal('toggle');
+									}
+								}
+								if (json['error']) {
+									$('#val_ref_tt').html('<div class="alert alert-danger"><i class="fa fa-check-circle"></i>' + json['error'] + '</div>');
+									$('#store_referred').scrollTop(0);
+								}
+							}
+						});
+					}
+				} else {
+					$('#val_ref_tt').html('');
+					$('#val_ref_tt').html('<div class="alert alert-danger"><i class="fa fa-check-circle"></i>Please agree to terms and save.</div>');
+					$('#store_referred').scrollTop(0);
+				}
+
+			});
+
+
 			$("._sgn-sec").click(function () {
 				$("._top-log-in").hide();
 				$("._top-sign-in").show();
@@ -1036,7 +1147,7 @@
 				$("._top-sign-upd").hide();
 				$("._top-log-in").show();
 			});
-			
+
 			$("#frgt-pass").click(function () {
 				$("._top-log-in").hide();
 				$("._forget-bon").show();
@@ -1195,7 +1306,7 @@
 					<input type="text" id="divFormattedAddress" class="form-control" readonly="true" />
 				</div>
 				<div class="modal-footer">
-					<a class="linkMap pull-left" onclick="getLocation()"  data-dismiss="modal">Get current location</a>
+					<a class="linkMap pull-left" onclick="getLocation()" data-dismiss="modal">Get current location</a>
 					<button type="button" class="btn btn-primary" data-dismiss="modal" onclick="setPosition()">Ok</button>
 					<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
 				</div>
@@ -1302,7 +1413,6 @@
 			var obj = document.getElementById('input-password');
 			obj.type = "password";
 		}
-
 	</script>
 
 	<!-- feedback modal -->
@@ -1349,9 +1459,14 @@
 					<h4 class="modal-title loc-share-title">Contact us</h4>
 				</div>
 				<div class="modal-body contact-modal">
-					<p>If you are facing any issue or have a concern or want to leave a feedback. Use <a class="cursor" onclick="showFeedbackModal()" title="Feedback"><u>Feedback</u></a> menu.</p>
-					<p>For any other information or queries please send email to <u>bononlineservices@buyonear.in</u>. We will respond in 24 to 48
-						hours.</p>
+					<p>If you are facing any issue or have a concern or want to leave a feedback. Use
+						<a class="cursor" onclick="showFeedbackModal()"
+						 title="Feedback">
+							<u>Feedback</u>
+						</a> menu.</p>
+					<p>For any other information or queries please send email to
+						<u>bononlineservices@buyonear.in</u>. We will respond in 24 to 48 hours.
+					</p>
 				</div>
 			</div>
 		</div>
@@ -1374,18 +1489,18 @@
 						//$('#site_feed_alt').after('<div class="alert alert-success"><i class="fa fa-check-circle"></i>' + json['success'] + '</div>');
 						$('#site_feed_alt').html('');
 						$('#site_feed_alt').html('<div class="alert alert-success"><i class="fa fa-check-circle"></i>' + json['success'] + '</div>');
-				      
-						setTimeout(function() {
-						  $('#site_feedback_main').modal('toggle');
-						  $('#site_feed_alt').html('');
+
+						setTimeout(function () {
+							$('#site_feedback_main').modal('toggle');
+							$('#site_feed_alt').html('');
 						}, 3000);
 					}
 					if (json['error']) {
 						$('#site_feed_alt').html('');
 						$('#site_feed_alt').html('<div class="alert alert-danger"><i class="fa fa-exclamation-circle"></i>' + json['error'] + '</div>');
 
-						setTimeout(function() {
-						  $('#site_feed_alt').html('');
+						setTimeout(function () {
+							$('#site_feed_alt').html('');
 						}, 3000);
 					}
 				}

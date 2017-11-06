@@ -768,7 +768,7 @@
                               Both
                             </div>
                           </div>
-                          <?php if($referred_by !== '' && !empty($referred_by)) { ?>
+                          <?php if(1=2) { ?>
                           <div class="form-group">
                             <label class="col-md-4 control-label" for="input-referred-by">
                                                 Referred by
