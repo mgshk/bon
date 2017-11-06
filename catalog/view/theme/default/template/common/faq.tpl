@@ -39,7 +39,7 @@
   <div class="panel panel-default">
     <div class="panel-heading">
       <h4 class="panel-title">
-        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" data-qn = "1" href="#collapseOne">
           What is the purpose and uniqueness of this website?
         </a>
       </h4>
@@ -58,12 +58,12 @@
   <div class="panel panel-default">
     <div class="panel-heading">
       <h4 class="panel-title">
-        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" data-qn = "2" href="#collapseTwo">
           Why BoN, what is the need?
         </a>
       </h4>
     </div>
-    <div id="collapseTwo" class="panel-collapse collapse in">
+    <div id="collapseTwo" class="panel-collapse collapse">
       <div class="panel-body">
         <p>World is slowly (rather quickly) moving online. Business is not the same as how it was 10 or 20 years back. It will surely not be the same like how it is now sooner. So think online think BoN before it is too late. It is FREE.</p>
 		<p>It is the single place to complete your search and get the best you want near you or from the place you are looking for. It will not force you to believe the best is what it shows on the item you are interested. </p>
@@ -76,7 +76,7 @@
   <div class="panel panel-default">
     <div class="panel-heading">
       <h4 class="panel-title">
-        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" data-qn = "3" href="#collapseThree">
           As a seller how this website helps?
         </a>
       </h4>
@@ -117,7 +117,7 @@
   <div class="panel panel-default">
     <div class="panel-heading">
       <h4 class="panel-title">
-        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseFour">
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" data-qn = "4" href="#collapseFour">
           As a buyer how this website helps?
         </a>
       </h4>
@@ -158,7 +158,7 @@
   <div class="panel panel-default">
     <div class="panel-heading">
       <h4 class="panel-title">
-        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseFive">
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" data-qn = "5" href="#collapseFive">
           Being a buyer can I use “Seller” feature or vice versa?
         </a>
       </h4>
@@ -174,7 +174,7 @@
   <div class="panel panel-default">
     <div class="panel-heading">
       <h4 class="panel-title">
-        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseSix">
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" data-qn = "6" href="#collapseSix">
           How is BoN good to both sellers and buyers?
         </a>
       </h4>
@@ -199,7 +199,7 @@
   <div class="panel panel-default">
     <div class="panel-heading">
       <h4 class="panel-title">
-        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseSeven">
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" data-qn = "7" href="#collapseSeven">
           I am a seller, is there usability restriction for any type of business?
         </a>
       </h4>
@@ -215,7 +215,7 @@
   <div class="panel panel-default">
     <div class="panel-heading">
       <h4 class="panel-title">
-        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseEight">
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" data-qn = "8" href="#collapseEight">
           Sellers nearby my place do not use BoN, can I wait for someone to join before me?
         </a>
       </h4>
@@ -232,7 +232,7 @@
   <div class="panel panel-default">
     <div class="panel-heading">
       <h4 class="panel-title">
-        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseNine">
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" data-qn = "9" href="#collapseNine">
 			I am a store/entity owner (seller), how do I get mine added in the website?
         </a>
       </h4>
@@ -262,7 +262,7 @@
   <div class="panel panel-default">
     <div class="panel-heading">
       <h4 class="panel-title">
-        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseTen">
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" data-qn = "10" href="#collapseTen">
 			If I want to buy something how do I go about it?
         </a>
       </h4>
@@ -295,7 +295,7 @@
   <div class="panel panel-default">
     <div class="panel-heading">
       <h4 class="panel-title">
-        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseEleven">
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" data-qn = "11" href="#collapseEleven">
 			I do not see any stores around me in the website?
         </a>
       </h4>
@@ -328,7 +328,7 @@
   <div class="panel panel-default">
     <div class="panel-heading">
       <h4 class="panel-title">
-        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseTwelve">
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" data-qn = "12" href="#collapseTwelve">
 			Do you charge one time or monthly fees to register my store?
         </a>
       </h4>
@@ -343,7 +343,7 @@
   <div class="panel panel-default">
     <div class="panel-heading">
       <h4 class="panel-title">
-        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseThirteen">
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" data-qn = "13" href="#collapseThirteen">
 			Heard I can upload products or post advertisements for free in your website, is it true!?
         </a>
       </h4>
@@ -359,7 +359,7 @@
   <div class="panel panel-default">
     <div class="panel-heading">
       <h4 class="panel-title">
-        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseFourteen">
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" data-qn = "14" href="#collapseFourteen">
 			I think ideally this is the best approach but how are you going to get all stores added in your website?
         </a>
       </h4>
@@ -375,7 +375,7 @@
   <div class="panel panel-default">
     <div class="panel-heading">
       <h4 class="panel-title">
-        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseFifteen">
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" data-qn = "15" href="#collapseFifteen">
 			If I have a feedback or get into any issues, whom or how should I contact?
         </a>
       </h4>
@@ -391,7 +391,7 @@
   <div class="panel panel-default">
     <div class="panel-heading">
       <h4 class="panel-title">
-        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseSixteen">
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" data-qn = "16" href="#collapseSixteen">
 			Why the advertisement I posted is of low image quality (blurred)?
         </a>
       </h4>
@@ -425,7 +425,7 @@
   <div class="panel panel-default">
     <div class="panel-heading">
       <h4 class="panel-title">
-        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseSeventeen">
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" data-qn = "17" href="#collapseSeventeen">
 			When do I get to use My Wallet/Pay/Expense Report feature?
         </a>
       </h4>
@@ -441,7 +441,7 @@
   <div class="panel panel-default">
     <div class="panel-heading">
       <h4 class="panel-title">
-        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseEighteen">
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" data-qn = "18" href="#collapseEighteen">
 			Is there any other future improvements/plans you have?
         </a>
       </h4>
@@ -457,7 +457,7 @@
   <div class="panel panel-default">
     <div class="panel-heading">
       <h4 class="panel-title">
-        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseNineteen">
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" data-qn = "19" href="#collapseNineteen">
 			Does BoN website work in all browsers?
         </a>
       </h4>
@@ -483,7 +483,7 @@
   <div class="panel panel-default">
     <div class="panel-heading">
       <h4 class="panel-title" style="word-spacing: 5px;font-size: 10px">
-        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne1">
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" data-qn = "T1" href="#collapseOne1">
           இந்த வலைத்தளத்தின் நோக்கம் மற்றும் தனித்துவம் என்ன?
         </a>
       </h4>
@@ -502,7 +502,7 @@
   <div class="panel panel-default">
     <div class="panel-heading">
       <h4 class="panel-title" style="word-spacing: 5px;font-size: 10px">
-        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo2">
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" data-qn = "T2" href="#collapseTwo2">
           ஏன் BoN, தேவை என்ன?
         </a>
       </h4>
@@ -519,7 +519,7 @@
   <div class="panel panel-default">
     <div class="panel-heading">
       <h4 class="panel-title" style="word-spacing: 5px;font-size: 10px">
-        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseThree3">
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" data-qn = "T3" href="#collapseThree3">
           விற்பனையாளர்களுக்கு இந்த வலைத்தளம் எப்படி உதவுகிறது?
         </a>
       </h4>
@@ -559,7 +559,7 @@
   <div class="panel panel-default">
     <div class="panel-heading">
       <h4 class="panel-title" style="word-spacing: 5px;font-size: 10px">
-        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseFour4">
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" data-qn = "T4" href="#collapseFour4">
           வாடிக்கையாளர்களுக்கு இந்த வலைத்தளம் எப்படி உதவுகிறது?
         </a>
       </h4>
@@ -600,7 +600,7 @@
   <div class="panel panel-default">
     <div class="panel-heading">
       <h4 class="panel-title" style="word-spacing: 5px;font-size: 10px">
-        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseFive5">
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" data-qn = "T5" href="#collapseFive5">
           வாடிக்கையாளராகிய நான் விற்பனையாளர் அம்சத்தை அல்லது விற்பனையாளராகிய நான் வாடிக்கையாளர் அம்சத்தை உபயோகப்படுத்த முடியுமா?
         </a>
       </h4>
@@ -616,7 +616,7 @@
   <div class="panel panel-default">
     <div class="panel-heading">
       <h4 class="panel-title" style="word-spacing: 5px;font-size: 10px">
-        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseSix6">
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" data-qn = "T6" href="#collapseSix6">
           விற்பனையாளர்களுக்கும் வாடிக்கையாளர்களுக்கும் இது எவ்வாறு நல்லது?
         </a>
       </h4>
@@ -641,7 +641,7 @@
   <div class="panel panel-default">
     <div class="panel-heading">
       <h4 class="panel-title" style="word-spacing: 5px;font-size: 10px">
-        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseSeven7">
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" data-qn = "T7" href="#collapseSeven7">
           நான் ஒரு விற்பனையாளர், சில வகை வியாபாரங்களுக்கு ஏதாவது பொருந்தக்கூடிய கட்டுப்பாடு இருக்கிறதா?
         </a>
       </h4>
@@ -657,7 +657,7 @@
   <div class="panel panel-default">
     <div class="panel-heading">
       <h4 class="panel-title" style="word-spacing: 5px;font-size: 10px">
-        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseEight8">
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" data-qn = "T8" href="#collapseEight8">
           அருகிலுள்ள விற்பனையாளர்கள் என் இடத்தில் BoN‘ஐப் பயன்படுத்துவதில்லை, நான் சேருவதற்கு முன் யாராவது சேர காத்திருக்கலாமா?
         </a>
       </h4>
@@ -674,7 +674,7 @@
   <div class="panel panel-default">
     <div class="panel-heading">
       <h4 class="panel-title" style="word-spacing: 5px;font-size: 10px">
-        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseNine9">
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" data-qn = "T9" href="#collapseNine9">
 			நான் கடை/நிறுவன உரிமையாளர் (விற்பனையாளர்), நான் எப்படி BoN இணையத்தளத்தில் சேரலாம்?
         </a>
       </h4>
@@ -703,7 +703,7 @@
   <div class="panel panel-default">
     <div class="panel-heading">
       <h4 class="panel-title" style="word-spacing: 5px;font-size: 10px">
-        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseTen10">
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" data-qn = "T10" href="#collapseTen10">
 			நான் ஏதாவது ஒன்றை வாங்க வேண்டுமென்றால் எவ்வாறு BoN இணைய தளத்தைப் பயன்படுத்த முடியும்?
         </a>
       </h4>
@@ -736,7 +736,7 @@
   <div class="panel panel-default">
     <div class="panel-heading">
       <h4 class="panel-title" style="word-spacing: 5px;font-size: 10px">
-        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseEleven11">
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" data-qn = "T11" href="#collapseEleven11">
 			வலைத்தளத்தில் என்னைக் சுற்றி எந்த கடை/நிறுவனங்களையும் நான் காணவில்லை?
         </a>
       </h4>
@@ -769,7 +769,7 @@
   <div class="panel panel-default">
     <div class="panel-heading">
       <h4 class="panel-title" style="word-spacing: 5px;font-size: 10px">
-        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseTwelve12">
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" data-qn = "T12" href="#collapseTwelve12">
 			நீங்கள் என் கடையை பதிவு செய்ய ஒரு முறை அல்லது மாத கட்டணம் வசூலிக்கிறீர்களா?
         </a>
       </h4>
@@ -784,7 +784,7 @@
   <div class="panel panel-default">
     <div class="panel-heading">
       <h4 class="panel-title" style="word-spacing: 5px;font-size: 10px">
-        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseThirteen13">
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" data-qn = "T13" href="#collapseThirteen13">
 			உங்கள் வலைத்தளத்தில் இலவசமாக பொருட்களைப் பதிவேற்றலாம் அல்லது விளம்பரங்களை வெளியிடலாம் என்பதை நான் கேள்விப்பட்டிருக்கிறேன், இது உண்மைதானா?
         </a>
       </h4>
@@ -800,7 +800,7 @@
   <div class="panel panel-default">
     <div class="panel-heading">
       <h4 class="panel-title" style="word-spacing: 5px;font-size: 10px">
-        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseFourteen14">
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" data-qn = "T14" href="#collapseFourteen14">
 			இது தான் சிறந்த அணுகுமுறை என்று நான் நினைக்கிறேன், ஆனால் நீங்கள் BoN வலைத்தளத்தில் எப்படி அனைத்து கடைகளையும் சேர்க்க போகிறீர்கள்?
         </a>
       </h4>
@@ -816,7 +816,7 @@
   <div class="panel panel-default">
     <div class="panel-heading">
       <h4 class="panel-title" style="word-spacing: 5px;font-size: 10px">
-        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseFifteen15">
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" data-qn = "T15" href="#collapseFifteen15">
 			என் பின்னூட்டம் (Feedback) அல்லது எந்தவொரு விஷயத்திற்காகவும் நான் தொடர்பு கொள்ள வேண்டும் என்றால் யாரை தொடர்பு கொள்ள வேண்டும்?
         </a>
       </h4>
@@ -834,7 +834,7 @@
   <div class="panel panel-default">
     <div class="panel-heading">
       <h4 class="panel-title" style="word-spacing: 5px;font-size: 10px">
-        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseSixteen16">நான் வெளியிடும் விளம்பரம் நேரலையில் பார்க்கும்போது, அது குறைந்த பட தரமாக (மங்கலாக) காண்பிக்கிறதே?
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" data-qn = "T16" href="#collapseSixteen16">நான் வெளியிடும் விளம்பரம் நேரலையில் பார்க்கும்போது, அது குறைந்த பட தரமாக (மங்கலாக) காண்பிக்கிறதே?
         </a>
       </h4>
     </div>
@@ -867,7 +867,7 @@
   <div class="panel panel-default">
     <div class="panel-heading">
       <h4 class="panel-title" style="word-spacing: 5px;font-size: 10px">
-        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseSeventeen17">
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" data-qn = "T17" href="#collapseSeventeen17">
 			நான் எப்போது My Wallet/Pay/Expense Report’ஐ பயன்படுத்த முடியும்?
         </a>
       </h4>
@@ -883,7 +883,7 @@
   <div class="panel panel-default">
     <div class="panel-heading">
       <h4 class="panel-title" style="word-spacing: 5px;font-size: 10px">
-        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseEighteen18">
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" data-qn = "T18" href="#collapseEighteen18">
 			மேம்பாடுகள்/திட்டங்கள் ஏதாயினும் எதிர்காலத்தில் இருக்கிறதா?
         </a>
       </h4>
@@ -900,7 +900,7 @@
   <div class="panel panel-default">
     <div class="panel-heading">
       <h4 class="panel-title" style="word-spacing: 5px;font-size: 10px">
-        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseNineteen19">
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" data-qn = "T19" href="#collapseNineteen19">
 			BoN வலைத்தளம் அனைத்து ப்ரவுசர்களிலும் வேலை செயகிறதா?
         </a>
       </h4>
@@ -919,13 +919,32 @@
 </div>
 <script>
 $(document).ready(function(){
+  
 	$('.panel-collapse').on('shown.bs.collapse', function(e) {
 	  var $panel = $(this).closest('.panel');
 	  $('html,body').animate({
 		scrollTop: $panel.offset().top
 	  }, 500);
 	});
+
+  var qnNo = getParameterByName('qn')
+
+  if(qnNo)
+   $('*[data-qn="'+ qnNo +'"]').click();
+  else
+   $('*[data-qn="2"]').click();
+
 });
+
+function getParameterByName(name, url) {
+    if (!url) url = window.location.href;
+    name = name.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, " "));
+}
 
 </script>
 

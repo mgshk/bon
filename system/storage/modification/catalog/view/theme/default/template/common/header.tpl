@@ -328,7 +328,7 @@
 									<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-515eeaf54693130e"></script>
 								</li>
 								<li><a class="cursor" data-toggle="modal" data-target="#site_feedback_main" title="Feedback">Feedback |</a></li>
-								<li><a href="index.php?route=common/faq" title="FAQ">FAQ &nbsp;&nbsp;|</a></li>
+								<li><a href="index.php?route=common/faq&qn=2" title="FAQ">FAQ &nbsp;&nbsp;|</a></li>
 								<li><a class="cursor" data-toggle="modal" data-target="#store_referred">Referer?</a></li>
 							</ul>
 						</div>
@@ -456,7 +456,7 @@
 								<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-515eeaf54693130e"></script>
 							</li>
 							<li><a class="cursor" data-toggle="modal" data-target="#site_feedback_main" title="Feedback">Feedback</a></li>
-							<li><a href="index.php?route=common/faq" title="FAQ">FAQ</a></li>
+							<li><a href="index.php?route=common/faq&qn=2" title="FAQ">FAQ</a></li>
 							<li><a class="cursor" data-toggle="modal" data-target="#store_referred">Referer?</a></li>
 						</ul>
 					</div>

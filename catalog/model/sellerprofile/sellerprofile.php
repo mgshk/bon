@@ -980,7 +980,7 @@ class Modelsellerprofilesellerprofile extends Model
 
 		$this->db->query('INSERT INTO '.DB_PREFIX."store_referred SET seller_id = '".(int) $this->customer->getId()."', refer_name = '".$data['refer_name']."', refer_mobile = '".$data['refer_mobile']."', refer_email = '".$data['refer_email']."', bank_name = '".$data['bank_name']."', branch = '".$data['branch']."', account_holder_name = '".$data['account_holder_name']."', account_number = '".$data['account_number']."', ifsc = '".$data['ifsc']."', date_added = NOW()");
 
-		$this->db->query('UPDATE '.DB_PREFIX."customer SET referred_by = '".$data['refer_mobile']."-".$this->db->getLastId()."' WHERE customer_id='".(int) $this->customer->getId()."'");
+		//$this->db->query('UPDATE '.DB_PREFIX."customer SET referred_by = '".$data['refer_mobile']."-".$this->db->getLastId()."' WHERE customer_id='".(int) $this->customer->getId()."'");
 
 		return $data['refer_mobile'];
 	}
