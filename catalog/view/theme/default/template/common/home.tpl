@@ -181,7 +181,28 @@
 			<?php }?>
 		</div>
 		<div class="col-sm-3">
-			
+			<marquee behavior="scroll" direction="up" onmouseover="stop();"  onmouseout="start();" scrollamount="1" height="112" width="100%" style="color:#0021FF;font-size: 14px">
+			<u>FAQ</br></br>
+			1.	What is the purpose and uniqueness of this website?</br>
+			2.	Why BoN, what is the need?</br>
+			3.	As a seller how this website helps?</br>
+			4.	As a buyer how this website helps?</br>
+			5.	Being a Buyer can I use Seller feature or vice versa?</br>
+			6.	How is BoN good to both sellers and buyers?</br>
+			7.	I am a seller, is there usability restriction for any type of business?</br>
+			8.	Sellers nearby my place do not use BoN, can I wait for someone to join before me?</br>
+			9.	I am a store/entity owner (seller), how do I get mine added in the website?</br>
+			10.	If I want to buy something how do I go about it?</br>
+			11.	I do not see any stores around me in the website?</br>
+			12.	Do you charge one time or monthly fees to register my store?</br>
+			13.	Heard I can upload products or post advertisements for free in your website, is it true?</br>
+			14.	I think ideally this is the best approach but how are you going to get all stores added in your website?</br>
+			15.	If I have a feedback or get into any issues, whom or how should I contact?</br>
+			16.	Why the advertisement I posted is of low image quality (blurred)?</br>
+			17.	When do I get to use My Wallet/Pay/Expense Report feature?</br>
+			18.	Is there any other future improvements/plans you have?</br>
+			19.	Does BoN website work in all browsers?</br>
+			</marquee>
 		</div>
 	</div>
 </div>
