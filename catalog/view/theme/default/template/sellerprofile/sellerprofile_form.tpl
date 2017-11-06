@@ -1114,7 +1114,7 @@
               <input name="refer_name" id="refer_name" value="" placeholder="Name" required="" type="text">
             </div>
             <div class="form-group">
-              <input name="refer_mobile" id="refer_mobile" value="" placeholder="Mobile Number" required="" type="text">
+              <input maxlength="10" name="refer_mobile" id="refer_mobile" value="" placeholder="Mobile Number" required="" type="text">
             </div>
             <div class="form-group">
               <input name="refer_email" id="refer_email" value="" placeholder="Email" required="" type="email">
