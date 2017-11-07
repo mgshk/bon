@@ -687,6 +687,12 @@ h2.price {
 }
 
 /* my css starts */
+.img--sell-lst{
+	background: yellow;
+display: inline-block;
+padding: 5px;
+border-radius: 2px;
+}
 .videos{text-align: center;}
 .videos a{text-decoration: underline;display: inline-block;margin: 0 20px;}
 .video-tag{margin:10px 0 10px 0;}
