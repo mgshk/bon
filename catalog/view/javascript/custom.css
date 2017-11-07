@@ -1473,6 +1473,7 @@ border: 0;}
 	.navbar-collapse.in {/*height: 150px;*/}
 	.mob-menu li {padding: 2px; font-size: 18px; color: #000 !important; line-height: 1.5;}
 	select#path {-moz-appearance: none; text-indent: 0.01px; text-overflow: '';}
+	.home_faq_scroll {display: none}
 }
 @media (max-width:640px) {
 	.tas_bon a{font-size: 16px;}

@@ -180,7 +180,7 @@
 			</div>
 			<?php }?>
 		</div>
-		<div class="col-sm-3">
+		<div class="col-sm-3 home_faq_scroll">
 			<marquee behavior="scroll" direction="up" onmouseover="stop();"  onmouseout="start();" scrollamount="1" height="112" width="100%" style="color:#0021FF;font-size: 14px">
 				<u>FAQ</br></br>
 				<a href="index.php?route=common/faq&qn=1" title="FAQ">1.	What is the purpose and uniqueness of this website?</br></a>

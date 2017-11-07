@@ -247,7 +247,7 @@
 		</tr>
 		<tr>
 			<td><span style="margin-right: 5px">2.</span></td>
-			<td><span style="margin-left: 10px">In your account enter detail about your business. (Business name, banner, category(s), location, etc.)</span></td>
+			<td><span style="margin-left: 10px">In your account enter detail about your business and save. (Business name, banner, category(s), location, etc.)</span></td>
 		</tr>
 		<tr>
 			<td><span style="margin-right: 5px">3.</span></td>
