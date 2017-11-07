@@ -1461,7 +1461,10 @@ border: 0;}
 	.widget-post h3 a{color:#000; font-size: 16px;}
 	.widget_post_mailtitle a {font-size: 13px;}
 	.nw-rule-address span{font-size: 13px;}
-	.nw-rule-address {display: inline-flex; overflow-x: scroll; /*white-space: nowrap;*/}
+	.nw-rule-address {display: inline-flex; /*overflow-x: scroll;*/ white-space: nowrap;
+	text-overflow: ellipsis;
+overflow: hidden;
+width: 100%;}
 	._wall_bal {text-align: left;}
 	._wallet_tp_btt span{margin-bottom: 5px; clear:both;}
 	.seet-alg .nav-tabs {margin-bottom: 5px;}
