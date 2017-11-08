@@ -567,20 +567,20 @@
 			</div>
 			<div class="col-sm-12 fixmee seet-alg" style="z-index: 1; background: rgb(255, 255, 255);">
 				<div class="row">
-					<ul class="nav nav-tabs _bon_ts _bon_ts_home">
-						<li id="adv_tab" class="tas_bon <?php if(isset($_GET['tab_section']) != 'product_tab'){ echo 'active'; }?>">
+					<ul class="nav nav-pills nav-tabs nav-tab-drop" style="z-index:99">
+						<li id="adv_tab" class="<?php if(isset($_GET['tab_section']) != 'product_tab'){ echo 'active'; }?>">
 							<a href="#tab-sellerads" data-toggle="tab">
 								<?php echo $tab_sellerads; ?>
 							</a>
 						</li>
 						<?php if($allow_products == 1) { ?>
-						<li id="product_tab" class="tas_bon <?php if(isset($_GET['tab_section']) == 'product_tab'){ echo 'active'; }?>">
+						<li id="product_tab" class="<?php if(isset($_GET['tab_section']) == 'product_tab'){ echo 'active'; }?>">
 							<a href="#tab-sellerproducts" data-toggle="tab">
 								<?php echo $tab_sellerproducts; ?> (
 								<?php echo $seller_products_total; ?>)</a>
 						</li>
 						<?php } ?>
-						<li class = "tas_bon">
+						<li>
 							<a href="#tab-sellerreview" data-toggle="tab">
 								<?php echo $tab_sellerreview; ?>
 							</a>
@@ -1184,6 +1184,7 @@
 											});
 										}
 									});
+									$('.nav-tabs').tabdrop({text:"More"});
 								});
 
 </script>

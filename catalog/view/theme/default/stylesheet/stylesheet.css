@@ -697,7 +697,7 @@ border-radius: 2px;
 .videos a{text-decoration: underline;display: inline-block;margin: 0 20px;}
 .video-tag{margin:10px 0 10px 0;}
 .sell-ret h3{text-overflow: ellipsis;overflow: hidden;}
-.nav-tabs.nav-tab-drop{background-color: #f6f6f6; margin-bottom: 5px}
+.nav-tabs.nav-tab-drop{background-color: #f6f6f6; margin-bottom: 5px; z-index:999}
 
 /*.nav-tabs > li > a{margin-right: 0 !important;}
 .nav-tabs > li.active > a, .nav-tabs > li.active > a:focus, .nav-tabs > li.active > a:hover{

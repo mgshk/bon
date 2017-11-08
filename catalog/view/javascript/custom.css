@@ -1259,9 +1259,9 @@ border: 0;}
 /*.portals-set {background: #fff; padding: 5px; border: 1px solid #ccc;}*/
 .portals-set {background: #fff; text-align: center;}
 .portals-set i {margin-right: 5px;}
-.seet-alg .nav-tabs > li {white-space: nowrap; background: gainsboro none repeat scroll 0 0;width: 33.333%; text-align: center;}
-.seet-alg .nav-tabs > li > a {color: #000;}
-.seet-alg .nav-tabs {border-bottom: none;width: 100%; margin-bottom: 15px;}
+/*.seet-alg .nav-tabs > li {width: 20%; text-align: center;}*/
+/*.seet-alg .nav-tabs > li > a {color: #000;}
+.seet-alg .nav-tabs {border-bottom: none;width: 100%; margin-bottom: 15px;}*/
 ._login_type-log-bon {margin-bottom: 10px; margin-top: 10px;}
 .prf--sell{float: right; font-size: 14px; text-decoration: underline;}
 .main--side--red ul {width: 100%;}
