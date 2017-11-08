@@ -352,7 +352,7 @@
 				<div role="tabpanel" class="tab-pane active" id="home">
 					<div class="col-sm-12">
 						<div class="row">
-							<h4 style="color: #00ACEC">Post your advertisement here, entire
+							<p>Post your advertisement here, entire
 								<?php if ($logged && $login_type != 'buyer') { ?>
 								<a href="index.php?route=selleradvertise/advertise/add">
 									<u>country</u>
@@ -361,7 +361,7 @@
 								<a class="cursor" data-toggle="modal" data-target="#login_frc_seller">
 									<u>country</u>
 								</a>
-								<?php } ?> is waiting...</h4>
+								<?php } ?> is waiting...</p>
 						</div>
 					</div>
 					<span id="home_content">
@@ -448,7 +448,7 @@
 <div role="tabpanel" class="tab-pane" id="profile">
 	<div class="col-sm-12">
 		<div class="row">
-			<h4 style="color: #00ACEC">Post your advertisement here, entire
+			<p>Post your advertisement here, entire
 				<?php if ($logged && $login_type != 'buyer') { ?>
 				<a href="index.php?route=selleradvertise/advertise/add">
 					<u>state</u>
@@ -457,7 +457,7 @@
 				<a class="cursor" data-toggle="modal" data-target="#login_frc_seller">
 					<u>state</u>
 				</a>
-				<?php } ?> is waiting...</h4>
+				<?php } ?> is waiting...</p>
 		</div>
 	</div>
 	<span id="profile_content">
@@ -544,7 +544,7 @@
 <div role="tabpanel" class="tab-pane" id="messages">
 	<div class="col-sm-12">
 		<div class="row">
-			<h4 style="color: #00ACEC">Post your advertisement here, entire
+			<p>Post your advertisement here, entire
 				<?php if ($logged && $login_type != 'buyer') { ?>
 				<a href="index.php?route=selleradvertise/advertise/add">
 					<u>city/district</u>
@@ -553,7 +553,7 @@
 				<a class="cursor" data-toggle="modal" data-target="#login_frc_seller">
 					<u>city/district</u>
 				</a>
-				<?php } ?> is waiting...</h4>
+				<?php } ?> is waiting...</p>
 		</div>
 	</div>
 	<span id="messages_content">
@@ -640,7 +640,7 @@
 <div role="tabpanel" class="tab-pane" id="settings">
 	<div class="col-sm-12">
 		<div class="row">
-			<h4 style="color: #00ACEC">Post your advertisement for
+			<p>Post your advertisement for
 				<?php if ($logged && $login_type != 'buyer') { ?>
 				<a href="index.php?route=selleradvertise/advertise/add">
 					<u>free</u>
@@ -649,7 +649,7 @@
 				<a class="cursor" data-toggle="modal" data-target="#login_frc_seller">
 					<u>free</u>
 				</a>
-				<?php } ?> here and let the buyers nearby see instantly...</h4>
+				<?php } ?> here and let the buyers nearby see instantly...</p>
 		</div>
 	</div>
 	<span id="settings_content">
