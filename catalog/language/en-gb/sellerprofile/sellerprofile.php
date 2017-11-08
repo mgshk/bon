@@ -218,7 +218,7 @@ $_['error_referred_by'] = 'Referred by field should not be more or less than 10 
 $_['error_store_mobile_num_valid'] = 'Store/Entity mobile number is not valid!';
 $_['error_store_ll_num_valid'] = 'Store/Entity STD code or land line number is not valid!';
 $_['error_store_category_empty'] = 'Please add atleast one category of your business. Press Edit in Store/Entity categories';
-$_['error_referer_details_empty'] = 'Referer detail does not exist in BON database. Please enter in \'If you are a new referer click here\' and save store/entity.';
+$_['error_referer_details_empty'] = 'Referrer detail does not exist in BON database. Please enter in \'If you are a new referrer click here\' and save store/entity.';
 
 $_['entry_store_email'] = 'Valid email ID';
 $_['entry_store_ll_code'] = 'STD code';

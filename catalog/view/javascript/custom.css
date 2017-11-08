@@ -16,9 +16,9 @@
 	.fa-folder.fa-5x {font-size: 10.5em;}
 	.mob-menu a:active {background-color:#ccc;}
 	.main--pop-fst {background: #626262 none repeat scroll 0 0 !important; border: 1px solid #626262 !important;cursor: default !important;}
-	.nav-tabs {
+	/*.nav-tabs {
 		margin-bottom: 5px;
-	}	
+	}	*/
 	.alert {font-size: 12px;}
 	.mainn-topp-ress {margin-top:20px;}
 	.ui-state-highlight, .ui-widget-content .ui-state-highlight, .ui-widget-header .ui-state-highlight{border: 1px solid green !important; color: red;}
@@ -363,7 +363,7 @@ border-radius: 3px;
 	.tas_bon a{font-size: 23px;text-decoration: underline;}
 	.card {background: #FFF none repeat scroll 0% 0%; box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.3); margin-bottom: 30px; }*/
 	/********* new TAB style **********/	
-	.seller--prof-pg .nav-tabs > li > a {color: #000;text-align: center;}		
+	/*.seller--prof-pg .nav-tabs > li > a {color: #000;text-align: center;}		*/
 	/********* END TAB SECTION ***********/
 	/********* LOGIN-NEW**************/
 	#_log-bon select {
@@ -1268,8 +1268,8 @@ border: 0;}
 .main--side--red > li {width: 14.2556%;}
 .sel--sec--ord {font-size: 14px; text-decoration: underline;}
 .sel--sec--ordd{padding-top: 7px; }
-.seller--prof-pg .nav-tabs > li {white-space: nowrap; background: #f1f1f1 none repeat scroll 0 0; }
-#tab_store_ad li {background: gainsboro none repeat scroll 0 0;}
+/*.seller--prof-pg .nav-tabs > li {white-space: nowrap; background: #f1f1f1 none repeat scroll 0 0; }*/
+/*#tab_store_ad li {background: gainsboro none repeat scroll 0 0;}*/
 #myModal_adv li {background: none;}
 .loc-share-topps {margin: 15px; text-align: left;}
 .loc-share-topps strong {font-weight: bold;}
@@ -1337,8 +1337,8 @@ border: 0;}
 	.rigth--stat {float: right;width: 50%; margin-top: 10px;}
 	.set--sel--bt {float: left;width: 50%; margin-top: 10px;}
 	.modal-body.timing-share-top td {width: 33.3333%;}
-	.seller--prof-pg .nav-tabs > li {width: 13.2556%;}
-	#tab_store_ad li {width: 12.1%;}
+	/*.seller--prof-pg .nav-tabs > li {width: 13.2556%;}*/
+	/*#tab_store_ad li {width: 12.1%;}*/
 	#myModal_adv li {width: 100%;}
 	.dtlwpr.pstnst.col-xs-12.btnnav > li {width: 16.666%;}
 	#Accord {margin-top:5px;}

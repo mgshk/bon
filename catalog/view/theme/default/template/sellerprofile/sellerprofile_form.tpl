@@ -84,87 +84,88 @@
         </div>
         <div class="panel panel-default">
           <div class="panel-body">
-            <ul class="nav nav-tabs fixme _bon_ts" style="z-index:123;    background-color: #f1f1f1 !important; background:  none repeat scroll 0 0;">
+        
+            <ul class="nav nav-pills nav-tabs nav-tab-drop fixme" style="">
               <?php if ($is_seller) { ?>
-              <li class="tas_bon <?php if($_GET['tab_section'] == 'profile'){ echo 'active'; }?>">
+              <li class=" <?php if($_GET['tab_section'] == 'profile'){ echo 'active'; }?>">
                 <a href="#tab-profile_details" data-toggle="tab">
                   <?php //echo $tab_profile_details; ?> My Profile
                 </a>
               </li>
               <?php if($login_type == 'seller') { ?>
-              <li class="tas_bon <?php if($_GET['tab_section'] == 'store_detail'){ echo 'active'; }?>">
+              <li class="<?php if($_GET['tab_section'] == 'store_detail'){ echo 'active'; }?>">
                 <a href="#tab-more_details" data-toggle="tab">
                   <?php //echo $tab_more_details; ?> Store/Entity detail
                 </a>
               </li>
-              <li class="tas_bon <?php if($_GET['tab_section'] == 'product'){ echo 'active'; }?>">
+              <li class="<?php if($_GET['tab_section'] == 'product'){ echo 'active'; }?>">
                 <a class="sellerproduct" href="#tab-sellerproduct" data-toggle="tab">
                   <?php //echo $tab_sellerproduct; ?> Products
                 </a>
               </li>
-              <li class="tas_bon <?php if($_GET['tab_section'] == 'store'){ echo 'active'; }?>">
+              <li class="<?php if($_GET['tab_section'] == 'store'){ echo 'active'; }?>">
                 <a class="tab_store_ad" href="#tab_store_ad" data-toggle="tab">
                         Advertisements
                         </a>
               </li>
-              <li class="tas_bon <?php if($_GET['tab_section'] == 'qr_code'){ echo 'active'; }?>">
+              <li class="<?php if($_GET['tab_section'] == 'qr_code'){ echo 'active'; }?>">
                 <a class="tab_qr_code" href="#tab_qr_code" data-toggle="tab">
                         QR-code
                         </a>
               </li>
-              <li class="tas_bon <?php if($_GET['tab_section'] == 'order'){ echo 'active'; }?>">
+              <li class="<?php if($_GET['tab_section'] == 'order'){ echo 'active'; }?>">
                 <a class="tab_review" href="<?php echo $order_edit; ?>">
                         Orders
                         </a>
               </li>
-              <li class="tas_bon <?php if($_GET['tab_section'] == 'review'){ echo 'active'; }?>">
+              <li class="<?php if($_GET['tab_section'] == 'review'){ echo 'active'; }?>">
                 <a class="tab_review" target="_self" href="index.php?route=sellerreview/sellerreview">
                         Reviews
                         </a>
               </li>
               <?php } ?>
               <?php if($login_type == 'buyer') { ?>
-              <li class="tas_bon <?php if($_GET['tab_section'] == 'order_history'){ echo 'active'; }?>">
+              <li class="<?php if($_GET['tab_section'] == 'order_history'){ echo 'active'; }?>">
                 <a class="tab_order_history" target="_self" href="index.php?route=account/order">
                         My Orders
                         </a>
               </li>
-              <li class="tas_bon <?php if($_GET['tab_section'] == 'my_wallet'){ echo 'active'; }?> wallet">
+              <li class="<?php if($_GET['tab_section'] == 'my_wallet'){ echo 'active'; }?> wallet">
                 <a class="wallet" href="#tab_my_wallet" data-toggle="tab">
                         My Wallet
                         </a>
               </li>
-              <li class="tas_bon <?php if($_GET['tab_section'] == 'expense_report'){ echo 'active'; }?> expense">
+              <li class="<?php if($_GET['tab_section'] == 'expense_report'){ echo 'active'; }?> expense">
                 <a class="expense" href="#tab_expense_report" data-toggle="tab">
                         Expense Report
                         </a>
               </li>
               <?php } ?>
               <?php } else { ?>
-              <li class="tas_bon <?php if($_GET['tab_section'] == 'profile'){ echo 'active'; }?>">
+              <li class="<?php if($_GET['tab_section'] == 'profile'){ echo 'active'; }?>">
                 <a href="#tab-profile_details" data-toggle="tab">
                   <?php //echo $tab_profile_details; ?> My Profile
                 </a>
               </li>
               <?php if($login_type == 'seller') { ?>
-              <li class="tas_bon <?php if($_GET['tab_section'] == 'store_detail'){ echo 'active'; }?>">
+              <li class="<?php if($_GET['tab_section'] == 'store_detail'){ echo 'active'; }?>">
                 <a href="#tab-more_details" data-toggle="tab">
                   <?php //echo $tab_more_details; ?> Store/Entity detail
                 </a>
               </li>
               <?php } ?>
               <?php if($login_type == 'buyer') { ?>
-              <li class="tas_bon <?php if($_GET['tab_section'] == 'order_history'){ echo 'active'; }?>">
+              <li class="<?php if($_GET['tab_section'] == 'order_history'){ echo 'active'; }?>">
                 <a class="tab_order_history" target="_self" href="index.php?route=account/order">
                         My Orders
                         </a>
               </li>
-              <li class="tas_bon <?php if($_GET['tab_section'] == 'my_wallet'){ echo 'active'; }?> wallet">
+              <li class="<?php if($_GET['tab_section'] == 'my_wallet'){ echo 'active'; }?> wallet">
                 <a class="wallet" href="#tab_my_wallet" data-toggle="tab">
                         My Wallet
                         </a>
               </li>
-              <li class="tas_bon <?php if($_GET['tab_section'] == 'expense_report'){ echo 'active'; }?> expense">
+              <li class="<?php if($_GET['tab_section'] == 'expense_report'){ echo 'active'; }?> expense">
                 <a class="expense" href="#tab_expense_report" data-toggle="tab">
                         Expense Report
                         </a>
@@ -909,15 +910,15 @@
               </div>
               <?php if ($is_seller) { ?>
               <div class="tab-pane <?php if($_GET['tab_section'] == 'store'){ echo 'active'; }?>" id="tab_store_ad">
-                <ul class="nav nav-tabs fixme-sec _bon_ts" style="z-index:123 background-color: #f1f1f1 !important;">
-                  <li class="tas_bon <?php if($_GET['inner_store'] == 'draft'){ echo 'active'; }?>"><a href="#draftt" data-txt="draft" class="draft" data-toggle="tab">Drafts (<span class="black_s" id="sellerdraftcount"><?php echo $draft_tt; ?></span>)</a></li>
-                  <li class="tas_bon <?php if($_GET['inner_store'] == 'submitted'){ echo 'active'; }?>"><a href="#submitted" data-txt="submitted" class="submitted" data-toggle="tab">Submitted (<span class="black_s" id="sellersubmittedcount"><?php echo $submitted_tt; ?></span>)</a></li>
-                  <li class="tas_bon <?php if($_GET['inner_store'] == 'approved'){ echo 'active'; }?>"><a href="#approved" data-txt="approved" class="approved" data-toggle="tab">Approved (<span class="black_s" id="sellerapprovedcount"><?php echo $approved_tt; ?></span>)</a></li>
-                  <li class="tas_bon <?php if($_GET['inner_store'] == 'live'){ echo 'active'; }?>"><a href="#live" data-txt="live" class="live" data-toggle="tab">Live (<span class="black_s" id="sellerlivecount"><?php echo $live_tt; ?></span>)</a></li>
-                  <li class="tas_bon <?php if($_GET['inner_store'] == 'yet_to_live'){ echo 'active'; }?>"><a href="#yet_to_live" data-txt="yet_to_live" class="yet_to_live" data-toggle="tab">Yet to go live (<span class="black_s" id="sellerpaidcount"><?php echo $paid_tt; ?></span>)</a></li>
-                  <li class="tas_bon <?php if($_GET['inner_store'] == 'rejected'){ echo 'active'; }?>"><a href="#rejected" data-txt="rejected" class="rejected" data-toggle="tab">Rejected (<span class="black_s" id="sellerrejectedcount"><?php echo $rejected_tt; ?></span>)</a></li>
-                  <li class="tas_bon <?php if($_GET['inner_store'] == 'archive'){ echo 'active'; }?>"><a href="#archive" data-txt="archive" class="archive" data-toggle="tab">Archive (<span class="black_s" id="sellerarchivecount"><?php echo $archive_tt; ?></span>)</a></li>
-                  <li class="tas_bon <?php if($_GET['inner_store'] == 'trash'){ echo 'active'; }?>"><a href="#trash" data-txt="trash" class="trash" data-toggle="tab">Trash (<span class="black_s" id="sellertrashcount"><?php echo $trash_tt; ?></span>)</a></li>
+                <ul class="nav nav-tabs nav-tab-drop fixme-sec">
+                  <li class=" <?php if($_GET['inner_store'] == 'draft'){ echo 'active'; }?>"><a href="#draftt" data-txt="draft" class="draft" data-toggle="tab">Drafts (<span class="black_s" id="sellerdraftcount"><?php echo $draft_tt; ?></span>)</a></li>
+                  <li class=" <?php if($_GET['inner_store'] == 'submitted'){ echo 'active'; }?>"><a href="#submitted" data-txt="submitted" class="submitted" data-toggle="tab">Submitted (<span class="black_s" id="sellersubmittedcount"><?php echo $submitted_tt; ?></span>)</a></li>
+                  <li class=" <?php if($_GET['inner_store'] == 'approved'){ echo 'active'; }?>"><a href="#approved" data-txt="approved" class="approved" data-toggle="tab">Approved (<span class="black_s" id="sellerapprovedcount"><?php echo $approved_tt; ?></span>)</a></li>
+                  <li class=" <?php if($_GET['inner_store'] == 'live'){ echo 'active'; }?>"><a href="#live" data-txt="live" class="live" data-toggle="tab">Live (<span class="black_s" id="sellerlivecount"><?php echo $live_tt; ?></span>)</a></li>
+                  <li class=" <?php if($_GET['inner_store'] == 'yet_to_live'){ echo 'active'; }?>"><a href="#yet_to_live" data-txt="yet_to_live" class="yet_to_live" data-toggle="tab">Yet to go live (<span class="black_s" id="sellerpaidcount"><?php echo $paid_tt; ?></span>)</a></li>
+                  <li class=" <?php if($_GET['inner_store'] == 'rejected'){ echo 'active'; }?>"><a href="#rejected" data-txt="rejected" class="rejected" data-toggle="tab">Rejected (<span class="black_s" id="sellerrejectedcount"><?php echo $rejected_tt; ?></span>)</a></li>
+                  <li class=" <?php if($_GET['inner_store'] == 'archive'){ echo 'active'; }?>"><a href="#archive" data-txt="archive" class="archive" data-toggle="tab">Archive (<span class="black_s" id="sellerarchivecount"><?php echo $archive_tt; ?></span>)</a></li>
+                  <li class=" <?php if($_GET['inner_store'] == 'trash'){ echo 'active'; }?>"><a href="#trash" data-txt="trash" class="trash" data-toggle="tab">Trash (<span class="black_s" id="sellertrashcount"><?php echo $trash_tt; ?></span>)</a></li>
                 </ul>
                 <!-- Nav tabs content -->
                 <div class="tab-content">
@@ -1516,22 +1517,25 @@
    </div>
 </div>
 <script>
-  var fixmeTop = $('.fixme').offset().top;
-  $(window).scroll(function () {
-    var currentScroll = $(window).scrollTop();
-    if (currentScroll >= fixmeTop) {
-      $('.fixme').css({
-        position: 'sticky',
-        top: '0',
+  if($('.fixme').offset()){
+      var fixmeTop = $('.fixme').offset().top;
+      $(window).scroll(function () {
+        var currentScroll = $(window).scrollTop();
+        if (currentScroll >= fixmeTop) {
+          $('.fixme').css({
+            position: 'sticky',
+            top: '0',
 
+          });
+        } else {
+          $('.fixme').css({
+            position: 'static'
+          });
+        }
       });
-    } else {
-      $('.fixme').css({
-        position: 'static'
-      });
-    }
-  });
+  }
   // Section tab section
+  
   var fixmeTop;
   if($('.fixme-sec').offset()){
     var fixmeTop = $('.fixme-sec').offset().top;
@@ -1873,6 +1877,8 @@
           $('#sellerdraft').load('index.php?route=sellerprofile/sellerprofile/selleradvertisedraft&seller_id=<?php echo $seller_id; ?>');
         }
      }
+
+     $('.nav-tabs').tabdrop({text:"More"})
    });
    var tab_class = "<?php echo (isset($_GET['inner_store']) && $_GET['inner_store'] !='') ? $_GET['inner_store'] : '';  ?>";
    if (tab_class != '') {

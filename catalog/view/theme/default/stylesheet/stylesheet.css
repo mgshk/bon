@@ -61,9 +61,9 @@ span.hidden-xs, span.hidden-sm, span.hidden-md, span.hidden-lg {
 	display: inline;
 }
 
-.nav-tabs {
+/*.nav-tabs {
 	margin-bottom: 15px;
-}
+}*/
 div.required .control-label:before {
 	content: '* ';
 	color: #F00;
@@ -697,24 +697,26 @@ border-radius: 2px;
 .videos a{text-decoration: underline;display: inline-block;margin: 0 20px;}
 .video-tag{margin:10px 0 10px 0;}
 .sell-ret h3{text-overflow: ellipsis;overflow: hidden;}
-.nav-tabs > li > a{margin-right: 0 !important;}
+.nav-tabs.nav-tab-drop{background-color: #f6f6f6; margin-bottom: 5px}
+
+/*.nav-tabs > li > a{margin-right: 0 !important;}
 .nav-tabs > li.active > a, .nav-tabs > li.active > a:focus, .nav-tabs > li.active > a:hover{
 	color: #000000 !important;
 background-color: #ffffff !important;
 border:none;
-}
-.nav-tabs > li.active > a, .nav-tabs > li.active > a:focus, .nav-tabs > li > a:hover{
+}*/
+/*.nav-tabs > li.active > a, .nav-tabs > li.active > a:focus, .nav-tabs > li > a:hover{
 	color: #000000 !important;
 background-color: #ffffff !important;
 border:none;
-}
+}*/
 .profileBox .nav-tabs > li.active > a, .nav-tabs > li.active > a:focus, .nav-tabs > li > a:hover{
 	height: 39px;
 }
 .profileBox .nav-tabs > li.active > a, .nav-tabs > li.active > a:focus, .nav-tabs > li.active > a:hover{
 	height: 39px;
 }
-.nav-tabs > li:last-child{border-right: none;}
+/*.nav-tabs > li:last-child{border-right: none;}*/
 .bottom_10{margin-bottom: 10px;}
 .main--head{
 	background: #f6f6f6;

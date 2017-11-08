@@ -30,6 +30,7 @@
 	<link href="catalog/view/javascript/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen" />
 	<script src="catalog/view/javascript/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
 	<link href="catalog/view/javascript/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+	<link href="catalog\view\javascript\tabdrop\css\tabdrop.css" rel="stylesheet" type="text/css" />
 	<link href="//fonts.googleapis.com/css?family=Open+Sans:400,400i,300,700" rel="stylesheet" type="text/css" />
 	<!--Mega Menu-->
 	<link rel="stylesheet" href="catalog/view/javascript/mega-menu/reset.css">
@@ -43,6 +44,7 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCXvDvmhFTLZ5iJyGSQm3-3GEJg0G3iztk&libraries=places"></script>
 	<script src="catalog/view/javascript/locationpicker.jquery.js"></script>
+	<script src="catalog\view\javascript\tabdrop\js\bootstrap-tabdrop.js"></script>
 
 	<link href="catalog/view/theme/default/stylesheet/stylesheet.css" rel="stylesheet">
 	<link rel="stylesheet" href="catalog/view/javascript/custom.css">
@@ -329,7 +331,7 @@
 								</li>
 								<li><a class="cursor" data-toggle="modal" data-target="#site_feedback_main" title="Feedback">Feedback |</a></li>
 								<li><a href="index.php?route=common/faq&qn=2" title="FAQ">FAQ &nbsp;&nbsp;|</a></li>
-								<li><a class="cursor" data-toggle="modal" data-target="#store_referred">Referer?</a></li>
+								<li><a class="cursor" data-toggle="modal" data-target="#store_referred">Referrer?</a></li>
 							</ul>
 						</div>
 					</div>
@@ -457,7 +459,7 @@
 							</li>
 							<li><a class="cursor" data-toggle="modal" data-target="#site_feedback_main" title="Feedback">Feedback</a></li>
 							<li><a href="index.php?route=common/faq&qn=2" title="FAQ">FAQ</a></li>
-							<li><a class="cursor" data-toggle="modal" data-target="#store_referred">Referer?</a></li>
+							<li><a class="cursor" data-toggle="modal" data-target="#store_referred">Referrer?</a></li>
 						</ul>
 					</div>
 				</div>

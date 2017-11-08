@@ -3389,7 +3389,7 @@ class Controllersellerprofilesellerprofile extends Controller
         //if ($this->request->post['referred_by'] != "") {
             $refererinfo = $this->model_sellerprofile_sellerprofile->GetStoreReferrerNum($this->request->post['refer_mobile']);
             if($refererinfo)
-             $json['error'] = "Referer details already exist for this mobile number.";
+             $json['error'] = "Referrer details already exist for this mobile number.";
              
         //}
 
