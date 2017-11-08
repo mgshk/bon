@@ -158,10 +158,10 @@
 	}
 
 	.bon-navbar-button {
-		background-color: #74c5ff;
-		border: 1px solid #74c5ff;
+		background-color: #F6F6F6;
+		border: 1px solid #d1d1d1;
 		border-radius: 0 2px 2px 0;
-		color: #fff;
+		color: #666666;
 		padding: 10px 0;
 		height: 36px;
 		cursor: pointer;

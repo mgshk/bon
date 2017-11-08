@@ -1055,8 +1055,8 @@ a.ui-button:active,
 	.search_col .form-group{margin-bottom: 0px;}
 	#search #searcha{border-top-left-radius: 0; border-bottom-left-radius: 0;}
 	#search .home-search{border-top-right-radius: 0; border-bottom-right-radius: 0;
-	background: #0094fb;
-color: #ffffff;
+	background: #F6F6F6;
+color: #666666;
 border: 0;}
 .home-search .fa-search{font-size: 18px !important;}
 	#search select {
