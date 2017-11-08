@@ -1056,8 +1056,8 @@ a.ui-button:active,
 	#search #searcha{border-top-left-radius: 0; border-bottom-left-radius: 0;}
 	#search .home-search{border-top-right-radius: 0; border-bottom-right-radius: 0;
 	background: #F6F6F6;
-color: #666666;
-border: 0;}
+	color: #666666;
+	border: 1px solid #d1d1d1;}
 .home-search .fa-search{font-size: 18px !important;}
 	#search select {
 		width: 25%;
