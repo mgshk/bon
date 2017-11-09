@@ -1219,7 +1219,7 @@ a.ui-button:active,
 #cart .cart-menu .fa.fa-times{ font-size:12px; font-weight:normal;}
 .prd--cart-name {color:#000 !important;}
 
-.frr--list{background: #005e78 none repeat scroll 0 0; border-radius: 3px; color: #fff;font-size: 13px;margin-top: 12px;padding: 7px; text-align: center;}
+.frr--list{background: #00ACEC none repeat scroll 0 0; border-radius: 3px; color: #fff;font-size: 13px;margin-top: 12px;padding: 7px; text-align: center;}
 ._alreary_logged ._bonlg{ border-right: none; font-size: 15px; text-align: center;}
 
 #favouries_str .dropdown-menu{min-width:250px;}
@@ -1282,6 +1282,22 @@ a.ui-button:active,
 ._wallet_tp_btt span{margin-bottom: 10px;}
 ._wallet_tp_btt span a{font-size: 12px;}
 ._wallet_tp_bt span a{font-size: 10px;}
+	.nw-rule-address {display: inline-flex; /*overflow-x: scroll;*/ white-space: nowrap;
+		text-overflow: ellipsis;
+		overflow: hidden;
+		width: 100%;}
+	.nw-rule-phone_no {display: inline-flex; /*overflow-x: scroll;*/ white-space: nowrap;
+		text-overflow: ellipsis;
+		overflow: hidden;
+		width: 100%;}
+	.nw-rule-loc {display: inline-flex; /*overflow-x: scroll;*/ white-space: nowrap;
+		text-overflow: ellipsis;
+		overflow: hidden;
+		width: 100%;}
+	.nw-rule-store-name {display: inline-flex; /*overflow-x: scroll;*/ white-space: nowrap;
+		text-overflow: ellipsis;
+		overflow: hidden;
+		width: 100%;}
 /******************* Responsive css ****************/
 
 @media (min-width:992px) and (max-width:1199px) {
@@ -1437,7 +1453,7 @@ a.ui-button:active,
 	.temp--mb{margin-top: -40px; color: #fff; position: absolute; width: 100%;}
 	/********* new TAB style **********/
 	.seller--prof-pg .nav-tabs{/*display: inline-flex;*/display: inline-block;width: 100%;/*overflow-x: scroll;*/}
-	.filtered_ads{width: 100%;display: inline-flex;overflow-x: scroll; white-space: nowrap;font-size: 11px;}
+	.filtered_ads{width: 100%; white-space: nowrap;font-size: 11px;}
 	.adv--ress h2{font-size: 11px;}
 	.adv--ress a.info {margin: 0px 10px 0;}
 	#_log-bon img {margin-left: 15px; margin-top: 10px;}
@@ -1461,10 +1477,6 @@ a.ui-button:active,
 	.widget-post h3 a{color:#000; font-size: 16px;}
 	.widget_post_mailtitle a {font-size: 13px;}
 	.nw-rule-address span{font-size: 13px;}
-	.nw-rule-address {display: inline-flex; /*overflow-x: scroll;*/ white-space: nowrap;
-	text-overflow: ellipsis;
-overflow: hidden;
-width: 100%;}
 	._wall_bal {text-align: left;}
 	._wallet_tp_btt span{margin-bottom: 5px; clear:both;}
 	.seet-alg .nav-tabs {margin-bottom: 5px;}
