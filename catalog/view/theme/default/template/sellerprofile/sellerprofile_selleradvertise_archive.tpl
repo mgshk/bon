@@ -5,6 +5,7 @@
 	<br>
 </div>
 <div class="col-sm-12">
+	<p id="archiveErrorMsg" style="display:none;"></p>
 	<?php if (!empty($advetises)) { ?>
 	<?php foreach ($advetises as $advetise) { ?>
 	<div class="col-sm-9">
@@ -17,9 +18,10 @@
 				<?php } ?>
 				<div class="overlay adv--ress">
 					<input id="ads_id" type="hidden" value="<?php echo $advetise['advertise_id']; ?>">
+					<input id="seller_id" type="hidden" value="<?php echo $advetise['seller_id']; ?>">
 					<h2><?php echo utf8_substr($advetise['offer_title'],0,30); ?></h2>
 					<a class="info" data-toggle="modal" data-target="#myModalad_archive_<?php echo $advetise['advertise_id']; ?>" ><i class="fa fa-arrows-alt"></i></a>
-					<a class="info" href="<?php echo $advetise['copy']; ?>" ><i class="fa fa-files-o"></i></a>
+					<a class="info" id="copy_adv"><i class="fa fa-files-o"></i></a>
 					<a class="info" id="ads_delete_archive<?php echo $advetise['advertise_id']; ?>"><i class="fa fa-trash-o"></i></a>
 				</div>
 			</div>
@@ -54,6 +56,26 @@
 </div>
 <?php } ?>
 <?php } ?>
+
+
+<div id="confirm_dialog" tabindex="-1" role="dialog" class="modal fade" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+				<h3 id="myModalLabel3">Confirmation</h3>
+			</div>
+			<div class="modal-body">
+				<p id="result"></p>
+			</div>
+			<div class="modal-footer">
+				<button class="btn" data-dismiss="modal" aria-hidden="true">Ok</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+
 <?php if (!empty($advetises)) { ?>
 <?php foreach ($advetises as $advetise) { ?>
 <script>

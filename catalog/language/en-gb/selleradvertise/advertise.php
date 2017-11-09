@@ -199,5 +199,5 @@ $_['amount']			 = 'Pleace enter price';
 $_['position_amount_max']	= 'Pleace enter amount above basic price';
 $_['top_banner_date']	= 'Pleace select date';
 $_['error_free_ad'] = 'Seller is allowed to post only one free advertisement in \'Nearby\'. You can delete the old and post this advertisement.';
-
-
+$_['error_copy']	= 'Error occured. Pleace contact admin.';
+$_['success_copy']	= 'Your advertisement has been renewed successfully and a copy has been created in \'Approved\' tab';

@@ -15,6 +15,7 @@ class Controllersellerprofilesellerprofile extends Controller
         $this->document->addStyle('//ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/base/jquery-ui.css');
         $this->document->addScript('catalog/view/javascript/jquery-ui.multidatespicker.js');
         $this->document->addScript('catalog/view/javascript/sellerprofile/sellerprofile.js');
+        $this->document->addScript('catalog/view/javascript/sellerprofile/sellerarchive.js');
 
         $this->load->model('sellerproduct/seller');
         $this->load->model('sellerprofile/sellerprofile');
@@ -2229,6 +2230,7 @@ class Controllersellerprofilesellerprofile extends Controller
             $parsed = parse_url($result['offer_url']);
             
             $data['advetises'][] = array(
+                'seller_id' => $this->request->get['seller_id'],
                 'advertise_id' => $result['advertise_id'],
                 'image' => $image,
 				'image_tumb' => $image_tumb,
@@ -3070,29 +3072,28 @@ class Controllersellerprofilesellerprofile extends Controller
 		//print_r($this->request->post); die;
 	}
 
-	public function copy()
-    {
-        $this->load->language('selleradvertise/advertise');
-		$this->load->model('selleradvertise/advertise');
+	public function copy() {
+        try {
 
-        //echo "test"; die;
-            //foreach ($this->request->post['selected'] as $product_id) {
-            $advertise_i = $this->model_selleradvertise_advertise->copyAdvertisment($this->request->get['advertise_id']);
-            //}
+            $this->load->language('selleradvertise/advertise');
+            $this->load->model('selleradvertise/advertise');
 
-			if($advertise_i != '') {
-				$this->session->data['success'] = $this->language->get('text_success');
-			}
+            $advertise = $this->model_selleradvertise_advertise->copyAdvertisment($this->request->get['advertise_id']);
 
-            $url = '';
-            
+            if(empty($advertise))
+                throw new Exception($this->language->get('error_copy'));
 
-            if (isset($this->request->get['page'])) {
-                $url .= '&page='.$this->request->get['page'];
-            }
+            $approved_count = $this->model_selleradvertise_advertise->getTotalAdvertisesApproved();
+            $archive_count = $this->model_selleradvertise_advertise->getTotalAdvertisesArchive();
 
-            $this->response->redirect($this->url->link('sellerprofile/sellerprofile&tab_section=store&inner_store=approved#content', ''.$url, 'SSL'));
-        
+            $result = ['error'=> 0, 'msg'=> $this->language->get('success_copy'), 'approved_count'=> $approved_count, 'archive_count'=> $archive_count];
+
+        } catch (Exception $e) {
+            $result = ['error'=> 1, 'msg'=> $e->getMessage()];
+        }
+
+        $this->response->addHeader('Content-Type: application/json');
+        $this->response->setOutput(json_encode($result));        
     }
 
 	public function category_autocomplete() {
