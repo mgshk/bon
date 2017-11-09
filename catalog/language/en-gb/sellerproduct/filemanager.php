@@ -21,7 +21,7 @@ $_['error_filetype'] = 'Warning: Upload failed, files of type jpg, jpeg, png and
 $_['error_upload'] = 'Warning: File could not be uploaded for an unknown reason!';
 $_['error_delete'] = 'Warning: You can not delete this directory!';
 
-$_['error_file_size'] = 'Warning: Upload failed, file size is more than 1MB.';
+$_['error_file_size'] = 'Warning: Upload failed, file size is more than 5MB.';
 $_['error_file_already_exists'] = 'Warning: File already exists!';
 
 $_['error_writable'] = 'Warning: Permission denied, you are not login!';
