@@ -7,21 +7,29 @@
 <div class="widget main-txt-grp fis-des" id="<?php echo $category['id']; ?>">
 	<div class="blog-widget">
 		<div class="widget-post widget_post_mailtitle">
+                     <div class="col-xs-3">			
 			<?php if( $category['image'] != '') { ?>
 			<a href="<?php echo $category['href']; ?>"><img src="image/<?php echo $category['image']; ?>" class="img-responsive" title="<?php echo $category['name']; ?>" alt="<?php echo $category['name']; ?>" style="width:280px; height:130px;"></a>
 			<?php } else { ?>
 			<a href="<?php echo $category['href']; ?>"><img src="image/no-image.jpg" class="img-responsive" title="<?php echo $category['name']; ?>" alt="<?php echo $category['name']; ?>" style="width:280px; height:130px;"></a>
 			<?php } ?>
+			<?php if((isset($category['filtered']) && $category['filtered'] !='0') ? $category['filtered'] : '') { ?>
+			<div class="col-sm-1 filtered_ads">
+				<?php echo "Featured"; ?>
+			</div>
+			<?php } ?>
+		     </div>
+                     <div class="col-xs-6">			
 			<span class="lenth-dist"><?php if(($category['lat'] && $category['lng']) != '') { ?>
-			<span><a target="_blank" href="https://www.google.co.in/maps/place/<?php echo $category['lat']; ?>,<?php echo $category['lng']; ?>"><i class="fa fa-map-marker" aria-hidden="true"></i> Location on map</a></span> &nbsp; 
+			<span class="nw-rule-loc"><a target="_blank" href="https://www.google.co.in/maps/place/<?php echo $category['lat']; ?>,<?php echo $category['lng']; ?>"><i class="fa fa-map-marker" aria-hidden="true"></i> Location on map</a></span> &nbsp; 
 			<?php //if($category['filtered'] =='0') { ?>
 			<?php echo round($category['distance'], 2); ?> Km  
 			<?php //} ?>
 			<?php } ?></span>
 			<?php if( $category['nickname'] != '') { ?>
-			<h3><a href="<?php echo $category['href']; ?>" title="<?php echo $category['name']; ?>"><?php echo substr($category['nickname'], 0, 25); ?></a></h3>
+			<h3 class="nw-rule-store-name"><a href="<?php echo $category['href']; ?>" title="<?php echo $category['name']; ?>"><?php echo $category['nickname']; ?></a></h3>
 			<?php } else { ?>
-			<h3><a href="<?php echo $category['href']; ?>" title="<?php echo $category['name']; ?>"><?php echo substr($category['name'], 0, 25); ?></a></h3>
+			<h3 class="nw-rule-store-name"><a href="<?php echo $category['href']; ?>" title="<?php echo $category['name']; ?>"><?php echo $category['name']; ?></a></h3>
 			<?php } ?>
 			<?php //if( $category['rating'] != '') { ?>
 			<div>
@@ -37,20 +45,18 @@
 			<?php if( $category['seller_address'] != '') { ?>
 			<p class="nw-rule-address"><i class="fa fa-location-arrow" aria-hidden="true"></i><span><?php echo $category['seller_address']; ?></span></p>
 			<?php } ?>
-			<?php if( $category['store_ads'] != '') { ?>
-			<p class="right-str-cnt"><span><?php echo $category['store_ads']; ?> Ad(s)</span></p>
-			<?php } ?>
 			<?php if( $category['telephone'] != '') { ?>
-			<p><i class="fa fa-phone" aria-hidden="true"></i><span> <a href="callto:<?php echo $category['telephone']; ?>"><?php echo $category['telephone']; ?></a></span> </p>
+			<p class="nw-rule-phone_no><i class="fa fa-phone" aria-hidden="true"></i><span> <a href="callto:<?php echo $category['telephone']; ?>"><?php echo $category['telephone']; ?></a></span> </p>
 			<?php } ?>
 			<?php if( $category['description'] != '') { ?>
 			<!-- <p><i class="fa fa-info" aria-hidden="true"></i><span><?php //echo $category['description']; ?></span> </p> -->
 			<?php } ?>
-			<?php if((isset($category['filtered']) && $category['filtered'] !='0') ? $category['filtered'] : '') { ?>
-			<div class="col-sm-1 filtered_ads">
-				<?php echo "Featured"; ?>
-			</div>
+		     </div>
+                     <div class="col-xs-3">
+			<?php if( $category['store_ads'] != '') { ?>
+			<p class="right-str-cnt"><span><?php echo $category['store_ads']; ?> Ad(s)</span></p>
 			<?php } ?>
+		     </div>	
 		</div>
 	</div>
 </div>
@@ -65,15 +71,21 @@
 						<?php } else { ?>
 						<a href="<?php echo $category['href']; ?>" class="seller--rr"><img src="image/no-image.jpg" class="img-responsive" title="<?php echo $category['name']; ?>" alt="<?php echo $category['name']; ?>" style="width:140px; height:90px;"></a>
 						<?php } ?>		       
+						<?php if((isset($category['filtered']) && $category['filtered'] !='0') ? $category['filtered'] : '') { ?>
+						<div class="col-sm-1 filtered_ads">
+							<?php echo "Featured"; ?>
+						</div>
+						<?php } ?>
+						<p class="img--sell-lst"><?php if( $category['store_ads'] != '') { ?><?php echo $category['store_ads']; ?> Ad(s)<?php } ?></p>
 					</div>
 					<div class="col-xs-6 sell-ret">
 						<?php if( $category['nickname'] != '') { ?>
-						<h3><a href="<?php echo $category['href']; ?>" title="<?php echo $category['name']; ?>"><?php echo substr($category['nickname'], 0, 25); ?></a></h3>
+						<h3 class="nw-rule-store-name"><a href="<?php echo $category['href']; ?>" title="<?php echo $category['name']; ?>"><?php echo $category['nickname']; ?></a></h3>
 						<?php } else { ?>
-						<h3><a href="<?php echo $category['href']; ?>" title="<?php echo $category['name']; ?>"><?php echo substr($category['name'], 0, 25); ?></a></h3>
+						<h3 class="nw-rule-store-name"><a href="<?php echo $category['href']; ?>" title="<?php echo $category['name']; ?>"><?php echo $category['name']; ?></a></h3>
 						<?php } ?>
 						<span class="lenth-distt"><?php if(($category['lat'] && $category['lng']) != '') { ?>
-						<span><a target="_blank" href="https://www.google.co.in/maps/place/<?php echo $category['lat']; ?>,<?php echo $category['lng']; ?>"><i class="fa fa-map-marker" aria-hidden="true"></i> Loc on map</a></span> &nbsp; <?php if($category['filtered'] =='0') { ?>
+						<span class="nw-rule-loc><a target="_blank" href="https://www.google.co.in/maps/place/<?php echo $category['lat']; ?>,<?php echo $category['lng']; ?>"><i class="fa fa-map-marker" aria-hidden="true"></i> Loc on map</a></span> &nbsp; <?php if($category['filtered'] =='0') { ?>
 						<?php echo round($category['distance'], 2); ?> Km  
 						<?php } ?>
 						<?php } ?></span>
@@ -89,20 +101,19 @@
 						</div>
 						<?php //} ?>		       		       
 						<?php if( $category['telephone'] != '') { ?>
-						<p><i class="fa fa-phone" aria-hidden="true"></i><span> <a href="callto:<?php echo $category['telephone']; ?>"><?php echo $category['telephone']; ?></a></span> </p>
+						<p class="nw-rule-phone_no><i class="fa fa-phone" aria-hidden="true"></i><span> <a href="callto:<?php echo $category['telephone']; ?>"><?php echo $category['telephone']; ?></a></span> </p>
 						<?php } ?>		       
-					</div>
-				</div>
-			</div>
-			<div class="col-xs-12">
-				<div class="row sellr-list">
-					<div class="col-xs-6">
-						<p class="img--sell-lst"><?php if( $category['store_ads'] != '') { ?><?php echo $category['store_ads']; ?> Ad(s)<?php } ?></p>
-					</div>
-					<div class="col-xs-6">
 						<?php if( $category['seller_address'] != '') { ?>
 						<p class="nw-rule-address"><i class="fa fa-location-arrow" aria-hidden="true"></i><span><?php echo $category['seller_address']; ?></span></p>
 						<?php } ?>
+					</div>
+				</div>
+			</div>
+			<!--<div class="col-xs-12">
+				<div class="row sellr-list">
+					<div class="col-xs-6">
+					</div>
+					<div class="col-xs-6">
 					</div>
 				</div>
 			</div>
@@ -110,12 +121,7 @@
 				<?php //if( $category['description'] != '') { ?>
 				<!--<p><i class="fa fa-info" aria-hidden="true"></i><span><?php //echo $category['description']; ?></span> </p>-->
 				<?php //} ?>
-				<?php if((isset($category['filtered']) && $category['filtered'] !='0') ? $category['filtered'] : '') { ?>
-				<div class="col-sm-1 filtered_ads">
-					<?php echo "Featured"; ?>
-				</div>
-				<?php } ?>
-			</div>
+			</div>-->
 		</div>
 	</div>
 </div>
