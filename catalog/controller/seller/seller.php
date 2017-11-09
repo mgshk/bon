@@ -68,7 +68,6 @@ class Controllersellerseller extends Controller
 		$count='';
 
         $data['categories'] = array();
-        $store_address = array();
         $results = $this->model_seller_seller->getsellersList($category_id, $search_val, $by_search_val, $limit, $count);
 
 		//echo "<pre>"; print_r($results);
@@ -79,6 +78,8 @@ class Controllersellerseller extends Controller
             } else {
                 $key = utf8_substr(utf8_strtoupper($result['name']), 0, 1);
             }
+
+            $store_address = array();
 
 			//$seller_add = $this->model_seller_seller->getsellers_address($result['address_id']);
 
@@ -219,7 +220,6 @@ class Controllersellerseller extends Controller
 		}	
 
         $data['categories'] = array();
-        $store_address = array();
         $results = $this->model_seller_seller->getsellersList($category_id, $search_val, $by_search_val, $limit, $count);
 
 		//echo "<pre>"; print_r($results);
@@ -236,6 +236,8 @@ class Controllersellerseller extends Controller
             //}
 
 			//$seller_add = $this->model_seller_seller->getsellers_address($result['address_id']);
+
+			$store_address = array();
 
 			$seller_info = $this->model_sellerprofile_sellerprofile->getseller($result['customer_id']);
 

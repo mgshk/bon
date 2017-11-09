@@ -882,10 +882,9 @@ class ModelselleradvertiseAdvertise extends Model
 
             $data = $query->row;
 
-			//print_r($data); die;
-
-            //$this->addAdvertise($data);
 			$this->db->query('INSERT INTO '.DB_PREFIX."store_offers SET seller_id = '".$this->customer->getID()."', offer_title = '".$data['offer_title']."', offer_desc = '".$data['offer_desc']."', offer_image = '".$data['offer_image']."', offer_image_original = '".$data['offer_image_original']."', offer_url = '".$data['offer_url']."', status = 'approved', paid = '0', sort_order = '".(int) $data['sort_order']."', date_added = NOW()");
+
+            return $this->db->getLastId();
         }
     }
 
