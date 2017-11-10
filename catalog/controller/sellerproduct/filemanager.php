@@ -286,7 +286,7 @@ class ControllersellerproductFileManager extends Controller
                     $json['error'] = $this->language->get('error_writable');
                 }
 
-                if ($this->request->files['file']['size'] > 1000000) {
+                if ($this->request->files['file']['size'] > 5000000) {
                     $json['error'] = $this->language->get('error_file_size');
                 }
 
