@@ -2,8 +2,8 @@ $(document).ready(function() {
 
 	$(document).on('click', '#copy_adv', function() {
 
-		var advertise_id = $('#ads_id').val();
-		var seller_id = $('#seller_id').val();
+		var advertise_id = $(this).data('advertiseId');
+		var seller_id = $(this).data('sellerId');
 
 	    $.ajax({
 	    	cache: false,

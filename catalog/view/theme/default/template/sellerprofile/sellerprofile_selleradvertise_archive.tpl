@@ -17,11 +17,9 @@
 				<span class="img-thumbnail list"><i class="fa fa-camera fa-2x"></i></span>
 				<?php } ?>
 				<div class="overlay adv--ress">
-					<input id="ads_id" type="hidden" value="<?php echo $advetise['advertise_id']; ?>">
-					<input id="seller_id" type="hidden" value="<?php echo $advetise['seller_id']; ?>">
 					<h2><?php echo utf8_substr($advetise['offer_title'],0,30); ?></h2>
 					<a class="info" data-toggle="modal" data-target="#myModalad_archive_<?php echo $advetise['advertise_id']; ?>" ><i class="fa fa-arrows-alt"></i></a>
-					<a class="info" id="copy_adv"><i class="fa fa-files-o"></i></a>
+					<a class="info" id="copy_adv" data-seller-id="<?php echo $advetise['seller_id']; ?>" data-advertise-id="<?php echo $advetise['advertise_id']; ?>"><i class="fa fa-files-o"></i></a>
 					<a class="info" id="ads_delete_archive<?php echo $advetise['advertise_id']; ?>"><i class="fa fa-trash-o"></i></a>
 				</div>
 			</div>
