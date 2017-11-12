@@ -1894,6 +1894,7 @@
    }
 
    $('.tab_store_ad').on('click', function () {
+     $(window).trigger('resize');
      $(".draft").trigger("click");
      $('#pre_loaderr').show();
      $('#sellerdraft').delegate('.pagination a', 'click', function (e) {

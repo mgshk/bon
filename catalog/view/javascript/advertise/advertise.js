@@ -37,6 +37,7 @@ $(document).ready(function() {
 				});
 			$uploadCrop.croppie('bind', imgPath).then(function(){ 
 				$(".cr-boundary").css("width","1000px");
+				$(".cr-boundary").css("height","500px");
 			});
 		}
 		
@@ -75,9 +76,11 @@ $(document).ready(function() {
 				});
 			$uploadCrop.croppie('bind', imgPath).then(function(){ 
 				$(".cr-boundary").css("width","1000px");
+				$(".cr-boundary").css("height","500px");
 			});
 			
 			$('#cropping-panel').removeClass('hide');
+			$('.crop-bt-top').removeClass('hide');
 		}
 		
 		img.src = imgPath ;	
@@ -97,8 +100,11 @@ $(document).ready(function() {
 	  		$('#croppedImage img').attr('src', resp);
 	  		var resut_str = resp.replace("data:image/jpeg;base64,", "");
 	  		$("#image_crop").attr("value", resut_str);
+			setTimeout(function() {
+				$(window).scrollTop($('#input-description').offset().top);
+			}, 100);  
 	 	});
-
+		 
 	 	return false;
 	});
 
@@ -163,7 +169,7 @@ $(document).ready(function() {
    		e.preventDefault();
 
    		try {
-
+ 
    			var title = $('#offer_title').val();
    			var terms = $('input[name="agree_tt"]').is(':checked');
    			var cropped_result = $('#image_crop').val();
@@ -182,7 +188,7 @@ $(document).ready(function() {
 
    			$('input#status').val('submitted');
    			$("#form-advertise").submit();
-
+			   
    		} catch (e) {
    			$('#validate_msg').empty().html(e).show();
 
