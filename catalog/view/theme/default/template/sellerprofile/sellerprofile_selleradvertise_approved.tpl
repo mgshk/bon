@@ -413,15 +413,17 @@
 
 			return false;
 		});
-        $('#home_local').click();
+
+        $('#home_local').trigger('click');
+
 		$('input[name="loc"]').on('click', function() {
 			
 			var basic_amount_loc = '';
 			var loc = $(this).val();
 			var banner_name = $(this).data('advertiseName');
 
-			var dt1 = $('#datetimepicker_start_'+advertise_id);
-			var start_date = dt1.datepicker('getDate');
+			//var dt1 = $('#datetimepicker_start_'+advertise_id);
+			//var start_date = dt1.datepicker('getDate');
 			
 			$('#error_loc').html('');
 			$('#basic_price').text(bannerBasicPrice[banner_name]);
@@ -459,7 +461,7 @@
 				
 				$('#datetimepicker_start_'+advertise_id).datepicker('destroy');
 				$('#datetimepicker_end_'+advertise_id).datepicker('destroy');
-                $('#datetimepicker_end_'+advertise_id).datepicker('option', 'minDate', 0);
+                //$('#datetimepicker_end_'+advertise_id).datepicker('option', 'minDate', 0);
 				$("#datetimepicker_start_"+advertise_id).datepicker({
 				    dateFormat: "yy-mm-dd",
 				    minDate: 0,
@@ -467,27 +469,32 @@
 						var dt2 = $('#datetimepicker_end_'+advertise_id);
 						var startDate = $(this).datepicker('getDate');
 						var minDate = $(this).datepicker('getDate');
+
 						startDate.setDate(startDate.getDate() + 30);
 						dt2.datepicker('option', 'maxDate', startDate);
 						dt2.datepicker('option', 'minDate', minDate);
 
-						// if (loc != '5') {
-						// 	getAdvertiseAmountList(loc);
-						// }
+						var endDate = $(this).datepicker('getDate');
+						endDate.setDate(startDate.getDate() + 5);
+						dt2.datepicker('setDate', endDate);
 				    }
 				});
 
 				$('#datetimepicker_start_'+advertise_id).datepicker('setDate', 'today');
 
-				$('#datetimepicker_end_'+advertise_id).datepicker( { dateFormat: "yy-mm-dd", minDate: 0});
-				$('#datetimepicker_end_'+advertise_id).datepicker('setDate', '+5');
+				$('#datetimepicker_end_'+advertise_id).datepicker({ 
+					dateFormat: "yy-mm-dd", 
+					minDate: 0,
+					maxDate: "+30d"
+				});
 
+				$('#datetimepicker_end_'+advertise_id).datepicker('setDate', '+5');
 				$('.position_amount_visible').show();			
 				
 			} else {
 				$('#datetimepicker_start_'+advertise_id).datepicker('destroy');
 				$('#datetimepicker_end_'+advertise_id).datepicker('destroy');
-                $('#datetimepicker_end_'+advertise_id).datepicker('option', 'minDate', 0);
+                //$('#datetimepicker_end_'+advertise_id).datepicker('option', 'minDate', 0);
 				$("#datetimepicker_start_"+advertise_id).datepicker({
 				    dateFormat: "yy-mm-dd",
 				    minDate: 0,
@@ -495,14 +502,27 @@
 						var dt2 = $('#datetimepicker_end_'+advertise_id);
 						var startDate = $(this).datepicker('getDate');
 						var minDate = $(this).datepicker('getDate');
+						//dt2.datepicker('option', 'minDate', minDate);
+						//$(this).datepicker('option', 'minDate', minDate);
+
+						startDate.setDate(startDate.getDate() + 30);
+						dt2.datepicker('option', 'maxDate', startDate);
 						dt2.datepicker('option', 'minDate', minDate);
-						$(this).datepicker('option', 'minDate', minDate);
+
+						var endDate = $(this).datepicker('getDate');
+						endDate.setDate(startDate.getDate() + 5);
+						dt2.datepicker('setDate', endDate);
 				    }
 				});
 
 				$('#datetimepicker_start_'+advertise_id).datepicker('setDate', 'today');
 					
-				$('#datetimepicker_end_'+advertise_id).datepicker( { dateFormat: "yy-mm-dd",minDate: 0 });
+				$('#datetimepicker_end_'+advertise_id).datepicker({ 
+					dateFormat: "yy-mm-dd",
+					minDate: 0,
+					maxDate: "+30d"
+				});
+
 				$('#datetimepicker_end_'+advertise_id).datepicker('setDate', '+5');
 
 				$('.position_amount_visible').hide();	
@@ -519,14 +539,25 @@
 				var dt2 = $('#datetimepicker_end_'+advertise_id);
 				var startDate = $(this).datepicker('getDate');
 				var minDate = $(this).datepicker('getDate');
+
+				startDate.setDate(startDate.getDate() + 30);
+				dt2.datepicker('option', 'maxDate', startDate);
 				dt2.datepicker('option', 'minDate', minDate);
-				$(this).datepicker('option', 'minDate', minDate);
+
+				var endDate = $(this).datepicker('getDate');
+				endDate.setDate(startDate.getDate() + 5);
+				dt2.datepicker('setDate', endDate);
 		    }
 		});
 
 		$('#datetimepicker_start_'+advertise_id).datepicker('setDate', 'today');
 			
-		$('#datetimepicker_end_'+advertise_id).datepicker( { dateFormat: "yy-mm-dd" ,minDate: 0});
+		$('#datetimepicker_end_'+advertise_id).datepicker({ 
+			dateFormat: "yy-mm-dd",
+			minDate: 0,
+			maxDate: "+30d"
+		});
+
 		$('#datetimepicker_end_'+advertise_id).datepicker('setDate', '+5');
 
 		$('.area_km').on('change',function() {
