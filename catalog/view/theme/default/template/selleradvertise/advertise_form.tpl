@@ -58,7 +58,7 @@
                 <div class="form-group required">
                   <label class="col-md-4 control-label" for="input-name"><?php echo $entry_name; ?>: </label>
                   <div class="col-md-4">
-                           <input type="text" name="offer_title" value="<?php echo $offer_title; ?>" placeholder="<?php echo $entry_name; ?>" id="offer_title" class="form-control" autocomplete="off" />
+                           <input type="text" name="offer_title" maxlength="300" value="<?php echo $offer_title; ?>" placeholder="<?php echo $entry_name; ?>" id="offer_title" class="form-control" autocomplete="off" />
                   </div>
                 </div>
                 <div class="form-group required">
@@ -119,13 +119,13 @@
                   <div class="form-group">
                     <label class="col-md-4 control-label" for="input-description"><?php echo $entry_description; ?>: </label>
                     <div class="col-md-4">
-                      <textarea style="height: 100px;" name="offer_desc" placeholder="<?php echo $entry_description; ?>" id="input-description"><?php echo isset($offer_desc) ? $offer_desc : ''; ?></textarea>
+                      <textarea style="height: 100px;" name="offer_desc" maxlength="1000" placeholder="<?php echo $entry_description; ?>" id="input-description"><?php echo isset($offer_desc) ? $offer_desc : ''; ?></textarea>
                     </div>
                   </div>
                   <div class="form-group">
                     <label class="col-md-4 control-label" for="offer_url">Url<?php //echo $entry_link; ?>: </label>
                     <div class="col-md-4">
-                              <input type="text" autocomplete="off" name="offer_url" value="<?php echo $offer_url; ?>" placeholder="http://domain.com" id="offer_url" class="form-control" />
+                              <input type="text" autocomplete="off" name="offer_url" maxlength="300" value="<?php echo $offer_url; ?>" placeholder="http://domain.com" id="offer_url" class="form-control" />
                     </div>
                   </div>
                   <div class="form-group" style="display: none;">
