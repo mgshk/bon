@@ -85,7 +85,7 @@
                     <input type="hidden" name="offer_image" value="<?php echo $offer_image_original; ?>" id="input-image" />
                     <input type="hidden" name="offer_image_original" value="image/<?php echo $offer_image_original; ?>" id="offer_image_original"
                     />
-                    <button class="crop-bt-top crr-img-bt pull-right <?php if(empty($advertise_id_edit)) { echo 'hide'; } ?>" style="margin-right: 16px;"type="button" id="getCropped"><i class="fa fa-crop"></i> Crop</button>
+                    <button class="crop-bt-top crr-img-bt pull-right <?php if(empty($advertise_id_edit)) { echo 'hide'; } ?>" style="margin-right: 16px;"type="button" id="getCroppedTop"><i class="fa fa-crop"></i> Crop</button>
                  
                   </div>
                 </div>
@@ -100,7 +100,7 @@
                   <div class="form-group row <?php if(empty($advertise_id_edit)) { echo 'hide'; } ?>" id="cropping-panel">
                     <label class="col-sm-3"></label>
                     <div class="col-sm-9">
-                      <div class="crr-img-bttt"><button class="crr-img-bt" type="button" id="getCropped"><i class="fa fa-crop"></i> Crop</button></div>
+                      <div class="crr-img-bttt"><button class="crr-img-bt" type="button" id="getCroppedBottom"><i class="fa fa-crop"></i> Crop</button></div>
                     </div>
                     <div id="cropped_result" style="display:none;">
                              <label class="col-sm-3 control-label" for="input-image">Cropped image: </label><span id="adv-size" style="display:none;font-size: 12px"></span>
