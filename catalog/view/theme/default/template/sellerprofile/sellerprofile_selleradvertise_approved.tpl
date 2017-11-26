@@ -169,7 +169,7 @@
 							</div>
 							<div class="rigth--stat">
 								<p id="show_basic_price" style="font-size: 16px;color: #FD6A00" class="set--trp"><strong>Basic price: <span id="basic_price"></span> Rs</strong></p>
-								<p style="font-size: 12px">You can also post your advertisement on the position you prefer after paying the price or above already been considered for the same position by another advertiser.</p>
+								<p style="font-size: 12px">Advertisements posted with basic price are sorted random. You can also post your advertisement on the position you prefer after paying the price or above already been considered for the same position by another advertiser.</p>
 							</div>
 				   		</div>
 					
@@ -260,7 +260,7 @@
 						</tr>
 						<tr>
 						    <td>3.&nbsp</td>
-						    <td>Introductory offer is valid till November 30, 2017.</td>
+						    <td>Introductory offer is valid till December 31, 2017.</td>
 						</tr>
 						<tr>
 						    <td>4.&nbsp</td>
