@@ -88,7 +88,7 @@ $(document).ready(function() {
 		return false;
 	});
 
-	$('#getCropped').on('click', function (ev) {
+	$('#getCroppedTop,#getCroppedBottom').on('click', function (ev) {
 		$('#cropped_result').show();
 		
 	   	$uploadCrop.croppie('result', {

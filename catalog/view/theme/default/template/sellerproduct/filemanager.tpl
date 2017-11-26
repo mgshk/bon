@@ -80,7 +80,8 @@ $('a.thumbnail').on('click', function(e) {
 		}
  
 	$('.img-containers').find('img').attr('src', $(this).attr('href'));
-	$('#getCropped').css("display", "block");
+	$('#getCroppedTop').css("display", "block");
+	$('#getCroppedBottom').css("display", "block");
 	<?php } ?>
 
 	$('#<?php echo $target; ?>').attr('value', $(this).parent().find('input').attr('value'));
