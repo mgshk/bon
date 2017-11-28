@@ -607,7 +607,7 @@
                                                    </span>
                                 </div>
                                 <div class="col-md-2">
-                                  <input type="text" name="store_ll_num[]" placeholder="<?php echo $entry_store_ll_num; ?>" value="<?php echo $store_ll_1; ?>"
+                                  <input type="text" name="store_ll_num[]" placeholder="<?php echo $placeholder_store_ll_num; ?>" value="<?php echo $store_ll_1; ?>"
                                     id="input-store-num" maxlength="10" class="form-control mat--lt" required/>
                                   <span class="input-group-btn">
                                                    </span>

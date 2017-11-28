@@ -225,7 +225,8 @@ $_['placeholder_store_email'] = 'Valid email ID';
 $_['entry_store_ll_code'] = 'STD code';
 $_['entry_store_mobile_num'] = 'Mobile number';
 $_['placeholder_store_mobile_num'] = '10 digit mobile number';
-$_['entry_store_ll_num'] = 'LL number';
+$_['entry_store_ll_num'] = 'Land Line number';
+$_['placeholder_store_ll_num'] = 'LL number';
 
 //Refer pop
 $_['enter_name'] = 'Please enter Name';

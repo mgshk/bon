@@ -56,6 +56,7 @@ class Controllersellerprofilesellerprofile extends Controller
 	$data['entry_store_mobile_num'] = $this->language->get('entry_store_mobile_num');
 	$data['placeholder_store_mobile_num'] = $this->language->get('placeholder_store_mobile_num');
 	$data['entry_store_ll_num'] = $this->language->get('entry_store_ll_num');
+	$data['placeholder_store_ll_num'] = $this->language->get('placeholder_store_ll_num');
 	$data['entry_store_ll_code'] = $this->language->get('entry_store_ll_code');
 
         $data['text_form'] = !isset($this->request->get['seller_id']) ? $this->language->get('text_add') : $this->language->get('text_edit');
