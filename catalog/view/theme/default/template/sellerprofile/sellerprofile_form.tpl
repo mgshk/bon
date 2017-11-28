@@ -647,7 +647,7 @@
                                 <div class="col-md-4"></div>
                                 <?php } ?>
                                 <div class="col-sm-2">
-                                  <input type="text" name="store_mobile_num[]" maxlength="10" placeholder="<?php echo $entry_store_mobile_num; ?>" value="<?php echo $store_mobile_nums; ?>"
+                                  <input type="text" name="store_mobile_num[]" maxlength="10" placeholder="<?php echo $placeholder_store_mobile_num; ?>" value="<?php echo $store_mobile_nums; ?>"
                                     id="input-store-num" class="form-control mat--lt" required/>
                                   <span class="input-group-btn">
                                                    </span>
@@ -680,7 +680,7 @@
                                           </div>
                             </label>
                             <div class="col-md-4">
-                              <input type="text" name="store_email" placeholder="<?php echo $entry_store_email; ?>" value="<?php echo $store_email; ?>"
+                              <input type="text" name="store_email" placeholder="<?php echo $placeholder_store_email; ?>" value="<?php echo $store_email; ?>"
                                 id="input-store-email" maxlength="100" class="form-control" required/>
                               <span class="input-group-btn">
                                              </span>

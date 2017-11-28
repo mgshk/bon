@@ -274,6 +274,10 @@
 						    <td>6.&nbsp</td>
 						    <td>Please be aware that postion in Nearby tab for paid advertisement might change due to coverage area of other advertisements or if you change your store/entity location.</td>
 						</tr>
+						<tr>
+						    <td>7.&nbsp</td>
+						    <td>Buyer's, who added you as their favourites will be notified only for paid advertisement.</td>
+						</tr>
 					    </table>
 				     </div>
 			     </div>

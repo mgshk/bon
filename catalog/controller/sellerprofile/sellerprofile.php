@@ -51,10 +51,12 @@ class Controllersellerprofilesellerprofile extends Controller
         $data['entry_seller_banner'] = $this->language->get('entry_seller_banner');
         $data['entry_all_categories'] = $this->language->get('entry_all_categories');
         $data['text_seller_group_detail'] = $this->language->get('text_seller_group_detail');
-		$data['entry_store_email'] = $this->language->get('entry_store_email');
-		$data['entry_store_mobile_num'] = $this->language->get('entry_store_mobile_num');
-		$data['entry_store_ll_num'] = $this->language->get('entry_store_ll_num');
-		$data['entry_store_ll_code'] = $this->language->get('entry_store_ll_code');
+	$data['entry_store_email'] = $this->language->get('entry_store_email');
+	$data['placeholder_store_email'] = $this->language->get('placeholder_store_email');
+	$data['entry_store_mobile_num'] = $this->language->get('entry_store_mobile_num');
+	$data['placeholder_store_mobile_num'] = $this->language->get('placeholder_store_mobile_num');
+	$data['entry_store_ll_num'] = $this->language->get('entry_store_ll_num');
+	$data['entry_store_ll_code'] = $this->language->get('entry_store_ll_code');
 
         $data['text_form'] = !isset($this->request->get['seller_id']) ? $this->language->get('text_add') : $this->language->get('text_edit');
         $data['text_enabled'] = $this->language->get('text_enabled');

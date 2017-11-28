@@ -198,7 +198,7 @@ $_['terms_of_service_3'] = 'Store/Entity name, map location, business address, a
 $_['terms_of_service_4'] = 'Store/Entity will be crowned on evaluating the genuinity of the information provided. Crowned stores/entities will surely increase buyers attention.';
 $_['terms_of_service_5'] = 'Store/Entity will be disapproved automatically on changing the mandatory fields. Disapproved stores/entities will be taken back from public view till it is approved again.';
 $_['terms_of_service_6'] = 'The advertisement (or products) posted by the store/entity is entirely by the advertiser. Since it is an open platform, BoN will not take any responsibility of the advertisements or products information credibility.';
-$_['terms_of_service_7'] = 'To satisfy all sellers needs, sellers can post advertisements freely without any cost and the position of the advertisement in the website at that particular time can be chosen by biding.';
+$_['terms_of_service_7'] = 'To satisfy all seller\'s needs, seller\'s are allowed to post advertisements freely without any cost and also they are allowed to bid with other seller\'s for a position to post the advertisement.';
 $_['terms_of_service_8'] = 'Since it is open for bidding, the postion or price may get changed in the future. On such cases BoN will not take any responsibility.';
 
 $_['error_tin'] = 'Cannot leave TIN/TAN/CST number empty when PAN is filled';
@@ -220,9 +220,11 @@ $_['error_store_ll_num_valid'] = 'Store/Entity STD code or land line number is n
 $_['error_store_category_empty'] = 'Please add atleast one category of your business. Press Edit in Store/Entity categories';
 $_['error_referer_details_empty'] = 'Referrer detail does not exist in BON database. Please enter in \'If you are a new referrer click here\' and save store/entity.';
 
-$_['entry_store_email'] = 'Valid email ID';
+$_['entry_store_email'] = 'Email ID';
+$_['placeholder_store_email'] = 'Valid email ID';
 $_['entry_store_ll_code'] = 'STD code';
-$_['entry_store_mobile_num'] = '10 digit mobile number';
+$_['entry_store_mobile_num'] = 'Mobile Number';
+$_['placeholder_store_mobile_num'] = '10 digit mobile number';
 $_['entry_store_ll_num'] = 'LL number';
 
 //Refer pop
