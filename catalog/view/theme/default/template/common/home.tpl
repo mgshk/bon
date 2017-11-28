@@ -325,7 +325,7 @@
 					</ul>
 					<ul class="nav nav-tabs _bon_ts _bon_ts_home" role="tablist">
 						<?php if($address_det[3] !='') {?>
-						<li id="adv_home" class="tas_bon active" role="presentation" title="Advertisements published for the whole country from the address you set.">
+						<li id="adv_home" class="tas_bon" role="presentation" title="Advertisements published for the whole country from the address you set.">
 							<a href="#home" aria-controls="home" role="tab" data-toggle="tab">
 								<?php echo $address_det[3]; ?>
 							</a>
@@ -343,13 +343,13 @@
 							</a>
 						</li>
 						<?php } ?>
-						<li id="adv_settings" class="tas_bon" role="presentation" title="Advertisements published within the range you set around you."><a href="#settings" aria-controls="settings" id="setting_tab" role="tab" data-toggle="tab"><?php echo 'Nearby ';if(isset($_COOKIE['myCookiestart']) || isset($_COOKIE['myCookieend'])){echo '<span>('.$_COOKIE['myCookiestart']. '-' .$_COOKIE['myCookieend'].' km)</span>';} else {echo '<span>(0-3 km)</span>';}//$address_det[0]; ?></a></li>
+						<li id="adv_settings" class="tas_bon active" role="presentation" title="Advertisements published within the range you set around you."><a href="#settings" aria-controls="settings" id="setting_tab" role="tab" data-toggle="tab"><?php echo 'Nearby ';if(isset($_COOKIE['myCookiestart']) || isset($_COOKIE['myCookieend'])){echo '<span>('.$_COOKIE['myCookiestart']. '-' .$_COOKIE['myCookieend'].' km)</span>';} else {echo '<span>(0-3 km)</span>';}//$address_det[0]; ?></a></li>
 					</ul>
 				</div>
 			</div>
 			<!-- Tab panes -->
 			<div class="tab-content home-tt-r">
-				<div role="tabpanel" class="tab-pane active" id="home">
+				<div role="tabpanel" class="tab-pane" id="home">
 					<div class="col-sm-12">
 						<div class="row">
 							<p>Post your advertisement here, entire
@@ -637,7 +637,7 @@
 <?php } }  ?>
 </span>
 </div>
-<div role="tabpanel" class="tab-pane" id="settings">
+<div role="tabpanel" class="tab-pane active" id="settings">
 	<div class="col-sm-12">
 		<div class="row">
 			<p>Post your advertisement for
