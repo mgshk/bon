@@ -69,7 +69,7 @@
                       </tr>
                       <tr>
                         <td>8.&nbsp&nbsp</td>
-                        <td><?php echo $terms_of_service_8; ?></td>
+                        <td style="color: #ff0000"><?php echo $terms_of_service_8; ?></td>
                       </tr>
                   </table>
                 </div>
