@@ -223,7 +223,7 @@ $_['error_referer_details_empty'] = 'Referrer detail does not exist in BON datab
 $_['entry_store_email'] = 'Email ID';
 $_['placeholder_store_email'] = 'Valid email ID';
 $_['entry_store_ll_code'] = 'STD code';
-$_['entry_store_mobile_num'] = 'Mobile Number';
+$_['entry_store_mobile_num'] = 'Mobile number';
 $_['placeholder_store_mobile_num'] = '10 digit mobile number';
 $_['entry_store_ll_num'] = 'LL number';
 
