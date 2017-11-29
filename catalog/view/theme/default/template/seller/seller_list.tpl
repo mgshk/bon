@@ -123,14 +123,14 @@
                         <a href="<?php echo $category['href']; ?>"><img src="image/no_store_img.jpg" class="img-responsive" title="<?php echo $category['nickname']; ?>" alt="<?php echo $category['nickname']; ?>" style="width:280px; height:130px;"></a>
                         <?php } ?>	
                                             <?php if( $category['seller_verified'] == '1') { ?>
-                        <img style="position: absolute; top: 105px; left: 154px" src="image/verified.png" class="img-responsive">
+                        <img style="position: absolute; top: 105px; left: 135px" src="image/verified.png" class="img-responsive">
                         <?php } ?>
                         <?php if((isset($category['filtered']) && $category['filtered'] !='0') ? $category['filtered'] : '') { ?>
                                  <img style="position: absolute; top: 105px; left: 20px" src="image/featured.png" class="img-responsive">
                         <!--<div class="filtered_ads">
                            <?php echo "Featured"; ?>
-                        </div>
-                        <?php } ?>-->
+                        </div>-->
+                        <?php } ?>
                      </div>
                      <div class="col-xs-6">			
                         <span class="lenth-dist"><?php if(($category['lat'] && $category['lng']) != '') { ?>
