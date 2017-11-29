@@ -1924,39 +1924,92 @@ class ControllersellerproductProduct extends Controller
     {
         $json = array();
 
-        if (isset($this->request->get['filter_name'])) {
-            $this->load->model('sellerproduct/category');
-            $this->load->model('sellerproduct/product');
+        $this->load->model('sellerprofile/sellerprofile');
+        $this->load->model('catalog/category');
 
-            $filter_data = array(
-                'filter_name' => $this->request->get['filter_name'],
-                'start' => 0,
-                'limit' => 5,
-            );
+        $seller_info = $this->model_sellerprofile_sellerprofile->getseller($this->customer->getId());
 
-            $categories = $this->model_sellerproduct_product->getSellerGroupCategories($this->customer->getSellerGroupId());
+        $category_seller = array();
 
-            $sellerCategories = $this->model_sellerproduct_product->getSellerCategories($this->customer->getId(), 1);
+        $seller_categories = ['category' => [], 'sub_categories' => ''];
 
-            if ($sellerCategories) {
-                $results = $this->model_sellerproduct_category->getSellerCategories($filter_data , 1 );
-            } else {
-                $sellergroupCategories = $this->model_sellerproduct_product->getSellerGroupCategories($this->customer->getSellerGroupId());
+        $category_ids = json_decode($seller_info['seller_category']);
 
-                if ($sellergroupCategories) {
-                    $results = $this->model_sellerproduct_category->getSellerGroupCategories($filter_data);
-                } else {
-                    $results = $this->model_sellerproduct_category->getCategories($filter_data);
+        $categories_list = $this->model_catalog_category->getCategoriesList();
+
+        if (!empty($category_ids)) {
+            foreach ($category_ids as $value) {
+                if($value->category && $categories_list[$value->category]) {
+                    $seller_categories['category'][] = $categories_list[$value->category];
+                    $sub_category_ids = implode($value->sub_categories, "','");
+                    $sub_categories_list = $this->model_catalog_category->getSubCategories($value->category, $sub_category_ids);
+
+                    $seller_categories['sub_categories'][] = $sub_categories_list;
                 }
             }
+        }
 
-            foreach ($results as $result) {
+        $i = 0;
+
+        foreach ($seller_categories['category'] as $category) {
+            $json[] = array(
+                'category_id' => $category['category_id'],
+                'name' => strip_tags(html_entity_decode($category['name'], ENT_QUOTES, 'UTF-8')),
+            );
+
+            foreach ($seller_categories['sub_categories'][$i] as $subcategory) {
                 $json[] = array(
-                    'category_id' => $result['category_id'],
-                    'name' => strip_tags(html_entity_decode($result['name'], ENT_QUOTES, 'UTF-8')),
+                    'category_id' => $subcategory['category_id'],
+                    'name' => strip_tags(html_entity_decode($subcategory['name'], ENT_QUOTES, 'UTF-8')),
                 );
             }
+
+            $i++;
         }
+
+        // print_r($seller_categories);
+
+        // foreach ($seller_categories as $category) {
+        //     print_r($category);
+        //     // $json[] = array(
+        //     //     'category_id' => $category['category_id'],
+        //     //     'name' => strip_tags(html_entity_decode($category['name'], ENT_QUOTES, 'UTF-8')),
+        //     // );
+        // }
+
+        // if (isset($this->request->get['filter_name'])) {
+        //     $this->load->model('sellerproduct/category');
+        //     $this->load->model('sellerproduct/product');
+
+        //     $filter_data = array(
+        //         'filter_name' => $this->request->get['filter_name'],
+        //         'start' => 0,
+        //         'limit' => 5,
+        //     );
+
+        //     $categories = $this->model_sellerproduct_product->getSellerGroupCategories($this->customer->getSellerGroupId());
+
+        //     $sellerCategories = $this->model_sellerproduct_product->getSellerCategories($this->customer->getId(), 1);
+
+        //     if ($sellerCategories) {
+        //         $results = $this->model_sellerproduct_category->getSellerCategories($filter_data , 1 );
+        //     } else {
+        //         $sellergroupCategories = $this->model_sellerproduct_product->getSellerGroupCategories($this->customer->getSellerGroupId());
+
+        //         if ($sellergroupCategories) {
+        //             $results = $this->model_sellerproduct_category->getSellerGroupCategories($filter_data);
+        //         } else {
+        //             $results = $this->model_sellerproduct_category->getCategories($filter_data);
+        //         }
+        //     }
+
+        //     foreach ($results as $result) {
+        //         $json[] = array(
+        //             'category_id' => $result['category_id'],
+        //             'name' => strip_tags(html_entity_decode($result['name'], ENT_QUOTES, 'UTF-8')),
+        //         );
+        //     }
+        // }
 
         $sort_order = array();
 
