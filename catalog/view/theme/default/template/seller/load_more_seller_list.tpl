@@ -20,12 +20,6 @@
 			<?php } ?>
 		     </div>
                      <div class="col-xs-6">			
-			<span class="lenth-dist"><?php if(($category['lat'] && $category['lng']) != '') { ?>
-			<span class="nw-rule-loc"><a target="_blank" href="https://www.google.co.in/maps/place/<?php echo $category['lat']; ?>,<?php echo $category['lng']; ?>"><i class="fa fa-map-marker" aria-hidden="true"></i> Location on map</a></span> &nbsp; 
-			<?php //if($category['filtered'] =='0') { ?>
-			<?php echo round($category['distance'], 2); ?> Km  
-			<?php //} ?>
-			<?php } ?></span>
 			<?php if( $category['nickname'] != '') { ?>
 			<h3 class="nw-rule-store-name"><a href="<?php echo $category['href']; ?>" title="<?php echo $category['name']; ?>"><?php echo $category['nickname']; ?></a></h3>
 			<?php } else { ?>
@@ -46,14 +40,19 @@
 			<p class="nw-rule-address"><i class="fa fa-location-arrow" aria-hidden="true"></i><span><?php echo $category['seller_address']; ?></span></p>
 			<?php } ?>
 			<?php if( $category['telephone'] != '') { ?>
-			<p class="nw-rule-phone_no><i class="fa fa-phone" aria-hidden="true"></i><span> <a href="callto:<?php echo $category['telephone']; ?>"><?php echo $category['telephone']; ?></a></span> </p>
+			<p class="nw-rule-phone_no"><i class="fa fa-phone" aria-hidden="true"></i><span> <a href="callto:<?php echo $category['telephone']; ?>"><?php echo $category['telephone']; ?></a></span> </p>
 			<?php } ?>
 			<?php if( $category['description'] != '') { ?>
 			<!-- <p><i class="fa fa-info" aria-hidden="true"></i><span><?php //echo $category['description']; ?></span> </p> -->
 			<?php } ?>
 		     </div>
                      <div class="col-xs-3">
-			<?php if( $category['store_ads'] != '') { ?>
+			<span class="lenth-dist"><?php if(($category['lat'] && $category['lng']) != '') { ?>
+			<span class="nw-rule-loc"><a target="_blank" style="font-size: 12px" href="https://www.google.co.in/maps/place/<?php echo $category['lat']; ?>,<?php echo $category['lng']; ?>"><i class="fa fa-map-marker" aria-hidden="true"></i> Location on map &nbsp; 
+			<?php //if($category['filtered'] =='0') { ?>
+			<?php echo round($category['distance'], 2); ?> Km  
+			<?php //} ?></a></span>
+			<?php } ?></span>			<?php if( $category['store_ads'] != '') { ?>
 			<p class="right-str-cnt"><span><?php echo $category['store_ads']; ?> Ad(s)</span></p>
 			<?php } ?>
 		     </div>	
@@ -85,9 +84,9 @@
 						<h3 class="nw-rule-store-name"><a href="<?php echo $category['href']; ?>" title="<?php echo $category['name']; ?>"><?php echo $category['name']; ?></a></h3>
 						<?php } ?>
 						<span class="lenth-distt"><?php if(($category['lat'] && $category['lng']) != '') { ?>
-						<span class="nw-rule-loc><a target="_blank" href="https://www.google.co.in/maps/place/<?php echo $category['lat']; ?>,<?php echo $category['lng']; ?>"><i class="fa fa-map-marker" aria-hidden="true"></i> Loc on map</a></span> &nbsp; <?php if($category['filtered'] =='0') { ?>
+						<span class="nw-rule-loc"><a target="_blank" style="font-size: 12px" href="https://www.google.co.in/maps/place/<?php echo $category['lat']; ?>,<?php echo $category['lng']; ?>"><i class="fa fa-map-marker" aria-hidden="true"></i> Loc on map &nbsp; <?php if($category['filtered'] =='0') { ?>
 						<?php echo round($category['distance'], 2); ?> Km  
-						<?php } ?>
+						<?php } ?></a></span>
 						<?php } ?></span>
 						<?php //if( $category['rating'] != '') { ?>
 						<div>
@@ -101,7 +100,7 @@
 						</div>
 						<?php //} ?>		       		       
 						<?php if( $category['telephone'] != '') { ?>
-						<p class="nw-rule-phone_no><i class="fa fa-phone" aria-hidden="true"></i><span> <a href="callto:<?php echo $category['telephone']; ?>"><?php echo $category['telephone']; ?></a></span> </p>
+						<p class="nw-rule-phone_no"><i class="fa fa-phone" aria-hidden="true"></i><span> <a href="callto:<?php echo $category['telephone']; ?>"><?php echo $category['telephone']; ?></a></span> </p>
 						<?php } ?>		       
 						<?php if( $category['seller_address'] != '') { ?>
 						<p class="nw-rule-address"><i class="fa fa-location-arrow" aria-hidden="true"></i><span><?php echo $category['seller_address']; ?></span></p>
