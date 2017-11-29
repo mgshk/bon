@@ -123,13 +123,14 @@
                         <a href="<?php echo $category['href']; ?>"><img src="image/no_store_img.jpg" class="img-responsive" title="<?php echo $category['nickname']; ?>" alt="<?php echo $category['nickname']; ?>" style="width:280px; height:130px;"></a>
                         <?php } ?>	
                                             <?php if( $category['seller_verified'] == '1') { ?>
-                        <img style="position: absolute; margin-left: 250px;" src="image/verified.png" class="img-responsive">
+                        <img style="position: absolute; top: 105px; left: 154px" src="image/verified.png" class="img-responsive">
                         <?php } ?>
                         <?php if((isset($category['filtered']) && $category['filtered'] !='0') ? $category['filtered'] : '') { ?>
-                        <div class="filtered_ads">
+                                 <img style="position: absolute; top: 105px; left: 20px" src="image/featured.png" class="img-responsive">
+                        <!--<div class="filtered_ads">
                            <?php echo "Featured"; ?>
                         </div>
-                        <?php } ?>
+                        <?php } ?>-->
                      </div>
                      <div class="col-xs-6">			
                         <span class="lenth-dist"><?php if(($category['lat'] && $category['lng']) != '') { ?>
@@ -179,18 +180,20 @@
                      <div class="col-xs-12">
                         <div class="row sellr-list">
                            <div class="col-xs-6">			
-                              <?php if( $category['seller_verified'] == '1') { ?>
-							 <img style="float: right;" src="image/verified.png" class="img-responsive">
-							 <?php } ?>
-							 <?php if( $category['image'] != '') { ?>
+                              <?php if( $category['image'] != '') { ?>
                               <a href="<?php echo $category['href']; ?>" class="seller--rr"><img src="image/<?php echo $category['image']; ?>" class="img-responsive" title="<?php echo $category['nickname']; ?>" alt="<?php echo $category['nickname']; ?>" style="width:140px; height:90px;"></a>
                               <?php } else { ?>
                               <a href="<?php echo $category['href']; ?>" class="seller--rr"><img src="image/no-image.jpg" class="img-responsive" title="<?php echo $category['nickname']; ?>" alt="<?php echo $category['nickname']; ?>" style="width:140px; height:90px;"></a>
                               <?php } ?>
-                              <?php if((isset($category['filtered']) && $category['filtered'] !='0') ? $category['filtered'] : '') { ?>
-                              <div class="col-sm-1 filtered_ads">
+                              <?php if( $category['seller_verified'] == '1') { ?>
+				 <img style="position: absolute; top: 67px; left: 111px" src="image/verified.png" class="img-responsive">
+                              <?php } ?>
+			      <?php if((isset($category['filtered']) && $category['filtered'] !='0') ? $category['filtered'] : '') { ?>
+                                 <img style="position: absolute; top: 67px; left: 10px" src="image/featured.png" class="img-responsive">
+                              <!--<div class="col-sm-1 filtered_ads">
+                                 <img style="position: absolute; top: 67px; left: 5px" src="image/featured.png" class="img-responsive">
                                  <?php echo "Featured"; ?>
-                              </div>
+                              </div>-->
                               <?php } ?>
                               <p class="img--sell-lst"><?php if( $category['store_ads'] != '') { ?><?php echo $category['store_ads']; ?> Ad(s)<?php } ?></p>
                            </div>
