@@ -443,7 +443,7 @@ $('select#input-discount_type').on('change', function() {
 $('input[name=\'category\']').autocomplete({
 	'source': function(request, response) {
 		$.ajax({
-			url: 'index.php?route=sellerproduct/product/category_autocomplete&filter_name=' +  encodeURIComponent(request),
+			url: 'index.php?route=sellerproduct/product/category_autocomplete',
 			dataType: 'json',
 			success: function(json) {
 				response($.map(json, function(item) {
