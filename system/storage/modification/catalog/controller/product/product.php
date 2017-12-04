@@ -813,7 +813,8 @@ $data['seller_profile_at_product_page']='0';
 				$json['error'] = $this->language->get('error_name');
 			}
 
-			if ((utf8_strlen($this->request->post['text']) < 25) || (utf8_strlen($this->request->post['text']) > 1000)) {
+			//if ((utf8_strlen($this->request->post['text']) < 25) || (utf8_strlen($this->request->post['text']) > 1000)) {
+			if (utf8_strlen($this->request->post['text']) > 1000) {
 				$json['error'] = $this->language->get('error_text');
 			}
 
