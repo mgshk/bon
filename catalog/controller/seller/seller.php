@@ -139,7 +139,7 @@ class Controllersellerseller extends Controller
 				'filtered' => $result['filtered'],
 				'review_count' => $result['review_count'],
 				'store_ads' => $result['store_ads'],
-				'telephone' => $result['telephone'],
+				'telephone' => $result['store_mobile_num'],
 				'description' => $result['description'],
 				'seller_verified' => $result['seller_verified'],
 				'distance' => ($result['distance']*1.609344),
