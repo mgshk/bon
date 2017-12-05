@@ -151,31 +151,32 @@ class ModelsellerproductProduct extends Model
         $this->cache->delete('product');
 
 
-
-if($this->config->get('config_seller_add_product_alert')){
-        // Sent to admin email
-        $message = $this->language->get('text_firstname').' '.$this->customer->getFirstName()."\n";
-        $message .= $this->language->get('text_lastname').' '.$this->customer->getLastName()."\n";
-        $message .= $this->language->get('text_email').' '.$this->customer->getEmail()."\n";
-        $message .= $this->language->get('text_telephone').' '.$this->customer->getTelephone()."\n";
-
-
-
-        $mail = new Mail();
-        $mail->protocol = $this->config->get('config_mail_protocol');
-        $mail->parameter = $this->config->get('config_mail_parameter');
-        $mail->smtp_hostname = $this->config->get('config_mail_smtp_hostname');
-        $mail->smtp_username = $this->config->get('config_mail_smtp_username');
-        $mail->smtp_password = html_entity_decode($this->config->get('config_mail_smtp_password'), ENT_QUOTES, 'UTF-8');
-        $mail->smtp_port = $this->config->get('config_mail_smtp_port');
-        $mail->smtp_timeout = $this->config->get('config_mail_smtp_timeout');
-        $mail->setTo($this->config->get('config_email'));
-        $mail->setFrom($this->customer->getEmail());
-        $mail->setSender($this->customer->getFirstName().' '.$this->customer->getLastName());
-        $mail->setSubject(html_entity_decode(sprintf($this->language->get('text_seller_add_product'), ''), ENT_QUOTES, 'UTF-8'));
-        $mail->setText(html_entity_decode($message, ENT_QUOTES, 'UTF-8'));
-        $mail->send();
-      }
+        /*
+        if($this->config->get('config_seller_add_product_alert')){
+            // Sent to admin email
+            $message = $this->language->get('text_firstname').' '.$this->customer->getFirstName()."\n";
+            $message .= $this->language->get('text_lastname').' '.$this->customer->getLastName()."\n";
+            $message .= $this->language->get('text_email').' '.$this->customer->getEmail()."\n";
+            $message .= $this->language->get('text_telephone').' '.$this->customer->getTelephone()."\n";
+    
+    
+    
+            $mail = new Mail();
+            $mail->protocol = $this->config->get('config_mail_protocol');
+            $mail->parameter = $this->config->get('config_mail_parameter');
+            $mail->smtp_hostname = $this->config->get('config_mail_smtp_hostname');
+            $mail->smtp_username = $this->config->get('config_mail_smtp_username');
+            $mail->smtp_password = html_entity_decode($this->config->get('config_mail_smtp_password'), ENT_QUOTES, 'UTF-8');
+            $mail->smtp_port = $this->config->get('config_mail_smtp_port');
+            $mail->smtp_timeout = $this->config->get('config_mail_smtp_timeout');
+            $mail->setTo($this->config->get('config_email'));
+            $mail->setFrom($this->customer->getEmail());
+            $mail->setSender($this->customer->getFirstName().' '.$this->customer->getLastName());
+            $mail->setSubject(html_entity_decode(sprintf($this->language->get('text_seller_add_product'), ''), ENT_QUOTES, 'UTF-8'));
+            $mail->setText(html_entity_decode($message, ENT_QUOTES, 'UTF-8'));
+            $mail->send();
+        }
+        */
         return $product_id;
     }
 

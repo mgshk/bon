@@ -118,6 +118,11 @@
                     <?php } else { ?>
                     <a href="<?php echo $sort_price; ?>"><?php echo $column_price; ?></a>
                     <?php } ?></td>
+                  <td class="text-left"><?php if ($sort == 'p.price') { ?>
+                    <a href="<?php echo $sort_price; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_special_price; ?></a>
+                    <?php } else { ?>
+                    <a href="<?php echo $sort_price; ?>"><?php echo $column_special_price; ?></a>
+                    <?php } ?></td>
                   <td class="text-right"><?php if ($sort == 'p.quantity') { ?>
                     <a href="<?php echo $sort_quantity; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_quantity; ?></a>
                     <?php } else { ?>
@@ -153,6 +158,7 @@
                     <?php } else { ?>
                     <?php echo $product['price']; ?>
                     <?php } ?></td>
+		  <td class="text-left"><?php echo $product['special_price']; ?></td>
                   <td class="text-right"><?php if ($product['quantity'] <= 0) { ?>
                     <span class="label label-warning"><?php echo $product['quantity']; ?></span>
                     <?php } elseif ($product['quantity'] <= 5) { ?>

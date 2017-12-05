@@ -526,6 +526,7 @@ class ControllersellerproductProduct extends Controller
                 'name' => $result['name'],
                 'model' => $result['model'],
                 'price' => $result['price'],
+                'special_price' => $result['special_price'],
                 'special' => $special,
                 'quantity' => $result['quantity'],
                 'product_approval' => $result['status'],
@@ -560,6 +561,7 @@ class ControllersellerproductProduct extends Controller
         $data['column_name'] = $this->language->get('column_name');
         $data['column_model'] = $this->language->get('column_model');
         $data['column_price'] = $this->language->get('column_price');
+        $data['column_special_price'] = $this->language->get('column_special_price');
         $data['column_quantity'] = $this->language->get('column_quantity');
         $data['column_status'] = $this->language->get('column_status');
         $data['column_action'] = $this->language->get('column_action');
