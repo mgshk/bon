@@ -217,7 +217,7 @@
 							<?php
 								$path = (isset($_GET['path']) && $_GET['path']) ? $_GET['path']: '';
 								?>
-								<div class="col-md-2 col-xs-2 allcategory_col" title="Choose the category you want to filter from below advertisements or to search stores/entities around you.">
+								<div class="col-md-2 col-xs-2 allcategory_col" title="Choose the category you want to filter from below advertisements or to search stores/entities around you." style="padding-left: 0px; width: 25%">
 									<select name="path" id="path" onchange="pathChange(this);">
 									<option value="">All Category</option>
 									<?php foreach ($categories as $category) { 
@@ -234,7 +234,7 @@
 									<option value="4">By Product</option>
 								</select>
 								</div>
-								<div class="col-md-10 col-xs-9 search_col">
+								<div class="col-md-10 col-xs-9 search_col" style="width:75%">
 									<div class="form-group">
 										<div class="cols-sm-10">
 											<div class="input-group">
