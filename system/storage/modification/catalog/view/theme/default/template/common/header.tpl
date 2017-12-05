@@ -690,6 +690,16 @@
 			</div>
 		</div>
 	</div>
+	<div class="modal fade" id="under_dev" role="dialog">
+		<div class="modal-dialog main--ts-rt">
+			<div class="modal-content loc-pop">
+				<div class="modal-body loc-share-top alt--res-pop">
+					<p>It is under development, will be available soon.</p><br/>
+					<button class="alt--res-bt btn btn-primary b1" data-dismiss="modal">Ok</button>
+				</div>
+			</div>
+		</div>
+	</div>
 	<div class="modal fade" id="login_frc_seller" role="dialog">
 		<div class="modal-dialog main--ts-rt">
 			<div class="modal-content loc-pop">

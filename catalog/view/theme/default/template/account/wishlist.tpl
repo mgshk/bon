@@ -29,8 +29,8 @@
               <td class="text-center"><?php echo $column_image; ?></td>
               <td class="text-left"><?php echo $column_name; ?></td>
 	      <td class="text-left">Store/Entity name</td>
-              <td class="text-left"><?php echo $column_model; ?></td>
-              <td class="text-right"><?php echo $column_stock; ?></td>
+              <td hidden class="text-left"><?php echo $column_model; ?></td>
+              <td hidden class="text-right"><?php echo $column_stock; ?></td>
               <td class="text-right"><?php echo $column_price; ?></td>
               <td class="text-right"><?php echo $column_action; ?></td>
             </tr>
@@ -43,8 +43,8 @@
                 <?php } ?></td>
               <td class="text-left"><a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a></td>
 	      <td class="text-left"><a href="<?php echo $product['store_link']; ?>"><?php echo $product['store_name']; ?></a></td>
-              <td class="text-left"><?php echo $product['model']; ?></td>
-              <td class="text-right"><?php echo $product['stock']; ?></td>
+              <td hidden class="text-left"><?php echo $product['model']; ?></td>
+              <td hidden class="text-right"><?php echo $product['stock']; ?></td>
               <td class="text-right"><?php if ($product['price']) { ?>
                 <div class="price">
                   <?php if (!$product['special']) { ?>
