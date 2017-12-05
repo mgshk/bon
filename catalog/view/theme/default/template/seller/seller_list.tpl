@@ -2,6 +2,7 @@
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <style>
+   /*
    .dropdowns-ss {
       background: url(image/all-categories.jpg) no-repeat scroll 0px 0px transparent;
       color: transparent !important;
@@ -14,6 +15,7 @@
       border: 1px solid #fff;
       height: 43px;
    }
+   */
    #search_val{border-top-left-radius: 0; border-bottom-left-radius: 0;}
 </style>
 <?php //echo $left_menu; ?>
@@ -403,12 +405,14 @@ if(cat_path != '0') {
    });	
 </script>
 <script>
+   /*
    $('select.dropdowns-ss').on('change', function() {
      if(this.value != '') {
    	$('.dropdowns-ss').css('background', 'url(image/all-categories-open.jpg) no-repeat scroll 0px 0px transparent')
      } else {
    	$('.dropdowns-ss').css('background', 'url(image/all-categories.jpg) no-repeat scroll 0px 0px transparent')
      }
-   });   
+   });
+   */
 </script>
 <?php echo $footer; ?>
