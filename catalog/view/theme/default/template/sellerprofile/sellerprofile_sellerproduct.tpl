@@ -12,6 +12,7 @@
                    <td class="text-center"><?php echo $column_image; ?></td>
                   <td class="text-left">Name</td>
                   <td class="text-left"><?php echo $column_price; ?></td>
+                  <td class="text-left"><?php echo $column_special_price; ?></td>
                   <td class="text-right"><?php echo $column_quantity; ?></td>
                   <td class="text-left"><?php echo $column_status; ?></td>
                   
@@ -35,6 +36,7 @@
                     <?php } else { ?>
                     <?php echo $product['price']; ?>
                     <?php } ?></td>
+                  <td class="text-left"><?php echo $product['special_price']; ?></td>
                   <td class="text-right"><?php if ($product['quantity'] <= 0) { ?>
                     <span class="label label-warning"><?php echo $product['quantity']; ?></span>
                     <?php } elseif ($product['quantity'] <= 5) { ?>

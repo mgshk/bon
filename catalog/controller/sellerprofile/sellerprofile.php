@@ -932,6 +932,7 @@ class Controllersellerprofilesellerprofile extends Controller
         $data['column_image'] = $this->language->get('column_image');
         $data['column_name'] = $this->language->get('column_name');
         $data['column_price'] = $this->language->get('column_price');
+        $data['column_special_price'] = $this->language->get('column_special_price');
         $data['column_quantity'] = $this->language->get('column_quantity');
         $data['column_status'] = $this->language->get('column_status');
         $data['column_action'] = $this->language->get('column_action');
@@ -985,6 +986,7 @@ class Controllersellerprofilesellerprofile extends Controller
                 'name' => $result['name'],
                 'model' => $result['model'],
                 'price' => $result['price'],
+		'special_price' => $result['special_price'],
                 'special' => $special,
                 'quantity' => $result['quantity'],
                 'status' => ($result['status']) ? $this->language->get('text_enabled') : $this->language->get('text_disabled'),
