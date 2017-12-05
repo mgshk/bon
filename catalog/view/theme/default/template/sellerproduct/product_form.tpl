@@ -105,7 +105,8 @@
 			  <div class="form-group">
 				<label class="col-sm-2 control-label" for="input-price"><?php echo $entry_discount; ?></label>
 				<div class="col-sm-3">
-				  <input type="number" name="discount_price" value="<?php echo $discount_price; ?>" placeholder="<?php echo $entry_discount; ?>" id="input-discount_price" class="form-control" />
+				  <!--<input type="number" name="discount_price" value="<?php echo $discount_price; ?>" placeholder="<?php echo $entry_discount; ?>" id="input-discount_price" class="form-control" />-->
+				  <input type="number" name="discount_price" value="0" placeholder="<?php echo $entry_discount; ?>" id="input-discount_price" class="form-control" />
 				</div>
 				<div class="col-sm-3">
 				  <select name="discount_type" id="input-discount_type" class="form-control">

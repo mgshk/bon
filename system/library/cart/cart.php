@@ -88,6 +88,7 @@ class Cart {
 									'quantity'                => $option_value_query->row['quantity'],
 									'subtract'                => $option_value_query->row['subtract'],
 									'price'                   => $option_value_query->row['price'],
+									'special_price'           => $option_value_query->row['special_price'],
 									'price_prefix'            => $option_value_query->row['price_prefix'],
 									'points'                  => $option_value_query->row['points'],
 									'points_prefix'           => $option_value_query->row['points_prefix'],
@@ -133,6 +134,7 @@ class Cart {
 										'quantity'                => $option_value_query->row['quantity'],
 										'subtract'                => $option_value_query->row['subtract'],
 										'price'                   => $option_value_query->row['price'],
+										'special_price'           => $option_value_query->row['special_price'],
 										'price_prefix'            => $option_value_query->row['price_prefix'],
 										'points'                  => $option_value_query->row['points'],
 										'points_prefix'           => $option_value_query->row['points_prefix'],
@@ -153,6 +155,7 @@ class Cart {
 								'quantity'                => '',
 								'subtract'                => '',
 								'price'                   => '',
+								'special_price'           => '',
 								'price_prefix'            => '',
 								'points'                  => '',
 								'points_prefix'           => '',
@@ -164,7 +167,8 @@ class Cart {
 				}
 
 				$price = $product_query->row['price'];
-
+				$special_price = $product_query->row['special_price'];
+				
 				// Product Discounts
 				$discount_quantity = 0;
 
@@ -223,6 +227,7 @@ class Cart {
 						'name'            => $recurring_query->row['name'],
 						'frequency'       => $recurring_query->row['frequency'],
 						'price'           => $recurring_query->row['price'],
+						'special_price'   => $recurring_query->row['special_price'],
 						'cycle'           => $recurring_query->row['cycle'],
 						'duration'        => $recurring_query->row['duration'],
 						'trial'           => $recurring_query->row['trial_status'],
@@ -249,6 +254,7 @@ class Cart {
 					'subtract'        => $product_query->row['subtract'],
 					'stock'           => $stock,
 					'price'           => ($price + $option_price),
+					'special_price'   => ($special_price + $option_price),
 					'total'           => ($price + $option_price) * $cart['quantity'],
 					'reward'          => $reward * $cart['quantity'],
 					'points'          => ($product_query->row['points'] ? ($product_query->row['points'] + $option_points) * $cart['quantity'] : 0),
@@ -350,6 +356,7 @@ class Cart {
 
 		foreach ($this->getProducts() as $product) {
 			$total += $this->tax->calculate($product['price'], $product['tax_class_id'], $this->config->get('config_tax')) * $product['quantity'];
+			//$total += $this->tax->calculate($product['special_price'], $product['tax_class_id'], $this->config->get('config_tax')) * $product['quantity'];
 		}
 
 		return $total;
