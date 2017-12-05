@@ -36,7 +36,7 @@
                         $search = (isset($_GET['searcha']) && $_GET['searcha']) ? $_GET['searcha']: '';
                         $by_search = (isset($_GET['by_search']) && $_GET['by_search']) ? $_GET['by_search']: '';
                         ?>
-                     <div class="col-md-2 col-xs-2 allcategory_col">
+                     <div class="col-md-2 col-xs-2 allcategory_col" style="padding-left: 0px; width: 25%">
                         <select name="path" id="path">
                            <option value="">All Category</option>
                            <?php foreach ($categories_seller as $cat_seller) { 
@@ -53,7 +53,7 @@
                            <option value="4" <?php if($by_search == '4'){echo 'selected';} ?>>By Product</option>
                         </select>
                      </div>
-                     <div class="col-md-10 col-xs-9 search_col">
+                     <div class="col-md-10 col-xs-9 search_col" style="width:75%">
                         <div class="form-group">
                            <div class="cols-sm-10">
                               <div class="input-group">
