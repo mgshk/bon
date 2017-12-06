@@ -375,7 +375,7 @@
 					</div>
 					<?php } else { ?>
 					<div class="col-xs-4" style="margin-top: 15px;"><button class="btn btn-primary pull-left" onclick="goBack()">Back</button></div>
-					<div class="col-xs-4" style="margin-left: 30px; margin-top: 12px">
+					<div class="col-xs-4" style="margin-left: 70px; margin-top: 12px">
 						<?php echo $cart; ?>
 					</div>
 					<?php } ?>
