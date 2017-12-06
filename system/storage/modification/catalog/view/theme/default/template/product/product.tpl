@@ -5,9 +5,9 @@
 		<li><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a></li>
 		<?php } ?>
 		</ul>-->
-	<br/>
+	<!--<br/>
 	<a class= "btn btn-primary pull-left" href="<?php echo $back_page; ?>"> << Back </a>
-	<br/><br/>
+	<br/><br/>-->
 	<div class="row">
 		<?php echo $column_left; ?>
 		<?php if ($column_left && $column_right) { ?>

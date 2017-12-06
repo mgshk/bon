@@ -337,7 +337,7 @@
 					</div>
 				</div>
 				<div class="row sec-mob main-mob--res">
-					<?php if((isset($_GET['route']) && ($_GET['route'] != 'seller/seller/info' && $_GET['route'] != 'account/wishlist' && $_GET['route'] != 'checkout/checkout' && $_GET['route'] != 'checkout/cart')) || !isset($_GET['route'])) { ?>
+					<?php if((isset($_GET['route']) && ($_GET['route'] != 'seller/seller/info' && $_GET['route'] != 'account/wishlist' && $_GET['route'] != 'checkout/checkout' && $_GET['route'] != 'checkout/cart' && $_GET['route'] != 'product/product')) || !isset($_GET['route'])) { ?>
 					<div class="col-xs-4">
 						<!--<div class="row">-->
 						<div id="logo">
@@ -375,10 +375,13 @@
 					</div>
 					<?php } else { ?>
 					<div class="col-xs-4" style="margin-top: 15px;"><button class="btn btn-primary pull-left" onclick="goBack()">Back</button></div>
+					<div class="col-xs-4" style="margin-left: 30px; margin-top: 12px">
+						<?php echo $cart; ?>
+					</div>
 					<?php } ?>
 					<div class="col-xs-1">
 					</div>
-					<div class="navbar-header">
+					<div class="navbar-header" style="margin-top: 15px;">
 						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
 									<span class="icon-bar"></span>
 									<span class="icon-bar"></span>
