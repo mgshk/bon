@@ -113,7 +113,12 @@
 									<?php echo $captcha; ?>
 									<div class="buttons clearfix">
 										<div class="pull-right">
+											<!--<button type="button" id="button-review" data-loading-text="<?php echo $text_loading; ?>" class="btn btn-primary">Save</button>-->
+											<?php if($cus_logged && $login_type != 'seller') { ?>
 											<button type="button" id="button-review" data-loading-text="<?php echo $text_loading; ?>" class="btn btn-primary">Save</button>
+											<?php } else { ?>
+											<p><a class="rev-btn pay--str" style="cursor:pointer" data-toggle="modal" data-target="#login_frc_buyer">Save</a></p>
+											<?php } ?>
 										</div>
 									</div>
 									<?php } else { ?>
@@ -691,7 +696,7 @@
 				if (json['success']) {
 					$('#review').after('<div class="alert alert-success"><i class="fa fa-check-circle"></i> ' + json['success'] + '</div>');
 	
-					$('input[name=\'name\']').val('');
+					//$('input[name=\'name\']').val('');
 					$('textarea[name=\'text\']').val('');
 					$('input[name=\'rating\']:checked').prop('checked', false);
 				}
