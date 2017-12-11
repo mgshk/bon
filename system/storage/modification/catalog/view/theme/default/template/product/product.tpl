@@ -355,22 +355,22 @@
 					<?php } ?>
 					<div class="sec-mob">
 						<ul class="nav nav-tabs">
-							<li class="active"><a href="#tab-description" data-toggle="tab"><?php echo $tab_description; ?></a></li>
+							<li class="active"><a href="#tab-description-m" data-toggle="tab"><?php echo $tab_description; ?></a></li>
 							<?php if ($attribute_groups) { ?>
-							<li><a href="#tab-specification" data-toggle="tab"><?php echo $tab_attribute; ?></a></li>
+							<li><a href="#tab-specification-m" data-toggle="tab"><?php echo $tab_attribute; ?></a></li>
 							<?php } ?>
 							<?php if ($review_status) { ?>
-							<li><a href="#tab-review" data-toggle="tab"><?php echo $tab_review; ?></a></li>
+							<li><a href="#tab-review-m" data-toggle="tab"><?php echo $tab_review; ?></a></li>
 							<?php } ?>
 						</ul>
 						<div class="tab-content">
 							<?php if($description) { ?>
-							<div class="tab-pane active" id="tab-description"><?php echo $description; ?></div>
+							<div class="tab-pane active" id="tab-description-m"><?php echo $description; ?></div>
 							<?php } else { ?>
-							<div class="tab-pane active" id="tab-description">No description.</div>
+							<div class="tab-pane active" id="tab-description-m">No description.</div>
 							<?php } ?>
 							<?php if ($attribute_groups) { ?>
-							<div class="tab-pane" id="tab-specification">
+							<div class="tab-pane" id="tab-specification-m">
 								<table class="table table-bordered">
 									<?php foreach ($attribute_groups as $attribute_group) { ?>
 									<thead>
@@ -391,15 +391,14 @@
 							</div>
 							<?php } ?>
 							<?php if ($review_status) { ?>
-							<div class="tab-pane" id="tab-review">
-								<form class="form-horizontal" id="form-review">
+							<div class="tab-pane" id="tab-review-m">
+								<form class="form-horizontal prod--sell-spec-rew" id="form-review">
 									<div id="review"></div>
-									<h2><?php echo $text_write; ?></h2>
+									<h3><?php echo $text_write; ?></h3>
 									<?php if ($review_guest) { ?>
 									<div class="form-group required">
 										<div class="col-sm-12">
 											<label class="control-label" for="input-name"><?php echo $entry_mobile; ?></label>
-											<?php echo $customer_number; ?>
 											<input type="text" name="name" value="<?php echo $customer_number; ?>" id="input-name" class="form-control" />
 										</div>
 									</div>
@@ -423,13 +422,18 @@
 										<div class="col-sm-12">
 											<label class="control-label" for="input-review"><?php echo $entry_review; ?></label>
 											<textarea name="text" rows="5" id="input-review" class="form-control"></textarea>
-											<div class="help-block"><?php echo $text_note; ?></div>
+											<!--<div class="help-block"><?php echo $text_note; ?></div>-->
 										</div>
 									</div>
 									<?php echo $captcha; ?>
 									<div class="buttons clearfix">
 										<div class="pull-right">
-											<button type="button" id="button-review" data-loading-text="<?php echo $text_loading; ?>" class="btn btn-primary"><?php echo $button_continue; ?></button>
+											<!--<button type="button" id="button-review" data-loading-text="<?php echo $text_loading; ?>" class="btn btn-primary">Save</button>-->
+											<?php if($cus_logged && $login_type != 'seller') { ?>
+											<button type="button" id="button-review" data-loading-text="<?php echo $text_loading; ?>" class="btn btn-primary">Save</button>
+											<?php } else { ?>
+											<p><a class="rev-btn pay--str" style="cursor:pointer; width: 100%" data-toggle="modal" data-target="#login_frc_buyer">Save</a></p>
+											<?php } ?>
 										</div>
 									</div>
 									<?php } else { ?>
