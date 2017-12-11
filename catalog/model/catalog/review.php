@@ -56,6 +56,14 @@ class ModelCatalogReview extends Model {
 		*/
 	}
 
+	public function addReview_m($product_id, $data) {
+
+		$this->db->query("DELETE FROM ".DB_PREFIX."review WHERE product_id = '".(int)$product_id."' AND customer_id = '".(int)$this->customer->getId()."'");
+
+		$this->db->query("INSERT INTO " . DB_PREFIX . "review SET author = '" . $this->db->escape($data['name-m']) . "', customer_id = '" . (int)$this->customer->getId() . "', product_id = '" . (int)$product_id . "', text = '" . $this->db->escape($data['text-m']) . "', rating = '" . (int)$data['prod_rating-m'] . "', status = '1', date_added = NOW()");
+
+	}
+	
 	public function getReviewsByProductId($product_id, $start = 0, $limit = 20) {
 		if ($start < 0) {
 			$start = 0;

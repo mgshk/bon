@@ -844,6 +844,47 @@ $data['seller_profile_at_product_page']='0';
 		$this->response->setOutput(json_encode($json));
 	}
 
+	public function write_m() {
+		$this->load->language('product/product');
+
+		$json = array();
+
+		if ($this->request->server['REQUEST_METHOD'] == 'POST') {
+			if ((utf8_strlen($this->request->post['name-m']) < 3) || (utf8_strlen($this->request->post['name-m']) > 25)) {
+				$json['error'] = $this->language->get('error_name');
+			}
+
+			//if ((utf8_strlen($this->request->post['text']) < 25) || (utf8_strlen($this->request->post['text']) > 1000)) {
+			if (utf8_strlen($this->request->post['text-m']) > 1000) {
+				$json['error'] = $this->language->get('error_text');
+			}
+
+			if (empty($this->request->post['prod_rating-m']) || $this->request->post['prod_rating-m'] < 0 || $this->request->post['prod_rating-m'] > 5) {
+				$json['error'] = $this->language->get('error_rating');
+			}
+
+			// Captcha
+			if ($this->config->get($this->config->get('config_captcha') . '_status') && in_array('review', (array)$this->config->get('config_captcha_page'))) {
+				$captcha = $this->load->controller('extension/captcha/' . $this->config->get('config_captcha') . '/validate');
+
+				if ($captcha) {
+					$json['error'] = $captcha;
+				}
+			}
+
+			if (!isset($json['error'])) {
+				$this->load->model('catalog/review');
+
+				$this->model_catalog_review->addReview_m($this->request->get['product_id'], $this->request->post);
+
+				$json['success'] = $this->language->get('text_success');
+			}
+		}
+
+		$this->response->addHeader('Content-Type: application/json');
+		$this->response->setOutput(json_encode($json));
+	}
+
 	public function getRecurringDescription() {
 		$this->load->language('product/product');
 		$this->load->model('catalog/product');

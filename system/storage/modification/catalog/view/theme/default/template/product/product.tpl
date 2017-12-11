@@ -392,36 +392,36 @@
 							<?php } ?>
 							<?php if ($review_status) { ?>
 							<div class="tab-pane" id="tab-review-m">
-								<form class="form-horizontal prod--sell-spec-rew" id="form-review">
-									<div id="review"></div>
+								<form class="form-horizontal prod--sell-spec-rew" id="form-review-m">
+									<div id="review-m"></div>
 									<h3><?php echo $text_write; ?></h3>
 									<?php if ($review_guest) { ?>
 									<div class="form-group required">
 										<div class="col-sm-12">
-											<label class="control-label" for="input-name"><?php echo $entry_mobile; ?></label>
-											<input type="text" name="name" value="<?php echo $customer_number; ?>" id="input-name" class="form-control" />
+											<label class="control-label" for="input-name-m"><?php echo $entry_mobile; ?></label>
+											<input type="text" name="name-m" value="<?php echo $customer_number; ?>" id="input-name-m" class="form-control" />
 										</div>
 									</div>
 									<div class="form-group required">
 										<div class="col-sm-12">
 											<label class="control-label"><?php echo $entry_rating; ?></label>
 											&nbsp;&nbsp;&nbsp; <?php echo $entry_bad; ?>&nbsp;
-											<input type="radio" name="prod_rating" value="1" />
+											<input type="radio" name="prod_rating-m" value="1" />
 											&nbsp;
-											<input type="radio" name="prod_rating" value="2" />
+											<input type="radio" name="prod_rating-m" value="2" />
 											&nbsp;
-											<input type="radio" name="prod_rating" value="3" />
+											<input type="radio" name="prod_rating-m" value="3" />
 											&nbsp;
-											<input type="radio" name="prod_rating" value="4" />
+											<input type="radio" name="prod_rating-m" value="4" />
 											&nbsp;
-											<input type="radio" name="prod_rating" value="5" />
+											<input type="radio" name="prod_rating-m" value="5" />
 											&nbsp;<?php echo $entry_good; ?>
 										</div>
 									</div>
 									<div class="form-group">
 										<div class="col-sm-12">
-											<label class="control-label" for="input-review"><?php echo $entry_review; ?></label>
-											<textarea name="text" rows="5" id="input-review" class="form-control"></textarea>
+											<label class="control-label" for="input-review-m"><?php echo $entry_review; ?></label>
+											<textarea name="text-m" rows="5" id="input-review-m" class="form-control"></textarea>
 											<!--<div class="help-block"><?php echo $text_note; ?></div>-->
 										</div>
 									</div>
@@ -430,7 +430,7 @@
 										<div class="pull-right">
 											<!--<button type="button" id="button-review" data-loading-text="<?php echo $text_loading; ?>" class="btn btn-primary">Save</button>-->
 											<?php if($cus_logged && $login_type != 'seller') { ?>
-											<button type="button" id="button-review" data-loading-text="<?php echo $text_loading; ?>" class="btn btn-primary">Save</button>
+											<button type="button" id="button-review-m" data-loading-text="<?php echo $text_loading; ?>" class="btn btn-primary">Save</button>
 											<?php } else { ?>
 											<p><a class="rev-btn pay--str" style="cursor:pointer; width: 100%" data-toggle="modal" data-target="#login_frc_buyer">Save</a></p>
 											<?php } ?>
@@ -677,6 +677,7 @@
 	});
 	
 	$('#review').load('index.php?route=product/product/review&product_id=<?php echo $product_id; ?>');
+	$('#review-m').load('index.php?route=product/product/review&product_id=<?php echo $product_id; ?>');
 	
 	$('#button-review').on('click', function() {
 		$.ajax({
@@ -699,6 +700,36 @@
 	
 				if (json['success']) {
 					$('#review').after('<div class="alert alert-success"><i class="fa fa-check-circle"></i> ' + json['success'] + '</div>');
+	
+					//$('input[name=\'name\']').val('');
+					$('textarea[name=\'text\']').val('');
+					$('input[name=\'rating\']:checked').prop('checked', false);
+				}
+			}
+		});
+	});
+	
+	$('#button-review-m').on('click', function() {
+		$.ajax({
+			url: 'index.php?route=product/product/write_m&product_id=<?php echo $product_id; ?>',
+			type: 'post',
+			dataType: 'json',
+			data: $("#form-review-m").serialize(),
+			beforeSend: function() {
+				$('#button-review-m').button('loading');
+			},
+			complete: function() {
+				$('#button-review-m').button('reset');
+			},
+			success: function(json) {
+				$('.alert-success-m, .alert-danger-m').remove();
+	
+				if (json['error']) {
+					$('#review-m').after('<div class="alert alert-danger"><i class="fa fa-exclamation-circle"></i> ' + json['error'] + '</div>');
+				}
+	
+				if (json['success']) {
+					$('#review-m').after('<div class="alert alert-success"><i class="fa fa-check-circle"></i> ' + json['success'] + '</div>');
 	
 					//$('input[name=\'name\']').val('');
 					$('textarea[name=\'text\']').val('');
