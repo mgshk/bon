@@ -3199,6 +3199,10 @@ class Controllersellerprofilesellerprofile extends Controller
                 if($value->category && $categories_list[$value->category]) {
                     $validate_category[] = $value;
                 }
+		
+		foreach ($value->sub_categories as $sub_cat) {
+		    $this->model_catalog_category->storeCategoryToSeller($sub_cat, $customer_id);  
+		}
             }
             
             $this->model_catalog_category->storeSellerSubcategories(json_encode($validate_category));

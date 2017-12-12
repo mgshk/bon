@@ -1078,7 +1078,7 @@ class Controllersellerseller extends Controller
 
 				$data['categories'][] = array(
 					'category_id' => $category['category_id'],
-					'name'        => $category['name'] . ($this->config->get('config_product_count') ? ' (' . $this->model_catalog_product->getTotalProducts($filter_data) . ')' : ''),
+					'name'        => $category['name'] . ($this->config->get('config_product_count') ? ' (' . $this->model_catalog_product->getTotalProductsSeller($filter_data, $this->request->get['seller_id']) . ')' : ''),
 					'children'    => $children_data,
 					'href'        => $this->url->link('seller/seller/info', 'path=' . $category['category_id'].'&seller_id=' . $this->request->get['seller_id'])
 				);
