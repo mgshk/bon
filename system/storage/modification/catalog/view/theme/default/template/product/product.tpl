@@ -170,14 +170,14 @@
 					</ul>
 					<?php if ($price) { ?>
 					<ul class="list-unstyled">
-						<?php if (!$special) { ?>
+						<?php if ($special == $price) { ?>
 						<li>
-							<h2><?php echo $price; ?></h2>
+							</br><h4><?php echo $price; ?></h4></br>
 						</li>
 						<?php } else { ?>
 						<li><span style="text-decoration: line-through;"><?php echo $price; ?></span></li>
 						<li>
-							<h2><?php echo $special; ?></h2>
+							</br><h4><?php echo $special; ?></h4></br>
 						</li>
 						<?php } ?>
 						<?php if ($discount_price && $discount_type) { ?>
