@@ -446,7 +446,13 @@ $data['seller_profile_at_product_page']='0';
 			$data['reward'] = $product_info['reward'];
 			$data['points'] = $product_info['points'];
 			$data['description'] = html_entity_decode($product_info['description'], ENT_QUOTES, 'UTF-8');
-
+			$data['length'] = round($product_info['length'],2);
+			$data['width'] = round($product_info['width'],2);
+			$data['height'] = round($product_info['height'],2);
+			$data['length_class_unit'] = $product_info['length_class_unit'];
+			$data['weight'] = round($product_info['weight']);
+			$data['weight_class_unit'] = $product_info['weight_class_unit'];
+			
 			if ($product_info['quantity'] <= 0) {
 				$data['stock'] = $product_info['stock_status'];
 			} elseif ($this->config->get('config_stock_display')) {

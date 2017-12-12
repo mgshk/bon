@@ -50,9 +50,21 @@
 						</ul>
 						<div class="tab-content">
 							<?php if($description) { ?>
-							<div class="tab-pane active" id="tab-description"><?php echo $description; ?></div>
+							<div class="tab-pane active" id="tab-description">
+								<?php if($length) { ?></br><?php echo "Length: " . $length . " " . $length_class_unit; ?><?php } ?>
+								<?php if($width) { ?></br><?php echo "Width: " . $width . " " . $length_class_unit; ?><?php } ?>
+								<?php if($height) { ?></br><?php echo "Height: " . $height . " " . $length_class_unit; ?><?php } ?>
+								<?php if($weight) { ?></br></br><?php echo "Weight: " . $weight . " " . $weight_class_unit; ?></br><?php } ?>
+								</br><?php echo $description; ?></br>
+							</div>
 							<?php } else { ?>
-							<div class="tab-pane active" id="tab-description">No description.</div>
+							<div class="tab-pane active" id="tab-description">
+								<?php if($length) { ?></br><?php echo "Length: " . $length . " " . $length_class_unit; ?><?php } ?>
+								<?php if($width) { ?></br><?php echo "Width: " . $width . " " . $length_class_unit; ?><?php } ?>
+								<?php if($height) { ?></br><?php echo "Height: " . $height . " " . $length_class_unit; ?><?php } ?>
+								<?php if($weight) { ?></br></br><?php echo "Weight: " . $weight . " " . $weight_class_unit; ?></br><?php } ?>
+								</br>No description.</br>
+							</div>
 							<?php } ?>
 							<?php if ($attribute_groups) { ?>
 							<div class="tab-pane" id="tab-specification">
@@ -78,7 +90,7 @@
 							<?php if ($review_status) { ?>
 							<div class="tab-pane" id="tab-review">
 								<form class="form-horizontal prod--sell-spec-rew" id="form-review">
-									<div id="review"></div>
+									</br><div id="review"></div></br>
 									<h3><?php echo $text_write; ?></h3>
 									<?php if ($review_guest) { ?>
 									<div class="form-group required">
@@ -365,9 +377,21 @@
 						</ul>
 						<div class="tab-content">
 							<?php if($description) { ?>
-							<div class="tab-pane active" id="tab-description-m"><?php echo $description; ?></div>
+							<div class="tab-pane active" id="tab-description-m">
+								<?php if($length) { ?></br><?php echo "Length: " . $length . " " . $length_class_unit; ?><?php } ?>
+								<?php if($width) { ?></br><?php echo "Width: " . $width . " " . $length_class_unit; ?><?php } ?>
+								<?php if($height) { ?></br><?php echo "Height: " . $height . " " . $length_class_unit; ?><?php } ?>
+								<?php if($weight) { ?></br></br><?php echo "Weight: " . $weight . " " . $weight_class_unit; ?></br><?php } ?>
+								</br><?php echo $description; ?></br>
+							</div>
 							<?php } else { ?>
-							<div class="tab-pane active" id="tab-description-m">No description.</div>
+							<div class="tab-pane active" id="tab-description-m">
+								<?php if($length) { ?></br><?php echo "Length: " . $length . " " . $length_class_unit; ?><?php } ?>
+								<?php if($width) { ?></br><?php echo "Width: " . $width . " " . $length_class_unit; ?><?php } ?>
+								<?php if($height) { ?></br><?php echo "Height: " . $height . " " . $length_class_unit; ?><?php } ?>
+								<?php if($weight) { ?></br></br><?php echo "Weight: " . $weight . " " . $weight_class_unit; ?></br><?php } ?>
+								</br>No description.
+							</div>
 							<?php } ?>
 							<?php if ($attribute_groups) { ?>
 							<div class="tab-pane" id="tab-specification-m">
@@ -393,7 +417,7 @@
 							<?php if ($review_status) { ?>
 							<div class="tab-pane" id="tab-review-m">
 								<form class="form-horizontal prod--sell-spec-rew" id="form-review-m">
-									<div id="review-m"></div>
+									</br><div id="review-m"></div></br>
 									<h3><?php echo $text_write; ?></h3>
 									<?php if ($review_guest) { ?>
 									<div class="form-group required">
