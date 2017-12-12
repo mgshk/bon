@@ -643,6 +643,7 @@
 									<div id="catDropdown" class="dropdown-content">
 										<div id="Accord" class="accord">
 											<ul>
+												<!--<li id="all_prod">&nbsp;All</li>-->
 												<?php foreach ($categories as $category) { ?>
 												<li id="<?php echo $category['category_id']; ?>">
 													<a href="<?php echo $category['href']; ?>&tab_section=product_tab" class="">
@@ -674,17 +675,17 @@
 							</div>
 							<div class="">
 								<div class="bon-navbar-search smallsearch col-sm-5 col-xs-12" style="display: inline-flex; margin-bottom:10px;">
-									<span class="cat--sel cursor sec-mob" onclick="openNav()"><i class="fa fa-angle-right"></i></span>
-									<input class="bon-navbar-input col-xs-11" type="text" placeholder="Search for Products" id="prod_search" name="prod_search"
+									<span class="cat--sel cursor sec-mob" style="width: 25%" onclick="openNav()"><i class="fa fa-angle-right"></i></span>
+									<input class="bon-navbar-input col-xs-11" style="width: 75%" type="text" placeholder="Search for Products" id="prod_search" name="prod_search"
 									 value="<?php echo $prod_search; ?>">
 									<button id="prod_search_bt" class="bon-navbar-button col-xs-1">
 								<i class="fa fa-search"></i>
 								</button>
 								</div>
-								<div class="col-xs-4  col-md-2 text-center">
+								<div class="col-xs-2  col-md-2" style="width: 25%">
 									<label class="control-label" for="input-sort"><?php echo $text_sort; ?></label>
 								</div>
-								<div class="col-xs-8  col-md-2 text-right">
+								<div class="col-xs-10  col-md-2" style="width: 75%">
 									<select id="input-sort" class="form-control col-sm-3" onchange="location = this.value;">
 									<?php foreach ($sorts as $sorts) { ?>
 									<?php if ($sorts['value'] == $sort . '-' . $order) { ?>
