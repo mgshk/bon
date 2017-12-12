@@ -49,7 +49,6 @@
             <button type="button" class="close" data-dismiss="alert">&times;</button>
           </div>
           <?php } ?>
-          <div id="validate_msg" style="display:none;"></div>
           <div class="panel panel-default">
             <div class="panel-body">
               <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" id="form-advertise" class="form-horizontal">
@@ -137,7 +136,8 @@
                   <div class="form-group">
                     <label class="col-sm-12" for="agree_tt" style="font-weight: bold;"><input type="hidden" name="agree" value="not_agree" id="agree">
                   			   <input type="checkbox" name="agree_tt" value="agree" id="agree_tt"> I hereby declare that the advertisement detail furnished above are true and permissible to publish in public. I take the sole responsibility of the advertisement image content and quality rendered in any customer device.</label></div>
-                  <div class="pull-right">
+                  <div id="validate_msg" style="display:none;"></div>
+		  <div class="pull-right">
                     <?php if(!$submitted) { ?>
                     <button id="save" data-toggle="tooltip" title="<?php echo $button_save; ?>" class="btn btn-primary">Save</button>
                     <?php } ?>
