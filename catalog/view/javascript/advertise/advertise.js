@@ -196,7 +196,7 @@ $(document).ready(function() {
 
    			setTimeout(function() {
    				$('#validate_msg').hide();
-   			}, 5000);
+   			}, 10000);
    		}
 
    		return false;
