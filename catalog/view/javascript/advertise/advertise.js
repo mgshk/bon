@@ -149,9 +149,9 @@ $(document).ready(function() {
 
    			$('body, html').animate({scrollTop:$('#content').offset().top}, 'slow');
 
-			$("body").hide();
-			window.scrollTo(0, 0);
-			setTimeout(function(){ $("body").show() }, 10);
+			//$("body").hide();
+			//window.scrollTo(0, 0);
+			//setTimeout(function(){ $("body").show() }, 10);
    			setTimeout(function() {
    				$('#validate_msg').hide();
    			}, 10000);
@@ -206,9 +206,9 @@ $(document).ready(function() {
 			//} else {
 	   		//$('body, html').animate({scrollTop:$('#content').offset().top}, 'slow');
 			//}
-			$("body").hide();
-			window.scrollTo(0, 0);
-			setTimeout(function(){ $("body").show() }, 10);
+			//$("body").hide();
+			//window.scrollTo(0, 0);
+			//setTimeout(function(){ $("body").show() }, 10);
    			setTimeout(function() {
    				$('#validate_msg').hide();
    			}, 10000);
