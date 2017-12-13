@@ -139,10 +139,10 @@
                   			   <input type="checkbox" name="agree_tt" value="agree" id="agree_tt"> I hereby declare that the advertisement detail furnished above are true and permissible to publish in public. I take the sole responsibility of the advertisement image content and quality rendered in any customer device.</label></div>
                   <div class="pull-right">
                     <?php if(!$submitted) { ?>
-                    <button id="save" data-toggle="tooltip" title="<?php echo $button_save; ?>" class="btn btn-primary">Save</button>
+                    <button id="save" title="<?php echo $button_save; ?>" class="btn btn-primary">Save</button>
                     <?php } ?>
-                    <button id="submitt" data-toggle="tooltip" title="<?php echo $button_submit; ?>" class="btn btn-primary">Submit</button>
-                    <a href="<?php echo $cancel; ?>" data-toggle="tooltip" title="<?php echo $button_cancel; ?>" class="btn btn-default">Cancel</a>
+                    <button id="submitt" title="<?php echo $button_submit; ?>" class="btn btn-primary">Submit</button>
+                    <a href="<?php echo $cancel; ?>" title="<?php echo $button_cancel; ?>" class="btn btn-default">Cancel</a>
                   </div>
                 </div>
               </form>

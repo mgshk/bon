@@ -101,13 +101,14 @@ $(document).ready(function() {
 	  		var resut_str = resp.replace("data:image/jpeg;base64,", "");
 	  		$("#image_crop").attr("value", resut_str);
 
-			//$("body").hide();
-			//window.scrollTo(0, document.body.scrollHeight || document.documentElement.scrollHeight);
-			//window.scrollTo(300, 500);
-			//setTimeout(function(){ $("body").show() }, 10);
-			setTimeout(function() {
-				$(window).scrollTop($('#input-description').offset().top);
-			}, 100);  
+			$('#img-containers').hide();
+			window.scrollTo(0, document.body.scrollHeight || document.documentElement.scrollHeight);
+			setTimeout(function(){ $('#img-containers').show() }, 10);
+			//setTimeout(function() {
+				//$(window).scrollTop($('#input-description').offset().top);
+				//window.scrollTo(0, document.body.scrollHeight || document.documentElement.scrollHeight);
+				//window.scrollTo(300, 500);
+			//}, 100);  
 	 	});
 		 
 	 	return false;
