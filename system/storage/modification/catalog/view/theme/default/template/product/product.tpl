@@ -51,7 +51,8 @@
 						<div class="tab-content">
 							<?php if($description) { ?>
 							<div class="tab-pane active" id="tab-description">
-								<?php if($length) { ?></br><?php echo "Length: " . $length . " " . $length_class_unit; ?><?php } ?>
+								<?php if($model) { ?></br><?php echo "Model: " . $model; ?><?php } ?>
+								<?php if($length) { ?></br></br><?php echo "Length: " . $length . " " . $length_class_unit; ?><?php } ?>
 								<?php if($width) { ?></br><?php echo "Width: " . $width . " " . $length_class_unit; ?><?php } ?>
 								<?php if($height) { ?></br><?php echo "Height: " . $height . " " . $length_class_unit; ?><?php } ?>
 								<?php if($weight) { ?></br></br><?php echo "Weight: " . $weight . " " . $weight_class_unit; ?></br><?php } ?>
@@ -59,7 +60,8 @@
 							</div>
 							<?php } else { ?>
 							<div class="tab-pane active" id="tab-description">
-								<?php if($length) { ?></br><?php echo "Length: " . $length . " " . $length_class_unit; ?><?php } ?>
+								<?php if($model) { ?></br><?php echo "Model: " . $model; ?><?php } ?>
+								<?php if($length) { ?></br></br><?php echo "Length: " . $length . " " . $length_class_unit; ?><?php } ?>
 								<?php if($width) { ?></br><?php echo "Width: " . $width . " " . $length_class_unit; ?><?php } ?>
 								<?php if($height) { ?></br><?php echo "Height: " . $height . " " . $length_class_unit; ?><?php } ?>
 								<?php if($weight) { ?></br></br><?php echo "Weight: " . $weight . " " . $weight_class_unit; ?></br><?php } ?>
@@ -378,7 +380,8 @@
 						<div class="tab-content">
 							<?php if($description) { ?>
 							<div class="tab-pane active" id="tab-description-m">
-								<?php if($length) { ?></br><?php echo "Length: " . $length . " " . $length_class_unit; ?><?php } ?>
+								<?php if($model) { ?></br><?php echo "Model: " . $model; ?><?php } ?>
+								<?php if($length) { ?></br></br><?php echo "Length: " . $length . " " . $length_class_unit; ?><?php } ?>
 								<?php if($width) { ?></br><?php echo "Width: " . $width . " " . $length_class_unit; ?><?php } ?>
 								<?php if($height) { ?></br><?php echo "Height: " . $height . " " . $length_class_unit; ?><?php } ?>
 								<?php if($weight) { ?></br></br><?php echo "Weight: " . $weight . " " . $weight_class_unit; ?></br><?php } ?>
@@ -386,7 +389,8 @@
 							</div>
 							<?php } else { ?>
 							<div class="tab-pane active" id="tab-description-m">
-								<?php if($length) { ?></br><?php echo "Length: " . $length . " " . $length_class_unit; ?><?php } ?>
+								<?php if($model) { ?></br><?php echo "Model: " . $model; ?><?php } ?>
+								<?php if($length) { ?></br></br><?php echo "Length: " . $length . " " . $length_class_unit; ?><?php } ?>
 								<?php if($width) { ?></br><?php echo "Width: " . $width . " " . $length_class_unit; ?><?php } ?>
 								<?php if($height) { ?></br><?php echo "Height: " . $height . " " . $length_class_unit; ?><?php } ?>
 								<?php if($weight) { ?></br></br><?php echo "Weight: " . $weight . " " . $weight_class_unit; ?></br><?php } ?>

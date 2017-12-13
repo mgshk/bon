@@ -847,7 +847,7 @@
 		$('.tab-content div.tab-pane').removeClass('active');
 		$('.nav-tabs li#adv_settings').addClass('active');
 		$('.tab-content div#settings').addClass('active');
-		changeTab();
+		//changeTab();
 		//window.location.href = "index.php?route=common/home&path="+path;
 		MakeUrl(path, tab_id);
 	}//);
