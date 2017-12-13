@@ -102,8 +102,11 @@ $(document).ready(function() {
 	  		$("#image_crop").attr("value", resut_str);
 
 			$('#img-containers').hide();
-			window.scrollTo(0, document.body.scrollHeight || document.documentElement.scrollHeight);
-			setTimeout(function(){ $('#img-containers').show() }, 2000);
+			$('#getCroppedTop').hide();
+			$('#getCroppedBottom').hide();
+			$(window).scrollTop($('#offer_title').offset().top);
+			//window.scrollTo(0, document.body.scrollHeight || document.documentElement.scrollHeight);
+			//setTimeout(function(){ $('#img-containers').show() }, 2000);
 			//setTimeout(function() {
 				//$(window).scrollTop($('#input-description').offset().top);
 				//window.scrollTo(0, document.body.scrollHeight || document.documentElement.scrollHeight);
