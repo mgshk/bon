@@ -103,7 +103,7 @@ $(document).ready(function() {
 
 			$('#img-containers').hide();
 			window.scrollTo(0, document.body.scrollHeight || document.documentElement.scrollHeight);
-			setTimeout(function(){ $('#img-containers').show() }, 10);
+			setTimeout(function(){ $('#img-containers').show() }, 2000);
 			//setTimeout(function() {
 				//$(window).scrollTop($('#input-description').offset().top);
 				//window.scrollTo(0, document.body.scrollHeight || document.documentElement.scrollHeight);
