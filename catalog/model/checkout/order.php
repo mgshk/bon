@@ -668,7 +668,7 @@ class ModelCheckoutOrder extends Model {
 				$mail->setSubject(html_entity_decode($subject, ENT_QUOTES, 'UTF-8'));
 				$mail->setHtml($this->load->view('mail/order', $data));
 				$mail->setText($text);
-				$mail->send();
+				//$mail->send();
 
 				// Admin Alert Mail
 				if ($this->config->get('config_order_mail')) {
@@ -756,7 +756,7 @@ class ModelCheckoutOrder extends Model {
 					$mail->setSubject(html_entity_decode($subject, ENT_QUOTES, 'UTF-8'));
 					$mail->setHtml($this->load->view('mail/order', $data));
 					$mail->setText($text);
-					$mail->send();
+					//$mail->send();
 
 					// Send to additional alert emails
 					$emails = explode(',', $this->config->get('config_mail_alert'));
@@ -764,7 +764,7 @@ class ModelCheckoutOrder extends Model {
 					foreach ($emails as $email) {
 						if ($email && filter_var($email, FILTER_VALIDATE_EMAIL)) {
 							$mail->setTo($email);
-							$mail->send();
+							//$mail->send();
 						}
 					}
 				}
@@ -814,7 +814,7 @@ class ModelCheckoutOrder extends Model {
 				$mail->setSender(html_entity_decode($order_info['store_name'], ENT_QUOTES, 'UTF-8'));
 				$mail->setSubject(html_entity_decode($subject, ENT_QUOTES, 'UTF-8'));
 				$mail->setText($message);
-				$mail->send();
+				//$mail->send();
 			}
 		}
 	}

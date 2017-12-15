@@ -969,7 +969,7 @@ class ModelSellerOrder extends Model
                     $mail->setSubject($subject);
                     $mail->setHtml($html);
                     $mail->setText($text);
-                    $mail->send();
+                    //$mail->send();
                 }
 
                 // Admin Alert Mail
@@ -1062,7 +1062,7 @@ class ModelSellerOrder extends Model
                     $mail->setSubject($subject);
                     $mail->setHtml($html);
                     $mail->setText(html_entity_decode($text, ENT_QUOTES, 'UTF-8'));
-                    $mail->send();
+                    //$mail->send();
 
                     // Send to additional alert emails
                     $emails = explode(',', $this->config->get('config_mail_alert'));
@@ -1070,7 +1070,7 @@ class ModelSellerOrder extends Model
                     foreach ($emails as $email) {
                         if ($email && preg_match('/^[^\@]+@.*\.[a-z]{2,6}$/i', $email)) {
                             $mail->setTo($email);
-                            $mail->send();
+                            //$mail->send();
                         }
                     }
                 }
@@ -1119,7 +1119,7 @@ class ModelSellerOrder extends Model
                 $mail->setSender($order_info['store_name']);
                 $mail->setSubject($subject);
                 $mail->setText(html_entity_decode($message, ENT_QUOTES, 'UTF-8'));
-                $mail->send();
+                //$mail->send();
             }
 
             // If order status in the complete range create any vouchers that where in the order need to be made available.
@@ -1329,7 +1329,7 @@ class ModelSellerOrder extends Model
           $mail->setSender($order_info['store_name']);
           $mail->setSubject($subject);
           $mail->setText(html_entity_decode($message, ENT_QUOTES, 'UTF-8'));
-          $mail->send();
+          //$mail->send();
       }
 
 		$this->event->trigger('post.order.sellerhistory.add', $order_id);
