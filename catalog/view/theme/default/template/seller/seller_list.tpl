@@ -169,8 +169,11 @@
                         <?php //} ?></a></span>
                         <?php } ?></span>					 
                         <?php if( $category['store_ads'] != '') { ?>
-                        </br></br></br>
-                        <p class="right-str-cnt"><span><?php echo $category['store_ads']; ?> Ad(s)</span></p>
+                        </br></br>
+                        <p class="right-str-cnt"><span><?php echo $category['store_ads']; ?> Ad</span></p>
+                        <?php } ?>
+                        <?php if( $category['prod_count'] != '0') { ?>
+                        <p class="right-str-cnt"><span><?php echo $category['prod_count']; ?> Prod</span></p>
                         <?php } ?>
                      </div>
                   </div>
@@ -197,7 +200,7 @@
                                  <?php echo "Featured"; ?>
                               </div>-->
                               <?php } ?>
-                              <p class="img--sell-lst"><?php if( $category['store_ads'] != '') { ?><?php echo $category['store_ads']; ?> Ad(s)<?php } ?></p>
+                              <p class="img--sell-lst"><?php if( $category['store_ads'] != '') { ?><?php echo $category['store_ads']; ?> Ad<?php } ?>,&nbsp;&nbsp;<?php if( $category['prod_count'] != '0') { ?><?php echo $category['prod_count']; ?> Prod<?php } ?></p>
                            </div>
                            <div class="col-xs-6 sell-ret">
                               <?php if( $category['nickname'] != '') { ?>

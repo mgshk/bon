@@ -686,7 +686,7 @@ border-radius: 3px;
 	.widget_post_mailtitle p i{margin-right: 5px;}
 	.nw-rule-map-mak i{margin-right: 20px !important;}
 	.widget_post_mailtitle p {font-size: 17px; margin: 5px 5px 10px 5px; color: #747474;}
-	.widget_post_mailtitle p.right-str-cnt span{float: right; font-size: 30px;}
+	.widget_post_mailtitle p.right-str-cnt span{font-size: 15px;}
 	.widget_post_mailtitle p a{color: #747474; text-decoration: none;}
 	.widget_post_mailtitle p a:hover{color: red; text-decoration: none;}
 	.main-txt-grp {

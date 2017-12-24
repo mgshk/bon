@@ -176,7 +176,8 @@ class Modelsellerseller extends Model
 				(SELECT COUNT(sellerreview_id) FROM ".DB_PREFIX."sellerreview r2 
 					WHERE r2.seller_id = c.customer_id AND r2.status = '1' GROUP BY r2.seller_id) AS review_count, 
 				(SELECT COUNT(advertise_id) FROM ".DB_PREFIX."store_offers st_o WHERE st_o.seller_id = c.customer_id 
-					AND st_o.position = '6' AND st_o.status = 'live' GROUP BY st_o.seller_id) AS store_ads 
+					AND st_o.position = '6' AND st_o.status = 'live' GROUP BY st_o.seller_id) AS store_ads, 
+				(SELECT COUNT(DISTINCT p.product_id) FROM oc_product p LEFT JOIN oc_product_to_seller p2l ON ( p2l.product_id = p.product_id)  WHERE p.status = '1' AND p.date_available <= NOW() AND  p2l.seller_id = c.customer_id) AS prod_count 
 				FROM ".DB_PREFIX."customer c 
 				LEFT JOIN ".DB_PREFIX."category_to_seller cs ON(c.customer_id = cs.seller_id)";
 
