@@ -171,15 +171,14 @@ class Controllersellerseller extends Controller
 	public function advertisement_seller_list()
     {
 
-		$this->load->language('seller/seller');
-
+	$this->load->language('seller/seller');
         $this->load->model('seller/seller');
         $this->load->model('tool/image');
         $this->load->model('account/address');
         $this->load->model('sellerprofile/sellerprofile');
-		$this->load->model('catalog/category');
-		$this->load->model('localisation/zone');
-		$this->load->model('localisation/country');
+	$this->load->model('catalog/category');
+	$this->load->model('localisation/zone');
+	$this->load->model('localisation/country');
 
 		if (isset($this->request->get['path'])) {
 			$category_id = $this->request->get['path'];
@@ -272,6 +271,12 @@ class Controllersellerseller extends Controller
 			// 	$seller_address = '';
 			// }
 
+			if (!empty($result) && is_file(DIR_IMAGE.$result['banner'])) {
+				$banner_image = $result['banner'];
+			} else {
+				$banner_image = 'no_store_img.png';
+			}
+			
 			//echo "<pre>"; print_r($results);
 
             //$data['categories'][$key]['seller'][] = array(
@@ -280,15 +285,16 @@ class Controllersellerseller extends Controller
                 'name' => $result['name'],
 				'nickname' => $result['nickname'],
 				'seller_address' => $seller_address,
-				'image' => $result['image'],
+				'image' => $banner_image,
 				'lat' => $result['lat'],
 				'lng' => $result['lng'],
 				'rating' => $result['rating'],
 				'filtered' => $result['filtered'],
 				'review_count' => $result['review_count'],
 				'store_ads' => $result['store_ads'],
-				'telephone' => $result['telephone'],
+				'telephone' => $result['store_mobile_num'],
 				'description' => $result['description'],
+				'seller_verified' => $result['seller_verified'],
 				'distance' => ($result['distance']*1.609344),
                 'href' => $this->url->link('seller/seller/info&seller_id='.$result['customer_id'].'&path='.$this->request->get['path'].'&counter=1'),
             );
