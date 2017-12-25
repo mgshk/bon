@@ -340,7 +340,7 @@
 						<?php } if($address_det[1] !='') {?>
 						<li id="adv_messages" class="tas_bon" role="presentation" title="Advertisements published for the city/district from the address you set.">
 							<a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">
-								<?php echo $address_det[1]; ?>
+								<?php if ((trim($address_det[1]) == 'Yanam') || (trim($address_det[1]) == 'yanam')) { ?><?php echo 'Pondicherry'; ?><?php } else { ?><?php echo $address_det[1]; ?><?php } ?>
 							</a>
 						</li>
 						<?php } ?>
