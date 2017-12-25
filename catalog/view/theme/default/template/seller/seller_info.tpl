@@ -457,35 +457,37 @@
 								<ol class="carousel-indicators">
 									<?php
 									$i = 0;
-									foreach($seller_images_full as $seller_images) {
-									?>
+										foreach($seller_images_full as $seller_images) {
+										if($seller_images != '') {
+										?>
 										<li data-target="#myCarousel" data-slide-to="<?php echo $i; ?>" class="<?php echo ($i == 0) ? 'active' : '';?>"></li>
 										<?php
-									$i++;
-									} ?>
+										$i++;
+										} } ?>
 								</ol>
 								<!-- Wrapper for slides -->
 								<div class="carousel-inner" role="listbox">
 									<?php
 									$i = 0;
-									foreach($seller_images_full as $seller_images) {
-									?>
+										foreach($seller_images_full as $seller_images) {
+										if($seller_images != '') {
+										?>
 										<div class="item <?php echo ($i == 0) ? 'active' : ''; ?>">
 											<img src="<?php echo $seller_images; ?>" class="img-responsive" title="<?php echo $seller_name; ?>" alt="<?php echo $seller_name; ?>">
 										</div>
 										<?php
-									$i++;
-									 } ?>
+										$i++;
+										  } } ?>
 								</div>
 								<!-- Left and right controls -->
 								<a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-							<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-							<span class="sr-only">Next</span>
-							</a>
+								<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+								<span class="sr-only">Next</span>
+								</a>
 								<a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-							<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-							<span class="sr-only">Next</span>
-							</a>
+								<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+								<span class="sr-only">Next</span>
+								</a>
 							</div>
 						</div>
 					</div>
