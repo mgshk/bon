@@ -47,7 +47,7 @@
 		  <div class="sec-mob">
 			<a class="info view-det-adv" data-id="<?php echo $advertisement_na['advertise_id']; ?>" onclick="viewDetAdv(this);">
 				<img src="<?php echo $image_resize->resize($advertisement_na['offer_image'], 993, 182); ?>" class="img-responsive" title="<?php echo $advertisement_na['offer_title']; ?>" alt="<?php echo $advertisement_na['offer_title']; ?>">
-				<div class="temp--mb">
+				<!--<div class="temp--mb">
 					<span style="float: left;">
 						<?php echo substr($advertisement_na['nickname'], 0, 20); ?>
 					</span>
@@ -60,7 +60,7 @@
 						<?php } ?>
 						<?php } ?>
 					</span>
-				</div>
+				</div>-->
 				<?php if((isset($advertisement_na['filtered']) && $advertisement_na['filtered'] =='1') ? $advertisement_na['filtered'] : '') { ?>
 				<div class="col-sm-1 filtered_ads">
 					<?php echo "Filtered"; ?>
@@ -125,7 +125,7 @@
 		  <div class="sec-mob">
 			<a class="info view-det-adv" data-id="<?php echo $advertisement_st['advertise_id']; ?>" onclick="viewDetAdv(this);">
 				<img src="<?php echo $image_resize->resize($advertisement_st['offer_image'], 993, 182); ?>" class="img-responsive" title="<?php echo $advertisement_st['offer_title']; ?>" alt="<?php echo $advertisement_st['offer_title']; ?>">
-				<div class="temp--mb">
+				<!--<div class="temp--mb">
 					<span style="float: left;">
 						<?php echo substr($advertisement_st['nickname'], 0, 20); ?>
 					</span>
@@ -138,7 +138,7 @@
 						<?php } ?>
 						<?php } ?>
 					</span>
-				</div>
+				</div>-->
 				<?php if((isset($advertisement_st['filtered']) && $advertisement_st['filtered'] =='1') ? $advertisement_st['filtered'] : '') { ?>
 				<div class="col-sm-1 filtered_ads">
 					<?php echo "Filtered"; ?>
@@ -203,7 +203,7 @@
 		  <div class="sec-mob">
 			<a class="info view-det-adv" data-id="<?php echo $advertisement_ci['advertise_id']; ?>" onclick="viewDetAdv(this);">
 				<img src="<?php echo $image_resize->resize($advertisement_ci['offer_image'], 993, 182); ?>" class="img-responsive" title="<?php echo $advertisement_ci['offer_title']; ?>" alt="<?php echo $advertisement_ci['offer_title']; ?>">
-				<div class="temp--mb">
+				<!--<div class="temp--mb">
 					<span style="float: left;">
 						<?php echo substr($advertisement_ci['nickname'], 0, 20); ?>
 					</span>
@@ -216,7 +216,7 @@
 						<?php } ?>
 						<?php } ?>
 					</span>
-				</div>
+				</div>-->
 				<?php if((isset($advertisement_ci['filtered']) && $advertisement_ci['filtered'] =='1') ? $advertisement_ci['filtered'] : '') { ?>
 				<div class="col-sm-1 filtered_ads">
 					<?php echo "Filtered"; ?>
@@ -282,7 +282,7 @@
 		  <div class="sec-mob">
 			<a class="info view-det-adv" data-id="<?php echo $advertisement_lo['advertise_id']; ?>" onclick="viewDetAdv(this);">
 				<img src="<?php echo $image_resize->resize($advertisement_lo['offer_image'], 993, 182); ?>" class="img-responsive" title="<?php echo $advertisement_lo['offer_title']; ?>" alt="<?php echo $advertisement_lo['offer_title']; ?>">
-				<div class="temp--mb">
+				<!--<div class="temp--mb">
 					<span style="float: left;">
 						<?php echo substr($advertisement_lo['nickname'], 0, 20); ?>
 					</span>
@@ -295,7 +295,7 @@
 						<?php } ?>
 						<?php } ?>
 					</span>
-				</div>
+				</div>-->
 				<?php if((isset($advertisement_lo['filtered']) && $advertisement_lo['filtered'] =='1') ? $advertisement_lo['filtered'] : '') { ?>
 				<div class="col-sm-1 filtered_ads">
 					<?php echo "Filtered"; ?>
