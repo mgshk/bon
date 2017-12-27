@@ -163,7 +163,7 @@ class Modelsellerseller extends Model
 				$end_km = $_COOKIE['myCookieend']/1.609344;
 			} else {
 				$start_km = '0'/1.609344;
-				$end_km = '3'/1.609344;
+				$end_km = '10'/1.609344;
 			}
 
             $sql = "SELECT *, 

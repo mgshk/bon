@@ -344,7 +344,7 @@
 							</a>
 						</li>
 						<?php } ?>
-						<li id="adv_settings" class="tas_bon active" role="presentation" title="Advertisements published within the range you set around you."><a href="#settings" aria-controls="settings" id="setting_tab" role="tab" data-toggle="tab"><?php echo 'Nearby ';if(isset($_COOKIE['myCookiestart']) || isset($_COOKIE['myCookieend'])){echo '<span>('.$_COOKIE['myCookiestart']. '-' .$_COOKIE['myCookieend'].' km)</span>';} else {echo '<span>(0-3 km)</span>';}//$address_det[0]; ?></a></li>
+						<li id="adv_settings" class="tas_bon active" role="presentation" title="Advertisements published within the range you set around you."><a href="#settings" aria-controls="settings" id="setting_tab" role="tab" data-toggle="tab"><?php echo 'Nearby ';if(isset($_COOKIE['myCookiestart']) || isset($_COOKIE['myCookieend'])){echo '<span>('.$_COOKIE['myCookiestart']. '-' .$_COOKIE['myCookieend'].' km)</span>';} else {echo '<span>(0-10 km)</span>';}//$address_det[0]; ?></a></li>
 					</ul>
 				</div>
 			</div>
