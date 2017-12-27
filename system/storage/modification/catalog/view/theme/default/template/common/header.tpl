@@ -69,7 +69,7 @@
 				});
 
 		var $start_km = "<?php echo (!isset($_COOKIE['myCookiestart'])) ? '0': $_COOKIE['myCookiestart']; ?>";
-		var $end_km = "<?php echo (!isset($_COOKIE['myCookieend'])) ? '3': $_COOKIE['myCookieend']; ?>";
+		var $end_km = "<?php echo (!isset($_COOKIE['myCookieend'])) ? '10': $_COOKIE['myCookieend']; ?>";
 
 		$(function () {
 			var qs = (function (a) {
