@@ -260,7 +260,7 @@
 						</tr>
 						<tr>
 						    <td>3.&nbsp</td>
-						    <td>Introductory offer is valid till December 31, 2017.</td>
+						    <td>Introductory offer is valid till February 28, 2018.</td>
 						</tr>
 						<tr>
 						    <td>4.&nbsp</td>
