@@ -23,4 +23,4 @@ $_['error_confirm']   = 'Password and password confirmation do not match!';
 $_['security_answer_sec']   = 'Security answer not empty!';
 $_['sec_otp_sec']   = 'Forgot password OTP not empty!';
 $_['security_answer_sec_not']   = 'Security answer not match!';
-$_['sec_otp_sec_not']   = 'Forgot password OTP not match!';
+$_['sec_otp_sec_not']   = 'Invalid OTP!';

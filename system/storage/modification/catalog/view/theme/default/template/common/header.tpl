@@ -894,6 +894,7 @@
 							<form id="_top-sign-otp" class="form-horizontal" style="padding: 0px 15px;">
 								<div id="top-line-star-otp" class="alert alert-danger" style="display:none;"></div>
 								<input type="hidden" name="cus_prof" id="cus_prof" value="">
+								<input type="hidden" name="login_type" id="login_type" />
 								<div class="_state-log-bon" disabled>
 									<input type="tel" name="zone_select" value="" class="inputText" id="zone_select_ret" required disabled/>
 								</div>
@@ -906,7 +907,7 @@
 								</div>
 								<div class="_email-log-bon">
 									<input style="border: none;border-bottom: 1px solid #e0e0e0; " type="email" name="email" value="" class="inputText" id="input-email-otp"
-									 maxlength="96" placeholder="Email ID" required disabled autocomplete="off" />
+									 maxlength="96" placeholder="Email ID" required hidden autocomplete="off" />
 								</div>
 								<div class="_passwrd-log-bon">
 									<input type="password" maxlength="20" name="password" value="" id="input-password-otp" placeholder="Enter password" class="inputText"
@@ -916,7 +917,7 @@
 									<input type="password" maxlength="20" name="confirm" value="" id="input-confirm-otp" placeholder="Re-Enter password" class="inputText"
 									 required disabled/>
 								</div>
-								<div class="_state-log-bon">
+								<!--<div class="_state-log-bon">
 									<select name="security_select" id="security_select" disabled required>
 										<option value="0">Select your Security Quesion</option>
 										<?php foreach($security_question_data as $sec_ques) { ?>
@@ -927,7 +928,7 @@
 								<div class="_again-passwrd-log-bon security_answer" style="display:none">
 									<input type="text" autocomplete="off" name="security_answer" value="" id="security_answer" placeholder="Please enter the security answer"
 									 class="inputText" maxlength="250" required/>
-								</div>
+								</div>-->
 								<div class="_log-btn-btm" style="position: static;">
 									<button class="advertise-btn _btn-fin" id="sign-up-bon-top-prof" type="button" disabled>Signup</button>
 								</div>
@@ -1042,7 +1043,7 @@
 									<input type="text" autocomplete="off" name="forgt-phn-otp" value="" maxlength="6" placeholder="Enter the OTP sent to above mobile number"
 									 id="forgt-phn-otp" class="inputText" required/>
 								</div>
-								<div id="qus_ans">
+								<!--<div id="qus_ans">
 									<div class="_state-log-bon">
 										<input type="text" autocomplete="off" name="security_question_sec" value="" id="security_question_sec" class="inputText"
 										 required disabled/>
@@ -1051,7 +1052,7 @@
 										<input type="text" autocomplete="off" name="security_answer_sec" value="" id="security_answer_sec" placeholder="Please enter the security answer"
 										 class="inputText" required/>
 									</div>
-								</div>
+								</div>-->
 								<div class="_log-btn-btm" style="position: static;">
 									<button class="advertise-btn _btn-fin" id="forget-btn-main-bon-sec" type="button">Continue</button>
 								</div>
@@ -1415,11 +1416,11 @@
 				$("#sign-up-bon-top").attr('disabled', 'disabled');
 			}
 		});
-		$("select#security_select").change(function () {
+		/*$("select#security_select").change(function () {
 			$('#security_select_alt').html('');
 			$('#security_answer_alt').html('');
 			$(".security_answer").show();
-		});
+		});*/
 		function mouseoverPass(obj) {
 			var obj = document.getElementById('input-password');
 			obj.type = "text";

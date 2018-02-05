@@ -664,7 +664,7 @@
                             <?php $store_mobile_num_row++; } ?>
                             <div id="str_mob"></div>
                           </div>
-                          <div class="form-group required">
+                          <div class="form-group">
                             <label class="col-md-4 control-label" for="input-store-email">
                                           <?php echo $entry_store_email; ?>
                                          <div class="pull-right">
@@ -681,7 +681,7 @@
                             </label>
                             <div class="col-md-4">
                               <input type="text" name="store_email" placeholder="<?php echo $placeholder_store_email; ?>" value="<?php echo $store_email; ?>"
-                                id="input-store-email" maxlength="100" class="form-control" required/>
+                                id="input-store-email" maxlength="100" class="form-control"/>
                               <span class="input-group-btn">
                                              </span>
                             </div>
@@ -1225,8 +1225,15 @@
         <div class="row">
           <form action="" method="post" enctype="multipart/form-data" id="store-feature" class="form-horizontal">
             <div class="featured-detils">
-              <input type="radio" name="featured_period" id="half_per" value="half"><label for="half_per"> 15 days - Rs 399</label><br/>
+              <!--<input type="radio" name="featured_period" id="half_per" value="half"><label for="half_per"> 15 days - Rs 399</label><br/>
               <input type="radio" name="featured_period" id="full_per" value="full" checked><label for="full_per"> 30 days - Rs 699</label><br/>
+              -->
+              </br>
+              <input type="radio" name="featured_period" id="one_month" value="one" checked><label for="one_month"> 30 days - Rs 699</label><br/>
+              <input type="radio" name="featured_period" id="three_months" value="three" checked><label for="three_months"> 90 days - Rs 1899</label><br/>
+              <input type="radio" name="featured_period" id="six_months" value="six" checked><label for="six_months"> 180 days - Rs 3499</label><br/>
+              <input type="radio" name="featured_period" id="twelve_months" value="twelve" checked><label for="twelve_months"> 365 days - Rs 6999</label><br/>
+              </br>
               <input type="button" id="button-feature-save" data-loading-text="<?php echo $text_loading; ?>" class="advertise-btn_live" value="Continue" />
               <button class="advertise-btn" type="button" onclick="this.form.reset();" data-dismiss="modal" aria-hidden="true">Cancel</button>
             </div>

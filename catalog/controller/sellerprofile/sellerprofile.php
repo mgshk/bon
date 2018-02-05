@@ -1433,9 +1433,9 @@ class Controllersellerprofilesellerprofile extends Controller
 		//     $json['error'] = $this->language->get('error_seller_address_req');
 		// }
 
-		else if($this->request->post['store_email'] == '') {
-			$json['error'] = "Please enter Store/Entity email";
-		}
+		//else if($this->request->post['store_email'] == '') {
+		//	$json['error'] = "Please enter Store/Entity email";
+		//}
 
 		else if(empty($seller_info['seller_category'])) {
 		    $json['error'] = $this->language->get('error_store_category_empty');
@@ -3224,13 +3224,27 @@ class Controllersellerprofilesellerprofile extends Controller
 		$this->load->model('sellerprofile/sellerprofile');		
 		//print_r($this->request->post);
 		if($this->request->post['featured_period'] != ''){
-			if($this->request->post['featured_period'] == 'half') {
+			/*if($this->request->post['featured_period'] == 'half') {
 				$amount = 399;
 				$days   = 15;
 			} elseif ($this->request->post['featured_period'] == 'full') {
 				$amount = 699;
 				$days   = 30;
-			}
+			}*/
+
+			if($this->request->post['featured_period'] == 'one') {
+				$amount = 699;
+				$days   = 30;
+			} elseif ($this->request->post['featured_period'] == 'three') {
+				$amount = 1899;
+				$days   = 90;
+			} elseif ($this->request->post['featured_period'] == 'six') {
+				$amount = 3499;
+				$days   = 180;
+			} elseif ($this->request->post['featured_period'] == 'twelve') {
+				$amount = 6999;
+				$days   = 365;
+   			}
 
 			$from_date = date("Y-m-d");
 			$end_date  = date('Y-m-d', strtotime("+".$days." days"));

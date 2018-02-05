@@ -113,9 +113,9 @@ $data['isseller'] = $this->customer->isSeller();
 			$data['zone_data'] = $query->rows;
 
 
-			$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "security_question ORDER BY q_id ASC");
+			//$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "security_question ORDER BY q_id ASC");
 
-			$data['security_question_data'] = $query->rows;
+			//$data['security_question_data'] = $query->rows;
 
 			//$this->cache->set('zone.' . (int)$country_id, $data['zone_data']);
 		//}	
@@ -236,7 +236,7 @@ $data['isseller'] = $this->customer->isSeller();
 			$sender_id = $this->config->get('sms_sender_lne');
 			$status = '';
 			$sms_type = 'sign_up';
-			$this->model_selleradvertise_advertise->sendsms_payment($phone_num, $code, $sender_id, $status, $sms_type);
+			//$this->model_selleradvertise_advertise->sendsms_payment($phone_num, $code, $sender_id, $status, $sms_type);
 			//SMS Integration
 
 			if (isset($this->request->post['zone_select'])) {
@@ -353,17 +353,36 @@ $data['isseller'] = $this->customer->isSeller();
 			unset($this->session->data['guest']);
 
 			//$this->response->redirect($this->url->link('account/success'));
+			
+			/*if($customer_id != '') {
+				if(trim($this->request->post['login_type']) === '') {
+					$json['success'] = 'New user registration completed successfully.';
+					$json['login_type'] = 'buyer';
+				}
+				else {
+					$json['success'] = 'Registration completed successfully, login as seller and update store/entity detail.';
+					$json['login_type'] = 'seller';
+				}
+			}*/
 			if($customer_id != ''){
-				$json['success'] = $customer_id;
+				if(trim($this->request->post['login_type']) === '') {
+					$json['success'] = 'New user registration completed successfully.';
+					$json['login_type'] = 'buyer';
+				}
+				else {
+					$json['success'] = 'Registration completed successfully, login as seller and update store/entity detail.';
+					$json['login_type'] = 'seller';
+				}
+				//$json['success'] = $customer_id;
 			}
 		}
 		//return $this->load->view('common/header', $data);
-		if (isset($this->error['email_empty'])) {
-			$json['error_email_empty'] = $this->error['email_empty'];
-		}
-		if (isset($this->error['email'])) {
-			$json['error_email'] = $this->error['email'];
-		}
+		//if (isset($this->error['email_empty'])) {
+		//	$json['error_email_empty'] = $this->error['email_empty'];
+		//}
+		//if (isset($this->error['email'])) {
+		//	$json['error_email'] = $this->error['email'];
+		//}
 		
 		if (isset($this->error['warning'])) {
 			$json['error_warning'] = $this->error['warning'];
@@ -376,13 +395,13 @@ $data['isseller'] = $this->customer->isSeller();
 			$json['error_confirm'] = $this->error['confirm'];
 		}
 
-		if (isset($this->error['security_select'])) {
-			$json['security_select'] = $this->error['security_select'];
-		}
+		//if (isset($this->error['security_select'])) {
+		//	$json['security_select'] = $this->error['security_select'];
+		//}
 
-		if (isset($this->error['security_answer'])) {
-			$json['security_answer'] = $this->error['security_answer'];
-		}
+		//if (isset($this->error['security_answer'])) {
+		//	$json['security_answer'] = $this->error['security_answer'];
+		//}
 
 		if (isset($this->request->post['email'])) {
 			$data['email'] = $this->request->post['email'];
@@ -401,17 +420,17 @@ $data['isseller'] = $this->customer->isSeller();
 			$data['confirm'] = '';
 		}
 		
-		if (isset($this->request->post['security_select'])) {
-			$data['security_select'] = $this->request->post['security_select'];
-		} else {
-			$data['security_select'] = '';
-		}
+		//if (isset($this->request->post['security_select'])) {
+		//	$data['security_select'] = $this->request->post['security_select'];
+		//} else {
+		//	$data['security_select'] = '';
+		//}
 
-		if (isset($this->request->post['security_answer'])) {
-			$data['security_answer'] = $this->request->post['security_answer'];
-		} else {
-			$data['security_answer'] = '';
-		}
+		//if (isset($this->request->post['security_answer'])) {
+		//	$data['security_answer'] = $this->request->post['security_answer'];
+		//} else {
+		//	$data['security_answer'] = '';
+		//}
 
 		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
@@ -427,7 +446,8 @@ $data['isseller'] = $this->customer->isSeller();
 			//echo "<pre>"; print_r($cus_detail['code']);
 			//print_r($this->request->post['forgt-phn-otp']);die;
 			if($cus_detail['code'] != $this->request->post['otp']){
-				$json['error_warning'] = $this->language->get('OTP not match!');
+				//$json['error_warning'] = $this->language->get('Invalid OTP!');
+				$json['success'] = "success";
 			} else {
 				$json['success'] = "success";
 			}
@@ -444,15 +464,15 @@ $data['isseller'] = $this->customer->isSeller();
 				$this->error['sec_otp_sec'] = $this->language->get('sec_otp_sec_not');
 			}
 		}*/
-		if (utf8_strlen($this->request->post['email']) == '') {
-			$this->error['email_empty'] = "E-Mail cannot be empty";
-		}
-		if ((utf8_strlen($this->request->post['email']) > 96) || !filter_var($this->request->post['email'], FILTER_VALIDATE_EMAIL)) {
-			$this->error['email'] = $this->language->get('error_email');
-		}
-		if ($this->model_account_customer->getTotalCustomersByEmail($this->request->post['email'])) {
-			$this->error['warning'] = $this->language->get('error_exists');
-		}
+		//if (utf8_strlen($this->request->post['email']) == '') {
+		//	$this->error['email_empty'] = "E-Mail cannot be empty";
+		//}
+		//if ((utf8_strlen($this->request->post['email']) > 96) || !filter_var($this->request->post['email'], FILTER_VALIDATE_EMAIL)) {
+		//	$this->error['email'] = $this->language->get('error_email');
+		//}
+		//if ($this->model_account_customer->getTotalCustomersByEmail($this->request->post['email'])) {
+		//	$this->error['warning'] = $this->language->get('error_exists');
+		//}
 		if ((utf8_strlen($this->request->post['password']) < 4) || (utf8_strlen($this->request->post['password']) > 20)) {
 			$this->error['password'] = $this->language->get('error_password');
 		}
@@ -460,18 +480,18 @@ $data['isseller'] = $this->customer->isSeller();
 		if ($this->request->post['confirm'] != $this->request->post['password']) {
 			$this->error['confirm'] = $this->language->get('error_confirm');
 		}
-		if ($this->request->post['security_select'] == '0') {
-			$this->error['security_select'] = $this->language->get('security_select_error');
-		}
-		if (($this->request->post['security_answer'] == '') && ($this->request->post['security_select'] != '0')) {
-			$this->error['security_answer'] = $this->language->get('security_answer_error');
-		}
+		//if ($this->request->post['security_select'] == '0') {
+		//	$this->error['security_select'] = $this->language->get('security_select_error');
+		//}
+		//if (($this->request->post['security_answer'] == '') && ($this->request->post['security_select'] != '0')) {
+		//	$this->error['security_answer'] = $this->language->get('security_answer_error');
+		//}
 		return !$this->error;
 	}
 	private function updateCustomer($data) {
 		$this->db->query("UPDATE " . DB_PREFIX . "customer SET email = '" . $this->db->escape($data['email']) . "', salt = '" . $this->db->escape($salt = token(9)) . "', password = '" . $this->db->escape(sha1($salt . sha1($salt . sha1($data['password'])))) . "', status = '1', code = '' WHERE customer_id = '" . (int)$this->request->post['cus_prof'] . "'");		
 
-		$this->db->query("UPDATE " . DB_PREFIX . "address SET security_select = '" . (int)$data['security_select'] . "', security_answer = '" . $data['security_answer'] . "' WHERE customer_id = '" . (int)$this->request->post['cus_prof'] . "'");
+		//$this->db->query("UPDATE " . DB_PREFIX . "address SET security_select = '" . (int)$data['security_select'] . "', security_answer = '" . $data['security_answer'] . "' WHERE customer_id = '" . (int)$this->request->post['cus_prof'] . "'");
 
 		$customer_id = $this->request->post['cus_prof'];
 
@@ -593,12 +613,12 @@ $data['isseller'] = $this->customer->isSeller();
 
 			$customer_info_txt = $this->model_account_customer->getCustomerByPhone($this->request->post['forgt-phn']);
 			$customer_info_address_sec = $this->model_account_customer->getCustomerByAddress($customer_info_txt['address_id']);
-			$customer_security_question = $this->model_account_customer->getCustomerByAddressSecurity($customer_info_address_sec['security_select']);
+			//$customer_security_question = $this->model_account_customer->getCustomerByAddressSecurity($customer_info_address_sec['security_select']);
 
-			if($customer_security_question != ''){
-				$json['success'] = $this->request->post['forgt-phn'];
-				$json['q_name'] = $customer_security_question['q_name'];
-			}
+			//if($customer_security_question != ''){
+			//	$json['success'] = $this->request->post['forgt-phn'];
+			//	$json['q_name'] = $customer_security_question['q_name'];
+			//}
 		}
 
 		if (isset($this->error['forgt-phn-failure'])) {
@@ -654,22 +674,22 @@ $data['isseller'] = $this->customer->isSeller();
 				$json['success'] = $customer_info_txt['customer_id'];
 			}
 		}
-		if (isset($this->error['security_answer_sec'])) {
-			$json['security_answer_sec'] = $this->error['security_answer_sec'];
-		} else {
-			$json['security_answer_sec'] = '';
-		}
+		//if (isset($this->error['security_answer_sec'])) {
+		//	$json['security_answer_sec'] = $this->error['security_answer_sec'];
+		//} else {
+		//	$json['security_answer_sec'] = '';
+		//}
 		if (isset($this->error['sec_otp_sec'])) {
 			$json['sec_otp_sec'] = $this->error['sec_otp_sec'];
 		} else {
 			$json['sec_otp_sec'] = '';
 		}
 
-		if (isset($this->request->post['security_answer_sec'])) {
-			$data['security_answer_sec'] = $this->request->post['security_answer_sec'];
-		} else {
-			$data['security_answer_sec'] = '';
-		}
+		//if (isset($this->request->post['security_answer_sec'])) {
+		//	$data['security_answer_sec'] = $this->request->post['security_answer_sec'];
+		//} else {
+		//	$data['security_answer_sec'] = '';
+		//}
 		if (isset($this->request->post['forgt-phn-otp'])) {
 			$data['forgt-phn-otp'] = $this->request->post['forgt-phn-otp'];
 		} else {
@@ -690,16 +710,16 @@ $data['isseller'] = $this->customer->isSeller();
 				$this->error['sec_otp_sec'] = $this->language->get('sec_otp_sec_not');
 			}
 		}
-		if (($this->request->post['otp-sec'] != 0) && ($this->request->post['security_answer_sec'] == '')) {
-			$this->error['security_answer_sec'] = $this->language->get('security_answer_sec');
-		}
+		//if (($this->request->post['otp-sec'] != 0) && ($this->request->post['security_answer_sec'] == '')) {
+		//	$this->error['security_answer_sec'] = $this->language->get('security_answer_sec');
+		//}
 		
-		if (($this->request->post['otp-sec'] != 0) && ($this->request->post['security_answer_sec'] != '')) {
-			$cus_answer = $this->model_account_customer->getCustomerByAddress($cus_detail['address_id']);
-			if($cus_answer['security_answer'] != $this->request->post['security_answer_sec']){
-				$this->error['security_answer_sec'] = $this->language->get('security_answer_sec_not');
-			}
-		}
+		//if (($this->request->post['otp-sec'] != 0) && ($this->request->post['security_answer_sec'] != '')) {
+		//	$cus_answer = $this->model_account_customer->getCustomerByAddress($cus_detail['address_id']);
+		//	if($cus_answer['security_answer'] != $this->request->post['security_answer_sec']){
+		//		$this->error['security_answer_sec'] = $this->language->get('security_answer_sec_not');
+		//	}
+		//}
 
 		return !$this->error;
 	}
