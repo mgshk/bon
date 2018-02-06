@@ -361,6 +361,7 @@ if(cat_path != '0') {
    }*/
 </script>
 <script>
+   var flag = 4;
    $(document).ready(function(){
       $(".home-search").click(function(){
    		var path = $( "#path" ).val();
@@ -380,13 +381,13 @@ if(cat_path != '0') {
 
    $(function() {
       if(id != '' && typeof first_count !== 'undefined' && first_count > 3) {
-      	$(window).scroll(function() {
+   $(window).scroll(function() {
             if (is_loading == false) { 					
-               if($(window).scrollTop() + $(window).height() >= $(document).height() - 300) {
+               if($(window).scrollTop() + $(window).height() >= $(document).height() - 100) {
                	is_loading = true;
                	//$('#loader_page').show(); 
                	$.ajax({
-               	    url: "index.php?route=seller/seller/advertisement_seller_list&path="+path+"&searcha="+search+"&by_search="+by_search+"&count="+count,
+               	    url: "index.php?route=seller/seller/advertisement_seller_list&path="+path+"&searcha="+search+"&by_search="+by_search+"&count="+flag,
                	    type: 'GET',				    
                	    success:function(data){	
                   		var str = $.trim(data);
@@ -394,12 +395,13 @@ if(cat_path != '0') {
                   		if(str == 'no_record_found') {
                   			$('#loader_page').hide();
                   			is_loading = true;
-                  			count = '';						
+                  			count = '';
+                                        flag = 0;
                   			id = '';
                   		} else {
                   			$('#loader_page').hide();							
                   			$('#seller_append').append(data);										
-                  									
+                  			flag += 4;
                   			is_loading = false;						
                   		}
                	    }
@@ -410,7 +412,8 @@ if(cat_path != '0') {
       } else { 
          $('#loader_page').hide();
       }
-   });	
+   });
+	
 </script>
 <script>
    /*
