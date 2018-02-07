@@ -216,7 +216,7 @@ class Controllersellerseller extends Controller
 		if (isset($this->request->get['limit'])) {
 			$limit = $this->request->get['limit'];
 		} else {
-			$limit = '6';
+			$limit = '4';
 		}	
 
         $data['categories'] = array();
