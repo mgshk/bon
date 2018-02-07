@@ -1282,7 +1282,7 @@
 
 					<div class="row" id="showLocationArea">
 						<div class="col-xs-12 col-sm-6 col-md-6">
-							<input type="text" id="us11-address" class="form-control" placeholder="Location" />
+							<input onClick="this.setSelectionRange(0, this.value.length)" type="text" id="us11-address" class="form-control" placeholder="Location" />
 						</div>
 
 						<div class="col-xs-12 col-sm-6 col-md-6">

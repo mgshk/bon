@@ -313,7 +313,9 @@ class Controllersellerseller extends Controller
         $this->load->model('seller/seller');
 
         $this->load->model('catalog/product');
-		$data['seller_id'] = (int) $this->request->get['seller_id'];
+        $this->load->model('sellerprofile/sellerprofile');
+	
+	$data['seller_id'] = (int) $this->request->get['seller_id'];
 
 		if (isset($this->request->get['seller_id'])) {
             $seller_id = (int) $this->request->get['seller_id'];
@@ -321,6 +323,9 @@ class Controllersellerseller extends Controller
             $seller_id = 0;
         }
 
+	$seller_info = $this->model_sellerprofile_sellerprofile->getseller($seller_id);
+	$data['allow_cart']     = $seller_info['allow_cart'];
+	
 		if (isset($this->request->get['count'])) {
 			$count = $this->request->get['count'];
 			$data['count'] = $count;			
@@ -329,7 +334,7 @@ class Controllersellerseller extends Controller
 			$data['count'] ='';			
 		}
 		
-		$limit = '6';
+		$limit = '4';
 		
 		$sort =(isset($this->request->get['sort']) && $this->request->get['sort'] !='') ? $this->request->get['sort'] : '' ;
 		$order =(isset($this->request->get['order']) && $this->request->get['order'] !='') ? $this->request->get['order'] : '' ;
@@ -338,23 +343,78 @@ class Controllersellerseller extends Controller
 
         $this->load->model('tool/image');
 		$data['image_resize'] = $this->model_tool_image;
-		if($this->request->get['tab_id'] == 'tab-sellerads') { 
-			$data['advertisement_store'] = $this->model_seller_seller->getAdvertisesFrontStore(6, $seller_id, $limit, $count);
-		} else {
+		//if($this->request->get['curr_tab'] == 'tab-sellerads') { 
+		//	$data['advertisement_store'] = $this->model_seller_seller->getAdvertisesFrontStore(6, $seller_id, $limit, $count);
+		//} else {
 			$filter_data = array(
-                'filter_seller_id' => $seller_id,
-                'sort' => $sort,
-                'order' => $order,
-                'start' => $count,
-                'limit' => $limit,
-				'filter_category_id' => $category_id,
-				'filter_prod_search' => $prod_search,
-            );
-			$data['products'] = $this->model_seller_seller->getProducts($filter_data);
-		}
+			    'filter_seller_id' => $seller_id,
+			    'sort' => $sort,
+			    'order' => $order,
+			    'start' => $count,
+			    'limit' => $limit,
+					    'filter_category_id' => $category_id,
+					    'filter_prod_search' => $prod_search,
+			);
+			//$data['products'] = $this->model_seller_seller->getProducts($filter_data);
+			
+			$results = $this->model_seller_seller->getProducts($filter_data);
+			
+			$url = '';
+
+			foreach ($results as $result) {//print_r($result); die;
+			  if ($result['image']) {
+			    $image = $this->model_tool_image->resize($result['image'], $this->config->get($this->config->get('config_theme') . '_image_product_width'), $this->config->get($this->config->get('config_theme') . '_image_product_height'));
+			  } else {
+			    $image = $this->model_tool_image->resize('placeholder.png', $this->config->get($this->config->get('config_theme') . '_image_product_width'), $this->config->get($this->config->get('config_theme') . '_image_product_height'));
+			  }
+	    
+			  if ($this->customer->isLogged() || !$this->config->get('config_customer_price')) {
+			    $price = $this->currency->format($this->tax->calculate($result['price'], $result['tax_class_id'], $this->config->get('config_tax')), $this->session->data['currency']);
+			  } else {
+			    $price = false;
+			  }
+	    
+			    /*if ((float) $result['special']) {
+				$special = $this->currency->format($this->tax->calculate($result['special'], $result['tax_class_id'], $this->config->get('config_tax')), $this->session->data['currency']);
+			    } else {
+				$special = false;
+			    }*/
+	    
+					    if ((float) $result['special_price']) {
+				$special = $this->currency->format($this->tax->calculate($result['special_price'], $result['tax_class_id'], $this->config->get('config_tax')), $this->session->data['currency']);
+			    } else {
+				$special = false;
+			    }
+	    
+			    if ($this->config->get('config_tax')) {
+				$tax = $this->currency->format((float) $result['special'] ? $result['special'] : $result['price'], $this->session->data['currency']);
+			    } else {
+				$tax = false;
+			    }
+	    
+			    if ($this->config->get('config_review_status')) {
+				$rating = (int) $result['rating'];
+			    } else {
+				$rating = false;
+			    }
+	    
+			    $data['products'][] = array(
+				'product_id' => $result['product_id'],
+				'thumb' => $image,
+				'name' => $result['name'],
+				//'description' => utf8_substr(strip_tags(html_entity_decode($result['description'], ENT_QUOTES, 'UTF-8')), 0, $this->config->get('config_product_description_length')).'..',
+						    'description' => utf8_substr(strip_tags(html_entity_decode($result['description'], ENT_QUOTES, 'UTF-8')), 0, $this->config->get($this->config->get('config_theme') . '_product_description_length')) . '..',
+				'price' => $price,
+				'special' => $special,
+				'tax' => $tax,
+				'rating' => $result['rating'],
+				'href' => $this->url->link('product/product', '&product_id='.$result['product_id'].$url),
+			    );
+			}
+		//}
 		$this->response->setOutput($this->load->view('error/not_found', $data));
 
-		 $this->response->setOutput($this->load->view('seller/seller_product_load_more', $data));
+		$this->response->setOutput($this->load->view('seller/seller_product_load_more', $data));
 	}
 	
 	public function pay_wallet()
@@ -644,7 +704,7 @@ class Controllersellerseller extends Controller
 		if (isset($this->request->get['limit'])) {
 			$limit = $this->request->get['limit'];
 		} else {
-			$limit = '8';
+			$limit = '10';
 		}	
 
 		$data['image_resize'] = $this->model_tool_image;
@@ -826,7 +886,7 @@ class Controllersellerseller extends Controller
                 'sort' => $sort,
                 'order' => $order,
                 'start' => ($page - 1) * $limit,
-                'limit' => $limit,
+                'limit' => 4,
 				'filter_category_id' => $category_id,
 				'filter_prod_search' => $prod_search,
             );

@@ -64,7 +64,7 @@ class Modelsellerseller extends Model
 		} else {
 			$sql .= " limit 0,".$limit;
 		}
-
+//echo $sql;
         $query = $this->db->query($sql);
 
         return $query->rows;
@@ -345,7 +345,7 @@ class Modelsellerseller extends Model
 	//print_r($sql); die;
 
         $product_data = array();
-
+//echo $sql;
         $query = $this->db->query($sql);
 
         foreach ($query->rows as $result) {

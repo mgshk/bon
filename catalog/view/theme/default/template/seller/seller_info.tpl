@@ -1414,9 +1414,14 @@
 
 	var seller_id = "<?php echo $seller_id; ?>";
 	var tab = $('.nav-tabs li, .tab-pane').attr('id');
-	if (tab = 'adv_tab') {
+	/*if (tab = 'adv_tab') {
 		var tab_id = "tab-sellerproducts";
 	} else if (tab = 'adv_tab') {
+		var tab_id = "tab-sellerproducts";
+	}*/
+	if (tab = 'adv_tab') {
+		var tab_id = "tab-sellerads";
+	} else {
 		var tab_id = "tab-sellerproducts";
 	}
 	if (adv_id != '') {
@@ -1446,16 +1451,17 @@
 		$('#product_tab').removeclass("active");
 		//$('#tab-sellerreview').css("display", "block"); 
 	});
-
+	var flag = 4;
 	$(function () {
 		$(window).scroll(function () { //alert(id);
-			if (id) {
+			if (id && tab_id == "tab-sellerproducts") {
 				if (is_loading == false) {
 					if ($(window).scrollTop() + $(window).height() >= $(document).height() - 300) {
 						is_loading = true;
+						var curr_tab = "tab-sellerproducts";
 						//$('#loader_page').show();
 						$.ajax({
-							url: "index.php?route=seller/seller/advertisement_store_info&count=" + count + "&seller_id=" + seller_id,
+							url: "index.php?route=seller/seller/advertisement_store_info&count=" + flag + "&seller_id=" + seller_id + "$curr_tab=" + curr_tab,
 							type: 'GET',
 							success: function (data) {
 								var str = $.trim(data);	//alert(str);
@@ -1465,10 +1471,15 @@
 									count = '';
 									tab_id = '';
 									id = '';
+									flag = 0;
 								} else {
 									$('#loader_page').hide();
-									//$('#tab-sellerads').append(data);									
-
+									//if (tab_id == "tab-sellerads") {
+									//	$('#tab-sellerads').append(data);									
+									//} else if (tab_id == "tab-sellerproducts") {
+										$('#tab-sellerproducts').append(data);									
+									//}
+									flag += 4;
 									is_loading = false;
 								}
 							}
