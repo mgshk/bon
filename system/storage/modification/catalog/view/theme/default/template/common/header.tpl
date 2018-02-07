@@ -172,6 +172,10 @@
 			display: block;
 		}
 
+		body {
+			background-image: url("image/bg.png");
+		}
+
 		.rrt-bon-sub {
 			left: 100%;
 			top: 37%;
