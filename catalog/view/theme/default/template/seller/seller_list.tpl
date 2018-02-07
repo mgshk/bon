@@ -276,13 +276,16 @@
                <div class="pull-right"><a href="<?php echo $continue; ?>" class="btn btn-primary"><?php echo $button_continue; ?></a></div>
             </div>-->
             <?php } }?>
-            <?php if(isset($categories) && !empty($categories)) { ?>
-            <p id="loader_page" style="display:none;"><img src="catalog/view/theme/default/image/ajax_loader.gif"></p>
-            <?php } ?>
+            
          </div>
       </div>
       <div class="col-sm-3"></div>
    </div>
+</div>
+<div>
+   <?php if(isset($categories) && !empty($categories)) { ?>
+            <p id="loader_page" style="display:none;"><img src="catalog/view/theme/default/image/ajax_loader.gif"></p>
+            <?php } ?>
 </div>
 <script>
 if($(window).width() < 767) {
@@ -361,8 +364,29 @@ if(cat_path != '0') {
    }*/
 </script>
 <script>
+   var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+function isMobile1() {
+    ///<summary>Detecting whether the browser is a mobile browser or desktop browser</summary>
+    ///<returns>A boolean value indicating whether the browser is a mobile browser or not</returns>
+
+    if (sessionStorage.desktop) // desktop storage 
+        return false;
+    else if (localStorage.mobile) // mobile storage
+        return true;
+
+    // alternative
+    var mobile = ['iphone','ipad','android','blackberry','nokia','opera mini','windows mobile','windows phone','iemobile']; 
+    for (var i in mobile) if (navigator.userAgent.toLowerCase().indexOf(mobile[i].toLowerCase()) > 0) return true;
+
+    // nothing found.. assume desktop
+    return false;
+}
+
+
    var flag = 4;
    $(document).ready(function(){
+      if(isMobile1()){$(".ft--mb-st").show();};
       $(".home-search").click(function(){
    		var path = $( "#path" ).val();
    		var search = $( "#searcha" ).val();
@@ -379,13 +403,15 @@ if(cat_path != '0') {
 	var search = $( "#searcha" ).val();
 	var by_search = $( "#by_search" ).val();
 
+     
    $(function() {
       if(id != '' && typeof first_count !== 'undefined' && first_count > 3) {
-   $(window).scroll(function() {
-            if (is_loading == false) { 					
-               if($(window).scrollTop() + $(window).height() >= $(document).height() - 100) {
+         $(window).scroll(function() {
+            if (is_loading == false) {
+               if(isMobile1()){$(".ft--mb-st").hide();};
+               if($(window).scrollTop() + $(window).height() >= $(document).height() - 300) {
                	is_loading = true;
-               	//$('#loader_page').show(); 
+               	$('#loader_page').show(); 
                	$.ajax({
                	    url: "index.php?route=seller/seller/advertisement_seller_list&path="+path+"&searcha="+search+"&by_search="+by_search+"&count="+flag,
                	    type: 'GET',				    
@@ -398,6 +424,7 @@ if(cat_path != '0') {
                   			count = '';
                                         flag = 0;
                   			id = '';
+                                        if(isMobile1()){$(".ft--mb-st").show();};
                   		} else {
                   			$('#loader_page').hide();							
                   			$('#seller_append').append(data);										
@@ -406,14 +433,44 @@ if(cat_path != '0') {
                   		}
                	    }
                	});
-               }
+               } else {
+               if(isMobile1()){$(".ft--mb-st").show();};
             }
+            } 
+            
       	});
       } else { 
          $('#loader_page').hide();
       }
    });
-	
+
+   /*$(window).scroll(function(event) {
+      function footer()
+       {
+        var scroll = $(window).scrollTop(); 
+        if(scroll > 50)
+        { 
+            $(".ft--mb-st").fadeOut("slow").addClass("show");
+        }
+        else
+        {
+            $(".ft--mb-st").fadeIn("slow").removeClass("show");
+        }
+        
+        /*clearTimeout($.data(this, 'scrollTimer'));
+        $.data(this, 'scrollTimer', setTimeout(function() {
+            if ($('.ft--mb-st').is(':hover')) {
+	        	footer();
+    		}
+            else
+            {
+            	$(".ft--mb-st").fadeOut("slow");
+            }
+		}, 2000));
+    }
+    footer();
+   });*/
+
 </script>
 <script>
    /*
