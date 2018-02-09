@@ -175,7 +175,7 @@
 		.common-home {
 			background-image: url("image/bg.png");
 			/* Background image is centered vertically and horizontally at all times */
-  background-position: center center;
+  background-position: left bottom;
   
   /* Background image doesn't tile */
   background-repeat: no-repeat;
@@ -186,7 +186,7 @@
   
   /* This is what makes the background image rescale based
      on the container's size */
-  background-size: cover;
+  background-size: contain;
   		}
 		.rrt-bon-sub {
 			left: 100%;
