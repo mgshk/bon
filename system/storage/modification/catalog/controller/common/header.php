@@ -236,7 +236,7 @@ $data['isseller'] = $this->customer->isSeller();
 			$sender_id = $this->config->get('sms_sender_lne');
 			$status = '';
 			$sms_type = 'sign_up';
-			//$this->model_selleradvertise_advertise->sendsms_payment($phone_num, $code, $sender_id, $status, $sms_type);
+			$this->model_selleradvertise_advertise->sendsms_payment($phone_num, $code, $sender_id, $status, $sms_type);
 			//SMS Integration
 
 			if (isset($this->request->post['zone_select'])) {
@@ -446,8 +446,8 @@ $data['isseller'] = $this->customer->isSeller();
 			//echo "<pre>"; print_r($cus_detail['code']);
 			//print_r($this->request->post['forgt-phn-otp']);die;
 			if($cus_detail['code'] != $this->request->post['otp']){
-				//$json['error_warning'] = $this->language->get('Invalid OTP!');
-				$json['success'] = "success";
+				$json['error_warning'] = $this->language->get('Invalid OTP!');
+				//$json['success'] = "success";
 			} else {
 				$json['success'] = "success";
 			}
@@ -605,14 +605,16 @@ $data['isseller'] = $this->customer->isSeller();
 			//SMS Integration
 			$this->load->model('selleradvertise/advertise');
 			$phone_num = $this->request->post['forgt-phn'];
-			$sender_id = $this->config->get('sms_sender_ads');
+			$sender_id = $this->config->get('sms_sender_lne');
 			$status = '';
 			$sms_type = 'forget_pass';
 			$this->model_selleradvertise_advertise->sendsms_payment($phone_num, $code, $sender_id, $status, $sms_type);
 			//SMS Integration
 
-			$customer_info_txt = $this->model_account_customer->getCustomerByPhone($this->request->post['forgt-phn']);
-			$customer_info_address_sec = $this->model_account_customer->getCustomerByAddress($customer_info_txt['address_id']);
+			$json['success'] = $this->request->post['forgt-phn'];
+			
+			//$customer_info_txt = $this->model_account_customer->getCustomerByPhone($this->request->post['forgt-phn']);
+			//$customer_info_address_sec = $this->model_account_customer->getCustomerByAddress($customer_info_txt['address_id']);
 			//$customer_security_question = $this->model_account_customer->getCustomerByAddressSecurity($customer_info_address_sec['security_select']);
 
 			//if($customer_security_question != ''){
