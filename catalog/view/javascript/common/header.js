@@ -297,7 +297,7 @@ $(document).ready(function() {
               $("#input-email-otp").removeAttr('disabled');
               $("#input-password-otp").removeAttr('disabled');
               $("#input-confirm-otp").removeAttr('disabled');
-              //$("#security_select").removeAttr('disabled');
+              $("#security_select").removeAttr('disabled');
               $("#sign-up-bon-top-prof").removeAttr('disabled');
             }
 
@@ -322,8 +322,8 @@ $(document).ready(function() {
       var email = $("#input-email-otp").val();
       var password = $("#input-password-otp").val();
       var confirm_password = $("#input-confirm-otp").val();
-      //var security_select = $("#security_select").find('option:selected').val();
-      //var security_ans = $("#security_answer").val();
+      var security_select = $("#security_select").find('option:selected').val();
+      var security_ans = $("#security_answer").val();
 
       //if ($.trim(email) === '')
       // throw "E-Mail cannot be empty";
@@ -337,11 +337,11 @@ $(document).ready(function() {
       if ($.trim(password) === '' !== $.trim(confirm_password) === '')
         throw "Re-entered password does not match!";
 
-      //if ($.trim(security_select) === '0')
-      //  throw "Please select security question";
+      if ($.trim(security_select) === '0')
+        throw "Please select security question";
 
-      //if ($.trim(security_ans) === '')
-      //  throw "Please enter security answer";
+      if ($.trim(security_ans) === '')
+        throw "Please enter security answer";
 
       $.ajax({
         url: 'index.php?route=common/header/new_login_update',
@@ -383,13 +383,13 @@ $(document).ready(function() {
             $('#top-line-star-otp').html('<i class="fa fa-times-circle"></i> '+ json['error_confirm']).show();
           }
 
-          //if (json['security_select']) {
-          //  $('#top-line-star-otp').html('<i class="fa fa-times-circle"></i> '+ json['security_select']).show();
-          //}
+          if (json['security_select']) {
+            $('#top-line-star-otp').html('<i class="fa fa-times-circle"></i> '+ json['security_select']).show();
+          }
 
-          //if (json['security_answer']) {
-          //  $('#top-line-star-otp').html('<i class="fa fa-times-circle"></i> '+ json['security_answer']).show();
-          //}
+          if (json['security_answer']) {
+            $('#top-line-star-otp').html('<i class="fa fa-times-circle"></i> '+ json['security_answer']).show();
+          }
 
           setTimeout(function() {
             $('#top-line-star-otp').empty().hide();
@@ -431,7 +431,7 @@ $(document).ready(function() {
             if (json['success']) {
               $('#forgt-phn-sec').val(json['success']);
               $('#forgt-phn-sec_nw').val(json['success']);
-              //$('#security_question_sec').val(json['q_name']);
+              $('#security_question_sec').val(json['q_name']);
               $("._forget-bon").hide();
               $("._forget-bon-sec").show();
               $("#qus_ans").hide();
@@ -461,13 +461,13 @@ $(document).ready(function() {
       try {
         $('#frgt_otp_error').empty().hide();
         var otp = $("#forgt-phn-otp").val();
-        //var security_ans = $("#security_answer_sec").val();
+        var security_ans = $("#security_answer_sec").val();
 
         if ($.trim(otp) === '')
           throw "Forgot password OTP not empty!";
 
-        //if ($.trim(security_ans) === '')
-        //  throw "Please enter security answer";
+        if ($.trim(security_ans) === '')
+          throw "Please enter security answer";
 
         $.ajax({
           url: 'index.php?route=common/header/forgot_pass_sec',
@@ -481,9 +481,9 @@ $(document).ready(function() {
               $("._forget-bon-pass").show();
             }
 
-            //if (json['security_answer_sec']) {
-            //  $('#frgt_otp_error').html('<i class="fa fa-times-circle"></i> '+ json['security_answer_sec']).show();
-            //}
+            if (json['security_answer_sec']) {
+              $('#frgt_otp_error').html('<i class="fa fa-times-circle"></i> '+ json['security_answer_sec']).show();
+            }
 
             if (json['sec_otp_sec']) {
               $('#frgt_otp_error').html('<i class="fa fa-times-circle"></i> '+ json['sec_otp_sec']).show();

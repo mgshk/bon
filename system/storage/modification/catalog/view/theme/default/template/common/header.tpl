@@ -933,7 +933,7 @@
 									<input type="password" maxlength="20" name="confirm" value="" id="input-confirm-otp" placeholder="Re-Enter password" class="inputText"
 									 required disabled/>
 								</div>
-								<!--<div class="_state-log-bon">
+								<div class="_state-log-bon">
 									<select name="security_select" id="security_select" disabled required>
 										<option value="0">Select your Security Quesion</option>
 										<?php foreach($security_question_data as $sec_ques) { ?>
@@ -944,7 +944,7 @@
 								<div class="_again-passwrd-log-bon security_answer" style="display:none">
 									<input type="text" autocomplete="off" name="security_answer" value="" id="security_answer" placeholder="Please enter the security answer"
 									 class="inputText" maxlength="250" required/>
-								</div>-->
+								</div>
 								<div class="_log-btn-btm" style="position: static;">
 									<button class="advertise-btn _btn-fin" id="sign-up-bon-top-prof" type="button" disabled>Signup</button>
 								</div>
@@ -1059,7 +1059,7 @@
 									<input type="text" autocomplete="off" name="forgt-phn-otp" value="" maxlength="6" placeholder="Enter the OTP sent to above mobile number"
 									 id="forgt-phn-otp" class="inputText" required/>
 								</div>
-								<!--<div id="qus_ans">
+								<div id="qus_ans">
 									<div class="_state-log-bon">
 										<input type="text" autocomplete="off" name="security_question_sec" value="" id="security_question_sec" class="inputText"
 										 required disabled/>
@@ -1068,7 +1068,7 @@
 										<input type="text" autocomplete="off" name="security_answer_sec" value="" id="security_answer_sec" placeholder="Please enter the security answer"
 										 class="inputText" required/>
 									</div>
-								</div>-->
+								</div>
 								<div class="_log-btn-btm" style="position: static;">
 									<button class="advertise-btn _btn-fin" id="forget-btn-main-bon-sec" type="button">Continue</button>
 								</div>
@@ -1432,11 +1432,11 @@
 				$("#sign-up-bon-top").attr('disabled', 'disabled');
 			}
 		});
-		/*$("select#security_select").change(function () {
+		$("select#security_select").change(function () {
 			$('#security_select_alt').html('');
 			$('#security_answer_alt').html('');
 			$(".security_answer").show();
-		});*/
+		});
 		function mouseoverPass(obj) {
 			var obj = document.getElementById('input-password');
 			obj.type = "text";
