@@ -233,7 +233,7 @@ $data['isseller'] = $this->customer->isSeller();
 			//SMS Integration
 			$this->load->model('selleradvertise/advertise');
 			$phone_num = $this->request->post['telephone'];
-			$sender_id = $this->config->get('sms_sender_lne');
+			$sender_id = $this->config->get('sms_sender_ads');
 			$status = '';
 			$sms_type = 'sign_up';
 			$this->model_selleradvertise_advertise->sendsms_payment($phone_num, $code, $sender_id, $status, $sms_type);
@@ -605,7 +605,7 @@ $data['isseller'] = $this->customer->isSeller();
 			//SMS Integration
 			$this->load->model('selleradvertise/advertise');
 			$phone_num = $this->request->post['forgt-phn'];
-			$sender_id = $this->config->get('sms_sender_lne');
+			$sender_id = $this->config->get('sms_sender_ads');
 			$status = '';
 			$sms_type = 'forget_pass';
 			$this->model_selleradvertise_advertise->sendsms_payment($phone_num, $code, $sender_id, $status, $sms_type);
