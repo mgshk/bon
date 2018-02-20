@@ -167,11 +167,14 @@ function storeAddress() {
         success: function(json) {
           $('#successMsg').empty().hide();
           $('#successMsg').html('<i class="fa fa-check-circle"></i> '+ json.success).show();
-
+	  document.getElementById('store-address-save').disabled = true;
+          document.getElementById('store-address-cancel').disabled = true;
           setTimeout(function() {
             $('#store_address').modal('toggle');
             $('#store_address_update').html(json.address);
             $('#successMsg').empty().hide();
+	    document.getElementById('store-address-save').disabled = false;
+	    document.getElementById('store-address-cancel').disabled = false;
           }, 3000);
         },
       error: function(xhr, ajaxOptions, thrownError) {
@@ -215,25 +218,25 @@ function storePortals() {
     if (facebook1.length > 500)
       throw "Facebook address can not be > 500 chars.";
 
-    if (facebook1.length <= 500 && !FBurl.test(facebook1))
+    if (facebook1.length > 0 && facebook1.length <= 500 && !FBurl.test(facebook1))
       throw "Invalid Facebook url";
     
     if (twitter1.length > 500)
       throw "Twitter address can not be > 500 chars.";
 
-    if (twitter1.length <= 500 && !TWurl.test(twitter1))
+    if (twitter1.length > 0 && twitter1.length <= 500 && !TWurl.test(twitter1))
       throw "Invalid Twitter url";
     
     if (googleplus1.length > 500)
       throw "GooglePlus address can not be > 500 chars.";
 
-    if (googleplus1.length <= 500 && !GPurl.test(googleplus1))
+    if (googleplus1.length > 0 && googleplus1.length <= 500 && !GPurl.test(googleplus1))
       throw "Invalid GooglePlus url";
     
     if (instagram1.length > 500)
       throw "Instagram address can not be > 500 chars.";
 
-    if (instagram1.length <= 500 && !INurl.test(instagram1))
+    if (instagram1.length > 0 && instagram1.length <= 500 && !INurl.test(instagram1))
       throw "Invalid Instagram url";
 
     $.ajax({
@@ -251,10 +254,13 @@ function storePortals() {
         success: function(json) {
           $('#portalSuccessMsg').empty().hide();
           $('#portalSuccessMsg').html('<i class="fa fa-check-circle"></i> '+ json.success).show();
-
+	  document.getElementById('store-portals-save').disabled = true;
+	  document.getElementById('store-portals-cancel').disabled = true;
           setTimeout(function() {
             $('#store_portals').modal('toggle');
             $('#portalSuccessMsg').empty().hide();
+	    document.getElementById('store-portals-save').disabled = false;
+	    document.getElementById('store-portals-cancel').disabled = false;
           }, 3000);
         },
         error: function(xhr, ajaxOptions, thrownError) {
@@ -455,10 +461,15 @@ $(document).ready(function() {
             $('#storeCatSuccessMsg').empty().hide();
             $('#storeCatSuccessMsg').html('<i class="fa fa-check-circle"></i> '+ data['success']).show();
             $('#store_cat').scrollTop(0);
-	  
+	    document.getElementById('button-cat-subcat-save').disabled = true;
+            document.getElementById('store-cat-subcat-cancel').disabled = true;
+	    document.getElementById('addBtnCategories').disabled = true;
             setTimeout(function() {
               $('#store_cat').modal('toggle');
               $('#storeCatSuccessMsg').empty().hide();
+	      document.getElementById('button-cat-subcat-save').disabled = false;
+	      document.getElementById('store-cat-subcat-cancel').disabled = false;
+	      document.getElementById('addBtnCategories').disabled = false;
             }, 3000);
         },
         error: function(xhr, ajaxOptions, thrownError) {

@@ -365,11 +365,11 @@
                                 id="input-description" class="form-control"><?php echo $seller_description; ?></textarea>
                             </div>
                           </div>
-                          <div id="store_address" class="modal fade" role="dialog">
+                          <div id="store_address" class="modal fade" role="dialog" data-keyboard="false" data-backdrop="static">
                             <div class="modal-dialog">
                               <div class="modal-content">
                                 <div class="modal-header">
-                                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                  <!--<button type="button" class="close" data-dismiss="modal">&times;</button>-->
                                   <h4 class="modal-title">Update Store Address</h4>
                                 </div>
                                 <div class="modal-body">
@@ -427,8 +427,8 @@
                                   </div>
                                 </div>
                                 <div class="modal-footer">
-                                  <button type="button" class="btn btn-primary" onclick="storeAddress();">Save</button>
-                                  <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
+                                  <button type="button" class="btn btn-primary" id="store-address-save" onclick="storeAddress();">Save</button>
+                                  <button type="button" class="btn btn-primary" id="store-address-cancel" data-dismiss="modal">Cancel</button>
                                 </div>
                               </div>
                             </div>
@@ -701,7 +701,7 @@
                                           </div>
                             </label>
                             <div class="col-md-4">
-                              <input maxlength="30" type="text" name="tin" value="<?php echo $tin; ?>" id="input-tin"
+                              <input maxlength="30" type="text" name="tin" placeholder="<?php echo $placeholder_tin; ?>" value="<?php echo $tin; ?>" id="input-tin"
                                 class="form-control" required/>
                               <span class="input-group-btn">
                                              </span>
@@ -811,7 +811,7 @@
                                           </div>
                             </label>
                             <div class="col-md-4" style="padding-top: 7px;">
-                              <input type="text" id="input-referred-by-val" name="referred_by" placeholder="<?php echo $entry_store_mobile_num; ?>" value="<?php echo $referred_by; ?>"
+                              <input type="text" name="referred_by" placeholder="<?php echo $entry_store_mobile_num; ?>" value="<?php echo $referred_by; ?>"
                                 id="input-referred-by" maxlength="10" class="form-control" />
                               <p>If you are a new referrer,<a class="cursor" data-toggle="modal" data-target="#store_referred"> click here</a></p>
                             </div>
@@ -1097,12 +1097,12 @@
     </div>
   </div>
 </div>
-<div class="modal fade" id="store_referred" role="dialog">
+<div class="modal fade" id="store_referred" role="dialog" data-keyboard="false" data-backdrop="static">
   <div class="modal-dialog">
     <!-- Modal content-->
     <div class="modal-content loc-pop">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <!--<button type="button" class="close" data-dismiss="modal">&times;</button>-->
         <h4 class="modal-title loc-share-title">New referrer form</h4>
       </div>
       <div class="modal-body reffer-str-top">
@@ -1159,11 +1159,11 @@
     </div>
   </div>
 </div>
-<div id="store_portals" class="modal fade" role="dialog">
+<div id="store_portals" class="modal fade" role="dialog" data-keyboard="false" data-backdrop="static">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-	<button type="button" class="close" data-dismiss="modal">&times;</button>
+	<!--<button type="button" class="close" data-dismiss="modal">&times;</button>-->
 	<h4 class="modal-title">Update store/entity portals</h4>
       </div>
       <div class="modal-body">
@@ -1202,13 +1202,13 @@
 	</div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary" onclick="storePortals();">Save</button>
-        <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary" id="store-portals-save" onclick="storePortals();">Save</button>
+        <button type="button" class="btn btn-primary" id="store-portals-cancel" data-dismiss="modal">Cancel</button>
       </div>
     </div>
   </div>
 </div>
-<div class="modal fade" id="store_featured" role="dialog">
+<div class="modal fade" id="store_featured" role="dialog" data-keyboard="false" data-backdrop="static">
   <div class="modal-dialog">
     <!-- Modal content-->
     <div class="modal-content loc-pop">
@@ -1243,12 +1243,12 @@
     </div>
   </div>
 </div>
-<div class="modal fade" id="store_images" role="dialog">
+<div class="modal fade" id="store_images" role="dialog" data-keyboard="false" data-backdrop="static">
   <div class="modal-dialog">
     <!-- Modal content-->
     <div class="modal-content loc-pop">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <button type="button" class="close" id="store-images-cancel" data-dismiss="modal">&times;</button>
         <h4 class="modal-title loc-share-title">Store/Entity additional images</h4>
       </div>
       <div class="modal-body timing-share-top">
@@ -1294,8 +1294,8 @@
                 </tr>
               </tfoot>
             </table>
-            <button type="button" id="button-image-save" data-loading-text="<?php echo $text_loading; ?>" class="btn btn-primary pull-right">
-                  <?php echo $button_save; ?>
+            <button type="button" id="button-image-save" class="btn btn-primary pull-right">
+                  Save
                   </button>
           </div>
         </form>
@@ -1303,12 +1303,12 @@
     </div>
   </div>
 </div>
-<div class="modal fade" id="store_cat" role="dialog">
+<div class="modal fade" id="store_cat" role="dialog" data-keyboard="false" data-backdrop="static">
   <div class="modal-dialog">
     <!-- Modal content-->
     <div class="modal-content loc-pop">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <button type="button" class="close" id="store-cat-subcat-cancel" data-dismiss="modal">&times;</button>
         <h4 class="modal-title loc-share-title">Store/Entity Categories</h4>
       </div>
       <div class="modal-body cat-top">
@@ -1405,12 +1405,12 @@
 </div>
 <link href="catalog/view/javascript/bootstrap-timepicker.css" rel="stylesheet" type="text/css" />
 <script src="catalog/view/javascript/bootstrap-timepicker.js"></script>
-<div class="modal fade" id="store_timings" role="dialog">
+<div class="modal fade" id="store_timings" role="dialog" data-keyboard="false" data-backdrop="static">
    <div class="modal-dialog">
       <!-- Modal content-->
       <div class="modal-content loc-pop">
          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <button type="button" class="close" id="hours-of-operation-cancel" data-dismiss="modal">&times;</button>
             <h4 class="modal-title loc-share-title">Hours of operation</h4>
          </div>
          <div class="modal-body store-timing-share-top">
@@ -1591,10 +1591,13 @@
         success: function(data) {
           $('#store_success_timg').html('');
           $('#store_success_timg').html('<div class="alert alert-success"><i class="fa fa-check-circle"></i>' + data['success'] + '</div>');
-
+          document.getElementById('button-timing-save').disabled = true;
+          document.getElementById('hours-of-operation-cancel').disabled = true;
           setTimeout(function() {
             $('#store_timings').modal('toggle');
             $('#store_success_timg').html('');
+            document.getElementById('button-timing-save').disabled = false;
+            document.getElementById('hours-of-operation-cancel').disabled = false;
           }, 3000);
         }
       })
@@ -1665,8 +1668,8 @@
             $('#val_ref_tt').html('');
             if (json['success']) {
               if (refer_mobile_val == json['success']) {
-                $('#input-referred-by-val').val('');
-                $('#input-referred-by-val').val(json['success']);
+                $('#input-referred-by').val('');
+                $('#input-referred-by').val(json['success']);
                 $('#store_referred').modal('toggle');
               }
             }
@@ -2443,9 +2446,9 @@
           url: 'index.php?route=sellerprofile/sellerprofile/storeimage&seller_id=<?php echo $seller_id; ?>',
           dataType: 'json',
           data: $('#form-image').serialize(),
-          beforeSend: function () {
-            $('#button-image-save').button('loading');
-          },
+          //beforeSend: function () {
+          //  $('#button-image-save').button('loading');
+          //},
           //complete: function () {
           // $('#button-image-save').button('reset');
 
@@ -2462,10 +2465,13 @@
           if (json['error']) {
               $('#storeImagesSuccessMsg').html('<i class="fa fa-check-circle"></i> '+ json.success).show();
           }
-
+          document.getElementById('button-image-save').disabled = true;
+          document.getElementById('store-images-cancel').disabled = true;
           setTimeout(function() {
             $('#store_images').modal('toggle');
             $('#storeImagesSuccessMsg').empty().hide();
+            document.getElementById('button-image-save').disabled = false;
+            document.getElementById('store-images-cancel').disabled = false;
           }, 3000);
         },
         error: function(xhr, ajaxOptions, thrownError) {
